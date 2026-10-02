@@ -1,0 +1,550 @@
+{
+  "id": "agnsw",
+  "status": "verified",
+  "name": "Art Gallery of NSW",
+  "city": "sydney",
+  "area": "The Domain",
+  "category": "gallery",
+  "categoryLabel": "Gallery",
+  "blurb": "Free, world-class art across two buildings, with a rooftop harbour view.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "A perfect refuge on a rainy or sweltering day.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
+  },
+  "cost": "Free",
+  "gettingThere": "Walk from St James or Martin Place station through the Domain.",
+  "newcomerTip": "General entry is free. Don't miss the newer Naala Badu building and its rooftop views.",
+  "location": {
+    "lat": -33.8688,
+    "lng": 151.2174
+  },
+  "suggestedStart": "10:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "2–3 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "10 min from St James"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8688,
+      "lng": 151.2174,
+      "label": "Art Gallery of NSW"
+    },
+    "pt": {
+      "total": "≈ 15 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "title": "Train to St James",
+          "mins": 4
+        },
+        {
+          "mode": "walk",
+          "title": "Through the Domain to the gallery",
+          "mins": 10
+        }
+      ],
+      "back": {
+        "text": "Same way back, or walk down through the Botanic Garden to Circular Quay (≈ 20 min)."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        15,
+        30
+      ],
+      "perCarLabel": "Domain car park, 3 hrs",
+      "notes": [
+        "Street parking on Art Gallery Rd is metered and scarce."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "show",
+        "label": "Ticketed exhibition",
+        "per": [
+          25,
+          35
+        ],
+        "on": false
+      },
+      {
+        "id": "food",
+        "label": "Gallery café",
+        "per": [
+          12,
+          25
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Any time. On Wednesdays the gallery stays open until 10pm.",
+    "hours": "Open daily 10am to 5pm, and until 10pm on Wednesdays. Closed Good Friday and Christmas Day.",
+    "bring": [
+      "A small bag only",
+      "Headphones for the audio guide"
+    ],
+    "facilities": [
+      "Toilets, lockers and a cloakroom",
+      "Cafés in both buildings"
+    ],
+    "access": "Step-free entries and lifts in both buildings. Wheelchairs and mobility scooters can be borrowed free at the welcome desks (bring ID). Two accessible parking spaces behind Naala Nura: ask at the boom gate off Art Gallery Rd.",
+    "safety": [
+      "Big backpacks need to go in the cloakroom"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Royal Botanic Garden & Mrs Macquarie's Chair",
+      "why": "Harbour views, 5 min away",
+      "dist": "Next door",
+      "activityId": "botanic"
+    },
+    {
+      "name": "Australian Museum",
+      "why": "Another free museum",
+      "dist": "≈ 12 min walk",
+      "activityId": "aus-museum"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "St James Station",
+        "type": "start",
+        "note": "Use the Hyde Park exit, then cross towards the cathedral.",
+        "lng": 151.21177,
+        "lat": -33.87123
+      },
+      {
+        "n": 2,
+        "name": "St Mary's Cathedral",
+        "type": "lookout",
+        "note": "The big sandstone cathedral on the edge of Hyde Park.",
+        "lng": 151.21336,
+        "lat": -33.87124
+      },
+      {
+        "n": 3,
+        "name": "The Domain",
+        "type": "lookout",
+        "note": "Open parkland. Follow Art Gallery Rd.",
+        "lng": 151.21532,
+        "lat": -33.86804
+      },
+      {
+        "n": 4,
+        "name": "Art Gallery, original building",
+        "type": "end",
+        "note": "Australian, Aboriginal and European collections. Free entry.",
+        "lng": 151.21742,
+        "lat": -33.86861
+      },
+      {
+        "n": 5,
+        "name": "Naala Badu building",
+        "type": "lookout",
+        "note": "The newer wing, with contemporary art and harbour terraces.",
+        "lng": 151.21821,
+        "lat": -33.86769
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21175,
+          -33.87123
+        ],
+        [
+          151.21177,
+          -33.87113
+        ],
+        [
+          151.21197,
+          -33.87105
+        ],
+        [
+          151.21195,
+          -33.87088
+        ],
+        [
+          151.21272,
+          -33.87044
+        ],
+        [
+          151.21275,
+          -33.8705
+        ],
+        [
+          151.21342,
+          -33.87057
+        ],
+        [
+          151.21357,
+          -33.87064
+        ],
+        [
+          151.21356,
+          -33.87072
+        ],
+        [
+          151.21374,
+          -33.8708
+        ],
+        [
+          151.21374,
+          -33.87108
+        ],
+        [
+          151.21367,
+          -33.87117
+        ],
+        [
+          151.21357,
+          -33.87116
+        ],
+        [
+          151.21356,
+          -33.87129
+        ],
+        [
+          151.21349,
+          -33.87128
+        ],
+        [
+          151.21356,
+          -33.87129
+        ],
+        [
+          151.21357,
+          -33.87116
+        ],
+        [
+          151.21367,
+          -33.87117
+        ],
+        [
+          151.21374,
+          -33.87108
+        ],
+        [
+          151.21376,
+          -33.87084
+        ],
+        [
+          151.21356,
+          -33.87072
+        ],
+        [
+          151.21357,
+          -33.87064
+        ],
+        [
+          151.21369,
+          -33.8707
+        ],
+        [
+          151.21376,
+          -33.87059
+        ],
+        [
+          151.21372,
+          -33.87048
+        ],
+        [
+          151.21405,
+          -33.87015
+        ],
+        [
+          151.21489,
+          -33.8696
+        ],
+        [
+          151.21475,
+          -33.86924
+        ],
+        [
+          151.21604,
+          -33.86791
+        ],
+        [
+          151.21531,
+          -33.86794
+        ],
+        [
+          151.21604,
+          -33.86791
+        ],
+        [
+          151.21681,
+          -33.868
+        ],
+        [
+          151.21701,
+          -33.86796
+        ],
+        [
+          151.21723,
+          -33.86805
+        ],
+        [
+          151.21736,
+          -33.86785
+        ],
+        [
+          151.21787,
+          -33.86812
+        ],
+        [
+          151.21776,
+          -33.86834
+        ],
+        [
+          151.21778,
+          -33.86846
+        ],
+        [
+          151.21773,
+          -33.8685
+        ],
+        [
+          151.21761,
+          -33.86842
+        ],
+        [
+          151.21773,
+          -33.8685
+        ],
+        [
+          151.21778,
+          -33.86846
+        ],
+        [
+          151.21781,
+          -33.86853
+        ],
+        [
+          151.2179,
+          -33.86853
+        ],
+        [
+          151.21808,
+          -33.86844
+        ],
+        [
+          151.21815,
+          -33.86832
+        ],
+        [
+          151.21832,
+          -33.86832
+        ],
+        [
+          151.21834,
+          -33.86836
+        ],
+        [
+          151.21847,
+          -33.86829
+        ],
+        [
+          151.21852,
+          -33.86833
+        ],
+        [
+          151.2186,
+          -33.8681
+        ],
+        [
+          151.21833,
+          -33.86807
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.21368,
+        "lat": -33.87106
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21735,
+        "lat": -33.86854
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21693,
+        "lat": -33.86774
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.2178,
+        "lat": -33.86893
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21197,
+        "lat": -33.87041
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21696,
+        "lat": -33.86779
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21851,
+        "lat": -33.86754
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "coords": [
+            [
+              151.20724,
+              -33.88419
+            ],
+            [
+              151.20807,
+              -33.88258
+            ],
+            [
+              151.20902,
+              -33.87849
+            ],
+            [
+              151.20953,
+              -33.87688
+            ],
+            [
+              151.21073,
+              -33.87429
+            ],
+            [
+              151.21146,
+              -33.87205
+            ],
+            [
+              151.21169,
+              -33.87065
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.2117,
+              -33.87064
+            ],
+            [
+              151.21178,
+              -33.87072
+            ],
+            [
+              151.2119,
+              -33.87045
+            ],
+            [
+              151.21168,
+              -33.87042
+            ],
+            [
+              151.21153,
+              -33.87002
+            ],
+            [
+              151.21163,
+              -33.86991
+            ],
+            [
+              151.2124,
+              -33.86998
+            ],
+            [
+              151.21288,
+              -33.87049
+            ],
+            [
+              151.21385,
+              -33.87024
+            ],
+            [
+              151.21533,
+              -33.8693
+            ],
+            [
+              151.21681,
+              -33.8694
+            ],
+            [
+              151.21736,
+              -33.86899
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Domain car park price: Wilson Parking doesn't publish casual rates online."
+    },
+    {
+      "section": "cost",
+      "note": "Café prices."
+    }
+  ]
+}

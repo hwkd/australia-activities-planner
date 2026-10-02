@@ -1,0 +1,616 @@
+{
+  "id": "carriageworks",
+  "status": "verified",
+  "name": "Carriageworks Farmers Market",
+  "city": "sydney",
+  "area": "Inner City",
+  "category": "market",
+  "categoryLabel": "Markets",
+  "blurb": "Saturday-morning food market inside giant old railway workshops.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Under cover in the old rail sheds, so it works in any weather.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "Train to Redfern, then an 11 minute walk along Little Eveleigh St.",
+  "newcomerTip": "Saturdays only, 8am to 1pm. Go early, bring a bag, and have breakfast there.",
+  "location": {
+    "lat": -33.8935,
+    "lng": 151.1925
+  },
+  "days": [
+    "sat"
+  ],
+  "suggestedStart": "08:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "When",
+      "v": "Saturdays, 8am–1pm"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8935,
+      "lng": 151.1925,
+      "label": "Carriageworks"
+    },
+    "pt": {
+      "total": "≈ 15 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Redfern",
+          "mins": 2,
+          "detail": "Any train one stop south"
+        },
+        {
+          "mode": "walk",
+          "title": "Through Little Eveleigh St",
+          "mins": 11
+        }
+      ],
+      "back": {
+        "text": "Same way back from Redfern. It's also a 20 min walk to Central."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        0,
+        20
+      ],
+      "perCarLabel": "Parking",
+      "notes": [
+        "The small on-site car park (enter at 229 Wilson St) fills early on market days. On busy days there's extra parking in the Sydney Trains lot at Wilson St and Ivy Lane."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Breakfast and coffee at the stalls",
+        "per": [
+          15,
+          25
+        ],
+        "on": true
+      },
+      {
+        "id": "produce",
+        "label": "Produce to take home",
+        "per": [
+          20,
+          50
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Arrive by 9am for the best produce and shorter coffee queues.",
+    "hours": "Saturdays only, 8am to 1pm. Check the Carriageworks site for holiday closures.",
+    "bring": [
+      "A shopping bag",
+      "A card: most stalls take contactless",
+      "An appetite"
+    ],
+    "facilities": [
+      "Toilets inside Carriageworks",
+      "Seating in the sheds and outside"
+    ],
+    "access": "Level access throughout, with a ramp from Wilson St (no. 245) to the main entrance. Crowded at peak times.",
+    "safety": [
+      "Crowded at peak times: keep small children close"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Newtown Street Art & King St",
+      "why": "Murals and vintage shops",
+      "dist": "≈ 15 min walk",
+      "activityId": "newtown"
+    },
+    {
+      "name": "Haymarket & Chinatown Food Crawl",
+      "why": "Lunch in the city",
+      "dist": "One train stop to Central",
+      "activityId": "chinatown"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Redfern Station",
+        "type": "start",
+        "note": "Leave by the Lawson St exit and head west.",
+        "lng": 151.19818,
+        "lat": -33.89228
+      },
+      {
+        "n": 2,
+        "name": "Redfern St",
+        "type": "food",
+        "note": "Cafés and bakeries if you're early.",
+        "lng": 151.2058,
+        "lat": -33.89304
+      },
+      {
+        "n": 3,
+        "name": "Little Eveleigh St",
+        "type": "lookout",
+        "note": "Back-street walk with murals on the way to the market.",
+        "lng": 151.19759,
+        "lat": -33.89197
+      },
+      {
+        "n": 4,
+        "name": "Carriageworks Farmers Market",
+        "type": "end",
+        "note": "Over 80 stalls of produce, bread and breakfast inside the old rail sheds.",
+        "lng": 151.19124,
+        "lat": -33.89363
+      },
+      {
+        "n": 5,
+        "name": "South Eveleigh",
+        "type": "food",
+        "note": "Restored rail workshops with cafés and lawns, a short walk away.",
+        "lng": 151.19583,
+        "lat": -33.89607
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.19818,
+          -33.89228
+        ],
+        [
+          151.19869,
+          -33.8919
+        ],
+        [
+          151.19866,
+          -33.89188
+        ],
+        [
+          151.19877,
+          -33.89179
+        ],
+        [
+          151.19884,
+          -33.89161
+        ],
+        [
+          151.19948,
+          -33.8917
+        ],
+        [
+          151.19982,
+          -33.89187
+        ],
+        [
+          151.19988,
+          -33.89182
+        ],
+        [
+          151.20003,
+          -33.8919
+        ],
+        [
+          151.20051,
+          -33.89196
+        ],
+        [
+          151.20055,
+          -33.89201
+        ],
+        [
+          151.20044,
+          -33.89224
+        ],
+        [
+          151.20051,
+          -33.89223
+        ],
+        [
+          151.20055,
+          -33.89231
+        ],
+        [
+          151.2007,
+          -33.89236
+        ],
+        [
+          151.20075,
+          -33.89228
+        ],
+        [
+          151.20219,
+          -33.89246
+        ],
+        [
+          151.20548,
+          -33.89291
+        ],
+        [
+          151.20554,
+          -33.89294
+        ],
+        [
+          151.20553,
+          -33.893
+        ],
+        [
+          151.2058,
+          -33.89304
+        ],
+        [
+          151.20553,
+          -33.893
+        ],
+        [
+          151.20554,
+          -33.89294
+        ],
+        [
+          151.20548,
+          -33.89291
+        ],
+        [
+          151.20219,
+          -33.89246
+        ],
+        [
+          151.20075,
+          -33.89228
+        ],
+        [
+          151.2007,
+          -33.89236
+        ],
+        [
+          151.20055,
+          -33.89231
+        ],
+        [
+          151.20051,
+          -33.89223
+        ],
+        [
+          151.20044,
+          -33.89224
+        ],
+        [
+          151.20055,
+          -33.89201
+        ],
+        [
+          151.20051,
+          -33.89196
+        ],
+        [
+          151.20003,
+          -33.8919
+        ],
+        [
+          151.19988,
+          -33.89182
+        ],
+        [
+          151.19982,
+          -33.89187
+        ],
+        [
+          151.19948,
+          -33.8917
+        ],
+        [
+          151.19846,
+          -33.89155
+        ],
+        [
+          151.19783,
+          -33.89199
+        ],
+        [
+          151.19665,
+          -33.89183
+        ],
+        [
+          151.19664,
+          -33.89188
+        ],
+        [
+          151.19489,
+          -33.89236
+        ],
+        [
+          151.1912,
+          -33.89355
+        ],
+        [
+          151.19428,
+          -33.89255
+        ],
+        [
+          151.19657,
+          -33.89188
+        ],
+        [
+          151.19784,
+          -33.89205
+        ],
+        [
+          151.19851,
+          -33.89156
+        ],
+        [
+          151.19956,
+          -33.89174
+        ],
+        [
+          151.19963,
+          -33.8918
+        ],
+        [
+          151.19962,
+          -33.89185
+        ],
+        [
+          151.19827,
+          -33.89467
+        ],
+        [
+          151.1982,
+          -33.89465
+        ],
+        [
+          151.19816,
+          -33.89493
+        ],
+        [
+          151.19751,
+          -33.89489
+        ],
+        [
+          151.19735,
+          -33.89498
+        ],
+        [
+          151.19728,
+          -33.89509
+        ],
+        [
+          151.19713,
+          -33.89587
+        ],
+        [
+          151.19664,
+          -33.89579
+        ],
+        [
+          151.1966,
+          -33.89585
+        ],
+        [
+          151.19644,
+          -33.89584
+        ],
+        [
+          151.19582,
+          -33.89604
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.19863,
+        "lat": -33.89163
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.19611,
+        "lat": -33.89516
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.19506,
+        "lat": -33.89602
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.19556,
+        "lat": -33.89663
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.19752,
+        "lat": -33.89211
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.1908,
+        "lat": -33.89372
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.19183,
+        "lat": -33.89407
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.19809,
+        "lat": -33.89492
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.19575,
+        "lat": -33.89134
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20529,
+        "lat": -33.89283
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20082,
+        "lat": -33.89188
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.1982,
+        "lat": -33.89164
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20727,
+              -33.88421
+            ],
+            [
+              151.20612,
+              -33.88552
+            ],
+            [
+              151.20233,
+              -33.88819
+            ],
+            [
+              151.19978,
+              -33.89112
+            ],
+            [
+              151.19856,
+              -33.89226
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.19858,
+              -33.89228
+            ],
+            [
+              151.19895,
+              -33.89197
+            ],
+            [
+              151.199,
+              -33.892
+            ],
+            [
+              151.19914,
+              -33.89188
+            ],
+            [
+              151.19896,
+              -33.89175
+            ],
+            [
+              151.19867,
+              -33.89171
+            ],
+            [
+              151.19856,
+              -33.89163
+            ],
+            [
+              151.19861,
+              -33.89157
+            ],
+            [
+              151.19851,
+              -33.89156
+            ],
+            [
+              151.19784,
+              -33.89205
+            ],
+            [
+              151.19657,
+              -33.89188
+            ],
+            [
+              151.19202,
+              -33.89328
+            ],
+            [
+              151.19211,
+              -33.89349
+            ],
+            [
+              151.19237,
+              -33.89339
+            ],
+            [
+              151.19243,
+              -33.89352
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Whether the on-site car park is free: Carriageworks' visit pages don't say."
+    },
+    {
+      "section": "cost",
+      "note": "Stall prices."
+    }
+  ]
+}

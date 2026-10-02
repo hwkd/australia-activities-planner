@@ -1,0 +1,29 @@
+---
+import Base from "~/layouts/Base.astro";
+import TabBar from "~/components/TabBar.astro";
+import { SITE_NAME } from "~/site";
+import { t } from "~/strings/en-AU";
+
+/**
+ * Shown when a page can't be rendered, e.g. D1 can't be reached (spec §7 Reliability). It reads no
+ * content, so it works when the database doesn't. Saved plans live on the device and aren't affected.
+ */
+interface Props {
+  error: unknown;
+}
+console.error("Page failed to render:", Astro.props.error);
+const s = t.layout.error;
+---
+
+<Base title={s.title(SITE_NAME)}>
+  <main class="mx-auto max-w-[560px] px-4 pt-10 pb-32">
+    <p class="eb m-0" style="color: var(--sky-mute)">{s.eyebrow}</p>
+    <h1 class="w90 tr mt-3.5 text-[46px] leading-[0.94] font-medium tracking-[-0.035em]" style="text-shadow: var(--hl)">{s.heading}</h1>
+    <p class="tr mt-4 text-[15.5px]" style="color: var(--sky-mute)">{s.body}</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="" class="pb press no-underline" style="background: var(--sel); color: var(--sel-ink); border-color: var(--sel)">{s.retry}</a>
+      <a href="/plan" class="pb glass press no-underline" style="color: var(--ink)">{s.plans}</a>
+    </div>
+  </main>
+  <TabBar current="discover" />
+</Base>

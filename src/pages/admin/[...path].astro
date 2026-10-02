@@ -1,0 +1,26 @@
+---
+import "~/styles/admin.css";
+import { Font } from "astro:assets";
+import AdminApp from "~/components/admin/AdminApp";
+import { SITE_NAME } from "~/site";
+
+/** The content admin (tracker M11). One page; the app routes itself under /admin. */
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Content admin · {SITE_NAME}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <Font cssVariable="--font-mona" />
+  </head>
+  <body>
+    <AdminApp client:only="react">
+      <p slot="fallback" style="padding: 24px; color: #64748b">Loading the admin…</p>
+    </AdminApp>
+    <noscript><p style="padding: 24px">The admin needs JavaScript.</p></noscript>
+  </body>
+</html>

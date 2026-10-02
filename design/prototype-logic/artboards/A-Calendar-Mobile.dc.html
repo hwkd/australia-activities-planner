@@ -1,0 +1,1265 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>My plans (phone) · Australia Activities Planner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&amp;display=swap">
+<style>
+body{margin:0;background:#0A1330;font-family:'Mona Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;margin:0;-webkit-tap-highlight-color:transparent}
+button:disabled{cursor:default}
+/* Focus ring always uses the page ink (per weather), so it reads on glass even on filled buttons. */
+.wk-sun{--focus:#FFFFFF}.wk-cloud{--focus:#16202B}.wk-rain{--focus:#F1F4FF}.wk-hot{--focus:#FFF7EC}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2.5px solid var(--focus,currentColor);outline-offset:3px}
+p,h1,h2,h3,ol,ul{margin:0}
+ol,ul{list-style:none;padding:0}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icb{stroke-width:2.5}
+.hs{scrollbar-width:none}.hs::-webkit-scrollbar{display:none}
+.disp{font-family:'Mona Sans',system-ui,sans-serif}
+.eb{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-variation-settings:'wdth' 100}
+.k{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-variation-settings:'wdth' 100}
+.glass{-webkit-backdrop-filter:blur(18px) saturate(135%);backdrop-filter:blur(18px) saturate(135%)}
+.glass2{-webkit-backdrop-filter:blur(30px) saturate(140%);backdrop-filter:blur(30px) saturate(140%)}
+.sky{position:absolute;inset:0;overflow:hidden;transition:opacity 900ms ease}
+.tr{transition:background-color 600ms ease,color 600ms ease,border-color 600ms ease,box-shadow 500ms ease}
+.press{transition:transform 180ms ease,background-color 400ms ease,color 400ms ease,border-color 400ms ease,box-shadow 400ms ease}
+.press:active{transform:scale(.95)}
+.press:disabled:active{transform:none}
+.row{display:flex;align-items:center}.cc{display:flex;align-items:center;justify-content:center}.f0{flex-shrink:0}
+.n{font-variant-numeric:tabular-nums;font-variation-settings:'wdth' 100}.c1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:none}
+.chev{transition:transform 300ms ease}details[open] .chev{transform:rotate(180deg)}
+.cgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.wd{height:24px;display:flex;align-items:center;justify-content:center;font-size:11.5px;letter-spacing:.06em;font-variation-settings:'wdth' 100}
+.cell{position:relative;height:50px;padding:0;border:0;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:transform 180ms ease,background-color 400ms ease,color 400ms ease,box-shadow 400ms ease}
+.cell:active{transform:scale(.93)}
+.cnum{font-size:15px;line-height:1;font-variant-numeric:tabular-nums;font-variation-settings:'wdth' 100}
+.cdots{height:6px;display:flex;align-items:center;gap:3px}
+.cdot{width:5px;height:5px;border-radius:50%}
+.cmini{position:absolute;right:3px;top:3px;width:15px;height:15px;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.cflag{position:absolute;left:4px;top:4px}
+.nb{width:44px;height:44px;padding:0;border:0;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tb{height:44px;min-width:52px;padding:0 10px;border:1px solid;border-radius:14px;background:transparent;font-size:13.5px;font-weight:700;font-variant-numeric:tabular-nums;font-variation-settings:'wdth' 100}
+.ib{flex-shrink:0;width:44px;height:44px;padding:0;border:0;border-radius:14px;background:transparent;display:flex;align-items:center;justify-content:center}
+.msky{flex-shrink:0;width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#FFFFFF}
+.pb{width:100%;height:54px;border:0;border-radius:18px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;box-sizing:border-box}
+.gl{position:absolute;display:block;height:2px;border-radius:2px;background:#FFE9A8;opacity:0;animation:glint 3.4s ease-in-out infinite}
+.spin60{animation:spin 60s linear infinite}
+.dA{animation:dA 40s ease-in-out infinite alternate}
+.f1{animation:fall1 1.1s linear infinite}.f2{animation:fall2 .75s linear infinite}.f3{animation:fall3 .5s linear infinite}
+.wv{animation:wave 6s linear infinite}
+.pulse{animation:pulse 8s ease-in-out infinite}
+.breathe{animation:breathe 9s ease-in-out infinite}
+.a-rise{animation:rise 820ms cubic-bezier(.2,.8,.2,1) both}
+.a-up{animation:up 640ms cubic-bezier(.2,.8,.2,1) backwards}
+.a-fade{animation:fade 420ms ease both}
+.a-pop{animation:pop 560ms cubic-bezier(.34,1.56,.64,1) both}
+.a-slide{animation:slide 620ms cubic-bezier(.2,.8,.2,1) both}
+.a-sheet{animation:sheet 560ms cubic-bezier(.2,.9,.25,1) both}
+.a-swing{display:inline-flex;transform-origin:50% 15%;animation:swing 2.8s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes dA{from{transform:translate3d(-70px,0,0)}to{transform:translate3d(70px,0,0)}}
+@keyframes fall1{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,120px,0)}}
+@keyframes fall2{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,160px,0)}}
+@keyframes fall3{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,220px,0)}}
+@keyframes wave{from{transform:translate3d(0,0,0)}to{transform:translate3d(-120px,0,0)}}
+@keyframes glint{0%,100%{opacity:0;transform:scaleX(.3)}50%{opacity:.95;transform:scaleX(1)}}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes rise{from{opacity:0;transform:translate3d(0,.42em,0);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes up{from{opacity:0;transform:translate3d(0,28px,0) scale(.98)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{0%{transform:scale(0) rotate(-35deg)}60%{transform:scale(1.35) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes slide{from{opacity:0;transform:translate3d(-18px,6px,0)}to{opacity:1;transform:none}}
+@keyframes sheet{from{transform:translate3d(0,100%,0)}to{transform:none}}
+@keyframes swing{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
+</style>
+</helmet>
+<div class="wk-{{weather}}" style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0A1330; color: {{ink}}; font-family: 'Mona Sans', system-ui, sans-serif; font-variation-settings: 'wdth' 100; transition: color 900ms ease">
+
+<!-- Shared monoline icons -->
+<svg width="0" height="0" aria-hidden="true" style="position: absolute">
+<defs>
+<symbol id="kSun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></symbol>
+<symbol id="kCloud" viewBox="0 0 24 24"><path d="M7.4 18.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 18.5z"></path></symbol>
+<symbol id="kRain" viewBox="0 0 24 24"><path d="M7.4 14.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 14.5z"></path><path d="M8.5 17.5l-1 2.8M12.5 17.5l-1 2.8M16.5 17.5l-1 2.8"></path></symbol>
+<symbol id="kHot" viewBox="0 0 24 24"><path d="M14 13.9V5a2 2 0 0 0-4 0v8.9a4 4 0 1 0 4 0z"></path><path d="M12 9.5v6.5"></path><path d="M18 4.5l1.2-1.2M19.5 8h1.7M18 11.5l1.2 1.2"></path></symbol>
+<symbol id="kCal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3v4M15.5 3v4"></path></symbol>
+<symbol id="kCalAdd" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3v4M15.5 3v4M12 12.5v5M9.5 15h5"></path></symbol>
+<symbol id="kToday" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3v4M15.5 3v4"></path><circle cx="12" cy="15" r="1.8"></circle></symbol>
+<symbol id="kWarn" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></symbol>
+<symbol id="kFlag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2.5 4.5L17 13H5"></path></symbol>
+<symbol id="kPin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.3"></circle></symbol>
+<symbol id="kClock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="kX" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></symbol>
+<symbol id="kCheck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></symbol>
+<symbol id="kL" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"></path></symbol>
+<symbol id="kR" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"></path></symbol>
+<symbol id="kSwap" viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></symbol>
+<symbol id="kUmb" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0z"></path><path d="M12 12v6.5a2 2 0 0 1-4 0M12 3V2"></path></symbol>
+<symbol id="kInfo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></symbol>
+<symbol id="kDown" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"></path></symbol>
+<symbol id="kFile" viewBox="0 0 24 24"><path d="M14 3.5H7.5A1.5 1.5 0 0 0 6 5v14a1.5 1.5 0 0 0 1.5 1.5h9A1.5 1.5 0 0 0 18 19V7.5z"></path><path d="M14 3.5v4h4M9 13h6M9 16.5h4"></path></symbol>
+<symbol id="kPhone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></symbol>
+<symbol id="kGlobe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3z"></path></symbol>
+<symbol id="kMail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"></rect><path d="M4 7l8 6 8-6"></path></symbol>
+<symbol id="kOut" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"></path></symbol>
+<symbol id="kCompass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></symbol>
+<symbol id="kRoute" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="6" r="2"></circle><path d="M8 18h7.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H16"></path></symbol>
+<symbol id="kArrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></symbol>
+<symbol id="kEdit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10-10a2.1 2.1 0 0 0-3-3l-10 10v3z"></path><path d="M13.5 8.5l3 3"></path></symbol>
+<symbol id="kMap" viewBox="0 0 24 24"><path d="M9 4.5L3.5 6.5v13L9 17.5l6 2 5.5-2v-13L15 6.5z"></path><path d="M9 4.5v13M15 6.5v13"></path></symbol>
+<symbol id="kShare" viewBox="0 0 24 24"><path d="M12 3.5v11M8 7.5l4-4 4 4"></path><path d="M7 10.5H6a1.5 1.5 0 0 0-1.5 1.5v6.5A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5V12a1.5 1.5 0 0 0-1.5-1.5h-1"></path></symbol>
+<symbol id="kPlus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="kChevD" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"></path></symbol>
+</defs>
+</svg>
+
+<!-- ================= SKY: four stacked scenes, crossfaded by opacity (follows the selected day) ================= -->
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none">
+
+<!-- Sunny: harbour cobalt, warm sun, glinting water -->
+<div class="sky" style="opacity: {{opSun}}; background: linear-gradient(180deg, #0F3FB8 0%, #1B4BC8 45%, #3E7BF0 100%)">
+<div style="position: absolute; left: 150px; top: -180px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(255,214,102,0.34) 0%, rgba(255,214,102,0.12) 38%, rgba(255,214,102,0) 62%)"></div>
+<svg class="spin60" width="300" height="300" viewBox="0 0 300 300" style="position: absolute; left: 210px; top: -120px"><g fill="none" stroke="#FFD66B" stroke-linecap="round"><path d="M150 66V30M192 77.3L210 46.1M222.7 108L253.9 90M234 150H270M222.7 192L253.9 210M192 222.7L210 253.9M150 234V270M108 222.7L90 253.9M77.3 192L46.1 210M66 150H30M77.3 108L46.1 90M108 77.3L90 46.1" stroke-width="2.4" opacity="0.55"></path><path d="M173.8 61.1L177.4 47.6M215.1 84.9L225 75M238.9 126.2L252.4 122.6M238.9 173.8L252.4 177.4M215.1 215.1L225 225M173.8 238.9L177.4 252.4M126.2 238.9L122.6 252.4M84.9 215.1L75 225M61.1 173.8L47.6 177.4M61.1 126.2L47.6 122.6M84.9 84.9L75 75M126.2 61.1L122.6 47.6" stroke-width="1.6" opacity="0.4"></path></g></svg>
+<div style="position: absolute; left: 296px; top: -34px; width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle at 36% 34%, #FFF2C2 0%, #FFD65C 36%, #FFC940 62%, #F2A51E 100%); box-shadow: 0 0 70px 22px rgba(255,201,64,0.32)"></div>
+<svg width="390" height="72" viewBox="0 0 390 72" style="position: absolute; left: 0; bottom: 178px; opacity: 0.7"><g fill="#0A2A86"><rect x="22" y="40" width="12" height="32" rx="1"></rect><rect x="232" y="40" width="12" height="32" rx="1"></rect><path d="M298 72c4-18 14-30 30-36-6 10-8 22-7 36zM318 72c5-20 17-32 36-38-8 12-10 24-9 38zM342 72c4-14 12-23 24-27-5 9-6 18-5 27z"></path></g><g fill="none" stroke="#0A2A86"><path d="M28 56Q133 -2 238 56" stroke-width="2.6"></path><path d="M0 58H290" stroke-width="3"></path><path d="M54 43.4V58M80 34.4V58M106 28.9V58M133 27V58M160 28.9V58M186 34.4V58M212 43.4V58" stroke-width="1.2"></path></g></svg>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 180px; background: linear-gradient(180deg, #1D52D6 0%, #0F37A2 30%, #0A2878 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35)">
+<div style="position: absolute; inset: 0; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 11px)"></div>
+<div style="position: absolute; left: 296px; top: 0; width: 76px; height: 100%; background: linear-gradient(180deg, rgba(255,214,102,0.38), rgba(255,214,102,0)); filter: blur(8px)"></div>
+<span class="gl" style="left: 312px; top: 10px; width: 36px; animation-delay: -0.2s"></span>
+<span class="gl" style="left: 344px; top: 26px; width: 22px; animation-delay: -1.4s"></span>
+<span class="gl" style="left: 300px; top: 44px; width: 28px; animation-delay: -2.2s"></span>
+<span class="gl" style="left: 330px; top: 64px; width: 40px; animation-delay: -0.9s"></span>
+<span class="gl" style="left: 352px; top: 96px; width: 26px; animation-delay: -1.1s"></span>
+<span class="gl" style="left: 60px; top: 30px; width: 18px; animation-delay: -1.8s"></span>
+<span class="gl" style="left: 150px; top: 52px; width: 24px; animation-delay: -2.9s"></span>
+<span class="gl" style="left: 220px; top: 18px; width: 16px; animation-delay: -0.5s"></span>
+<span class="gl" style="left: 100px; top: 90px; width: 30px; animation-delay: -2.5s"></span>
+</div>
+</div>
+
+<!-- Cloudy: pearl grey-blue, parallax clouds -->
+<div class="sky" style="opacity: {{opCloud}}; background: linear-gradient(180deg, #8E9AA8 0%, #A9B4C0 50%, #C9D1D9 100%)">
+<div style="position: absolute; left: -120px; top: -160px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.42), rgba(255,255,255,0) 65%)"></div>
+<svg class="dA" width="170" height="77" viewBox="0 0 200 90" style="position: absolute; left: 200px; top: 120px; opacity: 0.55; filter: blur(3px); animation-duration: 60s; animation-delay: -20s"><use href="#cl" fill="url(#cg)"></use></svg>
+<svg class="dA" width="260" height="117" viewBox="0 0 200 90" style="position: absolute; left: 20px; top: 40px; opacity: 0.8; filter: blur(1.5px); animation-duration: 40s; animation-delay: -10s"><use href="#cl" fill="url(#cg)"></use></svg>
+<svg class="dA" width="220" height="99" viewBox="0 0 200 90" style="position: absolute; left: 190px; top: 360px; opacity: 0.6; filter: blur(2px); animation-duration: 48s; animation-delay: -30s"><use href="#cl" fill="url(#cg)"></use></svg>
+<svg class="dA" width="420" height="189" viewBox="0 0 200 90" style="position: absolute; left: -40px; top: 540px; opacity: 0.75; filter: blur(1px); animation-duration: 28s; animation-delay: -5s"><use href="#cl" fill="url(#cg)"></use></svg>
+<div style="position: absolute; left: -60px; right: -60px; bottom: -80px; height: 220px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%)"></div>
+</div>
+
+<!-- Rainy: deep night ink, three depths of rain, cosy glow -->
+<div class="sky" style="opacity: {{opRain}}; background: linear-gradient(180deg, #0A1330 0%, #131F44 50%, #1C2B55 100%)">
+<div class="pulse" style="position: absolute; left: -140px; bottom: -160px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(110,140,255,0.3), rgba(110,140,255,0) 65%)"></div>
+<div class="pulse" style="position: absolute; right: -170px; bottom: 90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(255,176,110,0.15), rgba(255,176,110,0) 65%); animation-delay: -4s"></div>
+<svg class="dA" width="360" height="162" viewBox="0 0 200 90" style="position: absolute; left: -40px; top: -60px; opacity: 0.9; animation-duration: 70s; animation-delay: -30s"><use href="#cl" fill="#1F2E5C"></use></svg>
+<svg class="dA" width="300" height="135" viewBox="0 0 200 90" style="position: absolute; left: 150px; top: 10px; opacity: 0.75; animation-duration: 55s; animation-delay: -12s"><use href="#cl" fill="#26376A"></use></svg>
+<div style="position: absolute; inset: -12%; transform: rotate(10deg)">
+<div class="f1" style="position: absolute; left: 0; right: 0; top: -120px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rF)"></rect></svg></div>
+<div class="f2" style="position: absolute; left: 0; right: 0; top: -160px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rM)"></rect></svg></div>
+<div class="f3" style="position: absolute; left: 0; right: 0; top: -220px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rN)"></rect></svg></div>
+</div>
+</div>
+
+<!-- Hot 30+: terracotta to amber, huge pale sun, heat shimmer -->
+<div class="sky" style="opacity: {{opHot}}; background: linear-gradient(180deg, #9A2D0B 0%, #B8421A 45%, #E8702A 100%)">
+<div style="position: absolute; left: 0; right: 0; top: 440px; height: 260px; background: linear-gradient(180deg, rgba(255,190,110,0), rgba(255,190,110,0.22), rgba(255,190,110,0))"></div>
+<div class="breathe" style="position: absolute; left: -35px; top: 590px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle at 50% 38%, #FFF4D6 0%, #FFE3A1 42%, #FFD07A 100%); box-shadow: 0 0 120px 50px rgba(255,200,120,0.4)"></div>
+<svg width="660" height="210" viewBox="0 0 660 210" style="position: absolute; left: 0; top: 520px"><g fill="none" stroke-linecap="round" stroke-width="2"><path class="wv" d="M0 20q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(255,236,200,0.4)" style="animation-duration: 7s"></path><path class="wv" d="M0 48q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(255,236,200,0.3)" style="animation-duration: 5s"></path><path class="wv" d="M0 92q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.55)" style="animation-duration: 6s"></path><path class="wv" d="M0 124q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.5)" stroke-width="3" style="animation-duration: 8s"></path><path class="wv" d="M0 160q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.45)" stroke-width="4" style="animation-duration: 4.5s"></path><path class="wv" d="M0 196q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.4)" stroke-width="5" style="animation-duration: 9s"></path></g></svg>
+</div>
+
+<!-- Grain + shared defs -->
+<svg width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.16; mix-blend-mode: overlay">
+<defs>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter>
+<path id="cl" d="M36 80C16 80 6 66 12 54 17 43 30 40 40 44 42 26 60 16 78 20 88 6 112 2 128 14 140 22 144 32 142 40 158 34 180 42 184 58 188 72 178 80 164 80Z"></path>
+<linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#DCE2E9"></stop></linearGradient>
+<pattern id="rF" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M14 8v13M82 68v13" fill="none" stroke="#C4D4FF" stroke-width="1" stroke-linecap="round" opacity="0.4"></path></pattern>
+<pattern id="rM" width="170" height="160" patternUnits="userSpaceOnUse"><path d="M22 18v22M118 98v22" fill="none" stroke="#D2DEFF" stroke-width="1.3" stroke-linecap="round" opacity="0.44"></path></pattern>
+<pattern id="rN" width="240" height="220" patternUnits="userSpaceOnUse"><path d="M34 26v36M166 136v36" fill="none" stroke="#E4ECFF" stroke-width="1.7" stroke-linecap="round" opacity="0.4"></path></pattern>
+</defs>
+<rect width="100%" height="100%" filter="url(#grain)"></rect>
+</svg>
+</div>
+
+<!-- ================= MY PLANS ================= -->
+<main class="hs" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 22px 16px 116px; box-sizing: border-box">
+
+<header style="padding: 0 4px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+<div style="min-width: 0">
+<p class="eb tr" style="color: {{skyMute}}"><span>Sydney</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>{{planCount}} {{plansWord}} coming up</span></p>
+<h1 class="disp a-rise" style="margin-top: 12px; font-size: 50px; font-weight: 750; line-height: 0.92; letter-spacing: -0.04em; font-variation-settings: 'wdth' 80; text-shadow: {{hlShadow}}">My plans</h1>
+</div>
+<button type="button" onClick="{{goToday}}" class="glass press" style="flex-shrink: 0; height: 44px; padding: 0 16px 0 13px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass}}; color: {{ink}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kToday"></use></svg>Today</button>
+</header>
+
+<!-- Forecast change banner (spec §11.1): a forecast turned a plan into a Skip -->
+<sc-if value="{{hasAlerts}}" hint-placeholder-val="{{false}}">
+<section role="status" aria-label="Forecast changes" class="glass tr a-up" style="margin-top: 16px; padding: 6px; border-radius: 22px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}">
+<ul style="display: grid; gap: 2px">
+<sc-for list="{{alerts}}" as="al" hint-placeholder-count="1">
+<li><button type="button" onClick="{{al.pick}}" class="press" style="width: 100%; min-height: 52px; padding: 8px 10px 8px 8px; border: 0; border-radius: 16px; background: transparent; color: {{ink}}; text-align: left; display: flex; align-items: center; gap: 10px">
+<span class="msky" aria-hidden="true" style="width: 32px; height: 32px; border-radius: 10px; background: {{al.skyBg}}; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4)"><svg width="17" height="17" viewBox="0 0 24 24" class="ic"><use href="{{al.icon}}"></use></svg></span>
+<span style="flex: 1; min-width: 0; font-size: 14.5px; font-weight: 650; line-height: 1.35">{{al.text}}</span>
+<svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true" style="flex-shrink: 0; opacity: 0.75"><use href="#kR"></use></svg>
+</button></li>
+</sc-for>
+</ul>
+<div style="display: flex; justify-content: flex-end; padding: 0 4px">
+<button type="button" onClick="{{dismissAlerts}}" class="press" style="height: 44px; padding: 0 12px; border: 0; border-radius: 14px; background: transparent; color: {{ink}}; font-size: 13.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px">Dismiss</button>
+</div>
+</section>
+</sc-if>
+
+<!-- Month card -->
+<section aria-labelledby="cal-month" class="glass tr a-up" style="margin-top: 20px; padding: 8px 8px 12px; border-radius: 28px; background: {{glass}}; border: 1px solid {{line}}; box-shadow: {{shadow}}">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<button type="button" aria-label="Previous month" onClick="{{prevMonth}}" disabled="{{cantPrev}}" class="press nb" style="background: {{soft}}; color: {{ink}}; opacity: {{prevOp}}"><svg width="20" height="20" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kL"></use></svg></button>
+<h2 id="cal-month" aria-live="polite" class="disp" style="font-size: 21px; font-weight: 700; letter-spacing: -0.02em; font-variation-settings: 'wdth' 90">{{monthLabel}}</h2>
+<button type="button" aria-label="Next month" onClick="{{nextMonth}}" disabled="{{cantNext}}" class="press nb" style="background: {{soft}}; color: {{ink}}; opacity: {{nextOp}}"><svg width="20" height="20" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kR"></use></svg></button>
+</div>
+<div aria-hidden="true" class="cgrid" style="margin-top: 8px">
+<sc-for list="{{weekdays}}" as="w" hint-placeholder-count="7"><span class="wd" style="color: {{w.col}}; font-weight: {{w.fw}}">{{w.letter}}</span></sc-for>
+</div>
+<div style="margin-top: 2px; display: grid; gap: 3px">
+<sc-for list="{{weeks}}" as="wk" hint-placeholder-count="5">
+<div class="cgrid">
+<sc-for list="{{wk.cells}}" as="c" hint-placeholder-count="7">
+<button type="button" aria-label="{{c.aria}}" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="cell" style="background: {{c.bg}}; color: {{c.fg}}; box-shadow: {{c.ring}}">
+<sc-if value="{{c.isHoliday}}" hint-placeholder-val="{{false}}"><svg width="10" height="10" viewBox="0 0 24 24" class="ic icb cflag" aria-hidden="true" style="color: {{c.markCol}}"><use href="#kFlag"></use></svg></sc-if>
+<sc-if value="{{c.hasSky}}" hint-placeholder-val="{{false}}"><span class="cmini" aria-hidden="true" style="background: {{c.skyBg}}; outline: {{c.skyOutline}}; outline-offset: 1px"><svg width="11" height="11" viewBox="0 0 24 24" class="ic" style="stroke-width: 2.6"><use href="{{c.skyIcon}}"></use></svg></span></sc-if>
+<span class="cnum" aria-hidden="true" style="font-weight: {{c.numW}}">{{c.num}}</span>
+<span class="cdots" aria-hidden="true"><sc-for list="{{c.dots}}" as="d" hint-placeholder-count="1"><span class="cdot" style="background: {{d.col}}"></span></sc-for><sc-if value="{{c.warn}}" hint-placeholder-val="{{false}}"><svg width="9" height="9" viewBox="0 0 24 24" class="ic icb" style="color: {{c.markCol}}; stroke-width: 3.2"><use href="#kWarn"></use></svg></sc-if></span>
+</button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<ul aria-hidden="true" style="margin-top: 12px; padding: 0 8px; display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 12px; font-weight: 600; color: {{mute}}">
+<li style="display: inline-flex; align-items: center; gap: 5px"><span style="width: 5px; height: 5px; border-radius: 50%; background: {{ink}}"></span>Plans</li>
+<li style="display: inline-flex; align-items: center; gap: 5px"><svg width="11" height="11" viewBox="0 0 24 24" class="ic icb" style="color: {{accent}}"><use href="#kWarn"></use></svg>Needs a look</li>
+<li style="display: inline-flex; align-items: center; gap: 5px"><svg width="11" height="11" viewBox="0 0 24 24" class="ic icb" style="color: {{accent}}"><use href="#kFlag"></use></svg>Public holiday</li>
+<li style="display: inline-flex; align-items: center; gap: 5px"><span style="width: 12px; height: 12px; border-radius: 4px; background: linear-gradient(160deg, #1546C4 0%, #386DE5 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4)"></span>Sky you set</li>
+<li style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: linear-gradient(160deg, #1546C4 0%, #386DE5 100%); outline: 1.5px dashed {{ink}}; outline-offset: 1px"></span>Forecast</li>
+</ul>
+</section>
+
+<!-- Selected day: relative label, date, warnings, sky, then the timeline -->
+<section aria-labelledby="cal-day" class="glass tr" style="margin-top: 12px; padding: 20px 14px 14px; border-radius: 28px; background: {{glass}}; border: 1px solid {{line}}; box-shadow: {{shadow}}">
+<div style="padding: 0 4px">
+<p class="eb" style="color: {{mute}}"><span>{{day.rel}}</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>{{day.countLabel}}</span></p>
+<h2 id="cal-day" class="disp" style="margin-top: 8px; font-size: 34px; font-weight: 750; line-height: 0.98; letter-spacing: -0.035em; font-variation-settings: 'wdth' 80">{{day.title}}</h2>
+<sc-if value="{{day.hasWarnings}}" hint-placeholder-val="{{false}}"><p class="a-fade" style="margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 10px; border-radius: 999px; background: {{soft}}; border: 1px solid {{line}}; font-size: 12.5px; font-weight: 700"><svg width="14" height="14" viewBox="0 0 24 24" class="ic icb" aria-hidden="true" style="color: {{accent}}"><use href="#kWarn"></use></svg>{{day.warnLabel}}</p></sc-if>
+<sc-if value="{{day.isHoliday}}" hint-placeholder-val="{{false}}"><p class="a-fade" style="margin-top: 12px; padding: 10px 12px; border-radius: 16px; background: {{soft}}; border: 1px solid {{line}}; display: flex; gap: 9px; font-size: 13.5px; line-height: 1.4"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: {{accent}}"><use href="#kFlag"></use></svg><span>{{day.holidayNote}}</span></p></sc-if>
+</div>
+
+<!-- Set this day's sky (hidden on past days, which are read-only) + live forecast caption (spec §11.1) -->
+<sc-if value="{{day.notPast}}" hint-placeholder-val="{{true}}">
+<div style="margin-top: 20px">
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend class="sr">Set the sky for {{day.title}}</legend>
+<div aria-hidden="true" style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 0 4px 8px">
+<p class="k" style="color: {{mute}}">Set this day’s sky</p>
+<p style="font-size: 12.5px; font-weight: 650; color: {{mute}}">{{day.skyState}}</p>
+</div>
+<div class="tr" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 20px; border: 1px solid {{line}}; background: {{soft}}">
+<sc-for list="{{day.skies}}" as="s" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{s.pressed}}" aria-label="{{s.aria}}" onClick="{{s.pick}}" class="press" style="height: 48px; padding: 0; border: 0; border-radius: 16px; background: {{s.segBg}}; color: {{s.segFg}}; box-shadow: {{s.segShadow}}; display: flex; align-items: center; justify-content: center; gap: 5px"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="stroke-width: 1.8"><use href="{{s.icon}}"></use></svg><span style="font-size: 12.5px; font-weight: {{s.lblW}}; white-space: nowrap">{{s.label}}</span></button>
+</sc-for>
+</div>
+</fieldset>
+<div style="padding: 0 4px; font-size: 12.5px; line-height: 1.45; color: {{mute}}">
+<sc-if value="{{day.hasSkyHint}}" hint-placeholder-val="{{false}}"><p style="margin-top: 8px">{{day.skyHint}}</p></sc-if>
+<sc-if value="{{day.fcShow}}" hint-placeholder-val="{{true}}">
+<div class="a-fade" style="margin-top: 8px">
+<sc-if value="{{day.fcMatches}}" hint-placeholder-val="{{true}}"><p style="display: flex; gap: 7px"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><use href="{{day.fcIcon}}"></use></svg><span>{{day.fcCaption}}</span></p></sc-if>
+<sc-if value="{{day.fcDiffers}}" hint-placeholder-val="{{false}}"><p style="display: flex; gap: 7px; font-weight: 600"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><use href="{{day.fcIcon}}"></use></svg><span>{{day.fcDiffText}}</span></p></sc-if>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap">
+<sc-if value="{{day.fcDiffers}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{day.useForecast}}" class="press" style="margin-top: 6px; height: 44px; padding: 0 16px 0 13px; border-radius: 999px; border: 1px solid {{line}}; background: {{soft}}; color: {{ink}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="{{day.fcIcon}}"></use></svg>Use forecast</button></sc-if>
+<a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer" style="min-height: 44px; display: inline-flex; align-items: center; color: {{mute}}; text-decoration: underline; text-underline-offset: 3px">Weather data: Open-Meteo<span class="sr"> (opens in a new tab)</span></a>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{day.hasItems}}" hint-placeholder-val="{{true}}">
+<!-- Show this day on a map (spec §11.2). Prototype: an honest placeholder, no map imagery. -->
+<div style="margin-top: 14px">
+<button type="button" aria-expanded="{{day.mapExpanded}}" onClick="{{day.toggleMap}}" class="press" style="height: 44px; padding: 0 16px 0 13px; border-radius: 999px; border: 1px solid {{line}}; background: {{soft}}; color: {{ink}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kMap"></use></svg>{{day.mapLabel}}</button>
+<sc-if value="{{day.mapOpen}}" hint-placeholder-val="{{false}}">
+<div class="a-fade" style="margin-top: 10px; padding: 14px; border-radius: 20px; border: 1.5px dashed {{line}}; background: {{soft}}">
+<p style="display: flex; gap: 10px; font-size: 13.5px; font-weight: 600; line-height: 1.4"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><use href="#kMap"></use></svg><span>Map of this day’s plans, numbered in time order (loads map tiles)</span></p>
+<ol aria-label="{{day.mapListLabel}}" style="margin-top: 12px; display: grid; gap: 8px">
+<sc-for list="{{day.mapPins}}" as="pin" hint-placeholder-count="2">
+<li style="display: flex; align-items: center; gap: 10px; font-size: 13.5px"><span aria-hidden="true" class="n cc" style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: {{sel}}; color: {{selInk}}; font-size: 13px; font-weight: 800">{{pin.n}}</span><span class="sr">{{pin.n}}.</span><span class="n" style="flex-shrink: 0; font-weight: 700">{{pin.time}}</span><span class="c1" style="min-width: 0">{{pin.name}}</span></li>
+</sc-for>
+</ol>
+</div>
+</sc-if>
+</div>
+
+<!-- Timeline, in start-time order (spec §6.7) -->
+<ol aria-label="Plans for {{day.title}}" style="margin-top: 14px; display: grid; gap: 10px">
+<sc-for list="{{day.items}}" as="it" hint-placeholder-count="2">
+<li class="a-up" style="animation-delay: {{it.delay}}; display: flex; gap: 8px">
+<div aria-hidden="true" style="flex-shrink: 0; width: 52px; padding-top: 13px; display: flex; flex-direction: column; align-items: flex-end">
+<span class="n" style="font-size: 14px; font-weight: 750; white-space: nowrap">{{it.startLabel}}</span>
+<span class="n" style="margin-top: 3px; font-size: 12px; font-weight: 550; color: {{mute}}; white-space: nowrap">{{it.endLabel}}</span>
+<span style="flex: 1; width: 2px; min-height: 16px; margin: 8px 8px 0 0; border-radius: 2px; background: {{line}}"></span>
+</div>
+<article style="flex: 1; min-width: 0; padding: 4px 4px 6px 12px; border-radius: 20px; background: {{soft}}; border: 1px solid {{line}}">
+<div style="display: flex; align-items: flex-start; gap: 2px">
+<div style="flex: 1; min-width: 0; padding-top: 8px">
+<h3 style="font-size: 16px; font-weight: 650; line-height: 1.25">{{it.name}}</h3>
+<p class="sr">{{it.timeLabel}}</p>
+<p style="margin-top: 3px; font-size: 13px; color: {{mute}}">{{it.area}} · {{it.durLabel}}</p>
+</div>
+<sc-if value="{{day.notPast}}" hint-placeholder-val="{{true}}"><button type="button" aria-label="{{it.removeAria}}" onClick="{{it.remove}}" class="press ib" style="color: {{mute}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kX"></use></svg></button></sc-if>
+</div>
+<div style="padding-right: 8px">
+<p style="margin-top: 9px; display: inline-flex; align-items: center; gap: 7px; min-height: 28px; padding: 3px 11px 3px 9px; box-sizing: border-box; border-radius: 999px; background: {{soft}}; border: 1px solid {{line}}; font-size: 12.5px; font-weight: 700"><svg width="17" height="13" viewBox="0 0 18 14" aria-hidden="true" style="flex-shrink: 0; color: {{it.meterCol}}"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{it.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{it.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{it.m3}}"></rect></svg>{{it.fitText}}</p>
+<sc-if value="{{it.hasWarn}}" hint-placeholder-val="{{false}}"><p class="a-slide" style="margin-top: 10px; padding: 9px 11px; border-radius: 14px; background: {{soft}}; display: flex; gap: 8px; font-size: 13px; font-weight: 600; line-height: 1.4"><svg width="15" height="15" viewBox="0 0 24 24" class="ic icb" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: {{accent}}"><use href="#kWarn"></use></svg><span>{{it.warn}}</span></p></sc-if>
+<sc-if value="{{it.showBackup}}" hint-placeholder-val="{{false}}">
+<div class="a-slide" style="margin-top: 10px; padding: 12px; border-radius: 16px; background: {{soft}}; border: 1px solid {{line}}; display: flex; gap: 10px">
+<span class="a-swing" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: {{accent}}"><svg width="22" height="22" viewBox="0 0 24 24" class="ic"><use href="#kUmb"></use></svg></span>
+<span style="flex: 1; min-width: 0">
+<span class="k" style="display: block; font-size: 11px">Plan B</span>
+<span class="disp" style="display: block; margin-top: 4px; font-size: 18px; font-weight: 700; line-height: 1.12; letter-spacing: -0.015em; font-variation-settings: 'wdth' 90">{{it.backup.name}}</span>
+<span style="display: block; margin-top: 3px; font-size: 12.5px; color: {{mute}}">{{it.backup.meta}}</span>
+<button type="button" aria-label="{{it.swapAria}}" onClick="{{it.backup.swap}}" class="press" style="margin-top: 10px; height: 44px; padding: 0 16px 0 14px; border: 0; border-radius: 14px; background: {{sel}}; color: {{selInk}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kSwap"></use></svg>Swap</button>
+</span>
+</div>
+</sc-if>
+<sc-if value="{{it.showMove}}" hint-placeholder-val="{{false}}">
+<div class="a-slide" style="margin-top: 10px; padding: 12px; border-radius: 16px; background: {{soft}}; border: 1px solid {{line}}; display: flex; gap: 10px">
+<span aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: {{accent}}"><svg width="22" height="22" viewBox="0 0 24 24" class="ic"><use href="#kUmb"></use></svg></span>
+<span style="flex: 1; min-width: 0">
+<span class="k" style="display: block; font-size: 11px">Plan B</span>
+<span style="display: block; margin-top: 4px; font-size: 14.5px; font-weight: 600; line-height: 1.35">Consider moving it to another day</span>
+<button type="button" aria-label="{{it.changeDayAria}}" onClick="{{it.changeDay}}" class="press" style="margin-top: 10px; height: 44px; padding: 0 16px 0 14px; border: 0; border-radius: 14px; background: {{sel}}; color: {{selInk}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kEdit"></use></svg>Change day or time</button>
+</span>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{day.notPast}}" hint-placeholder-val="{{true}}">
+<div style="margin-top: 8px; display: flex; align-items: center; gap: 4px">
+<button type="button" aria-label="{{it.earlierAria}}" onClick="{{it.earlier}}" disabled="{{it.cantEarlier}}" class="press tb" style="border-color: {{line}}; color: {{ink}}; opacity: {{it.earlyOp}}">−30</button>
+<button type="button" aria-label="{{it.laterAria}}" onClick="{{it.later}}" disabled="{{it.cantLater}}" class="press tb" style="border-color: {{line}}; color: {{ink}}; opacity: {{it.lateOp}}">+30</button>
+<span aria-hidden="true" style="padding-left: 2px; font-size: 12px; font-weight: 600; color: {{mute}}">min</span>
+<span style="flex: 1"></span>
+<button type="button" aria-label="{{it.changeDayAria}}" onClick="{{it.changeDay}}" class="press ib" style="color: {{ink}}"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kEdit"></use></svg></button>
+<button type="button" aria-label="{{it.toCalendarAria}}" onClick="{{it.toCalendar}}" class="press ib" style="color: {{ink}}"><svg width="20" height="20" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kCalAdd"></use></svg></button>
+</div>
+</sc-if>
+</article>
+</li>
+</sc-for>
+</ol>
+<sc-if value="{{day.notPast}}" hint-placeholder-val="{{true}}">
+<div style="margin-top: 14px; display: grid; gap: 8px">
+<button type="button" onClick="{{day.toCalendar}}" class="press pb" style="background: {{sel}}; color: {{selInk}}"><svg width="20" height="20" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kCalAdd"></use></svg>Add {{day.short}} to my calendar</button>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" onClick="{{shareDay}}" class="press" style="height: 48px; padding: 0 10px; border-radius: 16px; border: 1px solid {{line}}; background: transparent; color: {{ink}}; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 7px"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kShare"></use></svg>Share this day</button>
+<button type="button" onClick="{{shareFortnight}}" class="press" style="height: 48px; padding: 0 10px; border-radius: 16px; border: 1px solid {{line}}; background: transparent; color: {{ink}}; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 7px"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kShare"></use></svg>Share 14 days</button>
+</div>
+</div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{day.isEmpty}}" hint-placeholder-val="{{false}}">
+<div class="a-fade" style="margin-top: 16px; padding: 18px 16px 16px; border-radius: 20px; border: 1px dashed {{line}}; background: {{soft}}">
+<p style="font-size: 16px; font-weight: 700">Nothing planned for {{day.short}}</p>
+<sc-if value="{{day.notPast}}" hint-placeholder-val="{{true}}">
+<p style="margin-top: 4px; font-size: 13.5px; line-height: 1.45; color: {{mute}}">Any day works, weekdays included. Pick something and it lands here.</p>
+<a href="A-Sky-Mobile.dc.html" class="press" style="margin-top: 12px; height: 44px; padding: 0 14px 0 16px; box-sizing: border-box; border-radius: 14px; background: {{sel}}; color: {{selInk}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; text-decoration: none">Find ideas for this day<svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kArrow"></use></svg></a>
+</sc-if>
+</div>
+</sc-if>
+</section>
+
+<!-- Coming up -->
+<sc-if value="{{hasUpcoming}}" hint-placeholder-val="{{true}}">
+<section aria-labelledby="cal-up" style="margin-top: 24px">
+<h2 id="cal-up" class="disp" style="padding: 0 4px; font-size: 26px; font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90; text-shadow: {{hlShadow}}">Coming up</h2>
+<ul class="glass tr" style="margin-top: 10px; padding: 6px; border-radius: 24px; background: {{glass}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; display: grid; gap: 2px">
+<sc-for list="{{upcoming}}" as="u" hint-placeholder-count="5">
+<li><button type="button" aria-pressed="{{u.pressed}}" onClick="{{u.pick}}" class="press" style="width: 100%; min-height: 58px; padding: 8px 10px 8px 8px; border: 0; border-radius: 18px; background: {{u.bg}}; color: {{u.fg}}; text-align: left; display: flex; align-items: center; gap: 12px">
+<sc-if value="{{u.hasSky}}" hint-placeholder-val="{{true}}"><span class="msky" aria-hidden="true" style="background: {{u.skyBg}}; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4); outline: {{u.skyOutline}}; outline-offset: 2px"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" style="stroke-width: 2"><use href="{{u.skyIcon}}"></use></svg></span></sc-if>
+<sc-if value="{{u.noSky}}" hint-placeholder-val="{{false}}"><span class="msky" aria-hidden="true" style="border: 1.5px dashed {{u.bd}}; box-sizing: border-box; color: {{u.sub}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic"><use href="#kCal"></use></svg></span></sc-if>
+<span style="flex: 1; min-width: 0">
+<span style="display: block; font-size: 15px; font-weight: 700; line-height: 1.25">{{u.short}} <span style="font-weight: 550; color: {{u.sub}}">· {{u.rel}}</span></span>
+<span style="display: block; margin-top: 2px; font-size: 13px; color: {{u.sub}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{u.names}}</span>
+<span class="sr">, {{u.skyText}}</span>
+</span>
+<sc-if value="{{u.warn}}" hint-placeholder-val="{{false}}"><span style="flex-shrink: 0; display: inline-flex; color: {{u.warnCol}}"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kWarn"></use></svg><span class="sr">, needs a look</span></span></sc-if>
+<svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true" style="flex-shrink: 0; opacity: 0.7"><use href="#kR"></use></svg>
+</button></li>
+</sc-for>
+</ul>
+</section>
+</sc-if>
+</main>
+
+<!-- ================= TAB BAR ================= -->
+<nav aria-label="Main" class="glass tr" style="position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 20; height: 68px; padding: 6px; box-sizing: border-box; border-radius: 26px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<a href="A-Sky-Mobile.dc.html" class="press" style="border-radius: 20px; color: {{ink}}; font-size: 14.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kCompass"></use></svg>Discover</a>
+<a href="A-Calendar-Mobile.dc.html" aria-current="page" class="press" style="border-radius: 20px; background: {{sel}}; color: {{selInk}}; font-size: 14.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kCal"></use></svg>My plans<span style="min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: {{selInk}}; color: {{sel}}; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center">{{planCount}}<span class="sr"> coming up</span></span></a>
+</nav>
+
+<!-- ================= TOAST: Undo for removals, time and day changes, swaps (spec §6.7); share feedback ================= -->
+<div aria-live="polite" style="position: absolute; left: 16px; right: 16px; bottom: 96px; z-index: 30">
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}">
+<div class="a-up" style="min-height: 56px; padding: 6px 6px 6px 16px; box-sizing: border-box; border-radius: 20px; background: {{sel}}; color: {{selInk}}; box-shadow: 0 14px 34px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 8px">
+<p style="flex: 1; min-width: 0; font-size: 14.5px; font-weight: 650; line-height: 1.3">{{toastMsg}}</p>
+<sc-if value="{{toastUndo}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{undo}}" class="press" style="flex-shrink: 0; height: 44px; padding: 0 16px; border-radius: 14px; border: 1.5px solid {{selInk}}; background: transparent; color: {{selInk}}; font-size: 14px; font-weight: 750">Undo</button></sc-if>
+<button type="button" aria-label="Dismiss" onClick="{{dismissToast}}" class="press ib" style="color: {{selInk}}"><svg width="17" height="17" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kX"></use></svg></button>
+</div>
+</sc-if>
+</div>
+
+<!-- ================= ADD TO A DAY (bottom sheet). From a plan's pencil it opens in edit mode: "Change day or time". ================= -->
+<sc-if value="{{add.open}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; z-index: 40">
+<div aria-hidden="true" onClick="{{add.close}}" class="a-fade" style="position: absolute; inset: 0; background: {{scrim}}"></div>
+<section aria-label="{{add.eyebrow}}" class="glass2 a-sheet" style="position: absolute; left: 0; right: 0; bottom: 0; max-height: 800px; box-sizing: border-box; display: flex; flex-direction: column; border-radius: 30px 30px 0 0; background: {{glass2}}; border: 1px solid {{line}}; border-bottom: 0; box-shadow: 0 -18px 50px rgba(0,0,0,0.3); color: {{ink}}">
+<span aria-hidden="true" style="flex-shrink: 0; display: block; width: 38px; height: 5px; margin: 8px auto 0; border-radius: 3px; background: {{line}}"></span>
+
+<sc-if value="{{add.notDone}}" hint-placeholder-val="{{true}}">
+<div style="flex-shrink: 0; display: flex; align-items: flex-start; gap: 10px; padding: 6px 12px 0 20px">
+<div style="flex: 1; min-width: 0; padding-top: 6px">
+<p class="k" style="color: {{mute}}">{{add.eyebrow}}</p>
+<h2 class="disp" style="margin-top: 6px; font-size: 26px; font-weight: 700; line-height: 1.02; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90">When are you going?</h2>
+<p class="c1" style="margin-top: 6px; font-size: 14px; font-weight: 600; color: {{mute}}">{{add.name}}</p>
+</div>
+<button type="button" aria-label="Close" onClick="{{add.close}}" class="press cc" style="flex-shrink: 0; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid {{line}}; background: {{soft}}; color: {{ink}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kX"></use></svg></button>
+</div>
+
+<div class="hs" style="flex: 1; min-height: 0; overflow-y: auto; padding: 16px 16px 18px">
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend class="k" style="padding: 0 4px; color: {{mute}}">Quick days</legend>
+<div class="hs" style="display: flex; gap: 6px; overflow-x: auto; margin: 8px -16px 0; padding: 2px 16px 4px">
+<sc-for list="{{add.quick}}" as="q" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{q.pressed}}" aria-label="{{q.aria}}" onClick="{{q.pick}}" class="press" style="position: relative; flex: 1 0 auto; min-width: 56px; height: 80px; padding: 9px 8px 8px; box-sizing: border-box; border-radius: 18px; border: 1px solid {{q.bd}}; background: {{q.bg}}; color: {{q.fg}}; display: flex; flex-direction: column; align-items: center; justify-content: space-between">
+<span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.03em; white-space: nowrap">{{q.top}}</span>
+<span class="n" style="font-size: 22px; font-weight: 700; line-height: 1; text-decoration: {{q.deco}}">{{q.num}}</span>
+<span style="height: 16px; display: flex; align-items: center; font-size: 10.5px; font-weight: 750; letter-spacing: 0.04em; text-transform: uppercase">
+<sc-if value="{{q.gSun}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kSun"></use></svg></sc-if>
+<sc-if value="{{q.gCloud}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kCloud"></use></svg></sc-if>
+<sc-if value="{{q.gRain}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kRain"></use></svg></sc-if>
+<sc-if value="{{q.gHot}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kHot"></use></svg></sc-if>
+<sc-if value="{{q.closed}}" hint-placeholder-val="{{false}}"><span aria-hidden="true">Closed</span></sc-if>
+</span>
+<sc-if value="{{q.isHoliday}}" hint-placeholder-val="{{false}}"><svg width="10" height="10" viewBox="0 0 24 24" class="ic icb" aria-hidden="true" style="position: absolute; right: 7px; top: 7px; color: {{q.holCol}}"><use href="#kFlag"></use></svg></sc-if>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{add.hasQuickHoliday}}" hint-placeholder-val="{{false}}"><p class="row" style="margin-top: 6px; padding: 0 4px; gap: 7px; font-size: 12.5px; font-weight: 600; color: {{mute}}"><svg width="12" height="12" viewBox="0 0 24 24" class="ic icb f0" aria-hidden="true" style="color: {{accent}}"><use href="#kFlag"></use></svg>{{add.quickHolidayNote}}</p></sc-if>
+</fieldset>
+
+<details style="margin-top: 18px; border-radius: 20px; background: {{soft}}; border: 1px solid {{line}}">
+<summary class="row" style="min-height: 52px; padding: 0 14px; gap: 10px; border-radius: 20px">
+<svg width="18" height="18" viewBox="0 0 24 24" class="ic f0" aria-hidden="true"><use href="#kCal"></use></svg>
+<span style="flex: 1; font-size: 15px; font-weight: 650">Pick a date</span>
+<span class="n" style="font-size: 13.5px; font-weight: 600; color: {{mute}}">{{add.dateShort}}</span>
+<svg width="18" height="18" viewBox="0 0 24 24" class="ic f0 chev" aria-hidden="true"><use href="#kChevD"></use></svg>
+</summary>
+<div style="padding: 0 8px 10px">
+<div class="row" style="justify-content: space-between; gap: 8px; padding: 0 0 4px 8px">
+<p aria-live="polite" style="font-size: 15px; font-weight: 700">{{add.monthLabel}}</p>
+<div class="row" style="gap: 2px">
+<button type="button" aria-label="Previous month" disabled="{{cantPrev}}" onClick="{{prevMonth}}" class="ib press" style="color: {{ink}}; opacity: {{prevOp}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kL"></use></svg></button>
+<button type="button" aria-label="Next month" disabled="{{cantNext}}" onClick="{{nextMonth}}" class="ib press" style="color: {{ink}}; opacity: {{nextOp}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kR"></use></svg></button>
+</div>
+</div>
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; padding-bottom: 4px">
+<sc-for list="{{weekdays}}" as="wd" hint-placeholder-count="7"><span style="text-align: center; font-size: 11.5px; font-weight: {{wd.fw}}; color: {{wd.col}}">{{wd.letter}}</span></sc-for>
+</div>
+<sc-for list="{{add.weeks}}" as="aw" hint-placeholder-count="5">
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; margin-top: 2px">
+<sc-for list="{{aw.cells}}" as="m" hint-placeholder-count="7">
+<button type="button" aria-label="{{m.mAria}}" aria-pressed="{{m.pressed}}" disabled="{{m.disabled}}" onClick="{{m.pick}}" class="press" style="position: relative; height: 46px; padding: 0; border: 0; border-radius: 14px; background: {{m.bg}}; color: {{m.fg}}; box-shadow: {{m.ring}}; opacity: {{m.op}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px">
+<span class="n" style="font-size: 14.5px; font-weight: {{m.fw}}; line-height: 1; text-decoration: {{m.deco}}">{{m.num}}</span>
+<span aria-hidden="true" style="height: 12px; display: flex">
+<sc-if value="{{m.gSun}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kSun"></use></svg></sc-if>
+<sc-if value="{{m.gCloud}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kCloud"></use></svg></sc-if>
+<sc-if value="{{m.gRain}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kRain"></use></svg></sc-if>
+<sc-if value="{{m.gHot}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kHot"></use></svg></sc-if>
+</span>
+<sc-if value="{{m.isHoliday}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="position: absolute; right: 6px; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: {{m.holCol}}"></span></sc-if>
+</button>
+</sc-for>
+</div>
+</sc-for>
+<p style="margin: 8px 8px 0; font-size: 12.5px; line-height: 1.4; color: {{mute}}">Struck-through days: not running. Dot: public holiday. Past days can’t be picked.</p>
+</div>
+</details>
+
+<fieldset style="margin: 18px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="k" style="padding: 0 4px; color: {{mute}}">Time</legend>
+<div class="hs" style="display: flex; gap: 6px; overflow-x: auto; margin: 8px -16px 0; padding: 2px 16px 4px">
+<sc-for list="{{add.slots}}" as="o" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="press" style="flex-shrink: 0; min-width: 86px; height: 56px; padding: 0 14px; box-sizing: border-box; border-radius: 16px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px">
+<span style="font-size: 13.5px; font-weight: 700">{{o.label}}</span>
+<span class="n" style="font-size: 12.5px; font-weight: 600; color: {{o.sub}}">{{o.time}}</span>
+</button>
+</sc-for>
+</div>
+<p style="margin-top: 6px; padding: 0 4px; font-size: 12.5px; color: {{mute}}">{{add.suggestedNote}}</p>
+</fieldset>
+
+<section aria-live="polite" class="tr" style="margin-top: 18px; padding: 14px 16px; border-radius: 20px; background: {{soft}}; border: 1px solid {{line}}">
+<h3 class="k" style="color: {{mute}}">Check</h3>
+<p class="row" style="margin-top: 8px; gap: 4px 10px; flex-wrap: wrap"><span class="n" style="font-size: 21px; font-weight: 700">{{add.timeLabel}}</span><span style="font-size: 14px; font-weight: 600; color: {{mute}}">{{add.dateRel}} · <span class="n">{{add.dateShort}}</span></span></p>
+<div class="row" style="margin-top: 12px; padding-top: 12px; gap: 12px; border-top: 1px solid {{line}}">
+<svg width="30" height="24" viewBox="0 0 18 14" aria-hidden="true" class="f0" style="color: {{add.meterCol}}"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{add.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{add.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{add.m3}}"></rect></svg>
+<span style="min-width: 0"><span style="display: block; font-size: 16px; font-weight: 700">{{add.fitText}}</span><span style="display: block; margin-top: 2px; font-size: 13px; line-height: 1.35; color: {{mute}}">{{add.fitNote}}</span></span>
+</div>
+<sc-if value="{{add.hasWarn}}" hint-placeholder-val="{{false}}"><p class="a-slide" style="margin-top: 12px; padding: 10px 12px; border-radius: 14px; background: {{soft}}; display: flex; gap: 10px; font-size: 13.5px; font-weight: 600; line-height: 1.4"><svg width="18" height="18" viewBox="0 0 24 24" class="ic icb f0" aria-hidden="true" style="margin-top: 1px; color: {{accent}}"><use href="#kWarn"></use></svg><span>{{add.warn}}</span></p></sc-if>
+<sc-if value="{{add.hasHoliday}}" hint-placeholder-val="{{false}}"><p class="a-slide" style="margin-top: 10px; display: flex; gap: 10px; font-size: 13px; line-height: 1.4; color: {{mute}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic f0" aria-hidden="true" style="margin-top: 1px"><use href="#kFlag"></use></svg><span>{{add.holidayNote}}</span></p></sc-if>
+</section>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 16px 20px; border-top: 1px solid {{line}}">
+<button type="button" disabled="{{add.cant}}" onClick="{{add.confirm}}" class="pb press" style="border: 1px solid {{add.confirmBd}}; background: {{add.confirmBg}}; color: {{add.confirmFg}}"><sc-if value="{{add.canAdd}}" hint-placeholder-val="{{true}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="{{add.confirmIcon}}"></use></svg></sc-if><sc-if value="{{add.cant}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kWarn"></use></svg></sc-if><span class="n">{{add.confirmLabel}}</span></button>
+</div>
+</sc-if>
+
+<sc-if value="{{add.done}}" hint-placeholder-val="{{false}}">
+<div aria-live="polite" class="a-fade" style="padding: 18px 20px 24px; text-align: center">
+<span class="a-pop cc" aria-hidden="true" style="width: 68px; height: 68px; margin: 0 auto; border-radius: 50%; background: {{sel}}; color: {{selInk}}"><svg width="32" height="32" viewBox="0 0 24 24" class="ic icb"><use href="#kCheck"></use></svg></span>
+<h2 class="disp" style="margin-top: 16px; font-size: 26px; font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90">{{add.doneTitle}}</h2>
+<p style="margin-top: 8px; font-size: 14.5px; line-height: 1.4; color: {{mute}}">{{add.name}} · <span class="n">{{add.timeLabel}}</span></p>
+<div style="margin-top: 22px; display: grid; gap: 8px">
+<button type="button" onClick="{{add.toCalendar}}" class="pb press" style="border: 1px solid {{line}}; background: {{soft}}; color: {{ink}}"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kCalAdd"></use></svg>Add to my calendar too</button>
+<button type="button" onClick="{{add.close}}" class="pb press" style="background: {{sel}}; color: {{selInk}}">Done</button>
+</div>
+</div>
+</sc-if>
+</section>
+</div>
+</sc-if>
+
+<!-- ================= ADD TO YOUR CALENDAR (bottom sheet) ================= -->
+<sc-if value="{{exp.open}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; z-index: 40">
+<div aria-hidden="true" onClick="{{exp.close}}" class="a-fade" style="position: absolute; inset: 0; background: {{scrim}}"></div>
+<section aria-labelledby="cal-exp-title" class="glass2 a-sheet" style="position: absolute; left: 0; right: 0; bottom: 0; max-height: 800px; box-sizing: border-box; display: flex; flex-direction: column; border-radius: 30px 30px 0 0; background: {{glass2}}; border: 1px solid {{line}}; border-bottom: 0; box-shadow: 0 -18px 50px rgba(0,0,0,0.3); color: {{ink}}">
+<div style="flex-shrink: 0; padding: 8px 12px 10px 20px">
+<span aria-hidden="true" style="display: block; width: 38px; height: 5px; margin: 0 auto 6px; border-radius: 3px; background: {{line}}"></span>
+<div style="display: flex; align-items: flex-start; gap: 10px">
+<div style="flex: 1; min-width: 0; padding-top: 6px">
+<p class="k" style="color: {{mute}}">{{exp.countLabel}}</p>
+<h2 id="cal-exp-title" class="disp" style="margin-top: 6px; font-size: 26px; font-weight: 700; line-height: 1.02; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90">{{exp.title}}</h2>
+</div>
+<button type="button" aria-label="Close" onClick="{{exp.close}}" class="press" style="flex-shrink: 0; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid {{line}}; background: {{soft}}; color: {{ink}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kX"></use></svg></button>
+</div>
+</div>
+
+<sc-if value="{{exp.notDone}}" hint-placeholder-val="{{true}}">
+<div class="hs" style="flex: 1; min-height: 0; overflow-y: auto; padding: 6px 16px 16px">
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend class="k" style="padding: 0 4px; color: {{mute}}">What to add</legend>
+<div style="margin-top: 8px; padding: 4px; border-radius: 18px; background: {{soft}}; border: 1px solid {{line}}; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px">
+<sc-for list="{{exp.scopes}}" as="o" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="press" style="min-height: 44px; padding: 5px 6px; border: 0; border-radius: 14px; background: {{o.bg}}; color: {{o.fg}}; font-size: 13px; font-weight: 650; line-height: 1.15">{{o.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+
+<fieldset style="margin: 18px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="k" style="padding: 0 4px; color: {{mute}}">Calendar</legend>
+<div style="margin-top: 8px; display: grid; gap: 6px">
+<sc-for list="{{exp.targets}}" as="t" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}" class="press" style="width: 100%; min-height: 58px; padding: 8px 14px 8px 10px; border-radius: 18px; border: 1px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}}; text-align: left; display: flex; align-items: center; gap: 12px">
+<span aria-hidden="true" style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px; box-shadow: inset 0 0 0 1.5px currentColor; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" class="ic"><use href="{{t.icon}}"></use></svg></span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 15px; font-weight: 650">{{t.label}}</span><span style="display: block; margin-top: 2px; font-size: 12.5px; color: {{t.sub}}">{{t.note}}</span></span>
+<span aria-hidden="true" style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 2px currentColor; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.dot}}"></span></span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+
+<sc-if value="{{exp.isFile}}" hint-placeholder-val="{{true}}">
+<fieldset class="a-fade" style="margin: 18px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="k" style="padding: 0 4px; color: {{mute}}">Reminder</legend>
+<div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{exp.reminders}}" as="r" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}" class="press" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid {{r.bd}}; background: {{r.bg}}; color: {{r.fg}}; font-size: 13.5px; font-weight: 600">{{r.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+</sc-if>
+
+<button type="button" aria-pressed="{{exp.directionsPressed}}" onClick="{{exp.toggleDirections}}" class="press" style="margin-top: 18px; width: 100%; min-height: 58px; padding: 8px 14px 8px 12px; border-radius: 18px; border: 1px solid {{line}}; background: {{soft}}; color: {{ink}}; text-align: left; display: flex; align-items: center; gap: 12px">
+<svg width="20" height="20" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0"><use href="#kRoute"></use></svg>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 15px; font-weight: 650">Include directions</span><span style="display: block; margin-top: 2px; font-size: 12.5px; color: {{mute}}">Adds how to get there to each event</span></span>
+<span aria-hidden="true" style="position: relative; flex-shrink: 0; width: 40px; height: 24px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{exp.trackBd}}; background: {{exp.trackBg}}; transition: background-color 300ms ease"><span style="position: absolute; left: 4px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: {{exp.knobBg}}; transform: {{exp.knobX}}; transition: transform 380ms cubic-bezier(.34,1.56,.64,1)"></span></span>
+</button>
+
+<h3 class="k" style="margin-top: 20px; padding: 0 4px; color: {{mute}}">Preview · {{exp.countLabel}}</h3>
+<sc-if value="{{exp.noEvents}}" hint-placeholder-val="{{false}}"><p style="margin-top: 8px; padding: 14px; border-radius: 18px; border: 1px dashed {{line}}; font-size: 14px">Nothing to add yet. Plan something for this day first.</p></sc-if>
+<ul style="margin-top: 8px; display: grid; gap: 8px">
+<sc-for list="{{exp.events}}" as="e" hint-placeholder-count="2">
+<li class="a-up" style="animation-delay: {{e.delay}}; padding: 12px 12px 12px 10px; border-radius: 18px; background: {{soft}}; border: 1px solid {{line}}; display: flex; gap: 11px">
+<span aria-hidden="true" style="flex-shrink: 0; width: 4px; border-radius: 2px; background: {{accent}}"></span>
+<span style="flex: 1; min-width: 0">
+<span style="display: block; font-size: 15px; font-weight: 650; line-height: 1.25">{{e.title}}</span>
+<span style="margin-top: 5px; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0"><use href="#kClock"></use></svg>{{e.when}}</span>
+<span style="margin-top: 3px; display: flex; align-items: center; gap: 6px; font-size: 13px; color: {{mute}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0"><use href="#kPin"></use></svg><span style="min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{e.where}}</span></span>
+<sc-if value="{{e.hasNotes}}" hint-placeholder-val="{{true}}"><span style="display: block; margin-top: 6px; padding-top: 6px; border-top: 1px solid {{line}}; font-size: 12.5px; color: {{mute}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Getting there: {{e.notes}}</span></sc-if>
+<sc-if value="{{exp.manyGoogle}}" hint-placeholder-val="{{false}}"><a href="{{e.gHref}}" target="_blank" rel="noopener noreferrer" aria-label="{{e.gLabel}}" class="press" style="margin-top: 10px; height: 44px; padding: 0 14px; box-sizing: border-box; border-radius: 14px; background: {{sel}}; color: {{selInk}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; text-decoration: none"><svg width="15" height="15" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kOut"></use></svg>Add to Google</a></sc-if>
+</span>
+</li>
+</sc-for>
+</ul>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 16px 20px; border-top: 1px solid {{line}}">
+<p style="display: flex; gap: 8px; padding: 0 2px; font-size: 12.5px; line-height: 1.4; color: {{mute}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><use href="#kInfo"></use></svg><span>{{exp.targetNote}}<sc-if value="{{exp.isFile}}" hint-placeholder-val="{{true}}"> {{exp.remindNote}}.</sc-if></span></p>
+<sc-if value="{{exp.isFile}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{exp.download}}" disabled="{{exp.noEvents}}" class="press pb" style="margin-top: 10px; background: {{sel}}; color: {{selInk}}; opacity: {{exp.btnOp}}"><svg width="20" height="20" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kDown"></use></svg>{{exp.primaryLabel}}</button>
+<p style="margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: {{mute}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kFile"></use></svg>{{exp.fileName}}</p>
+</sc-if>
+<sc-if value="{{exp.oneGoogle}}" hint-placeholder-val="{{false}}">
+<a href="{{exp.firstHref}}" target="_blank" rel="noopener noreferrer" onClick="{{exp.download}}" class="press pb" style="margin-top: 10px; background: {{sel}}; color: {{selInk}}"><svg width="19" height="19" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><use href="#kOut"></use></svg>{{exp.primaryLabel}}<span class="sr"> (opens in a new tab)</span></a>
+</sc-if>
+<sc-if value="{{exp.manyGoogle}}" hint-placeholder-val="{{false}}">
+<p style="margin-top: 10px; padding: 12px 14px; border-radius: 16px; background: {{soft}}; border: 1px solid {{line}}; display: flex; gap: 9px; font-size: 13.5px; font-weight: 600; line-height: 1.4"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><use href="#kGlobe"></use></svg><span>{{exp.primaryLabel}} with the buttons above, one tab each.</span></p>
+</sc-if>
+</div>
+</sc-if>
+
+<div aria-live="polite">
+<sc-if value="{{exp.done}}" hint-placeholder-val="{{false}}">
+<div class="a-fade" style="padding: 12px 20px 26px; display: flex; flex-direction: column; align-items: center; text-align: center">
+<span class="a-pop" aria-hidden="true" style="width: 68px; height: 68px; border-radius: 50%; background: {{sel}}; color: {{selInk}}; display: flex; align-items: center; justify-content: center"><svg width="32" height="32" viewBox="0 0 24 24" class="ic icb"><use href="#kCheck"></use></svg></span>
+<h3 class="disp" style="margin-top: 16px; font-size: 26px; font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90">{{exp.doneTitle}}</h3>
+<p style="margin-top: 8px; max-width: 300px; font-size: 14.5px; line-height: 1.45; color: {{mute}}">{{exp.doneNote}}</p>
+<sc-if value="{{exp.isFile}}" hint-placeholder-val="{{true}}"><p style="margin-top: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; background: {{soft}}; border: 1px solid {{line}}; font-size: 13px; font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><use href="#kFile"></use></svg>{{exp.fileName}}</p></sc-if>
+<button type="button" onClick="{{exp.close}}" class="press pb" style="margin-top: 20px; background: {{sel}}; color: {{selInk}}">Close</button>
+</div>
+</sc-if>
+</div>
+</section>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"activity":{"editor":"enum","options":["bondi-coogee","manly","spit-manly","three-sisters","wentworth","botanic","opera-tour","agnsw","aus-museum","taronga","watsons","bridge-walk","rocks-markets","cockatoo","balmoral","icebergs","sea-life","featherdale","chinatown","newtown","royal-np","palm-beach","clovelly","coogee","north-head","cronulla","carriageworks","parramatta","leura"],"default":"manly"},"sheet":{"editor":"enum","options":["none","add"],"default":"none"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    const p = this.props || {};
+    this.FIT = [
+      { label: "Skip", note: "Save it for another day" },
+      { label: "Fine", note: "Doable, with caveats" },
+      { label: "Perfect", note: "Ideal conditions" }
+    ];
+    this.WX = [
+      { key: "sun", label: "Sunny", short: "Sunny", adj: "sunny" },
+      { key: "cloud", label: "Cloudy", short: "Cloudy", adj: "cloudy" },
+      { key: "rain", label: "Rainy", short: "Rainy", adj: "rainy" },
+      { key: "hot", label: "Hot 30°+", short: "Hot", adj: "hot" }
+    ];
+    // "Today" for the prototype. Dates are local Sydney dates as YYYY-MM-DD strings.
+    this.TODAY = "2026-10-01";
+    // NSW public holidays in the prototype's range (est.; confirm against the NSW Government list).
+    this.HOLIDAYS = { "2026-10-05": "Labour Day", "2026-12-25": "Christmas Day", "2026-12-26": "Boxing Day", "2026-12-28": "Boxing Day holiday" };
+    this.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    this.DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    this.SLOTS = [
+      { key: "suggested", label: "Suggested" }, { key: "morning", label: "Morning", time: "09:00" },
+      { key: "midday", label: "Midday", time: "12:00" }, { key: "afternoon", label: "Afternoon", time: "14:00" },
+      { key: "evening", label: "Evening", time: "18:00" }
+    ];
+    this.TARGETS = [
+      { key: "apple", label: "Apple Calendar" }, { key: "google", label: "Google Calendar" }, { key: "outlook", label: "Outlook" }
+    ];
+    this.REMINDERS = [
+      { key: "none", label: "None" }, { key: "30m", label: "30 min before" }, { key: "2h", label: "2 hours before" }, { key: "1d", label: "1 day before" }
+    ];
+    // ---------------------------------------------------------------------------------
+    // Activities (29), from content/sydney. dur = planned hours; start = suggested start.
+    // w = [sunny, cloudy, rainy, hot]: 2 perfect, 1 fine, 0 skip. days = only these weekdays.
+    // ---------------------------------------------------------------------------------
+    this.ACTS = {};
+    [
+      {"id":"bondi-coogee","name":"Bondi to Coogee Coastal Walk","area":"Eastern Suburbs","cat":"Coastal walk","dur":2.5,"w":[2,2,0,1],"days":null,"place":"Bondi Beach","start":"08:30","getThere":"Train to Bondi Junction, then bus 333 or 380 to Bondi Beach. Bus back to the city from Coogee.","goodFor":["date","friends","family","solo"]},
+      {"id":"manly","name":"Ferry to Manly & Shelly Beach","area":"Northern Beaches","cat":"Ferry & beach","dur":4,"w":[2,2,1,2],"days":null,"place":"Manly Wharf","start":"10:00","getThere":"F1 ferry from Circular Quay, about 30 min. Tap on with Opal or a contactless card.","goodFor":["date","friends","family","solo"]},
+      {"id":"spit-manly","name":"Spit Bridge to Manly Walk","area":"Northern Beaches","cat":"Bushwalk","dur":3.5,"w":[2,2,0,1],"days":null,"place":"Spit Bridge","start":"09:00","getThere":"Bus from Wynyard to Spit Bridge. Ferry home from Manly to Circular Quay.","goodFor":["date","friends","solo"]},
+      {"id":"three-sisters","name":"Three Sisters & Echo Point","area":"Blue Mountains","cat":"Lookout & walk","dur":6,"w":[2,1,0,2],"days":null,"place":"Echo Point Lookout","start":"08:30","getThere":"Blue Mountains line from Central to Katoomba (about 2 hrs), then a local bus or 25 min walk to Echo Point.","goodFor":["date","friends","family","solo"]},
+      {"id":"wentworth","name":"Wentworth Falls & National Pass","area":"Blue Mountains","cat":"Bushwalk","dur":3.5,"w":[2,1,0,1],"days":null,"place":"Wentworth Falls picnic area","start":"08:30","getThere":"Train from Central to Wentworth Falls station, then walk to the Falls Reserve picnic area.","goodFor":["friends","solo"]},
+      {"id":"botanic","name":"Royal Botanic Garden & Mrs Macquarie's Chair","area":"City","cat":"Gardens","dur":1.5,"w":[2,2,0,1],"days":null,"place":"Queen Elizabeth II Gate","start":"09:30","getThere":"Walk from Circular Quay or Martin Place station.","goodFor":["date","friends","family","solo"]},
+      {"id":"opera-tour","name":"Sydney Opera House Tour","area":"City","cat":"Culture","dur":1,"w":[2,2,2,2],"days":null,"place":"Sydney Opera House","start":"11:00","getThere":"Short walk from Circular Quay station and ferry wharves.","goodFor":["date","friends","family","solo"]},
+      {"id":"agnsw","name":"Art Gallery of NSW","area":"The Domain","cat":"Gallery","dur":2.5,"w":[1,2,2,2],"days":null,"place":"Art Gallery of NSW","start":"10:30","getThere":"Walk from St James or Martin Place station through the Domain.","goodFor":["date","friends","family","solo"]},
+      {"id":"aus-museum","name":"Australian Museum","area":"City","cat":"Museum","dur":2,"w":[1,2,2,2],"days":null,"place":"Australian Museum","start":"10:00","getThere":"Opposite Hyde Park, near Museum and St James stations.","goodFor":["date","family","solo"]},
+      {"id":"taronga","name":"Taronga Zoo","area":"Mosman","cat":"Wildlife","dur":4,"w":[2,2,1,1],"days":null,"place":"Taronga Zoo Wharf","start":"09:30","getThere":"F2 ferry from Circular Quay to Taronga Zoo wharf, about 12 min.","goodFor":["date","friends","family"]},
+      {"id":"watsons","name":"Watsons Bay & The Gap","area":"Eastern Suburbs","cat":"Ferry & lookout","dur":4,"w":[2,2,0,1],"days":null,"place":"Watsons Bay Wharf","start":"11:00","getThere":"F9 ferry from Circular Quay to Watsons Bay.","goodFor":["date","friends","family"]},
+      {"id":"bridge-walk","name":"Walk across the Harbour Bridge","area":"The Rocks","cat":"Landmark","dur":1,"w":[2,2,1,1],"days":null,"place":"Bridge Stairs, Cumberland St","start":"16:30","getThere":"Stairs up from Cumberland St in The Rocks. Finish at Milsons Point station.","goodFor":["date","friends","family","solo"]},
+      {"id":"rocks-markets","name":"The Rocks Markets","area":"The Rocks","cat":"Markets","dur":1.5,"w":[2,2,1,1],"days":null,"place":"The Rocks Markets","start":"10:00","getThere":"Short walk from Circular Quay or Wynyard.","goodFor":["date","friends","family","solo"]},
+      {"id":"cockatoo","name":"Cockatoo Island","area":"Sydney Harbour","cat":"History","dur":4,"w":[2,2,1,1],"days":null,"place":"Cockatoo Island Wharf","start":"10:30","getThere":"F3 or F8 ferry from Circular Quay.","goodFor":["date","friends","family"]},
+      {"id":"balmoral","name":"Balmoral Beach","area":"Mosman","cat":"Beach","dur":4,"w":[2,1,0,2],"days":null,"place":"Balmoral Beach","start":"10:00","getThere":"Bus from Wynyard or the city, about 40 min.","goodFor":["date","family"]},
+      {"id":"icebergs","name":"Bondi Icebergs Pool","area":"Bondi","cat":"Swimming","dur":1.5,"w":[2,1,0,2],"days":null,"place":"Bondi Icebergs Pool","start":"09:00","getThere":"Train to Bondi Junction, then bus 333 or 380 to Bondi Beach.","goodFor":["date","friends","solo"]},
+      {"id":"sea-life","name":"SEA LIFE Aquarium","area":"Darling Harbour","cat":"Wildlife","dur":2,"w":[1,2,2,2],"days":null,"place":"SEA LIFE Sydney Aquarium","start":"10:00","getThere":"Walk from Town Hall or Wynyard station.","goodFor":["date","family"]},
+      {"id":"featherdale","name":"Featherdale Wildlife Park","area":"Western Sydney","cat":"Wildlife","dur":4,"w":[2,2,1,1],"days":null,"place":"Featherdale Wildlife Park","start":"09:00","getThere":"Train to Blacktown, then a short bus ride.","goodFor":["date","friends","family"]},
+      {"id":"chinatown","name":"Haymarket & Chinatown Food Crawl","area":"Haymarket","cat":"Food","dur":2.5,"w":[1,2,2,2],"days":null,"place":"Dixon Street, Haymarket","start":"18:30","getThere":"Train to Central or Town Hall, or light rail to Chinatown.","goodFor":["date","friends","family"]},
+      {"id":"newtown","name":"Newtown Street Art & King St","area":"Inner West","cat":"Neighbourhood","dur":2.5,"w":[2,2,1,1],"days":null,"place":"Newtown Station","start":"17:00","getThere":"Train to Newtown station.","goodFor":["date","friends","solo"]},
+      {"id":"royal-np","name":"Royal National Park via Bundeena","area":"Sutherland Shire","cat":"Coastal walk","dur":6,"w":[2,1,0,1],"days":null,"place":"Bundeena Wharf","start":"08:00","getThere":"Train to Cronulla, then the small ferry across Port Hacking to Bundeena.","goodFor":["date","friends","solo"]},
+      {"id":"palm-beach","name":"Palm Beach & Barrenjoey Lighthouse","area":"Northern Beaches","cat":"Lookout & beach","dur":6,"w":[2,1,0,1],"days":null,"place":"Palm Beach","start":"08:30","getThere":"Bus from Manly wharf (about 75 min), or drive.","goodFor":["date","friends"]},
+      {"id":"clovelly","name":"Clovelly Beach","area":"Eastern Suburbs","cat":"Swimming","dur":2.5,"w":[2,1,0,2],"days":null,"place":"Clovelly Beach","start":"09:00","getThere":"Bus 339 from Central to Clovelly, then a short walk down to the water.","goodFor":["date","friends","family","solo"]},
+      {"id":"coogee","name":"Coogee Beach & Ocean Pools","area":"Eastern Suburbs","cat":"Beach","dur":3.5,"w":[2,2,1,2],"days":null,"place":"Coogee Beach","start":"10:00","getThere":"Bus 372 from Central or 373 from Circular Quay to Coogee Beach.","goodFor":["date","friends","family","solo"]},
+      {"id":"north-head","name":"North Head Lookouts","area":"Manly","cat":"Lookout & walk","dur":3,"w":[2,2,0,1],"days":null,"place":"North Head Sanctuary","start":"09:30","getThere":"Ferry to Manly, then bus 135 up to North Head, or walk up via Shelly Beach (about 1 hr).","goodFor":["date","friends","family","solo"]},
+      {"id":"cronulla","name":"Cronulla Beach & Esplanade","area":"Sutherland Shire","cat":"Beach","dur":3.5,"w":[2,1,0,2],"days":null,"place":"Cronulla Beach","start":"10:00","getThere":"T4 Illawarra line to Cronulla, the last stop. The beach is a 6 minute walk.","goodFor":["date","friends","family","solo"]},
+      {"id":"carriageworks","name":"Carriageworks Farmers Market","area":"Inner City","cat":"Markets","dur":1.5,"w":[2,2,2,2],"days":["sat"],"place":"Carriageworks","start":"08:30","getThere":"Train to Redfern, then an 8 minute walk through Little Eveleigh St.","goodFor":["date","friends","family","solo"]},
+      {"id":"parramatta","name":"Parramatta River & Eat Street","area":"Parramatta","cat":"Neighbourhood","dur":3.5,"w":[2,2,1,1],"days":null,"place":"Lennox Bridge, Church St","start":"15:00","getThere":"T1 train to Parramatta, or the slow, scenic F3 ferry up the river from Circular Quay.","goodFor":["date","friends","family","solo"]},
+      {"id":"leura","name":"Leura Village & Gardens","area":"Blue Mountains","cat":"Neighbourhood","dur":4,"w":[2,2,1,2],"days":null,"place":"Leura Mall","start":"10:00","getThere":"Blue Mountains Line to Leura. The village starts at the station.","goodFor":["date","friends","family"]}
+    ].forEach((a) => { this.ACTS[a.id] = a; });
+    const addId = this.ACTS[p.activity] ? p.activity : "manly";
+    this.state = {
+      month: "2026-10", selected: "2026-10-03",
+      plan: {
+        "2026-10-03": [{ id: "bondi-coogee", start: "08:30" }, { id: "rocks-markets", start: "13:00" }],
+        "2026-10-04": [{ id: "three-sisters", start: "08:30" }],
+        "2026-10-05": [{ id: "taronga", start: "09:30" }],
+        "2026-10-07": [{ id: "chinatown", start: "18:30" }],
+        "2026-10-10": [{ id: "carriageworks", start: "08:30" }, { id: "newtown", start: "10:00" }],
+        "2026-10-14": [{ id: "agnsw", start: "17:30" }]
+      },
+      // Skies the user picked ("manual"). Days within the forecast range without one take the forecast (see renderVals).
+      forecast: { "2026-10-04": "rain" },
+      sheet: p.sheet === "add" ? "add" : null,
+      focus: null,
+      exp: { scope: "day", target: "apple", remind: "1d", directions: true, done: false },
+      add: { id: addId, date: "2026-10-03", slot: "suggested", done: false },
+      edit: null, toast: null, showMap: false, alertsDismissed: false
+    };
+  }
+
+  componentDidUpdate(prev) {
+    const p = this.props || {};
+    if (prev && prev.activity !== p.activity && this.ACTS[p.activity]) this.setState({ add: Object.assign({}, this.state.add, { id: p.activity, done: false }) });
+  }
+
+  // ---- Shared behaviour. Do not change the logic. ----
+  baseVals(st) {
+    const s = st || this.state, WX = this.WX, FIT = this.FIT, A = this.ACTS, self = this;
+    const pad = (n) => (n < 10 ? "0" : "") + n;
+    const iso = (y, m, d) => y + "-" + pad(m) + "-" + pad(d);
+    const parts = (d) => d.split("-").map(Number);
+    const dow = (d) => { const [y, m, dd] = parts(d); return (new Date(Date.UTC(y, m - 1, dd)).getUTCDay() + 6) % 7; }; // 0 = Monday
+    const addDays = (d, n) => { const [y, m, dd] = parts(d); const t = new Date(Date.UTC(y, m - 1, dd + n)); return iso(t.getUTCFullYear(), t.getUTCMonth() + 1, t.getUTCDate()); };
+    const mins = (t) => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+    const clock = (m) => { const h = Math.floor(m / 60), mm = m % 60, h12 = ((h + 11) % 12) + 1; return h12 + (mm ? ":" + pad(mm) : "") + (h < 12 ? "am" : "pm"); };
+    const short = (d) => { const [, m, dd] = parts(d); return this.DAYS[dow(d)].slice(0, 3) + " " + dd + " " + this.MONTHS[m - 1].slice(0, 3); };
+    const long = (d) => { const [, m, dd] = parts(d); return this.DAYS[dow(d)] + " " + dd + " " + this.MONTHS[m - 1]; };
+    const rel = (d) => {
+      const diff = Math.round((Date.UTC(...parts(d).map((v, i) => (i === 1 ? v - 1 : v))) - Date.UTC(...parts(this.TODAY).map((v, i) => (i === 1 ? v - 1 : v)))) / 86400000);
+      if (diff === 0) return "Today"; if (diff === 1) return "Tomorrow"; if (diff === -1) return "Yesterday";
+      if (diff > 1 && diff < 7) return "This " + this.DAYS[dow(d)]; if (diff >= 7 && diff < 14) return "Next " + this.DAYS[dow(d)];
+      return diff < 0 ? "Past" : "In " + Math.round(diff / 7) + " weeks";
+    };
+    const flags = (k) => ({ isSun: k === "sun", isCloud: k === "cloud", isRain: k === "rain", isHot: k === "hot", isUnset: !k });
+    const wIdx = (k) => WX.findIndex((w) => w.key === k);
+    const setPlan = (date, list) => this.setState({ plan: Object.assign({}, this.state.plan, { [date]: list }) });
+    const dayName = (i) => this.DAYS[i];
+    const onlyDays = (a) => (a.days ? a.days.map((k) => (k === "sat" ? "Saturdays" : k === "sun" ? "Sundays" : k)).join(" and ") : "");
+    const runsOn = (a, d) => !a.days || a.days.indexOf(["mon", "tue", "wed", "thu", "fri", "sat", "sun"][dow(d)]) >= 0;
+
+    // ---- One planned day: items with times, fit, conflicts, Plan B ----
+    const dayInfo = (d) => {
+      const fk = s.forecast[d] || null, fi = fk ? wIdx(fk) : -1;
+      const raw = (s.plan[d] || []).slice().sort((x, y) => mins(x.start) - mins(y.start));
+      const used = {};
+      Object.keys(s.plan).forEach((k) => s.plan[k].forEach((it) => { used[it.id] = true; }));
+      const items = raw.map((it, i) => {
+        const a = A[it.id], st = mins(it.start), en = st + Math.round(a.dur * 60);
+        const fit = fi >= 0 ? a.w[fi] : null;
+        const clash = raw.find((o, j) => j !== i && mins(o.start) < en && mins(o.start) + Math.round(A[o.id].dur * 60) > st);
+        const notToday = !runsOn(a, d);
+        let backup = null;
+        if (fit === 0) {
+          const c = Object.values(A).filter((b) => !used[b.id] && b.w[fi] === 2 && runsOn(b, d) && b.goodFor.some((g) => a.goodFor.indexOf(g) >= 0));
+          c.sort((x, y) => ((y.area === a.area) - (x.area === a.area)) || x.name.localeCompare(y.name));
+          backup = c[0] || null;
+        }
+        const warn = notToday ? a.name + " runs on " + onlyDays(a) + " only." : clash ? "Overlaps with " + A[clash.id].name + "." : "";
+        return {
+          key: d + ":" + it.id, id: it.id, name: a.name, area: a.area, cat: a.cat, place: a.place, index: i, delay: (i * 70) + "ms",
+          start: it.start, startLabel: clock(st), endLabel: clock(en), timeLabel: clock(st) + " – " + clock(en), durLabel: a.dur + (a.dur === 1 ? " hr" : " hrs"),
+          hasFit: fit !== null, noFit: fit === null, fit: fit === null ? -1 : fit,
+          isGreat: fit === 2, isOk: fit === 1, isSkip: fit === 0, fitLabel: fit === null ? "" : FIT[fit].label,
+          fitText: fit === null ? "Set the sky to check the fit" : FIT[fit].label + " when " + WX[fi].adj,
+          hasWarn: !!warn, warn: warn, hasBackup: !!backup,
+          backup: backup ? { name: backup.name, area: backup.area, swap: () => setPlan(d, this.state.plan[d].map((o) => (o.id === it.id ? { id: backup.id, start: o.start } : o))) } : { name: "", area: "", swap: null },
+          later: () => setPlan(d, this.state.plan[d].map((o) => (o.id === it.id ? { id: o.id, start: clockIso(mins(o.start) + 30) } : o))),
+          earlier: () => setPlan(d, this.state.plan[d].map((o) => (o.id === it.id ? { id: o.id, start: clockIso(Math.max(360, mins(o.start) - 30)) } : o))),
+          canEarlier: st > 360, laterAria: "Start " + a.name + " 30 minutes later", earlierAria: "Start " + a.name + " 30 minutes earlier",
+          remove: () => { const l = this.state.plan[d].filter((o) => o.id !== it.id); setPlan(d, l); },
+          removeAria: "Remove " + a.name + " from " + long(d),
+          toCalendar: () => this.setState({ sheet: "export", focus: { date: d, id: it.id }, exp: Object.assign({}, this.state.exp, { scope: "item", done: false }) }),
+          toCalendarAria: "Add " + a.name + " to your calendar"
+        };
+      });
+      return { fk, fi, items };
+    };
+    const clockIso = (m) => pad(Math.floor(m / 60)) + ":" + pad(m % 60);
+
+    // ---- Month grid (Monday first, as in Australia) ----
+    const [vy, vm] = s.month.split("-").map(Number);
+    const first = iso(vy, vm, 1), startD = addDays(first, -dow(first));
+    const daysIn = new Date(Date.UTC(vy, vm, 0)).getUTCDate();
+    const rows = Math.ceil((dow(first) + daysIn) / 7);
+    const weeks = [];
+    for (let r = 0; r < rows; r++) {
+      const cells = [];
+      for (let c = 0; c < 7; c++) {
+        const d = addDays(startD, r * 7 + c), [y, m, dd] = parts(d), fk = s.forecast[d] || null, list = s.plan[d] || [];
+        const info = list.length ? dayInfo(d) : { items: [] };
+        const warn = info.items.some((x) => x.isSkip || x.hasWarn);
+        cells.push(Object.assign(flags(fk), {
+          date: d, num: String(dd), inMonth: m === vm, outMonth: m !== vm, isToday: d === this.TODAY, isPast: d < this.TODAY,
+          isWeekend: c >= 5, isHoliday: !!this.HOLIDAYS[d], holiday: this.HOLIDAYS[d] || "",
+          selected: d === s.selected, notSelected: d !== s.selected, pressed: d === s.selected ? "true" : "false",
+          count: list.length, hasPlan: list.length > 0, noPlan: list.length === 0, countLabel: String(list.length),
+          dots: list.slice(0, 3).map((x, i) => ({ i })), more: list.length > 3, hasForecast: !!fk, warn: warn,
+          chips: info.items.slice(0, 2).map((x) => ({ name: x.name, time: x.startLabel, isSkip: x.isSkip })), extra: list.length > 2 ? "+" + (list.length - 2) + " more" : "", hasExtra: list.length > 2,
+          aria: long(d) + (this.HOLIDAYS[d] ? ", " + this.HOLIDAYS[d] : "") + (list.length ? ", " + list.length + (list.length === 1 ? " plan" : " plans") : ", nothing planned") + (fk ? ", " + WX[wIdx(fk)].adj : ""),
+          pick: () => this.setState({ selected: d, month: d.slice(0, 7) })
+        }));
+      }
+      weeks.push({ index: r, cells });
+    }
+    const shiftMonth = (n) => { const t = new Date(Date.UTC(vy, vm - 1 + n, 1)); return iso(t.getUTCFullYear(), t.getUTCMonth() + 1, 1).slice(0, 7); };
+    const canPrev = s.month > "2026-09", canNext = s.month < "2026-12";
+
+    // ---- Selected day ----
+    const sel = dayInfo(s.selected);
+    const selFk = sel.fk;
+    const day = Object.assign(flags(selFk), {
+      date: s.selected, title: long(s.selected), rel: rel(s.selected), short: short(s.selected),
+      isHoliday: !!this.HOLIDAYS[s.selected], holiday: this.HOLIDAYS[s.selected] || "",
+      holidayNote: this.HOLIDAYS[s.selected] ? "Public holiday: " + this.HOLIDAYS[s.selected] + ". Expect weekend timetables and busier places." : "",
+      isPast: s.selected < this.TODAY,
+      items: sel.items, hasItems: sel.items.length > 0, isEmpty: sel.items.length === 0,
+      countLabel: sel.items.length ? sel.items.length + (sel.items.length === 1 ? " plan" : " plans") : "Nothing planned",
+      forecastLabel: selFk ? WX[wIdx(selFk)].label : "Sky not set",
+      forecastHint: selFk ? "Forecast you set for this day" : "Set the sky to check each plan's fit",
+      skies: WX.map((w) => Object.assign(flags(w.key), {
+        key: w.key, label: w.short, selected: selFk === w.key, notSelected: selFk !== w.key, pressed: selFk === w.key ? "true" : "false",
+        aria: "Set " + long(s.selected) + " to " + w.adj,
+        pick: () => this.setState({ forecast: Object.assign({}, this.state.forecast, { [s.selected]: w.key }) })
+      })),
+      warnCount: sel.items.filter((x) => x.isSkip || x.hasWarn).length,
+      toCalendar: () => this.setState({ sheet: "export", focus: null, exp: Object.assign({}, this.state.exp, { scope: "day", done: false }) }),
+      findIdeas: () => this.setState({ sheet: "add", add: Object.assign({}, this.state.add, { date: s.selected, done: false }) })
+    });
+
+    // ---- Coming up: the next planned days from today ----
+    const upcoming = Object.keys(s.plan).filter((d) => d >= this.TODAY && s.plan[d].length).sort().slice(0, 5).map((d) => {
+      const inf = dayInfo(d);
+      return Object.assign(flags(inf.fk), { date: d, short: short(d), rel: rel(d), names: inf.items.map((x) => x.name).join(" · "), count: inf.items.length,
+        warn: inf.items.some((x) => x.isSkip || x.hasWarn), selected: d === s.selected, pick: () => this.setState({ selected: d, month: d.slice(0, 7) }) });
+    });
+
+    // ---- Add to my calendar (export) ----
+    const E = s.exp;
+    const allUpcoming = Object.keys(s.plan).filter((d) => d >= this.TODAY).sort();
+    const evFor = (d, it) => {
+      const a = A[it.id], st = mins(it.start), en = st + Math.round(a.dur * 60);
+      const stamp = (m) => d.replace(/-/g, "") + "T" + pad(Math.floor(m / 60)) + pad(m % 60) + "00";
+      const notes = (E.directions ? "Getting there: " + a.getThere + "\n\n" : "") + "Planned with Australia Activities Planner.";
+      const g = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(a.name) + "&dates=" + stamp(st) + "/" + stamp(en) +
+        "&ctz=Australia%2FSydney&location=" + encodeURIComponent(a.place + ", Sydney NSW") + "&details=" + encodeURIComponent(notes);
+      return { key: d + ":" + it.id, title: a.name, when: short(d) + " · " + clock(st) + " – " + clock(en), where: a.place + ", " + a.area,
+        notes: E.directions ? a.getThere : "", hasNotes: E.directions, gHref: g, gLabel: "Add " + a.name + " to Google Calendar" };
+    };
+    let events = [];
+    if (E.scope === "item" && s.focus) events = [evFor(s.focus.date, (s.plan[s.focus.date] || []).find((x) => x.id === s.focus.id) || { id: s.focus.id, start: A[s.focus.id].start })];
+    else if (E.scope === "day") events = (s.plan[s.selected] || []).slice().sort((x, y) => mins(x.start) - mins(y.start)).map((it) => evFor(s.selected, it));
+    else allUpcoming.forEach((d) => s.plan[d].slice().sort((x, y) => mins(x.start) - mins(y.start)).forEach((it) => events.push(evFor(d, it))));
+    const n = events.length, isGoogle = E.target === "google";
+    const fileName = "sydney-plans-" + (E.scope === "all" ? "upcoming" : (E.scope === "item" && s.focus ? s.focus.date : s.selected)) + ".ics";
+    const pickOpt = (list, cur, key) => list.map((o) => ({ key: o.key, label: o.label, selected: cur === o.key, notSelected: cur !== o.key, pressed: cur === o.key ? "true" : "false",
+      pick: () => this.setState({ exp: Object.assign({}, this.state.exp, { [key]: o.key, done: false }) }) }));
+    const scopes = [{ key: "item", label: "This plan" }, { key: "day", label: "This day" }, { key: "all", label: "Everything coming up" }].filter((o) => o.key !== "item" || !!s.focus);
+    const exp = {
+      open: s.sheet === "export", closed: s.sheet !== "export",
+      scopes: pickOpt(scopes, E.scope, "scope"), targets: pickOpt(this.TARGETS, E.target, "target"), reminders: pickOpt(this.REMINDERS, E.remind, "remind"),
+      directions: E.directions, directionsPressed: E.directions ? "true" : "false",
+      toggleDirections: () => this.setState({ exp: Object.assign({}, this.state.exp, { directions: !this.state.exp.directions, done: false }) }),
+      events: events, count: n, hasEvents: n > 0, noEvents: n === 0, countLabel: n + (n === 1 ? " event" : " events"),
+      isGoogle: isGoogle, isFile: !isGoogle, oneGoogle: isGoogle && n === 1, manyGoogle: isGoogle && n > 1,
+      firstHref: n ? events[0].gHref : "",
+      primaryLabel: isGoogle ? (n === 1 ? "Open in Google Calendar" : "Add each event to Google Calendar") : "Download calendar file",
+      fileName: fileName,
+      targetNote: isGoogle ? "Google opens one event at a time and uses your default reminders." : (E.target === "apple" ? "Opens in Calendar on iPhone, iPad and Mac." : "Opens in Outlook on desktop, web and phone."),
+      remindNote: isGoogle ? "" : (E.remind === "none" ? "No reminder" : "Reminder " + this.REMINDERS.find((r) => r.key === E.remind).label),
+      done: E.done, notDone: !E.done,
+      doneTitle: isGoogle ? "Opened in Google Calendar" : "Calendar file ready",
+      doneNote: isGoogle ? "Save each event in the Google tab that opened." : "Open " + fileName + " to add " + n + (n === 1 ? " event" : " events") + " with times, place and directions.",
+      download: () => this.setState({ exp: Object.assign({}, this.state.exp, { done: true }) }),
+      close: () => this.setState({ sheet: null, focus: null, exp: Object.assign({}, this.state.exp, { done: false }) }),
+      title: E.scope === "item" && s.focus ? "Add to your calendar" : E.scope === "day" ? "Add " + short(s.selected) + " to your calendar" : "Add your plans to your calendar"
+    };
+
+    // ---- Add an activity to any day ----
+    const AD = s.add, aa = A[AD.id] || A.manly, aFk = s.forecast[AD.date] || null, aFi = aFk ? wIdx(aFk) : -1;
+    const slot = this.SLOTS.find((x) => x.key === AD.slot) || this.SLOTS[0];
+    const aStart = slot.time || aa.start, aSt = mins(aStart), aEn = aSt + Math.round(aa.dur * 60);
+    const aClash = (s.plan[AD.date] || []).find((o) => o.id !== aa.id && mins(o.start) < aEn && mins(o.start) + Math.round(A[o.id].dur * 60) > aSt);
+    const already = (s.plan[AD.date] || []).some((o) => o.id === aa.id);
+    const quick = [0, 1, 2, 3, 4].map((k) => addDays(this.TODAY, k));
+    if (quick.indexOf(AD.date) < 0) quick.push(AD.date);
+    const aFit = aFi >= 0 ? aa.w[aFi] : null;
+    const aWarn = !runsOn(aa, AD.date) ? aa.name + " runs on " + onlyDays(aa) + " only. Pick another day." : aClash ? "Overlaps with " + A[aClash.id].name + " (" + clock(mins(aClash.start)) + "). You can still add it." : "";
+    const addMonthWeeks = weeks.map((w) => ({ index: w.index, cells: w.cells.map((c) => Object.assign({}, c, {
+      selected: c.date === AD.date, notSelected: c.date !== AD.date, pressed: c.date === AD.date ? "true" : "false", disabled: c.isPast, enabled: !c.isPast,
+      blocked: !runsOn(aa, c.date), pick: () => this.setState({ add: Object.assign({}, this.state.add, { date: c.date, done: false }) })
+    })) }));
+    const add = {
+      open: s.sheet === "add", closed: s.sheet !== "add",
+      id: aa.id, name: aa.name, area: aa.area, cat: aa.cat, place: aa.place, durLabel: aa.dur + (aa.dur === 1 ? " hr" : " hrs"),
+      date: AD.date, dateTitle: long(AD.date), dateRel: rel(AD.date), dateShort: short(AD.date),
+      quick: quick.map((d, i) => Object.assign(flags(s.forecast[d] || null), { date: d, top: i === 0 ? "Today" : i === 1 ? "Tomorrow" : this.DAYS[dow(d)].slice(0, 3), num: String(parts(d)[2]),
+        isHoliday: !!this.HOLIDAYS[d], selected: d === AD.date, notSelected: d !== AD.date, pressed: d === AD.date ? "true" : "false", blocked: !runsOn(aa, d),
+        aria: long(d) + (this.HOLIDAYS[d] ? ", " + this.HOLIDAYS[d] : "") + (!runsOn(aa, d) ? ", not running" : ""),
+        pick: () => this.setState({ add: Object.assign({}, this.state.add, { date: d, done: false }) }) })),
+      weeks: addMonthWeeks, monthLabel: this.MONTHS[vm - 1] + " " + vy,
+      slots: this.SLOTS.map((o) => ({ key: o.key, label: o.label, time: clock(mins(o.time || aa.start)), selected: AD.slot === o.key, notSelected: AD.slot !== o.key, pressed: AD.slot === o.key ? "true" : "false",
+        pick: () => this.setState({ add: Object.assign({}, this.state.add, { slot: o.key, done: false }) }) })),
+      timeLabel: clock(aSt) + " – " + clock(aEn), suggestedNote: "Suggested start for " + aa.name + ": " + clock(mins(aa.start)),
+      hasFit: aFit !== null, noFit: aFit === null, isGreat: aFit === 2, isOk: aFit === 1, isSkip: aFit === 0,
+      fitText: aFit === null ? "No sky set for " + short(AD.date) + " yet" : this.FIT[aFit].label + " when " + WX[aFi].adj,
+      hasWarn: !!aWarn, warn: aWarn, blocked: !runsOn(aa, AD.date), canAdd: runsOn(aa, AD.date) && !already, already: already,
+      confirmLabel: !runsOn(aa, AD.date) ? "Not running on " + short(AD.date) : already ? "Already on " + short(AD.date) : "Add to " + short(AD.date) + ", " + clock(aSt),
+      confirm: () => {
+        if (!runsOn(aa, AD.date) || already) return;
+        const l = (this.state.plan[AD.date] || []).concat([{ id: aa.id, start: aStart }]);
+        this.setState({ plan: Object.assign({}, this.state.plan, { [AD.date]: l }), add: Object.assign({}, this.state.add, { done: true }), selected: AD.date, month: AD.date.slice(0, 7) });
+      },
+      done: AD.done, notDone: !AD.done,
+      doneTitle: "Added to " + long(AD.date),
+      toCalendar: () => this.setState({ sheet: "export", focus: { date: AD.date, id: aa.id }, exp: Object.assign({}, this.state.exp, { scope: "item", done: false }) }),
+      close: () => this.setState({ sheet: null, add: Object.assign({}, this.state.add, { done: false }) }),
+      openSheet: () => this.setState({ sheet: "add", add: Object.assign({}, this.state.add, { done: false }) })
+    };
+
+    return Object.assign(flags(selFk), {
+      today: this.TODAY, todayLabel: long(this.TODAY),
+      monthLabel: this.MONTHS[vm - 1] + " " + vy, monthShort: this.MONTHS[vm - 1],
+      weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((l, i) => ({ label: l, letter: l[0], full: dayName(i), isWeekend: i >= 5 })),
+      weeks: weeks, canPrev: canPrev, canNext: canNext, cantPrev: !canPrev, cantNext: !canNext,
+      prevMonth: () => { if (canPrev) this.setState({ month: shiftMonth(-1) }); },
+      nextMonth: () => { if (canNext) this.setState({ month: shiftMonth(1) }); },
+      goToday: () => this.setState({ selected: this.TODAY, month: this.TODAY.slice(0, 7) }),
+      day: day, upcoming: upcoming, hasUpcoming: upcoming.length > 0,
+      planCount: String(Object.keys(s.plan).filter((d) => d >= this.TODAY).reduce((t, d) => t + s.plan[d].length, 0)),
+      exp: exp, add: add, sheetOpen: !!s.sheet, noSheet: !s.sheet,
+      weather: selFk || "sun"
+    });
+  }
+
+  // ---- Direction-specific values (Sky Mode palette per weather, per-item styles). ----
+  themeVals(v) {
+    // Direction A, Sky Mode: every weather is a palette. The page follows the selected day's sky (unset reads as sun).
+    const P = {
+      sun: { ink: "#FFFFFF", mute: "rgba(255,255,255,0.96)", sky: "rgba(255,255,255,0.97)", glass: "rgba(9,28,92,0.56)", glass2: "rgba(8,24,80,0.76)", line: "rgba(255,255,255,0.24)", soft: "rgba(255,255,255,0.09)", sel: "#FFFFFF", selInk: "#0D38A3", accent: "#FFC940", great: "#FFC940", shadow: "0 18px 48px rgba(3,16,66,0.32)", hl: "0 2px 28px rgba(3,16,66,0.35)", scrim: "rgba(3,14,60,0.3)" },
+      cloud: { ink: "#16202B", mute: "#364251", sky: "#16202B", glass: "rgba(255,255,255,0.58)", glass2: "rgba(247,249,251,0.86)", line: "rgba(255,255,255,0.78)", soft: "rgba(22,32,43,0.07)", sel: "#16202B", selInk: "#FFFFFF", accent: "#1D3A5F", great: "#0A6B3D", shadow: "0 18px 44px rgba(38,52,70,0.16)", hl: "0 1px 0 rgba(255,255,255,0.3)", scrim: "rgba(60,72,88,0.22)" },
+      rain: { ink: "#F1F4FF", mute: "rgba(226,233,255,0.84)", sky: "rgba(226,233,255,0.86)", glass: "rgba(150,172,255,0.1)", glass2: "rgba(14,24,58,0.82)", line: "rgba(170,192,255,0.24)", soft: "rgba(210,222,255,0.08)", sel: "#DCE6FF", selInk: "#0A1330", accent: "#8FB3FF", great: "#9CF5C4", shadow: "0 18px 48px rgba(0,0,0,0.38)", hl: "0 2px 30px rgba(0,0,0,0.4)", scrim: "rgba(2,6,20,0.4)" },
+      hot: { ink: "#FFF7EC", mute: "rgba(255,240,224,0.95)", sky: "rgba(255,244,230,0.96)", glass: "rgba(70,16,2,0.64)", glass2: "rgba(66,14,2,0.82)", line: "rgba(255,222,180,0.26)", soft: "rgba(255,232,205,0.1)", sel: "#FFE3A1", selInk: "#5A1A04", accent: "#FFE3A1", great: "#FFE3A1", shadow: "0 18px 48px rgba(80,18,0,0.35)", hl: "0 2px 30px rgba(90,20,0,0.35)", scrim: "rgba(60,12,0,0.34)" }
+    };
+    // Mini skies: the chosen segment of the compact "Set the sky" strip and the small forecast chips on days.
+    // Same mini skies as the Discover strip; their far ends are deep enough for white labels to pass AA.
+    const SEG = { sun: "linear-gradient(160deg, #1546C4 0%, #386DE5 100%)", cloud: "linear-gradient(165deg, #5F6D7F 0%, #697789 100%)", rain: "linear-gradient(165deg, #101B40 0%, #24356A 100%)", hot: "linear-gradient(165deg, #A8330D 0%, #BB581E 100%)" };
+    const GLOW = { sun: "rgba(255,201,64,0.6)", cloud: "rgba(255,255,255,0.85)", rain: "rgba(143,179,255,0.6)", hot: "rgba(255,168,88,0.65)" };
+    const ICON = { sun: "#kSun", cloud: "#kCloud", rain: "#kRain", hot: "#kHot" };
+    const NAME = { sun: "Sunny", cloud: "Cloudy", rain: "Rainy", hot: "Hot" };
+    const keyOf = (x) => (x.isSun ? "sun" : x.isCloud ? "cloud" : x.isRain ? "rain" : x.isHot ? "hot" : "");
+    const p = P[v.weather] || P.sun;
+    const ops = (k) => ({ opSun: k === "sun" ? 1 : 0, opCloud: k === "cloud" ? 1 : 0, opRain: k === "rain" ? 1 : 0, opHot: k === "hot" ? 1 : 0 });
+    const meter = (f) => ({ m1: f > 0 ? 1 : 0.28, m2: f > 0 ? 1 : 0.28, m3: f === 2 ? 1 : 0.28, meterCol: f === 2 ? p.great : p.ink });
+    const tone = (on, off) => ({ bg: on ? p.sel : (off || p.soft), fg: on ? p.selInk : p.ink, bd: on ? p.sel : p.line, sub: on ? p.selInk : p.mute });
+    // Forecast skies get a dashed ring (shape, not colour) and say "forecast"; skies the user set are solid.
+    const mini = (x, ring) => { const k = keyOf(x); return { hasSky: !!k, noSky: !k, skyBg: k ? SEG[k] : "transparent", skyIcon: k ? ICON[k] : "#kSun",
+      skyOutline: k && x.isAuto ? "1.5px dashed " + ring : "0 solid transparent", skyText: k ? NAME[k] + (x.isAuto ? " forecast" : " sky set by you") : "No sky set" }; };
+
+    // Month grid: selected = filled, today = accent ring, weekends get a faint wash, forecast = mini-sky chip.
+    const weeks = v.weeks.map((w) => ({ index: w.index, cells: w.cells.map((c) => {
+      const on = c.selected, dot = on ? p.selInk : p.ink, live = c.inMonth && !c.isPast;
+      return Object.assign({}, c, mini(c, on ? p.selInk : p.ink), {
+        bg: on ? p.sel : c.isWeekend ? p.soft : "transparent",
+        // Past and other-month days: muted and lighter weight (read-only), and the name says "past".
+        fg: on ? p.selInk : live ? p.ink : p.mute,
+        numW: on || live ? "700" : "450",
+        ring: c.isToday ? (on ? "inset 0 0 0 2px " + p.selInk + ", 0 0 0 2px " + p.accent : "inset 0 0 0 2px " + p.accent) : "none",
+        markCol: on ? p.selInk : p.accent,
+        dots: c.dots.map((d) => ({ i: d.i, col: dot })),
+        aria: c.aria + (c.isToday ? ", today" : "") + (c.warn ? ", needs a look" : "")
+      });
+    }) }));
+    const weekdays = v.weekdays.map((w) => Object.assign({}, w, { col: w.isWeekend ? p.accent : p.mute, fw: w.isWeekend ? "800" : "600" }));
+
+    // Selected day: compact sky strip, timeline items with meter and controls.
+    const d0 = v.day;
+    const day = Object.assign({}, d0, {
+      skies: d0.skies.map((s) => Object.assign({}, s, {
+        icon: ICON[s.key], segBg: s.selected ? SEG[s.key] : "transparent", segFg: s.selected ? "#FFFFFF" : p.ink, lblW: s.selected ? "750" : "600",
+        segShadow: s.selected ? "inset 0 0 0 1.5px rgba(255,255,255,0.6), 0 6px 16px " + GLOW[s.key] : "inset 0 0 0 0 transparent"
+      })),
+      items: d0.items.map((it) => Object.assign({}, it, meter(it.fit), {
+        cantEarlier: !it.canEarlier, earlyOp: it.canEarlier ? 1 : 0.4, lateOp: it.canLater ? 1 : 0.4
+      })),
+      fcIcon: ICON[d0.fcKey] || ICON.sun,
+      hasWarnings: d0.warnCount > 0 && d0.notPast,
+      warnLabel: d0.warnCount + (d0.warnCount === 1 ? " plan needs a look" : " plans need a look")
+    });
+
+    const upcoming = v.upcoming.map((u) => Object.assign({}, u, mini(u, u.selected ? p.selInk : p.ink), tone(u.selected, "transparent"), {
+      pressed: u.selected ? "true" : "false", warnCol: u.selected ? p.selInk : p.accent
+    }));
+
+    // Add to your calendar sheet.
+    const E = v.exp;
+    const TG = {
+      apple: { icon: "#kPhone", note: "iPhone, iPad and Mac · calendar file" },
+      google: { icon: "#kGlobe", note: "Opens in your browser, one link per event" },
+      outlook: { icon: "#kMail", note: "Desktop, web and phone · calendar file" }
+    };
+    const exp = Object.assign({}, E, {
+      scopes: E.scopes.map((o) => Object.assign({}, o, tone(o.selected, "transparent"))),
+      targets: E.targets.map((t) => Object.assign({}, t, tone(t.selected), TG[t.key] || TG.apple, { dot: t.selected ? p.selInk : "transparent" })),
+      reminders: E.reminders.map((o) => Object.assign({}, o, tone(o.selected))),
+      events: E.events.map((e, i) => Object.assign({}, e, { delay: (i * 60) + "ms" })),
+      trackBg: E.directions ? p.sel : "transparent", trackBd: E.directions ? p.sel : p.ink, knobBg: E.directions ? p.selInk : p.ink,
+      knobX: E.directions ? "translateX(16px)" : "translateX(0)",
+      btnOp: E.noEvents ? 0.45 : 1
+    });
+
+    // Add to a day / Change day or time sheet.
+    const AD = v.add, HOL = this.HOLIDAYS, afit = AD.isGreat ? 2 : AD.isOk ? 1 : AD.isSkip ? 0 : -1;
+    const glyph = (x, hide) => ({ gSun: !hide && !!x.isSun, gCloud: !hide && !!x.isCloud, gRain: !hide && !!x.isRain, gHot: !hide && !!x.isHot });
+    const hq = AD.quick.filter((q) => q.isHoliday)[0], addHol = HOL[AD.date] || "";
+    const add = Object.assign({}, AD, meter(afit), {
+      quick: AD.quick.map((q) => Object.assign({}, q, tone(q.selected), glyph(q, q.blocked), { closed: q.blocked, deco: q.blocked ? "line-through" : "none", holCol: q.selected ? p.selInk : p.accent })),
+      weeks: AD.weeks.map((w) => ({ index: w.index, cells: w.cells.map((c) => Object.assign({}, c, glyph(c, false), {
+        bg: c.selected ? p.sel : c.isWeekend ? p.soft : "transparent",
+        fg: c.selected ? p.selInk : (c.outMonth || c.blocked || c.disabled) ? p.mute : p.ink,
+        ring: c.isToday && !c.selected ? "inset 0 0 0 1.5px " + p.ink : "none",
+        op: c.disabled ? "0.38" : "1", fw: c.isWeekend ? "750" : "550", deco: c.blocked ? "line-through" : "none",
+        holCol: c.selected ? p.selInk : p.accent,
+        mAria: c.aria + (c.blocked ? ", closed" : "") + (c.disabled ? ", past" : "") + (c.isToday ? ", today" : "")
+      })) })),
+      slots: AD.slots.map((o) => Object.assign({}, o, tone(o.selected))),
+      fitNote: afit < 0 ? "Set this day's sky to check the fit." : this.FIT[afit].note + ".",
+      cant: !AD.canAdd, confirmBg: AD.canAdd ? p.sel : p.soft, confirmFg: AD.canAdd ? p.selInk : p.mute, confirmBd: AD.canAdd ? p.sel : p.line,
+      hasHoliday: !!addHol, holidayNote: addHol ? "Public holiday: " + addHol + ". Expect weekend timetables and busier places." : "",
+      hasQuickHoliday: !!hq, quickHolidayNote: hq ? hq.top + " " + hq.num + ": " + HOL[hq.date] : ""
+    });
+    const alerts = v.alerts.map((a) => Object.assign({}, a, { skyBg: SEG[a.sky] || SEG.sun, icon: ICON[a.sky] || ICON.sun }));
+
+    return Object.assign(ops(v.weather), {
+      ink: p.ink, mute: p.mute, skyMute: p.sky, glass: p.glass, glass2: p.glass2, line: p.line, soft: p.soft,
+      sel: p.sel, selInk: p.selInk, accent: p.accent, great: p.great, shadow: p.shadow, hlShadow: p.hl, scrim: p.scrim,
+      weeks: weeks, weekdays: weekdays, day: day, upcoming: upcoming, exp: exp, add: add, alerts: alerts,
+      prevOp: v.canPrev ? 1 : 0.35, nextOp: v.canNext ? 1 : 0.35,
+      plansWord: v.planCount === "1" ? "plan" : "plans"
+    });
+  }
+
+  componentWillUnmount() { if (this._toastT) clearTimeout(this._toastT); }
+
+  // ---- Small date/time helpers for the My plans layer (same rules as the engine's own). ----
+  helpers() {
+    const pad = (n) => (n < 10 ? "0" : "") + n;
+    const parts = (d) => d.split("-").map(Number);
+    const dow = (d) => { const [y, m, dd] = parts(d); return (new Date(Date.UTC(y, m - 1, dd)).getUTCDay() + 6) % 7; };
+    const addDays = (d, n) => { const [y, m, dd] = parts(d); const t = new Date(Date.UTC(y, m - 1, dd + n)); return t.getUTCFullYear() + "-" + pad(t.getUTCMonth() + 1) + "-" + pad(t.getUTCDate()); };
+    const mins = (t) => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+    const clock = (m) => { const h = Math.floor(m / 60), mm = m % 60, h12 = ((h + 11) % 12) + 1; return h12 + (mm ? ":" + pad(mm) : "") + (h < 12 ? "am" : "pm"); };
+    const short = (d) => { const [, m, dd] = parts(d); return this.DAYS[dow(d)].slice(0, 3) + " " + dd + " " + this.MONTHS[m - 1].slice(0, 3); };
+    const long = (d) => { const [, m, dd] = parts(d); return this.DAYS[dow(d)] + " " + dd + " " + this.MONTHS[m - 1]; };
+    const rel = (d) => {
+      const diff = Math.round((Date.UTC(parts(d)[0], parts(d)[1] - 1, parts(d)[2]) - Date.UTC(parts(this.TODAY)[0], parts(this.TODAY)[1] - 1, parts(this.TODAY)[2])) / 86400000);
+      if (diff === 0) return "Today"; if (diff === 1) return "Tomorrow"; if (diff === -1) return "Yesterday";
+      if (diff > 1 && diff < 7) return "This " + this.DAYS[dow(d)]; if (diff >= 7 && diff < 14) return "Next " + this.DAYS[dow(d)];
+      return diff < 0 ? "Past" : "In " + Math.round(diff / 7) + " weeks";
+    };
+    const runsOn = (a, d) => !a.days || a.days.indexOf(["mon", "tue", "wed", "thu", "fri", "sat", "sun"][dow(d)]) >= 0;
+    const onlyDays = (a) => (a.days ? a.days.map((k) => (k === "sat" ? "Saturdays" : k === "sun" ? "Sundays" : k)).join(" and ") : "");
+    return { pad, addDays, mins, clock, short, long, rel, runsOn, onlyDays };
+  }
+
+  // Forecast area for an activity (spec §11.1: the nearest of four areas).
+  areaOf(id) {
+    const a = this.ACTS[id];
+    if (!a) return "city";
+    if (id === "royal-np") return "royal-np";
+    if (a.area === "Blue Mountains") return "blue-mountains";
+    if (a.area === "Northern Beaches" || a.area === "Manly") return "northern-beaches";
+    return "city";
+  }
+
+  // The forecast for a day: the area of the day's first plan (by start time) when there is one for it, else the city.
+  fcFor(F, d) {
+    const day = F.days[d];
+    if (!day) return null;
+    const list = (this.state.plan[d] || []).slice().sort((x, y) => (x.start < y.start ? -1 : x.start > y.start ? 1 : 0));
+    const want = list.length ? this.areaOf(list[0].id) : "city", area = day[want] ? want : "city", x = day[area];
+    return x ? { sky: x[0], rain: x[1], area: area } : null;
+  }
+
+  // A toast for 5 seconds; `prev` (the plan before the change) makes it offer Undo.
+  toast(msg, prev) {
+    this.setState({ toast: { msg: msg, prev: prev || null } });
+    if (typeof window !== "undefined") {
+      if (this._toastT) clearTimeout(this._toastT);
+      this._toastT = setTimeout(() => this.setState({ toast: null }), 5000);
+    }
+  }
+
+  // ---- My plans layer over the shared engine: live forecast + change banner (§11.1), day map (§11.2),
+  // Change day or time (Add to a day in edit mode), Undo toasts (§6.7) and Share (§6.5). ----
+  planVals(v, F, eff) {
+    const s = this.state, A = this.ACTS, WX = this.WX, TODAY = this.TODAY;
+    const { addDays, mins, clock, short, long, rel, runsOn, onlyDays } = this.helpers();
+    const wx = (k) => WX.find((w) => w.key === k) || WX[0];
+    const AREA = { city: "Sydney", "blue-mountains": "the Blue Mountains", "northern-beaches": "the Northern Beaches", "royal-np": "Royal National Park" };
+    const fc = (d) => (d >= TODAY ? this.fcFor(F, d) : null);
+    // Auto = the day's sky comes from the forecast (the user hasn't picked one).
+    const isAuto = (d) => !!fc(d) && !s.forecast[d];
+    const plain = (k) => (k ? wx(k).adj : "");
+
+    // Month cells: forecast days are marked (dashed badge + "forecast" in the name); past days say so.
+    v.weeks.forEach((w) => w.cells.forEach((c) => {
+      const f = fc(c.date), auto = isAuto(c.date);
+      c.isAuto = auto;
+      c.aria = c.aria + (auto ? " forecast, " + f.rain + "% chance of rain" : "") + (c.isPast ? ", past" : "");
+    }));
+    v.upcoming.forEach((u) => { u.isAuto = isAuto(u.date); });
+
+    // Forecast change banner: an auto day whose forecast changed since the last fetch and now has a Skip.
+    const alerts = s.alertsDismissed ? [] : Object.keys(F.days).sort().filter((d) => d >= TODAY && isAuto(d) && F.prev[d] && F.prev[d] !== eff[d]).map((d) => {
+      const k = eff[d], fi = WX.findIndex((w) => w.key === k);
+      const n = (s.plan[d] || []).filter((it) => A[it.id] && A[it.id].w[fi] === 0).length;
+      return { key: d, sky: k, n: n, text: rel(d) + " now looks " + plain(k) + ". " + n + (n === 1 ? " activity needs" : " activities need") + " a Plan B.",
+        pick: () => this.setState({ selected: d, month: d.slice(0, 7) }) };
+    }).filter((a) => a.n > 0);
+    v.alerts = alerts;
+    v.hasAlerts = alerts.length > 0;
+    v.dismissAlerts = () => this.setState({ alertsDismissed: true });
+
+    // Selected day.
+    const d = s.selected, f = fc(d), auto = isAuto(d), sky = eff[d] || null, past = d < TODAY, D = v.day;
+    const withUndo = (fn, msg) => () => { const prev = this.state.plan; fn(); this.toast(msg, prev); };
+    const changeDay = (it) => () => this.setState({ sheet: "add", edit: { date: d, id: it.id, start: it.start }, add: { id: it.id, date: d, slot: "keep", done: false } });
+    Object.assign(D, {
+      notPast: !past, isPastDay: past, showFooter: D.items.length > 0 && !past, countLabel: D.items.length ? D.items.length + (D.items.length === 1 ? " plan" : " plans") : "Free",
+      skyState: sky ? wx(sky).label + (auto ? " · forecast" : "") : "Not set",
+      hasSkyHint: !auto, skyHint: sky ? "The sky you set for this day." : "Set the sky to check each plan's fit",
+      fcShow: !!f, fcMatches: !!f && sky === f.sky, fcDiffers: !!f && sky !== f.sky, fcKey: f ? f.sky : "sun",
+      fcCaption: f ? (f.area === "city" ? "Forecast: " : "Forecast for " + AREA[f.area] + ": ") + plain(f.sky) + ", " + f.rain + "% chance of rain · " + F.age : "",
+      fcDiffText: f ? "The forecast says " + plain(f.sky) + " (" + f.rain + "% chance of rain)." : "",
+      useForecast: () => { const m = Object.assign({}, this.state.forecast); delete m[d]; this.setState({ forecast: m }); },
+      mapOpen: !!s.showMap && D.items.length > 0, mapExpanded: s.showMap ? "true" : "false",
+      mapLabel: s.showMap ? "Hide the map" : "Show this day on a map", toggleMap: () => this.setState({ showMap: !this.state.showMap }),
+      mapListLabel: "Plans on the map for " + long(d) + ", in time order",
+      mapPins: D.items.map((it, i) => ({ key: it.key, n: String(i + 1), time: it.startLabel, name: it.name })),
+      items: D.items.map((it) => {
+        const st = mins(it.start), canLater = st + 30 <= 22 * 60;
+        const backup = it.hasBackup
+          ? Object.assign({}, it.backup, { meta: it.backup.area + " · " + this.FIT[2].label + " when " + plain(sky), swap: withUndo(it.backup.swap, "Swapped in " + it.backup.name) })
+          : Object.assign({}, it.backup, { meta: "" });
+        return Object.assign({}, it, {
+          canLater: canLater, cantLater: !canLater,
+          later: () => { if (canLater) withUndo(it.later, "Moved to " + clock(st + 30))(); },
+          earlier: () => { if (it.canEarlier) withUndo(it.earlier, "Moved to " + clock(Math.max(360, st - 30)))(); },
+          remove: withUndo(it.remove, "Removed " + it.name),
+          removeAria: "Remove " + it.name + " from " + short(d), toCalendarAria: "Add " + it.name + " to my calendar",
+          changeDay: changeDay(it), changeDayAria: "Change day or time for " + it.name,
+          showBackup: it.hasBackup && !past, showMove: it.isSkip && !it.hasBackup && !past,
+          backup: backup, swapAria: it.hasBackup ? "Swap " + it.name + " for " + it.backup.name + ", keeping " + it.startLabel : ""
+        });
+      })
+    });
+
+    // Share (spec §6.5). Prototype: no Web Share, so it reports the copy fallback.
+    const end = addDays(TODAY, 13);
+    v.shareDay = () => this.toast("Link copied", null);
+    v.shareFortnight = () => this.toast(Object.keys(this.state.plan).some((x) => x >= TODAY && x <= end && this.state.plan[x].length) ? "Link copied" : "Nothing to share in the next 14 days yet", null);
+
+    // Toast.
+    v.hasToast = !!s.toast; v.toastMsg = s.toast ? s.toast.msg : ""; v.toastUndo = !!(s.toast && s.toast.prev);
+    v.undo = () => { const t = this.state.toast; if (t && t.prev) this.setState({ plan: t.prev, toast: null }); };
+    v.dismissToast = () => this.setState({ toast: null });
+
+    // Add to a day; in edit mode ("Change day or time") it moves the plan instead of adding it.
+    const ED = s.edit, AD = s.add;
+    v.add = Object.assign({}, v.add, { isEdit: false, eyebrow: "Add to a day", confirmIcon: "#kPlus",
+      close: () => this.setState({ sheet: null, edit: null, add: Object.assign({}, this.state.add, { done: false }) }) });
+    if (ED && s.sheet === "add" && A[ED.id]) {
+      const a = A[ED.id], slot = this.SLOTS.find((x) => x.key === AD.slot);
+      const start = !slot ? ED.start : (slot.time || a.start);
+      const st = mins(start), en = st + Math.round(a.dur * 60), day = AD.date;
+      const runs = runsOn(a, day), same = day === ED.date && start === ED.start;
+      const dup = day !== ED.date && (s.plan[day] || []).some((o) => o.id === a.id);
+      const clash = (s.plan[day] || []).find((o) => o.id !== a.id && A[o.id] && mins(o.start) < en && mins(o.start) + Math.round(A[o.id].dur * 60) > st);
+      const warn = !runs ? a.name + " runs on " + onlyDays(a) + " only. Pick another day." : dup ? a.name + " is already on " + short(day) + "." : clash ? "Overlaps with " + A[clash.id].name + " (" + clock(mins(clash.start)) + "). You can still move it." : "";
+      const ok = runs && !same && !dup;
+      const keep = { key: "keep", label: "Current", time: clock(mins(ED.start)), selected: !slot, notSelected: !!slot, pressed: !slot ? "true" : "false",
+        pick: () => this.setState({ add: Object.assign({}, this.state.add, { slot: "keep" }) }) };
+      v.add = Object.assign({}, v.add, {
+        isEdit: true, eyebrow: "Change day or time", confirmIcon: "#kEdit", slots: [keep].concat(v.add.slots),
+        timeLabel: clock(st) + " – " + clock(en), hasWarn: !!warn, warn: warn, blocked: !runs, already: dup, canAdd: ok,
+        confirmLabel: !runs ? "Not running on " + short(day) : dup ? "Already on " + short(day) : same ? "No change" : "Move to " + short(day) + ", " + clock(st),
+        confirm: () => {
+          if (!ok) return;
+          const prev = this.state.plan, P = Object.assign({}, prev);
+          P[ED.date] = (P[ED.date] || []).filter((o) => o.id !== ED.id);
+          P[day] = (P[day] || []).concat([{ id: ED.id, start: start }]);
+          this.setState({ plan: P, sheet: null, edit: null, selected: day, month: day.slice(0, 7), add: Object.assign({}, this.state.add, { done: false }) });
+          this.toast("Moved to " + (day === ED.date ? "" : short(day) + ", ") + clock(st), prev);
+        }
+      });
+    }
+    return v;
+  }
+
+  renderVals() {
+    // ---- SAMPLE live forecast (spec §11.1). Prototype values only: the app reads /data/forecast.json, which a cron job
+    // fills from Open-Meteo every 3 hours. It covers today and the next 6 days; later days keep a manual sky. ----
+    const F = {
+      age: "updated 2 h ago", // SAMPLE
+      // SAMPLE: per date, per forecast area: [sky, % chance of rain].
+      days: {
+        "2026-10-01": { city: ["sun", 10] },
+        "2026-10-02": { city: ["cloud", 30] },
+        "2026-10-03": { city: ["rain", 85] },
+        "2026-10-04": { city: ["cloud", 40], "blue-mountains": ["cloud", 30] },
+        "2026-10-05": { city: ["cloud", 20] },
+        "2026-10-06": { city: ["hot", 5] },
+        "2026-10-07": { city: ["cloud", 35] }
+      },
+      // SAMPLE: the previous fetch, so the change banner has something to compare with (Saturday was sunny).
+      prev: { "2026-10-03": "sun" }
+    };
+    // A day's sky = the sky the user picked (state.forecast, "manual"), else the forecast ("auto").
+    const auto = {};
+    Object.keys(F.days).forEach((d) => { const f = d >= this.TODAY ? this.fcFor(F, d) : null; if (f) auto[d] = f.sky; });
+    const eff = Object.assign({}, auto, this.state.forecast);
+    const v = this.planVals(this.baseVals(Object.assign({}, this.state, { forecast: eff })), F, eff);
+    return Object.assign(v, this.themeVals(v));
+  }
+}
+</script>
+</body>
+</html>

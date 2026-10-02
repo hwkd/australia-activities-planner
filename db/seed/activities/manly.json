@@ -1,0 +1,852 @@
+{
+  "id": "manly",
+  "status": "verified",
+  "name": "Ferry to Manly & Shelly Beach",
+  "city": "sydney",
+  "area": "Northern Beaches",
+  "category": "ferry",
+  "categoryLabel": "Ferry & beach",
+  "blurb": "The harbour's best-value view, then a relaxed beach town with calm snorkelling.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 2
+  },
+  "weatherNote": "The ferry ride is lovely even under cloud. Beach time needs sunshine.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "Half day",
+    "minHours": 3,
+    "maxHours": 5
+  },
+  "cost": "$",
+  "gettingThere": "F1 ferry from Circular Quay, about 25 min. Tap on with Opal or a contactless card.",
+  "newcomerTip": "Grab an outside seat for Opera House and Harbour Bridge views. Walk along to Shelly Beach for calmer water and snorkelling.",
+  "location": {
+    "lat": -33.8004,
+    "lng": 151.2843
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "Half day"
+    },
+    {
+      "k": "Ferry",
+      "v": "≈ 25 min each way"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8004,
+      "lng": 151.2843,
+      "label": "Manly Wharf"
+    },
+    "pt": {
+      "total": "≈ 45 min",
+      "changes": 1,
+      "fare": [
+        8,
+        10
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Circular Quay",
+          "mins": 9,
+          "detail": "Or any T2 or T3 train"
+        },
+        {
+          "mode": "walk",
+          "title": "Walk to Wharf 3",
+          "mins": 3
+        },
+        {
+          "mode": "ferry",
+          "line": "F1",
+          "title": "Ferry to Manly",
+          "mins": 25,
+          "detail": "Every 20–30 min; 22–30 min crossing"
+        },
+        {
+          "mode": "walk",
+          "title": "Along The Corso to the beach",
+          "mins": 8
+        }
+      ],
+      "back": {
+        "text": "From Shelly Beach, walk back along the beachfront to Manly Wharf (≈ 15 min) and take the F1 to Circular Quay. Ferries run into the evening; check the last one before you settle in."
+      }
+    },
+    "drive": {
+      "total": "≈ 35 min",
+      "perCar": [
+        20,
+        35
+      ],
+      "perCarLabel": "Parking, half day",
+      "notes": [
+        "Weekend parking in Manly is limited and paid.",
+        "The ferry is faster to board and half the fun."
+      ]
+    },
+    "ride": "Try riding one way and taking the ferry back for the views."
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Fish & chips or café lunch",
+        "per": [
+          15,
+          25
+        ],
+        "on": true
+      },
+      {
+        "id": "snorkel",
+        "label": "Snorkel gear hire",
+        "per": [
+          20,
+          30
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Ferry over mid-morning; Shelly Beach is calmest in the morning and sheltered on windy days.",
+    "hours": "Ferries run all day. Beach patrols run in season.",
+    "bring": [
+      "Swimmers & towel",
+      "Sunscreen & hat",
+      "Opal or contactless card",
+      "Mask & snorkel"
+    ],
+    "facilities": [
+      "Toilets at the wharf, Manly Beach and Shelly Beach",
+      "Cafés on The Corso and at Shelly Beach"
+    ],
+    "access": "Ferries and the wharf are step-free. The Corso and beachfront path to Shelly Beach are paved and flat.",
+    "safety": [
+      "Swim between the flags at Manly Beach",
+      "Cabbage Tree Bay is a marine reserve: look, don't take"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "North Head Lookouts",
+      "why": "Big harbour views",
+      "dist": "≈ 10 min by bus",
+      "activityId": "north-head"
+    },
+    {
+      "name": "Spit Bridge to Manly Walk",
+      "why": "Walk in, ferry home",
+      "dist": "Ends at the wharf",
+      "activityId": "spit-manly"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Circular Quay",
+        "type": "start",
+        "note": "Manly ferries leave from Wharf 3.",
+        "lng": 151.2114,
+        "lat": -33.86069
+      },
+      {
+        "n": 2,
+        "name": "Manly Wharf",
+        "type": "stop",
+        "note": "Toilets and cafés right at the wharf.",
+        "lng": 151.28492,
+        "lat": -33.8001
+      },
+      {
+        "n": 3,
+        "name": "The Corso",
+        "type": "food",
+        "note": "Car-free street of cafés, bakeries and fish & chips.",
+        "lng": 151.28704,
+        "lat": -33.79776
+      },
+      {
+        "n": 4,
+        "name": "Manly Beach",
+        "type": "beach",
+        "note": "Surf beach. Swim between the flags.",
+        "lng": 151.28894,
+        "lat": -33.79774
+      },
+      {
+        "n": 5,
+        "name": "Fairy Bower pool",
+        "type": "pool",
+        "note": "Small, free rock pool on the way to Shelly.",
+        "lng": 151.29438,
+        "lat": -33.80081
+      },
+      {
+        "n": 6,
+        "name": "Shelly Beach",
+        "type": "end",
+        "note": "Calm cove in a marine reserve. Great snorkelling.",
+        "lng": 151.298,
+        "lat": -33.8005
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.28494,
+          -33.8003
+        ],
+        [
+          151.28527,
+          -33.80035
+        ],
+        [
+          151.28552,
+          -33.80022
+        ],
+        [
+          151.28548,
+          -33.80009
+        ],
+        [
+          151.2857,
+          -33.79988
+        ],
+        [
+          151.28671,
+          -33.79932
+        ],
+        [
+          151.2866,
+          -33.79918
+        ],
+        [
+          151.28765,
+          -33.79858
+        ],
+        [
+          151.28702,
+          -33.79777
+        ],
+        [
+          151.2881,
+          -33.79715
+        ],
+        [
+          151.28836,
+          -33.79705
+        ],
+        [
+          151.28869,
+          -33.79766
+        ],
+        [
+          151.28886,
+          -33.79792
+        ],
+        [
+          151.28894,
+          -33.79788
+        ],
+        [
+          151.28886,
+          -33.79792
+        ],
+        [
+          151.28941,
+          -33.79871
+        ],
+        [
+          151.29012,
+          -33.79945
+        ],
+        [
+          151.29037,
+          -33.79958
+        ],
+        [
+          151.29071,
+          -33.79958
+        ],
+        [
+          151.29104,
+          -33.7994
+        ],
+        [
+          151.29132,
+          -33.79935
+        ],
+        [
+          151.29175,
+          -33.79918
+        ],
+        [
+          151.29191,
+          -33.79919
+        ],
+        [
+          151.29236,
+          -33.79973
+        ],
+        [
+          151.29274,
+          -33.80011
+        ],
+        [
+          151.29294,
+          -33.80043
+        ],
+        [
+          151.29327,
+          -33.80071
+        ],
+        [
+          151.29384,
+          -33.80097
+        ],
+        [
+          151.29534,
+          -33.80072
+        ],
+        [
+          151.2964,
+          -33.80075
+        ],
+        [
+          151.297,
+          -33.80089
+        ],
+        [
+          151.29842,
+          -33.80094
+        ],
+        [
+          151.29861,
+          -33.8007
+        ],
+        [
+          151.29855,
+          -33.80044
+        ],
+        [
+          151.29836,
+          -33.80032
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.2902,
+        "lat": -33.79967
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.28808,
+        "lat": -33.79659
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.28459,
+        "lat": -33.79977
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2115,
+        "lat": -33.86143
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.28761,
+        "lat": -33.79829
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.28614,
+        "lat": -33.79754
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.29343,
+        "lat": -33.80087
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.28932,
+        "lat": -33.7992
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21114,
+        "lat": -33.86149
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.28803,
+        "lat": -33.79734
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.28778,
+        "lat": -33.79676
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.29026,
+        "lat": -33.79965
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20546,
+              -33.86281
+            ],
+            [
+              151.20598,
+              -33.86183
+            ],
+            [
+              151.20695,
+              -33.86123
+            ],
+            [
+              151.2081,
+              -33.86107
+            ],
+            [
+              151.21031,
+              -33.86128
+            ]
+          ]
+        },
+        {
+          "mode": "ferry",
+          "line": "F1",
+          "coords": [
+            [
+              151.2114,
+              -33.86069
+            ],
+            [
+              151.21132,
+              -33.86052
+            ],
+            [
+              151.21154,
+              -33.85987
+            ],
+            [
+              151.21132,
+              -33.85929
+            ],
+            [
+              151.21231,
+              -33.85859
+            ],
+            [
+              151.21469,
+              -33.85566
+            ],
+            [
+              151.21532,
+              -33.8555
+            ],
+            [
+              151.2185,
+              -33.85562
+            ],
+            [
+              151.22237,
+              -33.85435
+            ],
+            [
+              151.22933,
+              -33.8539
+            ],
+            [
+              151.23292,
+              -33.85393
+            ],
+            [
+              151.24468,
+              -33.85569
+            ],
+            [
+              151.24944,
+              -33.85619
+            ],
+            [
+              151.25127,
+              -33.85609
+            ],
+            [
+              151.25287,
+              -33.85567
+            ],
+            [
+              151.25477,
+              -33.85436
+            ],
+            [
+              151.25669,
+              -33.85262
+            ],
+            [
+              151.25862,
+              -33.85027
+            ],
+            [
+              151.26046,
+              -33.84672
+            ],
+            [
+              151.26369,
+              -33.83915
+            ],
+            [
+              151.27353,
+              -33.82943
+            ],
+            [
+              151.27502,
+              -33.82757
+            ],
+            [
+              151.27552,
+              -33.82584
+            ],
+            [
+              151.27702,
+              -33.8187
+            ],
+            [
+              151.28072,
+              -33.80569
+            ],
+            [
+              151.28161,
+              -33.80351
+            ],
+            [
+              151.28371,
+              -33.80045
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.28371,
+              -33.80045
+            ],
+            [
+              151.2836,
+              -33.80073
+            ],
+            [
+              151.28391,
+              -33.80082
+            ],
+            [
+              151.28394,
+              -33.80075
+            ],
+            [
+              151.28399,
+              -33.80076
+            ],
+            [
+              151.28417,
+              -33.80036
+            ]
+          ]
+        }
+      ]
+    },
+    "back": {
+      "legs": [
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.28495,
+              -33.8003
+            ],
+            [
+              151.2841,
+              -33.8
+            ],
+            [
+              151.28381,
+              -33.80047
+            ]
+          ]
+        },
+        {
+          "mode": "ferry",
+          "line": "F1",
+          "coords": [
+            [
+              151.28371,
+              -33.80045
+            ],
+            [
+              151.28161,
+              -33.80351
+            ],
+            [
+              151.28072,
+              -33.80569
+            ],
+            [
+              151.27702,
+              -33.8187
+            ],
+            [
+              151.27552,
+              -33.82584
+            ],
+            [
+              151.27502,
+              -33.82757
+            ],
+            [
+              151.27353,
+              -33.82943
+            ],
+            [
+              151.26369,
+              -33.83915
+            ],
+            [
+              151.26046,
+              -33.84672
+            ],
+            [
+              151.25862,
+              -33.85027
+            ],
+            [
+              151.25669,
+              -33.85262
+            ],
+            [
+              151.25477,
+              -33.85436
+            ],
+            [
+              151.25287,
+              -33.85567
+            ],
+            [
+              151.25127,
+              -33.85609
+            ],
+            [
+              151.24944,
+              -33.85619
+            ],
+            [
+              151.24468,
+              -33.85569
+            ],
+            [
+              151.23292,
+              -33.85393
+            ],
+            [
+              151.22933,
+              -33.8539
+            ],
+            [
+              151.22237,
+              -33.85435
+            ],
+            [
+              151.2185,
+              -33.85562
+            ],
+            [
+              151.21532,
+              -33.8555
+            ],
+            [
+              151.21469,
+              -33.85566
+            ],
+            [
+              151.21231,
+              -33.85859
+            ],
+            [
+              151.21132,
+              -33.85929
+            ],
+            [
+              151.21176,
+              -33.86025
+            ],
+            [
+              151.21172,
+              -33.86072
+            ],
+            [
+              151.21162,
+              -33.86071
+            ]
+          ]
+        },
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.21031,
+              -33.86128
+            ],
+            [
+              151.21305,
+              -33.86156
+            ],
+            [
+              151.21402,
+              -33.86185
+            ],
+            [
+              151.21486,
+              -33.86262
+            ],
+            [
+              151.2151,
+              -33.86356
+            ],
+            [
+              151.2147,
+              -33.86455
+            ],
+            [
+              151.21294,
+              -33.86599
+            ],
+            [
+              151.21256,
+              -33.86662
+            ],
+            [
+              151.21165,
+              -33.87287
+            ],
+            [
+              151.20957,
+              -33.87692
+            ],
+            [
+              151.20811,
+              -33.8826
+            ],
+            [
+              151.2074,
+              -33.88428
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Parking prices in Manly."
+    },
+    {
+      "section": "cost",
+      "note": "Snorkel hire prices."
+    },
+    {
+      "section": "gettingThere",
+      "note": "The Opal fare for train and ferry."
+    }
+  ]
+}

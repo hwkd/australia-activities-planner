@@ -1,0 +1,33 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      # Binding types must match wrangler.jsonc.
+      - run: npx wrangler types --check
+      - run: npx astro check
+      - run: npm run lint
+      # Includes the .ics checks (M2.12): every sample is linted (CRLF, 75-octet folding, required
+      # properties) and parsed by ical.js; the samples are kept for manual import tests (AC 25).
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        with: { name: ics-samples, path: test-results/ics }
+      - run: npx playwright install --with-deps chromium webkit firefox
+      # Builds, seeds a throwaway local D1 (.wrangler/e2e) with a per-run admin, then runs the tests.
+      - run: npm run e2e
+      # Lighthouse budgets (M10.7): Performance and Accessibility 90+, JS / font / total transfer budgets.
+      - run: |
+          SWF_STATE=.wrangler/e2e npx astro preview --port 4331 --ignore-lock &
+          npx wait-on http://localhost:4331 --timeout 60000
+          npm run lighthouse -- http://localhost:4331
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with: { name: playwright-report, path: playwright-report }

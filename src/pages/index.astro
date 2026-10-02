@@ -1,0 +1,270 @@
+---
+import Base from "~/layouts/Base.astro";
+import { SITE_NAME } from "~/site";
+import TabBar from "~/components/TabBar.astro";
+import SetTheSky from "~/components/islands/SetTheSky";
+import DiscoverFilters from "~/components/islands/DiscoverFilters";
+import DiscoverExplorer from "~/components/islands/DiscoverExplorer";
+import ComingUpRail from "~/components/islands/ComingUpRail";
+import { publishedCards } from "~/server/activities";
+import { toPlanCard } from "~/lib/planDays";
+import { publishedEventCards } from "~/server/eventsPublic";
+import { mapAvailable } from "~/server/map";
+import { contentMode, db } from "~/server/env";
+import { WEATHERS } from "~/stores/weather";
+import { t } from "~/strings/en-AU";
+
+/**
+ * Discover (spec §3.1). Phone: one column (A · Sky Mode — Mobile). Tablet (768–1023 px): one wider
+ * column whose results are tiles. Desktop (≥ 1024 px, A · Sky Mode — Desktop): header, sky and
+ * filters on the left, results in the middle (tiles, two at 1440 px and more on wider screens), Coming
+ * up on the right; no top bar, the rail links to My plans.
+ */
+const cards = await publishedCards(db(), contentMode());
+const events = await publishedEventCards(db(), contentMode());
+const mapView = await mapAvailable();
+const planCards = [...cards, ...events].map(toPlanCard);
+---
+
+<Base title={t.discover.pageTitle(SITE_NAME)} cards={cards} events={events}>
+  <div class="discover">
+    <header class="side">
+      <div class="px-1">
+        <p class="brand tr">
+          <svg width="22" height="22" viewBox="0 0 24 24" class="ic" aria-hidden="true">
+            <circle cx="9" cy="9" r="3.4"></circle>
+            <path d="M9 2.6v1.2M3.9 4l.8.8M2.6 9h1.2M14.1 4l-.8.8"></path>
+            <path d="M9.5 20h8.5a3.6 3.6 0 0 0 .4-7.17A5 5 0 0 0 9.8 12.3 3.9 3.9 0 0 0 9.5 20z"></path>
+          </svg>
+          {SITE_NAME}
+        </p>
+        <p class="eyebrow tr">
+          <span>{t.discover.header.city}</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span data-today></span>
+        </p>
+        <script is:inline>
+          // Today's date in Sydney (the build date would be wrong).
+          (function () {
+            const el = document.querySelector("[data-today]");
+            try {
+              el.textContent = new Intl.DateTimeFormat("en-AU", {
+                timeZone: "Australia/Sydney",
+                weekday: "short",
+                day: "numeric",
+                month: "short",
+              })
+                .format(new Date())
+                .replace(",", "");
+            } catch {
+              /* leave blank */
+            }
+          })();
+        </script>
+        <h1 class="headline w90 tr">
+          <span class="block">{t.discover.header.headline1}</span>
+          <span class="block">{t.discover.header.headline2}</span>
+          <span class="word w80">
+            {WEATHERS.map((w) => (
+              <span class={`ww ww-${w}`}>
+                {t.discover.header.headlineWord(t.common.weather.word[w])}
+                {w === "hot" && <span class="hot-pill w100">{t.common.weather.label.hot}</span>}
+              </span>
+            ))}
+          </span>
+        </h1>
+        <p class="intro tr">{t.discover.header.intro}</p>
+      </div>
+      <div class="sky-set mt-[22px]">
+        <SetTheSky client:load />
+      </div>
+      <div class="filters tr">
+        <DiscoverFilters client:load accessFilters={cards.some((c) => c.access)} />
+      </div>
+    </header>
+
+    <main class="results" aria-label={t.discover.resultsLabel}>
+      <DiscoverExplorer client:load cards={cards} events={events} mapView={mapView} />
+    </main>
+
+    <aside class="rail glass-strong tr" aria-label={t.discover.comingUp.title}>
+      <ComingUpRail client:media="(min-width: 1024px)" cards={planCards} />
+    </aside>
+  </div>
+  <TabBar current="discover" phoneOnly />
+</Base>
+
+<style>
+  .discover {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 22px 16px 24px;
+  }
+  .rail,
+  .brand {
+    display: none;
+  }
+  /* Tablet: one wider column; the results become tiles (global.css, container "results"). */
+  @media (min-width: 768px) {
+    .discover {
+      max-width: 760px;
+      padding: 32px 24px 24px;
+    }
+  }
+  .eyebrow {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sky-mute);
+  }
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .headline {
+    margin: 16px 0 0;
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    text-shadow: var(--hl);
+  }
+  .word {
+    display: block;
+    margin-top: 2px;
+    min-height: 84px;
+    font-size: 86px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    color: var(--accent);
+  }
+  /* All four words are in the HTML; CSS shows the one for the current sky (no JS). */
+  .ww {
+    display: none;
+    align-items: flex-start;
+    gap: 10px;
+    animation: rise 820ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  :global(html[data-weather="sunny"]) .ww-sunny,
+  :global(html[data-weather="cloudy"]) .ww-cloudy,
+  :global(html[data-weather="rainy"]) .ww-rainy,
+  :global(html[data-weather="hot"]) .ww-hot {
+    display: flex;
+  }
+  .hot-pill {
+    margin-top: 14px;
+    padding: 5px 11px;
+    border: 2px solid currentColor;
+    border-radius: 999px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+  .intro {
+    margin: 14px 0 0;
+    font-size: 15.5px;
+    line-height: 1.4;
+    color: var(--sky-mute);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 0.42em, 0);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+  }
+  @media (min-width: 1024px) {
+    .discover {
+      max-width: 1760px;
+      padding: 0 24px 0 0;
+      display: grid;
+      /* The artboard's 540 / 532 / 344 at 1440 px. Narrower, the left side gives way first so the
+         results keep two columns down to about 1180 px; wider, the results take the extra room. */
+      grid-template-columns: clamp(360px, calc(100vw - 900px), 540px) minmax(0, 1fr) clamp(300px, 23.9vw, 344px);
+      align-items: start;
+    }
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100dvh;
+      overflow-y: auto;
+      padding: 38px 36px 32px 56px;
+      scrollbar-width: none;
+      container-type: inline-size;
+    }
+    .results {
+      padding: 40px 14px 48px 10px;
+    }
+    .rail {
+      position: sticky;
+      top: 24px;
+      height: calc(100dvh - 48px);
+      margin-top: 24px;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .brand {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sky-mute);
+    }
+    .eyebrow {
+      margin-top: 36px;
+      font-size: 12.5px;
+    }
+    /* Type scales with the left column: 72 / 124 px at its full 540 px. */
+    .headline {
+      font-size: min(72px, 16cqi) !important;
+      line-height: 0.94;
+      letter-spacing: -0.038em;
+    }
+    .word {
+      font-size: min(124px, 27.6cqi) !important;
+      min-height: min(120px, 26.7cqi) !important;
+      letter-spacing: -0.048em;
+    }
+    .hot-pill {
+      margin-top: 0.18em;
+      padding: 0.25em 0.54em;
+      border-width: 2.5px;
+      font-size: 0.226em;
+    }
+    .intro {
+      font-size: 17px;
+    }
+    .sky-set {
+      margin-top: 26px;
+    }
+    .filters {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 26px;
+      background: var(--glass);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      -webkit-backdrop-filter: blur(18px) saturate(135%);
+      backdrop-filter: blur(18px) saturate(135%);
+    }
+  }
+</style>

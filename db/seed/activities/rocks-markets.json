@@ -1,0 +1,557 @@
+{
+  "id": "rocks-markets",
+  "status": "verified",
+  "name": "The Rocks Markets",
+  "city": "sydney",
+  "area": "The Rocks",
+  "category": "market",
+  "categoryLabel": "Markets",
+  "blurb": "Weekend stalls, street food and sandstone laneways by the harbour.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 1
+  },
+  "weatherNote": "Partly covered, so it's workable in light rain.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "Short walk from Circular Quay or Wynyard.",
+  "newcomerTip": "Runs Friday to Sunday. Wander the sandstone laneways and historic pubs afterwards.",
+  "location": {
+    "lat": -33.8585,
+    "lng": 151.2085
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "8 min from the station"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy, cobbled streets"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8585,
+      "lng": 151.2085,
+      "label": "The Rocks Markets"
+    },
+    "pt": {
+      "total": "≈ 20 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Circular Quay",
+          "mins": 8,
+          "detail": "Or any T2 or T3 train"
+        },
+        {
+          "mode": "walk",
+          "title": "Up George St into The Rocks",
+          "mins": 8
+        }
+      ],
+      "back": {
+        "text": "Same way back, from Circular Quay."
+      }
+    },
+    "drive": {
+      "total": "≈ 12 min",
+      "perCar": [
+        20,
+        40
+      ],
+      "perCarLabel": "Parking in The Rocks, 2 hrs",
+      "notes": [
+        "Streets around the market are closed to cars on market days."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Street food lunch",
+        "per": [
+          12,
+          22
+        ],
+        "on": true
+      },
+      {
+        "id": "gift",
+        "label": "A souvenir or two",
+        "per": [
+          10,
+          40
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Late morning, before the lunch crowd. The full market runs Saturday and Sunday, 10am to 5pm.",
+    "hours": "Saturday and Sunday 10am to 5pm, and a smaller Friday market 10am to 3pm. The laneways and pubs are open every day.",
+    "bring": [
+      "A tote bag",
+      "A card: most stalls take contactless",
+      "Sunscreen"
+    ],
+    "facilities": [
+      "Public toilets off George St",
+      "Food stalls, cafés and pubs all around"
+    ],
+    "access": "Mostly flat along George St, but with cobbles and some steep side lanes.",
+    "safety": [
+      "The cobbles and sandstone steps get slippery in the rain"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Walk across the Harbour Bridge",
+      "why": "Stairs are 5 min away",
+      "dist": "Next door",
+      "activityId": "bridge-walk"
+    },
+    {
+      "name": "Sydney Opera House Tour",
+      "why": "Across the quay",
+      "dist": "≈ 12 min walk",
+      "activityId": "opera-tour"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Circular Quay Station",
+        "type": "start",
+        "note": "Turn left out of the station and follow George St north.",
+        "lng": 151.21072,
+        "lat": -33.86136
+      },
+      {
+        "n": 2,
+        "name": "Historic pubs",
+        "type": "food",
+        "note": "The Fortune of War and the Orient, two of Sydney's oldest pubs, are on George St by the stalls.",
+        "lng": 151.20841,
+        "lat": -33.86037
+      },
+      {
+        "n": 3,
+        "name": "The Rocks Markets",
+        "type": "end",
+        "note": "Stalls along George St, Playfair St and Jack Mundey Place, Friday to Sunday.",
+        "lng": 151.20861,
+        "lat": -33.85788
+      },
+      {
+        "n": 4,
+        "name": "Campbells Cove",
+        "type": "lookout",
+        "note": "Old sandstone warehouses with a front-row Opera House view.",
+        "lng": 151.20926,
+        "lat": -33.85654
+      },
+      {
+        "n": 5,
+        "name": "Dawes Point Park",
+        "type": "lookout",
+        "note": "Grass and cannons right under the Harbour Bridge.",
+        "lng": 151.20919,
+        "lat": -33.85525
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21072,
+          -33.86135
+        ],
+        [
+          151.2104,
+          -33.86132
+        ],
+        [
+          151.21042,
+          -33.86115
+        ],
+        [
+          151.20965,
+          -33.86106
+        ],
+        [
+          151.20957,
+          -33.86099
+        ],
+        [
+          151.20952,
+          -33.86085
+        ],
+        [
+          151.20954,
+          -33.8606
+        ],
+        [
+          151.20904,
+          -33.86056
+        ],
+        [
+          151.20895,
+          -33.86048
+        ],
+        [
+          151.20887,
+          -33.86055
+        ],
+        [
+          151.20875,
+          -33.86054
+        ],
+        [
+          151.20864,
+          -33.86064
+        ],
+        [
+          151.20844,
+          -33.86061
+        ],
+        [
+          151.20867,
+          -33.85934
+        ],
+        [
+          151.20848,
+          -33.85929
+        ],
+        [
+          151.2085,
+          -33.8592
+        ],
+        [
+          151.20811,
+          -33.85913
+        ],
+        [
+          151.20836,
+          -33.85829
+        ],
+        [
+          151.20845,
+          -33.85804
+        ],
+        [
+          151.20859,
+          -33.85785
+        ],
+        [
+          151.20867,
+          -33.85788
+        ],
+        [
+          151.209,
+          -33.85778
+        ],
+        [
+          151.20916,
+          -33.85803
+        ],
+        [
+          151.20922,
+          -33.85805
+        ],
+        [
+          151.20936,
+          -33.85762
+        ],
+        [
+          151.20932,
+          -33.85747
+        ],
+        [
+          151.20969,
+          -33.85734
+        ],
+        [
+          151.20923,
+          -33.85655
+        ],
+        [
+          151.20926,
+          -33.85654
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20987,
+        "lat": -33.86119
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20851,
+        "lat": -33.85873
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2115,
+        "lat": -33.86143
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20925,
+        "lat": -33.85964
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20826,
+        "lat": -33.85951
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20815,
+        "lat": -33.86031
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20997,
+        "lat": -33.86199
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20996,
+        "lat": -33.85789
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20824,
+        "lat": -33.85492
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20945,
+        "lat": -33.85739
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20831,
+        "lat": -33.8587
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20839,
+        "lat": -33.85792
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20546,
+              -33.86281
+            ],
+            [
+              151.20598,
+              -33.86183
+            ],
+            [
+              151.20695,
+              -33.86123
+            ],
+            [
+              151.2081,
+              -33.86107
+            ],
+            [
+              151.21031,
+              -33.86128
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.21031,
+              -33.86127
+            ],
+            [
+              151.21056,
+              -33.86128
+            ],
+            [
+              151.21056,
+              -33.86134
+            ],
+            [
+              151.2104,
+              -33.86132
+            ],
+            [
+              151.21042,
+              -33.86115
+            ],
+            [
+              151.20972,
+              -33.86108
+            ],
+            [
+              151.20956,
+              -33.86096
+            ],
+            [
+              151.20952,
+              -33.86085
+            ],
+            [
+              151.20956,
+              -33.86046
+            ],
+            [
+              151.20945,
+              -33.86046
+            ],
+            [
+              151.20952,
+              -33.85977
+            ],
+            [
+              151.20939,
+              -33.85975
+            ],
+            [
+              151.20934,
+              -33.85941
+            ],
+            [
+              151.2088,
+              -33.85935
+            ],
+            [
+              151.20881,
+              -33.85925
+            ],
+            [
+              151.20844,
+              -33.85919
+            ],
+            [
+              151.20869,
+              -33.85836
+            ],
+            [
+              151.2084,
+              -33.8583
+            ],
+            [
+              151.20839,
+              -33.85835
+            ],
+            [
+              151.20864,
+              -33.8584
+            ],
+            [
+              151.20861,
+              -33.85852
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "visit",
+      "note": "Whether the Friday market runs all year."
+    },
+    {
+      "section": "driving",
+      "note": "Parking prices in The Rocks."
+    }
+  ]
+}

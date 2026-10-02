@@ -1,0 +1,620 @@
+{
+  "id": "coogee",
+  "status": "verified",
+  "name": "Coogee Beach & Ocean Pools",
+  "city": "sydney",
+  "area": "Eastern Suburbs",
+  "category": "beach",
+  "categoryLabel": "Beach",
+  "blurb": "Relaxed beach with three ocean pools at either end and cafés across the road.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 2
+  },
+  "weatherNote": "Great on sunny and hot days. On a grey day the cafés on Coogee Bay Rd carry it.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "Half day",
+    "minHours": 2,
+    "maxHours": 5
+  },
+  "cost": "Free",
+  "gettingThere": "Bus 374 from Central (Elizabeth St), or the T4 to Bondi Junction and bus 350.",
+  "newcomerTip": "Wylie's Baths, at the south end, is a beautiful old tidal pool on the rocks. It's the best swim when the surf is up.",
+  "location": {
+    "lat": -33.9205,
+    "lng": 151.2575
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "Half day"
+    },
+    {
+      "k": "Pools",
+      "v": "Three ocean pools"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.9205,
+      "lng": 151.2575,
+      "label": "Coogee Beach"
+    },
+    "pt": {
+      "total": "≈ 35 min",
+      "changes": 0,
+      "fare": [
+        3,
+        5
+      ],
+      "legs": [
+        {
+          "mode": "walk",
+          "title": "Walk to the 374 stop on Elizabeth St",
+          "mins": 4
+        },
+        {
+          "mode": "bus",
+          "line": "374",
+          "title": "Bus to Coogee Beach",
+          "mins": 28,
+          "detail": "From Central, Elizabeth St, stand E"
+        },
+        {
+          "mode": "walk",
+          "title": "To the beach",
+          "mins": 3
+        }
+      ],
+      "back": {
+        "text": "Same way back: bus 374 to Central from Arden St, opposite Coogee Bay Rd. Or bus 350 to Bondi Junction and the T4."
+      }
+    },
+    "drive": {
+      "total": "≈ 25 min",
+      "perCar": [
+        8,
+        20
+      ],
+      "perCarLabel": "Parking, 3 hrs",
+      "notes": [
+        "Beachfront parking is metered and fills by mid-morning on warm weekends."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Brunch on Coogee Bay Rd",
+        "per": [
+          20,
+          32
+        ],
+        "on": true
+      },
+      {
+        "id": "wylies",
+        "label": "Wylie's Baths entry",
+        "per": [
+          6.5,
+          6.5
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Morning, before the sea breeze. Late afternoon is lovely on the pools.",
+    "hours": "Beach always open. Wylie's Baths opens every day, 7am to 7pm from October to April and 7am to 5pm from April to September.",
+    "bring": [
+      "Swimmers & towel",
+      "Sunscreen & hat",
+      "Card or cash for Wylie's ($6.50)"
+    ],
+    "facilities": [
+      "Toilets and showers along the promenade",
+      "Cafés and takeaways on Coogee Bay Rd and Arden St"
+    ],
+    "access": "Flat, paved promenade and a beach access ramp. The ocean pools are down stairs.",
+    "safety": [
+      "Swim between the flags",
+      "Ocean pools can have waves breaking in at high tide"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Bondi to Coogee Coastal Walk",
+      "why": "Finish the walk here",
+      "dist": "Starts at Bondi",
+      "activityId": "bondi-coogee"
+    },
+    {
+      "name": "Clovelly Beach",
+      "why": "Calm-water snorkel",
+      "dist": "≈ 30 min walk north",
+      "activityId": "clovelly"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Coogee Beach bus stop",
+        "type": "start",
+        "note": "Buses stop on Arden St, opposite Coogee Bay Rd, right behind the beach.",
+        "lng": 151.25697,
+        "lat": -33.92047
+      },
+      {
+        "n": 2,
+        "name": "Coogee Beach",
+        "type": "beach",
+        "note": "Patrolled beach. Swim between the flags.",
+        "lng": 151.25792,
+        "lat": -33.92083
+      },
+      {
+        "n": 3,
+        "name": "Coogee Bay Rd",
+        "type": "food",
+        "note": "Cafés, bakeries and the big pub across from the beach.",
+        "lng": 151.2557,
+        "lat": -33.9207
+      },
+      {
+        "n": 4,
+        "name": "Giles Baths",
+        "type": "pool",
+        "note": "Rock pool below Dolphins Point and the Bali memorial, at the north end. Free.",
+        "lng": 151.26058,
+        "lat": -33.92015
+      },
+      {
+        "n": 5,
+        "name": "Grant Reserve",
+        "type": "lookout",
+        "note": "Grassy clifftop above McIver's Ladies Baths (women and children only), with views up the beach.",
+        "lng": 151.25865,
+        "lat": -33.92467
+      },
+      {
+        "n": 6,
+        "name": "Wylie's Baths",
+        "type": "end",
+        "note": "Historic tidal pool on the rocks. Entry $6.50.",
+        "lng": 151.25941,
+        "lat": -33.92558
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.25699,
+          -33.92047
+        ],
+        [
+          151.25692,
+          -33.92087
+        ],
+        [
+          151.25731,
+          -33.92092
+        ],
+        [
+          151.25743,
+          -33.92084
+        ],
+        [
+          151.25752,
+          -33.92068
+        ],
+        [
+          151.25743,
+          -33.92084
+        ],
+        [
+          151.25731,
+          -33.92092
+        ],
+        [
+          151.25692,
+          -33.92087
+        ],
+        [
+          151.25693,
+          -33.9208
+        ],
+        [
+          151.25675,
+          -33.92077
+        ],
+        [
+          151.25671,
+          -33.92077
+        ],
+        [
+          151.25669,
+          -33.92084
+        ],
+        [
+          151.2557,
+          -33.92069
+        ],
+        [
+          151.25669,
+          -33.92084
+        ],
+        [
+          151.25671,
+          -33.92077
+        ],
+        [
+          151.25693,
+          -33.9208
+        ],
+        [
+          151.25719,
+          -33.9196
+        ],
+        [
+          151.25751,
+          -33.91942
+        ],
+        [
+          151.25812,
+          -33.91952
+        ],
+        [
+          151.25833,
+          -33.9195
+        ],
+        [
+          151.25847,
+          -33.91929
+        ],
+        [
+          151.25851,
+          -33.91931
+        ],
+        [
+          151.25865,
+          -33.91875
+        ],
+        [
+          151.25921,
+          -33.91857
+        ],
+        [
+          151.2595,
+          -33.91865
+        ],
+        [
+          151.26024,
+          -33.91975
+        ],
+        [
+          151.2607,
+          -33.92008
+        ],
+        [
+          151.26024,
+          -33.91975
+        ],
+        [
+          151.2595,
+          -33.91865
+        ],
+        [
+          151.25932,
+          -33.91858
+        ],
+        [
+          151.25911,
+          -33.9186
+        ],
+        [
+          151.25865,
+          -33.91875
+        ],
+        [
+          151.25851,
+          -33.91931
+        ],
+        [
+          151.25847,
+          -33.91929
+        ],
+        [
+          151.25773,
+          -33.92023
+        ],
+        [
+          151.25778,
+          -33.92026
+        ],
+        [
+          151.25743,
+          -33.92084
+        ],
+        [
+          151.25731,
+          -33.92092
+        ],
+        [
+          151.25734,
+          -33.92102
+        ],
+        [
+          151.2572,
+          -33.92158
+        ],
+        [
+          151.25726,
+          -33.92214
+        ],
+        [
+          151.25741,
+          -33.92258
+        ],
+        [
+          151.25772,
+          -33.92293
+        ],
+        [
+          151.25823,
+          -33.92394
+        ],
+        [
+          151.25811,
+          -33.92447
+        ],
+        [
+          151.25853,
+          -33.92491
+        ],
+        [
+          151.25868,
+          -33.92523
+        ],
+        [
+          151.25872,
+          -33.92542
+        ],
+        [
+          151.25869,
+          -33.92566
+        ],
+        [
+          151.25891,
+          -33.92607
+        ],
+        [
+          151.25917,
+          -33.926
+        ],
+        [
+          151.25908,
+          -33.92585
+        ],
+        [
+          151.25913,
+          -33.92582
+        ],
+        [
+          151.2592,
+          -33.92585
+        ],
+        [
+          151.25917,
+          -33.92548
+        ],
+        [
+          151.2594,
+          -33.92547
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.25714,
+        "lat": -33.92026
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.25714,
+        "lat": -33.92163
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.25816,
+        "lat": -33.92444
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.25673,
+        "lat": -33.92038
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.25521,
+        "lat": -33.92073
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "bus",
+          "line": "374",
+          "coords": [
+            [
+              151.20822,
+              -33.88409
+            ],
+            [
+              151.20825,
+              -33.88707
+            ],
+            [
+              151.20792,
+              -33.88995
+            ],
+            [
+              151.21176,
+              -33.8914
+            ],
+            [
+              151.21705,
+              -33.89215
+            ],
+            [
+              151.21921,
+              -33.89352
+            ],
+            [
+              151.22087,
+              -33.89491
+            ],
+            [
+              151.22163,
+              -33.89516
+            ],
+            [
+              151.22231,
+              -33.89919
+            ],
+            [
+              151.22286,
+              -33.90123
+            ],
+            [
+              151.22331,
+              -33.90179
+            ],
+            [
+              151.22617,
+              -33.90417
+            ],
+            [
+              151.23121,
+              -33.90629
+            ],
+            [
+              151.23327,
+              -33.90752
+            ],
+            [
+              151.2341,
+              -33.90839
+            ],
+            [
+              151.23961,
+              -33.90921
+            ],
+            [
+              151.2391,
+              -33.912
+            ],
+            [
+              151.2394,
+              -33.91278
+            ],
+            [
+              151.24435,
+              -33.9135
+            ],
+            [
+              151.24682,
+              -33.91363
+            ],
+            [
+              151.24786,
+              -33.91418
+            ],
+            [
+              151.24933,
+              -33.91452
+            ],
+            [
+              151.24883,
+              -33.91683
+            ],
+            [
+              151.25731,
+              -33.91809
+            ],
+            [
+              151.25726,
+              -33.91861
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.25735,
+              -33.91862
+            ],
+            [
+              151.25743,
+              -33.91886
+            ],
+            [
+              151.25725,
+              -33.91909
+            ],
+            [
+              151.25698,
+              -33.92055
+            ],
+            [
+              151.25742,
+              -33.92071
+            ],
+            [
+              151.25754,
+              -33.92051
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Beachfront parking meter rates."
+    },
+    {
+      "section": "cost",
+      "note": "Brunch prices."
+    }
+  ]
+}

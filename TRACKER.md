@@ -1,0 +1,464 @@
+# Build tracker: Australia Activities Planner (Sydney first; Design A · Sky Mode)
+
+The working checklist for building the MVP. [implementation-plan.md](implementation-plan.md) explains the *why* and the estimates; this file is the *what's next and what's done*. [spec.md](spec.md) is the source of truth for behaviour; acceptance criteria are referred to as **AC n** (spec §9).
+
+## How to use this file
+
+- Work top to bottom within a milestone. Pick the first unticked task whose dependencies are done.
+- Tick a task (`[x]`) only when its **Done when** is true and its checks pass. Use `[~]` for in progress and `[!]` for blocked (add the reason in the Log).
+- After each working session: update **Current focus**, the milestone row in **Status**, and add one line to the **Log**.
+- If a task changes behaviour, update spec.md in the same change, and note it in the Log.
+- New work goes in the right milestone with the next free ID. Don't renumber.
+
+**Legend:** `[ ]` to do · `[~]` in progress · `[x]` done · `[!]` blocked · `[-]` dropped (say why in the Log)
+
+## Current focus
+
+- **Built (2 Oct 2026): D14 and D15.** Getting there is one public transport trip from the city centre (way-in strip, last stretch, getting back, Directions from where you are, Driving? note, rideshare line), and the real map is the only map on activity pages: the trip from Central and the way back from the Trip Planner, the walking line, numbered places synced with the list, toilets and cafés. The admin edits places on a real map. M24 and M25 are done; canvas Version 41 shows the real map.
+- **Next up:** content. C1.1, C1.2, C1.6 and C1.8 are done (all 29 activities verified 2 Oct 2026; open points per activity in `docs/activity-verification.md`). Next: **C1.3** (11 more activities to reach 40), then C1.4, C1.5, C1.7. M12.7 waits for the deploy. M18 stays deferred (D14). Phase 3 (M19–M23) waits for launch and D12.
+- **The map tiles are now a launch requirement:** without the R2 bucket and upload (below), activity pages show the fallback list instead of a map.
+- **Going live** needs the owner steps in M11.11, then the remaining owner items below, real-device checks (M3.8, M7.5, M10.6), D9 and C1 content.
+- **Working assumptions:** D1–D8 are being built with their proposed answers (owner said to begin); flag any change.
+- **Blocked on the owner:** git remote + first commit (M0.1); Cloudflare account to create the D1 database, deploy and get preview URLs (M0.5, M11.11); the first owner account on the real database (M11.11); Plausible domain and Sentry loader key (M0.7, M0.8 activate when set); Transport for NSW Open Data Hub key: done 2 Oct 2026 (in `.dev.vars` locally; still to add as the Worker secret and the GitHub Actions secret when deploying). Map tiles (needed at launch, D15): `npx wrangler r2 bucket create sydney-weekend-finder-map`, then `npm run map:fetch` and `npx tsx scripts/map/upload.ts --remote` (the extract command is in scripts/map/fetch-assets.mjs).
+
+## 1. Status
+
+| Milestone | Status | Tasks | Est. days | Delivers |
+|---|---|---|---|---|
+| M0 Set-up | In progress (2 need owner accounts) | 8 / 10 | 3 | Repo, CI, previews, baseline JS size |
+| M1 Content pipeline and editor tools | Done (CMS task moved to M11) | 9 / 9 | 6 | Schema, draft gate, holidays, CMS, map editor · AC 15 |
+| M2 Core logic | Done | 12 / 12 | 7 | All `src/lib` with tests · AC 1, 3, 6–9, 18, 20, 26, 28, 29 (logic) |
+| M3 Theme and Set the sky | In progress (real-device frame check left) | 7 / 8 | 5 | Tokens, fonts, glass, scenes, contrast test · AC 12, 24 |
+| M4 Discover (phone) | Done | 7 / 7 | 4 | AC 1–3 |
+| M5 Activity detail (phone) | Done | 10 / 10 | 7 | AC 16–22 |
+| M6 My plans and Add to a day (phone) | Done | 12 / 12 | 9 | AC 4–10, 29 |
+| M7 Calendar export | 5 / 6 done (device imports need the owner) | 5 / 6 | 4 | AC 25–28 |
+| M8 Desktop | Done | 5 / 5 | 5 | Desktop layouts |
+| M9a Transport job: routes and tolls | Narrowed (D14): optional weekly check of the trip from Central; not a launch gate. Tolls dropped | 2 / 5 | 2 | Weekly PR, map drift check |
+| M9b Transport job: Opal fares | Dropped (D14): fares hand-kept, Opal cap does the rest | – | – | – |
+| M10 Hardening | 8 / 9 done (screen-reader passes need devices) | 8 / 9 | 5 | AC 11, 13, 14, 23; Lighthouse 90+ |
+| M11 D1 and custom content admin | Done locally; going live needs the owner (M11.11) | 10 / 11 | – | Content in D1, pages rendered on demand, `/admin` |
+| C1 Content (editor, parallel) | In progress: the 29 drafts verified (C1.1, C1.2, C1.6, C1.8); 11 more to write | 3 / 7 | 4–5 weeks | 40+ verified activities |
+| **MVP total** | | **97 / 111** | **57 + 13 contingency** | |
+| M12 MVP gaps | Done except M12.7 (needs the deploy) | 7 / 8 | 8 | Spec §7 gaps · AC 33 |
+| M24 Getting there, simplified (D14) | Done | 7 / 7 | 4 | Spec §3.2 items 3–5, §4.3, §6.6 · AC 16, 20, 21 |
+| M25 Real map replaces the schematic (D15) | Done (editors check each map: C1.8) | 6 / 6 | 4 | Spec §3.2 item 3, §4.3, §11.2 · AC 16, 17, 19 |
+| M13 Surprise me | Done | 3 / 3 | 2 | Spec §11.5 |
+| M14 Accessibility filters | Done (needs access facts from the editor) | 3 / 3 | 3 | Spec §11.6 |
+| M15 Events and seasonal | Done (events need an editor to curate them) | 5 / 5 | 6 | Spec §11.4 |
+| M16 Live forecast | Done | 5 / 5 | 5 | Spec §11.1 |
+| M17 Map view | Done locally (R2 bucket and upload by the owner, needed at launch since D15; NPWS alerts open) | 6 / 6 | 12 | Spec §11.2 |
+| M18 Travel time from your suburb | Deferred (D14; needs a trip planner per state; visitor's-location variant proposed) | 0 / 4 | 6 | Spec §11.3 |
+| M19–M23 Phase 3 | After launch; D12 first | – | 55 | Spec §12 |
+
+## 2. Decisions
+
+### To confirm before M0 (owner)
+
+| ID | Decision | Proposed | Status |
+|---|---|---|---|
+| D1 | Production design (spec §13 Q1) | A · Sky Mode | Open |
+| D2 | Duration filter in the MVP (Q2) | Yes | Open |
+| D3 | Cost on cards and activity pages (Q3) | Tiers on cards, AUD estimates on activity pages | Open |
+| D4 | "Hot" threshold (Q4) | Fixed 30°C | Open |
+| D5 | Photos at launch (Q6) | None | Open |
+| D6 | Transport job before or after launch | Before launch (77 days); after launch saves 9 days | Superseded by D14: no transport job is needed for launch |
+| D7 | Analytics account | Plausible, about US$9/month | Open |
+| D8 | Who edits content (C1) | An editor, in the custom admin (`/admin`) with the built-in map editor | Open (tool decided: custom admin, 1 Oct 2026) |
+| D9 | Product name (Q9) | Australia Activities Planner, starting with Sydney (owner, 2 Oct 2026) | Decided |
+| D10 | Where content lives | Cloudflare D1, public pages rendered on demand from it (owner, 1 Oct 2026; replaces the static build and Decap) | Decided |
+| D11 | Admin sign-in | Built-in accounts in D1: owner and editor roles, invite and reset links (owner, 1 Oct 2026) | Decided |
+| D12 | Phase 3 backend and email (spec §13 Q11) | Same Worker and D1 (not Supabase), visitor tables separate from admin users; an email service for magic links (Cloudflare Email Service or Resend) | Open |
+| D13 | Phase 2 at launch (Q12) | None required; build M13 → M14 → M16 → M15 → M17 → M18 and switch each on when its content is ready | Open |
+| D14 | Getting there (spec §3.2 item 4, §4.3) | One public transport trip from the city centre (Central) per activity with the last stretch, Directions from where you are (Google Maps), and a Driving? note with an optional rideshare line. No origin picker, no Transport / Drive / Rideshare switch, no fare calculator, no tolls or driving-time API. Why: three trips per activity to check (the first live check flagged 75 of 87), a fare calculator per fare system, and no hosted trip planner outside NSW (owner, 2 Oct 2026) | Decided |
+| D15 | Activity maps | The real map only: places, walking line, facilities and the real route of the trip from Central (and the way back) on our own OpenStreetMap tiles; the schematic is removed from the app, admin, content, spec and canvas (owner, 2 Oct 2026; spec §3.2 item 3, §4.3, §11.2) | Decided |
+
+### Locked technical choices
+
+| Area | Choice |
+|---|---|
+| Framework | Astro 7 (7.3.x), TypeScript strict, `output: "server"` (privacy prerendered; `build.format: "file"`) |
+| Interactivity | React 19 islands only where needed (implementation-plan.md §3.3), via `@astrojs/react` 7 |
+| Shared state | nanostores + `@nanostores/react`; `@nanostores/persistent` for plan and weather |
+| Hosting | Cloudflare Workers with `@astrojs/cloudflare` (`wrangler.jsonc`: adapter entrypoint, `nodejs_compat`, D1 binding `DB`, `CONTENT_MODE`); static files as Workers assets |
+| Styling | Tailwind + CSS variables per weather (`themes[weather]`) |
+| Fonts | Mona Sans via the Astro Fonts API (local provider), trimmed with fonttools (widths 80–100, used weights; Latin, Latin Ext, Vietnamese); fixed widths, never weather-driven |
+| Dates | `date-fns` 4 + `@date-fns/tz` (`TZDate`); all logic in `Australia/Sydney` |
+| Calendar export | In-house `.ics` writer with `VTIMEZONE`; Google Calendar template links |
+| Content | Cloudflare D1 (`db/migrations/`), `astro/zod` schema on every save and publish; custom admin at `/admin` (D10, D11); `db/seed/activities/` seeds fresh databases |
+| Plan storage | `$plan` persistent store, localStorage `swf.plan.v2`, in-memory fallback, v1 migration, cross-tab sync |
+| Offline | Service worker from `workbox-build` after `astro build` over `dist/client`: static files precached, pages network-first, admin never cached (`@vite-pwa/astro` doesn't support Astro 7 yet) |
+| Analytics | Plausible (custom events in spec §7) |
+| Errors | Sentry free tier, personal data scrubbed |
+| Driving times | Hand-kept in content, one time from the city (D14) |
+| Scheduled jobs | GitHub Actions for reviewed jobs (open PRs); Workers Cron Triggers for jobs that write D1 (forecast, M16) |
+| Tests | Vitest 5, Playwright, `astro check`, axe, Lighthouse CI, an RFC 5545 validator for `.ics` |
+| Weather keys | `sunny | cloudy | rainy | hot` in code, URLs and content (prototypes use `sun | cloud | rain | hot`) |
+
+## 3. Tasks
+
+### M0 · Set-up (3 days)
+
+- [~] **M0.1** `git init`, `.gitignore`, first commit of the existing docs, content and `design/`. *Done when:* the repo has history and a remote.
+- [x] **M0.2** Create the Astro 7 project (TypeScript strict, `output: "static"`), add `@astrojs/react`, Tailwind 4 (`@tailwindcss/vite`), ESLint, Prettier. *Done when:* `npm run build` produces `dist/` and `astro check` passes.
+- [x] **M0.3** Vitest and Playwright set up with one passing test each.
+- [x] **M0.4** GitHub Actions CI: `astro check`, lint, unit, e2e, build on every PR.
+- [!] **M0.5** Cloudflare Workers static assets: `wrangler.jsonc`, `wrangler deploy` for production, preview URLs per branch (Workers Builds or `wrangler versions upload`). Turn off Auto Minify. *Done when:* a PR shows a preview URL.
+- [x] **M0.6** Service worker skeleton: `scripts/sw/` runs `workbox-build` `generateSW` over `dist/` after the build; manifest; registers in production only.
+- [x] **M0.7** Plausible script and a typed `track(event, props)` helper (no-op in dev and tests).
+- [x] **M0.8** Sentry for the browser via its lazy loader script (no cost until an error), query strings stripped in `beforeSend`; turn off IP collection in the Sentry project. Source-map upload is deferred (the loader setup has no build step for it).
+- [x] **M0.9** Measure first-load JS (gzipped) of a page with one trivial React island, and record it in the Log (React's fixed cost); set the Lighthouse CI budget file (`budget.json`, in KB). *Done when:* the baseline and headroom against 150 KB are written down.
+- [x] **M0.10** Island scaffolding: `src/stores/` (`$weather`, `$sheet`, `$planningDate`, `$toast`; `$plan` arrives with M2.6), the base layout with the theme-before-paint inline script, an empty `SheetHost` (`client:idle`), and one test that changing a store in one island updates another.
+
+### M1 · Content pipeline and editor tools (6 days)
+
+- [x] **M1.1** `src/content.config.ts`: content collection over `content/sydney/*.json` (`glob()` loader) with an `astro/zod` schema for spec §4.1 and §4.3 (activity, routes, map, costs, visit, pairings, `days`, `suggestedStart`, `status`, `lastVerified`).
+- [x] **M1.2** Port `design/prototype-logic/content/validate-content.js` checks into `src/lib/content-checks.ts`, run by the `swf-content-checks` build integration (line IDs, coordinates in 400×300, pairings point to real activities, `suggestedStart` format, unavailable-mode reasons).
+- [x] **M1.3** Typed content helpers on `getCollection` (card index for Discover, per-activity props for islands).
+- [x] **M1.4** Draft gate: production builds fail if any published activity is `draft`; dev and preview builds show a "Draft content" banner. *Done when:* AC 15 passes.
+- [x] **M1.5** Decide what happens to `design/prototype-logic/content/build-content.js`: content is now edited directly, so retire the generator (keep it as reference) and note it in the Log.
+- [x] **M1.6** NSW public holidays: the data.gov.au dataset turned out to be inactive (nothing after 2020), so `src/lib/holidays.ts` calculates them from the Public Holidays Act rules, tested against the NSW Government's 2026–2027 table; one-off days go in its `EXTRA` list.
+- [-] **M1.7** Decap CMS. *Dropped 1 Oct 2026 (owner): replaced by the custom admin on D1 (M11). Decap, its config, the content formatter and its workflow are removed.*
+- [x] **M1.8** Map preview: port `design/prototype-logic/checks/sheet.js` to a page that renders every activity's schematic map. *(Superseded in M11: the `/dev` pages are gone; the admin shows each map in its editor, and "Preview draft" shows the page.)*
+- [x] **M1.9** Map editor: drag POIs, stops and facilities; draw and edit lines and the trail; writes the activity's `map` JSON. *(Now part of the admin's activity editor, M11.)*
+- [x] **M1.10** Editor guide (one page): how to edit an activity, check it against official sources, and mark it verified.
+
+### M2 · Core logic, `src/lib` (7 days)
+
+Before porting, export golden fixtures from `design/prototype-logic/engines/` (task M2.1).
+
+- [x] **M2.1** Fixture exporter: run the prototype engines and write JSON fixtures (ranking per weather × filters, Plan B scenarios, cost per activity × origin × mode × group, calendar day info, export events). *`scripts/fixtures/export-prototype.mjs` → ranking 160, Plan B 13, cost 1044. Calendar and export behaviour is tested directly against the spec instead (the prototype's calendar engine predates the DST and `.ics` rules).*
+- [x] **M2.2** `lib/ranking.ts` (spec §6.1) against fixtures. *AC 1, 3.*
+- [x] **M2.3** `lib/dates.ts`: Sydney today, month grid (Monday first), relative labels, 6-month range, daylight saving (skipped hour moves to 3:00am), public holidays (§6.4). Tests on 4 Oct 2026 and 5 Apr 2026/2027.
+- [x] **M2.4** `lib/planDays.ts`: `plannedHours`, end times, overlaps, `days` it runs, once-per-day rule, ±30 min bounds (§4.4, §6.7). *AC 8, 9 (logic).*
+- [x] **M2.5** `lib/planB.ts` per date, keeps start time, no duplicates (§6.2). *AC 6, 7.*
+- [x] **M2.6** `lib/plan.ts` + `$plan` store: Plan v2 model, persistence with try/catch and memory fallback, v1 migration, cross-tab sync (§4.4). *AC 29 (logic).*
+- [x] **M2.7** `lib/share.ts`: v2 encode/decode, 8 items × 14 days limit, v1 conversion, drop invalid entries (§6.5).
+- [x] **M2.8** `lib/route.ts`: route per origin and mode, unavailable modes and reasons.
+- [x] **M2.9** `lib/cost.ts`: fares with weekday and weekend caps, non-Opal legs, entry, extras, totals (§6.6). *AC 18, 20, 28 (logic).*
+- [x] **M2.10** `lib/detailState.ts`: suggestion navigation resets and carry-overs (§3.2 item 9).
+- [x] **M2.11** `lib/calendarExport.ts`: `.ics` writer (VCALENDAR, VTIMEZONE Australia/Sydney, VEVENT, stable UID, VALARM) and Google links (§6.8). *AC 26 (logic).*
+- [x] **M2.12** CI step: validate generated `.ics` samples with an RFC 5545 validator.
+
+### M3 · Theme and Set the sky (5 days)
+
+- [x] **M3.1** `src/theme/tokens.ts`: the Sky Mode palette per weather, as CSS variables under `html[data-weather]`; a `weather` prop path for components showing another day's sky. `$weather` listener updates the attribute.
+- [x] **M3.2** Mona Sans: trim with fonttools, register with the Astro Fonts API (`fontProviders.local()`), add `<Font />` in the layout, three width utility classes (80, 90, 100). Record the font size in the Log. *48.5 KB (`scripts/fonts/trim.sh`).*
+- [x] **M3.3** Glass panels with `@supports` and `prefers-reduced-transparency` fallbacks.
+- [x] **M3.4** `SkyScene.astro` (no JS): four layers from the A artboards, CSS crossfade from `data-weather`, inline script pauses loops when hidden, still frame under reduced motion. Budget 40 KB gzipped. *Home page HTML incl. scene 7.7 KB gz; CSS 5.5 KB gz.*
+- [x] **M3.5** `SetTheSky` React island (`client:load`), full and compact variants, `aria-pressed`, 68/72 px segments. *AC 24.*
+- [x] **M3.6** Sample worst-case backgrounds per theme from the artboards (glass over lightest and darkest scene points; sky text points) and store them as tokens.
+- [x] **M3.7** Contrast test over every text token × worst-case background. *AC 12.*
+- [~] **M3.8** Frame-rate check of a weather switch on a mid-range Android; record the result. *Done when:* under 1.2 s and 60 fps. *Lab (`scripts/perf/weather-switch.mjs`, Pixel 7 viewport, 4× CPU throttle): 60 fps, p95 16.8 ms, first frame ≤ 15 ms, no long tasks. CPU throttling doesn't slow the GPU compositor (blur, blend), so a real device is still needed.*
+
+### M4 · Discover, phone (4 days)
+
+- [x] **M4.1** `src/pages/index.astro` with the `DiscoverExplorer` island (`client:load`, compact card index as props); filters and `?w=` in the URL; last-used filters saved. *AC 2.*
+- [x] **M4.2** Header (Astro): today's date via inline script; the weather word as four CSS-switched variants (no JS).
+- [x] **M4.3** `ActivityCard`: fit pill, four-weather strip, Add button (opens a stub sheet until M6), "Planned · {date}".
+- [x] **M4.4** Results title, hidden count, empty state with Reset filters. *AC 1.*
+- [x] **M4.5** Group, duration and free filters. *AC 3.*
+- [x] **M4.6** Card stagger and weather-word animation, off under reduced motion.
+- [x] **M4.7** Playwright: AC 1–3 end to end.
+
+### M5 · Activity detail, phone (7 days)
+
+- [x] **M5.1** `src/pages/a/[id].astro` with `getStaticPaths` over the collection; static sections in Astro; `$trip` store created per page.
+- [x] **M5.2** Hero, facts strip and fit callout in Astro (CSS shows the callout for the current weather); `WeatherTiles` island (`client:visible`) writes `$weather`. *AC 22.*
+- [x] **M5.3** `RouteMap` island (`client:visible`) with `SchematicMap`: layers, line styles by kind, trail, stops, facilities, pins, draw on mode change (with the Safari fallback); reads `$trip`.
+- [x] **M5.4** `PoiList` and `PoiPanel`, keyboard and screen reader. *AC 19.*
+- [x] **M5.5** `GettingThere` island (`client:visible`): origin, mode, summary, legs, getting back; Way back toggle lives in `RouteMap`, both via `$trip`. *AC 16, 17, 20.*
+- [x] **M5.6** `CostEstimate` island (`client:visible`) with the cap for `$planningDate`. *AC 18.*
+- [x] **M5.7** Plan your visit, newcomer tip, Heads up (`days`, `bookingRequired`) as Astro components.
+- [x] **M5.8** Make a day of it: plain links to the paired activity pages (state resets by navigation; `$trip` origin and group carried via session storage). *AC 21.*
+- [x] **M5.9** `AddToDayButton` island (`client:idle`) in the sticky footer; writes `$sheet` (opens the stub until M6).
+- [x] **M5.10** Playwright: AC 16–22.
+
+### M6 · My plans and Add to a day, phone (9 days)
+
+- [x] **M6.1** `src/pages/plan.astro` with the `MyPlans` island (`client:only="react"`) and an Astro skeleton fallback; v1 migration on first load. *AC 29.*
+- [x] **M6.2** `AddToDaySheet` (lazy, rendered by `SheetHost`): quick days (today, tomorrow, next Sat and Sun, next holiday), mini month, time slots, checks, confirm, done state.
+- [x] **M6.3** Wire the sheet to cards and the activity page. *AC 4, 5.*
+- [x] **M6.4** `CalendarMonth` and `CalendarDay` inside `MyPlans` (dots, sky badge, holiday flag, warnings, today ring, past days).
+- [x] **M6.5** `DayPanel`: relative label, holiday note, compact Set this day's sky, page theme follows the day.
+- [x] **M6.6** `PlanTimeline` with `TimeControls` (±30 min), overlap and closed-day warnings. *AC 8.*
+- [x] **M6.7** Plan B row and Swap. *AC 6, 7.*
+- [x] **M6.8** Edit mode: Change day or time via the sheet. *AC 9.*
+- [x] **M6.9** `UndoToast` for remove, time and day changes.
+- [x] **M6.10** Coming up list and empty-day state with Find ideas for this day.
+- [x] **M6.11** Share a day or 14 days; `SharedPlanView` with merge or replace; v1 links. *AC 10.*
+- [x] **M6.12** Playwright: AC 4–10, 29.
+
+### M7 · Calendar export (4 days)
+
+- [x] **M7.1** `CalendarExport` (lazy chunk in `SheetHost`, so the `.ics` writer isn't in any page's first load), sheet on phone: scope, calendar app, reminder, directions, preview, done state.
+- [x] **M7.2** `.ics` download in the browser with the right file name. *AC 25.*
+- [x] **M7.3** Google Calendar: one link, or one link per event. *AC 27.*
+- [x] **M7.4** Daylight-saving and holiday cases end to end. *AC 26, 28.*
+- [!] **M7.5** Manual import in Apple Calendar (iOS, macOS), Google Calendar, Outlook (web, desktop); record results in the Log. *Needs real devices and calendar accounts (owner). Automated stand-in: every generated file is linted and parsed by ical.js in `npm test`; CI keeps samples as an artifact for the manual run.*
+- [x] **M7.6** Playwright: AC 25–28.
+
+### M8 · Desktop (5 days)
+
+- [x] **M8.1** Top bar with Discover and My plans; `ComingUpRail` island (`client:media="(min-width: 1024px)"`) beside Discover.
+- [x] **M8.2** Three-column activity page.
+- [x] **M8.3** Desktop My plans: large month grid with plan chips, side panel, export dialog, Add to a day dialog.
+- [x] **M8.4** Focus trap and return for every dialog and sheet.
+- [x] **M8.5** Responsive check from 360 to 1440 px; no horizontal scroll.
+
+### M9a · Transport job: routes and tolls (5 days)
+
+*Narrowed by D14: the job only checks each activity's trip from Central and is an optional editor aid, not a launch gate (M24.5 adapts it).*
+
+- [~] **M9a.1** Transport for NSW API key stored as a CI secret; client for Trip Planner and Toll Calculator. *Client written (`scripts/transport/tfnsw.mjs`, response normalising unit-tested); origin stop IDs and the request need checking on the first live run. Blocked on the owner's Open Data Hub key as the `TFNSW_API_KEY` secret.*
+- [~] **M9a.2** Routes for each activity × origin (Saturday late morning), mapped to the content's legs. *Runner written (`scripts/transport/run.mjs`): next Saturday 10:30, every activity × origin, raw journeys to `data/transport/latest.json`. Needs the key to run.*
+- [-] **M9a.3** Tolls and openrouteservice driving times. *Dropped (D14): driving is a hand-kept note. Was not built: the Toll Calculator needs the same key and openrouteservice its own; parking and rideshare stay hand-kept (spec §4.3).*
+- [x] **M9a.4** Map drift check: flag an activity's map when its lines or stops change; never edit maps automatically. *`src/lib/transportDrift.ts`: line sequence, number of changes, time (> 10 min or 20%), and map lines/stops missing for the new journey; report for the PR. Never edits maps.*
+- [~] **M9a.5** Weekly GitHub Action that writes changes and opens a PR with a summary. *`.github/workflows/transport.yml` (weekly, skips without the secret, opens a PR with the report via create-pull-request). Untested until the repo has a remote and the key.*
+- [x] **M9a.6** Seeded test: a changed route produces a drift flag. *Seeded tests: a bus 333 → 380 change flags the route and the map; slower journey, extra change and a new interchange are all reported.*
+
+### M9b · Transport job: Opal fares (4 days)
+
+*Dropped by D14: one hand-kept adult fare per activity, checked during review; the Opal daily cap bounds most day trips.*
+
+- [-] **M9b.1** Import the Opal Fares dataset into `data/opal/`. *Blocked: the Opal Fares dataset comes from the Transport for NSW Open Data Hub (owner's account). Fares won't be hand-invented; current estimates stay in content until then.*
+- [-] **M9b.2** Fare calculator: distance bands per mode, off-peak and transfer discounts, weekday and weekend caps, non-Opal legs.
+- [-] **M9b.3** Check against 10 Transport for NSW sample journeys. *Done when:* all 10 match.
+- [-] **M9b.4** Plug fares into the weekly job's PR.
+
+### M10 · Hardening (5 days)
+
+- [x] **M10.1** Offline: the generated service worker precaches pages, islands and fonts; plans work offline. *AC 14.*
+- [x] **M10.2** Blocked storage works for a whole session. *AC 13.*
+- [x] **M10.3** All analytics events from spec §7 fire with the right properties.
+- [x] **M10.4** Reduced motion and reduced transparency pass. *AC 11.*
+- [x] **M10.5** Visual regression: Discover, an activity and My plans in four weathers, phone and desktop. *AC 23.*
+- [~] **M10.6** Accessibility audit: axe in CI, plus VoiceOver and TalkBack passes; fix findings. *axe (WCAG 2.2 A/AA) runs in e2e on every screen and both sheets, light and dark skies: 0 violations. VoiceOver and TalkBack passes need real devices (owner).*
+- [x] **M10.7** Lighthouse CI: 90+ Performance and Accessibility; JS, scene and font budgets.
+- [x] **M10.8** Privacy page and footer credits (Transport for NSW, data.gov.au).
+- [x] **M10.9** Confirm the product name (D9) is applied to copy and the manifest. *Done: "Australia Activities Planner" in `src/site.ts` (page titles, footer, calendar export PRODID) and `public/manifest.webmanifest` (short name "Activities"). Infrastructure names (Worker, D1 database, R2 bucket, npm package) still say sydney-weekend-finder; renaming them is optional and easiest before the first deploy.*
+
+### M11 · D1 and custom content admin (added 1 Oct 2026)
+
+Owner's decision: content in Cloudflare D1 with pages rendered on demand (D10), a custom admin with built-in accounts (D11), Decap removed.
+
+- [x] **M11.1** Remove Decap CMS (`public/admin`, config, formatter, `content-format.yml`). Move the JSON to `db/seed/activities/` (seed data only). Remove the build-time content collection.
+- [x] **M11.2** D1 schema `db/migrations/0001_init.sql`: activities (draft, published, derived card and export data, version), revisions, users, sessions, invites, login attempts.
+- [x] **M11.3** Data layer `src/server/activities.ts`: public reads (cards, one activity, export info), admin list / get / create / save / publish / unpublish / history / restore / delete; optimistic locking; schema and cross-activity validation; production publishes only verified activities.
+- [x] **M11.4** Auth `src/server/auth.ts`: PBKDF2-SHA256 (100,000 iterations) passwords, hashed session tokens in HttpOnly SameSite=Strict cookies (7 days), invites and resets as one-time hashed links, rate limits (5 per email, 20 per IP, 15 min), dummy hash for unknown emails, last owner protected, password change signs out other sessions.
+- [x] **M11.5** Admin API `src/server/adminApi.ts` (`/api/admin/*`): role checks, Origin check on changes (CSRF), user-facing errors only (others become a logged 500).
+- [x] **M11.6** Astro on Workers (`@astrojs/cloudflare`, `output: "server"`): Discover, activity pages, My plans, export data and 404 from D1; privacy prerendered; draft preview for signed-in editors (`?preview`); pairings link only to published activities.
+- [x] **M11.7** Admin UI (`/admin`): sign-in, invite / reset page, activity list (search, filters), new activity (blank or copy), structured editor for every field with live validation, map editor built in, save / preview / publish / unpublish / history / restore / delete, users (owner), change password. Security headers (no-store, DENY framing, no-referrer, CSP in production).
+- [x] **M11.8** Scripts: `npm run db:reset` (migrations + seed), `npm run db:user` (owner from the command line; password via env), `SWF_STATE` for a separate local database.
+- [x] **M11.9** Tests: unit tests on Node's SQLite with the real migrations (repository, auth); e2e on a throwaway D1 with a per-run admin (sign-in, CSRF and 401s, create → validate → save → preview → publish → unpublish → history → delete, conflict between two editors, invite → editor role → disable). Visitor e2e, visual baselines and Lighthouse budgets unchanged.
+- [x] **M11.10** Offline: static files precached; pages network-first and warmed (`/`, `/plan`) once the service worker is ready; the admin is never cached.
+- [!] **M11.11** Go live (owner): `npx wrangler d1 create sydney-weekend-finder`, put its ID in `wrangler.jsonc`, `npm run db:migrate:remote`, `npx tsx scripts/db/seed.ts --remote` (first time only), create the first owner with `ADMIN_PASSWORD=… npm run db:user -- --email … --name … --role owner --remote`, set `CONTENT_MODE` to `published` for production, then `npm run deploy`.
+
+### M12 · MVP gaps (8 days, added 1 Oct 2026)
+
+From the spec audit (implementation-plan.md §7.2).
+
+- [x] **M12.1** Strings file `src/strings/en-AU.ts` for all visitor-facing text (spec §7); islands and Astro components read from it; a lint check against new inline strings in islands. The admin is exempt. *Done: `src/strings/en-AU.ts` with one module per area (common, discover, detail, plans, sheets, layout, lib); every island, page and lib label reads from it, text unchanged; an ESLint rule rejects words in island JSX text and accessible-name attributes (admin exempt). First-load JS grew about 6 KB gz (95–100 KB, budget 150).*
+- [x] **M12.2** Offline for every published activity page: once the service worker is ready, fetch the activity pages into the pages cache when idle (skip on Save-Data; at most once a day). *AC 33.* *Done: the layout fetches every published activity page into the pages cache when idle, once a day, skipped on Save-Data or blocked storage; `/data/export.json` is cached too, so calendar export works offline. AC 33 e2e.*
+- [x] **M12.3** WebKit and Firefox Playwright projects (phone Safari, desktop Firefox) in CI; fix findings, including the SVG mask draw on Safari. *Done: `phone-safari` (iPhone 15, WebKit) and `desktop-firefox` projects; CI installs both. Found and fixed: Safari's default Tab order skips buttons and let focus leave sheets (the sheet now cycles Tab itself and pulls stray focus back). Test-only changes: clipboard faked (only Chromium can grant it); Option+Tab in WebKit for Set the sky; offline tests skipped in WebKit (Playwright can't emulate offline under a service worker there); the AC 2/16 timing budgets run in Chromium only, because headless Firefox and WebKit paint without a GPU (70–200 ms a frame). The SVG mask draw renders in WebKit headless; a look on a real iPhone is still worthwhile (M3.8).*
+- [x] **M12.4** Transport job reads the published activities from D1 (`wrangler d1 execute --remote`, read-only API token secret) instead of `db/seed/activities`. *Live runs need the deploy and the TfNSW key.* *Done: `scripts/transport/run.mjs` reads published activities from D1 (local by default, `--remote` in the workflow with `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets, `--seed` for the seed files). Live runs still need the TfNSW key and the deploy.*
+- [x] **M12.5** "Needs re-checking" flag and filter in the admin list for activities last verified more than 6 months ago (spec §5). *Done: "Needs re-checking" badge and filter in the admin list (`needsRecheck`, unit-tested).*
+- [x] **M12.6** Friendly error page with retry when D1 can't be reached (spec §7 Reliability). *Done: `src/pages/500.astro` (reads no content); the service worker treats a 5xx as offline and serves the cached page when it has one. Checked by serving a build against an empty D1.*
+- [!] **M12.7** After the first deploy: measure TTFB from Sydney; if p75 > 300 ms, cache public pages with the Workers Cache API and clear on publish. *Needs the deploy.*
+- [x] **M12.8** E2E for AC 30's last part: unpublishing an activity turns pairings to it into plain text on the public pages. *Done: admin e2e unpublishes Clovelly, checks Coogee's pairing is plain text, republishes.*
+
+### M25 · Real map replaces the schematic (D15, added 2 Oct 2026)
+
+Done together with M24, because both rewrite the same route and map data.
+
+- [x] **M25.1** `scripts/map/build-geo.mjs`: places (Nominatim; unfound names estimated from the old layout and listed for editors), walking lines (OSM foot routing), toilets and cafés (Overpass), trip from Central and way back (Trip Planner, journey matching the written lines); report in `.map-data/geo-report.md`.
+- [x] **M25.2** Schema: `geo` (places, trail, facilities, trip, back, source, checked) replaces `map`; `routes` per D14. Seed converted (`scripts/db/convert-d14-geo.mjs`). *Done 2 Oct 2026.*
+- [x] **M25.3** Activity page: the real map is the only map (pins synced with the stop list, facilities and Way back toggles, lines in words, fallback without WebGL or tiles); SchematicMap removed.
+- [x] **M25.4** Admin: Places editor on a real map (drag pins, edit names, notes, types), GeoJSON paste for lines, `checked`; the schematic map editor removed.
+- [x] **M25.5** Tests, content checks and the transport drift check move to `geo`.
+- [x] **M25.6** Canvas: A detail artboards show the real map (images rendered from our tiles, pins on top).
+- [x] **C1.8** Editors check every activity's map (places marked estimated in the report first) and set `geo.checked`.
+
+### M24 · Getting there, simplified (4 days, added 2 Oct 2026)
+
+D14. Behaviour in spec §3.2 items 3–5, §4.3 and §6.6; design in the A · Activity detail artboards, canvas Version 36.
+
+- [x] **M24.1** Schema and content: `routes` per spec §4.3 (one `pt` trip from Central with `back`; `drive` as a note without legs or lines; optional `ride` sentence; `unavailable.drive`; no `car` map lines). A D1 migration and the seed files convert the 29 activities: keep `pt.central` and `pt.back`, keep drive time from Central, `perCar`, `perCarLabel` and notes; turn ride notes or `unavailable.ride` into `ride`; drop the Circular Quay and Parramatta trips, drive and ride legs, per-origin totals and rideshare prices. *Done when:* all 29 validate and round-trip through the admin.
+- [x] **M24.2** Admin editor: Getting there fields match (one trip, Driving? note, rideshare line); the map editor has no car lines; the "route uses a line the map doesn't have" check uses the one trip.
+- [x] **M24.3** `lib/route.ts` (way-in strip, last stretch) and `lib/cost.ts` (public transport only, "From the city centre." note, no cars) with unit tests; fixtures updated.
+- [x] **M24.4** `GettingThere` becomes a static Astro component (nothing interactive left) and `RouteMap` stays an island: no origin or mode pickers; summary, way-in strip, last stretch, getting back, tap-on reminder, Directions from where you are, Driving? note; the map highlights only the trip's lines. `$trip` drops origin and mode (pairings carry the group only); calendar export directions use the trip from the city; new text in `src/strings/en-AU`.
+- [x] **M24.5** Transport job checks the trip from Central only (`ORIGIN_STOPS`, drift check against `routes.pt`); stays optional.
+- [x] **M24.6** Tests: AC 16, 17, 18, 20, 21 rewritten (unit and Playwright); full suite green in all engines, axe clean.
+- [x] **M24.7** Bring implementation-plan.md (M9a, M9b, D6, data sources, timeline) and feasibility.md in line with D14. *Done 2 Oct 2026.*
+
+### Phase 2 (spec §11; break each into smaller tasks when it starts)
+
+- [x] **M13.1** Surprise me pick rules in `src/lib` with tests (fit 2, else fit 1 with a note; no planned items; not the last three). **M13.2** Button, reveal motion, Add to a day and Another one. **M13.3** Analytics event and e2e.
+- [x] **M14.1** `access` in the schema and the admin editor. **M14.2** Pram-friendly and Step-free chips (URL and saved filters) and ranking filter. **M14.3** Access section with "Not yet checked"; e2e and axe.
+- [x] **M15.1** D1 `events` migration and repository (draft / publish / history). **M15.2** Admin list and editor for events. **M15.3** On soon row on Discover. **M15.4** Add to a day limited to event dates; events in plans, shares and export. **M15.5** Seasonal tag and boost within a fit tier.
+- [x] **M16.1** Cron Trigger → Open-Meteo → D1 `forecasts` (mapping rules unit-tested). **M16.2** `/data/forecast.json` with 1 h cache; nearest area per activity. **M16.3** Discover default and auto skies with captions, Use forecast. **M16.4** Change alert on My plans. **M16.5** Offline fallback and the credit line.
+- [x] **M17.1** Protomaps extract in R2 *(owner creates the bucket)*. **M17.2** Lazy MapLibre wrapper with schematic fallback. **M17.3** Discover List / Map with pins and compact card. **M17.4** Activity maps from reviewed GeoJSON (NPWS tracks, OSM facilities) edited in the admin. **M17.5** My plans day map. **M17.6** RFS and NPWS alerts fetched and cached by the Worker.
+- [!] *Deferred (D14): a separate Discover feature; needs a trip planner per state.* **M18.1** Suburb list and picker. **M18.2** Weekly job fills D1 `travel_times`. **M18.3** Card times and "Within 1 hr" filter. **M18.4** Ranking tie-break with updated golden tests. *Blocked: TfNSW key (M18.1 and M18.3 can be built against recorded data).*
+
+### Phase 3 (spec §12; after launch, D12 first)
+
+- [ ] **M19** Visitor accounts and sync (passkeys, magic links, plan sync, export and delete). *Needs D12 and an email service.*
+- [ ] **M20** Group plans and voting (Durable Objects, web push). *Needs M19, Workers Paid, Q7.*
+- [ ] **M21** Community tips with the admin Tips queue. *Needs M19, Q8.*
+- [ ] **M22** Translations (ICU on the M12.1 strings, `/ko/…`, admin translation view). *Needs M12.1 and translators.*
+- [ ] **M23** More cities (city column, per-city time zone, holidays, fare cap, forecast; Getting there is hand-written per city, D14). *Needs content per city.*
+
+### C1 · Content (editor, parallel, 4–5 weeks)
+
+- [x] **C1.1** Verify the 29 drafts against official sources (Transport for NSW, NSW National Parks, venues), including each one's trip from Central, last stretch and Driving? note (after M24.1); set `lastVerified` and `pricesChecked`.
+- [x] **C1.2** Confirm the uncertain details: bus 339 to Clovelly, bus 135 to North Head, Carriageworks hours, Wylie's Baths, Everglades Gardens and Old Government House prices.
+- [ ] **C1.3** Write at least 11 more activities to reach 40 and meet the §5 mix (10+ `rainy: 2`, 10+ Free, 12+ per group in every weather).
+- [ ] **C1.4** Place each new activity on the real map (run `scripts/map/build-geo.mjs` for a first draft, then the Places editor; D15) — was: draw a schematic map for each new activity with the map editor.
+- [ ] **C1.5** Pairings for every new activity, all pointing to real activities.
+- [x] **C1.6** Mark each checked activity `status: "verified"`.
+- [ ] **C1.7** Access facts (Access facts section in the admin) for every activity where the venue or NSW National Parks publishes them (spec §11.6); the Pram-friendly and Step-free chips appear once any are published.
+
+## 4. Acceptance criteria (spec §9)
+
+| AC | Short name | Milestone | Status |
+|---|---|---|---|
+| 1 | Rainy hides Skip, hidden count | M4 | [x] |
+| 2 | Filters in the URL | M4 | [x] |
+| 3 | Family filter | M4 | [x] |
+| 4 | Add to a day from the activity page | M6 | [x] |
+| 5 | Add from a card, quick days | M6 | [x] |
+| 6 | Plan B on a rainy day, keeps time | M6 | [x] |
+| 7 | No duplicate Plan B | M6 | [x] |
+| 8 | Time change, overlap warning, undo | M6 | [x] |
+| 9 | Closed days, change day | M6 | [x] |
+| 10 | Share link and v1 links | M6 | [x] |
+| 11 | Weather re-theme speed, reduced motion | M10 | [x] |
+| 12 | Contrast in all themes | M3 | [x] |
+| 13 | Blocked storage | M10 | [x] |
+| 14 | Offline | M10 | [x] |
+| 15 | Admin save and publish checks | M1, M11 | [x] |
+| 16 | Trip from the city, last stretch, directions link | M5, M24 | [x] |
+| 17 | Getting back, Way back | M5, M25 | [x] |
+| 18 | Family cost with Opal caps | M5 | [x] |
+| 19 | POI list and pins | M5, M25 | [x] |
+| 20 | Driving? note and rideshare line | M24 | [x] |
+| 21 | Suggestions open the activity, group carries | M5, M24 | [x] |
+| 22 | Weather on the activity page is app-wide | M5 | [x] |
+| 23 | Type doesn't change with weather | M10 | [x] |
+| 24 | Set the sky buttons | M3 | [x] |
+| 25 | `.ics` export for a day | M7 | [x] |
+| 26 | Daylight saving in export | M7 | [x] |
+| 27 | Google Calendar links | M7 | [x] |
+| 28 | Labour Day label and fare cap | M7 | [x] |
+| 29 | v1 plan migration | M6 | [x] |
+| 30 | Draft, publish, unpublish, preview | M11, M12.8 | [x] |
+| 31 | Two editors, conflict | M11 | [x] |
+| 32 | Admin sign-in and permissions | M11 | [x] |
+| 33 | Every activity offline | M12 | [x] |
+
+## 5. Design follow-ups (canvas)
+
+- [x] **DF1** Update the A · Sky Mode Discover and Activity detail prototypes: replace the Sat / Sun buttons and "My weekend" tab with Add to a day and My plans. *Canvas Version 33: cards and activity pages link to Add to a day, the tab and rail to My plans; header reads "Sydney's looking …" with today's date. Templates only, so the engines and parity checks are unchanged.*
+- [x] **DF2** Visual check of the calendar artboards in the canvas (contrast on rainy glass, Pick a date behaviour, Google link done state). *Checked with the artboard checks instead of eyes (the canvas needs a claude.ai sign-in in the browser pane): `tcal.js`, `a1-check.js`, `t-addtoday.js`, `check-cal-desktop.js` all 0 problems, including Pick a date, closed days, overlaps, Google one-link and many-link done states. Rainy glass contrast is covered by the app's AC 12 test (same tokens since DF4). A look by eye in the canvas is still worthwhile.*
+- [x] **DF3** Snapshot updated artboards into `design/prototype-logic/artboards/` after any canvas change. *Version 33 snapshotted; `t6.js` / `t7.js` pass on it.*
+
+- [x] **DF5** Canvas Versions 35–36: A · Activity detail has the simplified Getting there (D14). Snapshot both artboards into `design/prototype-logic/artboards/`, and note in that folder's README that A's detail logic now differs from `detail-engine.js` (`parity-detail.py` will flag it; B and v1 keep the old engine). *Done 2 Oct 2026: both artboards and `canvas.json` from Version 36; README notes the expected parity DIFF; `t7.js` checks the mode reset on B only. `t5.js` (4,176 runs, 0 problems), `t6.js`, `t7.js` and `dupattr.py` pass.*
+- [x] **DF4** Canvas: apply the contrast fixes from M3.7 to the A artboards (selected Set the sky segment skies end darker, cloudy's is a deeper slate `#5F6D7F → #697789`; sunny `mute` 0.96 / `skyMute` 0.97; hot `mute` 0.95 / `skyMute` 0.96), and keep sky text clear of the sun (phone x ≤ 290 at 390 wide; desktop within the header column, x ≤ 444). *Done in canvas Version 32 (all seven A artboards, plus the lighter rain); snapshots updated.*
+
+## 6. Commands
+
+Prototype reference (works today, from the project root):
+
+```bash
+node design/prototype-logic/checks/tcal.js
+```
+
+App (from M0 onwards; fill in as scripts are added):
+
+```bash
+npm run dev
+```
+
+```bash
+npm run test
+```
+
+```bash
+npm run build
+```
+
+```bash
+npm run e2e
+```
+
+Theme and fonts (re-run when a scene or the font subset changes; see the comments in each script):
+
+```bash
+node scripts/theme/sample-scenes.mjs http://localhost:4322
+```
+
+```bash
+scripts/fonts/trim.sh
+```
+
+```bash
+node scripts/perf/weather-switch.mjs http://localhost:4330 4
+```
+
+## 7. Log
+
+Newest first. One line per session: date, what changed, anything learned or decided.
+
+- **2026-10-02** Unconfirmed details (owner): new optional `unconfirmed` list per activity (`section` + `note`, spec §4.1), shown as a dashed **Not yet confirmed** note at the end of the Map, Getting there, Cost, Plan your visit and Access sections (spec §3.2); edited in the admin's new "Not yet confirmed" section with **Confirmed: remove**; editor guide step 7. All 29 seeds carry their open points from docs/activity-verification.md (62 entries, mostly parking, last ferries, resale prices). Intended to be filled by visitor contributions later (M21). Checks: Vitest 172/172, Playwright detail.spec 20/20 (phone, desktop, incl. a new Not yet confirmed test), lint and tsc clean.
+- **2026-10-02** C1.1, C1.2, C1.6, C1.8: all 29 seed activities checked against the Transport for NSW Trip Planner API (Sat departures from Central), venue and NSW National Parks sites and OpenStreetMap, fixed, and marked `verified` with `lastVerified`, `pricesChecked` and `geo.checked` = 2026-10-02 (owner asked for the records to be set). Evidence and what stayed unconfirmed per activity: [docs/activity-verification.md](docs/activity-verification.md). Main fixes: every "City Circle"/"City" line named (T1/T2/T8); buses corrected (Coogee 372 → 374, North Head 135 → 161, Featherdale and Balmoral buses named, Clovelly 339 confirmed); ferry and train times; prices (Opera House, Taronga, SEA LIFE, Featherdale, Icebergs, Wylie's, Everglades, Old Government House, Pylon Lookout); hours; Taronga's Sky Safari closed until late 2027; Harbour Bridge lifts at both ends; ~30 map pins moved onto their OpenStreetMap positions and several trips/ways back redrawn (Royal NP's "BUNC" label dropped). Unit tests that assumed an all-draft seed or the prototype's old prices now seed drafts explicitly / skip the re-priced activities (cost golden: 7 activities out, threshold 80). Checks: Vitest 171/171, lint and tsc clean; Playwright not rerun.
+- **2026-10-02** Discover aligned to A · Sky Mode — Desktop and made responsive (owner). Left side: product name line, 72 / 124 px headline scaled to the column (container units), 17 px intro, desktop sky-picker sizes, Use forecast beside the forecast text (both sizes), filters in a glass card with Who's coming / How long labels and Free only on the How long row (phones keep the scrolling rows). Coming up rail rebuilt to the artboard: Open My plans, count line, Share (next 14 days), and per planned day a card in that day's own sky (small animated scene, `data-weather` palette), its sky picker, plans with fit and remove (Undo), Plan B with Swap it in; no top bar on desktop Discover (spec §3 updated). Responsive: left column `clamp(360px, 100vw − 900px, 540px)`, results flexible, rail 300–344 px, page up to 1760 px; result tiles fill as many 232 px+ columns as fit (1 at 1024, 2 at 1280–1440, 3 at 1920), tablets get tiles too. Fixed: `.eb` (unlayered `display: flex`) beat `hidden`. New tests: rail (desktop, Firefox), result columns per width, no horizontal scroll up to 2560 px. Checks: astro check 0, lint clean, Playwright all passing except the items below; Discover baselines updated. Not mine: another session ("Activity items validation") was editing agnsw, aus-museum, balmoral and bondi-coogee seeds during this work (now verified), which fails 5 unit tests that assume drafts and the old fares.
+- **2026-10-02** Discover desktop results aligned to A · Sky Mode — Desktop (owner: the list didn't match the design). The results column is 532 px (artboard 540 / 532 / 344; the left side flexes, min 360 px) and, once it's 460 px wide, a container query turns the cards into the artboard's two-column tiles: big number beside the fit chip, kicker under it, duration and cost above a taller fit strip (icons over labels), full-width Add to a day; one markup for both layouts (`rc-` classes in global.css), so nothing moves after load. Results header on both sizes as in the artboards: plain hidden-results note, Surprise me and List / Map on one row. Found and fixed an app-wide bug: an unlayered `button { font: inherit }` in global.css beat every text-size, weight and colour class on buttons (all rendered 16 px regular); element defaults now sit in `@layer base`. Discover baselines updated; Vitest 171, astro check 0, lint clean, Playwright 221 passed / 25 skipped with VISUAL=1. Still different from the artboard: the left side (brand line, 72 / 124 px headline, filters in a glass card with Who's coming / How long labels and Free only on the How long row) and the Coming up rail (full height, Open My plans link, Share, a card per day).
+- **2026-10-02** M24 + M25 (owner: remove the schematic, real map only, draw the real trip). Schema: `routes` per D14 (one `pt` trip with `back`, Driving? note, `ride` sentence, `unavailable.drive`) and `geo` (places, trail, facilities, trip, back, source, checked) replace `map`; 29 seeds converted (`scripts/db/convert-d14-geo.mjs`) and filled by `scripts/map/build-geo.mjs` (Nominatim, OSM foot routing, Overpass, TfNSW Trip Planner; cached in `.map-data/`). Visitor: static `GettingThere.astro`; `RouteMap` draws the trip, way back (toggle), walking line, facilities and numbered pins over MapLibre, with the lines in words, the credit and a fallback list; `SchematicMap`, `StreetMap` and the GettingThere island removed; `lib/route.ts`, `lib/cost.ts`, calendar export, `$trip` and content and drift checks moved to the new shape; shared `maplibreSetup.ts` (the MapLibre worker is imported directly with `?worker&url`, which fixed an empty worker bundle in builds). Admin: Places editor on a real map (draggable pins synced with rows), GeoJSON paste for lines, `checked` reset on copy; schematic editor removed; editor guide "Checking the map". Data fixes after review: places already placed are kept as they are (the outlier step had moved Circular Quay to Watsons Bay and stacked Taronga's, Featherdale's and the Botanic Garden's places on one point; 17 places re-placed from OSM features, to check), no walking line where the written route rides on from the start (Blacktown bus, Cronulla ferry), across water or round a bay; the report lists 40 places "estimated or placed by hand". Spec §3.2, §4.3, §11.2 and AC 16, 17, 19; canvas Version 41 (A detail boards show the real map, rendered from our tiles). Checks: Vitest 171, astro check 0 errors, lint clean, Playwright 221 passed / 25 skipped with VISUAL=1 (activity baselines updated; the map is masked), Lighthouse / 98, /a/bondi-coogee 96, /plan 97. Known: where the start is far (Circular Quay for Taronga and Watsons Bay) the fitted view is wide and the zoo's pins overlap until zoomed in. Nothing committed.
+- **2026-10-02** Canvas Version 39 (owner asked: design A aligned to the spec, plus polish). Canvas renamed Australia Activities Planner. A · Activity detail — Mobile was damaged (the map's stops and list and the start of Getting there were missing since Version 36; the repo snapshot too): rebuilt to D14. Both detail boards: Access section ("Not yet checked"), RFS fire-danger line in Heads up (sample values), Show the street map (honest placeholder). Discover boards: forecast caption with Use forecast and the Open-Meteo credit (sample forecast), Surprise me with its reveal, List / Map toggle (placeholder map, pins as text), spec copy for the empty state. Calendar boards: forecast skies and captions, Use forecast, the change banner, Show this day on a map (placeholder), Change day or time in edit mode, Undo toasts, share buttons, read-only past days; Add to a day polish. All: product name, two-tone focus rings on every sky, 44 px controls, consistent spacing and "est." marking. Snapshots in `design/prototype-logic/artboards/`; t5 (4176 runs), t6, t7, a1-check, check-cal-desktop, t-addtoday all 0 problems. The A boards' logic now differs from `engines/` (parity.py will report DIFF; expected, as for D14).
+
+- **2026-10-02** DF5: canvas Version 36 snapshotted (A · Activity detail mobile and desktop, `canvas.json`) into `design/prototype-logic/artboards/`; README notes D14 and the expected `parity-detail.py` DIFF for A; `t7.js` no longer forces a travel mode on A. Checks: t5 4,176 runs 0 problems, t6 and t7 all hops OK, dupattr 0.
+- **2026-10-02** M24.7: implementation-plan.md (design-reference note, scope, `GettingThere` static, `$trip`, repo layout, port and component tables, M9a narrowed, M9b dropped, new M24 row, M18 deferred, M23, order, testing, risks incl. stale hand-kept fares, definition of done, a dated plan-update section) and feasibility.md (D14 note, verdict, feature table, Getting there and costs rewritten with an Other states section, correction 3 superseded, maintenance table, not-checked list) brought in line with D14. No code changed.
+- **2026-10-02** Prototype (owner asked): the real map leads on Bondi to Coogee. `geo.points` (real positions of the numbered stops, matched by `n`) added to the schema; seed data for Bondi to Coogee from OpenStreetMap (stops geocoded with Nominatim, line routed through them by routing.openstreetmap.de, 6.8 km; 4 toilets and 6 cafés within 80 m), marked approximate. The map card gets Real map / Schematic (real by default when there are points and tiles); compact numbered pins synced with the stop list and note; Facilities toggles the dots; Way back stays on the schematic. Fixes found on the way: the WebGL check ran during server rendering (always "can't be shown"), and a map chunk that fails to load (offline) crashed the whole map card, now caught by `MapBoundary` (falls back to the schematic or a message); pasting GeoJSON in the admin no longer drops the stop positions. `scripts/db/reimport.ts` reloads one activity from its seed locally. Vitest 158/158, Playwright 220 passed / 25 skipped (visual: the live map is masked), Lighthouse 97. Decision pending: adopt the real map for every activity (and drop or keep the schematic).
+
+- **2026-10-02** Owner decided **D14**: Getting there keeps one public transport trip from the city centre per activity (way-in strip, last stretch, getting back, Directions from where you are via Google Maps) and a Driving? note with an optional rideshare line; the origin picker, Transport / Drive / Rideshare switch, fare calculator and tolls are gone. Canvas Versions 35–36 (A · Activity detail, both sizes). spec.md: header note, §3.2 items 3–5 and 9, motion, §4.3 schema and data rules (fares hand-kept, optional trip check from Central, why), §6.6 (public transport only, no cars), §8 data sources and jobs, AC 16, 20, 21, §11.3 deferred, §12.5. Tracker: D14 added, D6 superseded, M9a narrowed (M9a.3 dropped), M9b dropped, new M24 (4 days), M18 deferred, AC 16/20/21 reopened, DF5. No code changed yet.
+
+- **2026-10-02** Owner paused all Getting there work (may remove the feature). Test stability: Firefox and WebKit projects run with reduced motion (CPU-rendered skies starved the run), M10.3 gets 60 s, AC 3 waits for the results island. Full suite: 218 passed / 23 skipped with visual, then 194 passed / 47 skipped without, twice clean.
+
+- **2026-10-02** Owner: product named **Australia Activities Planner**, Sydney first (D9 decided; `src/site.ts`, manifest, spec, intent, plan, feasibility). Owner added a Transport for NSW API token to `.dev.vars` (created on the Open Data Hub under profile → API Tokens; there are no "applications" any more). Verified live: one Central → Bondi trip (T4 + bus 379, 35 min), then the full weekly check against the local D1: 87 journeys, 75 flagged for review (the drafts predate the Metro and use "City Circle" for several lines). `transport-report.md` is now gitignored. Next with the key: M9a live-run tasks, M18, and live trips from the visitor's location (design proposed, not yet approved).
+
+- **2026-10-02** M17 map view: Sydney Protomaps extract (31 MB, `pmtiles` from Homebrew; `.map-data/`, gitignored) and Noto Sans glyphs in R2 (binding `MAP`, `scripts/map/upload.ts`, local and `--remote`), served by `/map/*` with byte ranges; `mapAvailable()` switches the map UI on only when the tiles are there. `MapView` (MapLibre 6 + pmtiles + Protomaps basemap, worker bundled via `?worker&url`, lazy, not precached): Discover List / Map with fit-labelled pin buttons and the card under the map; My plans "Show this day on a map" (numbered pins); activity pages "Show the street map" under the schematic one, with the real trail and toilets / cafés from `geo` (pasted GeoJSON in the admin's Street map data; `scripts/map/osm-trail.mjs` fetches OSM routes for review); RFS fire danger and total fire bans for outdoor activities in Heads up (Worker-fetched, 15-minute cache, falls back to "check the RFS site"). Cards gained `location`; `scripts/db/refresh-derived.ts` rebuilds published card data (now part of `npm run deploy`). Found: Playwright with 6 workers × 4 engines overloads the single local preview (Firefox pages time out), so local runs use 4 workers; map e2e runs on Chromium only. NPWS closure alerts: no open feed found (spec open question 13). Vitest 158/158, Playwright 218 passed / 23 skipped (all engines, visual), Lighthouse 94–99, first-load JS ≤ 105 KB, precache 595 KB.
+
+- **2026-10-02** M15 events and seasonal highlights: migration `0003_events.sql`, `eventSchema` (ids `e-…`), `src/lib/events.ts` (EventCard, export info, On soon, date labels); planning treats events like activities with a date range (`runsOn`, closed wording, quick days = the event's days, never a Plan B, export uses the venue and official page); On soon row on Discover (group filter, fit shown, Add, official link, "About the place" when it's at an activity); event plans in My plans link to the official page; Seasonal tag and in-season boost in ranking. Admin side (agent): `src/server/events.ts`, API routes, Events list / new / editor pages (drafts can be saved half-filled; the schema is checked on Publish), editor guide section. Closed a gap: deleting an activity an event links to is refused, and visitor pages drop the link while that activity is off the site. Vitest 153/153, Playwright 207 passed / 17 skipped (all engines, visual), Lighthouse 96–98, JS ≤ 103 KB.
+
+- **2026-10-01** M16 live forecast: migration `0002_forecasts.sql`; `src/server/forecast.ts` (fetch four areas from Open-Meteo, map with the §11.1 rules, upsert, drop old days; an area that fails keeps its last rows); `src/worker.ts` wraps Astro's handler and adds a Cron Trigger every 3 hours (`wrangler.jsonc` `main` and `triggers`); `/data/forecast.json` (1 h cache). Checked locally against the real API (`/cdn-cgi/handler/scheduled`: 28 days for 4 areas). Client: `$forecast` kept on the device (works offline with its age), Discover defaults to today's city forecast unless the user picked a sky today or the link has one, forecast captions with **Use forecast** and the Open-Meteo credit under Set the sky and each day's sky, auto skies written into plan days (never over the user's; a day's area comes from its first plan), and a My plans banner when a changed forecast turns a plan into a Skip. Unit tests (mapping, areas, parsing, plan updates, age, the job on SQLite); e2e with a routed fixture forecast. Fixed on the way: Discover rewrites `?w=` on load, so "did the link carry a sky" is now read when the weather store starts. WebKit test harness: requests cut off by navigation are reported as page errors there (filtered in AC 13); AC 11 polls for animations to end. Vitest 140/140, Playwright 206 passed / 17 skipped (all engines, visual), Lighthouse 97–98, JS ≤ 102 KB.
+
+- **2026-10-01** M14 accessibility filters: optional `access` (prams, step-free: yes / partial / no; accessible toilet; notes) in the schema, card data and the admin editor ("Access facts", off until checked); Pram-friendly and Step-free chips (URL `pram=1`, `step=1`, saved filters; only "yes" matches) shown once any published activity has access facts; an Access section on every activity page ("Not yet checked" until filled in, else the facts, notes and the verification date). No access data was invented: the seed has none, so the chips stay hidden until an editor checks venues. Unit tests for the query and ranking; admin e2e enters facts, publishes, filters, then reverts. Vitest 128/128, Playwright 174 passed, visual unchanged.
+
+- **2026-10-01** M13 Surprise me: `src/lib/surprise.ts` (fit 2, else fit 1 with a note; planned and the last three left out, recent picks allowed back when they're all there is; unit-tested), a Surprise me button under the results title, a reveal panel that pops in (instant with reduced motion) and takes focus, with Add to a day, Another one and Close; `surprise_pick` analytics event. E2E in all engines; Discover screenshot baselines updated for the new button.
+
+- **2026-10-01** M12.1 strings file (five parallel agents, one per area, then de-duplicated: group, month and fit-note text shared). Lint rule against inline visitor text. Lighthouse caught the offline warm-up competing with the first load (total 773 KB, Discover performance 76): it now starts 10 s after load and skips slow connections; budgets pass again (performance 97–98, about 205 KB total, JS 95–100 KB). Checks: Vitest 121/121, Playwright 193 passed / 17 skipped (all engines, visual), astro check 0, lint clean.
+
+- **2026-10-01** M12 (loop): offline for every activity page (AC 33), D1 error page with service-worker fallback, transport job reads D1, "Needs re-checking" flag, AC 30 pairing e2e, WebKit and Firefox in e2e. Real bug found by WebKit: focus could leave sheets with Safari's default Tab order (fixed). Checks: Vitest 121/121, Playwright 193 passed / 17 skipped across Chromium phone and desktop, WebKit phone, Firefox desktop and admin (with visual), astro check 0, lint clean.
+
+- **2026-10-01** Spec and plan brought up to date after M11 (owner asked). spec.md: header and status, §1 (no visitor accounts; editors use `/admin`), A's fit wording on cards, new §4.5 (D1 storage and the admin), transport job reviews against D1 and never edits content, §5 stale flag in the admin, §7 (server-rendered TTFB target, offline for every published activity, strings file path, admin cookie in privacy, browsers tested, reliability), §8 stack rows, AC 15 rewritten for the admin, new AC 30–33, Phase 2 and 3 adapted to Workers and D1 (Cron Trigger forecast, R2 tiles, D1 tables for events, travel times, tips, locales and cities; Supabase replaced by a proposal), §13 marks Q1–4 and 6 as built-with and adds Q11–12. implementation-plan.md: stack, pages, island rule, repo layout, components, §7.1 built / §7.2 remaining (M12 MVP gaps, M13–M18 Phase 2, M19–M23 Phase 3 with estimates, needs and order), testing, D1 risks, definition of done. Tracker: M12–M23, D12–D13, AC 30–33, locked choices corrected. No code changed.
+
+- **2026-10-01** Fixed a plan-loss bug exposed by M11 (caught by a flaky AC 9 run): on pages without the activity list (404, privacy) the plan clean-up treated every activity as unknown and deleted the visitor's plans. Now the clean-up skips pages without the list and never deletes plans for unpublished activities (they're hidden until republished, so a quick unpublish-and-fix doesn't wipe people's plans). Regression unit test added. Playwright 90/90 twice in a row.
+- **2026-10-01** M11 (owner's request): Decap removed; content moved to Cloudflare D1 with public pages rendered on demand (Astro + `@astrojs/cloudflare`); custom admin at `/admin` with built-in accounts. Public reads use derived card / export columns so list pages don't parse every activity. Found on the way: Astro can't rewrite on-demand routes to a prerendered 404 (404 now renders on demand); the service worker had to move to `dist/client/`; the local workerd preview doesn't compress, so the Lighthouse script now measures through a gzip proxy (it deadlocked at first because Lighthouse ran with a synchronous `execFileSync` in the proxy's own process). Results: Lighthouse 95–98 performance, 100 accessibility / best practices / SEO, first-load JS 87–94 KB gz; Vitest 119/119; Playwright 90/90 (incl. 5 admin flows); 24 visual baselines unchanged; astro check 0; lint clean. Going live needs the owner (M11.11).
+- **2026-10-01** Service worker: precache is now the app shell only (Discover, My plans, privacy, 404, JS, CSS, font, export data: 44 files) instead of every page (~4 MB raw / ~600 KB gz for 29 activities, growing with content). Activity pages are cached on visit (network-first), so opened and planned activities still work offline; AC 14 test updated to match.
+- **2026-10-01** M1.7: Decap CMS at `/admin/` with a text-fields-only config. Tested end to end with Decap's local backend: an edit to one field saved every other field unchanged (the open question from the audit), but with keys reordered; added a canonical formatter (`npm run content:format`, checked on PRs; `content-format.yml` fixes Decap's direct commits) and editor-guide steps. Three content files had slightly different key order and were normalised (no value changes). Remaining: repo name, GitHub OAuth proxy, D8.
+- **2026-10-01** DF1–DF3: canvas Version 33 (Sky Mode Discover and activity prototypes use Add to a day / My plans; header copy per spec), checked with the artboard check scripts (all 0 problems) and snapshotted. Fixed: the prototype check scripts stopped running when the app switched to ESM (`design/prototype-logic/package.json` marks them CommonJS).
+- **2026-10-01** M9a (key-free parts): drift check with seeded tests, Trip Planner client and normaliser (unit-tested against a rapidJSON-shaped sample), weekly runner writing `transport-report.md` and `data/transport/latest.json`, and a weekly workflow that skips without `TFNSW_API_KEY`. Nothing has called the live API yet: stop IDs and request parameters follow the docs and must be checked on the first run. M9a.3 and all of M9b are blocked on the owner's Open Data Hub account.
+- **2026-10-01** M10: offline (every page, island, font and the export data precached; query strings ignored for matching; the service worker now registers on any production build, so e2e covers AC 14); blocked storage falls back localStorage → sessionStorage → memory, so plans survive page changes for the session (AC 13); `activity_view` added and Plausible's queue stub, all §7 events checked in e2e; reduced motion now also zeroes animation delays (staggered cards were still "running"), reduced transparency gives solid glass (AC 11); AC 23 as a DOM typography test across four skies (selection weight excluded: it's the specified selection cue), plus opt-in pixel baselines (`VISUAL=1`, macOS baselines committed; Linux CI needs its own); axe on every screen and sheet: 0 violations; Lighthouse (mobile): Performance 97–99, Accessibility / Best practices / SEO 100 on Discover, an activity and My plans, budgets met (script 89–94 KB, font 48 KB, total 163–172 KB) and checked in CI (`npm run lighthouse`). Fixes found by Lighthouse: no favicon (added favicon + PWA icons, maskable too), the Add to a day button's name didn't start with its visible text (WCAG 2.5.3), and Discover's Speed Index (the sky's endless loops) fixed by starting ambient loops when the page goes idle after load. Privacy page, footer credits, styled 404; product name centralised in `src/site.ts`.
+- **2026-10-01** M8: desktop (≥ 1024 px). Discover: sticky left column (headline, Set the sky, filters, now their own `DiscoverFilters` island), results, `ComingUpRail` (`client:media`, phones never load it); Discover / My plans become a top-right pill. Activity page: three columns by CSS grid with the DOM left in spec order (so focus and reading order match): info on the left, map and Getting there + cost as sticky, independently scrolling columns; Add to a day moves to the header row. My plans: month grid with up to 2 plan chips per day and "+N more", the day as a sticky side panel. Sheets are centred dialogs from 768 px; focus in / trap / Escape / return tested (M8.4). Width sweep 360–1440 px on Discover, two activities and My plans: no horizontal scroll. Note: the dev server once served stale scoped CSS after an edit; restarting it fixed that (not a code issue).
+- **2026-10-01** M7: Add to your calendar sheet (lazy chunk): this plan / this day / everything coming up; Apple or Outlook (.ics download, file `sydney-plans-{date|upcoming}.ics`), Google (one link, or one per event); reminder for files; Include directions; preview; done state. Export data (place + directions per activity) is a static `/data/export.json`, fetched when the sheet opens, so it isn't in every page. E2E AC 25–28 (downloaded file parsed for times, place, directions, VALARM; DST start day; Google URL params; Labour Day weekend cap and Wednesday weekday cap). M7.5 (manual imports into Apple / Google / Outlook) is blocked on the owner's devices.
+- **2026-10-01** M6: Add to a day sheet (lazy in `SheetHost`, which now gets a compact activity index on every page and runs the plan migration): quick days per spec (today, tomorrow, next Sat/Sun, next holiday ≤ 14 days; the prototype used the next 5 days), mini month with closed days struck through, Suggested / Morning / Midday / Afternoon / Evening / exact time, check (fit for the day's sky, overlap, closed, holiday), done state, edit mode (Change day or time) with Undo. Shared `Sheet` shell: focus in, Tab trapped, Escape and scrim close, focus returns; bottom sheet on phone, dialog from 768 px. `/plan` (`MyPlans`, client-only with skeleton): month grid (dots, sky badge, holiday flag, warnings, today ring, past dimmed), day panel (relative label, holiday note, compact Set this day's sky; page takes the day's sky), timeline (±30 min, change, add to calendar, remove; overlap / closed warnings; Plan B with Swap or "Consider moving it"), Undo toasts, Coming up, empty day with Find ideas (`/?w=…&day=`), share a day / 14 days (Web Share or copy), shared-plan view with Merge / Replace and v1 links. Fixed: `lastPlannableDate` returned the 1st of the last month (now its last day, tested). E2E: AC 4–10 and 29 with the clock pinned to 1 Oct 2026. Checks: Vitest 91/91, Playwright 50/50 (×2 repeat clean), astro check 0, lint clean.
+- **2026-10-01** M5: activity pages `/a/[id]` (29 built). Static Astro: hero, CSS-switched fit callout, facts, Plan your visit, Newcomer tip, Heads up (booking, days it runs, seasonal, links), Make a day of it. Islands: `WeatherTiles` (writes `$weather`, AC 22), `RouteMap` (lit lines draw in through an SVG mask so dashed kinds keep their pattern; Facilities / Way back; stop list + note panel, AC 19; directions), `GettingThere` (origin, mode incl. not-practical modes with the reason, legs with kind icons and dashed rails, getting back, AC 16/17/20), `CostEstimate` (presets, steppers, extras, cap for `?day=`, AC 18), `AddToDayButton` + `PlannedNote`; all share the per-page `$trip`. Pairings replace history (Back skips activity pages) and carry origin, mode and group via sessionStorage (AC 21). Fixes: `?w`/filters in a Discover URL no longer override saved ones after Back/Forward (AC 22); `setMode` now allows not-practical modes (AC 20). Not checked: the mask draw on Safari (no Safari here). First-load JS: Discover 81.7 KB gz, activity page 91 KB gz. Checks: Vitest 87/87, Playwright 36/36 (×3 repeat clean), astro check 0, lint clean.
+- **2026-10-01** M4: Discover. Static header (today's date by inline script, weather word as four CSS-switched variants), `SetTheSky`, `DiscoverExplorer` island (group / Free only / duration filters, ranked cards, hidden count, empty state with Reset), `ActivityCard` (fit pill and meter, four-sky strip, Add opens the sheet stub, "Planned · Sat 3 Oct"), tab bar with a `PlanBadge` island. Filters persist in `swf.filters`; a Discover URL (`?w=` always, other filters when set, `day=` when planning a day) is the whole view, no query restores the saved one. Fit wording on cards is A's Perfect / Fine / Skip (spec §6.3). E2E: AC 1–3, URL/reload, saved filters, empty state, Add; tests wait for island hydration (`tests/e2e/helpers.ts`) so clicks aren't lost; filter updates measured in-page (< 1 frame). Discover first-load JS 79.5 KB gz (budget 150). Checks: Vitest 87/87, Playwright 20/20 (×4 repeat clean), astro check 0 errors, lint clean.
+- **2026-10-01** Owner: rain was too heavy. Rain streaks cut to about a third (wider tiles, 2 streaks each, slightly lower opacity) in `SkyScene.astro` and the A artboards; scenes re-sampled, contrast test still passes. DF4 done: contrast tokens and lighter rain applied to all seven A artboards (canvas Version 32; parity checks unchanged); snapshots updated.
+- **2026-10-01** M3: `src/theme/tokens.ts` (Sky Mode palette as `[data-weather]` CSS variables, so any element can show another day's sky), Mona Sans trimmed to wdth 80–100 / wght 500–800 + used characters (48.5 KB) via the Astro Fonts API with preload, glass with small-screen, no-blur and reduced-transparency fallbacks, `SkyScene.astro` (no JS; phone and desktop layouts; only the visible scene animates; still frame under reduced motion), `SkyPicker` + `SetTheSky` island (AC 24, e2e), sampled scene extremes and an AC 12 contrast test (passes). Contrast fixes vs the artboards: darker selected-segment skies (cloudy most), slightly more opaque sunny/hot `mute`/`skyMute` (DF4). Bugs found and fixed: `?w=` lost to the saved weather after hydration (store now reads the URL); persisted stores caused stale `aria-pressed` after hydration (React 19 doesn't patch attributes), fixed with `useHydratedStore` (server snapshot, then client value), and e2e now fails on hydration errors; Astro 7's background preview server is shared per project, so e2e reused a stale build: e2e now builds and serves on port 4329 with `--ignore-lock`. Checks: Vitest 82/82, Playwright 8/8, astro check 0 errors, lint clean.
+- **2026-10-01** M2: all `src/lib` logic ported with tests: `ranking` (matches all 160 prototype filter combinations), `planDays` (planned length, overlaps, closed days, Add-to-a-day checks, ±30 min), `planB` (all 13 prototype cases; no duplicate backups across days), `plan` + `$plan` store (v2 edits, merge/replace, 30-day prune, v1 migration that deletes v1 only after v2 is really saved), `share` (v2 + v1 links, 8 × 14 limit, under 2,000 chars), `route`, `cost` (weekday/weekend/holiday caps; 1038/1044 prototype totals identical, the rest within $2 because the spec rounds once per line), `detailState`, `calendarExport` (`.ics` with VTIMEZONE, DURATION, VALARM; Google links). `.ics` samples are linted and parsed by ical.js in `npm test`, and CI uploads them. Found and fixed: `;` wasn't escaped in `.ics` text; a wall-clock DTEND is ambiguous on the April change day, so events use DURATION (spec §6.8 updated). Spec §6.2 now defines indoor as `weatherFit.rainy === 2`; §6.6 rounds each line. `tsconfig` drops the deprecated `baseUrl`. Checks: Vitest 81/81, astro check 0 errors, lint clean.
+- **2026-10-01** M1: content collection with a full Zod schema (all 29 files pass), cross-file checks and the draft gate in a build integration (production builds refuse drafts), draft banner, typed content helpers, NSW holidays from the Act's rules (data.gov.au dataset is inactive; rules match the NSW 2026–27 table, incl. the Anzac Day weekend extra day), `SchematicMap` with Sky Mode's map palette, dev map preview and a working map editor (drag, edit, download JSON), editor guide. Old generator retired. Launch-mix gaps for C1: 6 activities great in rain (need 10); solo + rainy 10 (need 12). Tests: Vitest 12/12; astro check 0 errors.
+- **2026-10-01** M0: Astro 7.3.5 + React 19.3 islands, Tailwind 4, nanostores with a never-throwing storage engine, Workers static-assets config (local `wrangler dev` serves pages and the 404 page), CI workflow, workbox service worker, Plausible `track()` and Sentry loader hooks (inactive until keys are set). **Baseline JS:** React client renderer 65.7 KB gz; a page with three tiny islands ≈ 72 KB gz, leaving ≈ 78 KB of the 150 KB budget. Sentry SDK (138 KB gz) replaced by Sentry's lazy loader. `git init` done; no commits yet (waiting for the owner). Checks: astro check 0 errors, lint clean, Vitest 2/2, Playwright 4/4 (islands share stores; blocked storage works).
+
+- **2026-10-01** Stack changed to Astro 7 + React islands on Cloudflare Workers static assets; island map in implementation-plan.md §3.3; tracker tasks updated (M0.10 added).
+- **2026-10-01** Tracker created from implementation-plan.md (after the audit). Prototype logic and checks are in `design/prototype-logic/`. Content: 29 draft activities with `suggestedStart`. No app code yet; repo isn't under git.

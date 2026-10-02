@@ -1,0 +1,35 @@
+name: Transport check
+# Weekly (tracker M9a.5, M12.4): compare Trip Planner journeys with the published content and maps in
+# D1, open a PR with the report and the raw journeys. Needs the TFNSW_API_KEY secret, plus
+# CLOUDFLARE_API_TOKEN (D1 read) and CLOUDFLARE_ACCOUNT_ID to read production; does nothing without the key.
+on:
+  schedule:
+    - cron: "0 20 * * 3" # Thursday 20:00 UTC = Friday morning in Sydney
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      TFNSW_API_KEY: ${{ secrets.TFNSW_API_KEY }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - name: Skip without a key
+        if: env.TFNSW_API_KEY == ''
+        run: echo "TFNSW_API_KEY isn't set; skipping." && exit 0
+      - if: env.TFNSW_API_KEY != ''
+        run: npm ci && node scripts/transport/run.mjs --remote
+      - if: env.TFNSW_API_KEY != ''
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: transport-check
+          title: "Transport check: routes and maps"
+          body-path: transport-report.md
+          commit-message: "Transport check: latest Trip Planner journeys"
+          add-paths: data/transport/latest.json

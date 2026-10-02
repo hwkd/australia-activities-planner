@@ -1,0 +1,654 @@
+---
+import Base from "~/layouts/Base.astro";
+import { SITE_NAME } from "~/site";
+import WeatherTiles from "~/components/islands/WeatherTiles";
+import RouteMap from "~/components/islands/RouteMap";
+import { mapAvailable } from "~/server/map";
+import { fireDanger } from "~/server/alerts";
+import { needsFireAlert, ratingLabel, RFS_PAGE } from "~/lib/alerts";
+import GettingThere from "~/components/detail/GettingThere.astro";
+import Unconfirmed from "~/components/detail/Unconfirmed.astro";
+import CostEstimate from "~/components/islands/CostEstimate";
+import AddToDayButton from "~/components/islands/AddToDayButton";
+import PlannedNote from "~/components/islands/PlannedNote";
+import { draftActivity, publishedActivity, publishedCards } from "~/server/activities";
+import { publishedEventCards } from "~/server/eventsPublic";
+import { contentMode, db, requestUser } from "~/server/env";
+import { onlyDaysLabel } from "~/lib/planDays";
+import { WEATHERS } from "~/stores/weather";
+import { FIT_LABEL, WEATHER_WORD } from "~/theme/tokens";
+import { FitMeter, Icon } from "~/theme/icons";
+import { t } from "~/strings/en-AU";
+
+/**
+ * Activity detail (spec §3.2), rendered from D1. Static sections (including Getting there, D14) in
+ * Astro; the map, cost and weather tiles are islands. A signed-in admin can add `?preview` to see the
+ * unpublished draft.
+ */
+const id = Astro.params.id ?? "";
+const preview = Astro.url.searchParams.has("preview") && !!(await requestUser(Astro.request));
+const found = preview ? await draftActivity(db(), id) : await publishedActivity(db(), id, contentMode());
+if (!found) return Astro.rewrite("/404");
+const a = found;
+/** Details not yet confirmed, by section of this page (spec §4.1). */
+const unconfirmed = (...sections: string[]) => (a.unconfirmed ?? []).filter((u) => sections.includes(u.section)).map((u) => u.note);
+const cards = await publishedCards(db(), contentMode());
+const events = await publishedEventCards(db(), contentMode());
+const mapView = await mapAvailable();
+// Fire danger for outdoor activities (spec §11.2): fetched by the Worker, cached 15 minutes.
+const fire = needsFireAlert(a) && !preview ? { value: await fireDanger() } : null;
+const longDate = (ymd: string) => new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(ymd));
+const sydneyTime = (iso: string) => new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit", timeZone: "Australia/Sydney" }).format(new Date(iso));
+// Pairings link only to activities that are published; others show as plain text (spec §3.2 item 9).
+const names = new Map(cards.map((c) => [c.id, c.name]));
+const headsUp = [
+  a.bookingRequired && t.detail.headsUp.booking,
+  a.days && t.detail.headsUp.runsOn(onlyDaysLabel(a.days)),
+  a.seasonal &&
+    t.detail.headsUp.seasonal(
+      a.seasonal.note,
+      a.seasonal.months.map((m) => t.lib.dates.monthNames[m - 1].slice(0, 3)),
+    ),
+].filter(Boolean) as string[];
+---
+
+<Base title={t.detail.hero.pageTitle(a.name, SITE_NAME)} description={a.blurb} cards={cards} events={events}>
+  {preview && <p class="draft-banner" role="note">{t.detail.hero.previewBanner}</p>}
+  <main class="detail">
+    <div class="flex items-center justify-between gap-2">
+      <a
+        href="/"
+        data-back
+        aria-label={t.detail.hero.back}
+        class="glass press flex h-12 w-12 items-center justify-center rounded-full"
+        style="color: var(--ink)"
+      >
+        <Icon name="back" size={22} strokeWidth={2.5} />
+      </a>
+      <span class="glass eb rounded-full px-3.5 py-2 whitespace-nowrap">{a.categoryLabel}</span>
+      <div class="desk-add"><AddToDayButton client:idle id={a.id} name={a.name} /></div>
+    </div>
+    <script is:inline>
+      // Back returns to the screen the user came from (pairings replace history, so that's never the
+      // previous activity). Opened directly, it goes to Discover.
+      (function () {
+        const back = document.querySelector("[data-back]");
+        back.addEventListener("click", function (e) {
+          let sameSite = false;
+          try {
+            sameSite = new URL(document.referrer).origin === location.origin;
+          } catch {
+            /* no referrer */
+          }
+          if (sameSite && history.length > 1) {
+            e.preventDefault();
+            history.back();
+          }
+        });
+      })();
+    </script>
+    <h1 class="w90 tr name">{a.name}</h1>
+    <script is:inline define:vars={{ id: a.id }}>
+      // Analytics (spec §7): which activities people open.
+      if (window.plausible) window.plausible("activity_view", { props: { id } });
+    </script>
+    <p class="area tr">
+      <Icon name="pin" size={16} /> {a.area}
+    </p>
+    <p class="blurb tr">{a.blurb}</p>
+
+    <section class="glass tr card-in callout" style="animation-delay: 80ms" aria-label={t.detail.hero.fitLabel}>
+      {WEATHERS.map((w) => (
+        <div class={`fitv fitv-${w}`}>
+          <FitMeter fit={a.weatherFit[w]} />
+          <span>
+            <span class="w90 block text-[22px] font-bold tracking-[-0.02em]">
+              {t.detail.hero.fitWhen(FIT_LABEL[a.weatherFit[w]], WEATHER_WORD[w])}
+            </span>
+            <span class="mt-0.5 block text-[13.5px]" style="color: var(--mute)">
+              {t.common.fit.note[a.weatherFit[w]]}
+            </span>
+          </span>
+        </div>
+      ))}
+    </section>
+    <dl class="glass tr card-in facts" style="animation-delay: 130ms">
+      {a.facts.map((f) => (
+        <div>
+          <dt>{f.k}</dt>
+          <dd>{f.v}</dd>
+        </div>
+      ))}
+    </dl>
+    <PlannedNote client:idle id={a.id} />
+
+    <section class="card glass tr card-in" style="animation-delay: 180ms" aria-labelledby="h-wx">
+      <div class="flex items-center justify-between gap-2 px-0.5">
+        <h2 id="h-wx" class="eb" style="color: var(--mute)">
+          {t.detail.weather.heading}
+        </h2>
+        <span class="text-[12.5px]" style="color: var(--mute)">
+          {t.detail.weather.hint}
+        </span>
+      </div>
+      <WeatherTiles client:visible fit={a.weatherFit} />
+      <p class="mt-3.5 flex gap-2.5 pt-3 text-sm leading-[1.45]" style="border-top: 1px solid var(--line)">
+        <Icon name="info" size={18} className="mt-0.5 shrink-0" />
+        {a.weatherNote}
+      </p>
+    </section>
+
+    <section class="card glass tr card-in map-card col-map" style="animation-delay: 240ms" aria-labelledby="h-map">
+      <h2 id="h-map" class="eb px-1" style="color: var(--mute)">
+        <Icon name="map" size={16} />
+        {t.detail.map.heading}
+      </h2>
+      <RouteMap client:visible name={a.name} geo={a.geo} mapView={mapView} checked={a.geo.checked ? longDate(a.geo.checked) : null} />
+      <Unconfirmed notes={unconfirmed("map")} />
+    </section>
+
+    <div class="col-right">
+      <section class="card glass tr card-in" style="animation-delay: 300ms" aria-labelledby="h-go">
+        <h2 id="h-go" class="eb px-0.5" style="color: var(--mute)">
+          <Icon name="tram" size={16} />
+          {t.detail.gettingThere.heading}
+        </h2>
+        <GettingThere routes={a.routes} />
+        <Unconfirmed notes={unconfirmed("gettingThere", "driving")} />
+      </section>
+
+      <section class="card glass tr card-in" style="animation-delay: 360ms" aria-labelledby="h-cost">
+        <h2 id="h-cost" class="eb px-0.5" style="color: var(--mute)">
+          <Icon name="ticket" size={16} />
+          {t.detail.cost.heading} <span class="ml-auto">{t.detail.cost.currency}</span>
+        </h2>
+        <CostEstimate client:visible pt={a.routes.pt} costs={a.costs} />
+        <Unconfirmed notes={unconfirmed("cost")} />
+      </section>
+    </div>
+
+    <section class="card glass tr card-in visit" aria-labelledby="h-visit">
+      <h2 id="h-visit" class="eb" style="color: var(--mute)">
+        <Icon name="calendar" size={16} />
+        {t.detail.visit.heading}
+      </h2>
+      <div class="mt-3.5 grid gap-3.5">
+        <div class="vr">
+          <Icon name="clock" size={18} />
+          <p>
+            <b>{t.detail.visit.bestTime}</b>
+            {a.visit.bestTime}
+          </p>
+        </div>
+        <div class="vr">
+          <Icon name="sunSmall" size={18} />
+          <p>
+            <b>{t.detail.visit.hours}</b>
+            {a.visit.hours}
+          </p>
+        </div>
+        <div class="vr">
+          <Icon name="bag" size={18} />
+          <div class="min-w-0">
+            <b>{t.detail.visit.bring}</b>
+            <ul class="chips">
+              {a.visit.bring.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="vr">
+          <Icon name="home" size={18} />
+          <div>
+            <b>{t.detail.visit.facilities}</b>
+            <ul class="grid gap-[3px]">
+              {a.visit.facilities.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="vr">
+          <Icon name="access" size={18} />
+          <p>
+            <b>{t.detail.visit.access}</b>
+            {a.visit.access}
+          </p>
+        </div>
+        {a.visit.safety.length > 0 && (
+          <div class="vr safe">
+            <Icon name="shield" size={18} />
+            <div>
+              <p class="k" style="color: var(--mute)">
+                {t.detail.visit.staySafe}
+              </p>
+              <ul class="mt-1 grid gap-[3px]">
+                {a.visit.safety.map((s) => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+      <Unconfirmed notes={unconfirmed("visit")} />
+    </section>
+
+    <section class="card glass tr card-in visit" aria-labelledby="h-access">
+      <h2 id="h-access" class="eb" style="color: var(--mute)">
+        <Icon name="access" size={16} />
+        {t.detail.access.heading}
+      </h2>
+      {
+        a.access ? (
+          <>
+            <dl class="access mt-3 grid gap-2 text-[14.5px]">
+              <div>
+                <dt>{t.detail.access.prams}</dt>
+                <dd>{t.detail.access.level[a.access.prams]}</dd>
+              </div>
+              <div>
+                <dt>{t.detail.access.stepFree}</dt>
+                <dd>{t.detail.access.level[a.access.stepFree]}</dd>
+              </div>
+              <div>
+                <dt>{t.detail.access.toilet}</dt>
+                <dd>{t.detail.access.toiletLevel(a.access.accessibleToilet)}</dd>
+              </div>
+            </dl>
+            {a.access.notes && <p class="mt-2.5 text-[14.5px] leading-[1.45]">{a.access.notes}</p>}
+            {a.lastVerified && (
+              <p class="mt-2 text-[13px]" style="color: var(--mute)">
+                {t.detail.access.checked(longDate(a.lastVerified))}
+              </p>
+            )}
+          </>
+        ) : (
+          <p class="mt-2 text-[14.5px] leading-[1.45]">{t.detail.access.notChecked}</p>
+        )
+      }
+      <Unconfirmed notes={unconfirmed("access")} />
+    </section>
+
+    <section class="card glass tr card-in visit" aria-labelledby="h-tip">
+      <h2 id="h-tip" class="eb" style="color: var(--mute)">
+        <Icon name="bulb" size={16} />
+        {t.detail.tip.heading}
+      </h2>
+      <p class="mt-2 text-[15px] leading-[1.5]">{a.newcomerTip}</p>
+    </section>
+
+    {(headsUp.length > 0 || a.links?.length || fire) && (
+      <section class="card glass tr card-in visit" aria-labelledby="h-heads">
+        <h2 id="h-heads" class="eb" style="color: var(--mute)">
+          <Icon name="warn" size={16} />
+          {t.detail.headsUp.heading}
+        </h2>
+        <ul class="mt-2.5 grid gap-2 text-[14.5px] leading-[1.45]">
+          {
+            fire && (
+              <li data-fire>
+                {fire.value ? (
+                  <>
+                    <b>{t.detail.headsUp.fireToday(ratingLabel(fire.value.today), fire.value.banToday)}</b>{" "}
+                    {t.detail.headsUp.fireTomorrow(ratingLabel(fire.value.tomorrow), fire.value.banTomorrow)}{" "}
+                    <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
+                      {t.detail.headsUp.fireSource(sydneyTime(fire.value.fetchedAt))}
+                      <span class="sr-only">{t.detail.newTab}</span>
+                    </a>
+                  </>
+                ) : (
+                  <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
+                    {t.detail.headsUp.fireUnknown}
+                    <span class="sr-only">{t.detail.newTab}</span>
+                  </a>
+                )}
+              </li>
+            )
+          }
+          {headsUp.map((h) => (
+            <li>{h}</li>
+          ))}
+        </ul>
+        {a.links && (
+          <ul class="mt-2.5 flex flex-wrap gap-2">
+            {a.links.map((l) => (
+              <li>
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener"
+                  class="press inline-flex h-11 items-center gap-1.5 rounded-full border px-4 text-sm font-semibold no-underline"
+                  style="border-color: var(--line); color: var(--ink)"
+                >
+                  {l.label} <Icon name="external" size={14} />
+                  <span class="sr-only">{t.detail.newTab}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    )}
+
+    <section class="mt-6" aria-labelledby="h-pairs">
+      <h2
+        id="h-pairs"
+        class="w90 tr px-1 text-[26px] leading-[1.05] font-bold tracking-[-0.025em]"
+        style="text-shadow: var(--hl)"
+      >
+        {t.detail.pairings.heading}
+      </h2>
+      <ul class="hs pairs">
+        {a.pairings.map((p) => (
+          <li class="glass tr pair">
+            {
+              names.has(p.activityId) ? (
+                <a href={`/a/${p.activityId}`} data-pairing class="pair-link w90">
+                  {names.get(p.activityId)}
+                </a>
+              ) : (
+                <span class="pair-link w90">{p.name}</span>
+              )
+            }
+            <span class="text-[13.5px] leading-[1.35]" style="color: var(--mute)">
+              {p.why}
+            </span>
+            <span class="mt-auto flex items-center gap-[5px] pt-2 text-[12.5px] font-bold">
+              <Icon name="pin" size={14} />
+              {p.dist}
+              {names.has(p.activityId) && <Icon name="next" size={16} className="ml-auto" />}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+    <script is:inline>
+      // "Make a day of it" replaces this page in history, so Back skips it (spec §3.2 item 9).
+      // Keeps any `?day=` from My plans.
+      document.addEventListener("click", function (e) {
+        const a = e.target.closest && e.target.closest("a[data-pairing]");
+        if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        location.replace(a.getAttribute("href") + location.search);
+      });
+    </script>
+  </main>
+
+  <div class="footer glass-strong tr">
+    <AddToDayButton client:idle id={a.id} name={a.name} />
+  </div>
+</Base>
+
+<style>
+  .detail {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 16px 16px 24px;
+  }
+  .eb {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .k {
+    margin: 0;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin: 24px 4px 0;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    text-shadow: var(--hl);
+  }
+  .area {
+    margin: 12px 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sky-mute);
+  }
+  .blurb {
+    margin: 10px 4px 0;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--sky-mute);
+  }
+  .callout {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: 24px;
+  }
+  .fitv {
+    display: none;
+    align-items: center;
+    gap: 14px;
+  }
+  :global(html[data-weather="sunny"]) .fitv-sunny,
+  :global(html[data-weather="cloudy"]) .fitv-cloudy,
+  :global(html[data-weather="rainy"]) .fitv-rainy,
+  :global(html[data-weather="hot"]) .fitv-hot {
+    display: flex;
+  }
+  .facts {
+    margin: 10px 0 0;
+    padding: 4px;
+    border-radius: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+  .facts div {
+    padding: 11px 13px;
+    border-radius: 20px;
+    background: var(--soft);
+  }
+  .facts dt {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .facts dd {
+    margin: 4px 0 0;
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.25;
+  }
+  .card {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 26px;
+  }
+  .map-card {
+    padding: 16px 14px 14px;
+  }
+  .visit {
+    padding: 16px 18px;
+  }
+  .vr {
+    display: flex;
+    gap: 12px;
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+  .vr > :global(svg) {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .vr p,
+  .vr ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .vr b {
+    display: block;
+  }
+  .access {
+    margin: 12px 0 0;
+  }
+  .access div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .access dd {
+    margin: 0;
+    font-weight: 700;
+  }
+  .safe {
+    gap: 11px;
+    padding: 13px 14px;
+    border-radius: 18px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .chips {
+    margin-top: 8px !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chips li {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .pairs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin: 12px -16px 0;
+    padding: 2px 16px 4px;
+    list-style: none;
+  }
+  .pair {
+    position: relative;
+    flex-shrink: 0;
+    width: 196px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .pair-link {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: inherit;
+    text-decoration: none;
+  }
+  /* The whole pairing card follows its link. */
+  .pair-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+  .pair-link:focus-visible {
+    outline: none;
+  }
+  .pair-link:focus-visible::after {
+    outline: 2.5px solid currentColor;
+    outline-offset: -3px;
+  }
+  .footer {
+    position: fixed;
+    z-index: 10;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    max-width: 536px;
+    margin: 0 auto;
+    padding: 8px;
+    border-radius: 26px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .desk-add {
+    display: none;
+  }
+  /* Desktop (A · Activity detail — Desktop): info on the left, the map in the middle, getting there and
+     cost on the right; the middle and right columns stay in view and scroll on their own. The DOM keeps
+     the phone (spec) order, so keyboard and screen-reader order match the reading order. */
+  @media (min-width: 1024px) {
+    .detail {
+      max-width: 1440px;
+      padding: 18px 24px 48px;
+      display: grid;
+      grid-template-columns: minmax(340px, 400px) minmax(0, 560px) minmax(340px, 400px);
+      column-gap: 16px;
+      justify-content: center;
+      align-items: start;
+    }
+    .detail > :global(*) {
+      grid-column: 1;
+    }
+    .detail > .col-map,
+    .detail > .col-right {
+      grid-row: 1 / span 40;
+      position: sticky;
+      top: 18px;
+      max-height: calc(100dvh - 36px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+    .detail > .col-map {
+      grid-column: 2;
+      margin-top: 0;
+    }
+    .detail > .col-right {
+      grid-column: 3;
+      border-radius: 26px;
+    }
+    .col-right > .card:first-child {
+      margin-top: 0;
+    }
+    .name {
+      font-size: 54px;
+      line-height: 0.95;
+    }
+    .desk-add {
+      display: block;
+      width: 210px;
+      margin-left: auto;
+    }
+    .footer {
+      left: auto;
+      right: 24px;
+      top: 14px;
+      bottom: auto;
+      width: 260px;
+      padding: 4px;
+      border-radius: 22px;
+      display: none;
+    }
+  }
+</style>

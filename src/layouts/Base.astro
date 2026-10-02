@@ -1,0 +1,146 @@
+---
+import "~/styles/global.css";
+import { Font } from "astro:assets";
+import ThemeStyle from "~/components/ThemeStyle.astro";
+import SkyScene from "~/components/SkyScene.astro";
+import SiteFooter from "~/components/SiteFooter.astro";
+import SheetHost from "~/components/islands/SheetHost";
+import type { CardData } from "~/lib/content";
+import type { EventCard } from "~/lib/events";
+import { toPlanCard, type PlanCard } from "~/lib/planDays";
+import { t } from "~/strings/en-AU";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Draw the animated sky behind the page (off for editor tools). */
+  sky?: boolean;
+  /** Published activities (from D1), for Add to a day and the draft banner. Static pages leave it out. */
+  cards?: CardData[];
+  /** Published events (spec §11.4): they plan like activities, so they join the planning index. */
+  events?: EventCard[];
+}
+const { title, description = t.layout.meta.description, sky = true, cards = [], events = [] } = Astro.props;
+// Production serves only verified activities, so this only shows on preview sites (spec §4.3).
+const draftCount = cards.filter((a) => a.status === "draft").length;
+// A compact index for Add to a day on every page (names, durations, days, fit; spec §3.3).
+const planCards: PlanCard[] = [...cards, ...events].map(toPlanCard);
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const sentryLoaderKey = import.meta.env.PUBLIC_SENTRY_LOADER_KEY;
+---
+
+<!doctype html>
+<html lang="en-AU" data-weather="sunny">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#1B4BC8" />
+    <Font cssVariable="--font-mona" preload />
+    <ThemeStyle />
+    {
+      plausibleDomain && (
+        <>
+          {/* Plausible's queue: events sent before the script loads are kept and sent once it does. */}
+          <script is:inline>
+            window.plausible = window.plausible || function (...args) { (window.plausible.q = window.plausible.q || []).push(args); };
+          </script>
+          <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js" />
+        </>
+      )
+    }
+    <!-- Theme before paint: the saved or linked weather, so the right sky shows with no flash (implementation-plan.md §3.3). -->
+    <script is:inline>
+      (function () {
+        const ok = { sunny: 1, cloudy: 1, rainy: 1, hot: 1 };
+        let w = null;
+        try { w = new URLSearchParams(location.search).get("w"); } catch { /* no query */ }
+        if (!ok[w]) { try { w = localStorage.getItem("swf.weather"); } catch { /* storage blocked */ } }
+        if (ok[w]) document.documentElement.dataset.weather = w;
+        const bg = { sunny: "#1B4BC8", cloudy: "#A9B4C0", rainy: "#131F44", hot: "#B8421A" }[document.documentElement.dataset.weather];
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta && bg) meta.setAttribute("content", bg);
+        // Start the sky's ambient loops once the page is idle after load (SkyScene.astro).
+        window.addEventListener("load", function () {
+          const live = function () { document.documentElement.classList.add("sky-live"); };
+          setTimeout(function () { (window.requestIdleCallback || setTimeout)(live); }, 1200);
+        });
+        document.addEventListener("visibilitychange", function () {
+          document.documentElement.classList.toggle("paused", document.visibilityState === "hidden");
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    {sky && <SkyScene />}
+    {
+      draftCount > 0 && (
+        <p class="draft-banner" role="note">
+          {t.layout.draftBanner(draftCount)}
+        </p>
+      )
+    }
+    <slot />
+    {sky && <SiteFooter />}
+    <SheetHost client:idle cards={planCards} />
+    {
+      sentryLoaderKey && (
+        <>
+          {/* Sentry's loader fetches the SDK only when an error happens, so it costs nothing on normal page loads. */}
+          <script is:inline src={`https://js.sentry-cdn.com/${sentryLoaderKey}.min.js`} crossorigin="anonymous" />
+          <script is:inline>
+            if (window.Sentry) window.Sentry.onLoad(function () {
+              window.Sentry.init({
+                sendDefaultPii: false,
+                beforeSend: function (event) {
+                  if (event.request && event.request.url) event.request.url = event.request.url.split("?")[0];
+                  return event;
+                }
+              });
+            });
+          </script>
+        </>
+      )
+    }
+    {
+      import.meta.env.PROD && (
+        <script is:inline>
+          if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+              navigator.serviceWorker.register("/sw.js");
+              // Warm the offline copies of Discover and My plans (AC 14): pages come from D1, so they
+              // can't be precached at build time.
+              navigator.serviceWorker.ready.then(function () {
+                if (!window.caches) return;
+                caches.open("pages").then(function (c) { return c.addAll(["/", "/plan"]); }).catch(function () {});
+                // Then every published activity page, at most once a day, well after this page has loaded
+                // and only when idle, so it never competes with the first load; skipped on Save-Data, slow
+                // connections and blocked storage (spec §7 Offline, AC 33).
+                let last;
+                try { last = Number(localStorage.getItem("swf.offlineWarm") || 0); } catch { return; }
+                const conn = navigator.connection;
+                if ((conn && (conn.saveData || /2g/.test(conn.effectiveType || ""))) || Date.now() - last < 864e5) return;
+                setTimeout(() => (window.requestIdleCallback || setTimeout)(async function () {
+                  try {
+                    // Activity pages only: event ids (e-…) have no page of their own.
+                    const ids = Object.keys(await (await fetch("/data/export.json")).json()).filter((id) => !id.startsWith("e-"));
+                    const c = await caches.open("pages");
+                    for (const id of ids) await c.add("/a/" + id).catch(function () {});
+                    localStorage.setItem("swf.offlineWarm", String(Date.now()));
+                    document.documentElement.dataset.offlineWarm = String(ids.length);
+                  } catch {
+                    // Offline copies are a bonus; the next visit tries again.
+                  }
+                }), 10000);
+              });
+            });
+          }
+        </script>
+      )
+    }
+  </body>
+</html>

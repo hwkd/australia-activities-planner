@@ -1,0 +1,5 @@
+dist
+.astro
+design/prototype-logic
+db/seed/activities
+*.md

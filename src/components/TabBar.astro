@@ -1,0 +1,108 @@
+---
+import PlanBadge from "~/components/islands/PlanBadge";
+import { t } from "~/strings/en-AU";
+
+/**
+ * Discover and My plans (spec §3). Phone: bottom tab bar. Desktop (≥ 1024 px): a pill in the top right.
+ * Plain links; the current tab is known at build time.
+ */
+interface Props {
+  current: "discover" | "plans";
+  /** Desktop Discover has no top bar: its Coming up rail links to My plans (A · Sky Mode — Desktop). */
+  phoneOnly?: boolean;
+}
+const { current, phoneOnly = false } = Astro.props;
+---
+
+<nav aria-label={t.layout.tabs.label} class:list={["tabbar glass-strong tr", { "phone-only": phoneOnly }]}>
+  <a href="/" aria-current={current === "discover" ? "page" : undefined} class="press">
+    <svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M15.5 8.5l-2 5-5 2 2-5z"></path>
+    </svg>
+    {t.layout.tabs.discover}
+  </a>
+  <a href="/plan" aria-current={current === "plans" ? "page" : undefined} class="press">
+    <svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true">
+      <rect x="4" y="5" width="16" height="15" rx="2.5"></rect>
+      <path d="M4 10h16M8.5 3v4M15.5 3v4"></path>
+    </svg>
+    {t.layout.tabs.plans}
+    <PlanBadge client:idle />
+  </a>
+</nav>
+
+<style>
+  .tabbar {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 10;
+    height: 68px;
+    max-width: 528px;
+    margin: 0 auto;
+    padding: 6px;
+    box-sizing: border-box;
+    border-radius: 26px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .tabbar a {
+    border-radius: 20px;
+    color: var(--ink);
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .tabbar a[aria-current="page"] {
+    background: var(--sel);
+    color: var(--sel-ink);
+  }
+  .tabbar :global(.tab-badge) {
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background: var(--sel);
+    color: var(--sel-ink);
+    font-size: 12px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tabbar a[aria-current="page"] :global(.tab-badge) {
+    background: var(--sel-ink);
+    color: var(--sel);
+  }
+  @media (min-width: 1024px) {
+    .tabbar {
+      left: auto;
+      right: 24px;
+      top: 24px;
+      bottom: auto;
+      width: auto;
+      height: 54px;
+      max-width: none;
+      margin: 0;
+      padding: 4px;
+      border-radius: 999px;
+      display: flex;
+      gap: 4px;
+    }
+    .tabbar a {
+      padding: 0 18px;
+      border-radius: 999px;
+    }
+    .tabbar.phone-only {
+      display: none;
+    }
+  }
+</style>

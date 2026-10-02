@@ -1,0 +1,39 @@
+---
+/** Footer on every page (tracker M10.8): privacy, credits and the estimates disclaimer. */
+import { t } from "~/strings/en-AU";
+---
+
+<footer class="site-footer tr">
+  <p>
+    <a href="/privacy">{t.layout.footer.privacy}</a>
+    <span aria-hidden="true">·</span>
+    {t.layout.footer.estimates}
+  </p>
+  <p>
+    {t.layout.footer.credits}
+  </p>
+</footer>
+
+<style>
+  .site-footer {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 8px 20px calc(110px + env(safe-area-inset-bottom));
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--sky-mute);
+  }
+  .site-footer p {
+    margin: 6px 0 0;
+  }
+  .site-footer a {
+    color: inherit;
+    font-weight: 700;
+  }
+  @media (min-width: 1024px) {
+    .site-footer {
+      max-width: 1440px;
+      padding: 16px 48px 28px;
+    }
+  }
+</style>

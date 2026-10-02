@@ -1,0 +1,70 @@
+---
+import Base from "~/layouts/Base.astro";
+import { SITE_NAME } from "~/site";
+import TabBar from "~/components/TabBar.astro";
+import MyPlans from "~/components/islands/MyPlans";
+import { publishedCards } from "~/server/activities";
+import { publishedEventCards } from "~/server/eventsPublic";
+import { mapAvailable } from "~/server/map";
+import { contentMode, db } from "~/server/env";
+import { toPlanCard, type PlanCard } from "~/lib/planDays";
+import { t } from "~/strings/en-AU";
+
+/** My plans (spec §3.3) and shared plans (§3.4). The island is client-only; the skeleton keeps the layout stable. */
+const all = await publishedCards(db(), contentMode());
+const events = await publishedEventCards(db(), contentMode());
+const mapView = await mapAvailable();
+const cards: PlanCard[] = [...all, ...events].map(toPlanCard);
+---
+
+<Base title={t.plans.page.title(SITE_NAME)} description={t.plans.page.description} cards={all} events={events}>
+  <main class="plans">
+    <MyPlans client:only="react" cards={cards} mapView={mapView}>
+      <div slot="fallback" aria-busy="true" aria-label={t.plans.page.loading}>
+        <div class="px-1">
+          <p class="eb m-0" style="color: var(--sky-mute)">{t.plans.header.city}</p>
+          <h1 class="w90 m-0 mt-3.5 text-[46px] leading-[0.94] font-medium tracking-[-0.035em]">{t.plans.header.heading}</h1>
+        </div>
+        <div class="glass mt-5 h-[430px] rounded-[28px]"></div>
+        <div class="glass mt-3 h-[300px] rounded-[28px]"></div>
+      </div>
+    </MyPlans>
+    <noscript><p class="glass mt-4 rounded-3xl p-4">{t.plans.page.noscript}</p></noscript>
+  </main>
+  <TabBar current="plans" />
+</Base>
+
+<style>
+  .plans {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 22px 16px 24px;
+  }
+  /* Desktop (A · My plans calendar — Desktop): month grid on the left, the selected day as a side panel. */
+  @media (min-width: 1024px) {
+    .plans {
+      max-width: 1400px;
+      padding: 24px 24px 48px 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 900px) minmax(380px, 440px);
+      column-gap: 20px;
+      align-items: start;
+    }
+    .plans :global(astro-island) {
+      display: contents;
+    }
+    .plans :global(> *),
+    .plans :global(astro-island > *) {
+      grid-column: 1;
+    }
+    .plans :global(section[aria-labelledby="cal-day"]) {
+      grid-column: 2;
+      grid-row: 1 / span 10;
+      position: sticky;
+      top: 92px;
+      margin-top: 68px;
+      max-height: calc(100dvh - 116px);
+      overflow-y: auto;
+    }
+  }
+</style>

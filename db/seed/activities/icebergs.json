@@ -1,0 +1,689 @@
+{
+  "id": "icebergs",
+  "status": "verified",
+  "name": "Bondi Icebergs Pool",
+  "city": "sydney",
+  "area": "Bondi",
+  "category": "swimming",
+  "categoryLabel": "Swimming",
+  "blurb": "Laps in the famous ocean pool where waves crash over the edge.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 1,
+    "rainy": 0,
+    "hot": 2
+  },
+  "weatherNote": "Made for hot days.",
+  "goodFor": [
+    "date",
+    "friends",
+    "solo"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "$",
+  "gettingThere": "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach.",
+  "newcomerTip": "Swim in the famous ocean pool at the south end of Bondi. On the beach itself, always swim between the red and yellow flags.",
+  "location": {
+    "lat": -33.895,
+    "lng": 151.2743
+  },
+  "suggestedStart": "09:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "Pool",
+      "v": "50 m ocean pool"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "$10 adult"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.895,
+      "lng": 151.2743,
+      "label": "Bondi Icebergs Pool"
+    },
+    "pt": {
+      "total": "≈ 35 min",
+      "changes": 1,
+      "fare": [
+        4,
+        6
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T4",
+          "title": "Eastern Suburbs line to Bondi Junction",
+          "mins": 13,
+          "detail": "Frequent on weekends"
+        },
+        {
+          "mode": "bus",
+          "line": "333",
+          "title": "Bus to South Bondi Beach",
+          "mins": 12,
+          "detail": "From Bondi Junction, stand A (or bus 380 from stand B)"
+        },
+        {
+          "mode": "walk",
+          "title": "Down Notts Ave to the pool",
+          "mins": 7
+        }
+      ],
+      "back": {
+        "text": "Same way back. Buses leave from Campbell Parade every few minutes."
+      }
+    },
+    "drive": {
+      "total": "≈ 25 min",
+      "perCar": [
+        12,
+        25
+      ],
+      "perCarLabel": "Parking, 2 hrs",
+      "notes": [
+        "Metered parking near the beach fills by 9am on warm weekends."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      10,
+      10
+    ],
+    "entryChild": [
+      7,
+      7
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Brunch in Bondi",
+        "per": [
+          20,
+          32
+        ],
+        "on": true
+      },
+      {
+        "id": "towel",
+        "label": "Towel hire",
+        "per": [
+          5,
+          5
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Morning on a hot, calm day. In big surf, waves break right into the pool.",
+    "hours": "6am to 6:30pm on weekdays and 6:30am to 6:30pm on weekends. Closed Thursdays for cleaning (in summer it may open when the tide allows).",
+    "bring": [
+      "Swimmers & towel",
+      "Goggles",
+      "Sunscreen",
+      "Coins or card for entry"
+    ],
+    "facilities": [
+      "Change rooms, hot showers and a sauna (included), lockers and towels to hire ($5 each)",
+      "A café at the pool and more along Campbell Parade"
+    ],
+    "access": "Steep stairs down from Notts Ave to the pool deck. Not step-free.",
+    "safety": [
+      "The water is unheated and can be cold",
+      "Pool edges are slippery when waves wash over",
+      "Lifeguards are on duty whenever the pool is open"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Bondi to Coogee Coastal Walk",
+      "why": "Starts at the pool",
+      "dist": "At the door",
+      "activityId": "bondi-coogee"
+    },
+    {
+      "name": "Watsons Bay & The Gap",
+      "why": "Cliffs and fish & chips",
+      "dist": "≈ 20 min by bus",
+      "activityId": "watsons"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "South Bondi bus stop",
+        "type": "start",
+        "note": "Campbell Pde, opposite South Bondi Beach. Walk down Notts Ave to the pool.",
+        "lng": 151.27308,
+        "lat": -33.89434
+      },
+      {
+        "n": 2,
+        "name": "Bondi Icebergs Pool",
+        "type": "end",
+        "note": "Pay at the door ($10). Olympic-length lap pool and a smaller kids' pool.",
+        "lng": 151.27457,
+        "lat": -33.89506
+      },
+      {
+        "n": 3,
+        "name": "Coastal walk",
+        "type": "lookout",
+        "note": "The Bondi to Coogee walk starts just past the pool.",
+        "lng": 151.27467,
+        "lat": -33.89594
+      },
+      {
+        "n": 4,
+        "name": "Bondi Beach",
+        "type": "beach",
+        "note": "Swim only between the red and yellow flags.",
+        "lng": 151.27531,
+        "lat": -33.89231
+      },
+      {
+        "n": 5,
+        "name": "Bondi Pavilion",
+        "type": "food",
+        "note": "Cafés, toilets, showers and change rooms.",
+        "lng": 151.27703,
+        "lat": -33.89011
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.27307,
+          -33.89434
+        ],
+        [
+          151.27303,
+          -33.89409
+        ],
+        [
+          151.27323,
+          -33.89405
+        ],
+        [
+          151.27323,
+          -33.89393
+        ],
+        [
+          151.27402,
+          -33.89453
+        ],
+        [
+          151.2742,
+          -33.89511
+        ],
+        [
+          151.27441,
+          -33.89555
+        ],
+        [
+          151.27463,
+          -33.89549
+        ],
+        [
+          151.27441,
+          -33.8951
+        ],
+        [
+          151.27466,
+          -33.89554
+        ],
+        [
+          151.27467,
+          -33.89594
+        ],
+        [
+          151.27464,
+          -33.89582
+        ],
+        [
+          151.27469,
+          -33.8957
+        ],
+        [
+          151.27463,
+          -33.89549
+        ],
+        [
+          151.27441,
+          -33.89555
+        ],
+        [
+          151.2742,
+          -33.89511
+        ],
+        [
+          151.27405,
+          -33.89459
+        ],
+        [
+          151.27373,
+          -33.89429
+        ],
+        [
+          151.27377,
+          -33.89426
+        ],
+        [
+          151.27372,
+          -33.89422
+        ],
+        [
+          151.27375,
+          -33.89419
+        ],
+        [
+          151.27368,
+          -33.89369
+        ],
+        [
+          151.27376,
+          -33.89332
+        ],
+        [
+          151.27405,
+          -33.89275
+        ],
+        [
+          151.27481,
+          -33.89196
+        ],
+        [
+          151.27485,
+          -33.89193
+        ],
+        [
+          151.2749,
+          -33.89197
+        ],
+        [
+          151.27502,
+          -33.8919
+        ],
+        [
+          151.2749,
+          -33.89197
+        ],
+        [
+          151.27485,
+          -33.89193
+        ],
+        [
+          151.27514,
+          -33.89172
+        ],
+        [
+          151.27579,
+          -33.8913
+        ],
+        [
+          151.27616,
+          -33.89111
+        ],
+        [
+          151.27602,
+          -33.89093
+        ],
+        [
+          151.27645,
+          -33.89075
+        ],
+        [
+          151.27654,
+          -33.89066
+        ],
+        [
+          151.27626,
+          -33.89006
+        ],
+        [
+          151.27672,
+          -33.88991
+        ],
+        [
+          151.27675,
+          -33.89006
+        ],
+        [
+          151.27651,
+          -33.89014
+        ],
+        [
+          151.27662,
+          -33.89038
+        ],
+        [
+          151.27685,
+          -33.8903
+        ],
+        [
+          151.2768,
+          -33.89019
+        ],
+        [
+          151.27703,
+          -33.89011
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.27718,
+        "lat": -33.89022
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.27751,
+        "lat": -33.89022
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.27286,
+        "lat": -33.8932
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.27296,
+        "lat": -33.89409
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.2758,
+        "lat": -33.88935
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T4",
+          "coords": [
+            [
+              151.20685,
+              -33.88515
+            ],
+            [
+              151.20809,
+              -33.88347
+            ],
+            [
+              151.20831,
+              -33.8828
+            ],
+            [
+              151.2083,
+              -33.88205
+            ],
+            [
+              151.20779,
+              -33.88094
+            ],
+            [
+              151.20663,
+              -33.87991
+            ],
+            [
+              151.20604,
+              -33.87915
+            ],
+            [
+              151.20576,
+              -33.87847
+            ],
+            [
+              151.20571,
+              -33.87753
+            ],
+            [
+              151.20594,
+              -33.87677
+            ],
+            [
+              151.20662,
+              -33.87555
+            ],
+            [
+              151.20709,
+              -33.8725
+            ],
+            [
+              151.20772,
+              -33.87111
+            ],
+            [
+              151.20821,
+              -33.86934
+            ],
+            [
+              151.20885,
+              -33.86845
+            ],
+            [
+              151.21017,
+              -33.86779
+            ],
+            [
+              151.21382,
+              -33.86798
+            ],
+            [
+              151.21504,
+              -33.86835
+            ],
+            [
+              151.21622,
+              -33.869
+            ],
+            [
+              151.21715,
+              -33.8699
+            ],
+            [
+              151.21903,
+              -33.87256
+            ],
+            [
+              151.22064,
+              -33.87363
+            ],
+            [
+              151.22608,
+              -33.87623
+            ],
+            [
+              151.22721,
+              -33.87655
+            ],
+            [
+              151.23181,
+              -33.87726
+            ],
+            [
+              151.23478,
+              -33.87887
+            ],
+            [
+              151.23799,
+              -33.87958
+            ],
+            [
+              151.23933,
+              -33.88019
+            ],
+            [
+              151.24046,
+              -33.88108
+            ],
+            [
+              151.24218,
+              -33.88283
+            ],
+            [
+              151.24274,
+              -33.88374
+            ],
+            [
+              151.24302,
+              -33.88493
+            ],
+            [
+              151.24293,
+              -33.88745
+            ],
+            [
+              151.24321,
+              -33.8884
+            ],
+            [
+              151.24367,
+              -33.88911
+            ],
+            [
+              151.24422,
+              -33.88967
+            ],
+            [
+              151.2452,
+              -33.89027
+            ],
+            [
+              151.24704,
+              -33.89101
+            ],
+            [
+              151.24823,
+              -33.8913
+            ]
+          ]
+        },
+        {
+          "mode": "bus",
+          "line": "333",
+          "coords": [
+            [
+              151.24956,
+              -33.89146
+            ],
+            [
+              151.24976,
+              -33.89148
+            ],
+            [
+              151.24983,
+              -33.89208
+            ],
+            [
+              151.25152,
+              -33.89181
+            ],
+            [
+              151.25241,
+              -33.8913
+            ],
+            [
+              151.25338,
+              -33.89097
+            ],
+            [
+              151.25405,
+              -33.89171
+            ],
+            [
+              151.25532,
+              -33.8927
+            ],
+            [
+              151.27067,
+              -33.89498
+            ],
+            [
+              151.27238,
+              -33.89557
+            ],
+            [
+              151.27289,
+              -33.89547
+            ],
+            [
+              151.27315,
+              -33.89522
+            ],
+            [
+              151.27315,
+              -33.89436
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.27308,
+              -33.89438
+            ],
+            [
+              151.27308,
+              -33.89392
+            ],
+            [
+              151.27323,
+              -33.89392
+            ],
+            [
+              151.27402,
+              -33.89453
+            ],
+            [
+              151.27442,
+              -33.89556
+            ],
+            [
+              151.2746,
+              -33.89551
+            ],
+            [
+              151.2743,
+              -33.89497
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "access",
+      "note": "Whether there's a step-free way down to the pool deck."
+    },
+    {
+      "section": "driving",
+      "note": "Parking prices near the beach."
+    }
+  ]
+}

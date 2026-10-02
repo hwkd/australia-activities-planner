@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Set the sky variants</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&display=swap">
+<style>
+body{margin:0;padding:20px;background:#05091A;font-family:'Mona Sans',system-ui;color:#fff}
+h2{font:700 12px 'Mona Sans';letter-spacing:.14em;text-transform:uppercase;color:#9fb3ff;margin:18px 0 8px}
+.row{display:grid;grid-template-columns:repeat(4,390px);gap:12px}
+.sky{width:390px;padding:22px 16px;box-sizing:border-box;border-radius:24px}
+.glass{-webkit-backdrop-filter:blur(18px) saturate(135%);backdrop-filter:blur(18px) saturate(135%)}
+button{font:inherit;color:inherit;cursor:pointer;margin:0}
+.eb{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<radialGradient id="gSun"><stop offset="0" stop-color="#FFD25A" stop-opacity=".55"/><stop offset="1" stop-color="#FFD25A" stop-opacity="0"/></radialGradient>
+<radialGradient id="gHot"><stop offset="0" stop-color="#FF9A4A" stop-opacity=".7"/><stop offset="1" stop-color="#FF9A4A" stop-opacity="0"/></radialGradient>
+</defs></svg>
+<div id="out"></div>
+<script src="icons.js"></script>
+<script src="variants.js"></script>
+</body></html>

@@ -1,0 +1,473 @@
+{
+  "id": "opera-tour",
+  "status": "verified",
+  "name": "Sydney Opera House Tour",
+  "city": "sydney",
+  "area": "City",
+  "category": "landmark",
+  "categoryLabel": "Culture",
+  "blurb": "Go behind the sails of Australia's most famous building.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Indoors, so it works in any weather.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1 hr",
+    "minHours": 1,
+    "maxHours": 1
+  },
+  "cost": "$$",
+  "gettingThere": "Short walk from Circular Quay station and ferry wharves.",
+  "newcomerTip": "Book the guided tour online ($50, or $55 at the door). Arrive 15 min early for security. Stay for a drink at Opera Bar afterwards.",
+  "location": {
+    "lat": -33.8568,
+    "lng": 151.2153
+  },
+  "bookingRequired": true,
+  "suggestedStart": "11:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1 hr tour"
+    },
+    {
+      "k": "Walk",
+      "v": "9 min from the station"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy, many stairs inside"
+    },
+    {
+      "k": "Entry",
+      "v": "Tour ticket"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8568,
+      "lng": 151.2153,
+      "label": "Sydney Opera House"
+    },
+    "pt": {
+      "total": "≈ 20 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Circular Quay",
+          "mins": 8,
+          "detail": "Or any T2 or T3 train"
+        },
+        {
+          "mode": "walk",
+          "title": "Along East Circular Quay to the Welcome Centre",
+          "mins": 9
+        }
+      ],
+      "back": {
+        "text": "Same way back, from Circular Quay."
+      }
+    },
+    "drive": {
+      "total": "≈ 12 min",
+      "perCar": [
+        20,
+        45
+      ],
+      "perCarLabel": "Opera House car park, 2 hrs",
+      "notes": [
+        "The car park is pricey. Public transport to Circular Quay is easier."
+      ]
+    },
+    "ride": "Drop-off is on Macquarie St, a 3 min walk from the steps."
+  },
+  "costs": {
+    "entry": [
+      50,
+      55
+    ],
+    "entryChild": [
+      30,
+      35
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "A drink at Opera Bar",
+        "per": [
+          12,
+          20
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Morning tours are quieter. Book a day or two ahead on weekends.",
+    "hours": "Tours run daily through the day: pick a time when you book. The forecourt and steps are always open.",
+    "bring": [
+      "Your booking on your phone",
+      "Comfy shoes",
+      "A light layer"
+    ],
+    "facilities": [
+      "Toilets and cloakroom inside",
+      "Bars and restaurants on the lower concourse"
+    ],
+    "access": "The standard tour covers up to 2.5 km and about 300 stairs, with no lift. A step-free Mobility Access Tour runs daily: book it instead.",
+    "safety": [
+      "Bags bigger than A4 must be cloaked; no suitcases",
+      "Arrive 15 min early: more than 5 min late and you lose the booking"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Royal Botanic Garden & Mrs Macquarie's Chair",
+      "why": "Walk it off after",
+      "dist": "Next door",
+      "activityId": "botanic"
+    },
+    {
+      "name": "The Rocks Markets",
+      "why": "Weekend stalls",
+      "dist": "≈ 12 min walk",
+      "activityId": "rocks-markets"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Circular Quay Station",
+        "type": "start",
+        "note": "Trains, ferries, buses and light rail all stop here.",
+        "lng": 151.21072,
+        "lat": -33.86136
+      },
+      {
+        "n": 2,
+        "name": "East Circular Quay",
+        "type": "lookout",
+        "note": "Harbourside promenade with the bridge behind you.",
+        "lng": 151.21296,
+        "lat": -33.85906
+      },
+      {
+        "n": 3,
+        "name": "Opera Bar",
+        "type": "food",
+        "note": "Drinks and food on the lower concourse, right on the water.",
+        "lng": 151.21385,
+        "lat": -33.85833
+      },
+      {
+        "n": 4,
+        "name": "Welcome Centre",
+        "type": "end",
+        "note": "Tours meet here, under the Monumental Steps.",
+        "lng": 151.21473,
+        "lat": -33.85759
+      },
+      {
+        "n": 5,
+        "name": "Botanic Garden gate",
+        "type": "lookout",
+        "note": "The Queen Elizabeth II Gate: step straight into the garden after the tour.",
+        "lng": 151.21561,
+        "lat": -33.85845
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21072,
+          -33.86135
+        ],
+        [
+          151.21089,
+          -33.86137
+        ],
+        [
+          151.21091,
+          -33.86119
+        ],
+        [
+          151.21212,
+          -33.86133
+        ],
+        [
+          151.21255,
+          -33.8611
+        ],
+        [
+          151.21267,
+          -33.86089
+        ],
+        [
+          151.21281,
+          -33.85967
+        ],
+        [
+          151.21294,
+          -33.85901
+        ],
+        [
+          151.21287,
+          -33.85898
+        ],
+        [
+          151.21306,
+          -33.85875
+        ],
+        [
+          151.21377,
+          -33.85831
+        ],
+        [
+          151.21392,
+          -33.85808
+        ],
+        [
+          151.21409,
+          -33.85815
+        ],
+        [
+          151.21426,
+          -33.85766
+        ],
+        [
+          151.21547,
+          -33.85788
+        ],
+        [
+          151.21561,
+          -33.85845
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.21413,
+        "lat": -33.85771
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20987,
+        "lat": -33.86119
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2115,
+        "lat": -33.86143
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21306,
+        "lat": -33.85889
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21481,
+        "lat": -33.85736
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20997,
+        "lat": -33.86199
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21016,
+        "lat": -33.86121
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21114,
+        "lat": -33.86149
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21237,
+        "lat": -33.86136
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21294,
+        "lat": -33.85995
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20546,
+              -33.86281
+            ],
+            [
+              151.20598,
+              -33.86183
+            ],
+            [
+              151.20695,
+              -33.86123
+            ],
+            [
+              151.2081,
+              -33.86107
+            ],
+            [
+              151.21031,
+              -33.86128
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.21031,
+              -33.86127
+            ],
+            [
+              151.21089,
+              -33.86137
+            ],
+            [
+              151.21091,
+              -33.86119
+            ],
+            [
+              151.21212,
+              -33.86133
+            ],
+            [
+              151.2125,
+              -33.86115
+            ],
+            [
+              151.21267,
+              -33.86089
+            ],
+            [
+              151.21281,
+              -33.85967
+            ],
+            [
+              151.21298,
+              -33.85894
+            ],
+            [
+              151.21314,
+              -33.8588
+            ],
+            [
+              151.21333,
+              -33.85871
+            ],
+            [
+              151.21369,
+              -33.85864
+            ],
+            [
+              151.21396,
+              -33.85843
+            ],
+            [
+              151.21409,
+              -33.85825
+            ],
+            [
+              151.21426,
+              -33.85766
+            ],
+            [
+              151.21547,
+              -33.85788
+            ],
+            [
+              151.21571,
+              -33.85702
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Opera House car park rates."
+    },
+    {
+      "section": "cost",
+      "note": "Opera Bar prices."
+    }
+  ]
+}

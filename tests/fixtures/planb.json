@@ -1,0 +1,67 @@
+[
+ {
+  "id": "bondi-coogee",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "spit-manly",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "three-sisters",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "wentworth",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "botanic",
+  "weather": "rainy",
+  "backup": "aus-museum"
+ },
+ {
+  "id": "watsons",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "balmoral",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "icebergs",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "royal-np",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "palm-beach",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "clovelly",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "north-head",
+  "weather": "rainy",
+  "backup": "agnsw"
+ },
+ {
+  "id": "cronulla",
+  "weather": "rainy",
+  "backup": "agnsw"
+ }
+]

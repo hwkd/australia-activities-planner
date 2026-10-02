@@ -1,0 +1,42 @@
+---
+export const prerender = true;
+import Base from "~/layouts/Base.astro";
+import { SITE_NAME } from "~/site";
+import { t } from "~/strings/en-AU";
+
+const s = t.layout.privacy;
+---
+
+<Base title={s.title(SITE_NAME)} description={s.description}>
+  <main class="mx-auto max-w-[640px] px-4 pt-6 pb-32">
+    <a href="/" class="glass press inline-flex h-11 items-center rounded-full px-4 text-sm font-bold no-underline" style="color: var(--ink)">{s.back}</a>
+    <h1 class="w90 tr mt-5 text-[46px] leading-[0.94] font-medium tracking-[-0.035em]" style="text-shadow: var(--hl)">{s.heading}</h1>
+    <div class="glass tr prose mt-5 rounded-[26px] p-5">
+      {
+        s.sections.map((section) => (
+          <>
+            <h2>{section.heading}</h2>
+            <p>{section.body}</p>
+          </>
+        ))
+      }
+    </div>
+  </main>
+</Base>
+
+<style>
+  .prose h2 {
+    margin: 20px 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .prose h2:first-child {
+    margin-top: 0;
+  }
+  .prose p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--mute);
+  }
+</style>

@@ -1,0 +1,616 @@
+{
+  "id": "chinatown",
+  "status": "verified",
+  "name": "Haymarket & Chinatown Food Crawl",
+  "city": "sydney",
+  "area": "Haymarket",
+  "category": "food",
+  "categoryLabel": "Food",
+  "blurb": "Dumplings, Thai Town and bustling food courts in the city's south.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Food courts and restaurants keep you dry and cool.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family"
+  ],
+  "duration": {
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
+  },
+  "cost": "$$",
+  "gettingThere": "Train to Central or Town Hall, or light rail to Chinatown.",
+  "newcomerTip": "Graze through Dixon Street, the food courts and Thai Town on Campbell Street. Go hungry.",
+  "location": {
+    "lat": -33.879,
+    "lng": 151.204
+  },
+  "suggestedStart": "18:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "2–3 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "9 min from Central"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.879,
+      "lng": 151.204,
+      "label": "Dixon Street, Haymarket"
+    },
+    "pt": {
+      "total": "≈ 10 min",
+      "changes": 0,
+      "fare": [
+        0,
+        0
+      ],
+      "legs": [
+        {
+          "mode": "walk",
+          "title": "Down Eddy Ave and George St to Haymarket",
+          "mins": 9
+        }
+      ],
+      "back": {
+        "text": "Same way back. Central is a 9 min walk."
+      }
+    },
+    "drive": {
+      "total": "≈ 5 min",
+      "perCar": [
+        15,
+        35
+      ],
+      "perCarLabel": "Car park, 3 hrs",
+      "notes": [
+        "Traffic is slow and parking is pricey. The train is easier."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "A food-court meal and a few snacks",
+        "per": [
+          20,
+          35
+        ],
+        "on": true
+      },
+      {
+        "id": "tea",
+        "label": "Bubble tea or dessert",
+        "per": [
+          7,
+          12
+        ],
+        "on": true
+      },
+      {
+        "id": "garden",
+        "label": "Chinese Garden entry (daytime)",
+        "per": [
+          12,
+          12
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Friday and Saturday evenings are liveliest. Go hungry and share dishes.",
+    "hours": "Restaurants open from late morning until late. Paddy's Markets open Wednesday to Sunday, 10am to 6pm; its Hay St Market hawker hall stays open until 11pm Thursday to Saturday. The Chinese Garden is open 10am to 5pm.",
+    "bring": [
+      "An appetite",
+      "A card and some cash",
+      "An umbrella if it's wet"
+    ],
+    "facilities": [
+      "Toilets in Market City and the food courts",
+      "Food everywhere"
+    ],
+    "access": "Flat streets and a pedestrian mall. Some older food courts are up stairs.",
+    "safety": [
+      "Tell staff about food allergies: menus don't always list every ingredient"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "SEA LIFE Aquarium",
+      "why": "Before you eat",
+      "dist": "≈ 12 min walk",
+      "activityId": "sea-life"
+    },
+    {
+      "name": "Newtown Street Art & King St",
+      "why": "More food and bars",
+      "dist": "One train stop from Central",
+      "activityId": "newtown"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Central Station",
+        "type": "start",
+        "note": "Leave by the Eddy Ave exit and walk down towards George St.",
+        "lng": 151.20634,
+        "lat": -33.88399
+      },
+      {
+        "n": 2,
+        "name": "Paddy's Markets",
+        "type": "food",
+        "note": "Fresh food hall and souvenir stalls, Wednesday to Sunday 10am to 6pm. The Hay St Market hawker hall stays open late Thursday to Saturday.",
+        "lng": 151.20344,
+        "lat": -33.87985
+      },
+      {
+        "n": 3,
+        "name": "Dixon Street",
+        "type": "end",
+        "note": "The pedestrian heart of Chinatown, between the two gates.",
+        "lng": 151.20402,
+        "lat": -33.87815
+      },
+      {
+        "n": 4,
+        "name": "Sussex St food courts",
+        "type": "food",
+        "note": "Cheap, busy food courts: point at what looks good.",
+        "lng": 151.20452,
+        "lat": -33.87677
+      },
+      {
+        "n": 5,
+        "name": "Darling Square",
+        "type": "food",
+        "note": "Newer laneways full of bubble tea, ramen and desserts.",
+        "lng": 151.20213,
+        "lat": -33.87834
+      },
+      {
+        "n": 6,
+        "name": "Thai Town",
+        "type": "food",
+        "note": "Campbell St is lined with Thai restaurants and grocers.",
+        "lng": 151.20705,
+        "lat": -33.87935
+      },
+      {
+        "n": 7,
+        "name": "Chinese Garden",
+        "type": "paid",
+        "note": "A quiet walled garden, open 10am to 5pm. Entry $12.",
+        "lng": 151.20258,
+        "lat": -33.87651
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.20546,
+          -33.88352
+        ],
+        [
+          151.2062,
+          -33.88258
+        ],
+        [
+          151.20582,
+          -33.88237
+        ],
+        [
+          151.20607,
+          -33.88211
+        ],
+        [
+          151.20619,
+          -33.88213
+        ],
+        [
+          151.20639,
+          -33.88225
+        ],
+        [
+          151.20611,
+          -33.88213
+        ],
+        [
+          151.20618,
+          -33.88205
+        ],
+        [
+          151.20564,
+          -33.88167
+        ],
+        [
+          151.20489,
+          -33.88126
+        ],
+        [
+          151.20497,
+          -33.88102
+        ],
+        [
+          151.20493,
+          -33.88094
+        ],
+        [
+          151.20506,
+          -33.88054
+        ],
+        [
+          151.20487,
+          -33.8805
+        ],
+        [
+          151.20487,
+          -33.88045
+        ],
+        [
+          151.20514,
+          -33.87968
+        ],
+        [
+          151.20346,
+          -33.87949
+        ],
+        [
+          151.20451,
+          -33.8796
+        ],
+        [
+          151.20454,
+          -33.87944
+        ],
+        [
+          151.20416,
+          -33.87938
+        ],
+        [
+          151.20398,
+          -33.87767
+        ],
+        [
+          151.20462,
+          -33.87766
+        ],
+        [
+          151.20452,
+          -33.87677
+        ],
+        [
+          151.20462,
+          -33.87766
+        ],
+        [
+          151.20383,
+          -33.87767
+        ],
+        [
+          151.20324,
+          -33.87748
+        ],
+        [
+          151.20323,
+          -33.87763
+        ],
+        [
+          151.20243,
+          -33.87759
+        ],
+        [
+          151.20236,
+          -33.87761
+        ],
+        [
+          151.20247,
+          -33.87811
+        ],
+        [
+          151.20192,
+          -33.87821
+        ],
+        [
+          151.20226,
+          -33.87914
+        ],
+        [
+          151.20336,
+          -33.87931
+        ],
+        [
+          151.20351,
+          -33.87924
+        ],
+        [
+          151.20356,
+          -33.8793
+        ],
+        [
+          151.20466,
+          -33.87945
+        ],
+        [
+          151.20479,
+          -33.87941
+        ],
+        [
+          151.2049,
+          -33.87948
+        ],
+        [
+          151.20526,
+          -33.87947
+        ],
+        [
+          151.20548,
+          -33.8796
+        ],
+        [
+          151.20561,
+          -33.87915
+        ],
+        [
+          151.20696,
+          -33.87944
+        ],
+        [
+          151.20698,
+          -33.87936
+        ],
+        [
+          151.20704,
+          -33.87937
+        ],
+        [
+          151.20698,
+          -33.87936
+        ],
+        [
+          151.20731,
+          -33.87818
+        ],
+        [
+          151.20559,
+          -33.87788
+        ],
+        [
+          151.20558,
+          -33.87781
+        ],
+        [
+          151.20462,
+          -33.87766
+        ],
+        [
+          151.20462,
+          -33.87754
+        ],
+        [
+          151.20397,
+          -33.87753
+        ],
+        [
+          151.20346,
+          -33.87724
+        ],
+        [
+          151.20315,
+          -33.8772
+        ],
+        [
+          151.20308,
+          -33.87704
+        ],
+        [
+          151.20258,
+          -33.87701
+        ],
+        [
+          151.20216,
+          -33.87704
+        ],
+        [
+          151.20158,
+          -33.87727
+        ],
+        [
+          151.20135,
+          -33.87659
+        ],
+        [
+          151.20209,
+          -33.87659
+        ],
+        [
+          151.20214,
+          -33.87687
+        ],
+        [
+          151.20229,
+          -33.87687
+        ],
+        [
+          151.20229,
+          -33.87694
+        ],
+        [
+          151.20255,
+          -33.87694
+        ],
+        [
+          151.20257,
+          -33.87687
+        ],
+        [
+          151.20265,
+          -33.87684
+        ],
+        [
+          151.20284,
+          -33.87691
+        ],
+        [
+          151.20293,
+          -33.87688
+        ],
+        [
+          151.2029,
+          -33.87674
+        ],
+        [
+          151.20298,
+          -33.87666
+        ],
+        [
+          151.20282,
+          -33.87663
+        ],
+        [
+          151.20277,
+          -33.87651
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20314,
+        "lat": -33.87586
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20342,
+        "lat": -33.87986
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20618,
+        "lat": -33.87733
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20263,
+        "lat": -33.87692
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20191,
+        "lat": -33.87741
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20249,
+        "lat": -33.8779
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20437,
+        "lat": -33.8768
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20569,
+        "lat": -33.87929
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20551,
+        "lat": -33.8817
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20676,
+        "lat": -33.87989
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20407,
+        "lat": -33.87772
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20779,
+        "lat": -33.87741
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.20622,
+              -33.88219
+            ],
+            [
+              151.20579,
+              -33.88179
+            ],
+            [
+              151.20593,
+              -33.88151
+            ],
+            [
+              151.20493,
+              -33.88094
+            ],
+            [
+              151.20533,
+              -33.87977
+            ],
+            [
+              151.20405,
+              -33.87935
+            ],
+            [
+              151.20405,
+              -33.879
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "Food prices."
+    },
+    {
+      "section": "driving",
+      "note": "City car park rates."
+    }
+  ]
+}
