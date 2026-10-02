@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.dev.vars
+.env
+.env.*
+!.env.example
+coverage/
+playwright-report/
+test-results/
+.DS_Store
+design/prototype-logic/content/content-all.json
+.dev-admin.local
+.map-data/
+transport-report.md
+
+# Claude Code session files
+.claude/scheduled_tasks.lock
+.claude/worktrees/

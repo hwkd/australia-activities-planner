@@ -1,0 +1,378 @@
+---
+/**
+ * The four Sky Mode scenes (tracker M3.4), ported from the A · Sky Mode artboards. No JavaScript:
+ * `html[data-weather]` picks the visible scene with a 900 ms crossfade. Only the visible scene
+ * animates; the layout's inline script adds `paused` to <html> while the tab is hidden, and reduced
+ * motion shows a still frame. The loops start once the page has loaded and gone idle (`sky-live`, set
+ * by the layout), so the first paint is a still scene and loading isn't competing with animation. Phone layout below 1024 px (positions from the 390 px artboard, as
+ * percentages so tablets work); desktop layout from the 1440 px artboard.
+ */
+
+const pct = (x: number, w: number) => `${((x / w) * 100).toFixed(2)}%`;
+const wave = (y: number, amp: number, n = 30) => `M0 ${y}q30-${amp} 60 0t${" 60 0".repeat(n)}`;
+
+// Water glints: [x, y, width, delay]
+const glintsM = [[312, 10, 36, -0.2], [344, 26, 22, -1.4], [300, 44, 28, -2.2], [330, 64, 40, -0.9], [352, 96, 26, -1.1], [60, 30, 18, -1.8], [150, 52, 24, -2.9], [220, 18, 16, -0.5], [100, 90, 30, -2.5]];
+const glintsD = [[540, 12, 48, -0.2], [580, 30, 28, -1.4], [520, 52, 36, -2.2], [560, 78, 52, -0.9], [545, 112, 30, -1.1], [90, 34, 22, -1.8], [230, 64, 30, -2.9], [380, 20, 18, -0.5], [160, 120, 34, -2.5], [760, 40, 26, -1.6], [920, 90, 34, -0.7], [1100, 26, 22, -2.1], [1280, 70, 30, -3], [440, 150, 24, -1.3]];
+
+// Drifting clouds: [x, y, width, opacity, blur, duration, delay, fill]
+type Cloud = [number, number, number, number, number, number, number, string];
+const cloudsM: Cloud[] = [
+  [200, 120, 170, 0.55, 3, 60, -20, "url(#sky-cg)"], [20, 40, 260, 0.8, 1.5, 40, -10, "url(#sky-cg)"],
+  [190, 360, 220, 0.6, 2, 48, -30, "url(#sky-cg)"], [-40, 540, 420, 0.75, 1, 28, -5, "url(#sky-cg)"],
+];
+const cloudsD: Cloud[] = [
+  [120, 90, 240, 0.6, 3, 60, -20, "url(#sky-cg)"], [640, 30, 380, 0.85, 1.5, 44, -10, "url(#sky-cg)"],
+  [1060, 330, 300, 0.6, 2, 52, -30, "url(#sky-cg)"], [160, 620, 560, 0.75, 1, 30, -6, "url(#sky-cg)"],
+  [820, 480, 260, 0.5, 3, 70, -40, "url(#sky-cg)"], [1220, 200, 200, 0.7, 2, 56, -18, "url(#sky-cg)"],
+];
+const rainCloudsM: Cloud[] = [[-40, -60, 360, 0.9, 0, 70, -30, "#1F2E5C"], [150, 10, 300, 0.75, 0, 55, -12, "#26376A"]];
+const rainCloudsD: Cloud[] = [[-60, -120, 620, 0.9, 0, 80, -20, "#1F2E5C"], [520, -40, 480, 0.75, 0, 64, -40, "#26376A"], [1000, -90, 520, 0.7, 0, 72, -12, "#22325F"]];
+
+// Heat shimmer lines: [y phone, y desktop, amp, stroke, width, duration]
+const waves = [
+  [20, 20, 7, "rgba(255,236,200,0.4)", 2, 7], [48, 54, 6, "rgba(255,236,200,0.3)", 2, 5],
+  [92, 110, 7, "rgba(214,92,30,0.55)", 2, 6], [124, 152, 6, "rgba(214,92,30,0.5)", 3, 8],
+  [160, 200, 7, "rgba(214,92,30,0.45)", 4, 4.5], [196, 250, 6, "rgba(214,92,30,0.4)", 5, 9],
+] as const;
+
+const RAYS_LONG = "M150 66V30M192 77.3L210 46.1M222.7 108L253.9 90M234 150H270M222.7 192L253.9 210M192 222.7L210 253.9M150 234V270M108 222.7L90 253.9M77.3 192L46.1 210M66 150H30M77.3 108L46.1 90M108 77.3L90 46.1";
+const RAYS_SHORT = "M173.8 61.1L177.4 47.6M215.1 84.9L225 75M238.9 126.2L252.4 122.6M238.9 173.8L252.4 177.4M215.1 215.1L225 225M173.8 238.9L177.4 252.4M126.2 238.9L122.6 252.4M84.9 215.1L75 225M61.1 173.8L47.6 177.4M61.1 126.2L47.6 122.6M84.9 84.9L75 75M126.2 61.1L122.6 47.6";
+const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>')}")`;
+---
+
+<div class="scene" aria-hidden="true">
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <path id="sky-cl" d="M36 80C16 80 6 66 12 54 17 43 30 40 40 44 42 26 60 16 78 20 88 6 112 2 128 14 140 22 144 32 142 40 158 34 180 42 184 58 188 72 178 80 164 80Z"></path>
+      <linearGradient id="sky-cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#DCE2E9"></stop></linearGradient>
+      <!-- Rain: about a third of the artboard density (owner feedback, 1 Oct 2026). Tile heights match the fall distances so the loop is seamless. -->
+      <pattern id="sky-rF" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M14 8v13M82 68v13" fill="none" stroke="#C4D4FF" stroke-width="1" stroke-linecap="round" opacity="0.4"></path></pattern>
+      <pattern id="sky-rM" width="170" height="160" patternUnits="userSpaceOnUse"><path d="M22 18v22M118 98v22" fill="none" stroke="#D2DEFF" stroke-width="1.3" stroke-linecap="round" opacity="0.44"></path></pattern>
+      <pattern id="sky-rN" width="240" height="220" patternUnits="userSpaceOnUse"><path d="M34 26v36M166 136v36" fill="none" stroke="#E4ECFF" stroke-width="1.7" stroke-linecap="round" opacity="0.4"></path></pattern>
+    </defs>
+  </svg>
+
+  <!-- Sunny: harbour cobalt, warm sun, glinting water -->
+  <div class="sky sky-sunny">
+    <div class="sun-glow"></div>
+    <svg class="sun-rays spin60" viewBox="0 0 300 300"><g fill="none" stroke="#FFD66B" stroke-linecap="round"><path d={RAYS_LONG} stroke-width="2.4" opacity="0.55"></path><path d={RAYS_SHORT} stroke-width="1.6" opacity="0.4"></path></g></svg>
+    <div class="sun"></div>
+    <svg class="bridge" viewBox="0 0 390 72"><g fill="#0A2A86"><rect x="22" y="40" width="12" height="32" rx="1"></rect><rect x="232" y="40" width="12" height="32" rx="1"></rect><path d="M298 72c4-18 14-30 30-36-6 10-8 22-7 36zM318 72c5-20 17-32 36-38-8 12-10 24-9 38zM342 72c4-14 12-23 24-27-5 9-6 18-5 27z"></path></g><g fill="none" stroke="#0A2A86"><path d="M28 56Q133 -2 238 56" stroke-width="2.6"></path><path d="M0 58H290" stroke-width="3"></path><path d="M54 43.4V58M80 34.4V58M106 28.9V58M133 27V58M160 28.9V58M186 34.4V58M212 43.4V58" stroke-width="1.2"></path></g></svg>
+    <div class="water">
+      <div class="water-lines"></div>
+      <div class="water-sun"></div>
+      {glintsM.map(([x, y, w, d]) => <span class="gl m" style={`left:${pct(x, 390)};top:${y}px;width:${w}px;animation-delay:${d}s`}></span>)}
+      {glintsD.map(([x, y, w, d]) => <span class="gl d" style={`left:${pct(x, 1440)};top:${y}px;width:${w}px;animation-delay:${d}s`}></span>)}
+    </div>
+  </div>
+
+  <!-- Cloudy: pearl grey-blue, parallax clouds -->
+  <div class="sky sky-cloudy">
+    <div class="cloud-glow"></div>
+    {cloudsM.map(([x, y, w, o, b, dur, del, fill]) => <svg class="drift m" viewBox="0 0 200 90" style={`left:${pct(x, 390)};top:${y}px;width:${w}px;height:${(w * 0.45).toFixed(0)}px;opacity:${o};filter:blur(${b}px);animation-duration:${dur}s;animation-delay:${del}s`}><use href="#sky-cl" fill={fill}></use></svg>)}
+    {cloudsD.map(([x, y, w, o, b, dur, del, fill]) => <svg class="drift d" viewBox="0 0 200 90" style={`left:${pct(x, 1440)};top:${y}px;width:${w}px;height:${(w * 0.45).toFixed(0)}px;opacity:${o};filter:blur(${b}px);animation-duration:${dur}s;animation-delay:${del}s`}><use href="#sky-cl" fill={fill}></use></svg>)}
+    <div class="cloud-floor"></div>
+  </div>
+
+  <!-- Rainy: deep night ink, three depths of rain, cosy glow -->
+  <div class="sky sky-rainy">
+    <div class="pulse rain-glow-a"></div>
+    <div class="pulse rain-glow-b"></div>
+    {rainCloudsM.map(([x, y, w, o, , dur, del, fill]) => <svg class="drift m" viewBox="0 0 200 90" style={`left:${pct(x, 390)};top:${y}px;width:${w}px;height:${(w * 0.45).toFixed(0)}px;opacity:${o};animation-duration:${dur}s;animation-delay:${del}s`}><use href="#sky-cl" fill={fill}></use></svg>)}
+    {rainCloudsD.map(([x, y, w, o, , dur, del, fill]) => <svg class="drift d" viewBox="0 0 200 90" style={`left:${pct(x, 1440)};top:${y}px;width:${w}px;height:${(w * 0.45).toFixed(0)}px;opacity:${o};animation-duration:${dur}s;animation-delay:${del}s`}><use href="#sky-cl" fill={fill}></use></svg>)}
+    <div class="rain">
+      <div class="f1"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#sky-rF)"></rect></svg></div>
+      <div class="f2"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#sky-rM)"></rect></svg></div>
+      <div class="f3"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#sky-rN)"></rect></svg></div>
+    </div>
+  </div>
+
+  <!-- Hot 30+: terracotta to amber, huge pale sun, heat shimmer -->
+  <div class="sky sky-hot">
+    <div class="heat-band"></div>
+    <div class="breathe hot-sun"></div>
+    <svg class="shimmer m" viewBox="0 0 1800 210"><g fill="none" stroke-linecap="round">{waves.map(([ym, , a, s, w, dur]) => <path class="wv" d={wave(ym, a)} stroke={s} stroke-width={w} style={`animation-duration:${dur}s`}></path>)}</g></svg>
+    <svg class="shimmer d" viewBox="0 0 1800 270"><g fill="none" stroke-linecap="round">{waves.map(([, yd, a, s, w, dur]) => <path class="wv" d={wave(yd, a)} stroke={s} stroke-width={w} style={`animation-duration:${dur}s`}></path>)}</g></svg>
+  </div>
+
+  <div class="grain" style={`background-image:${GRAIN}`}></div>
+</div>
+
+<style>
+  .scene {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    contain: strict;
+  }
+  .scene :global(svg) {
+    display: block;
+  }
+  .sky {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 900ms ease;
+  }
+  :global(html[data-weather="sunny"]) .sky-sunny,
+  :global(html[data-weather="cloudy"]) .sky-cloudy,
+  :global(html[data-weather="rainy"]) .sky-rainy,
+  :global(html[data-weather="hot"]) .sky-hot {
+    opacity: 1;
+  }
+  /* Only the visible scene animates; nothing animates while the tab is hidden. */
+  :global(html:not([data-weather="sunny"])) .sky-sunny *,
+  :global(html:not([data-weather="cloudy"])) .sky-cloudy *,
+  :global(html:not([data-weather="rainy"])) .sky-rainy *,
+  :global(html:not([data-weather="hot"])) .sky-hot *,
+  :global(html.paused) .scene *,
+  :global(html:not(.sky-live)) .scene * {
+    animation-play-state: paused;
+  }
+  .m,
+  .d {
+    position: absolute;
+  }
+  .d {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .m {
+      display: none;
+    }
+    .d {
+      display: block;
+    }
+  }
+
+  /* Sunny */
+  .sky-sunny {
+    background: linear-gradient(180deg, #0f3fb8 0%, #1b4bc8 45%, #3e7bf0 100%);
+  }
+  .sun-glow {
+    position: absolute;
+    right: -180px;
+    top: -180px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 214, 102, 0.34) 0%, rgba(255, 214, 102, 0.12) 38%, rgba(255, 214, 102, 0) 62%);
+  }
+  .sun-rays {
+    position: absolute;
+    right: -120px;
+    top: -120px;
+    width: 300px;
+    height: 300px;
+  }
+  .sun {
+    position: absolute;
+    right: -34px;
+    top: -34px;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 36% 34%, #fff2c2 0%, #ffd65c 36%, #ffc940 62%, #f2a51e 100%);
+    box-shadow: 0 0 70px 22px rgba(255, 201, 64, 0.32);
+  }
+  .bridge {
+    position: absolute;
+    left: 0;
+    bottom: 178px;
+    width: 390px;
+    height: 72px;
+    opacity: 0.7;
+  }
+  .water {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 180px;
+    background: linear-gradient(180deg, #1d52d6 0%, #0f37a2 30%, #0a2878 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .water-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 11px);
+  }
+  .water-sun {
+    position: absolute;
+    right: 18px;
+    top: 0;
+    width: 76px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 214, 102, 0.38), rgba(255, 214, 102, 0));
+    filter: blur(8px);
+  }
+  .gl {
+    height: 2px;
+    border-radius: 2px;
+    background: #ffe9a8;
+    opacity: 0;
+    animation: glint 3.4s ease-in-out infinite;
+  }
+  @media (min-width: 1024px) {
+    .sun-glow { left: 240px; right: auto; top: -330px; width: 640px; height: 640px; }
+    .sun-rays { left: 320px; right: auto; top: -250px; width: 480px; height: 480px; }
+    .sun { left: 460px; right: auto; top: -110px; width: 200px; height: 200px; box-shadow: 0 0 110px 34px rgba(255, 201, 64, 0.32); }
+    .bridge { left: 30px; bottom: 198px; width: 560px; height: 103px; }
+    .water { height: 200px; }
+    .water-lines { background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 12px); }
+    .water-sun { left: 510px; right: auto; width: 110px; background: linear-gradient(180deg, rgba(255, 214, 102, 0.4), rgba(255, 214, 102, 0)); filter: blur(10px); }
+  }
+
+  /* Cloudy */
+  .sky-cloudy {
+    background: linear-gradient(180deg, #8e9aa8 0%, #a9b4c0 50%, #c9d1d9 100%);
+  }
+  .cloud-glow {
+    position: absolute;
+    left: -120px;
+    top: -160px;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 65%);
+  }
+  .cloud-floor {
+    position: absolute;
+    left: -60px;
+    right: -60px;
+    bottom: -80px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 70%);
+  }
+  .drift {
+    animation: drift 40s ease-in-out infinite alternate;
+  }
+  @media (min-width: 1024px) {
+    .cloud-glow { left: -200px; top: -300px; width: 900px; height: 900px; background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 65%); }
+    .cloud-floor { left: -100px; right: -100px; bottom: -120px; height: 320px; background: radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%); }
+    .drift { animation-name: drift-wide; }
+  }
+
+  /* Rainy */
+  .sky-rainy {
+    background: linear-gradient(180deg, #0a1330 0%, #131f44 50%, #1c2b55 100%);
+  }
+  .rain-glow-a {
+    position: absolute;
+    left: -140px;
+    bottom: -160px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(110, 140, 255, 0.3), rgba(110, 140, 255, 0) 65%);
+  }
+  .rain-glow-b {
+    position: absolute;
+    right: -170px;
+    bottom: 90px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 176, 110, 0.15), rgba(255, 176, 110, 0) 65%);
+    animation-delay: -4s;
+  }
+  .rain {
+    position: absolute;
+    inset: -12%;
+    transform: rotate(10deg);
+  }
+  .rain > div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .f1 { top: -120px; animation: fall1 1.1s linear infinite; }
+  .f2 { top: -160px; animation: fall2 0.75s linear infinite; }
+  .f3 { top: -220px; animation: fall3 0.5s linear infinite; }
+  .pulse {
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @media (min-width: 1024px) {
+    .rain-glow-a { left: -220px; bottom: -300px; width: 860px; height: 860px; background: radial-gradient(circle, rgba(110, 140, 255, 0.28), rgba(110, 140, 255, 0) 65%); }
+    .rain-glow-b { right: -200px; bottom: 60px; width: 640px; height: 640px; background: radial-gradient(circle, rgba(255, 176, 110, 0.14), rgba(255, 176, 110, 0) 65%); }
+  }
+
+  /* Hot */
+  .sky-hot {
+    background: linear-gradient(180deg, #9a2d0b 0%, #b8421a 45%, #e8702a 100%);
+  }
+  .heat-band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 52%;
+    height: 260px;
+    background: linear-gradient(180deg, rgba(255, 190, 110, 0), rgba(255, 190, 110, 0.22), rgba(255, 190, 110, 0));
+  }
+  .hot-sun {
+    position: absolute;
+    left: calc(50% - 230px);
+    top: 70%;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 38%, #fff4d6 0%, #ffe3a1 42%, #ffd07a 100%);
+    box-shadow: 0 0 120px 50px rgba(255, 200, 120, 0.4);
+  }
+  .breathe {
+    animation: breathe 9s ease-in-out infinite;
+  }
+  .shimmer {
+    left: 0;
+    width: 1800px;
+  }
+  .shimmer.m { top: 61.6%; height: 210px; }
+  .shimmer.d { top: 58.3%; height: 270px; }
+  .wv {
+    animation: wave 6s linear infinite;
+  }
+  @media (min-width: 1024px) {
+    .heat-band { height: 320px; }
+    .hot-sun { left: calc(57% - 480px); top: 68%; width: 960px; height: 960px; background: radial-gradient(circle at 50% 30%, #fff4d6 0%, #ffe3a1 35%, #ffd07a 100%); box-shadow: 0 0 180px 70px rgba(255, 200, 120, 0.4); }
+  }
+
+  .grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+  }
+
+  .spin60 {
+    animation: spin 60s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes drift { from { transform: translate3d(-70px, 0, 0); } to { transform: translate3d(70px, 0, 0); } }
+  @keyframes drift-wide { from { transform: translate3d(-130px, 0, 0); } to { transform: translate3d(130px, 0, 0); } }
+  @keyframes fall1 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 120px, 0); } }
+  @keyframes fall2 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 160px, 0); } }
+  @keyframes fall3 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 220px, 0); } }
+  @keyframes wave { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-120px, 0, 0); } }
+  @keyframes glint { 0%, 100% { opacity: 0; transform: scaleX(0.3); } 50% { opacity: 0.95; transform: scaleX(1); } }
+  @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+  @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+
+  /* Reduced motion: a still frame (glints rest visible), and the crossfade is instant. */
+  @media (prefers-reduced-motion: reduce) {
+    .scene *,
+    .sky {
+      animation: none !important;
+      transition: none !important;
+    }
+    .gl {
+      opacity: 0.6;
+    }
+  }
+</style>

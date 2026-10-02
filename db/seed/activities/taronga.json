@@ -1,0 +1,926 @@
+{
+  "id": "taronga",
+  "status": "verified",
+  "name": "Taronga Zoo",
+  "city": "sydney",
+  "area": "Mosman",
+  "category": "wildlife",
+  "categoryLabel": "Wildlife",
+  "blurb": "Koalas, kangaroos and giraffes with a harbour skyline behind them.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 1
+  },
+  "weatherNote": "Mostly outdoors and hilly. Light rain means thinner crowds.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family"
+  ],
+  "duration": {
+    "label": "Half day",
+    "minHours": 3,
+    "maxHours": 5
+  },
+  "cost": "$$$",
+  "gettingThere": "F2 ferry from Circular Quay to Taronga Zoo wharf, about 12 min.",
+  "newcomerTip": "The Sky Safari cable car is closed while it's rebuilt (due back in late 2027): take the bus up from the wharf to the top entrance, then walk downhill. Koalas and kangaroos with harbour views.",
+  "location": {
+    "lat": -33.8433,
+    "lng": 151.2411
+  },
+  "suggestedStart": "09:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "Half day"
+    },
+    {
+      "k": "Ferry",
+      "v": "12 min each way"
+    },
+    {
+      "k": "Effort",
+      "v": "Moderate, hilly paths"
+    },
+    {
+      "k": "Entry",
+      "v": "Ticket"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8433,
+      "lng": 151.2411,
+      "label": "Taronga Zoo Wharf"
+    },
+    "pt": {
+      "total": "≈ 30 min",
+      "changes": 1,
+      "fare": [
+        10,
+        13
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "title": "Train to Circular Quay",
+          "mins": 8,
+          "detail": "Or any T3 or T8 train"
+        },
+        {
+          "mode": "walk",
+          "title": "Walk to Wharf 4",
+          "mins": 3
+        },
+        {
+          "mode": "ferry",
+          "line": "F2",
+          "title": "Ferry to Taronga Zoo",
+          "mins": 12,
+          "detail": "Every 30 min on weekends"
+        },
+        {
+          "mode": "walk",
+          "title": "Up to the lower entrance",
+          "mins": 4
+        }
+      ],
+      "back": {
+        "text": "From the top entrance, bus 100 runs to Wynyard (≈ 25 min). Or walk down to the wharf (≈ 15 min) and take the F2 to Circular Quay; the last ferries leave around closing time."
+      }
+    },
+    "drive": {
+      "total": "≈ 22 min",
+      "perCar": [
+        24,
+        24
+      ],
+      "perCarLabel": "Zoo car park, all day",
+      "notes": [
+        "The zoo car park fills by late morning on sunny weekends.",
+        "A toll applies coming back across the harbour."
+      ]
+    },
+    "ride": "Ride up, walk down through the zoo, and take the ferry home."
+  },
+  "costs": {
+    "entry": [
+      51,
+      56
+    ],
+    "entryChild": [
+      31,
+      35
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Lunch inside the zoo",
+        "per": [
+          18,
+          30
+        ],
+        "on": true
+      },
+      {
+        "id": "koala",
+        "label": "Koala or giraffe encounter",
+        "per": [
+          30,
+          40
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Arrive at opening, when the animals are most active. Start at the top and walk downhill.",
+    "hours": "Open every day: 9:30am to 5pm from September to April, and 9:30am to 4:30pm from May to August.",
+    "bring": [
+      "Sunscreen & hat",
+      "Water bottle",
+      "Walking shoes",
+      "Tickets on your phone"
+    ],
+    "facilities": [
+      "Toilets and water refill points throughout",
+      "Cafés and kiosks at both ends"
+    ],
+    "access": "Steep hillside. There's an accessible route and lifts, and wheelchairs and strollers can be hired.",
+    "safety": [
+      "It's mostly outdoors: plan shade breaks on hot days"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Balmoral Beach",
+      "why": "Swim after",
+      "dist": "≈ 15 min by bus",
+      "activityId": "balmoral"
+    },
+    {
+      "name": "Walk across the Harbour Bridge",
+      "why": "Add a sunset walk",
+      "dist": "From Circular Quay",
+      "activityId": "bridge-walk"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Circular Quay",
+        "type": "start",
+        "note": "Zoo ferries leave from Wharf 4.",
+        "lng": 151.2111,
+        "lat": -33.8606
+      },
+      {
+        "n": 2,
+        "name": "Taronga Zoo Wharf",
+        "type": "stop",
+        "note": "Buses meet each ferry and run up to the top entrance.",
+        "lng": 151.2396,
+        "lat": -33.84639
+      },
+      {
+        "n": 3,
+        "name": "Lower entrance",
+        "type": "paid",
+        "note": "Enter here to walk uphill, or ride up and walk down.",
+        "lng": 151.24202,
+        "lat": -33.84509
+      },
+      {
+        "n": 4,
+        "name": "Seals & harbour terraces",
+        "type": "lookout",
+        "note": "Seal shows and the famous giraffes-with-skyline view.",
+        "lng": 151.24169,
+        "lat": -33.84451
+      },
+      {
+        "n": 5,
+        "name": "Australian walkabout",
+        "type": "lookout",
+        "note": "Kangaroos, wallabies, emus and the koala encounter.",
+        "lng": 151.24382,
+        "lat": -33.84445
+      },
+      {
+        "n": 6,
+        "name": "Top entrance",
+        "type": "end",
+        "note": "Main plaza, shop and the bus 100 stop to the city.",
+        "lng": 151.24329,
+        "lat": -33.84248
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.2396,
+          -33.84639
+        ],
+        [
+          151.23985,
+          -33.84581
+        ],
+        [
+          151.24003,
+          -33.84583
+        ],
+        [
+          151.2407,
+          -33.8457
+        ],
+        [
+          151.24149,
+          -33.84528
+        ],
+        [
+          151.24162,
+          -33.84523
+        ],
+        [
+          151.24188,
+          -33.84522
+        ],
+        [
+          151.24197,
+          -33.84507
+        ],
+        [
+          151.24152,
+          -33.84509
+        ],
+        [
+          151.24104,
+          -33.84526
+        ],
+        [
+          151.24106,
+          -33.84513
+        ],
+        [
+          151.24096,
+          -33.84491
+        ],
+        [
+          151.24107,
+          -33.84484
+        ],
+        [
+          151.24114,
+          -33.84472
+        ],
+        [
+          151.24144,
+          -33.84463
+        ],
+        [
+          151.24154,
+          -33.84455
+        ],
+        [
+          151.24153,
+          -33.8445
+        ],
+        [
+          151.24169,
+          -33.84444
+        ],
+        [
+          151.24165,
+          -33.84444
+        ],
+        [
+          151.2416,
+          -33.84431
+        ],
+        [
+          151.24155,
+          -33.8443
+        ],
+        [
+          151.24168,
+          -33.84422
+        ],
+        [
+          151.24204,
+          -33.84436
+        ],
+        [
+          151.24214,
+          -33.84425
+        ],
+        [
+          151.24237,
+          -33.84428
+        ],
+        [
+          151.24251,
+          -33.84441
+        ],
+        [
+          151.24262,
+          -33.84464
+        ],
+        [
+          151.24272,
+          -33.84467
+        ],
+        [
+          151.24294,
+          -33.84466
+        ],
+        [
+          151.24331,
+          -33.84449
+        ],
+        [
+          151.24353,
+          -33.8446
+        ],
+        [
+          151.24383,
+          -33.84462
+        ],
+        [
+          151.24388,
+          -33.84452
+        ],
+        [
+          151.2438,
+          -33.84464
+        ],
+        [
+          151.24356,
+          -33.84461
+        ],
+        [
+          151.24356,
+          -33.84456
+        ],
+        [
+          151.24348,
+          -33.84455
+        ],
+        [
+          151.24349,
+          -33.84449
+        ],
+        [
+          151.24345,
+          -33.84446
+        ],
+        [
+          151.24349,
+          -33.8444
+        ],
+        [
+          151.24345,
+          -33.84439
+        ],
+        [
+          151.24353,
+          -33.84426
+        ],
+        [
+          151.24348,
+          -33.84415
+        ],
+        [
+          151.24326,
+          -33.84399
+        ],
+        [
+          151.2432,
+          -33.8438
+        ],
+        [
+          151.24296,
+          -33.84369
+        ],
+        [
+          151.24295,
+          -33.84361
+        ],
+        [
+          151.24274,
+          -33.84349
+        ],
+        [
+          151.24202,
+          -33.8433
+        ],
+        [
+          151.24213,
+          -33.84324
+        ],
+        [
+          151.24216,
+          -33.84315
+        ],
+        [
+          151.24189,
+          -33.843
+        ],
+        [
+          151.24193,
+          -33.84293
+        ],
+        [
+          151.24179,
+          -33.8429
+        ],
+        [
+          151.24236,
+          -33.84243
+        ],
+        [
+          151.24328,
+          -33.84256
+        ],
+        [
+          151.24329,
+          -33.84248
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.24097,
+        "lat": -33.84458
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.24206,
+        "lat": -33.84508
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.24167,
+        "lat": -33.84234
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2115,
+        "lat": -33.86143
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.24278,
+        "lat": -33.84243
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.24267,
+        "lat": -33.84263
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.23965,
+        "lat": -33.84602
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21114,
+        "lat": -33.86149
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "coords": [
+            [
+              151.20724,
+              -33.88419
+            ],
+            [
+              151.20807,
+              -33.88258
+            ],
+            [
+              151.20946,
+              -33.87707
+            ],
+            [
+              151.21069,
+              -33.8744
+            ],
+            [
+              151.21146,
+              -33.87205
+            ],
+            [
+              151.21236,
+              -33.86654
+            ],
+            [
+              151.21282,
+              -33.86584
+            ],
+            [
+              151.21446,
+              -33.86456
+            ],
+            [
+              151.21489,
+              -33.86361
+            ],
+            [
+              151.21466,
+              -33.8626
+            ],
+            [
+              151.21376,
+              -33.86181
+            ],
+            [
+              151.2103,
+              -33.86134
+            ]
+          ]
+        },
+        {
+          "mode": "ferry",
+          "line": "F2",
+          "coords": [
+            [
+              151.2111,
+              -33.8606
+            ],
+            [
+              151.21126,
+              -33.86032
+            ],
+            [
+              151.21132,
+              -33.85929
+            ],
+            [
+              151.21346,
+              -33.8543
+            ],
+            [
+              151.21377,
+              -33.85401
+            ],
+            [
+              151.22118,
+              -33.85325
+            ],
+            [
+              151.22268,
+              -33.85263
+            ],
+            [
+              151.22537,
+              -33.85071
+            ],
+            [
+              151.2268,
+              -33.85015
+            ],
+            [
+              151.23342,
+              -33.84975
+            ],
+            [
+              151.23461,
+              -33.84898
+            ],
+            [
+              151.23957,
+              -33.8464
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.23955,
+              -33.84636
+            ],
+            [
+              151.23975,
+              -33.8458
+            ],
+            [
+              151.23944,
+              -33.84566
+            ],
+            [
+              151.23961,
+              -33.84555
+            ],
+            [
+              151.2398,
+              -33.84566
+            ],
+            [
+              151.2395,
+              -33.84554
+            ],
+            [
+              151.24011,
+              -33.84564
+            ],
+            [
+              151.24104,
+              -33.84526
+            ],
+            [
+              151.24091,
+              -33.84477
+            ],
+            [
+              151.24104,
+              -33.84414
+            ],
+            [
+              151.24075,
+              -33.84372
+            ],
+            [
+              151.24102,
+              -33.8436
+            ],
+            [
+              151.24108,
+              -33.84329
+            ]
+          ]
+        }
+      ]
+    },
+    "back": {
+      "legs": [
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.24329,
+              -33.84248
+            ],
+            [
+              151.24344,
+              -33.84242
+            ],
+            [
+              151.24347,
+              -33.8421
+            ]
+          ]
+        },
+        {
+          "mode": "bus",
+          "line": "100",
+          "coords": [
+            [
+              151.24355,
+              -33.84209
+            ],
+            [
+              151.24354,
+              -33.84185
+            ],
+            [
+              151.2437,
+              -33.84179
+            ],
+            [
+              151.24365,
+              -33.84094
+            ],
+            [
+              151.24405,
+              -33.84013
+            ],
+            [
+              151.24501,
+              -33.8388
+            ],
+            [
+              151.24516,
+              -33.83774
+            ],
+            [
+              151.24611,
+              -33.83686
+            ],
+            [
+              151.24653,
+              -33.83595
+            ],
+            [
+              151.2463,
+              -33.83536
+            ],
+            [
+              151.2442,
+              -33.83187
+            ],
+            [
+              151.24437,
+              -33.8316
+            ],
+            [
+              151.24403,
+              -33.82726
+            ],
+            [
+              151.24353,
+              -33.8258
+            ],
+            [
+              151.24098,
+              -33.82456
+            ],
+            [
+              151.23633,
+              -33.8244
+            ],
+            [
+              151.23493,
+              -33.82464
+            ],
+            [
+              151.23344,
+              -33.82548
+            ],
+            [
+              151.23088,
+              -33.82786
+            ],
+            [
+              151.22861,
+              -33.82895
+            ],
+            [
+              151.22713,
+              -33.83003
+            ],
+            [
+              151.22327,
+              -33.83157
+            ],
+            [
+              151.2224,
+              -33.83159
+            ],
+            [
+              151.21849,
+              -33.83014
+            ],
+            [
+              151.21533,
+              -33.82985
+            ],
+            [
+              151.21441,
+              -33.82994
+            ],
+            [
+              151.21231,
+              -33.83296
+            ],
+            [
+              151.2115,
+              -33.83476
+            ],
+            [
+              151.21123,
+              -33.83553
+            ],
+            [
+              151.21079,
+              -33.83892
+            ],
+            [
+              151.21082,
+              -33.84152
+            ],
+            [
+              151.21262,
+              -33.84732
+            ],
+            [
+              151.21265,
+              -33.84878
+            ],
+            [
+              151.2123,
+              -33.84977
+            ],
+            [
+              151.20669,
+              -33.85875
+            ],
+            [
+              151.20605,
+              -33.86018
+            ],
+            [
+              151.20578,
+              -33.86155
+            ],
+            [
+              151.20526,
+              -33.86295
+            ],
+            [
+              151.20582,
+              -33.86688
+            ]
+          ]
+        },
+        {
+          "mode": "train",
+          "line": "T2",
+          "coords": [
+            [
+              151.20596,
+              -33.86586
+            ],
+            [
+              151.20608,
+              -33.86673
+            ],
+            [
+              151.206,
+              -33.8677
+            ],
+            [
+              151.20628,
+              -33.87007
+            ],
+            [
+              151.20705,
+              -33.87276
+            ],
+            [
+              151.2067,
+              -33.87474
+            ],
+            [
+              151.20674,
+              -33.87555
+            ],
+            [
+              151.20711,
+              -33.87633
+            ],
+            [
+              151.20853,
+              -33.8776
+            ],
+            [
+              151.20889,
+              -33.87853
+            ],
+            [
+              151.20867,
+              -33.88018
+            ],
+            [
+              151.2079,
+              -33.88281
+            ],
+            [
+              151.20709,
+              -33.8841
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "Ticket prices at the gate: only online prices were found."
+    },
+    {
+      "section": "map",
+      "note": "Where the seals, Australian walkabout and top entrance are inside the zoo: placed by hand."
+    },
+    {
+      "section": "gettingThere",
+      "note": "How often the F2 ferry runs on weekends."
+    }
+  ]
+}

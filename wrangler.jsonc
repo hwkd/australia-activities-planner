@@ -1,0 +1,31 @@
+{
+  // Astro on Cloudflare Workers (tracker M11): pages are rendered on demand from D1; static files
+  // (scripts, styles, fonts, icons) are served as assets by the adapter.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sydney-weekend-finder",
+  // src/worker.ts wraps Astro's handler and adds the forecast Cron Trigger below (tracker M16).
+  "main": "./src/worker.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sydney-weekend-finder",
+      // Set to the real ID from `npx wrangler d1 create sydney-weekend-finder` (owner, M0.5).
+      // Local development and tests use a local D1 in .wrangler/state and ignore this.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "db/migrations"
+    }
+  ],
+  // Map tiles (a Sydney Protomaps extract) and label fonts for the map view (spec §11.2), served
+  // through /map/*. Create with `npx wrangler r2 bucket create sydney-weekend-finder-map` (owner), then
+  // `npx tsx scripts/map/upload.ts --remote`. Without the files, the app keeps the schematic maps.
+  "r2_buckets": [{ "binding": "MAP", "bucket_name": "sydney-weekend-finder-map" }],
+  // Every 3 hours: refresh the live forecast from Open-Meteo (spec §11.1).
+  "triggers": { "crons": ["0 */3 * * *"] },
+  "vars": {
+    // "published": only published activities that are verified; "preview": drafts may be published
+    // (local, staging). Production must use "published" (spec §4.3: no drafts in production).
+    "CONTENT_MODE": "preview"
+  }
+}

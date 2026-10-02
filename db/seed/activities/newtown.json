@@ -1,0 +1,553 @@
+{
+  "id": "newtown",
+  "status": "verified",
+  "name": "Newtown Street Art & King St",
+  "city": "sydney",
+  "area": "Inner West",
+  "category": "neighbourhood",
+  "categoryLabel": "Neighbourhood",
+  "blurb": "Murals, vintage shops and food from everywhere on one long street.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 1
+  },
+  "weatherNote": "Plenty of cafés and shops to duck into.",
+  "goodFor": [
+    "date",
+    "friends",
+    "solo"
+  ],
+  "duration": {
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
+  },
+  "cost": "$",
+  "gettingThere": "Train to Newtown station.",
+  "newcomerTip": "Murals, vintage shops, bookstores and food from everywhere. Stays lively into the night.",
+  "location": {
+    "lat": -33.898,
+    "lng": 151.179
+  },
+  "suggestedStart": "17:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "2–3 hrs"
+    },
+    {
+      "k": "Train",
+      "v": "7 min from Central"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.898,
+      "lng": 151.179,
+      "label": "Newtown Station"
+    },
+    "pt": {
+      "total": "≈ 10 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "title": "Inner West line to Newtown",
+          "mins": 7,
+          "detail": "Every 5–10 min"
+        },
+        {
+          "mode": "walk",
+          "title": "Out onto King St",
+          "mins": 3
+        }
+      ],
+      "back": {
+        "text": "Same way back. Trains run until late."
+      }
+    },
+    "drive": {
+      "total": "≈ 12 min",
+      "perCar": [
+        0,
+        12
+      ],
+      "perCarLabel": "Street parking",
+      "notes": [
+        "King St is a clearway at busy times and side streets are mostly permit or time-limited."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Dinner on King St",
+        "per": [
+          20,
+          35
+        ],
+        "on": true
+      },
+      {
+        "id": "sweet",
+        "label": "Gelato or a dessert bar",
+        "per": [
+          7,
+          14
+        ],
+        "on": true
+      },
+      {
+        "id": "shop",
+        "label": "Vintage or book shopping",
+        "per": [
+          15,
+          50
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Late afternoon into the evening, when the street fills up. Saturday is busiest.",
+    "hours": "Shops open about 10am to 6pm. Restaurants and bars go late.",
+    "bring": [
+      "Comfy shoes",
+      "A tote bag",
+      "A phone for mural photos"
+    ],
+    "facilities": [
+      "Toilets at the station and in Camperdown Memorial Rest Park",
+      "Food and drink on every block"
+    ],
+    "access": "Footpaths are flat but narrow and busy. The station has a lift.",
+    "safety": [
+      "King St traffic is heavy: cross at the lights"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Haymarket & Chinatown Food Crawl",
+      "why": "A second dinner",
+      "dist": "One train stop to Central",
+      "activityId": "chinatown"
+    },
+    {
+      "name": "Carriageworks Farmers Market",
+      "why": "Saturday mornings",
+      "dist": "≈ 15 min walk",
+      "activityId": "carriageworks"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Newtown Station",
+        "type": "start",
+        "note": "You come out right on King St.",
+        "lng": 151.17902,
+        "lat": -33.89748
+      },
+      {
+        "n": 2,
+        "name": "King St south",
+        "type": "food",
+        "note": "Vintage stores, dessert bars and small galleries towards St Peters.",
+        "lng": 151.181,
+        "lat": -33.9035
+      },
+      {
+        "n": 3,
+        "name": "Enmore Rd",
+        "type": "food",
+        "note": "Bars, gelato and the Enmore Theatre.",
+        "lng": 151.1745,
+        "lat": -33.8988
+      },
+      {
+        "n": 4,
+        "name": "\"I Have a Dream\" mural",
+        "type": "lookout",
+        "note": "Newtown's best-known mural, a Martin Luther King tribute just north of the station.",
+        "lng": 151.17946,
+        "lat": -33.89664
+      },
+      {
+        "n": 5,
+        "name": "Camperdown Memorial Rest Park",
+        "type": "lookout",
+        "note": "The local lawn for a picnic, with murals along the walls.",
+        "lng": 151.17898,
+        "lat": -33.89451
+      },
+      {
+        "n": 6,
+        "name": "King St north",
+        "type": "end",
+        "note": "Bookshops, record stores and Thai restaurants towards Camperdown.",
+        "lng": 151.17772,
+        "lat": -33.88859
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.17904,
+          -33.89749
+        ],
+        [
+          151.17794,
+          -33.89887
+        ],
+        [
+          151.17788,
+          -33.8991
+        ],
+        [
+          151.17792,
+          -33.89929
+        ],
+        [
+          151.17826,
+          -33.9003
+        ],
+        [
+          151.17923,
+          -33.90232
+        ],
+        [
+          151.17951,
+          -33.90284
+        ],
+        [
+          151.17998,
+          -33.90353
+        ],
+        [
+          151.18026,
+          -33.90407
+        ],
+        [
+          151.18093,
+          -33.90389
+        ],
+        [
+          151.18105,
+          -33.90351
+        ],
+        [
+          151.18093,
+          -33.90389
+        ],
+        [
+          151.18026,
+          -33.90407
+        ],
+        [
+          151.17992,
+          -33.90343
+        ],
+        [
+          151.17946,
+          -33.90276
+        ],
+        [
+          151.17819,
+          -33.90013
+        ],
+        [
+          151.17804,
+          -33.90017
+        ],
+        [
+          151.17774,
+          -33.89928
+        ],
+        [
+          151.17728,
+          -33.89941
+        ],
+        [
+          151.17687,
+          -33.89847
+        ],
+        [
+          151.1764,
+          -33.89864
+        ],
+        [
+          151.1745,
+          -33.89881
+        ],
+        [
+          151.1764,
+          -33.89864
+        ],
+        [
+          151.17653,
+          -33.8986
+        ],
+        [
+          151.17649,
+          -33.89845
+        ],
+        [
+          151.17776,
+          -33.89798
+        ],
+        [
+          151.17892,
+          -33.89735
+        ],
+        [
+          151.1796,
+          -33.8966
+        ],
+        [
+          151.18001,
+          -33.89635
+        ],
+        [
+          151.17963,
+          -33.89549
+        ],
+        [
+          151.18038,
+          -33.89526
+        ],
+        [
+          151.18036,
+          -33.89522
+        ],
+        [
+          151.18042,
+          -33.8952
+        ],
+        [
+          151.18031,
+          -33.89493
+        ],
+        [
+          151.17894,
+          -33.89535
+        ],
+        [
+          151.17855,
+          -33.89442
+        ],
+        [
+          151.18032,
+          -33.89389
+        ],
+        [
+          151.18002,
+          -33.8932
+        ],
+        [
+          151.17989,
+          -33.89315
+        ],
+        [
+          151.17963,
+          -33.89322
+        ],
+        [
+          151.17872,
+          -33.8912
+        ],
+        [
+          151.17858,
+          -33.89124
+        ],
+        [
+          151.17853,
+          -33.89111
+        ],
+        [
+          151.17847,
+          -33.89113
+        ],
+        [
+          151.17746,
+          -33.88873
+        ],
+        [
+          151.17775,
+          -33.88864
+        ],
+        [
+          151.17774,
+          -33.88861
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.17958,
+        "lat": -33.89807
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.1791,
+        "lat": -33.89699
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17953,
+        "lat": -33.9032
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.18036,
+        "lat": -33.89671
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17829,
+        "lat": -33.898
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17848,
+        "lat": -33.89712
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17886,
+        "lat": -33.902
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17815,
+        "lat": -33.89875
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17915,
+        "lat": -33.8981
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.18071,
+        "lat": -33.90489
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17352,
+        "lat": -33.89874
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.1764,
+        "lat": -33.8987
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "coords": [
+            [
+              151.20709,
+              -33.8841
+            ],
+            [
+              151.20593,
+              -33.88539
+            ],
+            [
+              151.20223,
+              -33.88813
+            ],
+            [
+              151.19889,
+              -33.89179
+            ],
+            [
+              151.19671,
+              -33.89314
+            ],
+            [
+              151.19454,
+              -33.89407
+            ],
+            [
+              151.18938,
+              -33.89562
+            ],
+            [
+              151.18596,
+              -33.89694
+            ],
+            [
+              151.18269,
+              -33.89773
+            ],
+            [
+              151.17985,
+              -33.89796
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.17985,
+              -33.89794
+            ],
+            [
+              151.17877,
+              -33.89784
+            ],
+            [
+              151.17869,
+              -33.89795
+            ],
+            [
+              151.179,
+              -33.89801
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "visit",
+      "note": "Toilets in Camperdown Memorial Rest Park and the lift at Newtown station."
+    },
+    {
+      "section": "cost",
+      "note": "Food and shopping prices."
+    }
+  ]
+}

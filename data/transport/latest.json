@@ -1,0 +1,2124 @@
+{
+ "when": {
+  "itdDate": "20261003",
+  "itdTime": "1030"
+ },
+ "journeys": {
+  "agnsw:central": {
+   "legs": [
+    {
+     "mode": "metro",
+     "line": "M1",
+     "mins": 3,
+     "from": "Central Station, Platform 26, Sydney",
+     "to": "Martin Place Station, Platform 4, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 18,
+     "from": "Martin Place Station, Sydney",
+     "to": "2B Art Gallery Rd, Sydney"
+    }
+   ],
+   "totalMins": 21
+  },
+  "agnsw:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "396",
+     "mins": 2,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Martin Place Station, Elizabeth St, Stand E, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 12,
+     "from": "Martin Place Station, Elizabeth St, Sydney",
+     "to": "2B Art Gallery Rd, Sydney"
+    }
+   ],
+   "totalMins": 14
+  },
+  "agnsw:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 4,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "St James Station, Platform 1, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 13,
+     "from": "St James Station, Sydney",
+     "to": "2B Art Gallery Rd, Sydney"
+    }
+   ],
+   "totalMins": 48
+  },
+  "aus-museum:central": {
+   "legs": [
+    {
+     "mode": "metro",
+     "line": "M1",
+     "mins": 2,
+     "from": "Central Station, Platform 26, Sydney",
+     "to": "Gadigal Station, Platform 2, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 12,
+     "from": "Gadigal Station, Sydney",
+     "to": "6 College St, Darlinghurst"
+    }
+   ],
+   "totalMins": 14
+  },
+  "aus-museum:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "396",
+     "mins": 4,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Hyde Park, Elizabeth St, Stand A, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Hyde Park, Park St, Sydney",
+     "to": "6 College St, Darlinghurst"
+    }
+   ],
+   "totalMins": 11
+  },
+  "aus-museum:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 2,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Museum Station, Platform 1, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 10,
+     "from": "Museum Station, Sydney",
+     "to": "6 College St, Darlinghurst"
+    }
+   ],
+   "totalMins": 43
+  },
+  "balmoral:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 5,
+     "from": "Central Station, Platform 16, Sydney",
+     "to": "Wynyard Station, Platform 4, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "173X",
+     "mins": 15,
+     "from": "Wynyard Station, Carrington St, Stand A, Sydney",
+     "to": "Spit Rd at Awaba St, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 20,
+     "from": "Spit Rd at Awaba St, Mosman",
+     "to": "5 The Esplanade, Mosman"
+    }
+   ],
+   "totalMins": 40
+  },
+  "balmoral:quay": {
+   "legs": [
+    {
+     "mode": "ferry",
+     "line": "F2",
+     "mins": 12,
+     "from": "Circular Quay, Wharf 4, Side B, Sydney",
+     "to": "Taronga Zoo Wharf, Mosman"
+    },
+    {
+     "mode": "bus",
+     "line": "238",
+     "mins": 12,
+     "from": "Taronga Zoo Wharf, Athol Wharf Rd, Mosman",
+     "to": "Raglan St at The Esplanade, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 3,
+     "from": "Raglan St at The Esplanade, Mosman",
+     "to": "5 The Esplanade, Mosman"
+    }
+   ],
+   "totalMins": 27
+  },
+  "balmoral:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 37,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Wynyard Station, Platform 4, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "173X",
+     "mins": 15,
+     "from": "Wynyard Station, Carrington St, Stand A, Sydney",
+     "to": "Spit Rd at Awaba St, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 20,
+     "from": "Spit Rd at Awaba St, Mosman",
+     "to": "5 The Esplanade, Mosman"
+    }
+   ],
+   "totalMins": 72
+  },
+  "bondi-coogee:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 13,
+     "from": "Central Station, Platform 24, Sydney",
+     "to": "Bondi Junction Station, Platform 1, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "379",
+     "mins": 10,
+     "from": "Bondi Junction Station, Stand D, Bondi Junction",
+     "to": "Glenayr Ave at Hall St, Bondi Beach"
+    },
+    {
+     "mode": "walk",
+     "mins": 12,
+     "from": "Glenayr Ave at Hall St, Bondi Beach",
+     "to": "164 Campbell Pde, Bondi Beach"
+    }
+   ],
+   "totalMins": 35
+  },
+  "bondi-coogee:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "396",
+     "mins": 2,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Martin Place Station, Elizabeth St, Stand E, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Martin Place Station, Elizabeth St, Martin Place Station, Elizabeth St, Stand E, Sydney",
+     "to": "Martin Place Station, Platform 2, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 8,
+     "from": "Martin Place Station, Platform 2, Sydney",
+     "to": "Bondi Junction Station, Platform 1, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "379",
+     "mins": 10,
+     "from": "Bondi Junction Station, Stand D, Bondi Junction",
+     "to": "Glenayr Ave at Hall St, Bondi Beach"
+    },
+    {
+     "mode": "walk",
+     "mins": 12,
+     "from": "Glenayr Ave at Hall St, Bondi Beach",
+     "to": "164 Campbell Pde, Bondi Beach"
+    }
+   ],
+   "totalMins": 37
+  },
+  "bondi-coogee:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 35,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Town Hall Station, Platform 3, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 10,
+     "from": "Town Hall Station, Platform 5, Sydney",
+     "to": "Bondi Junction Station, Platform 1, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "333",
+     "mins": 15,
+     "from": "Bondi Junction Station, Stand A, Bondi Junction",
+     "to": "Bondi Beach, Campbell Pde, Stand C, Bondi Beach"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Bondi Beach, Bondi Beach",
+     "to": "164 Campbell Pde, Bondi Beach"
+    }
+   ],
+   "totalMins": 65
+  },
+  "botanic:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 8,
+     "from": "Central Station, Platform 17, Sydney",
+     "to": "Circular Quay, Platform 2, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 13,
+     "from": "Circular Quay, Sydney",
+     "to": "2A Macquarie St, Sydney"
+    }
+   ],
+   "totalMins": 21
+  },
+  "botanic:quay": {
+   "legs": [
+    {
+     "mode": "walk",
+     "mins": 8,
+     "from": "Circular Quay, Sydney",
+     "to": "2A Macquarie St, Sydney"
+    }
+   ],
+   "totalMins": 8
+  },
+  "botanic:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 13,
+     "from": "Circular Quay, Sydney",
+     "to": "2A Macquarie St, Sydney"
+    }
+   ],
+   "totalMins": 52
+  },
+  "bridge-walk:central": {
+   "legs": [
+    {
+     "mode": "metro",
+     "line": "M1",
+     "mins": 6,
+     "from": "Central Station, Platform 26, Sydney",
+     "to": "Barangaroo Station, Platform 2, Barangaroo"
+    },
+    {
+     "mode": "walk",
+     "mins": 14,
+     "from": "Barangaroo Station, Barangaroo",
+     "to": "96-98 Cumberland St, The Rocks"
+    }
+   ],
+   "totalMins": 20
+  },
+  "bridge-walk:quay": {
+   "legs": [
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Circular Quay, Sydney",
+     "to": "96-98 Cumberland St, The Rocks"
+    }
+   ],
+   "totalMins": 7
+  },
+  "bridge-walk:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 35,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Town Hall Station, Platform 3, Sydney"
+    },
+    {
+     "mode": "light-rail",
+     "line": "L3",
+     "mins": 4,
+     "from": "Town Hall Light Rail, Sydney",
+     "to": "Bridge Street Light Rail, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 11,
+     "from": "Bridge Street Light Rail, Sydney",
+     "to": "96-98 Cumberland St, The Rocks"
+    }
+   ],
+   "totalMins": 50
+  },
+  "carriageworks:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 2,
+     "from": "Central Station, Platform 22, Sydney",
+     "to": "Redfern Station, Platform 8, Eveleigh"
+    },
+    {
+     "mode": "walk",
+     "mins": 12,
+     "from": "Redfern Station, Eveleigh",
+     "to": "7 Carriageworks Way, Eveleigh"
+    }
+   ],
+   "totalMins": 14
+  },
+  "carriageworks:quay": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 12,
+     "from": "Circular Quay, Platform 1, Sydney",
+     "to": "Redfern Station, Platform 6, Eveleigh"
+    },
+    {
+     "mode": "walk",
+     "mins": 12,
+     "from": "Redfern Station, Eveleigh",
+     "to": "7 Carriageworks Way, Eveleigh"
+    }
+   ],
+   "totalMins": 24
+  },
+  "carriageworks:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 29,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Redfern Station, Platform 3, Eveleigh"
+    },
+    {
+     "mode": "walk",
+     "mins": 11,
+     "from": "Redfern Station, Eveleigh",
+     "to": "7 Carriageworks Way, Eveleigh"
+    }
+   ],
+   "totalMins": 40
+  },
+  "chinatown:central": {
+   "legs": [
+    {
+     "mode": "light-rail",
+     "line": "L2",
+     "mins": 5,
+     "from": "Central Chalmers Street Light Rail, Sydney",
+     "to": "Chinatown Light Rail, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Chinatown Light Rail, Sydney",
+     "to": "84 Dixon St, Haymarket"
+    }
+   ],
+   "totalMins": 10
+  },
+  "chinatown:quay": {
+   "legs": [
+    {
+     "mode": "light-rail",
+     "line": "L2",
+     "mins": 9,
+     "from": "Circular Quay Light Rail, Sydney",
+     "to": "Chinatown Light Rail, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Chinatown Light Rail, Sydney",
+     "to": "84 Dixon St, Haymarket"
+    }
+   ],
+   "totalMins": 14
+  },
+  "chinatown:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 13,
+     "from": "Central Station, Sydney",
+     "to": "84 Dixon St, Haymarket"
+    }
+   ],
+   "totalMins": 44
+  },
+  "clovelly:central": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "339",
+     "mins": 27,
+     "from": "Central Station, Foveaux St, Stand F, Sydney",
+     "to": "Clovelly Beach, Clovelly Rd, Clovelly"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Clovelly Beach, Clovelly Rd, Clovelly",
+     "to": "26 Eastbourne Av, Clovelly"
+    }
+   ],
+   "totalMins": 33
+  },
+  "clovelly:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "396",
+     "mins": 12,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Flinders St before South Dowling St, Darlinghurst"
+    },
+    {
+     "mode": "bus",
+     "line": "339",
+     "mins": 24,
+     "from": "Flinders St before South Dowling St, Darlinghurst",
+     "to": "Clovelly Beach, Clovelly Rd, Clovelly"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Clovelly Beach, Clovelly Rd, Clovelly",
+     "to": "26 Eastbourne Av, Clovelly"
+    }
+   ],
+   "totalMins": 42
+  },
+  "clovelly:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "339",
+     "mins": 27,
+     "from": "Central Station, Foveaux St, Stand F, Sydney",
+     "to": "Clovelly Beach, Clovelly Rd, Clovelly"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Clovelly Beach, Clovelly Rd, Clovelly",
+     "to": "26 Eastbourne Av, Clovelly"
+    }
+   ],
+   "totalMins": 64
+  },
+  "cockatoo:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 6,
+     "from": "Central Station, Platform 17, Sydney",
+     "to": "Wynyard Station, Platform 6, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 8,
+     "from": "Wynyard Station, Platform 6, Sydney",
+     "to": "Barangaroo Wharf, Wharf 1, Side B, Barangaroo"
+    },
+    {
+     "mode": "ferry",
+     "line": "F3",
+     "mins": 9,
+     "from": "Barangaroo Wharf, Wharf 1, Side B, Barangaroo",
+     "to": "Cockatoo Island Wharf, Side A, Woolwich"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Cockatoo Island Wharf, Woolwich",
+     "to": "Cockatoo Island Dog-Leg Tunnel, Woolwich"
+    }
+   ],
+   "totalMins": 29
+  },
+  "cockatoo:quay": {
+   "legs": [
+    {
+     "mode": "ferry",
+     "line": "F3",
+     "mins": 20,
+     "from": "Circular Quay, Wharf 5, Side B, Sydney",
+     "to": "Cockatoo Island Wharf, Side A, Woolwich"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Cockatoo Island Wharf, Woolwich",
+     "to": "Cockatoo Island Dog-Leg Tunnel, Woolwich"
+    }
+   ],
+   "totalMins": 26
+  },
+  "cockatoo:parra": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "523",
+     "mins": 12,
+     "from": "Parramatta Station, Stand A3, Parramatta",
+     "to": "South St after Park Rd, Rydalmere"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "South St after Park Rd, Rydalmere",
+     "to": "Rydalmere Wharf, Rydalmere"
+    },
+    {
+     "mode": "ferry",
+     "line": "F3",
+     "mins": 44,
+     "from": "Rydalmere Wharf, Rydalmere",
+     "to": "Cockatoo Island Wharf, Side A, Woolwich"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Cockatoo Island Wharf, Woolwich",
+     "to": "Cockatoo Island Dog-Leg Tunnel, Woolwich"
+    }
+   ],
+   "totalMins": 66
+  },
+  "coogee:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 13,
+     "from": "Central Station, Platform 24, Sydney",
+     "to": "Bondi Junction Station, Platform 1, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "350",
+     "mins": 13,
+     "from": "Bondi Junction Station, Stand F, Bondi Junction",
+     "to": "Arden St opp Coogee Bay Rd, Coogee"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Arden St opp Coogee Bay Rd, Coogee",
+     "to": "190-198 Arden St, Coogee"
+    }
+   ],
+   "totalMins": 28
+  },
+  "coogee:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "333",
+     "mins": 25,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Bondi Junction Station, Stand G, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "350",
+     "mins": 13,
+     "from": "Bondi Junction Station, Stand F, Bondi Junction",
+     "to": "Arden St opp Coogee Bay Rd, Coogee"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Arden St opp Coogee Bay Rd, Coogee",
+     "to": "190-198 Arden St, Coogee"
+    }
+   ],
+   "totalMins": 40
+  },
+  "coogee:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 35,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Town Hall Station, Platform 3, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 10,
+     "from": "Town Hall Station, Platform 5, Sydney",
+     "to": "Bondi Junction Station, Platform 1, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "350",
+     "mins": 14,
+     "from": "Bondi Junction Station, Stand F, Bondi Junction",
+     "to": "Arden St opp Coogee Bay Rd, Coogee"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Arden St opp Coogee Bay Rd, Coogee",
+     "to": "190-198 Arden St, Coogee"
+    }
+   ],
+   "totalMins": 61
+  },
+  "cronulla:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 54,
+     "from": "Central Station, Platform 25, Sydney",
+     "to": "Cronulla Station, Platform 2, Cronulla"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Cronulla Station, Cronulla",
+     "to": "6R The Esplanade, Cronulla"
+    }
+   ],
+   "totalMins": 61
+  },
+  "cronulla:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "333",
+     "mins": 2,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Martin Place Station, Elizabeth St, Stand E, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Martin Place Station, Elizabeth St, Martin Place Station, Elizabeth St, Stand E, Sydney",
+     "to": "Martin Place Station, Platform 1, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 55,
+     "from": "Martin Place Station, Platform 1, Sydney",
+     "to": "Cronulla Station, Platform 1, Cronulla"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Cronulla Station, Cronulla",
+     "to": "6R The Esplanade, Cronulla"
+    }
+   ],
+   "totalMins": 69
+  },
+  "cronulla:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 29,
+     "from": "Parramatta Station, Platform 3, Parramatta",
+     "to": "Redfern Station, Platform 3, Eveleigh"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 48,
+     "from": "Redfern Station, Platform 12, Eveleigh",
+     "to": "Cronulla Station, Platform 1, Cronulla"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Cronulla Station, Cronulla",
+     "to": "6R The Esplanade, Cronulla"
+    }
+   ],
+   "totalMins": 84
+  },
+  "featherdale:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 45,
+     "from": "Central Station, Platform 18, Sydney",
+     "to": "Blacktown Station, Platform 7, Blacktown"
+    },
+    {
+     "mode": "bus",
+     "line": "726",
+     "mins": 7,
+     "from": "Blacktown Station, Stand F, Blacktown",
+     "to": "Solaris Dr before Orissa Way, Doonside"
+    },
+    {
+     "mode": "walk",
+     "mins": 8,
+     "from": "Solaris Dr before Orissa Way, Doonside",
+     "to": "1 Lynwood Av, Doonside"
+    }
+   ],
+   "totalMins": 60
+  },
+  "featherdale:quay": {
+   "legs": [
+    {
+     "mode": "light-rail",
+     "line": "L2",
+     "mins": 5,
+     "from": "Circular Quay Light Rail, Sydney",
+     "to": "QVB Light Rail, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "610X",
+     "mins": 23,
+     "from": "QVB, York St, Stand C, Sydney",
+     "to": "M2 Motorway, Oakes Rd, West Pennant Hills"
+    },
+    {
+     "mode": "bus",
+     "line": "611",
+     "mins": 24,
+     "from": "M2 Motorway, Oakes Rd, West Pennant Hills",
+     "to": "Westpoint Bus Interchange, Stand 1, Blacktown"
+    },
+    {
+     "mode": "bus",
+     "line": "729",
+     "mins": 9,
+     "from": "Westpoint Bus Interchange, Stand 9, Blacktown",
+     "to": "Kildare Rd opp Lynwood Ave, Doonside"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Kildare Rd opp Lynwood Ave, Doonside",
+     "to": "1 Lynwood Av, Doonside"
+    }
+   ],
+   "totalMins": 63
+  },
+  "featherdale:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 9,
+     "from": "Parramatta Station, Platform 2, Parramatta",
+     "to": "Blacktown Station, Platform 6, Blacktown"
+    },
+    {
+     "mode": "bus",
+     "line": "729",
+     "mins": 10,
+     "from": "Blacktown Station, Stand E, Blacktown",
+     "to": "Kildare Rd opp Lynwood Ave, Doonside"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Kildare Rd opp Lynwood Ave, Doonside",
+     "to": "1 Lynwood Av, Doonside"
+    }
+   ],
+   "totalMins": 21
+  },
+  "icebergs:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 13,
+     "from": "Central Station, Platform 24, Sydney",
+     "to": "Bondi Junction Station, Platform 1, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "333",
+     "mins": 12,
+     "from": "Bondi Junction Station, Stand A, Bondi Junction",
+     "to": "Campbell Pde opp South Bondi Beach, Bondi Beach"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "South Bondi Beach, Bondi Beach",
+     "to": "12 Notts Av, Bondi Beach"
+    }
+   ],
+   "totalMins": 32
+  },
+  "icebergs:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "333",
+     "mins": 40,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Campbell Pde opp South Bondi Beach, Bondi Beach"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "South Bondi Beach, Bondi Beach",
+     "to": "12 Notts Av, Bondi Beach"
+    }
+   ],
+   "totalMins": 47
+  },
+  "icebergs:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 35,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Town Hall Station, Platform 3, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 10,
+     "from": "Town Hall Station, Platform 5, Sydney",
+     "to": "Bondi Junction Station, Platform 1, Bondi Junction"
+    },
+    {
+     "mode": "bus",
+     "line": "333",
+     "mins": 11,
+     "from": "Bondi Junction Station, Stand A, Bondi Junction",
+     "to": "Bondi Rd opp Dudley St, Bondi Beach"
+    },
+    {
+     "mode": "walk",
+     "mins": 8,
+     "from": "Bondi Rd opp Dudley St, Bondi Beach",
+     "to": "12 Notts Av, Bondi Beach"
+    }
+   ],
+   "totalMins": 64
+  },
+  "leura:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 118,
+     "from": "Central Station, Platform 6, Sydney",
+     "to": "Leura Station, Platform 2, Leura"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Leura Station, Leura",
+     "to": "80 Railway Pde, Leura"
+    }
+   ],
+   "totalMins": 120
+  },
+  "leura:quay": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 8,
+     "from": "Circular Quay, Platform 2, Sydney",
+     "to": "Central Station, Platform 23, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 118,
+     "from": "Central Station, Platform 6, Sydney",
+     "to": "Leura Station, Platform 2, Leura"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Leura Station, Leura",
+     "to": "80 Railway Pde, Leura"
+    }
+   ],
+   "totalMins": 128
+  },
+  "leura:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 92,
+     "from": "Parramatta Station, Platform 2, Parramatta",
+     "to": "Leura Station, Platform 2, Leura"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Leura Station, Leura",
+     "to": "80 Railway Pde, Leura"
+    }
+   ],
+   "totalMins": 94
+  },
+  "manly:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 9,
+     "from": "Central Station, Platform 17, Sydney",
+     "to": "Circular Quay, Platform 2, Sydney"
+    },
+    {
+     "mode": "ferry",
+     "line": "F1",
+     "mins": 30,
+     "from": "Circular Quay, Wharf 3, Side B, Sydney",
+     "to": "Manly Wharf, Wharf 1, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Manly Wharf, Manly",
+     "to": "Watsons Bay - Manly (Tourist Cruise), North Harbour"
+    }
+   ],
+   "totalMins": 45
+  },
+  "manly:quay": {
+   "legs": [
+    {
+     "mode": "ferry",
+     "line": "F1",
+     "mins": 22,
+     "from": "Circular Quay, Wharf 3, Side A, Sydney",
+     "to": "Manly Wharf, Wharf 1, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Manly Wharf, Manly",
+     "to": "Watsons Bay - Manly (Tourist Cruise), North Harbour"
+    }
+   ],
+   "totalMins": 28
+  },
+  "manly:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "ferry",
+     "line": "F1",
+     "mins": 22,
+     "from": "Circular Quay, Wharf 3, Side A, Sydney",
+     "to": "Manly Wharf, Wharf 1, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 6,
+     "from": "Manly Wharf, Manly",
+     "to": "Watsons Bay - Manly (Tourist Cruise), North Harbour"
+    }
+   ],
+   "totalMins": 67
+  },
+  "newtown:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 7,
+     "from": "Central Station, Platform 19, Sydney",
+     "to": "Newtown Station, Platform 2, Newtown"
+    },
+    {
+     "mode": "walk",
+     "mins": 3,
+     "from": "Newtown Station, Newtown",
+     "to": "326 King St, Newtown"
+    }
+   ],
+   "totalMins": 10
+  },
+  "newtown:quay": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 16,
+     "from": "Circular Quay, Platform 1, Sydney",
+     "to": "Newtown Station, Platform 2, Newtown"
+    },
+    {
+     "mode": "walk",
+     "mins": 3,
+     "from": "Newtown Station, Newtown",
+     "to": "326 King St, Newtown"
+    }
+   ],
+   "totalMins": 19
+  },
+  "newtown:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 29,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Redfern Station, Platform 3, Eveleigh"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 4,
+     "from": "Redfern Station, Platform 6, Eveleigh",
+     "to": "Newtown Station, Platform 2, Newtown"
+    },
+    {
+     "mode": "walk",
+     "mins": 3,
+     "from": "Newtown Station, Newtown",
+     "to": "326 King St, Newtown"
+    }
+   ],
+   "totalMins": 36
+  },
+  "north-head:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "ferry",
+     "line": "F1",
+     "mins": 22,
+     "from": "Circular Quay, Wharf 3, Side A, Sydney",
+     "to": "Manly Wharf, Wharf 1, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Manly Wharf, Wharf 1, Manly",
+     "to": "Manly Wharf, East Esplanade, Manly Wharf, East Esplanade, Stand C, Manly"
+    },
+    {
+     "mode": "bus",
+     "line": "161",
+     "mins": 8,
+     "from": "Manly Wharf, East Esplanade, Stand C, Manly",
+     "to": "North Head Scenic Dr opp Quarantine Station, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 8,
+     "from": "Quarantine Station, North Head Scenic Dr, Manly",
+     "to": "140 North Fort Rd, Manly"
+    }
+   ],
+   "totalMins": 50
+  },
+  "north-head:quay": {
+   "legs": [
+    {
+     "mode": "ferry",
+     "line": "F1",
+     "mins": 22,
+     "from": "Circular Quay, Wharf 3, Side A, Sydney",
+     "to": "Manly Wharf, Wharf 1, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Manly Wharf, Wharf 1, Manly",
+     "to": "Manly Wharf, East Esplanade, Manly Wharf, East Esplanade, Stand C, Manly"
+    },
+    {
+     "mode": "bus",
+     "line": "161",
+     "mins": 8,
+     "from": "Manly Wharf, East Esplanade, Stand C, Manly",
+     "to": "North Head Scenic Dr opp Quarantine Station, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 8,
+     "from": "Quarantine Station, North Head Scenic Dr, Manly",
+     "to": "140 North Fort Rd, Manly"
+    }
+   ],
+   "totalMins": 42
+  },
+  "north-head:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 3, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "ferry",
+     "line": "MFF",
+     "mins": 20,
+     "from": "Circular Quay, Wharf 2, Side A, Sydney",
+     "to": "Manly Wharf, Wharf 2, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Manly Wharf, Wharf 2, Manly",
+     "to": "Manly Wharf, East Esplanade, Manly Wharf, East Esplanade, Stand C, Manly"
+    },
+    {
+     "mode": "bus",
+     "line": "161",
+     "mins": 8,
+     "from": "Manly Wharf, East Esplanade, Stand C, Manly",
+     "to": "North Head Scenic Dr opp Quarantine Station, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 8,
+     "from": "Quarantine Station, North Head Scenic Dr, Manly",
+     "to": "140 North Fort Rd, Manly"
+    }
+   ],
+   "totalMins": 79
+  },
+  "opera-tour:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 8,
+     "from": "Central Station, Platform 17, Sydney",
+     "to": "Circular Quay, Platform 2, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 15,
+     "from": "Circular Quay, Sydney",
+     "to": "2 Circular Quay East, Sydney"
+    }
+   ],
+   "totalMins": 23
+  },
+  "opera-tour:quay": {
+   "legs": [
+    {
+     "mode": "walk",
+     "mins": 9,
+     "from": "Circular Quay, Sydney",
+     "to": "2 Circular Quay East, Sydney"
+    }
+   ],
+   "totalMins": 9
+  },
+  "opera-tour:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 15,
+     "from": "Circular Quay, Sydney",
+     "to": "2 Circular Quay East, Sydney"
+    }
+   ],
+   "totalMins": 54
+  },
+  "palm-beach:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 5,
+     "from": "Central Station, Platform 16, Sydney",
+     "to": "Wynyard Station, Platform 4, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "B1",
+     "mins": 49,
+     "from": "Wynyard Station, Carrington St, Stand B, Sydney",
+     "to": "Narrabeen B-Line, Pittwater Rd, Narrabeen"
+    },
+    {
+     "mode": "walk",
+     "mins": 48,
+     "from": "Narrabeen B-Line, ",
+     "to": "1A Ocean Pl, "
+    }
+   ],
+   "totalMins": 102
+  },
+  "palm-beach:quay": {
+   "legs": [
+    {
+     "mode": "ferry",
+     "line": "F1",
+     "mins": 22,
+     "from": "Circular Quay, Wharf 3, Side A, Sydney",
+     "to": "Manly Wharf, Wharf 1, Manly"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Manly Wharf, Wharf 1, Manly",
+     "to": "Manly Wharf, West Esplanade, Manly Wharf, West Esplanade, Stand B, Manly"
+    },
+    {
+     "mode": "bus",
+     "line": "199",
+     "mins": 87,
+     "from": "Manly Wharf, West Esplanade, Stand B, Manly",
+     "to": "Ocean Pl at Ocean Rd, Palm Beach"
+    },
+    {
+     "mode": "walk",
+     "mins": 1,
+     "from": "Ocean Pl at Ocean Rd, Palm Beach",
+     "to": "1A Ocean Pl, Palm Beach"
+    }
+   ],
+   "totalMins": 115
+  },
+  "palm-beach:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 37,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Wynyard Station, Platform 4, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "B1",
+     "mins": 51,
+     "from": "Wynyard Station, Carrington St, Stand B, Sydney",
+     "to": "Narrabeen B-Line, Pittwater Rd, Narrabeen"
+    },
+    {
+     "mode": "walk",
+     "mins": 48,
+     "from": "Narrabeen B-Line, ",
+     "to": "1A Ocean Pl, "
+    }
+   ],
+   "totalMins": 136
+  },
+  "parramatta:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 32,
+     "from": "Central Station, Platform 18, Sydney",
+     "to": "Parramatta Station, Platform 2, Parramatta"
+    },
+    {
+     "mode": "walk",
+     "mins": 10,
+     "from": "Parramatta Station, Parramatta",
+     "to": "42 Macquarie St, Parramatta"
+    }
+   ],
+   "totalMins": 42
+  },
+  "parramatta:quay": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 8,
+     "from": "Circular Quay, Platform 2, Sydney",
+     "to": "Central Station, Platform 23, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 32,
+     "from": "Central Station, Platform 18, Sydney",
+     "to": "Parramatta Station, Platform 2, Parramatta"
+    },
+    {
+     "mode": "walk",
+     "mins": 10,
+     "from": "Parramatta Station, Parramatta",
+     "to": "42 Macquarie St, Parramatta"
+    }
+   ],
+   "totalMins": 50
+  },
+  "parramatta:parra": {
+   "legs": [
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Parramatta Station, Parramatta",
+     "to": "42 Macquarie St, Parramatta"
+    }
+   ],
+   "totalMins": 5
+  },
+  "rocks-markets:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 8,
+     "from": "Central Station, Platform 17, Sydney",
+     "to": "Circular Quay, Platform 2, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 10,
+     "from": "Circular Quay, Sydney",
+     "to": "6-8 Playfair St, The Rocks"
+    }
+   ],
+   "totalMins": 18
+  },
+  "rocks-markets:quay": {
+   "legs": [
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Circular Quay, Sydney",
+     "to": "6-8 Playfair St, The Rocks"
+    }
+   ],
+   "totalMins": 7
+  },
+  "rocks-markets:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 10,
+     "from": "Circular Quay, Sydney",
+     "to": "6-8 Playfair St, The Rocks"
+    }
+   ],
+   "totalMins": 49
+  },
+  "royal-np:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 50,
+     "from": "Central Station, Platform 25, Sydney",
+     "to": "Cronulla Station, Platform 1, Cronulla"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Cronulla Station, Platform 1, Cronulla",
+     "to": "Cronulla Wharf, Cronulla"
+    },
+    {
+     "mode": "ferry",
+     "line": "BUNC",
+     "mins": 29,
+     "from": "Cronulla Wharf, Cronulla",
+     "to": "Bundeena Wharf, Bundeena"
+    },
+    {
+     "mode": "walk",
+     "mins": 3,
+     "from": "Bundeena Wharf, Bundeena",
+     "to": "1R Brighton St, Bundeena"
+    }
+   ],
+   "totalMins": 89
+  },
+  "royal-np:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "333",
+     "mins": 2,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Martin Place Station, Elizabeth St, Stand E, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Martin Place Station, Elizabeth St, Martin Place Station, Elizabeth St, Stand E, Sydney",
+     "to": "Martin Place Station, Platform 1, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 55,
+     "from": "Martin Place Station, Platform 1, Sydney",
+     "to": "Cronulla Station, Platform 1, Cronulla"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Cronulla Station, Platform 1, Cronulla",
+     "to": "Cronulla Wharf, Cronulla"
+    },
+    {
+     "mode": "ferry",
+     "line": "BUNC",
+     "mins": 29,
+     "from": "Cronulla Wharf, Cronulla",
+     "to": "Bundeena Wharf, Bundeena"
+    },
+    {
+     "mode": "walk",
+     "mins": 3,
+     "from": "Bundeena Wharf, Bundeena",
+     "to": "1R Brighton St, Bundeena"
+    }
+   ],
+   "totalMins": 101
+  },
+  "royal-np:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 29,
+     "from": "Parramatta Station, Platform 3, Parramatta",
+     "to": "Redfern Station, Platform 3, Eveleigh"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 48,
+     "from": "Redfern Station, Platform 12, Eveleigh",
+     "to": "Cronulla Station, Platform 1, Cronulla"
+    },
+    {
+     "mode": "walk",
+     "mins": 7,
+     "from": "Cronulla Station, Platform 1, Cronulla",
+     "to": "Cronulla Wharf, Cronulla"
+    },
+    {
+     "mode": "ferry",
+     "line": "BUNC",
+     "mins": 29,
+     "from": "Cronulla Wharf, Cronulla",
+     "to": "Bundeena Wharf, Bundeena"
+    },
+    {
+     "mode": "walk",
+     "mins": 3,
+     "from": "Bundeena Wharf, Bundeena",
+     "to": "1R Brighton St, Bundeena"
+    }
+   ],
+   "totalMins": 116
+  },
+  "sea-life:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 3,
+     "from": "Central Station, Platform 16, Sydney",
+     "to": "Town Hall Station, Platform 3, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 15,
+     "from": "Town Hall Station, Sydney",
+     "to": "1-5 Wheat Rd, Sydney"
+    }
+   ],
+   "totalMins": 18
+  },
+  "sea-life:quay": {
+   "legs": [
+    {
+     "mode": "bus",
+     "line": "396",
+     "mins": 2,
+     "from": "Circular Quay, Alfred St, Stand B, Sydney",
+     "to": "Martin Place Station, Elizabeth St, Stand E, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 14,
+     "from": "Martin Place Station, Elizabeth St, Sydney",
+     "to": "1-5 Wheat Rd, Sydney"
+    }
+   ],
+   "totalMins": 16
+  },
+  "sea-life:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 35,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Town Hall Station, Platform 3, Sydney"
+    },
+    {
+     "mode": "walk",
+     "mins": 15,
+     "from": "Town Hall Station, Sydney",
+     "to": "1-5 Wheat Rd, Sydney"
+    }
+   ],
+   "totalMins": 50
+  },
+  "spit-manly:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 5,
+     "from": "Central Station, Platform 16, Sydney",
+     "to": "Wynyard Station, Platform 4, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "173X",
+     "mins": 21,
+     "from": "Wynyard Station, Carrington St, Stand A, Sydney",
+     "to": "Spit West Reserve, Spit Rd, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Spit West Reserve, Spit Rd, Mosman",
+     "to": "83 Parriwi Rd, Mosman"
+    }
+   ],
+   "totalMins": 31
+  },
+  "spit-manly:quay": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 2,
+     "from": "Circular Quay, Platform 1, Sydney",
+     "to": "Wynyard Station, Platform 5, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "173X",
+     "mins": 21,
+     "from": "Wynyard Station, Carrington St, Stand A, Sydney",
+     "to": "Spit West Reserve, Spit Rd, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Spit West Reserve, Spit Rd, Mosman",
+     "to": "83 Parriwi Rd, Mosman"
+    }
+   ],
+   "totalMins": 28
+  },
+  "spit-manly:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 37,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Wynyard Station, Platform 4, Sydney"
+    },
+    {
+     "mode": "bus",
+     "line": "173X",
+     "mins": 21,
+     "from": "Wynyard Station, Carrington St, Stand A, Sydney",
+     "to": "Spit West Reserve, Spit Rd, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 5,
+     "from": "Spit West Reserve, Spit Rd, Mosman",
+     "to": "83 Parriwi Rd, Mosman"
+    }
+   ],
+   "totalMins": 63
+  },
+  "taronga:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "ferry",
+     "line": "F2",
+     "mins": 12,
+     "from": "Circular Quay, Wharf 4, Side A, Sydney",
+     "to": "Taronga Zoo Wharf, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 9,
+     "from": "Taronga Zoo Wharf, Mosman",
+     "to": "2A Bradleys Head Rd, Mosman"
+    }
+   ],
+   "totalMins": 29
+  },
+  "taronga:quay": {
+   "legs": [
+    {
+     "mode": "ferry",
+     "line": "F2",
+     "mins": 12,
+     "from": "Circular Quay, Wharf 4, Side B, Sydney",
+     "to": "Taronga Zoo Wharf, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 9,
+     "from": "Taronga Zoo Wharf, Mosman",
+     "to": "2A Bradleys Head Rd, Mosman"
+    }
+   ],
+   "totalMins": 21
+  },
+  "taronga:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 31,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Central Station, Platform 16, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T2",
+     "mins": 8,
+     "from": "Central Station, Platform 21, Sydney",
+     "to": "Circular Quay, Platform 1, Sydney"
+    },
+    {
+     "mode": "ferry",
+     "line": "F2",
+     "mins": 12,
+     "from": "Circular Quay, Wharf 4, Side B, Sydney",
+     "to": "Taronga Zoo Wharf, Mosman"
+    },
+    {
+     "mode": "walk",
+     "mins": 9,
+     "from": "Taronga Zoo Wharf, Mosman",
+     "to": "2A Bradleys Head Rd, Mosman"
+    }
+   ],
+   "totalMins": 60
+  },
+  "three-sisters:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 122,
+     "from": "Central Station, Platform 6, Sydney",
+     "to": "Katoomba Station, Platform 1, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Katoomba Station, Platform 1, Katoomba",
+     "to": "Carrington Hotel, Katoomba St, Katoomba"
+    },
+    {
+     "mode": "bus",
+     "line": "686",
+     "mins": 8,
+     "from": "Carrington Hotel, Katoomba St, Katoomba",
+     "to": "Echo Point Lookout, Echo Point Rd, Stand B, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Echo Point Lookout, Echo Point Rd, Katoomba",
+     "to": "2 Cliff Dr, Katoomba"
+    }
+   ],
+   "totalMins": 136
+  },
+  "three-sisters:quay": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 8,
+     "from": "Circular Quay, Platform 2, Sydney",
+     "to": "Central Station, Platform 23, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 122,
+     "from": "Central Station, Platform 6, Sydney",
+     "to": "Katoomba Station, Platform 1, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Katoomba Station, Platform 1, Katoomba",
+     "to": "Carrington Hotel, Katoomba St, Katoomba"
+    },
+    {
+     "mode": "bus",
+     "line": "686",
+     "mins": 8,
+     "from": "Carrington Hotel, Katoomba St, Katoomba",
+     "to": "Echo Point Lookout, Echo Point Rd, Stand B, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Echo Point Lookout, Echo Point Rd, Katoomba",
+     "to": "2 Cliff Dr, Katoomba"
+    }
+   ],
+   "totalMins": 144
+  },
+  "three-sisters:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 96,
+     "from": "Parramatta Station, Platform 2, Parramatta",
+     "to": "Katoomba Station, Platform 1, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Katoomba Station, Platform 1, Katoomba",
+     "to": "Carrington Hotel, Katoomba St, Katoomba"
+    },
+    {
+     "mode": "bus",
+     "line": "686",
+     "mins": 8,
+     "from": "Carrington Hotel, Katoomba St, Katoomba",
+     "to": "Echo Point Lookout, Echo Point Rd, Stand B, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 2,
+     "from": "Echo Point Lookout, Echo Point Rd, Katoomba",
+     "to": "2 Cliff Dr, Katoomba"
+    }
+   ],
+   "totalMins": 110
+  },
+  "watsons:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 10,
+     "from": "Central Station, Platform 24, Sydney",
+     "to": "Edgecliff Station, Platform 2, Edgecliff"
+    },
+    {
+     "mode": "bus",
+     "line": "324",
+     "mins": 24,
+     "from": "Edgecliff Station, Stand D, Edgecliff",
+     "to": "Old South Head Rd at Salisbury St, Watsons Bay"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Old South Head Rd at Salisbury St, Watsons Bay",
+     "to": "2 Robertson Pl, Watsons Bay"
+    }
+   ],
+   "totalMins": 38
+  },
+  "watsons:quay": {
+   "legs": [
+    {
+     "mode": "ferry",
+     "line": "CCWM",
+     "mins": 33,
+     "from": "Circular Quay, Wharf 6, Side A, Sydney",
+     "to": "Watsons Bay Wharf, Watsons Bay"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Watsons Bay Wharf, Watsons Bay",
+     "to": "2 Robertson Pl, Watsons Bay"
+    }
+   ],
+   "totalMins": 37
+  },
+  "watsons:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T1",
+     "mins": 35,
+     "from": "Parramatta Station, Platform 1, Parramatta",
+     "to": "Town Hall Station, Platform 3, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "T4",
+     "mins": 7,
+     "from": "Town Hall Station, Platform 5, Sydney",
+     "to": "Edgecliff Station, Platform 2, Edgecliff"
+    },
+    {
+     "mode": "bus",
+     "line": "325",
+     "mins": 29,
+     "from": "Edgecliff Station, Stand D, Edgecliff",
+     "to": "Hopetoun Ave at Salisbury St, Watsons Bay"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Hopetoun Ave at Salisbury St, Watsons Bay",
+     "to": "2 Robertson Pl, Watsons Bay"
+    }
+   ],
+   "totalMins": 75
+  },
+  "wentworth:central": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 122,
+     "from": "Central Station, Platform 6, Sydney",
+     "to": "Katoomba Station, Platform 1, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Katoomba Station, Platform 1, Katoomba",
+     "to": "Carrington Hotel, Katoomba St, Katoomba"
+    },
+    {
+     "mode": "bus",
+     "line": "685",
+     "mins": 16,
+     "from": "Carrington Hotel, Katoomba St, Katoomba",
+     "to": "Fletcher St at Falls Rd, Wentworth Falls"
+    },
+    {
+     "mode": "walk",
+     "mins": 19,
+     "from": "Fletcher St at Falls Rd, Wentworth Falls",
+     "to": "8 Wentworth St, Wentworth Falls"
+    }
+   ],
+   "totalMins": 161
+  },
+  "wentworth:quay": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "T8",
+     "mins": 8,
+     "from": "Circular Quay, Platform 2, Sydney",
+     "to": "Central Station, Platform 23, Sydney"
+    },
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 122,
+     "from": "Central Station, Platform 6, Sydney",
+     "to": "Katoomba Station, Platform 1, Katoomba"
+    },
+    {
+     "mode": "walk",
+     "mins": 4,
+     "from": "Katoomba Station, Platform 1, Katoomba",
+     "to": "Carrington Hotel, Katoomba St, Katoomba"
+    },
+    {
+     "mode": "bus",
+     "line": "685",
+     "mins": 16,
+     "from": "Carrington Hotel, Katoomba St, Katoomba",
+     "to": "Fletcher St at Falls Rd, Wentworth Falls"
+    },
+    {
+     "mode": "walk",
+     "mins": 19,
+     "from": "Fletcher St at Falls Rd, Wentworth Falls",
+     "to": "8 Wentworth St, Wentworth Falls"
+    }
+   ],
+   "totalMins": 169
+  },
+  "wentworth:parra": {
+   "legs": [
+    {
+     "mode": "train",
+     "line": "BMT",
+     "mins": 86,
+     "from": "Parramatta Station, Platform 2, Parramatta",
+     "to": "Wentworth Falls Station, Platform 2, Wentworth Falls"
+    },
+    {
+     "mode": "bus",
+     "line": "685",
+     "mins": 3,
+     "from": "Wentworth Falls Station, Station St, Wentworth Falls",
+     "to": "Fletcher St at Falls Rd, Wentworth Falls"
+    },
+    {
+     "mode": "walk",
+     "mins": 19,
+     "from": "Fletcher St at Falls Rd, Wentworth Falls",
+     "to": "8 Wentworth St, Wentworth Falls"
+    }
+   ],
+   "totalMins": 108
+  }
+ }
+}

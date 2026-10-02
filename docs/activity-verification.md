@@ -1,0 +1,209 @@
+# Activity verification log
+
+Each seed activity in `db/seed/activities/` checked against official sources (Transport for NSW Trip Planner API for a Saturday 10:30 departure from Central, venue and NSW National Parks sites, OpenStreetMap for map pins). Fixes are applied to the seed file; the map's trip is regenerated with `scripts/map/build-geo.mjs --write <id>`. Once an activity is checked, `lastVerified`, `costs.pricesChecked` and `geo.checked` are set to the check date and `status` to `verified` (owner's instruction, 2 Oct 2026); this log is the evidence for each. Every "Unconfirmed" item below is also recorded in the activity's `unconfirmed` list, which the activity page shows as "Not yet confirmed" in the right section (spec §4.1) until someone confirms it.
+
+Legend: `[x]` checked and fixed · `[ ]` to do. "Unconfirmed" lists what no official source could confirm.
+
+- [x] `agnsw` Art Gallery of NSW (2 Oct 2026)
+  - Fixed: train line "City Circle" → **T2** to St James, 4 min (Trip Planner: T2 from Central platform 21; T2/T3/T8 all serve St James). Map trip regenerated (was drawn as a walk).
+  - Fixed: hours now "until 10pm on Wednesdays" and closures (Good Friday, Christmas Day), per artgallery.nsw.gov.au/visit.
+  - Fixed: access adds free wheelchairs and mobility scooters (ID needed) and the two accessible parking spaces (gallery physical-access page).
+  - Fixed: pins #4 (Naala Nura) and #5 (Naala Badu) were ~350 m north of the buildings; moved to their OpenStreetMap positions, walking line rebuilt.
+  - Confirmed: free general entry, ticketed exhibitions extra, daily 10am–5pm.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Domain car park price (Wilson doesn't publish casual rates online; $15–30 for 3 hrs kept), café prices.
+- [x] `aus-museum` Australian Museum (2 Oct 2026)
+  - Fixed: train line "City Circle" → **T2** Central (platform 21) → Museum, 2 min (Trip Planner, trains only); walk to the William St entrance 7 min, not 5. The planner's coordinate search skips this one-stop hop, so the map trip was drawn by hand from the planner's T2 leg plus an OSM foot route (was drawn as a 20 min walk).
+  - Fixed: hours "Open daily 10am to 5pm. Closed Christmas Day." (was "roughly"), per australian.museum/visit.
+  - Fixed: the "rooftop café" is Bistro Gadi on level 4 (11am–3pm) plus a level 2 café and an espresso bar; lockers → cloakroom on lower ground; parents' room on level 2; Changing Places toilet added to access.
+  - Confirmed: free general entry, paid special exhibitions, no museum car park (museum points to the Domain car park).
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: exhibition ($20–30) and food prices vary by show and menu; nearby parking price.
+- [x] `balmoral` Balmoral Beach (2 Oct 2026)
+  - Fixed: route had a train line "City" and two unnamed buses (22 + 10 min). Trip Planner (Sat 9:30–11:30) gives **T8 (or T1) to Wynyard 6 min › B1 to Spit Junction 15 min › bus 114 to Raglan St 11 min**, ≈ 35–40 min; written legs, total and `gettingThere` updated, map trip redrawn (was T1 › 173X, a weekday-style express plus a 20 min walk).
+  - Added: the planner's alternative for the way back (bus 238 to Taronga Zoo wharf, F2 ferry to Circular Quay).
+  - Fixed: safety now says there are no lifeguards or surf lifesavers (Beachsafe: not patrolled).
+  - Fixed pins against OpenStreetMap: #1 is the Raglan St at The Esplanade stop the 114 ends at (was the Hunter Park stop), #3 rotunda onto the lawns, #6 Edwards Beach onto the sand (was in the water by the shark net); walking line rebuilt.
+  - Confirmed: Balmoral Baths netted swimming area, toilets at both ends, Bathers' Pavilion café/kiosk at the north end, boat and paddleboard hire at the boatshed beside the baths.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Mosman meter rates (council publishes only permit prices; $15–30 for 3 hrs kept), kayak/SUP hire price ($25–35 kept), Opal fare.
+- [x] `bondi-coogee` Bondi to Coogee Coastal Walk (2 Oct 2026)
+  - Fixed: the way back said "bus 372 goes back to Central, or 373 to Circular Quay". Trip Planner (Sat 12:30–13:30 from Coogee): **374 to Central (Eddy Ave), 26 min**, from Arden St opp Coogee Bay Rd; 373 ends at Museum ("Coogee via City Museum"), not Circular Quay; 372 isn't offered. Text, `gettingThere` and the Coogee pin note updated; the map's way back (374) now matches the text.
+  - Fixed: leg times to the planner's: T4 13 min, bus 333 14 min (were 12 and 12).
+  - Confirmed: T4 › 333 (or 380) to Bondi Beach; walk 6 km one way; places all match OpenStreetMap.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Bondi parking price (Waverley meters, $15–30 for 3 hrs kept); Icebergs entry checked under `icebergs`.
+- [x] `botanic` Royal Botanic Garden & Mrs Macquarie's Chair (2 Oct 2026)
+  - Fixed: train line "City Circle" → **T8** to Circular Quay, 8 min (Trip Planner; T2/T3 also run); walk from the Quay to the Queen Elizabeth II Gate 9 min, not 6; total ≈ 20 min. Map trip (T8) now matches.
+  - Fixed: hours from botanicgardens.org.au: 7am daily, closing 5pm (Jun–Jul), 6–7:30pm (shoulder), 8pm (Nov–Feb).
+  - Fixed: cafés are Leaf Dept. (The Calyx), Farm Cove Eatery and Botanic House (garden's dine page); toilets per OpenStreetMap, none at Mrs Macquarie's Chair itself.
+  - Fixed: Boy Charlton Pool is open 1 September to 30 April (City of Sydney); adult entry $7.90 in 2025/26, inside the $7–9 kept.
+  - Confirmed: free entry; pins #1, #3, #5 sit on their OpenStreetMap features (QEII Gate, The Calyx, Mrs Macquarie's Chair).
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Mrs Macquaries Rd meter rates ($15–30 for 2 hrs kept).
+- [x] `bridge-walk` Walk across the Harbour Bridge (2 Oct 2026)
+  - Fixed: train line "City Circle" → **T8** to Circular Quay, 8 min, then 11 min walk to the Bridge Stairs (Trip Planner). The map trip was drawn as the M1 to Barangaroo; redrawn as T8 › walk.
+  - Fixed: access said stairs at The Rocks end and a lift only at Milsons Point. Transport for NSW: lifts at **both ends** (Cumberland St, The Rocks and Broughton St, Kirribilli), open 24 hours since late 2018. Access, effort, `gettingThere` and the start pin note updated.
+  - Fixed: Pylon Lookout is $29.95 adult, not "a few dollars" (tip, pin note and extra now about $30); hours 10am–6pm Sat–Mon, 10am–4pm Tue–Fri (pylonlookout.com.au), 200 stairs.
+  - Confirmed: walkway free and always open, pedestrians on the eastern side, cyclists on the western; Milsons Point trains (T9) reach Wynyard in about 4 min.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: parking in The Rocks ($20–40 for 2 hrs kept).
+- [x] `carriageworks` Carriageworks Farmers Market (2 Oct 2026) — C1.2 "Carriageworks hours" resolved
+  - Fixed: hours "roughly 8am to 1pm" → **Saturdays 8am to 1pm** (sydney.com.au, Ace Hotel guide, Carriageworks listings agree) in the tip, facts and hours.
+  - Fixed: train line "City" → **T8** to Redfern, 2 min (any train one stop south); walk 11 min, not 8 (Trip Planner, Sat 8:00); map trip redrawn (was a 28 min walk from Central).
+  - Fixed: "About 70 stalls" → over 80 stalls.
+  - Fixed: parking. On-site parking is limited (enter 229 Wilson St) with overflow in the Sydney Trains lot at Wilson St / Ivy Lane (Carriageworks plan-your-visit); one listing says on-site parking is free, so per car is now $0–20.
+  - Fixed: access adds the ramp at 245 Wilson St (Carriageworks).
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: whether on-site parking is free (carriageworks.com.au visit pages 404 / don't say); stall prices.
+- [x] `chinatown` Haymarket & Chinatown Food Crawl (2 Oct 2026)
+  - Fixed: Paddy's Markets Haymarket hours are Wednesday to Sunday **10am–6pm** (paddysmarkets.com.au), so they're closed for the suggested 6:30pm start; the Hay St Market hawker hall is open until 11pm Thu–Sat. Hours and the pin note now say so.
+  - Fixed: Chinese Garden of Friendship is $12 adult, 10am–5pm (Darling Harbour); extra now $12 and labelled "daytime", pin note gives hours and price (was "small entry fee", $8–12).
+  - Fixed: walk from Central 9 min, not 8 (Trip Planner); facts and way-back text updated. Walking is right (the planner's light rail options save nothing).
+  - Confirmed: pins for Dixon St, Darling Square, Thai Town (Campbell St) and the Chinese Garden match OpenStreetMap.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: food prices; city car park rates ($15–35 for 3 hrs kept).
+- [x] `clovelly` Clovelly Beach (2 Oct 2026) — C1.2 "bus 339 to Clovelly" resolved
+  - Confirmed: **bus 339** from Central (Foveaux St, stand F) to its last stop "Clovelly Beach" on Clovelly Rd, 24–27 min (Trip Planner, Sat 8:30 and 10:30); same bus back from Clovelly Rd opp Keith St.
+  - Fixed: bus 35 → 27 min, final walk 3 → 2 min, total ≈ 40 → ≈ 35 min; stop named (Foveaux St, stand F); way back via Coogee now bus **374**, not 372 (see `bondi-coogee`).
+  - Fixed: four pins were up to 600 m inland (the beach, kiosk and Gordons Bay pins sat on Clovelly Rd and Arden St). Moved to OpenStreetMap: the Clovelly Rd terminus stop, the inlet, the south-side platforms, Seasalt café (the kiosk), Gordons Bay and the coast path towards Coogee. Walking line rebuilt.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Randwick parking rules ($0–10 kept); beach wheelchair availability (in the access note as "may be available: ask the lifeguards").
+- [x] `cockatoo` Cockatoo Island (2 Oct 2026)
+  - Fixed: route was "City Circle" to Circular Quay then "F3 / F8" 22 min. The Trip Planner's best from Central (Sat 9:30 and 10:30) is **T8 (or T1) to Wynyard 6 min › walk to Barangaroo wharf 8 min › F3 9 min**, ≈ 30 min; written legs, total, facts and `gettingThere` now match the drawn map. F8 doesn't appear in any planner result (only the F3, about every 20 min from Circular Quay wharf 5, 20 min), so it's dropped.
+  - Fixed: visitor centre hours 10am–4pm, audio tour hire $5 single (cockatooisland.gov.au); café text names the Marina Café & Bar (OpenStreetMap places it by the docks, not the eastern shore).
+  - Confirmed: free entry; car-free island; wharf pin matches OpenStreetMap's ferry terminal.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Opal fare for train + ferry ($10–13 kept; the weekend daily cap may make it lower); café prices.
+- [x] `coogee` Coogee Beach & Ocean Pools (2 Oct 2026) — C1.2 "Wylie's Baths price" resolved
+  - Fixed: bus 372 → **374** from Central (Elizabeth St, stand E), 28 min (Trip Planner; the map already drew the 374). "373 from Circular Quay" removed: the 373 ends at Museum. Alternative T4 to Bondi Junction + bus 350 (28 min) added to `gettingThere` and the way back.
+  - Fixed: Wylie's Baths is **$6.50** adult, open daily 7am–7pm (Oct–Apr) and 7am–5pm (Apr–Sep) (wylies.com.au); extra, hours, bring list and pin note updated (were $5–7, "daytime hours", "small entry fee").
+  - Fixed pins against OpenStreetMap: #1 bus stop moved 300 m to Arden St opp Coogee Bay Rd; #3 Coogee Bay Rd to the beachfront end by the hotel (was 700 m up the hill); #5 "Dolphin Point" was at the south end but Dolphins Point is the north headland (by Giles Baths), so #5 is now Grant Reserve above McIver's Ladies Baths, and Giles Baths' note mentions Dolphins Point. Walking line rebuilt.
+  - Confirmed: three ocean pools (Giles, McIver's, Wylie's) plus the beach; Wylie's pin on its OSM position.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Randwick beachfront meter rates ($8–20 for 3 hrs kept); brunch prices.
+- [x] `cronulla` Cronulla Beach & Esplanade (2 Oct 2026)
+  - Confirmed: T4 from Central (platform 25) direct to Cronulla, 50–54 min, then a 7 min walk (Trip Planner); written legs set to 52 + 7 min.
+  - Fixed: pin #6 "Shelly Park ocean pool" sat by the station, about 1 km north of the pool; moved to Shelly Beach ocean pool (OpenStreetMap). Pin #5 "Esplanade lookouts" sat on the beach behind the station; now Cronulla Point, the headland on the walk. Walking line rebuilt along the Esplanade.
+  - Confirmed: North Cronulla, Cronulla Beach, the station and the Gunnamatta Bay ferry wharf match OpenStreetMap; free beaches and ocean pools.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Sutherland Shire beach parking rates ($8–20 for 3 hrs kept); weekend train frequency ("every 15–30 min" kept).
+- [x] `featherdale` Featherdale Wildlife Park (2 Oct 2026)
+  - Fixed: route had T1 40 min and an unnamed "local bus" 10 min; the map drew T1 › 726 with an 8 min walk. Trip Planner (Sat 8:30–11:00) consistently gives **Blue Mountains train (BMT) to Blacktown 34 min › bus 729 from stand E 10 min › 2 min walk** to the gate (≈ 46 min); T1 (45 min) is the slower option, kept in the detail. Legs, total, facts, `gettingThere` and map redrawn.
+  - Fixed: tickets now adult $45–49 and child $26–29 (standard $49 / $29 per current listings; online may be cheaper); were $40–45 / $25–30.
+  - Fixed: hours "roughly 8am to 5pm" → 8am–5pm daily, 8am–2pm Christmas Day (featherdale.com.au).
+  - Confirmed: entrance and Billabong Café pins match OpenStreetMap; free parking.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: koala photo and feed cup prices ($30–40, $3–5 kept); the in-park pins for the koala, kangaroo and reptile areas are estimates (no public map data).
+- [x] `icebergs` Bondi Icebergs Pool (2 Oct 2026)
+  - Confirmed: T4 to Bondi Junction 13 min › bus 333 (stand A; or 380, stand B) to Campbell Pde opp South Bondi Beach 12 min › 7 min walk (Trip Planner).
+  - Fixed: prices from icebergs.com.au/swimming-pool: adult **$10**, child **$7** (were $10–12 / $6–8), towel and locker hire $5 each (was $4–6); fact "Small fee" → "$10 adult".
+  - Fixed: hours were "most days… closed one day a week"; now 6am–6:30pm weekdays, 6:30am–6:30pm weekends, closed Thursdays for cleaning (may open in summer when the tide allows). Facilities add the included sauna and lockers; safety adds that lifeguards are on duty.
+  - Fixed: start pin was the North Bondi stop, 800 m from the pool; now the South Bondi stop the bus uses, with the pool as #2 and the beach and Pavilion (moved onto the building) as optional stops after. Walking line rebuilt.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: access ("steep stairs, not step-free" not stated on the pool's site); Bondi parking ($12–25 for 2 hrs kept).
+- [x] `leura` Leura Village & Gardens (2 Oct 2026) — C1.2 "Everglades Gardens price" resolved
+  - Fixed: Blue Mountains line Central → Leura is **110–116 min** (Trip Planner, Sat 8:30), not 100; total ≈ 1 hr 55, fact ≈ 1 hr 50.
+  - Fixed: way back said "same way back", but the walk ends at Gordon Falls, 25 min from the station; the map already drew the planner's bus 695 › Katoomba › BMT. Text now gives the walk back or the infrequent 695 (planner shows it about every 2 hrs on Saturday afternoon).
+  - Fixed: Everglades House & Gardens (now National Trust) is **$17** adult, 10am–4pm, last entry 3pm, closed Tuesdays (nationaltrust.org.au); extra, hours and pin note updated (were $12–18, "entry fee").
+  - Confirmed: free village and lookouts; pins found in OpenStreetMap.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: M4 toll per car ($8–20 kept); café prices.
+- [x] `manly` Ferry to Manly & Shelly Beach (2 Oct 2026)
+  - Fixed: train line "City Circle" → **T8** (or T2/T3) to Circular Quay, 8–9 min; F1 crossing is 22–30 min in the Trip Planner, so 25 min (was 30); total ≈ 45 min; facts and `gettingThere` updated.
+  - Fixed: pin #1 "Circular Quay" sat at Manly Wharf; moved to Circular Quay Wharf 3 (OpenStreetMap).
+  - Fixed: the way back said "same way back" but the walk ends at Shelly Beach; the map drew a pointless 3 min ride on bus 161. Text now says walk back to Manly Wharf (≈ 15 min), F1 to the Quay; map way back redrawn as F1 › T8 from the wharf.
+  - Confirmed: free beaches; Fairy Bower pool and Shelly Beach pins in place; Cabbage Tree Bay is an aquatic reserve.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Manly parking ($20–35 for a half day kept); snorkel hire ($20–30 kept); Opal ferry fare ($8–10 kept).
+- [x] `newtown` Newtown Street Art & King St (2 Oct 2026)
+  - Confirmed: T2 from Central (platform 19) to Newtown, 7 min, then 3 min onto King St (Trip Planner).
+  - Fixed: total said "≈ 5 min" for a 7 min ride; now ≈ 10 min with the walk leg added.
+  - Fixed pins (OpenStreetMap): the "I Have a Dream" mural was 500 m south-west; it's just north of the station. "King St north" and "King St south" were swapped (the north pin was 700 m south, off King St); relabelled and moved onto King St. Enmore Rd pin moved to the Enmore Theatre. Order now runs south, Enmore, mural, the park, north; the station note's "north is left, south is right" removed (unverified). Walking line rebuilt.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: toilets in Camperdown Memorial Rest Park and the station lift (kept); food and shopping prices.
+- [x] `north-head` North Head Lookouts (2 Oct 2026) — C1.2 "bus 135 to North Head" resolved
+  - Fixed: the bus is the **161** ("Manly via North Head"), not the 135: every 30 min on Saturday from Manly Wharf, East Esplanade stand C, 8 min to the Quarantine Station stop, then 8 min up North Fort Rd (Trip Planner). Legs, `gettingThere`, safety note and the wharf pin note updated; the map already drew the 161.
+  - Fixed: train line "City Circle" → T2; F1 crossing 25 min (planner 22); total ≈ 55 min (was 1 hr 5).
+  - Fixed: the "North Fort museum" extra is the Harbour Trust's Defence of Sydney tunnels tour, Sundays, $15 adult; café named (Bella Vista Café at North Fort); visitor centre about 10am–3pm (harbourtrust.gov.au).
+  - Confirmed: free entry to the sanctuary; pins found in OpenStreetMap.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: North Head parking ($5–15 for 3 hrs kept); café prices.
+- [x] `opera-tour` Sydney Opera House Tour (2 Oct 2026)
+  - Fixed: tour prices from sydneyoperahouse.com: adult **$50 online / $55 at the door**, child $30 / $35 (were $45–50 / $25–30); tip mentions both and arriving 15 min early.
+  - Fixed: access: up to 2.5 km and about 300 stairs with no lift; the step-free Mobility Access Tour runs **daily** (was "on set days"). Bag rule: bigger than A4 must be cloaked, no suitcases; late by 5+ min forfeits the booking.
+  - Fixed: train line "City Circle" → T8 (or T2/T3); walk to the Welcome Centre 9 min (was 7); total ≈ 20 min.
+  - Fixed: pin #5 "Botanic Garden gate" sat 300 m north on the Opera House; moved to the Queen Elizabeth II Gate (OpenStreetMap). Walking line rebuilt.
+  - Confirmed: tours daily, about 1 hr, meeting at the Welcome Centre on the lower concourse.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Opera House car park rate ($20–45 for 2 hrs kept); Opera Bar prices.
+- [x] `palm-beach` Palm Beach & Barrenjoey Lighthouse (2 Oct 2026)
+  - Fixed: route had a train line "City", "B-Line to Mona Vale 50 min" and "199 25 min" (total 1 hr 30). Trip Planner (Sat 8:30): **T1 to Wynyard 5 › B1 to Warriewood ≈ 47 › 199 to Ocean Pl ≈ 42 min**, ≈ 95 min; legs, total ≈ 1 hr 40 and map redrawn. `gettingThere` said "bus from Manly wharf, about 75 min", which contradicted the route; rewritten.
+  - Fixed: NSW National Parks: lighthouse tours run **every Sunday** (was "occasional"); the main track is the Barrenjoey Track, 1 km, ≈ 30 min each way (the access note called it the "Access Trail"; the pin said 15–20 min).
+  - Fixed pins: start moved to the Ocean Pl at Ocean Rd stop the 199 uses (was 300 m west); wharf onto the ferry wharf (OpenStreetMap). Walking line rebuilt.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: lighthouse tour price; Governor Phillip Park parking ($15–40 kept); Pittwater ferry fare ($10–20 kept).
+- [x] `parramatta` Parramatta River & Eat Street (2 Oct 2026) — C1.2 "Old Government House price" resolved
+  - Fixed: T1 Central → Parramatta is 32 min, walk to the river 10 min (Trip Planner; were 28 and 8); total ≈ 40 min.
+  - Fixed: F3 Circular Quay → Parramatta Wharf takes **86 min**, about hourly (planner, Sat); fact "≈ 75 min" → ≈ 85 min, `gettingThere` says so.
+  - Fixed: Old Government House is **$15** adult; open Thu–Fri 10am–4pm, Sat–Sun 11am–4pm, last entry 3:30pm (National Trust listing via MGNSW); was $15–20, "Wednesday to Sunday".
+  - Confirmed: pins found in OpenStreetMap; free park and river walk.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Old Government House hours come from a secondary listing (nationaltrust.org.au page not reached); last ferry time; parking ($10–25 kept).
+- [x] `rocks-markets` The Rocks Markets (2 Oct 2026)
+  - Fixed: hours "weekends only, roughly 10am to 5pm" → Saturday and Sunday 10am–5pm plus a Friday market 10am–3pm, at George St, Playfair St and Jack Mundey Place (therocks.com market overview).
+  - Fixed: train line "City Circle" → T8 (or T2/T3); walk 8 min, not 5 (planner says 10 to Playfair St); total ≈ 20 min.
+  - Fixed pins (OpenStreetMap): the market pin sat on Circular Quay West, 150 m east of George St; moved to The Rocks Market. "Historic pubs" sat by the station; moved to the Fortune of War on George St and reordered so the walk runs station › pubs › market › Campbells Cove › Dawes Point. Walking line rebuilt.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: whether the Friday market runs year-round; parking in The Rocks ($20–40 kept); stall prices.
+- [x] `royal-np` Royal National Park via Bundeena (2 Oct 2026)
+  - Confirmed: T4 to Cronulla 50–52 min, 7 min walk to Cronulla Wharf, Bundeena ferry 29 min, **hourly at half past** (Trip Planner, Sat 8:00–10:30); the ferry is a private service at **$9.40 adult** from 1 Jan 2026 (IPART private ferries fare review; The Leader).
+  - Fixed: leg times (train 55 → 52, walk 5 → 7, ferry 30 → 29) and the ferry detail now gives the half-past departures.
+  - Fixed: the map labelled the ferry "BUNC" (the planner's internal code); label removed so it shows as the Bundeena ferry. `build-geo.mjs` and the transport check now give private services no line name (`publicLine` in `scripts/transport/tfnsw.mjs`), so a rerun keeps it that way.
+  - Fixed pins (OpenStreetMap): Bundeena village was 500 m south of the shops (moved to the post office / pharmacy block); the Jibbon Head engravings were 600 m inland (moved to the engraving site and boardwalk at the east end of Jibbon Beach). Walking line rebuilt.
+  - Confirmed: Wedding Cake Rock and The Balconies match OpenStreetMap.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: whether the ferry now takes Opal (one listing says it does; the IPART-regulated cash fare is what's shown); park vehicle entry $12/day kept; last ferry time.
+- [x] `sea-life` SEA LIFE Aquarium (2 Oct 2026)
+  - Fixed: tickets from visitsealife.com: adult **from $39 online, about $56 walk-up**, child from $24 online, about $42 walk-up (were $40–55 / $30–40); tip says so.
+  - Fixed: hours "roughly 10am to 5pm" → 10am–5pm weekdays, 9:30am–5pm weekends, 9am in NSW school holidays, last entry 4pm.
+  - Fixed: train line "City" → T1 (or T4/T8) to Town Hall; walk 12 min (planner says 15 to the Wheat Rd entrance; was 10); total ≈ 20 min; map trip redrawn (was a walk from Central).
+  - Fixed: parking note adds the $12 all-day Wilson deal SEA LIFE publishes (code MERLIN); per car $12–35.
+  - Confirmed: all six pins found in OpenStreetMap.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: WILD LIFE combo add-on price ($20–30 kept; SEA LIFE now sells multi-attraction bundles).
+- [x] `spit-manly` Spit Bridge to Manly Walk (2 Oct 2026)
+  - Fixed: route had a train line "City" and an unnamed 25 min bus. Trip Planner (Sat 8:30–10:00): **T1 to Wynyard 5 › bus 173X from stand A to Spit West Reserve 17–20 › 5 min across the bridge**, ≈ 30 min; the B1 + 144 change at Spit Junction is the alternative. Legs, total, `gettingThere` and the start pin note updated; the map already drew T1 › 173X.
+  - Fixed: F1 home is about 25 min (planner 22–30), not 30.
+  - Confirmed: 10 km one way, 3–4 hrs; all eight pins found in OpenStreetMap; the track starts on the north side by Ellery's Punt Reserve.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Clontarf high-tide section and kiosk (kept); Spit parking ($10–20 for 4 hrs kept).
+- [x] `taronga` Taronga Zoo (2 Oct 2026)
+  - Fixed: the tip said to ride the Sky Safari cable car up from the wharf; it's **closed for reconstruction, due back late 2027** (Taronga visitor guides, 2026). Tip now says take the bus up from the wharf.
+  - Fixed: tickets online from **$51 adult / $31 child** (were $50–55 / $30–35); hours 9:30am–5pm Sep–Apr, 9:30am–4:30pm May–Aug (was "roughly 9:30 to 4:30, later in summer"); car park **$24 all day** (was $20–30).
+  - Fixed: the way back said "same way back" but the walk ends at the top entrance; the map drew bus 100. Text now gives bus 100 to Wynyard (≈ 25 min, Trip Planner) or the walk down to the F2.
+  - Fixed: train line "City Circle" → T2 (or T3/T8).
+  - Confirmed: F2 Circular Quay wharf 4 → Taronga Zoo Wharf 12 min (planner).
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: gate prices (online only found; $56 / $35 upper bound kept); in-zoo pins (seals, walkabout, top entrance) placed by hand; F2 weekend frequency.
+- [x] `three-sisters` Three Sisters & Echo Point (2 Oct 2026)
+  - Fixed: pin #2 "Echo Point Lookout" was 1 km north-east in residential Katoomba; moved to the lookout (OpenStreetMap). Walking line rebuilt.
+  - Fixed: route now names the local bus: BMT to Katoomba (114–124 min, Trip Planner) › 4 min walk to the Carrington Hotel stop › **bus 686** 8 min to Echo Point (or the 25 min walk); total ≈ 2 hr 20, one change. Way back names the 686. The map already drew BMT › 686.
+  - Fixed: Scenic World passes vary by day, about $45–61 (was $50–60); hours 10am–4pm weekdays, 9am–5pm weekends and holidays.
+  - Confirmed: Three Sisters, Katoomba Falls and Scenic World pins; free lookouts.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: Echo Point parking + M4 toll ($15–30 kept); Scenic World prices from resellers (scenicworld.com.au not reached).
+- [x] `watsons` Watsons Bay & The Gap (2 Oct 2026)
+  - Fixed: the map drew the trip as T4 › bus 324 while the text (and the activity's premise) is the ferry. Trip Planner with buses excluded: **T2 to Circular Quay 8 min › F9 from Wharf 2, 23 min, every 30 min** (Sat). Map redrawn; train line "City Circle" → T2; ferry 25 → 23 min; facts updated.
+  - Fixed: the way back's bus option now names it: bus 324 or 325 to Edgecliff and the T4 (≈ 40 min, planner) instead of "a bus along New South Head Rd (≈ 45 min)".
+  - Fixed: the Circular Quay pin moved onto Wharf 2 (OpenStreetMap).
+  - Confirmed: Watsons Bay wharf, Robertson Park, The Gap, Camp Cove and Hornby Lighthouse pins; free.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: last weekend ferry time; Opal train + ferry fare ($10–13 kept).
+- [x] `wentworth` Wentworth Falls & National Pass (2 Oct 2026)
+  - Fixed pins (OpenStreetMap): the picnic area pin was 2 km north, past the station; the Wentworth Falls pin sat next to the station (1.8 km from the falls); the National Pass pin sat by the Valley of the Waters. Moved to the picnic area by Wentworth Falls Lookout, the falls and the National Pass track. Walking line rebuilt along the tracks.
+  - Fixed: map trip was drawn as BMT to Katoomba and bus 685 back down the line; redrawn as BMT to Wentworth Falls (112 min, Trip Planner) and a 32 min walk to the picnic area. Way back was drawn as bus 690K with "same way back" in the text; it ends at the Conservation Hut, so text and map now give the ≈ 30 min walk up to the station.
+  - Fixed: train 105 → 112 min, total ≈ 2 hr 25; the walk leg mentions bus 685 to Fletcher St as an option.
+  - Confirmed: Valley of the Waters and Conservation Hut pins; free entry.
+  - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
+  - Unconfirmed: current NSW National Parks track closures on the National Pass; Conservation Hut opening hours and prices; M4 toll ($8–20 kept).

@@ -1,0 +1,694 @@
+{
+  "id": "clovelly",
+  "status": "verified",
+  "name": "Clovelly Beach",
+  "city": "sydney",
+  "area": "Eastern Suburbs",
+  "category": "swimming",
+  "categoryLabel": "Swimming",
+  "blurb": "A calm, narrow inlet made for swimming and snorkelling with friendly fish.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 1,
+    "rainy": 0,
+    "hot": 2
+  },
+  "weatherNote": "Sheltered from big swell, so it's good when surf beaches are rough. Little shade, and no fun in the rain.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
+  },
+  "cost": "Free",
+  "gettingThere": "Bus 339 from Central (Foveaux St) to its last stop at Clovelly Beach.",
+  "newcomerTip": "Bring a mask and snorkel: the blue groper here are famously curious. The concrete platforms make it easy to get in.",
+  "location": {
+    "lat": -33.914,
+    "lng": 151.2675
+  },
+  "suggestedStart": "09:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "2–3 hrs"
+    },
+    {
+      "k": "Water",
+      "v": "Calm inlet, no surf"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.914,
+      "lng": 151.2675,
+      "label": "Clovelly Beach"
+    },
+    "pt": {
+      "total": "≈ 35 min",
+      "changes": 0,
+      "fare": [
+        3,
+        5
+      ],
+      "legs": [
+        {
+          "mode": "walk",
+          "title": "Walk to the 339 stop on Foveaux St",
+          "mins": 4
+        },
+        {
+          "mode": "bus",
+          "line": "339",
+          "title": "Bus to Clovelly",
+          "mins": 27,
+          "detail": "From Foveaux St, stand F, to the last stop at the beach"
+        },
+        {
+          "mode": "walk",
+          "title": "Down to the water",
+          "mins": 2
+        }
+      ],
+      "back": {
+        "text": "Same way back: bus 339 from Clovelly Rd. Or walk the coast to Coogee (≈ 30 min) and take bus 374 to Central."
+      }
+    },
+    "drive": {
+      "total": "≈ 25 min",
+      "perCar": [
+        0,
+        10
+      ],
+      "perCarLabel": "Parking",
+      "notes": [
+        "The car park and nearby streets fill early on warm weekends. Time limits apply."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Coffee and a snack",
+        "per": [
+          8,
+          15
+        ],
+        "on": true
+      },
+      {
+        "id": "snorkel",
+        "label": "Mask and snorkel (if you don't have one)",
+        "per": [
+          20,
+          40
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Morning on a calm, sunny day, when the water is clearest.",
+    "hours": "Always open.",
+    "bring": [
+      "Swimmers & towel",
+      "Mask and snorkel",
+      "Sunscreen & hat",
+      "Reef-safe shoes"
+    ],
+    "facilities": [
+      "Toilets and showers at the beach",
+      "Seasalt café by the bus terminus"
+    ],
+    "access": "Steps and ramps down to the concrete platforms. A beach wheelchair may be available: ask the lifeguards.",
+    "safety": [
+      "Don't feed or touch the fish",
+      "Watch for waves washing over the platforms when the swell is up"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Bondi to Coogee Coastal Walk",
+      "why": "Clovelly is on the way",
+      "dist": "Next to the inlet",
+      "activityId": "bondi-coogee"
+    },
+    {
+      "name": "Coogee Beach & Ocean Pools",
+      "why": "Pools and cafés",
+      "dist": "≈ 30 min walk south",
+      "activityId": "coogee"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Clovelly Rd terminus",
+        "type": "start",
+        "note": "The 339 ends here, at the head of the inlet.",
+        "lng": 151.26669,
+        "lat": -33.91471
+      },
+      {
+        "n": 2,
+        "name": "Clovelly Beach",
+        "type": "beach",
+        "note": "A narrow inlet with concrete platforms and steps straight into calm water.",
+        "lng": 151.268,
+        "lat": -33.9142
+      },
+      {
+        "n": 3,
+        "name": "South-side snorkel",
+        "type": "lookout",
+        "note": "Swim along the rocks to look for the blue groper. Bring a mask.",
+        "lng": 151.2688,
+        "lat": -33.91495
+      },
+      {
+        "n": 4,
+        "name": "Seasalt café",
+        "type": "food",
+        "note": "Coffee and snacks by the bus terminus.",
+        "lng": 151.26676,
+        "lat": -33.91434
+      },
+      {
+        "n": 5,
+        "name": "Gordons Bay",
+        "type": "beach",
+        "note": "Rocky cove with an underwater nature trail for snorkellers.",
+        "lng": 151.26329,
+        "lat": -33.91592
+      },
+      {
+        "n": 6,
+        "name": "Towards Coogee",
+        "type": "end",
+        "note": "The coastal walk carries on to Coogee, about 30 min south.",
+        "lng": 151.25897,
+        "lat": -33.9186
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.2667,
+          -33.9147
+        ],
+        [
+          151.26662,
+          -33.91453
+        ],
+        [
+          151.26602,
+          -33.91407
+        ],
+        [
+          151.26585,
+          -33.91387
+        ],
+        [
+          151.26597,
+          -33.9138
+        ],
+        [
+          151.26587,
+          -33.91344
+        ],
+        [
+          151.26575,
+          -33.91331
+        ],
+        [
+          151.26575,
+          -33.91325
+        ],
+        [
+          151.2659,
+          -33.91303
+        ],
+        [
+          151.26617,
+          -33.91303
+        ],
+        [
+          151.26666,
+          -33.91338
+        ],
+        [
+          151.26751,
+          -33.9138
+        ],
+        [
+          151.26767,
+          -33.91397
+        ],
+        [
+          151.26771,
+          -33.91395
+        ],
+        [
+          151.26789,
+          -33.91418
+        ],
+        [
+          151.26805,
+          -33.91418
+        ],
+        [
+          151.26822,
+          -33.9143
+        ],
+        [
+          151.26826,
+          -33.91426
+        ],
+        [
+          151.26841,
+          -33.91435
+        ],
+        [
+          151.26858,
+          -33.91429
+        ],
+        [
+          151.26867,
+          -33.9143
+        ],
+        [
+          151.26899,
+          -33.91445
+        ],
+        [
+          151.26921,
+          -33.91465
+        ],
+        [
+          151.26917,
+          -33.91472
+        ],
+        [
+          151.26889,
+          -33.91467
+        ],
+        [
+          151.26837,
+          -33.91452
+        ],
+        [
+          151.26826,
+          -33.91443
+        ],
+        [
+          151.26782,
+          -33.91433
+        ],
+        [
+          151.2675,
+          -33.91406
+        ],
+        [
+          151.26767,
+          -33.91397
+        ],
+        [
+          151.26751,
+          -33.9138
+        ],
+        [
+          151.26666,
+          -33.91338
+        ],
+        [
+          151.26617,
+          -33.91303
+        ],
+        [
+          151.2661,
+          -33.91303
+        ],
+        [
+          151.2659,
+          -33.91303
+        ],
+        [
+          151.26577,
+          -33.9132
+        ],
+        [
+          151.26575,
+          -33.91331
+        ],
+        [
+          151.26623,
+          -33.91383
+        ],
+        [
+          151.26686,
+          -33.91422
+        ],
+        [
+          151.26682,
+          -33.91427
+        ],
+        [
+          151.26689,
+          -33.91432
+        ],
+        [
+          151.26691,
+          -33.91441
+        ],
+        [
+          151.26685,
+          -33.91437
+        ],
+        [
+          151.26742,
+          -33.91464
+        ],
+        [
+          151.26771,
+          -33.91498
+        ],
+        [
+          151.26773,
+          -33.9151
+        ],
+        [
+          151.26766,
+          -33.91514
+        ],
+        [
+          151.26775,
+          -33.91527
+        ],
+        [
+          151.26739,
+          -33.91581
+        ],
+        [
+          151.26721,
+          -33.91593
+        ],
+        [
+          151.26683,
+          -33.916
+        ],
+        [
+          151.26618,
+          -33.91599
+        ],
+        [
+          151.26596,
+          -33.91576
+        ],
+        [
+          151.26348,
+          -33.91476
+        ],
+        [
+          151.26235,
+          -33.91454
+        ],
+        [
+          151.26113,
+          -33.91467
+        ],
+        [
+          151.26089,
+          -33.91489
+        ],
+        [
+          151.26088,
+          -33.91495
+        ],
+        [
+          151.26103,
+          -33.91517
+        ],
+        [
+          151.26132,
+          -33.91591
+        ],
+        [
+          151.26145,
+          -33.91613
+        ],
+        [
+          151.26112,
+          -33.91735
+        ],
+        [
+          151.26088,
+          -33.91746
+        ],
+        [
+          151.26069,
+          -33.91765
+        ],
+        [
+          151.26053,
+          -33.91789
+        ],
+        [
+          151.26045,
+          -33.91816
+        ],
+        [
+          151.26031,
+          -33.91827
+        ],
+        [
+          151.25899,
+          -33.91864
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.26663,
+        "lat": -33.91435
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.26676,
+        "lat": -33.91434
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "bus",
+          "line": "339",
+          "coords": [
+            [
+              151.2093,
+              -33.88384
+            ],
+            [
+              151.20834,
+              -33.88344
+            ],
+            [
+              151.20858,
+              -33.88172
+            ],
+            [
+              151.21162,
+              -33.88304
+            ],
+            [
+              151.21701,
+              -33.88401
+            ],
+            [
+              151.21768,
+              -33.88401
+            ],
+            [
+              151.21902,
+              -33.8866
+            ],
+            [
+              151.21968,
+              -33.88712
+            ],
+            [
+              151.22056,
+              -33.88917
+            ],
+            [
+              151.22149,
+              -33.8928
+            ],
+            [
+              151.22298,
+              -33.9011
+            ],
+            [
+              151.22418,
+              -33.90237
+            ],
+            [
+              151.22597,
+              -33.90385
+            ],
+            [
+              151.22662,
+              -33.90418
+            ],
+            [
+              151.22661,
+              -33.90439
+            ],
+            [
+              151.23106,
+              -33.90616
+            ],
+            [
+              151.23241,
+              -33.9049
+            ],
+            [
+              151.23539,
+              -33.90492
+            ],
+            [
+              151.23919,
+              -33.90293
+            ],
+            [
+              151.24038,
+              -33.90296
+            ],
+            [
+              151.24164,
+              -33.90273
+            ],
+            [
+              151.24656,
+              -33.90607
+            ],
+            [
+              151.24748,
+              -33.9082
+            ],
+            [
+              151.24854,
+              -33.90873
+            ],
+            [
+              151.24921,
+              -33.90963
+            ],
+            [
+              151.25143,
+              -33.90998
+            ],
+            [
+              151.25219,
+              -33.91025
+            ],
+            [
+              151.25259,
+              -33.91095
+            ],
+            [
+              151.25322,
+              -33.91135
+            ],
+            [
+              151.26163,
+              -33.91263
+            ],
+            [
+              151.26262,
+              -33.91259
+            ],
+            [
+              151.26397,
+              -33.91292
+            ],
+            [
+              151.26498,
+              -33.91283
+            ],
+            [
+              151.26586,
+              -33.91399
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.26591,
+              -33.91395
+            ],
+            [
+              151.26575,
+              -33.91325
+            ],
+            [
+              151.2659,
+              -33.91303
+            ],
+            [
+              151.2661,
+              -33.91303
+            ],
+            [
+              151.26747,
+              -33.91372
+            ],
+            [
+              151.2677,
+              -33.91396
+            ],
+            [
+              151.26754,
+              -33.91405
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Parking rules and prices around Clovelly."
+    },
+    {
+      "section": "access",
+      "note": "Whether a beach wheelchair is available."
+    }
+  ]
+}

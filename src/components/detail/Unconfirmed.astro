@@ -1,0 +1,36 @@
+---
+import { t } from "~/strings/en-AU";
+
+/**
+ * "Not yet confirmed" (spec §3.2, §4.1): the details in one section of the activity page that no
+ * official source could confirm when the activity was checked. Renders nothing when there are none.
+ */
+interface Props {
+  notes: string[];
+}
+const { notes } = Astro.props;
+const s = t.detail.unconfirmed;
+---
+
+{
+  notes.length > 0 && (
+    <div class="unconfirmed mt-3 rounded-[16px] px-3.5 py-3 text-[14px] leading-[1.45]" role="note" data-unconfirmed>
+      <p class="m-0 font-bold">{s.heading}</p>
+      <ul class="m-0 mt-1.5 list-disc pl-5">
+        {notes.map((n) => (
+          <li>{n}</li>
+        ))}
+      </ul>
+      <p class="m-0 mt-1.5" style="color: var(--mute)">
+        {s.hint}
+      </p>
+    </div>
+  )
+}
+
+<style>
+  .unconfirmed {
+    border: 1px dashed var(--line);
+    background: var(--soft);
+  }
+</style>

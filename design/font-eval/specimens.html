@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Sky Mode font specimens</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Mona+Sans:wdth,wght@75..125,200..900&family=Anybody:wdth,wght@50..150,100..900&family=Hanken+Grotesk:wght@100..900&family=Geologica:wght,CRSV,SHRP@100..900,0..1,0..100&family=Schibsted+Grotesk:wght@400..900&family=Instrument+Serif:ital@0;1&family=Geist:wght@100..900&family=Funnel+Display:wght@300..800&family=Funnel+Sans:wght@300..800&display=swap">
+<style>
+body{margin:0;padding:24px;background:#0A1330;font-family:system-ui;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,300px);gap:14px;margin-bottom:26px}
+h2.lab{font:600 13px system-ui;letter-spacing:.1em;text-transform:uppercase;color:#9fb3ff;margin:0 0 10px}
+.sky{height:330px;border-radius:22px;padding:18px;box-sizing:border-box;position:relative;overflow:hidden}
+.sun{background:linear-gradient(180deg,#0F3FB8,#3E7BF0);color:#fff}
+.cloud{background:linear-gradient(180deg,#8796AE,#C7D0DD);color:#13203A}
+.rain{background:linear-gradient(180deg,#121A33,#2A3961);color:#EEF1FA}
+.hot{background:linear-gradient(180deg,#F26B1D,#FFB15C);color:#2A1004}
+.chip{display:inline-block;padding:5px 10px;border-radius:99px;background:rgba(255,255,255,.18);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.cloud .chip,.hot .chip{background:rgba(255,255,255,.4)}
+.t{margin:12px 0 6px;font-size:34px;line-height:.98;letter-spacing:-.02em}
+.glass{margin-top:12px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.3)}
+.cloud .glass,.hot .glass{background:rgba(255,255,255,.38)}
+.fit{font-size:17px;font-weight:700}.b{font-size:13.5px;line-height:1.45;margin-top:4px;opacity:.9}
+.num{display:flex;justify-content:space-between;margin-top:12px;font-size:22px;font-weight:700}.small{font-size:11.5px;font-weight:600;opacity:.85}
+</style></head><body>
+<div id="out"></div>
+<script>
+const P=[
+ {k:"0 · Current: Bricolage Grotesque + Instrument Sans",d:"'Bricolage Grotesque'",dv:{sun:"'wdth' 90",cloud:"'wdth' 90",rain:"'wdth' 90",hot:"'wdth' 90"},dw:800,tx:"'Instrument Sans'"},
+ {k:"1 · Mona Sans (one family, width reacts to the weather)",d:"'Mona Sans'",dv:{sun:"'wdth' 112",cloud:"'wdth' 100",rain:"'wdth' 82",hot:"'wdth' 125"},dw:{sun:760,cloud:640,rain:820,hot:880},tx:"'Mona Sans'"},
+ {k:"2 · Anybody + Hanken Grotesk",d:"'Anybody'",dv:{sun:"'wdth' 120",cloud:"'wdth' 100",rain:"'wdth' 70",hot:"'wdth' 140"},dw:800,tx:"'Hanken Grotesk'"},
+ {k:"3 · Geologica (sharpness reacts to the weather)",d:"'Geologica'",dv:{sun:"'SHRP' 100",cloud:"'SHRP' 40",rain:"'SHRP' 0",hot:"'SHRP' 100"},dw:700,tx:"'Geologica'"},
+ {k:"4 · Schibsted Grotesk (newspaper forecast)",d:"'Schibsted Grotesk'",dv:{},dw:800,tx:"'Schibsted Grotesk'"},
+ {k:"5 · Instrument Serif + Geist (editorial)",d:"'Instrument Serif'",dv:{},dw:400,tx:"'Geist'",ts:40},
+ {k:"6 · Funnel Display + Funnel Sans",d:"'Funnel Display'",dv:{},dw:800,tx:"'Funnel Sans'"}
+];
+const W=[["sun","Sunny","Perfect when sunny"],["cloud","Cloudy","Perfect when cloudy"],["rain","Rainy","Skip when rainy"],["hot","Hot 30°+","Fine when hot"]];
+document.getElementById("out").innerHTML=P.map(p=>`<h2 class="lab">${p.k}</h2><div class="grid">`+W.map(([w,l,f])=>{
+ const wt=typeof p.dw==="object"?p.dw[w]:p.dw;
+ return `<div class="sky ${w}" style="font-family:${p.tx}"><span class="chip">Coastal walk · ${l}</span>
+ <div class="t" style="font-family:${p.d};font-weight:${wt};font-variation-settings:${p.dv[w]||"normal"};${p.ts?"font-size:"+p.ts+"px;letter-spacing:-.01em":""}">Bondi to Coogee Coastal Walk</div>
+ <div class="small">Eastern Suburbs · 2–3 hrs · Free</div>
+ <div class="glass"><div class="fit">${f}</div><div class="b">Exposed clifftops with little shade. Go early on hot days, and skip it in rain.</div></div>
+ <div class="num" style="font-family:${p.d};font-variation-settings:${p.dv[w]||"normal"}"><span>≈ 35 min</span><span>$24–29</span></div></div>`}).join("")+`</div>`).join("");
+</script></body></html>

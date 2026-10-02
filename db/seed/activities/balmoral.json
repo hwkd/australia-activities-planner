@@ -1,0 +1,736 @@
+{
+  "id": "balmoral",
+  "status": "verified",
+  "name": "Balmoral Beach",
+  "city": "sydney",
+  "area": "Mosman",
+  "category": "beach",
+  "categoryLabel": "Beach",
+  "blurb": "A calm harbour beach with fig trees, a promenade and gentle water.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 1,
+    "rainy": 0,
+    "hot": 2
+  },
+  "weatherNote": "Best on hot days when ocean beaches are rough or packed.",
+  "goodFor": [
+    "date",
+    "family"
+  ],
+  "duration": {
+    "label": "Half day",
+    "minHours": 3,
+    "maxHours": 5
+  },
+  "cost": "Free",
+  "gettingThere": "Train to Wynyard, the B-Line bus to Spit Junction, then bus 114 down to the beach: about 40 min.",
+  "newcomerTip": "Calm, sheltered harbour water that suits kids and newer swimmers. Great spot for a picnic under the fig trees.",
+  "location": {
+    "lat": -33.827,
+    "lng": 151.252
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "Half day"
+    },
+    {
+      "k": "Bus",
+      "v": "≈ 40 min from the city"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy, flat promenade"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.827,
+      "lng": 151.252,
+      "label": "Balmoral Beach"
+    },
+    "pt": {
+      "total": "≈ 40 min",
+      "changes": 2,
+      "fare": [
+        7,
+        10
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Wynyard",
+          "mins": 6,
+          "detail": "Any train via Town Hall"
+        },
+        {
+          "mode": "bus",
+          "line": "B1",
+          "title": "B-Line bus to Spit Junction",
+          "mins": 15,
+          "detail": "Frequent, from Carrington St, stand B"
+        },
+        {
+          "mode": "bus",
+          "line": "114",
+          "title": "Bus 114 down to Balmoral",
+          "mins": 11,
+          "detail": "Round the corner on Military Rd. Or a steep 20 min walk downhill"
+        }
+      ],
+      "back": {
+        "text": "Same way back: the bus up the hill saves a steep climb. Or take bus 238 to Taronga Zoo wharf and the F2 ferry to Circular Quay."
+      }
+    },
+    "drive": {
+      "total": "≈ 25 min",
+      "perCar": [
+        15,
+        30
+      ],
+      "perCarLabel": "Parking, 3 hrs",
+      "notes": [
+        "Beachfront parking is metered and full by 10am on hot weekends."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Fish & chips or café lunch",
+        "per": [
+          15,
+          28
+        ],
+        "on": true
+      },
+      {
+        "id": "sup",
+        "label": "Kayak or paddleboard hire",
+        "per": [
+          25,
+          35
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Morning, before the afternoon sea breeze. It's sheltered when ocean beaches are rough.",
+    "hours": "Always open.",
+    "bring": [
+      "Swimmers & towel",
+      "Sunscreen & hat",
+      "Picnic rug",
+      "Shade tent for kids"
+    ],
+    "facilities": [
+      "Toilets and showers at both ends of the beach",
+      "Cafés, a kiosk and a fish and chip shop"
+    ],
+    "access": "Flat, paved promenade the whole way. Good for prams and wheelchairs.",
+    "safety": [
+      "No lifeguards or surf lifesavers at this harbour beach: watch children in the water"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Taronga Zoo",
+      "why": "Animals in the morning",
+      "dist": "≈ 15 min by bus",
+      "activityId": "taronga"
+    },
+    {
+      "name": "Spit Bridge to Manly Walk",
+      "why": "Start nearby",
+      "dist": "≈ 10 min by bus",
+      "activityId": "spit-manly"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Raglan St bus stop",
+        "type": "start",
+        "note": "Buses stop where Raglan St meets The Esplanade, a minute from the sand.",
+        "lng": 151.251,
+        "lat": -33.82644
+      },
+      {
+        "n": 2,
+        "name": "Balmoral Baths",
+        "type": "pool",
+        "note": "Free, netted harbour pool with a wooden boardwalk.",
+        "lng": 151.25321,
+        "lat": -33.82735
+      },
+      {
+        "n": 3,
+        "name": "Rotunda & lawns",
+        "type": "lookout",
+        "note": "Shady fig trees and picnic lawns.",
+        "lng": 151.25085,
+        "lat": -33.82448
+      },
+      {
+        "n": 4,
+        "name": "Bathers' Pavilion",
+        "type": "food",
+        "note": "Beach café and kiosk in the old bathing pavilion.",
+        "lng": 151.25093,
+        "lat": -33.82266
+      },
+      {
+        "n": 5,
+        "name": "Rocky Point Island",
+        "type": "lookout",
+        "note": "Cross the little footbridge for the view.",
+        "lng": 151.25233,
+        "lat": -33.8233
+      },
+      {
+        "n": 6,
+        "name": "Edwards Beach",
+        "type": "end",
+        "note": "The quieter northern half of the beach.",
+        "lng": 151.2513,
+        "lat": -33.8217
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.25099,
+          -33.82643
+        ],
+        [
+          151.25116,
+          -33.82632
+        ],
+        [
+          151.25132,
+          -33.82652
+        ],
+        [
+          151.25145,
+          -33.82649
+        ],
+        [
+          151.25206,
+          -33.82734
+        ],
+        [
+          151.25214,
+          -33.82733
+        ],
+        [
+          151.25216,
+          -33.82722
+        ],
+        [
+          151.2524,
+          -33.82747
+        ],
+        [
+          151.25271,
+          -33.82726
+        ],
+        [
+          151.253,
+          -33.82751
+        ],
+        [
+          151.25271,
+          -33.82726
+        ],
+        [
+          151.2524,
+          -33.82747
+        ],
+        [
+          151.25216,
+          -33.82722
+        ],
+        [
+          151.25214,
+          -33.82733
+        ],
+        [
+          151.25206,
+          -33.82734
+        ],
+        [
+          151.25145,
+          -33.82649
+        ],
+        [
+          151.25132,
+          -33.82652
+        ],
+        [
+          151.25116,
+          -33.82632
+        ],
+        [
+          151.25119,
+          -33.82615
+        ],
+        [
+          151.25088,
+          -33.82496
+        ],
+        [
+          151.25096,
+          -33.82493
+        ],
+        [
+          151.25083,
+          -33.82418
+        ],
+        [
+          151.25094,
+          -33.82416
+        ],
+        [
+          151.25072,
+          -33.82301
+        ],
+        [
+          151.25088,
+          -33.82273
+        ],
+        [
+          151.25087,
+          -33.82267
+        ],
+        [
+          151.25088,
+          -33.82273
+        ],
+        [
+          151.25095,
+          -33.82272
+        ],
+        [
+          151.25126,
+          -33.82284
+        ],
+        [
+          151.2514,
+          -33.82304
+        ],
+        [
+          151.25159,
+          -33.82312
+        ],
+        [
+          151.25167,
+          -33.82327
+        ],
+        [
+          151.25165,
+          -33.82338
+        ],
+        [
+          151.25189,
+          -33.82343
+        ],
+        [
+          151.25235,
+          -33.82332
+        ],
+        [
+          151.25189,
+          -33.82343
+        ],
+        [
+          151.25165,
+          -33.82338
+        ],
+        [
+          151.25165,
+          -33.8232
+        ],
+        [
+          151.25159,
+          -33.82312
+        ],
+        [
+          151.2514,
+          -33.82304
+        ],
+        [
+          151.25126,
+          -33.82285
+        ],
+        [
+          151.25093,
+          -33.82187
+        ],
+        [
+          151.25111,
+          -33.82169
+        ],
+        [
+          151.25112,
+          -33.82173
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.25263,
+        "lat": -33.82778
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.25093,
+        "lat": -33.82266
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.25049,
+        "lat": -33.82341
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.25138,
+        "lat": -33.82675
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.25106,
+        "lat": -33.82244
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.25277,
+        "lat": -33.82802
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20581,
+              -33.86589
+            ]
+          ]
+        },
+        {
+          "mode": "bus",
+          "line": "B1",
+          "coords": [
+            [
+              151.20638,
+              -33.86586
+            ],
+            [
+              151.20638,
+              -33.86507
+            ],
+            [
+              151.20485,
+              -33.86513
+            ],
+            [
+              151.20475,
+              -33.86425
+            ],
+            [
+              151.20436,
+              -33.86323
+            ],
+            [
+              151.2044,
+              -33.86284
+            ],
+            [
+              151.20538,
+              -33.861
+            ],
+            [
+              151.20575,
+              -33.85991
+            ],
+            [
+              151.21209,
+              -33.84993
+            ],
+            [
+              151.21258,
+              -33.8487
+            ],
+            [
+              151.21249,
+              -33.84716
+            ],
+            [
+              151.21119,
+              -33.84335
+            ],
+            [
+              151.21017,
+              -33.84159
+            ],
+            [
+              151.21,
+              -33.84005
+            ],
+            [
+              151.21097,
+              -33.83503
+            ],
+            [
+              151.21133,
+              -33.83392
+            ],
+            [
+              151.21287,
+              -33.83094
+            ],
+            [
+              151.21318,
+              -33.82962
+            ],
+            [
+              151.21491,
+              -33.82969
+            ],
+            [
+              151.21585,
+              -33.82927
+            ],
+            [
+              151.21703,
+              -33.82944
+            ],
+            [
+              151.22233,
+              -33.83147
+            ],
+            [
+              151.22319,
+              -33.83149
+            ],
+            [
+              151.22701,
+              -33.83001
+            ],
+            [
+              151.22831,
+              -33.82902
+            ],
+            [
+              151.23071,
+              -33.82785
+            ],
+            [
+              151.23342,
+              -33.82538
+            ],
+            [
+              151.23497,
+              -33.82452
+            ],
+            [
+              151.23612,
+              -33.82432
+            ],
+            [
+              151.24071,
+              -33.82447
+            ],
+            [
+              151.2415,
+              -33.82404
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.24146,
+              -33.824
+            ],
+            [
+              151.24086,
+              -33.82438
+            ],
+            [
+              151.24143,
+              -33.82476
+            ]
+          ]
+        },
+        {
+          "mode": "bus",
+          "line": "114",
+          "coords": [
+            [
+              151.24143,
+              -33.82476
+            ],
+            [
+              151.24353,
+              -33.8258
+            ],
+            [
+              151.244,
+              -33.82707
+            ],
+            [
+              151.24428,
+              -33.83093
+            ],
+            [
+              151.24754,
+              -33.83068
+            ],
+            [
+              151.24757,
+              -33.82894
+            ],
+            [
+              151.24829,
+              -33.82817
+            ],
+            [
+              151.24898,
+              -33.82771
+            ],
+            [
+              151.25039,
+              -33.82732
+            ],
+            [
+              151.2507,
+              -33.82667
+            ],
+            [
+              151.25107,
+              -33.82648
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.25107,
+              -33.82648
+            ],
+            [
+              151.25122,
+              -33.82641
+            ],
+            [
+              151.25132,
+              -33.82652
+            ],
+            [
+              151.25145,
+              -33.82649
+            ],
+            [
+              151.2514,
+              -33.82626
+            ],
+            [
+              151.25158,
+              -33.82624
+            ],
+            [
+              151.25168,
+              -33.82659
+            ],
+            [
+              151.25199,
+              -33.827
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Parking meter rates: Mosman Council only publishes permit prices."
+    },
+    {
+      "section": "cost",
+      "note": "Kayak and paddleboard hire prices."
+    },
+    {
+      "section": "gettingThere",
+      "note": "The Opal fare."
+    }
+  ]
+}

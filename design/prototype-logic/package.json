@@ -1,0 +1,1 @@
+{ "type": "commonjs", "private": true, "description": "The prototype checks and engines are CommonJS scripts; this keeps them runnable inside the ESM app repo." }

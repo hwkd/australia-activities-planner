@@ -1,0 +1,588 @@
+{
+  "id": "bridge-walk",
+  "status": "verified",
+  "name": "Walk across the Harbour Bridge",
+  "city": "sydney",
+  "area": "The Rocks",
+  "category": "landmark",
+  "categoryLabel": "Landmark",
+  "blurb": "Cross the Coathanger on foot for free, with the Opera House below.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 1
+  },
+  "weatherNote": "Fine under an umbrella, but very exposed in the heat.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1 hr",
+    "minHours": 1,
+    "maxHours": 1
+  },
+  "cost": "Free",
+  "gettingThere": "Stairs or the lift up from Cumberland St in The Rocks. Finish at Milsons Point station.",
+  "newcomerTip": "Use the eastern footpath for Opera House views. The Pylon Lookout (about $30) has the view from the top of the south-east pylon, or splurge on BridgeClimb.",
+  "location": {
+    "lat": -33.859,
+    "lng": 151.207
+  },
+  "suggestedStart": "16:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1 hr"
+    },
+    {
+      "k": "Distance",
+      "v": "1.5 km one way"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy, stairs or a lift at each end"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.859,
+      "lng": 151.207,
+      "label": "Bridge Stairs, Cumberland St"
+    },
+    "pt": {
+      "total": "≈ 20 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Circular Quay",
+          "mins": 8,
+          "detail": "Or any T2 or T3 train"
+        },
+        {
+          "mode": "walk",
+          "title": "Through The Rocks to the Bridge Stairs",
+          "mins": 11
+        }
+      ],
+      "back": {
+        "text": "It's one way. From Milsons Point, any city-bound train reaches Wynyard in 4 min, or take a ferry from the wharf below."
+      }
+    },
+    "drive": {
+      "total": "≈ 12 min",
+      "perCar": [
+        20,
+        40
+      ],
+      "perCarLabel": "Parking in The Rocks, 2 hrs",
+      "notes": [
+        "Parking in The Rocks is expensive. The train is much easier."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "pylon",
+        "label": "Pylon Lookout entry",
+        "per": [
+          30,
+          30
+        ],
+        "on": false
+      },
+      {
+        "id": "food",
+        "label": "Coffee in The Rocks or Kirribilli",
+        "per": [
+          6,
+          12
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Early morning or the hour before sunset. Midday is hot and exposed.",
+    "hours": "The footpath and the lifts are always open. The Pylon Lookout opens 10am to 6pm Saturday to Monday, and 10am to 4pm Tuesday to Friday.",
+    "bring": [
+      "Sunscreen & hat",
+      "Water",
+      "Camera"
+    ],
+    "facilities": [
+      "Toilets in The Rocks and at Milsons Point",
+      "Cafés at both ends"
+    ],
+    "access": "Lifts at both ends, on Cumberland St in The Rocks and Broughton St in Kirribilli, run 24 hours, so the whole walk is step-free. The Pylon Lookout is 200 stairs with no lift.",
+    "safety": [
+      "The footpath is on the eastern side. Cyclists use the western side."
+    ]
+  },
+  "pairings": [
+    {
+      "name": "The Rocks Markets",
+      "why": "Browse before you climb",
+      "dist": "At the start",
+      "activityId": "rocks-markets"
+    },
+    {
+      "name": "Sydney Opera House Tour",
+      "why": "See both icons",
+      "dist": "≈ 15 min walk",
+      "activityId": "opera-tour"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Bridge Stairs",
+        "type": "start",
+        "note": "On Cumberland St in The Rocks, with a lift beside the stairs. Follow the signs for the pedestrian walkway.",
+        "lng": 151.20698,
+        "lat": -33.85912
+      },
+      {
+        "n": 2,
+        "name": "Pylon Lookout",
+        "type": "paid",
+        "note": "Climb 200 steps inside the pylon for the view. Entry about $30.",
+        "lng": 151.20948,
+        "lat": -33.85465
+      },
+      {
+        "n": 3,
+        "name": "Mid-span",
+        "type": "lookout",
+        "note": "Opera House on one side, ferries below.",
+        "lng": 151.21048,
+        "lat": -33.85211
+      },
+      {
+        "n": 4,
+        "name": "Milsons Point Station",
+        "type": "end",
+        "note": "Trains back to the city in 4 minutes.",
+        "lng": 151.21273,
+        "lat": -33.84665
+      },
+      {
+        "n": 5,
+        "name": "Luna Park & Bradfield Park",
+        "type": "food",
+        "note": "Harbourside park under the bridge, with the fun park next door.",
+        "lng": 151.21303,
+        "lat": -33.84765
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.20698,
+          -33.85912
+        ],
+        [
+          151.20714,
+          -33.85876
+        ],
+        [
+          151.2069,
+          -33.85869
+        ],
+        [
+          151.21224,
+          -33.85022
+        ],
+        [
+          151.21249,
+          -33.84976
+        ],
+        [
+          151.21262,
+          -33.84947
+        ],
+        [
+          151.2128,
+          -33.8488
+        ],
+        [
+          151.21286,
+          -33.84825
+        ],
+        [
+          151.21284,
+          -33.84779
+        ],
+        [
+          151.21265,
+          -33.84674
+        ],
+        [
+          151.2127,
+          -33.8467
+        ],
+        [
+          151.21272,
+          -33.84673
+        ],
+        [
+          151.2127,
+          -33.84665
+        ],
+        [
+          151.21281,
+          -33.84731
+        ],
+        [
+          151.21286,
+          -33.84747
+        ],
+        [
+          151.21296,
+          -33.84745
+        ],
+        [
+          151.213,
+          -33.84765
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.21322,
+        "lat": -33.84668
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21211,
+        "lat": -33.84593
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20818,
+        "lat": -33.8586
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20824,
+        "lat": -33.85492
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20839,
+        "lat": -33.85792
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21339,
+        "lat": -33.84745
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.2129,
+        "lat": -33.84635
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20888,
+        "lat": -33.85715
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20546,
+              -33.86281
+            ],
+            [
+              151.20598,
+              -33.86183
+            ],
+            [
+              151.20695,
+              -33.86123
+            ],
+            [
+              151.2081,
+              -33.86107
+            ],
+            [
+              151.21031,
+              -33.86128
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.21031,
+              -33.86127
+            ],
+            [
+              151.21056,
+              -33.86128
+            ],
+            [
+              151.21056,
+              -33.86134
+            ],
+            [
+              151.2104,
+              -33.86132
+            ],
+            [
+              151.21042,
+              -33.86115
+            ],
+            [
+              151.20972,
+              -33.86108
+            ],
+            [
+              151.20956,
+              -33.86096
+            ],
+            [
+              151.20952,
+              -33.86085
+            ],
+            [
+              151.20956,
+              -33.86046
+            ],
+            [
+              151.20945,
+              -33.86046
+            ],
+            [
+              151.20952,
+              -33.85977
+            ],
+            [
+              151.20939,
+              -33.85975
+            ],
+            [
+              151.20934,
+              -33.85941
+            ],
+            [
+              151.2088,
+              -33.85935
+            ],
+            [
+              151.20881,
+              -33.85925
+            ],
+            [
+              151.20811,
+              -33.85913
+            ],
+            [
+              151.20803,
+              -33.85914
+            ],
+            [
+              151.20802,
+              -33.85919
+            ],
+            [
+              151.20701,
+              -33.85897
+            ]
+          ]
+        }
+      ]
+    },
+    "back": {
+      "legs": [
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.2127,
+              -33.84665
+            ],
+            [
+              151.21243,
+              -33.8458
+            ],
+            [
+              151.21186,
+              -33.84596
+            ],
+            [
+              151.21191,
+              -33.84613
+            ],
+            [
+              151.21183,
+              -33.84576
+            ]
+          ]
+        },
+        {
+          "mode": "train",
+          "line": "T9",
+          "coords": [
+            [
+              151.21185,
+              -33.84575
+            ],
+            [
+              151.21252,
+              -33.84781
+            ],
+            [
+              151.2123,
+              -33.84933
+            ],
+            [
+              151.20604,
+              -33.85942
+            ],
+            [
+              151.20567,
+              -33.86022
+            ],
+            [
+              151.20528,
+              -33.86205
+            ],
+            [
+              151.20526,
+              -33.86279
+            ],
+            [
+              151.2059,
+              -33.86676
+            ],
+            [
+              151.20618,
+              -33.87007
+            ],
+            [
+              151.2069,
+              -33.87259
+            ],
+            [
+              151.2066,
+              -33.87506
+            ],
+            [
+              151.20671,
+              -33.87568
+            ],
+            [
+              151.20709,
+              -33.87638
+            ],
+            [
+              151.2085,
+              -33.87766
+            ],
+            [
+              151.20884,
+              -33.87853
+            ],
+            [
+              151.20872,
+              -33.87976
+            ],
+            [
+              151.20809,
+              -33.88218
+            ],
+            [
+              151.20768,
+              -33.88318
+            ],
+            [
+              151.20697,
+              -33.88404
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Parking prices in The Rocks."
+    }
+  ]
+}

@@ -1,0 +1,703 @@
+{
+  "id": "cockatoo",
+  "status": "verified",
+  "name": "Cockatoo Island",
+  "city": "sydney",
+  "area": "Sydney Harbour",
+  "category": "history",
+  "categoryLabel": "History",
+  "blurb": "A convict-era island of tunnels and shipyards in the middle of the harbour.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 1
+  },
+  "weatherNote": "Tunnels and industrial sheds give some shelter.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family"
+  ],
+  "duration": {
+    "label": "Half day",
+    "minHours": 3,
+    "maxHours": 5
+  },
+  "cost": "$",
+  "gettingThere": "Train to Wynyard, walk to Barangaroo, then the F3 ferry (or the F3 from Circular Quay).",
+  "newcomerTip": "A UNESCO-listed convict site with tunnels and old shipyards. You can even glamp overnight.",
+  "location": {
+    "lat": -33.8476,
+    "lng": 151.1718
+  },
+  "suggestedStart": "10:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "Half day"
+    },
+    {
+      "k": "Ferry",
+      "v": "≈ 10 min from Barangaroo"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy to moderate"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8476,
+      "lng": 151.1718,
+      "label": "Cockatoo Island Wharf"
+    },
+    "pt": {
+      "total": "≈ 30 min",
+      "changes": 1,
+      "fare": [
+        10,
+        13
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Wynyard",
+          "mins": 6,
+          "detail": "Any train via Town Hall"
+        },
+        {
+          "mode": "walk",
+          "title": "Walk to Barangaroo wharf",
+          "mins": 8
+        },
+        {
+          "mode": "ferry",
+          "line": "F3",
+          "title": "Ferry to Cockatoo Island",
+          "mins": 9,
+          "detail": "Parramatta River ferries, about every 20 min. They also leave from Circular Quay, wharf 5 (20 min)"
+        },
+        {
+          "mode": "walk",
+          "title": "Into the island",
+          "mins": 5
+        }
+      ],
+      "back": {
+        "text": "Same way back. Note the time of the last ferry when you arrive."
+      }
+    },
+    "drive": null,
+    "unavailable": {
+      "drive": "You can't drive to Cockatoo Island: it's car-free and only reached by ferry."
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Lunch at the island café",
+        "per": [
+          15,
+          28
+        ],
+        "on": true
+      },
+      {
+        "id": "audio",
+        "label": "Audio tour hire (single)",
+        "per": [
+          5,
+          5
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "A mild, clear day. Allow 2–3 hours on the island between ferries.",
+    "hours": "The island is open daily. The visitor centre opens 10am to 4pm (audio tours are hired there).",
+    "bring": [
+      "Walking shoes",
+      "Sunscreen & hat",
+      "Water",
+      "A phone torch for the tunnels"
+    ],
+    "facilities": [
+      "Toilets near the wharf and campground",
+      "Two cafés: the Marina Café & Bar by the docks and one at the campground"
+    ],
+    "access": "The lower island is flat and step-free. The upper convict precinct is reached by a steep ramp or stairs.",
+    "safety": [
+      "Old industrial site: keep kids close near the docks and edges"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Ferry to Manly & Shelly Beach",
+      "why": "Another great ferry ride",
+      "dist": "From Circular Quay",
+      "activityId": "manly"
+    },
+    {
+      "name": "The Rocks Markets",
+      "why": "Browse before or after",
+      "dist": "At Circular Quay",
+      "activityId": "rocks-markets"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Island wharf",
+        "type": "start",
+        "note": "All ferries arrive here. The visitor centre is straight ahead.",
+        "lng": 151.17344,
+        "lat": -33.84548
+      },
+      {
+        "n": 2,
+        "name": "Visitor Centre",
+        "type": "lookout",
+        "note": "Maps and audio tour hire ($5), 10am to 4pm.",
+        "lng": 151.17282,
+        "lat": -33.8461
+      },
+      {
+        "n": 3,
+        "name": "Convict precinct",
+        "type": "lookout",
+        "note": "Sandstone barracks and cells on the upper island. UNESCO World Heritage.",
+        "lng": 151.17062,
+        "lat": -33.84796
+      },
+      {
+        "n": 4,
+        "name": "Dog-Leg Tunnel",
+        "type": "lookout",
+        "note": "A tunnel cut straight through the island. Bring a torch for fun.",
+        "lng": 151.17216,
+        "lat": -33.84721
+      },
+      {
+        "n": 5,
+        "name": "Industrial precinct",
+        "type": "lookout",
+        "note": "Giant old ship-building halls and cranes.",
+        "lng": 151.17339,
+        "lat": -33.84807
+      },
+      {
+        "n": 6,
+        "name": "Campground & café",
+        "type": "food",
+        "note": "Waterfront café and bar, next to the glamping tents.",
+        "lng": 151.17155,
+        "lat": -33.84643
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.17344,
+          -33.84548
+        ],
+        [
+          151.17344,
+          -33.84553
+        ],
+        [
+          151.17296,
+          -33.84562
+        ],
+        [
+          151.17297,
+          -33.84603
+        ],
+        [
+          151.1728,
+          -33.84602
+        ],
+        [
+          151.171,
+          -33.84684
+        ],
+        [
+          151.17113,
+          -33.84703
+        ],
+        [
+          151.17068,
+          -33.84736
+        ],
+        [
+          151.17054,
+          -33.84766
+        ],
+        [
+          151.17034,
+          -33.84778
+        ],
+        [
+          151.17037,
+          -33.84789
+        ],
+        [
+          151.17052,
+          -33.84788
+        ],
+        [
+          151.17037,
+          -33.84789
+        ],
+        [
+          151.17035,
+          -33.84786
+        ],
+        [
+          151.17034,
+          -33.84778
+        ],
+        [
+          151.17046,
+          -33.84768
+        ],
+        [
+          151.17054,
+          -33.84766
+        ],
+        [
+          151.17056,
+          -33.84776
+        ],
+        [
+          151.17064,
+          -33.84777
+        ],
+        [
+          151.17124,
+          -33.84759
+        ],
+        [
+          151.17145,
+          -33.84802
+        ],
+        [
+          151.17162,
+          -33.84801
+        ],
+        [
+          151.17174,
+          -33.84814
+        ],
+        [
+          151.17199,
+          -33.84817
+        ],
+        [
+          151.17173,
+          -33.84817
+        ],
+        [
+          151.17173,
+          -33.84821
+        ],
+        [
+          151.17245,
+          -33.84829
+        ],
+        [
+          151.17234,
+          -33.84801
+        ],
+        [
+          151.17216,
+          -33.84721
+        ],
+        [
+          151.17234,
+          -33.84801
+        ],
+        [
+          151.17245,
+          -33.84829
+        ],
+        [
+          151.17173,
+          -33.84821
+        ],
+        [
+          151.17173,
+          -33.84817
+        ],
+        [
+          151.17199,
+          -33.84817
+        ],
+        [
+          151.17173,
+          -33.84813
+        ],
+        [
+          151.17162,
+          -33.84801
+        ],
+        [
+          151.17165,
+          -33.84794
+        ],
+        [
+          151.17166,
+          -33.84797
+        ],
+        [
+          151.1721,
+          -33.84783
+        ],
+        [
+          151.17223,
+          -33.84811
+        ],
+        [
+          151.17323,
+          -33.84777
+        ],
+        [
+          151.17223,
+          -33.84811
+        ],
+        [
+          151.1721,
+          -33.84783
+        ],
+        [
+          151.17166,
+          -33.84797
+        ],
+        [
+          151.17165,
+          -33.84794
+        ],
+        [
+          151.17162,
+          -33.84801
+        ],
+        [
+          151.17173,
+          -33.84813
+        ],
+        [
+          151.17199,
+          -33.84817
+        ],
+        [
+          151.17163,
+          -33.84821
+        ],
+        [
+          151.17119,
+          -33.84711
+        ],
+        [
+          151.171,
+          -33.84684
+        ],
+        [
+          151.17163,
+          -33.84656
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.17334,
+        "lat": -33.84776
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.17225,
+        "lat": -33.84867
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.17114,
+        "lat": -33.84778
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.17246,
+        "lat": -33.84726
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.17316,
+        "lat": -33.84591
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.17195,
+        "lat": -33.84863
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20581,
+              -33.86589
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.20584,
+              -33.86588
+            ],
+            [
+              151.20556,
+              -33.86582
+            ],
+            [
+              151.20554,
+              -33.86562
+            ],
+            [
+              151.20508,
+              -33.86558
+            ],
+            [
+              151.2046,
+              -33.86519
+            ],
+            [
+              151.20278,
+              -33.86535
+            ],
+            [
+              151.20273,
+              -33.86488
+            ],
+            [
+              151.20112,
+              -33.86463
+            ],
+            [
+              151.20034,
+              -33.86434
+            ]
+          ]
+        },
+        {
+          "mode": "ferry",
+          "line": "F3",
+          "coords": [
+            [
+              151.20039,
+              -33.86439
+            ],
+            [
+              151.20008,
+              -33.86432
+            ],
+            [
+              151.20007,
+              -33.86336
+            ],
+            [
+              151.19859,
+              -33.85867
+            ],
+            [
+              151.19724,
+              -33.85604
+            ],
+            [
+              151.19645,
+              -33.85509
+            ],
+            [
+              151.19471,
+              -33.85401
+            ],
+            [
+              151.19341,
+              -33.85296
+            ],
+            [
+              151.19239,
+              -33.85168
+            ],
+            [
+              151.19087,
+              -33.84911
+            ],
+            [
+              151.18845,
+              -33.8468
+            ],
+            [
+              151.18499,
+              -33.8451
+            ],
+            [
+              151.18177,
+              -33.84426
+            ],
+            [
+              151.18048,
+              -33.84408
+            ],
+            [
+              151.1757,
+              -33.84428
+            ],
+            [
+              151.17344,
+              -33.84548
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.17344,
+              -33.84548
+            ],
+            [
+              151.17344,
+              -33.84553
+            ],
+            [
+              151.17296,
+              -33.84562
+            ],
+            [
+              151.17297,
+              -33.84603
+            ],
+            [
+              151.1728,
+              -33.84602
+            ],
+            [
+              151.17233,
+              -33.84624
+            ],
+            [
+              151.17213,
+              -33.84657
+            ],
+            [
+              151.17178,
+              -33.84676
+            ],
+            [
+              151.17179,
+              -33.84684
+            ],
+            [
+              151.17174,
+              -33.84688
+            ],
+            [
+              151.17186,
+              -33.84681
+            ],
+            [
+              151.17185,
+              -33.84697
+            ],
+            [
+              151.17146,
+              -33.84722
+            ],
+            [
+              151.17167,
+              -33.84728
+            ],
+            [
+              151.17183,
+              -33.84759
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "gettingThere",
+      "note": "The Opal fare for train and ferry: the weekend daily cap may make it lower."
+    },
+    {
+      "section": "cost",
+      "note": "Café prices."
+    }
+  ]
+}

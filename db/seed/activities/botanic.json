@@ -1,0 +1,610 @@
+{
+  "id": "botanic",
+  "status": "verified",
+  "name": "Royal Botanic Garden & Mrs Macquarie's Chair",
+  "city": "sydney",
+  "area": "City",
+  "category": "garden",
+  "categoryLabel": "Gardens",
+  "blurb": "Harbourside gardens with the classic Opera House and Bridge photo spot.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 0,
+    "hot": 1
+  },
+  "weatherNote": "Shady lawns help on warm days, but there's little shelter in rain.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "Walk from Circular Quay or Martin Place station.",
+  "newcomerTip": "Follow the harbour path to Mrs Macquarie's Chair for the classic Opera House and Bridge photo. Picnics welcome.",
+  "location": {
+    "lat": -33.859,
+    "lng": 151.216
+  },
+  "suggestedStart": "09:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "Distance",
+      "v": "2 km one way"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy, mostly flat"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.859,
+      "lng": 151.216,
+      "label": "Queen Elizabeth II Gate"
+    },
+    "pt": {
+      "total": "≈ 20 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Circular Quay",
+          "mins": 8,
+          "detail": "Or any T2 or T3 train"
+        },
+        {
+          "mode": "walk",
+          "title": "Round Circular Quay to the garden gate",
+          "mins": 9
+        }
+      ],
+      "back": {
+        "text": "From Mrs Macquarie's Chair, walk back through the garden or up to Martin Place station (≈ 15 min)."
+      }
+    },
+    "drive": {
+      "total": "≈ 12 min",
+      "perCar": [
+        15,
+        30
+      ],
+      "perCarLabel": "Parking, 2 hrs",
+      "notes": [
+        "Metered parking on Mrs Macquaries Rd is limited on sunny weekends.",
+        "The train to Circular Quay is usually quicker."
+      ]
+    },
+    "ride": "Ask to be dropped at the Opera House forecourt on Macquarie St."
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Picnic supplies or a café lunch",
+        "per": [
+          12,
+          25
+        ],
+        "on": true
+      },
+      {
+        "id": "pool",
+        "label": "Boy Charlton Pool entry",
+        "per": [
+          7,
+          9
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Early morning or the hour before sunset, when the light on the Opera House is best.",
+    "hours": "Open daily from 7am. Closes at 5pm in June and July, between 6pm and 7:30pm in spring and autumn, and at 8pm from November to February.",
+    "bring": [
+      "Picnic rug",
+      "Sunscreen & hat",
+      "Water bottle",
+      "Camera"
+    ],
+    "facilities": [
+      "Toilets by the Opera House gate, the Palm Grove, The Calyx and Boy Charlton Pool (none at Mrs Macquarie's Chair)",
+      "Leaf Dept. café in The Calyx, Farm Cove Eatery and Botanic House by the Palm Grove"
+    ],
+    "access": "Paved and mostly flat. Good for prams and wheelchairs, with some gentle slopes.",
+    "safety": [
+      "There's little shade on the seawall: cover up in summer"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Sydney Opera House Tour",
+      "why": "Right next door",
+      "dist": "At the start",
+      "activityId": "opera-tour"
+    },
+    {
+      "name": "Art Gallery of NSW",
+      "why": "Free art, 5 min walk",
+      "dist": "Beside the garden",
+      "activityId": "agnsw"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Queen Elizabeth II Gate",
+        "type": "start",
+        "note": "The garden gate beside the Opera House forecourt.",
+        "lng": 151.21545,
+        "lat": -33.85852
+      },
+      {
+        "n": 2,
+        "name": "Farm Cove seawall",
+        "type": "lookout",
+        "note": "Flat harbourside path with skyline views.",
+        "lng": 151.21715,
+        "lat": -33.8599
+      },
+      {
+        "n": 3,
+        "name": "The Calyx & Palm Grove",
+        "type": "food",
+        "note": "Indoor plant displays, the Leaf Dept. café and shady lawns.",
+        "lng": 151.21514,
+        "lat": -33.86598
+      },
+      {
+        "n": 4,
+        "name": "Boy Charlton Pool",
+        "type": "pool",
+        "note": "Outdoor harbourside pool, open September to April.",
+        "lng": 151.22188,
+        "lat": -33.86343
+      },
+      {
+        "n": 5,
+        "name": "Mrs Macquarie's Chair",
+        "type": "end",
+        "note": "The classic Opera House and Harbour Bridge photo spot.",
+        "lng": 151.22257,
+        "lat": -33.85971
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21545,
+          -33.85852
+        ],
+        [
+          151.21548,
+          -33.85858
+        ],
+        [
+          151.21553,
+          -33.85853
+        ],
+        [
+          151.2157,
+          -33.85854
+        ],
+        [
+          151.21668,
+          -33.85926
+        ],
+        [
+          151.21708,
+          -33.85982
+        ],
+        [
+          151.21719,
+          -33.86012
+        ],
+        [
+          151.21721,
+          -33.86038
+        ],
+        [
+          151.2172,
+          -33.86053
+        ],
+        [
+          151.21699,
+          -33.86074
+        ],
+        [
+          151.21669,
+          -33.86094
+        ],
+        [
+          151.21656,
+          -33.86113
+        ],
+        [
+          151.21602,
+          -33.86291
+        ],
+        [
+          151.2158,
+          -33.86336
+        ],
+        [
+          151.21582,
+          -33.86338
+        ],
+        [
+          151.21577,
+          -33.8635
+        ],
+        [
+          151.2157,
+          -33.86356
+        ],
+        [
+          151.21566,
+          -33.86371
+        ],
+        [
+          151.21558,
+          -33.86376
+        ],
+        [
+          151.2158,
+          -33.864
+        ],
+        [
+          151.21524,
+          -33.86458
+        ],
+        [
+          151.21524,
+          -33.86473
+        ],
+        [
+          151.21514,
+          -33.86484
+        ],
+        [
+          151.2152,
+          -33.86485
+        ],
+        [
+          151.21516,
+          -33.86562
+        ],
+        [
+          151.21499,
+          -33.86569
+        ],
+        [
+          151.21493,
+          -33.86577
+        ],
+        [
+          151.21501,
+          -33.86578
+        ],
+        [
+          151.21502,
+          -33.86588
+        ],
+        [
+          151.21511,
+          -33.86593
+        ],
+        [
+          151.21524,
+          -33.86591
+        ],
+        [
+          151.21529,
+          -33.86582
+        ],
+        [
+          151.21538,
+          -33.86582
+        ],
+        [
+          151.21534,
+          -33.86571
+        ],
+        [
+          151.21526,
+          -33.86565
+        ],
+        [
+          151.21566,
+          -33.865
+        ],
+        [
+          151.21621,
+          -33.86516
+        ],
+        [
+          151.21693,
+          -33.86506
+        ],
+        [
+          151.21703,
+          -33.86489
+        ],
+        [
+          151.21838,
+          -33.86509
+        ],
+        [
+          151.21887,
+          -33.86507
+        ],
+        [
+          151.21912,
+          -33.86497
+        ],
+        [
+          151.21961,
+          -33.8645
+        ],
+        [
+          151.21978,
+          -33.86462
+        ],
+        [
+          151.2201,
+          -33.86421
+        ],
+        [
+          151.22078,
+          -33.86363
+        ],
+        [
+          151.22094,
+          -33.86342
+        ],
+        [
+          151.22095,
+          -33.86323
+        ],
+        [
+          151.22108,
+          -33.86331
+        ],
+        [
+          151.22112,
+          -33.86325
+        ],
+        [
+          151.22121,
+          -33.8633
+        ],
+        [
+          151.22114,
+          -33.86344
+        ],
+        [
+          151.22138,
+          -33.86364
+        ],
+        [
+          151.22205,
+          -33.86299
+        ],
+        [
+          151.22238,
+          -33.86285
+        ],
+        [
+          151.22275,
+          -33.8626
+        ],
+        [
+          151.2229,
+          -33.86238
+        ],
+        [
+          151.22294,
+          -33.86202
+        ],
+        [
+          151.22267,
+          -33.85967
+        ],
+        [
+          151.2226,
+          -33.85971
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.21554,
+        "lat": -33.86627
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2215,
+        "lat": -33.86373
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21711,
+        "lat": -33.86475
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21706,
+        "lat": -33.86466
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.22159,
+        "lat": -33.8636
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21523,
+        "lat": -33.86596
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20546,
+              -33.86281
+            ],
+            [
+              151.20598,
+              -33.86183
+            ],
+            [
+              151.20695,
+              -33.86123
+            ],
+            [
+              151.2081,
+              -33.86107
+            ],
+            [
+              151.21031,
+              -33.86128
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.21031,
+              -33.86127
+            ],
+            [
+              151.21212,
+              -33.86133
+            ],
+            [
+              151.21242,
+              -33.8612
+            ],
+            [
+              151.21301,
+              -33.8614
+            ],
+            [
+              151.21321,
+              -33.86067
+            ],
+            [
+              151.21338,
+              -33.86068
+            ],
+            [
+              151.21407,
+              -33.85992
+            ],
+            [
+              151.21567,
+              -33.85893
+            ],
+            [
+              151.21545,
+              -33.85866
+            ],
+            [
+              151.21553,
+              -33.85853
+            ],
+            [
+              151.21613,
+              -33.85887
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "driving",
+      "note": "Parking meter rates on Mrs Macquaries Rd."
+    }
+  ]
+}

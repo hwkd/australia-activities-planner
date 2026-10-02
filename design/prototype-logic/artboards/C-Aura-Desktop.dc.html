@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Aura, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&amp;family=Geist:wght@300..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap">
+<style>
+@property --wob{syntax:'<angle>';inherits:true;initial-value:0deg}
+@property --pul{syntax:'<number>';inherits:true;initial-value:0}
+body{margin:0;background:#0B0B10;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;margin:0;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:1.5px solid var(--acc);outline-offset:3px}
+p,h1,h2,h3{margin:0;font-weight:inherit}
+fieldset{margin:0;padding:0;border:0;min-width:0}
+legend{padding:0}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ic{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hs{scrollbar-width:none}.hs::-webkit-scrollbar{display:none}
+.m{font-family:'Geist Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.sy{font-family:'Syne','Geist',sans-serif}
+.mu{color:#A3A3B2}
+.k-sun{--g:#100E0B;--t:#191712;--acc:#F5C451;--accS:rgba(245,196,81,.12);--accL:rgba(245,196,81,.5);--glow:rgba(245,190,70,.3);--sp:#C98A2A;--wob:0deg;--pul:.035}
+.k-cloud{--g:#0E0D12;--t:#17161D;--acc:#C9C1EA;--accS:rgba(201,193,234,.11);--accL:rgba(201,193,234,.45);--glow:rgba(160,150,210,.28);--sp:#6F6A8E;--wob:0deg;--pul:.012}
+.k-rain{--g:#080B12;--t:#11141D;--acc:#6FDCD4;--accS:rgba(111,220,212,.11);--accL:rgba(111,220,212,.45);--glow:rgba(70,90,230,.38);--sp:#2E36B8;--wob:0deg;--pul:.018}
+.k-hot{--g:#120B0A;--t:#1C1412;--acc:#FF8B61;--accS:rgba(255,139,97,.13);--accL:rgba(255,139,97,.5);--glow:rgba(255,105,60,.34);--sp:#D9482A;--wob:2.2deg;--pul:.05}
+.acc{color:var(--acc);transition:color 1.2s ease}
+.spill{position:absolute;left:-220px;top:-140px;width:1000px;height:960px;pointer-events:none;background:currentColor;color:var(--sp);opacity:.2;-webkit-mask-image:radial-gradient(closest-side,#000,rgba(0,0,0,.35) 45%,transparent);mask-image:radial-gradient(closest-side,#000,rgba(0,0,0,.35) 45%,transparent);transition:color 1.2s ease}
+.au{position:absolute;width:360px;height:360px;pointer-events:none}
+.life{transition:--wob 1.2s ease,--pul 1.2s ease;animation:life 6.5s ease-in-out infinite}
+.bl{position:absolute;left:70px;top:70px;width:220px;height:220px;mix-blend-mode:screen;transition:transform 1.3s cubic-bezier(.34,1.3,.5,1),filter 1.2s ease,opacity 1.2s ease,color 1.2s ease}
+.bl>span{display:block;height:100%;border-radius:50%;background:radial-gradient(circle at 42% 38%,rgba(255,255,255,.5),rgba(255,255,255,0) 48%) currentColor;animation:drift 15s ease-in-out infinite}
+.b2{transition-delay:70ms}.b3{transition-delay:140ms}.b4{transition-delay:210ms}
+.b2>span{animation-duration:19s;animation-direction:reverse}.b3>span{animation-duration:12s;animation-delay:-4s}.b4>span{animation-duration:23s;animation-direction:reverse;animation-delay:-9s}
+.k-sun>.b1{transform:translate(0,6px) scale(.95);filter:blur(12px);opacity:.95;color:#FFAA3A}
+.k-sun>.b2{transform:translate(-20px,-16px) scale(.72);filter:blur(9px);opacity:.95;color:#FFD66B}
+.k-sun>.b3{transform:translate(12px,-10px) scale(.42);filter:blur(7px);opacity:.9;color:#FFF3D6}
+.k-sun>.b4{transform:translate(24px,26px) scale(.6);filter:blur(20px);opacity:.6;color:#FF8E3C}
+.k-cloud>.b1{transform:translate(-40px,10px) scale(1.3);filter:blur(46px);opacity:.75;color:#6F6A8E}
+.k-cloud>.b2{transform:translate(30px,-20px) scale(1.12);filter:blur(42px);opacity:.7;color:#A7A1C4}
+.k-cloud>.b3{transform:translate(0,-6px) scale(.7);filter:blur(34px);opacity:.55;color:#DAD5EA}
+.k-cloud>.b4{transform:translate(46px,40px) scale(1.02);filter:blur(50px);opacity:.5;color:#8C8FA6}
+.k-rain>.b1{transform:translate(-24px,48px) scale(1.15);filter:blur(36px);opacity:.9;color:#2E36B8}
+.k-rain>.b2{transform:translate(30px,38px) scale(.92);filter:blur(32px);opacity:.8;color:#1B9E9A}
+.k-rain>.b3{transform:translate(4px,34px) scale(.42);filter:blur(18px);opacity:.8;color:#5CE0D8}
+.k-rain>.b4{transform:translate(-6px,76px) scale(.88);filter:blur(44px);opacity:.6;color:#4A3FD0}
+.k-hot>.b1{transform:translate(-10px,2px) scale(1.34);filter:blur(34px);opacity:.9;color:#FF5E3A}
+.k-hot>.b2{transform:translate(26px,-22px) scale(1.06);filter:blur(28px);opacity:.9;color:#FFA040}
+.k-hot>.b3{transform:translate(0,-6px) scale(.55);filter:blur(15px);opacity:.9;color:#FFE0A8}
+.k-hot>.b4{transform:translate(-36px,34px) scale(1);filter:blur(40px);opacity:.7;color:#E0305A}
+.bloom{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(255,110,60,.3),rgba(255,110,60,0) 64%);opacity:0;transition:opacity 1.2s ease}
+.k-hot>.bloom{opacity:1}
+.drops{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
+.k-rain>.drops{opacity:1}
+.drops i{position:absolute;top:112px;width:2px;height:15px;border-radius:2px;background:linear-gradient(rgba(190,255,250,0),#C4FFF9);box-shadow:0 0 8px rgba(111,220,212,.9);opacity:0;animation:drip 3.4s cubic-bezier(.5,0,.85,.6) infinite}
+.grain{position:absolute;inset:0;opacity:.45;mix-blend-mode:overlay;-webkit-mask-image:radial-gradient(circle,#000 25%,transparent 62%);mask-image:radial-gradient(circle,#000 25%,transparent 62%)}
+.wb{position:absolute;width:96px;height:78px;padding:0;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:8px;color:#A3A3B2;pointer-events:auto;transition:color .5s,transform .15s}
+.wb.up{flex-direction:column-reverse}
+.wb>.m{line-height:14px;white-space:nowrap}
+.wg{width:56px;height:56px;flex-shrink:0;box-sizing:border-box;border-radius:50%;border:1px solid rgba(255,255,255,.14);background-color:var(--g);display:flex;align-items:center;justify-content:center;color:#8B8B9A;transition:color .6s,border-color .6s,background-color 1.2s,box-shadow .6s}
+.wb:hover{color:#ECECF1}.wb:hover .wg{border-color:rgba(255,255,255,.3);color:#ECECF1}
+.wb[aria-pressed="true"]{color:#F4F4F7}
+.wb[aria-pressed="true"] .wg{color:var(--acc);border-color:var(--accL);box-shadow:0 0 30px -2px var(--glow)}
+.pill{position:relative;flex-shrink:0;height:44px;padding:0 15px;border-radius:999px;border:1px solid rgba(255,255,255,.13);background:transparent;color:#A3A3B2;font-size:13.5px;display:inline-flex;align-items:center;gap:9px;transition:border-color .3s,background-color .3s,color .3s,transform .15s}
+.pill:hover{color:#ECECF1;border-color:rgba(255,255,255,.26)}
+.pill:active,.wb:active,.addp:active,.dp:active,.seg:active{transform:scale(.96)}
+.pill[aria-pressed="true"]{border-color:var(--accL);background:var(--accS);color:#F4F4F7}
+.sw{position:relative;width:26px;height:14px;border-radius:99px;border:1px solid currentColor;box-sizing:border-box;transition:border-color .3s}
+.sw::after{content:"";position:absolute;left:2px;top:2px;width:8px;height:8px;border-radius:50%;background:currentColor;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.pill[aria-pressed="true"] .sw{border-color:var(--acc)}
+.pill[aria-pressed="true"] .sw::after{transform:translateX(12px);background:var(--acc)}
+.segs{display:flex;height:44px;padding:0 3px;border-radius:999px;border:1px solid rgba(255,255,255,.13);box-sizing:border-box;align-items:center}
+.seg{height:44px;margin:-1px 0;padding:0 11px;border:1px solid transparent;border-radius:999px;background:transparent;color:#A3A3B2;font-size:13px;white-space:nowrap;transition:border-color .3s,background-color .3s,color .3s,transform .15s}
+.seg:hover{color:#ECECF1}
+.seg[aria-pressed="true"]{border-color:var(--accL);background:var(--accS);color:#F4F4F7}
+.card{position:relative;border-radius:18px;background-color:var(--t);border:1px solid rgba(255,255,255,.08);transition:background-color 1.2s ease,border-color .4s ease,box-shadow .5s ease}
+.card:hover,.card:focus-within{border-color:var(--accL);box-shadow:0 0 0 1px var(--accS),0 24px 60px -26px var(--glow)}
+.tok{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:color 1.2s ease}
+.tok>i{display:inline-flex;gap:2px}
+.tok>i>b{width:8px;height:2px;border-radius:1px;background:currentColor;opacity:.2;transition:opacity .4s}
+.f2{color:var(--acc)}.f1{color:#ECECF1}.f0{color:#A3A3B2}
+.f2>i>b,.f1>i>b:nth-child(-n+2){opacity:1}
+.f0>i>b:first-child{opacity:.6}
+.cx{flex:1;position:relative;display:flex;align-items:center;gap:6px;height:40px;color:#A3A3B2}
+.cx>svg{color:#8B8B9A;flex-shrink:0}
+.cx.on{color:#F4F4F7}.cx.on>svg{color:var(--acc)}
+.cx.on::after{content:"";position:absolute;left:0;width:34px;bottom:0;height:1px;background:var(--acc)}
+.addp{position:relative;height:44px;min-width:64px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:transparent;color:#ECECF1;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background-color .35s,border-color .35s,color .35s,transform .15s}
+.addp:hover{border-color:var(--accL)}
+.addp[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#0B0B10}
+.ring{position:absolute;inset:-1px;border-radius:inherit;border:1px solid var(--acc);pointer-events:none;animation:ring .8s cubic-bezier(.2,.8,.2,1) both}
+.dp{height:44px;padding:0;border:1px solid rgba(255,255,255,.1);border-radius:12px;background-color:rgba(10,10,14,.9);color:#A3A3B2;display:flex;align-items:center;justify-content:center;gap:5px;transition:border-color .5s,color .5s,background-color .5s,transform .15s}
+.dp:hover{color:#ECECF1}
+.dp[aria-pressed="true"]{border-color:var(--accL);color:#F4F4F7;background:linear-gradient(var(--accS),var(--accS)) var(--g)}
+.dp[aria-pressed="true"] svg{color:var(--acc)}
+.day{position:relative;overflow:hidden;border-radius:22px;background-color:var(--t);border:1px solid rgba(255,255,255,.08);transition:background-color 1.2s ease}
+.pb{position:relative;margin:0 0 14px;padding:14px;border-radius:14px;background:var(--accS);box-shadow:0 0 0 1px var(--accS),0 18px 44px -16px var(--glow);overflow:hidden}
+.xb{flex-shrink:0;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:#A3A3B2;display:flex;align-items:center;justify-content:center;transition:color .2s,background-color .2s}
+.xb:hover{color:#F4F4F7;background:rgba(255,255,255,.06)}
+.wrow{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 14px;border-radius:14px;border:1px solid transparent}
+.wrow.now{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.025)}
+.mo{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 40% 36%,#FFFFFF 0,var(--acc) 40%,rgba(0,0,0,0) 72%);filter:blur(1px);box-shadow:0 0 18px 2px var(--glow)}
+.sweep{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,rgba(0,0,0,0),var(--acc) 30%,var(--acc) 70%,rgba(0,0,0,0));transform-origin:0 50%;animation:sweep 1s cubic-bezier(.6,0,.2,1) .15s both}
+.sheet{animation:sheet .6s cubic-bezier(.2,.8,.2,1) both}
+.a-fade{animation:fade .45s ease both}
+.a-up{animation:up .7s cubic-bezier(.2,.8,.2,1) backwards}
+.a-word{white-space:nowrap;animation:word 1.15s cubic-bezier(.16,.84,.24,1) both}
+.odo{display:inline-block;overflow:hidden;vertical-align:bottom}
+.a-odo{display:inline-block;animation:odo .9s cubic-bezier(.2,.8,.2,1) .3s both}
+.a-rise{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.a-pop{animation:pop .55s cubic-bezier(.34,1.56,.64,1) both}
+.a-pb{animation:pb .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(12px,-9px)}66%{transform:translate(-10px,8px)}}
+@keyframes life{0%,100%{transform:scale(1,1) skewX(0deg)}25%{transform:scale(calc(1 + var(--pul)),calc(1 - var(--pul)/2)) skewX(var(--wob))}50%{transform:scale(1,1) skewX(0deg)}75%{transform:scale(calc(1 + var(--pul)/2),calc(1 + var(--pul)/3)) skewX(calc(var(--wob)*-1))}}
+@keyframes drip{0%{transform:translate3d(0,-20px,0);opacity:0}22%{opacity:1}100%{transform:translate3d(0,170px,0);opacity:0}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{opacity:0;transform:translate3d(0,22px,0)}to{opacity:1;transform:none}}
+@keyframes sheet{from{opacity:0;transform:translate3d(0,48px,0)}to{opacity:1;transform:none}}
+@keyframes word{from{opacity:0;letter-spacing:.42em;filter:blur(18px)}55%{opacity:1}to{opacity:1;letter-spacing:-.045em;filter:blur(0)}}
+@keyframes odo{from{opacity:0;transform:translate3d(0,100%,0);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes rise{from{opacity:0;transform:translate3d(0,.35em,0);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes ring{from{opacity:.95;transform:scale(1)}to{opacity:0;transform:scale(1.4,1.75)}}
+@keyframes pb{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:none}}
+@keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
+</style>
+</helmet>
+<div class="{{rootCls}}" style="position: relative; width: 1440px; height: 960px; overflow: hidden; background-color: var(--g); color: #ECECF1; font-family: 'Geist', system-ui, sans-serif; transition: background-color 1.2s ease">
+
+<!-- ================= LEFT: THE AURA + DIAL ================= -->
+<section aria-label="Weekend weather" style="position: absolute; left: 0; top: 0; width: 560px; height: 960px; overflow: hidden">
+<div class="spill" aria-hidden="true"></div>
+<p class="m mu" style="position: absolute; left: 44px; right: 40px; top: 34px; display: flex; justify-content: space-between"><span>Sydney weekend</span><span>Sat 3 – Sun 4 Oct</span></p>
+
+<div aria-hidden="true" style="position: absolute; left: 100px; top: 160px; width: 360px; height: 360px; transform: scale(1.36)">
+<div class="{{auCls}}" style="left: 0; top: 0">
+<div class="bloom"></div>
+<div class="bl b1"><span></span></div><div class="bl b2"><span></span></div><div class="bl b3"><span></span></div><div class="bl b4"><span></span></div>
+<div class="drops"><i style="left: 128px; animation-delay: -0.3s"></i><i style="left: 158px; animation-delay: -1.9s; animation-duration: 3.9s"></i><i style="left: 184px; animation-delay: -2.8s"></i><i style="left: 207px; animation-delay: -1.1s; animation-duration: 4.2s"></i><i style="left: 232px; animation-delay: -2.2s; animation-duration: 3s"></i><i style="left: 254px; animation-delay: -0.7s; animation-duration: 4.6s"></i></div>
+<svg class="grain" width="360" height="360"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="360" height="360" filter="url(#gr)"></rect></svg>
+</div>
+</div>
+
+<svg aria-hidden="true" width="500" height="500" viewBox="0 0 500 500" style="position: absolute; left: 30px; top: 90px; overflow: visible"><circle cx="250" cy="250" r="250" fill="none" stroke="rgba(255,255,255,0.13)"></circle><circle cx="250" cy="250" r="264" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="6" stroke-dasharray="1 10.52"></circle></svg>
+<div aria-hidden="true" style="position: absolute; left: 30px; top: 90px; width: 500px; height: 500px; transform: {{dialRot}}; transition: transform 1.3s cubic-bezier(.34,1.3,.5,1)">
+<svg width="500" height="500" viewBox="0 0 500 500" style="overflow: visible; filter: drop-shadow(0 0 8px var(--glow))"><circle cx="250" cy="250" r="250" fill="none" stroke-width="1.5" stroke-dasharray="120 1451" transform="rotate(-103.75 250 250)" style="stroke: var(--acc); transition: stroke 1.2s ease"></circle><circle cx="250" cy="0" r="36" fill="none" style="stroke: var(--accL); transition: stroke 1.2s ease"></circle></svg>
+</div>
+
+<fieldset style="position: absolute; left: 0; top: 0; width: 560px; height: 620px; pointer-events: none">
+<legend class="sr">Weather</legend>
+<sc-for list="{{weathers}}" as="w" hint-placeholder-count="4">
+<button type="button" class="{{w.bc}}" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" style="left: {{w.bx}}px; top: {{w.by}}px">
+<span class="wg">
+<sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"></path></svg></sc-if>
+<sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 10a4 4 0 0 0 0 8z"></path></svg></sc-if>
+<sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7 14h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 6a4 4 0 0 0 0 8z"></path><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"></path></svg></sc-if>
+<sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M8 13.6V5.5a2.5 2.5 0 0 1 5 0v8.1a4.5 4.5 0 1 1-5 0z"></path><path d="M10.5 10v6"></path><path d="M17.5 4c1.2 1 1.2 2 0 3s-1.2 2 0 3 1.2 2 0 3"></path></svg></sc-if>
+</span>
+<span class="m">{{w.label}}</span>
+</button>
+</sc-for>
+</fieldset>
+
+<div aria-live="polite" style="position: absolute; left: 44px; right: 20px; top: 628px">
+<sc-if value="{{isSun}}" hint-placeholder-val="{{false}}"><h1 class="sy a-word" style="font-size: 120px; font-weight: 600; line-height: 0.95; letter-spacing: -0.045em; color: #F4F4F7">Sunny<span class="acc">.</span></h1><p class="a-rise" style="margin-top: 18px; display: flex; align-items: flex-end; gap: 16px; animation-delay: 0.2s"><span class="odo"><span class="a-odo sy" style="font-size: 60px; font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: #F4F4F7">{{resultCount}}</span></span><span class="m mu" style="padding-bottom: 6px; line-height: 1.7">{{ideasWord}} for a {{wxAdj}} day<br>{{hiddenCount}} hidden by the light</span></p></sc-if>
+<sc-if value="{{isCloud}}" hint-placeholder-val="{{false}}"><h1 class="sy a-word" style="font-size: 120px; font-weight: 600; line-height: 0.95; letter-spacing: -0.045em; color: #F4F4F7">Cloudy<span class="acc">.</span></h1><p class="a-rise" style="margin-top: 18px; display: flex; align-items: flex-end; gap: 16px; animation-delay: 0.2s"><span class="odo"><span class="a-odo sy" style="font-size: 60px; font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: #F4F4F7">{{resultCount}}</span></span><span class="m mu" style="padding-bottom: 6px; line-height: 1.7">{{ideasWord}} for a {{wxAdj}} day<br>{{hiddenCount}} hidden by the light</span></p></sc-if>
+<sc-if value="{{isRain}}" hint-placeholder-val="{{false}}"><h1 class="sy a-word" style="font-size: 120px; font-weight: 600; line-height: 0.95; letter-spacing: -0.045em; color: #F4F4F7">Rainy<span class="acc">.</span></h1><p class="a-rise" style="margin-top: 18px; display: flex; align-items: flex-end; gap: 16px; animation-delay: 0.2s"><span class="odo"><span class="a-odo sy" style="font-size: 60px; font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: #F4F4F7">{{resultCount}}</span></span><span class="m mu" style="padding-bottom: 6px; line-height: 1.7">{{ideasWord}} for a {{wxAdj}} day<br>{{hiddenCount}} hidden by the light</span></p></sc-if>
+<sc-if value="{{isHot}}" hint-placeholder-val="{{true}}"><h1 class="sy a-word" style="font-size: 120px; font-weight: 600; line-height: 0.95; letter-spacing: -0.045em; color: #F4F4F7">Hot<span class="acc">.</span><span class="m acc" style="display: inline-block; vertical-align: top; margin: 20px 0 0 16px; padding: 6px 11px; border: 1px solid var(--accL); border-radius: 99px; font-size: 15px; letter-spacing: 0.04em">30°+</span></h1><p class="a-rise" style="margin-top: 18px; display: flex; align-items: flex-end; gap: 16px; animation-delay: 0.2s"><span class="odo"><span class="a-odo sy" style="font-size: 60px; font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: #F4F4F7">{{resultCount}}</span></span><span class="m mu" style="padding-bottom: 6px; line-height: 1.7">{{ideasWord}} for a {{wxAdj}} day<br>{{hiddenCount}} hidden by the light</span></p></sc-if>
+</div>
+
+<div style="position: absolute; left: 44px; right: 40px; bottom: 28px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<p class="m mu">Turn the dial. Every idea re-ranks.</p>
+<button type="button" class="addp" onClick="{{resetFilters}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4.5h4.5"></path></svg><span class="m">Reset filters</span></button>
+</div>
+</section>
+
+<!-- ================= MIDDLE: FILTERS + IDEAS ================= -->
+<section aria-label="Ideas" style="position: absolute; left: 560px; top: 0; width: 540px; height: 960px; box-sizing: border-box; border-left: 1px solid rgba(255,255,255,0.08); border-right: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column">
+<div style="padding: 30px 24px 0">
+<p class="m mu">Ranked by the light</p>
+<h2 style="margin-top: 8px; font-size: 22px; font-weight: 600; letter-spacing: -0.015em">{{resultTitle}}</h2>
+<sc-if value="{{hasHidden}}" hint-placeholder-val="{{true}}"><p style="margin-top: 6px; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #A3A3B2"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4.2 9.5 6-.4.8-1.3 2-2.5 3.2M6.2 7.6C4.4 8.8 3.1 10.6 2.5 12c1 1.8 4.5 6 9.5 6 1.5 0 2.9-.4 4.1-1"></path></svg>{{hiddenNote}}</p></sc-if>
+<fieldset style="margin-top: 20px">
+<legend class="sr">Who’s coming</legend>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{whos}}" as="o" hint-placeholder-count="5">
+<button type="button" class="pill" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}">{{o.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+<div style="margin-top: 10px; display: flex; align-items: center; gap: 8px">
+<fieldset>
+<legend class="sr">Length</legend>
+<div class="segs">
+<sc-for list="{{durs}}" as="o" hint-placeholder-count="4">
+<button type="button" class="seg" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}">{{o.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+<button type="button" class="pill" aria-pressed="{{freePressed}}" onClick="{{toggleFree}}"><span class="sw" aria-hidden="true"></span>Free only</button>
+</div>
+</div>
+
+<div class="hs" style="flex: 1; min-height: 0; margin-top: 20px; overflow-y: auto; scrollbar-width: none; padding: 16px 24px 32px; border-top: 1px solid rgba(255,255,255,0.08)">
+<sc-if value="{{noResults}}" hint-placeholder-val="{{false}}">
+<div class="card a-up" style="padding: 26px">
+<p class="sy" style="font-size: 28px; font-weight: 600; letter-spacing: -0.02em">Nothing fits this light.</p>
+<p style="margin-top: 8px; font-size: 14px; line-height: 1.45; color: #A3A3B2">Try another group or length, or turn off Free only.</p>
+<button type="button" class="addp" onClick="{{resetFilters}}" style="margin-top: 16px"><span class="m">Reset filters</span></button>
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="4">
+<article class="card a-up" style="animation-delay: {{c.delay}}">
+<button type="button" onClick="{{c.open}}" style="display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; column-gap: 14px; width: 100%; padding: 18px 18px 12px; border: 0; background: transparent; text-align: left; color: inherit">
+<span class="m acc" style="padding-top: 1px">{{c.num}}</span>
+<span style="min-width: 0">
+<span class="m mu" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.cat}} · {{c.area}}</span>
+<span style="display: block; margin-top: 9px; font-size: 18px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em">{{c.name}}</span>
+<span style="display: block; margin-top: 5px; font-size: 14px; color: #A3A3B2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.blurb}}</span>
+<span class="m mu" style="display: block; margin-top: 10px">{{c.dur}} · {{c.cost}}<sc-if value="{{c.planned}}" hint-placeholder-val="{{false}}"><span class="acc"> · {{c.plannedLabel}}</span></sc-if></span>
+</span>
+<span class="{{c.tk}}"><i aria-hidden="true"><b></b><b></b><b></b></i>{{c.fitLabel}}<span class="sr"> when {{wxAdj}}</span></span>
+</button>
+<div style="margin: 0 14px 0 62px; padding: 6px 0 12px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 8px">
+<div style="flex: 1; min-width: 0; display: flex">
+<sc-for list="{{c.wx}}" as="x" hint-placeholder-count="4">
+<span class="{{x.cc}}">
+<sc-if value="{{x.isSun}}" hint-placeholder-val="{{true}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"></path></svg></sc-if>
+<sc-if value="{{x.isCloud}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 10a4 4 0 0 0 0 8z"></path></svg></sc-if>
+<sc-if value="{{x.isRain}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7 14h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 6a4 4 0 0 0 0 8z"></path><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"></path></svg></sc-if>
+<sc-if value="{{x.isHot}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M8 13.6V5.5a2.5 2.5 0 0 1 5 0v8.1a4.5 4.5 0 1 1-5 0z"></path><path d="M10.5 10v6"></path><path d="M17.5 4c1.2 1 1.2 2 0 3s-1.2 2 0 3 1.2 2 0 3"></path></svg></sc-if>
+<span class="m" style="font-size: 10px"><span class="sr">{{x.wname}}: </span>{{x.fitLabel}}</span>
+</span>
+</sc-for>
+</div>
+<button type="button" class="addp" aria-pressed="{{c.satPressed}}" aria-label="{{c.satAria}}" onClick="{{c.toggleSat}}">
+<sc-if value="{{c.inSat}}" hint-placeholder-val="{{false}}"><svg class="a-pop ic" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="ring"></span></sc-if>
+<sc-if value="{{c.notSat}}" hint-placeholder-val="{{true}}"><svg class="ic" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span class="m">Sat</span></button>
+<button type="button" class="addp" aria-pressed="{{c.sunPressed}}" aria-label="{{c.sunAria}}" onClick="{{c.toggleSun}}">
+<sc-if value="{{c.inSun}}" hint-placeholder-val="{{false}}"><svg class="a-pop ic" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="ring"></span></sc-if>
+<sc-if value="{{c.notSun}}" hint-placeholder-val="{{true}}"><svg class="ic" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span class="m">Sun</span></button>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- ================= DETAIL SHEET (over the middle column) ================= -->
+<sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
+<section class="sheet" aria-label="{{d.name}}" style="position: absolute; left: 560px; top: 0; width: 540px; height: 960px; z-index: 5; box-sizing: border-box; border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1); background-color: var(--g); box-shadow: 0 0 90px 10px rgba(0,0,0,0.55); transition: background-color 1.2s ease">
+<div class="hs" style="position: absolute; left: 0; right: 0; top: 0; bottom: 89px; overflow-y: auto; scrollbar-width: none; padding: 0 36px 36px">
+<div style="position: relative; height: 240px; margin: 0 -36px; overflow: hidden">
+<div class="{{d.auCls}}" aria-hidden="true" style="left: 90px; top: -50px; transform: scale(0.62)"><div class="bloom"></div><div class="bl b1"><span></span></div><div class="bl b2"><span></span></div><div class="bl b3"><span></span></div><div class="bl b4"><span></span></div></div>
+<button type="button" class="xb" aria-label="Close detail" onClick="{{goBack}}" style="position: absolute; right: 22px; top: 22px; border: 1px solid rgba(255,255,255,0.16); background: rgba(10,10,14,0.6)"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<p class="m" style="position: absolute; left: 36px; bottom: 18px; color: #A3A3B2">Best light<span class="sy" style="display: block; margin-top: 6px; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; text-transform: none; color: #F4F4F7">{{d.bestLabel}}</span></p>
+</div>
+<p class="m mu">{{d.cat}} · {{d.area}}</p>
+<h2 class="sy a-rise" style="margin-top: 12px; font-size: 42px; font-weight: 600; line-height: 1.04; letter-spacing: -0.03em">{{d.name}}</h2>
+<p class="m mu" style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 16px"><span>{{d.dur}}</span><span>{{d.cost}}</span><sc-if value="{{d.planned}}" hint-placeholder-val="{{false}}"><span class="acc a-fade">{{d.plannedLabel}}</span></sc-if></p>
+<p style="margin-top: 16px; font-size: 16px; line-height: 1.55; color: #D4D4DC">{{d.blurb}}</p>
+
+<div class="a-up" style="margin-top: 24px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; gap: 12px; animation-delay: 80ms">
+<span><span class="m mu">Now · {{wxLabel}}</span><span style="display: block; margin-top: 4px; font-size: 14px; color: #A3A3B2">{{d.nowFit.fitNote}}</span></span>
+<span class="{{d.nowTk}}" style="font-size: 13px"><i aria-hidden="true"><b></b><b></b><b></b></i>{{d.nowFit.fitLabel}}</span>
+</div>
+
+<section class="a-up" style="margin-top: 24px; animation-delay: 140ms">
+<h3 class="m mu">Weather check</h3>
+<div style="margin: 10px -14px 0; display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{d.wxRows}}" as="r" hint-placeholder-count="4">
+<div class="{{r.rc}}">
+<span class="mo" aria-hidden="true"></span>
+<span style="min-width: 0"><span style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600">{{r.label}}<sc-if value="{{r.current}}" hint-placeholder-val="{{false}}"><span class="m acc" style="font-size: 9.5px; padding: 3px 7px; border: 1px solid var(--accL); border-radius: 99px">Now</span></sc-if></span><span style="display: block; margin-top: 3px; font-size: 13px; line-height: 1.35; color: #A3A3B2">{{r.fitNote}}</span></span>
+<span class="{{r.tk}}"><i aria-hidden="true"><b></b><b></b><b></b></i>{{r.fitLabel}}</span>
+</div>
+</sc-for>
+</div>
+<p style="margin-top: 12px; display: flex; gap: 10px; font-size: 14px; line-height: 1.5; color: #D4D4DC"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px; color: #A3A3B2"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 7.5h.01"></path></svg>{{d.wxTip}}</p>
+</section>
+
+<section class="a-up" style="margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); animation-delay: 200ms">
+<h3 class="m mu">Good for</h3>
+<div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{d.withTags}}" as="t" hint-placeholder-count="3">
+<span style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.13); font-size: 14px">{{t.label}}</span>
+</sc-for>
+</div>
+</section>
+<div class="a-up" style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; animation-delay: 260ms">
+<section><h3 class="m mu">Getting there</h3><p style="margin-top: 8px; font-size: 15px; line-height: 1.55">{{d.getThere}}</p></section>
+<section><h3 class="m mu">Newcomer tip</h3><p style="margin-top: 8px; font-size: 15px; line-height: 1.55">{{d.tip}}</p></section>
+</div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 36px 18px; background-color: var(--g); border-top: 1px solid rgba(255,255,255,0.08); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; transition: background-color 1.2s ease">
+<button type="button" class="addp" aria-pressed="{{d.satPressed}}" onClick="{{d.toggleSat}}" style="height: 54px; font-size: 14.5px; font-weight: 500">
+<sc-if value="{{d.inSat}}" hint-placeholder-val="{{false}}"><svg class="a-pop ic" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="ring"></span></sc-if>
+<sc-if value="{{d.notSat}}" hint-placeholder-val="{{true}}"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>{{d.satLabel}}</span></button>
+<button type="button" class="addp" aria-pressed="{{d.sunPressed}}" onClick="{{d.toggleSun}}" style="height: 54px; font-size: 14.5px; font-weight: 500">
+<sc-if value="{{d.inSun}}" hint-placeholder-val="{{false}}"><svg class="a-pop ic" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="ring"></span></sc-if>
+<sc-if value="{{d.notSun}}" hint-placeholder-val="{{true}}"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>{{d.sunLabel}}</span></button>
+</div>
+</section>
+</sc-if>
+
+<!-- ================= RIGHT: THIS WEEKEND (always live) ================= -->
+<aside aria-label="This weekend" class="hs" style="position: absolute; left: 1100px; top: 0; width: 340px; height: 960px; overflow-y: auto; scrollbar-width: none; padding: 30px 20px 32px; box-sizing: border-box">
+<p class="m mu">This weekend</p>
+<h2 class="sy" style="margin-top: 10px; font-size: 34px; font-weight: 600; line-height: 1; letter-spacing: -0.035em">Your weekend</h2>
+<div style="margin-top: 16px; display: flex; align-items: center; gap: 12px">
+<button type="button" class="addp" aria-pressed="{{sharePressed}}" onClick="{{toggleShare}}">
+<sc-if value="{{notShared}}" hint-placeholder-val="{{true}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"></path><path d="M5 12v6.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V12"></path></svg></sc-if>
+<sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><svg class="a-pop ic" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="ring"></span></sc-if>
+<span class="m">Share plan</span></button>
+<p aria-live="polite" class="m" style="flex: 1; min-width: 0; color: #A3A3B2"><sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="display: inline-block; color: #F4F4F7">Link copied</span></sc-if><sc-if value="{{notShared}}" hint-placeholder-val="{{true}}"><span>{{planCountLabel}}</span></sc-if></p>
+</div>
+
+<sc-for list="{{days}}" as="day" hint-placeholder-count="2">
+<section class="{{day.pc}}" style="margin-top: 14px; animation-delay: {{day.delay}}">
+<div class="{{day.auCls}}" aria-hidden="true" style="left: 64px; top: -118px; transform: scale(0.44)"><div class="bloom"></div><div class="bl b1"><span></span></div><div class="bl b2"><span></span></div><div class="bl b3"><span></span></div><div class="drops"><i style="left: 150px"></i><i style="left: 188px; animation-delay: -1.3s"></i><i style="left: 222px; animation-delay: -2.4s"></i></div></div>
+<div style="position: relative; padding: 20px 16px 6px">
+<h3 class="sy" style="font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.035em">{{day.label}}</h3>
+<p class="m mu" style="margin-top: 10px">{{day.date}} · <span class="acc">{{day.forecastLabel}}</span></p>
+<sc-if value="{{day.hasWarn}}" hint-placeholder-val="{{false}}"><p class="m a-fade" style="margin-top: 8px; max-width: 168px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; color: #ECECF1"><svg width="13" height="13" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>{{day.warnText}}</p></sc-if>
+<fieldset style="margin-top: 16px">
+<legend class="sr">{{day.label}} forecast</legend>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px">
+<sc-for list="{{day.wx}}" as="w" hint-placeholder-count="4">
+<button type="button" class="dp" aria-pressed="{{w.pressed}}" aria-label="{{w.aria}}" onClick="{{w.pick}}">
+<sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"></path></svg></sc-if>
+<sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 10a4 4 0 0 0 0 8z"></path></svg></sc-if>
+<sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7 14h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 6a4 4 0 0 0 0 8z"></path><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"></path></svg></sc-if>
+<sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M8 13.6V5.5a2.5 2.5 0 0 1 5 0v8.1a4.5 4.5 0 1 1-5 0z"></path><path d="M10.5 10v6"></path><path d="M17.5 4c1.2 1 1.2 2 0 3s-1.2 2 0 3 1.2 2 0 3"></path></svg></sc-if>
+<span class="m" aria-hidden="true" style="font-size: 10px; letter-spacing: 0.04em">{{w.short}}</span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</div>
+<div style="position: relative; padding: 4px 8px 4px 16px">
+<sc-for list="{{day.items}}" as="it" hint-placeholder-count="2">
+<div class="a-up" style="animation-delay: {{it.delay}}; border-top: 1px solid rgba(255,255,255,0.08); margin-right: 8px">
+<div style="display: flex; align-items: center; gap: 2px; margin-right: -8px">
+<button type="button" onClick="{{it.open}}" style="flex: 1; min-width: 0; min-height: 60px; padding: 12px 0; border: 0; background: transparent; text-align: left; color: inherit">
+<span style="display: block; font-size: 14.5px; font-weight: 600; line-height: 1.3">{{it.name}}</span>
+<span style="display: flex; align-items: center; gap: 12px; margin-top: 6px"><span class="{{it.tk}}"><i aria-hidden="true"><b></b><b></b><b></b></i>{{it.fitLabel}}</span><span class="m mu">{{it.dur}}</span></span>
+</button>
+<button type="button" class="xb" aria-label="{{it.removeLabel}}" onClick="{{it.remove}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<sc-if value="{{it.hasBackup}}" hint-placeholder-val="{{false}}">
+<div class="pb a-pb">
+<span class="sweep" aria-hidden="true"></span>
+<p style="font-size: 13px; line-height: 1.4; color: #A3A3B2">{{it.badText}}</p>
+<p class="m acc" style="margin-top: 10px">Plan B</p>
+<p class="sy" style="margin-top: 5px; font-size: 18px; font-weight: 600; line-height: 1.15; letter-spacing: -0.015em">{{it.backup.name}}</p>
+<p class="m mu" style="margin-top: 6px">{{it.backup.area}} · {{it.backup.dur}}</p>
+<button type="button" class="addp" onClick="{{it.backup.swap}}" style="margin-top: 12px; background: var(--acc); border-color: var(--acc); color: #0B0B10"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="stroke-width: 2"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg><span class="m">Swap it in</span></button>
+</div>
+</sc-if>
+<sc-if value="{{it.badOnly}}" hint-placeholder-val="{{false}}"><p class="pb a-pb" style="font-size: 13px; line-height: 1.4; color: #ECECF1">{{it.badText}} Try moving it to the other day.</p></sc-if>
+</div>
+</sc-for>
+<sc-if value="{{day.isEmpty}}" hint-placeholder-val="{{false}}">
+<div class="a-fade" style="margin: 0 8px 12px 0; padding: 16px 0 6px; border-top: 1px solid rgba(255,255,255,0.08)">
+<p style="font-size: 14px; color: #A3A3B2">Nothing planned for {{day.label}} yet.</p>
+<button type="button" class="addp" onClick="{{day.find}}" style="margin-top: 12px"><span class="m">Find something</span></button>
+</div>
+</sc-if>
+</div>
+</section>
+</sc-for>
+</aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startWeather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"hot"},"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      screen: "discover", from: "discover", openId: null,
+      weather: (this.props && this.props.startWeather) || "sun",
+      who: "any", dur: "any", freeOnly: false,
+      sat: ["bondi-coogee", "rocks-markets"], sun: ["three-sisters"],
+      satW: "sun", sunW: "rain", shared: false
+    };
+    // Rating vocabulary: index 0 = skip, 1 = ok, 2 = great. A direction may reword these (keep them short).
+    this.FIT = [
+      { label: "Skip", note: "Save it for another day" },
+      { label: "Fine", note: "Doable, with caveats" },
+      { label: "Ideal", note: "Ideal conditions" }
+    ];
+    this.WX = [
+      { key: "sun", label: "Sunny", short: "Sun", adj: "sunny", bad: "Not ideal in full sun." },
+      { key: "cloud", label: "Cloudy", short: "Cloud", adj: "cloudy", bad: "Not ideal under heavy cloud." },
+      { key: "rain", label: "Rainy", short: "Rain", adj: "rainy", bad: "Not great in the rain." },
+      { key: "hot", label: "Hot 30°+", short: "Hot", adj: "hot", bad: "Not great in the heat." }
+    ];
+    this.WHO = [
+      { key: "any", label: "Anyone" }, { key: "date", label: "Date" },
+      { key: "friends", label: "Friends" }, { key: "family", label: "Family" }, { key: "solo", label: "Solo" }
+    ];
+    this.DUR = [
+      { key: "any", label: "Any length" }, { key: "short", label: "Under 3 hrs" },
+      { key: "half", label: "Half day" }, { key: "full", label: "Full day" }
+    ];
+    // w = [sunny, cloudy, rainy, hot]: 2 great, 1 ok, 0 skip · h = [minHours, maxHours]
+    this.acts = [
+      { id: "bondi-coogee", name: "Bondi to Coogee Coastal Walk", area: "Eastern Suburbs", cat: "Coastal walk", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Sydney's most famous clifftop walk, linking six beaches and ocean pools.",
+        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach. Bus back to the city from Coogee.",
+        tip: "Pack swimmers: Bronte and Clovelly make great mid-walk dips. Lots of stairs, so leave the pram at home.",
+        wxTip: "Exposed clifftops with little shade. Go early on hot days, and skip it in rain when the rocks get slippery." },
+      { id: "manly", name: "Ferry to Manly & Shelly Beach", area: "Northern Beaches", cat: "Ferry & beach", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "The harbour's best-value view, then a relaxed beach town with calm snorkelling.",
+        getThere: "F1 ferry from Circular Quay, about 30 min. Tap on with Opal or a contactless card.",
+        tip: "Grab an outside seat for Opera House and Harbour Bridge views. Walk along to Shelly Beach for calmer water and snorkelling.",
+        wxTip: "The ferry ride is lovely even under cloud. Beach time needs sunshine." },
+      { id: "spit-manly", name: "Spit Bridge to Manly Walk", area: "Northern Beaches", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "solo"],
+        blurb: "Ten kilometres of bush, hidden beaches and harbour lookouts, ending in Manly.",
+        getThere: "Bus from Wynyard to Spit Bridge. Ferry home from Manly to Circular Quay.",
+        tip: "About 10 km of bush, hidden beaches and harbour lookouts. Finish with fish and chips in Manly and ride the ferry home.",
+        wxTip: "Mostly shaded, so it's bearable when warm. Muddy and slippery after rain." },
+      { id: "three-sisters", name: "Three Sisters & Echo Point", area: "Blue Mountains", cat: "Lookout & walk", dur: "Full day", h: [6, 9], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "The iconic sandstone peaks over the Jamison Valley, two hours by train.",
+        getThere: "Blue Mountains line from Central to Katoomba (about 2 hrs), then a local bus or 25 min walk to Echo Point.",
+        tip: "Walk the Prince Henry Cliff Walk between lookouts. It's several degrees cooler than the city, so bring a layer.",
+        wxTip: "Low cloud can hide the valley completely. A great escape on a scorching city day." },
+      { id: "wentworth", name: "Wentworth Falls & National Pass", area: "Blue Mountains", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "$", w: [2, 1, 0, 1], with: ["friends", "solo"],
+        blurb: "Stairs cut into cliffs beside a tall waterfall. A proper adventure.",
+        getThere: "Train from Central to Wentworth Falls station, then walk to the Falls Reserve picnic area.",
+        tip: "One of the most spectacular walks in the mountains, with stairs cut into the cliffs. Check NSW National Parks for track closures first.",
+        wxTip: "Steep stairs and cliff edges get dangerous when wet. Start early in summer." },
+      { id: "botanic", name: "Royal Botanic Garden & Mrs Macquarie's Chair", area: "City", cat: "Gardens", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Harbourside gardens with the classic Opera House and Bridge photo spot.",
+        getThere: "Walk from Circular Quay or Martin Place station.",
+        tip: "Follow the harbour path to Mrs Macquarie's Chair for the classic Opera House and Bridge photo. Picnics welcome.",
+        wxTip: "Shady lawns help on warm days, but there's little shelter in rain." },
+      { id: "opera-tour", name: "Sydney Opera House Tour", area: "City", cat: "Culture", dur: "1 hr", h: [1, 1], cost: "$$", w: [2, 2, 2, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Go behind the sails of Australia's most famous building.",
+        getThere: "Short walk from Circular Quay station and ferry wharves.",
+        tip: "Book the guided tour online. Stay for a drink at the Opera Bar steps afterwards.",
+        wxTip: "Indoors, so it works in any weather." },
+      { id: "agnsw", name: "Art Gallery of NSW", area: "The Domain", cat: "Gallery", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [1, 2, 2, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Free, world-class art across two buildings, with a rooftop harbour view.",
+        getThere: "Walk from St James or Martin Place station through the Domain.",
+        tip: "General entry is free. Don't miss the newer Naala Badu building and its rooftop views.",
+        wxTip: "A perfect refuge on a rainy or sweltering day." },
+      { id: "aus-museum", name: "Australian Museum", area: "City", cat: "Museum", dur: "2 hrs", h: [2, 2], cost: "Free", w: [1, 2, 2, 2], with: ["date", "family", "solo"],
+        blurb: "First Nations cultures, dinosaurs and Australia's strange wildlife, for free.",
+        getThere: "Opposite Hyde Park, near Museum and St James stations.",
+        tip: "Free general entry. A great introduction to First Nations cultures and Australia's unusual wildlife.",
+        wxTip: "Indoors and air-conditioned." },
+      { id: "taronga", name: "Taronga Zoo", area: "Mosman", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "Koalas, kangaroos and giraffes with a harbour skyline behind them.",
+        getThere: "F2 ferry from Circular Quay to Taronga Zoo wharf, about 12 min.",
+        tip: "Ride the Sky Safari cable car up from the wharf, then walk downhill. Koalas and kangaroos with harbour views.",
+        wxTip: "Mostly outdoors and hilly. Light rain means thinner crowds." },
+      { id: "watsons", name: "Watsons Bay & The Gap", area: "Eastern Suburbs", cat: "Ferry & lookout", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 0, 1], with: ["date", "friends", "family"],
+        blurb: "Ferry out to fish and chips, then wild ocean cliffs at South Head.",
+        getThere: "F9 ferry from Circular Quay to Watsons Bay.",
+        tip: "Fish and chips by the wharf, then walk up to the Gap cliffs and Hornby Lighthouse at South Head.",
+        wxTip: "Windy and exposed on the cliffs. Best on a clear day." },
+      { id: "bridge-walk", name: "Walk across the Harbour Bridge", area: "The Rocks", cat: "Landmark", dur: "1 hr", h: [1, 1], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Cross the Coathanger on foot for free, with the Opera House below.",
+        getThere: "Stairs up from Cumberland St in The Rocks. Finish at Milsons Point station.",
+        tip: "Use the eastern footpath for Opera House views. Pay a few dollars for the Pylon Lookout, or splurge on BridgeClimb.",
+        wxTip: "Fine under an umbrella, but very exposed in the heat." },
+      { id: "rocks-markets", name: "The Rocks Markets", area: "The Rocks", cat: "Markets", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Weekend stalls, street food and sandstone laneways by the harbour.",
+        getThere: "Short walk from Circular Quay or Wynyard.",
+        tip: "Runs on weekends. Wander the sandstone laneways and historic pubs afterwards.",
+        wxTip: "Partly covered, so it's workable in light rain." },
+      { id: "cockatoo", name: "Cockatoo Island", area: "Sydney Harbour", cat: "History", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "A convict-era island of tunnels and shipyards in the middle of the harbour.",
+        getThere: "F3 or F8 ferry from Circular Quay.",
+        tip: "A UNESCO-listed convict site with tunnels and old shipyards. You can even glamp overnight.",
+        wxTip: "Tunnels and industrial sheds give some shelter." },
+      { id: "balmoral", name: "Balmoral Beach", area: "Mosman", cat: "Beach", dur: "Half day", h: [3, 5], cost: "Free", w: [2, 1, 0, 2], with: ["date", "family"],
+        blurb: "A calm harbour beach with fig trees, a promenade and gentle water.",
+        getThere: "Bus from Wynyard or the city, about 40 min.",
+        tip: "Calm, sheltered harbour water that suits kids and newer swimmers. Great spot for a picnic under the fig trees.",
+        wxTip: "Best on hot days when ocean beaches are rough or packed." },
+      { id: "icebergs", name: "Bondi Icebergs Pool", area: "Bondi", cat: "Swimming", dur: "1–2 hrs", h: [1, 2], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "solo"],
+        blurb: "Laps in the famous ocean pool where waves crash over the edge.",
+        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach.",
+        tip: "Swim in the famous ocean pool at the south end of Bondi. On the beach itself, always swim between the red and yellow flags.",
+        wxTip: "Made for hot days." },
+      { id: "sea-life", name: "SEA LIFE Aquarium", area: "Darling Harbour", cat: "Wildlife", dur: "2 hrs", h: [2, 2], cost: "$$$", w: [1, 2, 2, 2], with: ["date", "family"],
+        blurb: "Sharks, dugongs and the Great Barrier Reef, all under one roof.",
+        getThere: "Walk from Town Hall or Wynyard station.",
+        tip: "Book online for cheaper entry, and look at combo tickets with WILD LIFE Sydney Zoo next door.",
+        wxTip: "Indoors: a reliable rainy-day pick for kids." },
+      { id: "featherdale", name: "Featherdale Wildlife Park", area: "Western Sydney", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "Hand-feed kangaroos and meet koalas up close.",
+        getThere: "Train to Blacktown, then a short bus ride.",
+        tip: "Get up close with kangaroos, wallabies and koalas. A first-month favourite for newcomers.",
+        wxTip: "Mostly outdoors, with some covered areas." },
+      { id: "chinatown", name: "Haymarket & Chinatown Food Crawl", area: "Haymarket", cat: "Food", dur: "2–3 hrs", h: [2, 3], cost: "$$", w: [1, 2, 2, 2], with: ["date", "friends", "family"],
+        blurb: "Dumplings, Thai Town and bustling food courts in the city's south.",
+        getThere: "Train to Central or Town Hall, or light rail to Chinatown.",
+        tip: "Graze through Dixon Street, the food courts and Thai Town on Campbell Street. Go hungry.",
+        wxTip: "Food courts and restaurants keep you dry and cool." },
+      { id: "newtown", name: "Newtown Street Art & King St", area: "Inner West", cat: "Neighbourhood", dur: "2–3 hrs", h: [2, 3], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "solo"],
+        blurb: "Murals, vintage shops and food from everywhere on one long street.",
+        getThere: "Train to Newtown station.",
+        tip: "Murals, vintage shops, bookstores and food from everywhere. Stays lively into the night.",
+        wxTip: "Plenty of cafés and shops to duck into." },
+      { id: "royal-np", name: "Royal National Park via Bundeena", area: "Sutherland Shire", cat: "Coastal walk", dur: "Full day", h: [6, 8], cost: "$", w: [2, 1, 0, 1], with: ["date", "friends", "solo"],
+        blurb: "A little ferry to the world's second-oldest national park.",
+        getThere: "Train to Cronulla, then the small ferry across Port Hacking to Bundeena.",
+        tip: "Walk to Jibbon Beach and the Aboriginal rock engravings. Carry plenty of water, as facilities are few.",
+        wxTip: "Exposed coastal heath. Hard going in the heat." },
+      { id: "palm-beach", name: "Palm Beach & Barrenjoey Lighthouse", area: "Northern Beaches", cat: "Lookout & beach", dur: "Full day", h: [6, 8], cost: "$", w: [2, 1, 0, 1], with: ["date", "friends"],
+        blurb: "A lighthouse climb at the tip of the Northern Beaches.",
+        getThere: "Bus from Manly wharf (about 75 min), or drive.",
+        tip: "Climb the short, steep track to Barrenjoey Lighthouse for views over Pittwater and the ocean.",
+        wxTip: "Only worth the long trip on a clear day." }
+    ];
+  }
+
+  // ---- Shared behaviour: identical in every direction. Do not change the logic. ----
+  baseVals() {
+    const s = this.state, WX = this.WX, WHO = this.WHO, DUR = this.DUR, FIT = this.FIT, acts = this.acts;
+    const byId = {};
+    acts.forEach((a) => { byId[a.id] = a; });
+    const wIdx = (k) => WX.findIndex((w) => w.key === k);
+    const flags = (k) => ({ isSun: k === "sun", isCloud: k === "cloud", isRain: k === "rain", isHot: k === "hot" });
+    const fitFlags = (f) => ({ fit: f, isGreat: f === 2, isOk: f === 1, isSkip: f === 0, fitLabel: FIT[f].label, fitNote: FIT[f].note });
+    const inSat = (id) => s.sat.indexOf(id) >= 0;
+    const inSun = (id) => s.sun.indexOf(id) >= 0;
+    const inPlan = (id) => inSat(id) || inSun(id);
+    const open = (id) => () => this.setState({ screen: "detail", openId: id, from: this.state.screen === "detail" ? this.state.from : this.state.screen });
+    const toggleDay = (key, id) => () => {
+      const list = this.state[key];
+      this.setState({ [key]: list.indexOf(id) >= 0 ? list.filter((x) => x !== id) : list.concat([id]) });
+    };
+    const pickable = (list, cur, stateKey) => list.map((o, i) => ({
+      key: o.key, label: o.label, index: i, selected: cur === o.key, notSelected: cur !== o.key,
+      pressed: cur === o.key ? "true" : "false", pick: () => this.setState({ [stateKey]: o.key })
+    }));
+    const dayBits = (a) => ({
+      inSat: inSat(a.id), notSat: !inSat(a.id), satPressed: inSat(a.id) ? "true" : "false",
+      satAria: inSat(a.id) ? "Remove " + a.name + " from Saturday" : "Add " + a.name + " to Saturday",
+      toggleSat: toggleDay("sat", a.id),
+      inSun: inSun(a.id), notSun: !inSun(a.id), sunPressed: inSun(a.id) ? "true" : "false",
+      sunAria: inSun(a.id) ? "Remove " + a.name + " from Sunday" : "Add " + a.name + " to Sunday",
+      toggleSun: toggleDay("sun", a.id),
+      planned: inPlan(a.id),
+      plannedLabel: "Planned for " + [inSat(a.id) ? "Saturday" : null, inSun(a.id) ? "Sunday" : null].filter(Boolean).join(" & ")
+    });
+
+    // Filters
+    const wi = wIdx(s.weather), cw = WX[wi];
+    const weathers = WX.map((w, i) => Object.assign(flags(w.key), {
+      key: w.key, label: w.label, short: w.short, index: i, selected: s.weather === w.key, notSelected: s.weather !== w.key,
+      pressed: s.weather === w.key ? "true" : "false", pick: () => this.setState({ weather: w.key })
+    }));
+
+    // Ranking (spec 6.1)
+    const durOk = (a) => s.dur === "any"
+      || (s.dur === "short" && a.h[1] <= 3)
+      || (s.dur === "half" && a.h[0] <= 5 && a.h[1] >= 2)
+      || (s.dur === "full" && a.h[1] >= 5);
+    const pool = acts.filter((a) => (s.who === "any" || a.with.indexOf(s.who) >= 0) && (!s.freeOnly || a.cost === "Free") && durOk(a));
+    const shown = pool.filter((a) => a.w[wi] > 0).sort((a, b) =>
+      (b.w[wi] - a.w[wi]) || ((inPlan(a.id) ? 1 : 0) - (inPlan(b.id) ? 1 : 0)) || a.name.localeCompare(b.name));
+    const hidden = pool.length - shown.length;
+    const cards = shown.map((a, i) => Object.assign(fitFlags(a.w[wi]), dayBits(a), {
+      id: a.id, index: i, num: (i + 1 < 10 ? "0" : "") + (i + 1), delay: (i * 60) + "ms", isFirst: i === 0, notFirst: i !== 0,
+      name: a.name, area: a.area, cat: a.cat, dur: a.dur, cost: a.cost, blurb: a.blurb,
+      fitText: FIT[a.w[wi]].label + " when " + cw.adj,
+      open: open(a.id),
+      wx: WX.map((w, j) => Object.assign(flags(w.key), fitFlags(a.w[j]), { wname: w.label, short: w.short, current: j === wi, notCurrent: j !== wi }))
+    }));
+
+    // Detail
+    const a = byId[s.openId] || acts[0];
+    const d = Object.assign(dayBits(a), {
+      id: a.id, name: a.name, area: a.area, cat: a.cat, dur: a.dur, cost: a.cost, blurb: a.blurb,
+      getThere: a.getThere, tip: a.tip, wxTip: a.wxTip,
+      withTags: a.with.map((k) => ({ label: (WHO.find((o) => o.key === k) || {}).label })),
+      wxRows: WX.map((w, j) => Object.assign(flags(w.key), fitFlags(a.w[j]), { label: w.label, short: w.short, current: j === wi })),
+      nowFit: Object.assign(fitFlags(a.w[wi]), { text: FIT[a.w[wi]].label + " when " + cw.adj }),
+      satLabel: inSat(a.id) ? "On Saturday" : "Add to Saturday",
+      sunLabel: inSun(a.id) ? "On Sunday" : "Add to Sunday"
+    });
+
+    // My weekend + Plan B (spec 6.2)
+    const used = {};
+    s.sat.concat(s.sun).forEach((id) => { used[id] = true; });
+    const costRank = { "Free": 0, "$": 1, "$$": 2, "$$$": 3 };
+    const indoor = (x) => x.w[2] === 2;
+    const planB = (x, di) => {
+      const cands = acts.filter((c) => !used[c.id] && c.w[di] === 2 && c.with.some((t) => x.with.indexOf(t) >= 0));
+      if (!cands.length) return null;
+      const score = (c) => (c.area === x.area ? 3 : 0) + (indoor(c) === indoor(x) ? 2 : 0)
+        + (c.h[0] <= x.h[1] && c.h[1] >= x.h[0] ? 1 : 0) + (costRank[c.cost] <= costRank[x.cost] ? 1 : 0);
+      cands.sort((p, q) => (score(q) - score(p)) || p.name.localeCompare(q.name));
+      return cands[0];
+    };
+    const goDiscover = () => this.setState({ screen: "discover" });
+    const days = [["sat", "Saturday", "Sat 3 Oct", "Sat", "3"], ["sun", "Sunday", "Sun 4 Oct", "Sun", "4"]].map((row) => {
+      const key = row[0], label = row[1];
+      const dw = s[key + "W"], di = wIdx(dw);
+      const items = s[key].map((id, i) => {
+        const it = byId[id], bad = it.w[di] === 0;
+        let backup = null;
+        if (bad) {
+          const b = planB(it, di);
+          if (b) {
+            used[b.id] = true;
+            backup = { name: b.name, area: b.area, dur: b.dur, cat: b.cat, swap: () => this.setState({ [key]: this.state[key].map((v) => (v === id ? b.id : v)) }) };
+          }
+        }
+        return Object.assign(fitFlags(it.w[di]), {
+          id: id, index: i, delay: (i * 80) + "ms", name: it.name, area: it.area, dur: it.dur, cat: it.cat, cost: it.cost,
+          badText: WX[di].bad, hasBackup: !!backup, badOnly: bad && !backup,
+          backup: backup || { name: "", area: "", dur: "", cat: "", swap: null },
+          open: open(id), removeLabel: "Remove " + it.name + " from " + label,
+          remove: () => this.setState({ [key]: this.state[key].filter((v) => v !== id) })
+        });
+      });
+      return Object.assign(flags(dw), {
+        key: key, label: label, date: row[2], short: row[3], dayNum: row[4],
+        forecast: dw, forecastLabel: WX[di].label, forecastAdj: WX[di].adj,
+        items: items, isEmpty: items.length === 0, hasItems: items.length > 0, find: goDiscover,
+        warnCount: items.filter((x) => x.isSkip).length,
+        wx: WX.map((w) => Object.assign(flags(w.key), {
+          key: w.key, short: w.short, label: w.label, aria: label + " forecast: " + w.label,
+          selected: dw === w.key, notSelected: dw !== w.key, pressed: dw === w.key ? "true" : "false",
+          pick: () => this.setState({ [key + "W"]: w.key })
+        }))
+      });
+    });
+
+    const count = s.sat.length + s.sun.length;
+    const scr = s.screen;
+    return Object.assign(flags(s.weather), {
+      isDiscover: scr === "discover", isDetail: scr === "detail", isPlan: scr === "plan",
+      notDetail: scr !== "detail", showTabs: scr !== "detail",
+      weather: s.weather, wxLabel: cw.label, wxAdj: cw.adj, wxShort: cw.short,
+      weathers: weathers, whos: pickable(WHO, s.who, "who"), durs: pickable(DUR, s.dur, "dur"),
+      freeOnly: s.freeOnly, notFreeOnly: !s.freeOnly, freePressed: s.freeOnly ? "true" : "false",
+      toggleFree: () => this.setState({ freeOnly: !this.state.freeOnly }),
+      resetFilters: () => this.setState({ weather: "sun", who: "any", dur: "any", freeOnly: false }),
+      cards: cards, resultCount: String(cards.length), noResults: cards.length === 0, hasResults: cards.length > 0,
+      resultTitle: cards.length + (cards.length === 1 ? " idea" : " ideas") + " for a " + cw.adj + " day",
+      hasHidden: hidden > 0, hiddenCount: String(hidden),
+      hiddenNote: hidden + (hidden === 1 ? " more is" : " more are") + " better saved for another day",
+      d: d, goBack: () => this.setState({ screen: this.state.from || "discover" }),
+      days: days, planCount: String(count),
+      planCountLabel: count + (count === 1 ? " activity" : " activities"),
+      shared: s.shared, notShared: !s.shared,
+      shareLabel: s.shared ? "Link copied: send it to your group" : "Share plan with your group",
+      toggleShare: () => this.setState({ shared: !this.state.shared }),
+      goDiscover: goDiscover, goPlan: () => this.setState({ screen: "plan" }),
+      tabDiscoverCurrent: scr === "discover" ? "page" : "false", tabPlanCurrent: scr === "plan" ? "page" : "false"
+    });
+  }
+
+  // ---- Direction-specific values (colours per weather, per-item styles). Write this per artboard. ----
+  themeVals(v) {
+    // Direction C, Aura (desktop): each weather is a class (k-sun, k-cloud, k-rain, k-hot) that sets the palette tokens and
+    // the four blob shapes of the aura. Swapping the class makes every blob morph (transform, blur, colour transitions).
+    const K = { sun: 0, cloud: 1, rain: 2, hot: 3 };
+    const keyOf = (x) => (x.isSun ? "sun" : x.isCloud ? "cloud" : x.isRain ? "rain" : "hot");
+    const tk = (f) => "tok m f" + f;
+    // Desktop dial: four stops on a 250px ring around the aura centre (280, 340), on the diagonals.
+    // Top stops carry their label above the glyph, bottom stops below, so labels never sit on the glow.
+    const wi = K[v.weather];
+    const rows = v.d.wxRows;
+    let best = rows.findIndex((r) => r.current && r.fit === 2);
+    if (best < 0) {
+      const top = Math.max.apply(null, rows.map((r) => r.fit));
+      best = rows.findIndex((r) => r.fit === top);
+    }
+    return {
+      rootCls: "k-" + v.weather,
+      auCls: "au life k-" + v.weather,
+      dialRot: "rotate(" + (90 * wi - 45) + "deg)",
+      ideasWord: v.cards.length === 1 ? "idea" : "ideas",
+      sharePressed: v.shared ? "true" : "false",
+      weathers: v.weathers.map((w, i) => {
+        const ang = (90 * i - 45) * Math.PI / 180, up = i < 2;
+        const x = Math.round(280 + 250 * Math.sin(ang)), y = Math.round(340 - 250 * Math.cos(ang));
+        return Object.assign({}, w, { bx: x - 48, by: up ? y - 50 : y - 28, bc: up ? "wb up" : "wb" });
+      }),
+      cards: v.cards.map((c) => Object.assign({}, c, {
+        tk: tk(c.fit),
+        wx: c.wx.map((x) => Object.assign({}, x, { cc: x.current ? "cx on" : "cx" }))
+      })),
+      d: Object.assign({}, v.d, {
+        auCls: "au k-" + keyOf(rows[best]), bestLabel: rows[best].label, nowTk: tk(v.d.nowFit.fit),
+        wxRows: rows.map((r) => Object.assign({}, r, { tk: tk(r.fit), rc: "wrow k-" + keyOf(r) + (r.current ? " now" : "") }))
+      }),
+      days: v.days.map((day, i) => {
+        const n = day.warnCount;
+        return Object.assign({}, day, {
+          pc: "day a-up k-" + day.forecast, auCls: "au k-" + day.forecast, delay: (i * 120 + 60) + "ms",
+          hasWarn: n > 0, warnText: n + (n === 1 ? " pick doesn’t suit this light" : " picks don’t suit this light"),
+          items: day.items.map((it) => Object.assign({}, it, { tk: tk(it.fit) }))
+        });
+      })
+    };
+  }
+
+  renderVals() {
+    const v = this.baseVals();
+    return Object.assign(v, this.themeVals(v));
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Set the sky variants</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&amp;display=swap">
+<style>
+body{margin:0;font-family:'Mona Sans',system-ui,sans-serif}
+button{font:inherit;color:inherit;cursor:pointer;margin:0;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:2.5px solid currentColor;outline-offset:3px}
+p,h1,h2{margin:0}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.glass{-webkit-backdrop-filter:blur(18px) saturate(135%);backdrop-filter:blur(18px) saturate(135%)}
+.tr{transition:color 900ms ease,background-color 900ms ease,border-color 900ms ease,box-shadow 900ms ease}
+.eb{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.disp{font-family:'Mona Sans',system-ui,sans-serif}
+.sky{position:absolute;inset:0;transition:opacity 900ms ease}
+.spring{transition:transform 560ms cubic-bezier(.34,1.56,.64,1),box-shadow 500ms ease}
+.press{transition:transform 180ms ease,background-color 400ms ease,color 400ms ease,border-color 400ms ease,box-shadow 400ms ease}
+.press:active{transform:scale(.95)}
+.a-pop{animation:pop .35s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 1760px; height: 860px; overflow: hidden; background: #0A1330; font-family: 'Mona Sans', system-ui, sans-serif">
+<svg width="0" height="0" aria-hidden="true" style="position: absolute"><defs>
+<radialGradient id="pvSun"><stop offset="0" stop-color="#FFD25A" stop-opacity=".55"></stop><stop offset="1" stop-color="#FFD25A" stop-opacity="0"></stop></radialGradient>
+<radialGradient id="pvHot"><stop offset="0" stop-color="#FF9A4A" stop-opacity=".7"></stop><stop offset="1" stop-color="#FF9A4A" stop-opacity="0"></stop></radialGradient>
+</defs></svg>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none">
+<div class="sky" style="opacity: {{opSun}}; background: linear-gradient(180deg, #0F3FB8 0%, #1B4BC8 45%, #3E7BF0 100%)"></div>
+<div class="sky" style="opacity: {{opCloud}}; background: linear-gradient(180deg, #8E9AA8 0%, #A9B4C0 50%, #C9D1D9 100%)"></div>
+<div class="sky" style="opacity: {{opRain}}; background: linear-gradient(180deg, #0A1330 0%, #131F44 50%, #1C2B55 100%)"></div>
+<div class="sky" style="opacity: {{opHot}}; background: linear-gradient(180deg, #9A2D0B 0%, #B8421A 45%, #E8702A 100%)"></div>
+</div>
+<div style="position: relative; padding: 36px 40px 0; display: flex; gap: 40px; align-items: flex-start">
+<section style="width: 390px; display: flex; flex-direction: column">
+<div class="glass tr" style="padding: 14px 16px; border-radius: 20px; background: {{glass}}; border: 1px solid {{line}}; color: {{ink}}">
+<p class="eb" style="color: {{mute}}">Now</p>
+<h2 class="disp" style="margin-top: 4px; font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; font-variation-settings: 'wdth' 90">Current panel</h2>
+<p style="margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: {{mute}}">Four selection cues at once (ring, lift and scale, bold label, dot). The heading sits further in than the orbs, the bottom is cramped, and the icons differ in size and style: the hot icon reads as a sunset.</p>
+</div>
+<div style="margin-top: 22px; padding: 0 16px">
+<p class="tr" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: {{skyMute}}"><span>Sydney</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>Sat 3 – Sun 4 Oct</span></p>
+<p class="disp tr" style="margin-top: 12px; font-size: 38px; font-weight: 500; line-height: 0.96; letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; color: {{ink}}">The weekend’s looking <span style="font-weight: 800; font-variation-settings: 'wdth' 80; color: {{accent}}">{{wxWord}}</span></p>
+<p class="tr" style="margin-top: 10px; font-size: 15px; line-height: 1.4; color: {{skyMute}}">Tap a sky. Sydney re-ranks around it.</p>
+<div style="margin-top: 20px">
+<fieldset class="glass tr" style="margin: 0; padding: 14px 6px 6px; min-width: 0; border: 1px solid {{line}}; border-radius: 30px; background: {{glass}}; box-shadow: {{shadow}}">
+<legend class="sr">Weather, current design</legend>
+<p aria-hidden="true" class="eb" style="padding: 0 12px; color: {{mute}}">Set the sky</p>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; margin-top: 4px">
+<sc-for list="{{cur}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="press" style="min-height: 108px; padding: 12px 0 6px; border: 0; border-radius: 22px; background: transparent; color: {{w.lblCol}}; display: flex; flex-direction: column; align-items: center; gap: 8px">
+<span class="spring" style="width: 60px; height: 60px; border-radius: 50%; background: {{w.orbBg}}; box-shadow: {{w.orbShadow}}; transform: {{w.orbLift}}; display: flex; align-items: center; justify-content: center; overflow: hidden"><sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="38" height="38" viewBox="0 0 40 40"><path d="M20 4v4M20 32v4M4 20h4M32 20h4M8.7 8.7l2.8 2.8M28.5 28.5l2.8 2.8M8.7 31.3l2.8-2.8M28.5 11.5l2.8-2.8" stroke="#FFD66B" stroke-width="2.2" stroke-linecap="round"></path><circle cx="20" cy="20" r="8" fill="#FFC940"></circle></svg></sc-if><sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="38" height="38" viewBox="0 0 40 40"><path d="M12 29h16.5a6.5 6.5 0 0 0 .8-12.95A9 9 0 0 0 12 15a7 7 0 0 0 0 14z" fill="#FFFFFF"></path></svg></sc-if><sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="38" height="38" viewBox="0 0 40 40"><path d="M12 24h16.5a6.5 6.5 0 0 0 .8-12.95A9 9 0 0 0 12 10a7 7 0 0 0 0 14z" fill="#C9D6F7"></path><path d="M14 28l-1.6 4.5M20.5 28l-1.6 4.5M27 28l-1.6 4.5" stroke="#8FB3FF" stroke-width="2.2" stroke-linecap="round"></path></svg></sc-if><sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="38" height="38" viewBox="0 0 40 40"><circle cx="20" cy="16" r="8.5" fill="#FFE3A1"></circle><path d="M6 27c2.2-1.6 4.3-1.6 6.5 0s4.3 1.6 6.5 0 4.3-1.6 6.5 0 4.3 1.6 6.5 0M9 33c2.2-1.6 4.3-1.6 6.5 0s4.3 1.6 6.5 0 4.3-1.6 6.5 0" fill="none" stroke="#FFE3A1" stroke-width="2" stroke-linecap="round"></path></svg></sc-if></span>
+<span style="font-size: 13px; font-weight: {{w.lblW}}; white-space: nowrap">{{w.label}}</span>
+<span aria-hidden="true" style="width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: {{w.dot}}; transition: opacity 300ms ease"></span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</div>
+</div>
+</section>
+<section style="width: 390px; display: flex; flex-direction: column">
+<div class="glass tr" style="padding: 14px 16px; border-radius: 20px; background: {{glass}}; border: 1px solid {{line}}; color: {{ink}}">
+<p class="eb" style="color: {{mute}}">Variant 1</p>
+<h2 class="disp" style="margin-top: 4px; font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; font-variation-settings: 'wdth' 90">Refined orbs</h2>
+<p style="margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: {{mute}}">Same idea, tidied: an 8px rhythm, the heading lined up with the orbs, one selection cue (ring plus a small lift), and a matched duotone icon set. Hot becomes sun plus thermometer.</p>
+</div>
+<div style="margin-top: 22px; padding: 0 16px">
+<p class="tr" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: {{skyMute}}"><span>Sydney</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>Sat 3 – Sun 4 Oct</span></p>
+<p class="disp tr" style="margin-top: 12px; font-size: 38px; font-weight: 500; line-height: 0.96; letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; color: {{ink}}">The weekend’s looking <span style="font-weight: 800; font-variation-settings: 'wdth' 80; color: {{accent}}">{{wxWord}}</span></p>
+<p class="tr" style="margin-top: 10px; font-size: 15px; line-height: 1.4; color: {{skyMute}}">Tap a sky. Sydney re-ranks around it.</p>
+<div style="margin-top: 20px">
+<fieldset class="glass tr" style="margin: 0; padding: 16px 8px 8px; min-width: 0; border: 1px solid {{line}}; border-radius: 28px; background: {{glass}}; box-shadow: {{shadow}}">
+<legend class="sr">Weather, variant 1</legend>
+<div aria-hidden="true" style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 12px">
+<p class="eb" style="color: {{mute}}">Set the sky</p>
+<p style="font-size: 12.5px; font-weight: 600; color: {{mute}}">Re-ranks the list</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; margin-top: 8px">
+<sc-for list="{{v1}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="press" style="padding: 10px 0 12px; border: 0; border-radius: 20px; background: transparent; color: {{w.lblCol}}; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<span class="spring" style="width: 56px; height: 56px; border-radius: 50%; background: {{w.orbBg}}; box-shadow: {{w.orbShadow}}; transform: {{w.orbLift}}; display: flex; align-items: center; justify-content: center"><sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="#FFC940" opacity=".28"></circle><circle cx="16" cy="16" r="6.2" fill="#FFC940"></circle><path d="M16 3.5v2.6M16 25.9v2.6M3.5 16h2.6M25.9 16h2.6M7.2 7.2l1.8 1.8M23 23l1.8 1.8M7.2 24.8L9 23M23 9l1.8-1.8" stroke="#FFE08A" stroke-width="2" stroke-linecap="round"></path></svg></sc-if><sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 32 32"><path d="M21.5 11.2a5.2 5.2 0 0 1 4.6 7.6H12.6a4.3 4.3 0 0 1 .9-8.5 6.2 6.2 0 0 1 8-.9z" fill="#FFFFFF" opacity=".55"></path><path d="M10 26h12.2a4.8 4.8 0 0 0 .6-9.56A6.7 6.7 0 0 0 10 15.6 5.2 5.2 0 0 0 10 26z" fill="#FFFFFF"></path></svg></sc-if><sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 32 32"><path d="M10 19h12.2a4.8 4.8 0 0 0 .6-9.56A6.7 6.7 0 0 0 10 8.6 5.2 5.2 0 0 0 10 19z" fill="#DCE6FF"></path><path d="M11.5 22.5l-1.2 3.2M16.5 22.5l-1.2 3.2M21.5 22.5l-1.2 3.2" stroke="#9CBBFF" stroke-width="2" stroke-linecap="round"></path></svg></sc-if><sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 32 32"><circle cx="12" cy="12" r="8" fill="#FFB25C" opacity=".35"></circle><circle cx="12" cy="12" r="4.8" fill="#FFD27A"></circle><path d="M12 2.8v1.8M2.8 12h1.8M5.5 5.5l1.3 1.3M18.5 5.5l-1.3 1.3M5.5 18.5l1.3-1.3" stroke="#FFE3A1" stroke-width="1.8" stroke-linecap="round"></path><rect x="20" y="9" width="5.4" height="14" rx="2.7" fill="#FFF3DD"></rect><circle cx="22.7" cy="24" r="4" fill="#FF6A3D"></circle><rect x="21.6" y="14" width="2.2" height="9" rx="1.1" fill="#FF6A3D"></rect></svg></sc-if></span>
+<span style="font-size: 13px; font-weight: {{w.lblW}}; line-height: 1.2; white-space: nowrap">{{w.label}}</span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</div>
+</div>
+</section>
+<section style="width: 390px; display: flex; flex-direction: column">
+<div class="glass tr" style="padding: 14px 16px; border-radius: 20px; background: {{glass}}; border: 1px solid {{line}}; color: {{ink}}">
+<p class="eb" style="color: {{mute}}">Variant 2</p>
+<h2 class="disp" style="margin-top: 4px; font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; font-variation-settings: 'wdth' 90">Sky strip</h2>
+<p style="margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: {{mute}}">A compact segmented control, 30px shorter. The chosen segment fills with its own sky. Monoline icons take the text colour, like system icons, so they stay crisp on every sky.</p>
+</div>
+<div style="margin-top: 22px; padding: 0 16px">
+<p class="tr" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: {{skyMute}}"><span>Sydney</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>Sat 3 – Sun 4 Oct</span></p>
+<p class="disp tr" style="margin-top: 12px; font-size: 38px; font-weight: 500; line-height: 0.96; letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; color: {{ink}}">The weekend’s looking <span style="font-weight: 800; font-variation-settings: 'wdth' 80; color: {{accent}}">{{wxWord}}</span></p>
+<p class="tr" style="margin-top: 10px; font-size: 15px; line-height: 1.4; color: {{skyMute}}">Tap a sky. Sydney re-ranks around it.</p>
+<div style="margin-top: 20px">
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend class="sr">Weather, variant 2</legend>
+<div aria-hidden="true" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; padding: 0 4px">
+<p class="eb" style="color: {{mute}}">Set the sky</p>
+<p style="font-size: 12.5px; font-weight: 600; color: {{mute}}">Re-ranks the list</p>
+</div>
+<div class="glass tr" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 5px; border-radius: 26px; border: 1px solid {{line}}; background: {{glass}}; box-shadow: {{shadow}}">
+<sc-for list="{{v2}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="press seg" style="height: 68px; padding: 0; border: 0; border-radius: 21px; background: {{w.segBg}}; color: {{w.segFg}}; box-shadow: {{w.segShadow}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px"><sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg></sc-if><sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 18.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 18.5z"></path></svg></sc-if><sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 14.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 14.5z"></path><path d="M8.5 17.5l-1 2.8M12.5 17.5l-1 2.8M16.5 17.5l-1 2.8"></path></svg></sc-if><sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 13.9V5a2 2 0 0 0-4 0v8.9a4 4 0 1 0 4 0z"></path><path d="M12 9.5v6.5"></path><path d="M18 4.5l1.2-1.2M19.5 8h1.7M18 11.5l1.2 1.2"></path></svg></sc-if><span style="font-size: 13px; font-weight: {{w.lblW}}; white-space: nowrap">{{w.label}}</span></button>
+</sc-for>
+</div>
+</fieldset>
+</div>
+</div>
+</section>
+<section style="width: 390px; display: flex; flex-direction: column">
+<div class="glass tr" style="padding: 14px 16px; border-radius: 20px; background: {{glass}}; border: 1px solid {{line}}; color: {{ink}}">
+<p class="eb" style="color: {{mute}}">Variant 3</p>
+<h2 class="disp" style="margin-top: 4px; font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; font-variation-settings: 'wdth' 90">Sky tiles</h2>
+<p style="margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: {{mute}}">Four small windows onto each sky with illustrated scenes. The chosen tile lifts with a ring and a check. The most expressive option, and the tallest.</p>
+</div>
+<div style="margin-top: 22px; padding: 0 16px">
+<p class="tr" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: {{skyMute}}"><span>Sydney</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>Sat 3 – Sun 4 Oct</span></p>
+<p class="disp tr" style="margin-top: 12px; font-size: 38px; font-weight: 500; line-height: 0.96; letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; color: {{ink}}">The weekend’s looking <span style="font-weight: 800; font-variation-settings: 'wdth' 80; color: {{accent}}">{{wxWord}}</span></p>
+<p class="tr" style="margin-top: 10px; font-size: 15px; line-height: 1.4; color: {{skyMute}}">Tap a sky. Sydney re-ranks around it.</p>
+<div style="margin-top: 20px">
+<fieldset class="glass tr" style="margin: 0; padding: 12px; min-width: 0; border: 1px solid {{line}}; border-radius: 32px; background: {{glass}}; box-shadow: {{shadow}}">
+<legend class="sr">Weather, variant 3</legend>
+<p aria-hidden="true" class="eb" style="margin-bottom: 10px; padding: 0 8px; color: {{mute}}">Set the sky</p>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{v3}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="press spring" style="position: relative; height: 112px; padding: 0; border: 0; border-radius: 20px; background: {{w.orbBg}}; color: #FFFFFF; box-shadow: {{w.tileShadow}}; transform: {{w.tileLift}}; display: flex; flex-direction: column; align-items: center; justify-content: space-between">
+<span style="margin-top: 14px; display: flex"><sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="url(#pvSun)"></circle><path d="M24 7v4M24 37v4M7 24h4M37 24h4M12 12l2.8 2.8M33.2 33.2L36 36M12 36l2.8-2.8M33.2 14.8L36 12" stroke="#FFE08A" stroke-width="2.4" stroke-linecap="round"></path><circle cx="24" cy="24" r="8.5" fill="#FFD25A"></circle><circle cx="21.4" cy="21.4" r="3" fill="#FFF2C2" opacity=".7"></circle></svg></sc-if><sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="48" height="48" viewBox="0 0 48 48"><path d="M30 15a7.5 7.5 0 0 1 7 10.4H17.6a6.2 6.2 0 0 1 2.2-12A9 9 0 0 1 30 15z" fill="#FFFFFF" opacity=".5"></path><path d="M14 37h19a7 7 0 0 0 .9-13.94A9.8 9.8 0 0 0 15.3 21.6 7.7 7.7 0 0 0 14 37z" fill="#FFFFFF"></path><path d="M14 37h19a7 7 0 0 0 4.2-1.4H11.5A7.6 7.6 0 0 0 14 37z" fill="#C7D0DB"></path></svg></sc-if><sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="48" height="48" viewBox="0 0 48 48"><path d="M14 28h19a7 7 0 0 0 .9-13.94A9.8 9.8 0 0 0 15.3 12.6 7.7 7.7 0 0 0 14 28z" fill="#C9D6F7"></path><path d="M16 32l-2 6M23 32l-2 6M30 32l-2 6" stroke="#9CBBFF" stroke-width="2.4" stroke-linecap="round"></path><path d="M19.5 39.5l-1 2.5M26.5 39.5l-1 2.5" stroke="#9CBBFF" stroke-width="2.4" stroke-linecap="round" opacity=".55"></path></svg></sc-if><sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="16" r="15" fill="url(#pvHot)"></circle><circle cx="24" cy="16" r="8" fill="#FFE3A1"></circle><path d="M15 29c-1.6 1.7-1.6 3.3 0 5s1.6 3.3 0 5M24 29c-1.6 1.7-1.6 3.3 0 5s1.6 3.3 0 5M33 29c-1.6 1.7-1.6 3.3 0 5s1.6 3.3 0 5" fill="none" stroke="#FFE3A1" stroke-width="2.4" stroke-linecap="round"></path></svg></sc-if></span>
+<span style="margin-bottom: 10px; font-size: 12.5px; font-weight: 700; white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,0.25)">{{w.short}}</span>
+<sc-if value="{{w.selected}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" class="a-pop" style="position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; background: {{ink}}; color: {{checkInk}}; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.25)"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></sc-if>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</div>
+</div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"weather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"sun"},"$preview":{"width":1760,"height":860}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    const p = this.props || {};
+    this.state = { weather: p.weather || "sun" };
+  }
+
+  componentDidUpdate(prev) {
+    if (prev && prev.weather !== (this.props || {}).weather && this.props.weather) this.setState({ weather: this.props.weather });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const WX = [["sun", "Sunny", "Sunny", "sunny."], ["cloud", "Cloudy", "Cloudy", "cloudy."], ["rain", "Rainy", "Rainy", "rainy."], ["hot", "Hot 30°+", "Hot", "hot."]];
+    // Sky Mode palette, as in A-Sky-Mobile.
+    const P = {
+      sun: { ink: "#FFFFFF", mute: "rgba(255,255,255,0.9)", sky: "rgba(255,255,255,0.92)", glass: "rgba(9,28,92,0.56)", glassSolid: "rgb(14,40,128)", line: "rgba(255,255,255,0.24)", soft: "rgba(255,255,255,0.09)", selInk: "#0D38A3", accent: "#FFC940", shadow: "0 18px 48px rgba(3,16,66,0.32)" },
+      cloud: { ink: "#16202B", mute: "#364251", sky: "#16202B", glass: "rgba(255,255,255,0.58)", glassSolid: "rgb(222,227,233)", line: "rgba(255,255,255,0.78)", soft: "rgba(22,32,43,0.07)", selInk: "#FFFFFF", accent: "#1D3A5F", shadow: "0 18px 44px rgba(38,52,70,0.16)" },
+      rain: { ink: "#F1F4FF", mute: "rgba(226,233,255,0.84)", sky: "rgba(226,233,255,0.86)", glass: "rgba(150,172,255,0.1)", glassSolid: "rgb(24,36,76)", line: "rgba(170,192,255,0.24)", soft: "rgba(210,222,255,0.08)", selInk: "#0A1330", accent: "#8FB3FF", shadow: "0 18px 48px rgba(0,0,0,0.38)" },
+      hot: { ink: "#FFF7EC", mute: "rgba(255,240,224,0.9)", sky: "rgba(255,244,230,0.94)", glass: "rgba(70,16,2,0.64)", glassSolid: "rgb(128,36,8)", line: "rgba(255,222,180,0.26)", soft: "rgba(255,232,205,0.1)", selInk: "#5A1A04", accent: "#FFE3A1", shadow: "0 18px 48px rgba(80,18,0,0.35)" }
+    };
+    const ORB = { sun: "linear-gradient(160deg, #0F3FB8 0%, #2659D8 100%)", cloud: "linear-gradient(165deg, #8E9AA8 0%, #C9D1D9 100%)", rain: "linear-gradient(165deg, #0A1330 0%, #1C2B55 100%)", hot: "linear-gradient(165deg, #9A2D0B 0%, #C04A18 100%)" };
+    // Variants use slightly deeper mini skies so a white cloud still reads on the cloudy one.
+    const ORB2 = { sun: "linear-gradient(160deg, #1546C4 0%, #3A72EE 100%)", cloud: "linear-gradient(165deg, #6F7E90 0%, #A3AFBD 100%)", rain: "linear-gradient(165deg, #101B40 0%, #24356A 100%)", hot: "linear-gradient(165deg, #A8330D 0%, #E06A24 100%)" };
+    const GLOW = { sun: "rgba(255,201,64,0.55)", cloud: "rgba(255,255,255,0.7)", rain: "rgba(143,179,255,0.55)", hot: "rgba(255,168,88,0.6)" };
+    const p = P[s.weather] || P.sun;
+    const base = WX.map(([k, label, short], i) => {
+      const on = s.weather === k;
+      return { key: k, label, short, selected: on, pressed: on ? "true" : "false", isSun: k === "sun", isCloud: k === "cloud", isRain: k === "rain", isHot: k === "hot",
+        pick: () => this.setState({ weather: k }), lblCol: on ? p.ink : p.mute, lblW: on ? "700" : "500" };
+    });
+    const word = WX.find((w) => w[0] === s.weather)[3];
+    return {
+      weather: s.weather, wxWord: word,
+      opSun: s.weather === "sun" ? 1 : 0, opCloud: s.weather === "cloud" ? 1 : 0, opRain: s.weather === "rain" ? 1 : 0, opHot: s.weather === "hot" ? 1 : 0,
+      ink: p.ink, mute: p.mute, skyMute: p.sky, glass: p.glass, line: p.line, shadow: p.shadow, accent: p.accent,
+      checkInk: s.weather === "cloud" ? "#FFFFFF" : p.selInk,
+      cur: base.map((w) => Object.assign({}, w, {
+        orbBg: ORB[w.key],
+        orbShadow: w.selected ? "0 0 0 2.5px " + p.ink + ", 0 12px 32px " + GLOW[w.key] : "0 0 0 1px " + p.line + ", 0 4px 14px rgba(0,0,0,0.14)",
+        orbLift: w.selected ? "translateY(-5px) scale(1.08)" : "translateY(0) scale(1)", dot: w.selected ? "1" : "0"
+      })),
+      v1: base.map((w) => Object.assign({}, w, {
+        orbBg: ORB2[w.key],
+        orbShadow: w.selected ? "0 0 0 2px " + p.ink + ", 0 10px 24px " + GLOW[w.key] : "inset 0 0 0 1px rgba(255,255,255,0.18), 0 4px 12px rgba(0,0,0,0.16)",
+        orbLift: w.selected ? "translateY(-2px)" : "translateY(0)"
+      })),
+      v2: base.map((w) => Object.assign({}, w, {
+        segBg: w.selected ? ORB2[w.key] : "transparent", segFg: w.selected ? "#FFFFFF" : p.ink, lblW: w.selected ? "700" : "550",
+        segShadow: w.selected ? "inset 0 0 0 1.5px rgba(255,255,255,0.6), 0 8px 18px " + GLOW[w.key] : "inset 0 0 0 0 transparent"
+      })),
+      v3: base.map((w) => Object.assign({}, w, {
+        orbBg: ORB2[w.key],
+        tileShadow: w.selected ? "0 0 0 3px " + p.glassSolid + ", 0 0 0 5px " + p.ink + ", 0 14px 28px " + GLOW[w.key] : "inset 0 0 0 1px rgba(255,255,255,0.16)",
+        tileLift: w.selected ? "translateY(-3px)" : "translateY(0)"
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

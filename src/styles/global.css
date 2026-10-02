@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+/* Per-weather variables come from src/theme/tokens.ts via ThemeStyle.astro. */
+
+@theme {
+  --font-sans: var(--font-mona), system-ui, sans-serif;
+}
+
+/* Element defaults go in the base layer: unlayered, `button { font: inherit }` beat every text-size,
+   font-weight and colour class on buttons (they all rendered at 16 px regular). */
+@layer base {
+  html {
+    background: var(--bg);
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    color: var(--ink);
+    font-family: var(--font-mona), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: color 900ms ease;
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus-visible {
+    outline: 2.5px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+/* Colour, background and border follow the sky crossfade (implementation-plan.md §5). */
+.tr {
+  transition: background-color 600ms ease, color 600ms ease, border-color 600ms ease, box-shadow 500ms ease;
+}
+
+/* Three fixed widths (spec AC 23: type never changes with the weather). */
+.w80 { font-variation-settings: "wdth" 80; }
+.w90 { font-variation-settings: "wdth" 90; }
+.w100 { font-variation-settings: "wdth" 100; }
+
+/* ---- Glass panels (M3.3) ----
+   Lower blur on small screens (cheaper on mid-range Android); a heavier solid fill when blur isn't
+   supported or the user asks for less transparency. */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  backdrop-filter: blur(14px) saturate(135%);
+}
+@media (min-width: 768px) {
+  .glass {
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+    backdrop-filter: blur(18px) saturate(135%);
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--glass2); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: var(--glass2);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+/* Sheets and dialogs always use the heavier fill. */
+.glass-strong {
+  background: var(--glass2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+.sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; transition-delay: 0s !important; }
+}
+
+.draft-banner {
+  position: relative;
+  z-index: 5;
+  margin: 0;
+  padding: 6px 12px;
+  background: #fff3c4;
+  color: #3a2c00;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---- Shared bits from the A artboards ---- */
+.ic { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hs { scrollbar-width: none; }
+.hs::-webkit-scrollbar { display: none; }
+.press { cursor: pointer; transition: transform 180ms ease, background-color 400ms ease, color 400ms ease, border-color 400ms ease; }
+.press:active { transform: scale(0.95); }
+/* Card entrance, staggered by inline animation-delay (M4.6). */
+.card-in { animation: card-up 640ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+@keyframes card-up { from { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.98); } to { opacity: 1; transform: none; } }
+/* Surprise me: the pick pops in (spec §11.5); reduced motion makes it instant (rule above). */
+.surprise-in { animation: surprise-pop 720ms cubic-bezier(0.2, 1.25, 0.3, 1) both; }
+@keyframes surprise-pop { from { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.9) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
+/* The whole card opens the activity through its name link; buttons sit above it. */
+.card-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.card-link:focus-visible { outline: none; }
+.card-link:focus-visible::after { outline: 2.5px solid currentColor; outline-offset: -3px; }
+/*
+ * Discover results (A · Sky Mode). Phones: one column of cards. Tablet and desktop: the results column
+ * is a container, and once it's wide enough the cards become the desktop artboard's tiles, as many
+ * 232 px+ columns as fit (two at 1440 px, as in the artboard).
+ */
+.rc-list { display: flex; flex-direction: column; gap: 12px; }
+.rc-add-long { display: none; }
+@media (min-width: 768px) {
+  .results { container: results / inline-size; }
+}
+@container results (min-width: 460px) {
+  .rc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 14px; align-items: stretch; }
+  .rc-list > li { display: flex; min-width: 0; }
+  .rc { flex: 1; min-width: 0; display: flex; flex-direction: column; border-radius: 24px; }
+  .rc-head { padding: 16px 16px 0; }
+  .rc-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 8px; }
+  .rc-tag { display: contents; }
+  .rc-num { grid-area: 1 / 1; justify-self: start; font-size: 32px; line-height: 1; letter-spacing: -0.03em; }
+  .rc-badge { grid-area: 1 / 2; height: 28px; padding: 0 10px 0 9px; gap: 6px; font-size: 12.5px; }
+  .rc-kick { grid-column: 1 / -1; grid-row: 2; margin-top: 12px; }
+  .rc-kick > span:first-child { font-size: 10.5px; letter-spacing: 0.14em; }
+  .rc-name { margin-top: 5px; font-size: 21px; line-height: 1.08; letter-spacing: -0.02em; }
+  .rc-arrow { display: none; }
+  .rc-blurb { margin-top: 7px; font-size: 13.5px; }
+  .rc-planned { margin-top: 9px; font-size: 12.5px; }
+  /* Duration and cost go above the strip, Add to a day to the bottom. */
+  .rc-foot { display: contents; }
+  .rc-meta { order: 2; flex: none; padding: 10px 16px 0; font-size: 12.5px; }
+  .rc-strip { order: 3; margin: 12px 12px 0; gap: 3px; border-radius: 15px; }
+  .rc-cell { height: 48px; flex-direction: column; gap: 3px; border-radius: 11px; font-size: 11.5px; }
+  .rc-add { order: 4; margin-top: auto; padding: 12px; }
+  .rc-add-short { display: none; }
+  .rc-add-long { display: inline; }
+}
+/* Discover's Coming up rail: each day's card sits on a small version of its own sky (decorative). */
+.dday { min-height: 210px; box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.18); transition: color 900ms ease; }
+.dsky { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.dsky-none { background: var(--soft); box-shadow: inset 0 0 0 1px var(--line); border-radius: inherit; }
+.dsky-sunny { background: linear-gradient(170deg, #0F3FB8 0%, #2659D8 100%); }
+.dsky-cloudy { background: linear-gradient(170deg, #8E9AA8 0%, #C9D1D9 100%); }
+.dsky-rainy { background: linear-gradient(170deg, #0A1330 0%, #1C2B55 100%); }
+.dsky-hot { background: linear-gradient(170deg, #9A2D0B 0%, #C04A18 100%); }
+.dsky-rays { position: absolute; right: -66px; top: -66px; animation: dsky-spin 60s linear infinite; }
+.dsky-sun { position: absolute; right: -14px; top: -14px; width: 76px; height: 76px; border-radius: 50%; background: radial-gradient(circle at 36% 34%, #FFF2C2 0%, #FFD65C 38%, #FFC940 64%, #F2A51E 100%); box-shadow: 0 0 40px 12px rgba(255, 201, 64, 0.32); }
+.dsky-sea { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; background: linear-gradient(180deg, #1B4FD2, #0B2C82); }
+.dsky-cloud { position: absolute; animation: dsky-drift 30s ease-in-out -10s infinite alternate; }
+.dsky-cloud2 { animation-duration: 40s; animation-delay: -20s; }
+.dsky-rain { position: absolute; left: -20%; right: -20%; top: -160px; bottom: 0; transform: rotate(10deg); animation: dsky-fall 0.75s linear infinite; }
+.dsky-heat { position: absolute; right: -40px; top: -40px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle at 45% 40%, #FFF4D6 0%, #FFE3A1 45%, #FFD07A 100%); box-shadow: 0 0 60px 20px rgba(255, 200, 120, 0.35); animation: dsky-breathe 9s ease-in-out infinite; }
+html.paused .dsky *, html:not(.sky-live) .dsky * { animation-play-state: paused; }
+@keyframes dsky-spin { to { transform: rotate(360deg); } }
+@keyframes dsky-drift { from { transform: translate3d(-40px, 0, 0); } to { transform: translate3d(40px, 0, 0); } }
+@keyframes dsky-fall { from { transform: rotate(10deg) translate3d(0, 0, 0); } to { transform: rotate(10deg) translate3d(0, 160px, 0); } }
+@keyframes dsky-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+/* Getting there: the last-stretch legs slide in, staggered, when the page opens. */
+.leg-in { animation: leg-slide 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes leg-slide { from { opacity: 0; transform: translate3d(-18px, 6px, 0); } to { opacity: 1; transform: none; } }
+
+/* ---- Sheets, dialogs and the toast ---- */
+.sheet-root { position: fixed; inset: 0; z-index: 50; }
+.sheet-scrim { position: absolute; inset: 0; background: var(--scrim); animation: fade-in 420ms ease both; }
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; max-height: min(92dvh, 792px);
+  display: flex; flex-direction: column; border-radius: 30px 30px 0 0; border-bottom: 0;
+  box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.3); color: var(--ink); outline: none;
+  animation: sheet-up 560ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.sheet-grip { flex-shrink: 0; display: block; width: 40px; height: 5px; margin: 8px auto 0; border-radius: 3px; background: var(--line); }
+.sheet-body { flex: 1; min-height: 0; overflow-y: auto; }
+.sheet-foot { flex-shrink: 0; padding: 10px 16px calc(14px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
+@media (min-width: 768px) {
+  .sheet { left: 50%; right: auto; bottom: auto; top: 50%; width: min(520px, calc(100vw - 48px)); transform: translate(-50%, -50%); border-radius: 30px; border-bottom: 1px solid var(--line); animation-name: dialog-in; }
+  .sheet-grip { display: none; }
+}
+@keyframes sheet-up { from { transform: translate3d(0, 48px, 0); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes dialog-in { from { transform: translate(-50%, calc(-50% + 24px)) scale(0.97); opacity: 0; } to { transform: translate(-50%, -50%); opacity: 1; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.pb { width: 100%; height: 54px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 19px; border: 1px solid; font-size: 15.5px; font-weight: 700; }
+.k { font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0; }
+.eb { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.num { font-variation-settings: "wdth" 100; font-variant-numeric: tabular-nums; }
+.pop-in { animation: pop 560ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+@keyframes pop { 0% { transform: scale(0) rotate(-35deg); } 60% { transform: scale(1.35) rotate(6deg); } 100% { transform: none; } }
+.toast {
+  position: fixed; z-index: 60; left: 16px; right: 16px; bottom: calc(96px + env(safe-area-inset-bottom)); max-width: 528px; margin: 0 auto;
+  display: flex; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; border-radius: 20px; color: var(--ink);
+  animation: sheet-up 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* ---- My plans calendar (A · Plan any day artboards) ---- */
+.cgrid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.cell { position: relative; height: 50px; min-width: 44px; padding: 0; border: 0; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: transform 180ms ease, background-color 400ms ease, color 400ms ease, box-shadow 400ms ease; }
+.cell:active { transform: scale(0.93); }
+@media (max-width: 359px) { .cell { min-width: 0; } }
+.cnum { font-size: 15px; line-height: 1; font-variant-numeric: tabular-nums; font-variation-settings: "wdth" 100; }
+.cdots { height: 6px; display: flex; align-items: center; gap: 3px; }
+.cdot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; }
+.cmini { position: absolute; right: 3px; top: 3px; width: 15px; height: 15px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4); }
+.tb { height: 44px; min-width: 52px; padding: 0 10px; border: 1px solid var(--line); border-radius: 14px; background: transparent; color: var(--ink); font-size: 13.5px; font-weight: 700; font-variant-numeric: tabular-nums; font-variation-settings: "wdth" 100; }
+.ib { flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 14px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; }
+.swing { display: inline-flex; transform-origin: 50% 15%; animation: swing 2.8s ease-in-out infinite; }
+@keyframes swing { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } }
+.cchips { display: none; }
+@media (min-width: 1024px) {
+  .cell { height: auto; min-height: 104px; justify-content: flex-start; align-items: stretch; padding: 8px 6px 6px; gap: 4px; }
+  .cnum { align-self: flex-start; padding-left: 4px; font-size: 16px; }
+  .cdots { display: none; }
+  .cchips { display: grid; gap: 3px; text-align: left; }
+  .cchip { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 3px 6px; border-radius: 8px; font-size: 11.5px; font-weight: 600; }
+  .cmore { padding-left: 6px; font-size: 11px; font-weight: 700; opacity: 0.8; }
+}
+
+/* ---- Map view (spec §11.2): pins are labelled buttons that follow the theme ---- */
+.map-pin {
+  min-width: 44px; height: 44px; padding: 0 12px; border-radius: 22px; border: 2px solid var(--sel-ink);
+  background: var(--sel); color: var(--sel-ink); font-family: inherit; font-weight: 700; font-size: 13px; line-height: 1; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28); position: relative;
+}
+.map-pin::after { content: ""; position: absolute; left: 50%; bottom: -7px; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--sel-ink); border-bottom: 0; }
+.map-pin[aria-pressed="true"] { background: var(--accent); color: var(--sel-ink); border-color: #fff; transform: scale(1.12); z-index: 2; }
+.map-pin:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.map-view .maplibregl-ctrl-attrib { font-size: 11px; }
+.map-pin--sm { min-width: 28px; width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 12.5px; }
+.map-pin--sm::after { display: none; }

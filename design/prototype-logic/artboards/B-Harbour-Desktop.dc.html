@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Harbour Window, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&amp;family=Unbounded:wght@400..800&amp;display=swap">
+<style>
+body{margin:0;background:#FFF9EF;font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;margin:0;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
+p,h1,h2,h3{margin:0}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hs{scrollbar-width:none}.hs::-webkit-scrollbar{display:none}
+.u{font-family:'Unbounded','Onest',system-ui,sans-serif}
+.t{transition:background-color .9s ease,color .9s ease,border-color .9s ease,box-shadow .5s ease}
+.tl{transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .5s ease,background-color .9s ease,color .9s ease}
+.tb{transition:height .55s cubic-bezier(.34,1.56,.64,1),margin-bottom .55s cubic-bezier(.34,1.56,.64,1),border-radius .3s ease,box-shadow .5s ease,background-color .9s ease,color .9s ease}
+.pr{transition:transform .18s ease,background-color .9s ease,color .9s ease,border-color .9s ease}.pr:active{transform:scale(.96)}
+.cd{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,background-color .9s ease}.cd:hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--line),0 22px 34px -22px rgba(10,20,40,.55)}
+.op{transition:opacity 1.1s ease-in-out}
+.mv{transform-box:fill-box;transform-origin:center;transition:transform 1.1s cubic-bezier(.65,0,.35,1)}
+.sl{transition:transform 1s cubic-bezier(.65,0,.35,1)}
+.fx{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+.vi{display:block;width:100%;height:100%}
+.lab{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.hwd{font-size:64px;line-height:1.04;letter-spacing:-.035em}
+.hl2{margin-top:4px;font-size:22px;font-weight:500;line-height:1.25;letter-spacing:-.01em}
+.mi{display:inline-flex;align-items:center;gap:5px}
+.w-sun{--surf:#FFF9EF;--card:#FFFFFF;--ink:#16233A;--mute:#4E596B;--line:#EBDFC9;--soft:#F7EEDC;--acc:#0B5CA8;--accInk:#FFFFFF;--hl:#0B2545;--note:#FFF1C4;--oS:1;--oC:0;--oR:0;--oH:0;--far:#6FAF9A;--city:#2C6A9B;--city2:#3F82B5;--br:#1B3F63;--sail:#FFFFFF;--sailS:#D5E3EC;--pod:#E8C79A;--wat:#1F86C6;--wat2:#5DB3E3;--cl:#FFFFFF;--cl2:#E6F2FA;--win:#FFD27A;--sunC:#FFCF3F;--sunH:rgba(255,214,90,.34);--gl:#FFFFFF;--fwin:#2A4A63;--winO:0;--winD:0s;--rainO:0;--rainD:0s;--heatO:0;--sparkO:1;--glO:.85;--gullO:1;--sunT:translate(0px,0px) scale(1);--sunD:.25s;--clL:translateX(-820px);--clR:translateX(820px);--glX:translateX(0px);--msT:translate(0px,0px) scale(1);--mcL:translateX(-120px);--mcR:translateX(120px);--vsky:#9ED6F5;--vs:#2F8FCB;--vg:#3E9E6E;--vg2:#7CC48F;--vl:#FFFFFF;--vd:#1A3A5C;--vn:#F3D9A4;--vu:#FFC93C;--vr:#E8543A;--vk:#9AA5B1;--vw:#2A4A63;--vc:#FFFFFF;--vsO:1;--vcO:0}
+.w-cloud{--surf:#F1F3F6;--card:#FFFFFF;--ink:#172233;--mute:#4A5568;--line:#DAE0E8;--soft:#E7EBF1;--acc:#2E4560;--accInk:#FFFFFF;--hl:#16233A;--note:#FFF6D8;--oS:0;--oC:1;--oR:0;--oH:0;--far:#94A5A6;--city:#5F7389;--city2:#7A8CA0;--br:#3E4D60;--sail:#F3F5F7;--sailS:#C6CFD8;--pod:#C7BAA6;--wat:#6F889F;--wat2:#93A8BA;--cl:#F6F8FA;--cl2:#DDE3EA;--win:#FFD27A;--sunC:#FFE3A0;--sunH:rgba(255,236,190,.3);--gl:#FFFFFF;--fwin:#3A4A5C;--winO:.3;--winD:.3s;--rainO:0;--rainD:0s;--heatO:0;--sparkO:0;--glO:0;--gullO:0;--sunT:translate(0px,300px) scale(1);--sunD:0s;--clL:translateX(0px);--clR:translateX(0px);--glX:translateX(0px);--msT:translate(0px,58px) scale(1);--mcL:translateX(0px);--mcR:translateX(0px);--vsky:#CDD6E0;--vs:#6F8AA3;--vg:#5F8A74;--vg2:#94B3A0;--vl:#F6F8FA;--vd:#33475F;--vn:#D8CDB8;--vu:#FFE3A0;--vr:#C85A48;--vk:#9CA6B1;--vw:#3A4A5C;--vc:#F6F8FA;--vsO:0;--vcO:1}
+.w-rain{--surf:#111A33;--card:#1A2547;--ink:#EEF1FA;--mute:#AFB9D3;--line:#2C3A63;--soft:#233160;--acc:#FFC56B;--accInk:#221503;--hl:#F6F3FF;--note:#2A3968;--oS:0;--oC:0;--oR:1;--oH:0;--far:#34425F;--city:#222E4E;--city2:#2B3960;--br:#131B33;--sail:#CDD3E6;--sailS:#98A2BE;--pod:#585271;--wat:#1B2645;--wat2:#34436D;--cl:#465476;--cl2:#394769;--win:#FFC96E;--sunC:#FFE3A0;--sunH:rgba(255,236,190,.2);--gl:#FFFFFF;--fwin:#FFD27A;--winO:1;--winD:.55s;--rainO:1;--rainD:.9s;--heatO:0;--sparkO:0;--glO:0;--gullO:0;--sunT:translate(0px,300px) scale(1);--sunD:0s;--clL:translateX(0px);--clR:translateX(0px);--glX:translateX(0px);--msT:translate(0px,60px) scale(1);--mcL:translateX(0px);--mcR:translateX(0px);--vsky:#34426A;--vs:#1E2A4B;--vg:#2D4F4A;--vg2:#3C605A;--vl:#D3D8EA;--vd:#0F1629;--vn:#4B4A63;--vu:#FFC56B;--vr:#FF8A5B;--vk:#7C87A3;--vw:#FFD27A;--vc:#56648A;--vsO:0;--vcO:1}
+.w-hot{--surf:#FFF1E0;--card:#FFFAF3;--ink:#2E1606;--mute:#6A4832;--line:#F0D6B8;--soft:#FBE2C4;--acc:#A63F14;--accInk:#FFFFFF;--hl:#3A1403;--note:#FFF6E6;--oS:0;--oC:0;--oR:0;--oH:1;--far:#D9955E;--city:#B4592F;--city2:#C66F40;--br:#6E2C12;--sail:#FFF3E2;--sailS:#F3C79B;--pod:#E0A064;--wat:#D9803F;--wat2:#F2A860;--cl:#FFE9C7;--cl2:#FFDDB0;--win:#FFD27A;--sunC:#FFE7A3;--sunH:rgba(255,236,190,.42);--gl:#FFF0C8;--fwin:#5A2A12;--winO:0;--winD:0s;--rainO:0;--rainD:0s;--heatO:1;--sparkO:0;--glO:.7;--gullO:0;--sunT:translate(-70px,150px) scale(1.6);--sunD:.25s;--clL:translateX(-820px);--clR:translateX(820px);--glX:translateX(-70px);--msT:translate(-14px,22px) scale(1.7);--mcL:translateX(-120px);--mcR:translateX(120px);--vsky:#FFCF8F;--vs:#D9803F;--vg:#A8773A;--vg2:#C99A55;--vl:#FFF3E2;--vd:#6A2A0E;--vn:#F6C77E;--vu:#FFF0B8;--vr:#C8401F;--vk:#B39A88;--vw:#6A2A0E;--vc:#FFE9C7;--vsO:1;--vcO:0}
+.kf{fill:var(--far)}.kc{fill:var(--city)}.kc2{fill:var(--city2)}.kb{fill:var(--br)}.ks{fill:var(--sail)}.kss{fill:var(--sailS)}.kp{fill:var(--pod)}.kw{fill:var(--wat)}.kw2{fill:var(--wat2)}.kcl{fill:var(--cl)}.kcl2{fill:var(--cl2)}.kn{fill:var(--win)}.ku{fill:var(--sunC)}.kh{fill:var(--sunH)}.kg{fill:var(--gl)}.kfw{fill:var(--fwin)}
+.kf,.kc,.kc2,.kb,.ks,.kss,.kp,.kw,.kw2,.kcl,.kcl2,.kn,.ku,.kh,.kg,.kfw{transition:fill 1.1s ease-in-out}
+.vs{fill:var(--vs)}.vg{fill:var(--vg)}.vg2{fill:var(--vg2)}.vl{fill:var(--vl)}.vd{fill:var(--vd)}.vn{fill:var(--vn)}.vu{fill:var(--vu)}.vr{fill:var(--vr)}.vk{fill:var(--vk)}.vw{fill:var(--vw)}.vc{fill:var(--vc)}
+.fer{animation:fer 84s linear infinite}
+.bob{animation:bob 2.4s ease-in-out infinite alternate}
+.dr{animation:dr 18s ease-in-out infinite alternate}
+.fa{animation:fa 1s linear infinite}.fa2{animation:fa2 1.7s linear infinite}.fam{animation:fam .9s linear infinite}
+.tw{animation:tw 2.6s ease-in-out infinite}
+.rp{transform-box:fill-box;transform-origin:center;animation:rp 2.6s ease-out infinite}
+.sh{animation:sh 2.8s linear infinite}
+.hz{animation:hz 3.5s ease-in-out infinite alternate}
+.gu{animation:gu 14s ease-in-out infinite alternate}
+.hw{display:block;overflow:hidden;padding-bottom:.1em}
+.a-rise{display:block;animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+.a-fu{display:block;animation:fu .7s ease .35s both}
+.a-up{animation:up .6s cubic-bezier(.2,.8,.2,1) both}
+.a-fade{animation:fade .4s ease both}
+.a-pop{animation:pop .5s cubic-bezier(.34,1.56,.64,1) both}
+.a-note{animation:note .75s cubic-bezier(.2,.9,.3,1.15) both}
+.a-toast{animation:toast .45s ease both}
+.a-sheet{animation:sheet .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fer{from{transform:translateX(-160px)}to{transform:translateX(1560px)}}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-1.6px)}}
+@keyframes dr{from{transform:translateX(-10px)}to{transform:translateX(12px)}}
+@keyframes fa{from{transform:translateY(0)}to{transform:translateY(100px)}}
+@keyframes fa2{from{transform:translateY(0)}to{transform:translateY(140px)}}
+@keyframes fam{from{transform:translateY(0)}to{transform:translateY(30px)}}
+@keyframes tw{0%,100%{opacity:0}50%{opacity:1}}
+@keyframes rp{0%{opacity:0;transform:scale(.2)}30%{opacity:.9}100%{opacity:0;transform:scale(1.5)}}
+@keyframes sh{from{transform:translateX(0)}to{transform:translateX(-40px)}}
+@keyframes hz{from{opacity:.5}to{opacity:1}}
+@keyframes gu{from{transform:translate(0,0)}to{transform:translate(26px,-8px)}}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+@keyframes note{from{opacity:0;transform:translate(46px,-14px) rotate(7deg)}to{opacity:1;transform:rotate(-1.2deg)}}
+@keyframes toast{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes sheet{from{opacity:0;transform:translateY(48px) scale(.985)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;transition-delay:0s!important}}
+</style>
+</helmet>
+<div class="{{rootCls}}" style="position: relative; width: 1440px; height: 960px; overflow: hidden; background-color: var(--surf); color: var(--ink); font-family: 'Onest', system-ui, sans-serif; transition: background-color .9s ease, color .9s ease">
+
+<!-- defs (shared with phone) -->
+<svg width="0" height="0" aria-hidden="true" style="position: absolute">
+<defs>
+<linearGradient id="gS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FA2E8"></stop><stop offset=".7" stop-color="#A9DDF7"></stop><stop offset="1" stop-color="#D6F0FB"></stop></linearGradient>
+<linearGradient id="gC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#97A8BB"></stop><stop offset=".7" stop-color="#C9D3DE"></stop><stop offset="1" stop-color="#DCE3EA"></stop></linearGradient>
+<linearGradient id="gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C2645"></stop><stop offset=".65" stop-color="#3A4872"></stop><stop offset="1" stop-color="#5E5E86"></stop></linearGradient>
+<linearGradient id="gH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EE8438"></stop><stop offset=".6" stop-color="#F9B868"></stop><stop offset="1" stop-color="#FFE0A6"></stop></linearGradient>
+<linearGradient id="gHz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE2B0" stop-opacity="0"></stop><stop offset=".65" stop-color="#FFE2B0" stop-opacity=".6"></stop><stop offset="1" stop-color="#FFE2B0" stop-opacity="0"></stop></linearGradient>
+<pattern id="rn1" width="46" height="100" patternUnits="userSpaceOnUse"><path d="M10 6v13M33 56v13" stroke="#D6E0FF" stroke-width="1.2" stroke-linecap="round" opacity=".6"></path></pattern>
+<pattern id="rn2" width="70" height="140" patternUnits="userSpaceOnUse"><path d="M22 30v18" stroke="#EEF2FF" stroke-width="1.5" stroke-linecap="round" opacity=".45"></path></pattern>
+<pattern id="rnM" width="24" height="30" patternUnits="userSpaceOnUse"><path d="M6 3l-1.2 7M17 18l-1.2 7" stroke="#DCE5FF" stroke-width="1" stroke-linecap="round" opacity=".75"></path></pattern>
+<pattern id="rnV" width="12" height="18" patternUnits="userSpaceOnUse"><path d="M4 2l-1 5" stroke="#E2E8FF" stroke-width=".8" stroke-linecap="round" opacity=".75"></path></pattern>
+<pattern id="wvp" width="40" height="8" patternUnits="userSpaceOnUse"><path d="M0 4q10-3 20 0t20 0" fill="none" stroke="#FFE2B0" stroke-width="1.8" stroke-linecap="round"></path></pattern>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter>
+<path id="spk" d="M0-4l1.1 2.9 2.9 1.1-2.9 1.1-1.1 2.9-1.1-2.9-2.9-1.1 2.9-1.1z"></path>
+<path id="wm" d="M0 0q5-2 10 0t10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0 10 0"></path>
+<path id="cl" d="M14 60C2 60 0 44 12 40C10 26 28 18 40 26C46 10 72 6 82 22C94 14 112 20 112 34C126 34 132 52 124 60Z"></path>
+<symbol id="tG" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="currentColor"></circle></symbol>
+<symbol id="tO" viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.3" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M6 1.7A4.3 4.3 0 0 0 6 10.3z" fill="currentColor"></path></symbol>
+<symbol id="tS" viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.3" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M2.9 9.1L9.1 2.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+<symbol id="iOk" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+<symbol id="iAdd" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"></path></symbol>
+<symbol id="gSu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"></circle><path d="M12 2.8v2M12 19.2v2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M2.8 12h2M19.2 12h2M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></g></symbol>
+<symbol id="gCl" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 9.5a4.25 4.25 0 0 0 0 8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></symbol>
+<symbol id="gRa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 5.5a4.25 4.25 0 0 0 0 8.5z"></path><path d="M9 17.5l-1 3M13 17.5l-1 3M17 17.5l-1 3"></path></g></symbol>
+<symbol id="gHo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="4"></circle><path d="M12 2.5v1.5M5.6 5.1l1 1M18.4 5.1l-1 1M3 17.5c1.5-1.2 3-1.2 4.5 0s3 1.2 4.5 0 3-1.2 4.5 0 3 1.2 4.5 0M5 21c1.3-1 2.7-1 4 0s2.7 1 4 0 2.7-1 4 0"></path></g></symbol>
+<symbol id="v-wx" viewBox="0 0 72 72" overflow="visible"><g style="opacity: var(--vsO)"><circle class="vu" cx="57" cy="15" r="11" opacity=".3"></circle><circle class="vu" cx="57" cy="15" r="7"></circle></g><g style="opacity: var(--vcO)"><use href="#cl" class="vc" transform="translate(34 2) scale(.26)"></use><use href="#cl" class="vc" transform="translate(2 10) scale(.18)"></use></g></symbol>
+<symbol id="v-rain" viewBox="0 0 72 72" overflow="visible"><rect x="-150" y="-10" width="372" height="100" fill="url(#rnV)" style="opacity: var(--rainO)"></rect></symbol>
+<symbol id="v-walk" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vs" d="M-150 50H222V90H-150z"></path><path class="vg2" d="M-150 46H2C14 40 26 39 36 43C46 47 58 41 72 43H222V52H-150z"></path><path class="vg" d="M-150 38H4C16 31 28 33 38 39C44 43 46 50 48 56L50 90H-150z"></path><path class="vd" d="M38 39C44 43 46 50 48 56L50 90H41C41 72 41 54 38 39zM14 36V22h1.6v14zM25.6 28h2.8l.8 6h-1.4l-.8-3.5-.8 3.5h-1.4z"></path><circle class="vd" cx="27" cy="25.6" r="1.8"></circle><circle class="vg2" cx="14.8" cy="19" r="6"></circle><circle class="vg2" cx="10" cy="23" r="4.5"></circle><circle class="vg2" cx="19.5" cy="23" r="4"></circle><path class="vl" d="M6 38.5h3v1.6H6zM12 36.5h3v1.6h-3zM18 35.3h3v1.6h-3zM30 36.4h3v1.6h-3z"></path><use href="#v-rain"></use></symbol>
+<symbol id="v-ferry" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vs" d="M-150 46H222V90H-150z"></path><path class="vg2" d="M-150 47H4C14 40 32 39 46 47H222V48H-150z"></path><path class="vl" opacity=".75" d="M2 57h12v1.6H2zM-10 60h14v1.4H-10zM8 62.5h8v1.2H8zM30 65h14v1.2H30zM50 61h10v1.2H50z"></path><path class="vd" d="M14 50h46l-5 8H19zM33 31h5v6h-5zM56 34h1v8h-1z"></path><path class="vl" d="M20 42h33v8H20zM27 37h19v5H27z"></path><path class="vw" d="M22.5 44.5h3.5v3h-3.5zM28 44.5h3.5v3H28zM33.5 44.5h3.5v3h-3.5zM39 44.5h3.5v3H39zM44.5 44.5h3.5v3h-3.5zM30 38.5h3v2h-3zM35 38.5h3v2h-3zM40 38.5h3v2h-3z"></path><path class="vr" d="M57 34h5v3h-5z"></path><use href="#v-rain"></use></symbol>
+<symbol id="v-beach" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vs" d="M-150 40H222V56H-150z"></path><path class="vl" opacity=".85" d="M-150 52.5C-100 50-50 55 0 52.5S40 50 72 52.5 160 55 222 52.5V55H-150z"></path><path class="vn" d="M-150 54C-60 52 20 56 72 54S180 52 222 54V90H-150z"></path><path class="vd" d="M35 33h1.6v25H35zM10 44h1v14h-1zM64 44h1v14h-1z"></path><path class="vr" d="M20 35Q36 18 52 35zM11 44h6v2h-6zM65 44h6v2h-6z"></path><path class="vl" d="M31 35Q35.8 19.5 40.6 35z"></path><path class="vu" d="M11 46h6v2h-6zM65 46h6v2h-6z"></path><path class="vs" d="M40 60h16l-2 5H38z"></path><use href="#v-rain"></use></symbol>
+<symbol id="v-museum" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vn" d="M-150 58H222V90H-150z"></path><path class="vd" d="M3 50h1.6v8H3zM67.4 50H69v8h-1.6zM17 34h38v16H17z"></path><circle class="vg" cx="4" cy="46" r="7"></circle><circle class="vg" cx="68" cy="46" r="7"></circle><path class="vl" d="M13 29h46v5H13zM36 18l24 11H12zM18 34h4v16h-4zM27 34h4v16h-4zM41 34h4v16h-4zM50 34h4v16h-4zM14 50h44v4H14zM11 54h50v4H11z"></path><path class="vn" d="M36 21.5L53 28H19z"></path><path class="vr" d="M32 35h8v11l-4-2.5-4 2.5z"></path><use href="#v-rain"></use></symbol>
+<symbol id="v-wild" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><circle class="vg2" cx="2" cy="10" r="16"></circle><circle class="vg2" cx="72" cy="64" r="16"></circle><path class="vd" d="M-20 66L80 42l2 6-100 24z"></path><path class="vg" d="M62 44c4-6 10-6 12-4-3 5-8 6-12 4zM10 62c-2-6 1-10 5-11 1 5-1 9-5 11z"></path><ellipse class="vk" cx="34" cy="52" rx="13" ry="11"></ellipse><path class="vk" d="M40 50c6 0 10 2 12 6l-4 2c-3-3-6-4-9-4z"></path><ellipse class="vl" cx="33" cy="55" rx="6" ry="5" opacity=".55"></ellipse><circle class="vk" cx="22" cy="27" r="7"></circle><circle class="vk" cx="46" cy="27" r="7"></circle><circle class="vk" cx="34" cy="34" r="12"></circle><circle class="vl" cx="22" cy="27.5" r="3.6"></circle><circle class="vl" cx="46" cy="27.5" r="3.6"></circle><ellipse class="vd" cx="34" cy="37" rx="3.6" ry="4.6"></ellipse><circle class="vd" cx="29" cy="33" r="1.3"></circle><circle class="vd" cx="39" cy="33" r="1.3"></circle><use href="#v-rain"></use></symbol>
+<symbol id="v-garden" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vs" d="M36 50H222V55H36z"></path><path class="vl" d="M58 54c1-4 4-6 7-6-1 2-1 4 0 6zM63 54c1-5 5-7 8-7-1 3-1 5 0 7z"></path><path class="vg2" d="M-150 54H222V90H-150z"></path><path class="vn" d="M20 90c8-20 20-30 40-36h6c-18 8-28 18-32 36z"></path><path class="vd" d="M22 56V40h4v16zM24 44l-8-6 1.5-1.5 7 5z"></path><circle class="vg" cx="16" cy="32" r="10"></circle><circle class="vg" cx="28" cy="25" r="12"></circle><circle class="vg" cx="39" cy="33" r="9"></circle><circle class="vg" cx="25" cy="38" r="8"></circle><path class="vr" d="M42 60h16l3 5H45z"></path><path class="vl" opacity=".8" d="M46 60h3l1.5 5h-3zM53 60h3l1.5 5h-3z"></path><use href="#v-rain"></use></symbol>
+<symbol id="v-food" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vn" d="M-150 56H222V90H-150z"></path><path class="vd" opacity=".5" d="M-150 5H222v1H-150zM12.5 6h1v4h-1zM28.5 6h1v3h-1z"></path><ellipse class="vr" cx="13" cy="17" rx="6" ry="7"></ellipse><ellipse class="vr" cx="29" cy="15" rx="5" ry="6"></ellipse><path class="vu" d="M10 10h6v1.4h-6zM10 23h6v1.4h-6zM26.5 9.5h5v1.2h-5zM26.5 20h5v1.2h-5z"></path><path class="vl" opacity=".8" d="M27 32c-2-3 2-5 0-8h1.5c2 3-2 5 0 8zM36 30c-2-3 2-5 0-8h1.5c2 3-2 5 0 8z"></path><path class="vn" d="M22 42c1-5 5-7 8-7s6 2 7 7zM34 42c1-4 4-6 7-6s6 2 7 6z"></path><path class="vd" d="M46 40l20-12 1 1.6-20 12zM48 42l20-9 .8 1.7-20 9z"></path><path class="vl" d="M16 44h40c0 10-8 16-20 16s-20-6-20-16z"></path><path class="vr" d="M15 42.5h42v3H15z"></path><use href="#v-rain"></use></symbol>
+<symbol id="v-market" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vn" d="M-150 58H222V90H-150z"></path><path class="vd" opacity=".5" d="M-150 24.5Q36 30.5 222 24.5v1Q36 31.5-150 25.5z"></path><circle class="vu" cx="6" cy="27.6" r="1.6"></circle><circle class="vu" cx="18" cy="28" r="1.6"></circle><circle class="vu" cx="30" cy="28.2" r="1.6"></circle><circle class="vu" cx="42" cy="28.2" r="1.6"></circle><path class="vd" d="M4 39h1.6v19H4zM32.4 39H34v19h-1.6zM3 48h32v10H3zM38 41h1.6v17H38zM66.4 41H68v17h-1.6zM37 50h32v8H37z"></path><path class="vl" d="M3 32h32v7q-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0zM37 34h32v7q-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0-2 3-4 0z"></path><path class="vr" d="M7 32h4v7H7zM15 32h4v7h-4zM23 32h4v7h-4zM31 32h4v7h-4z"></path><path class="vs" d="M41 34h4v7h-4zM49 34h4v7h-4zM57 34h4v7h-4zM65 34h4v7h-4z"></path><circle class="vu" cx="10" cy="46.5" r="2.5"></circle><circle class="vr" cx="16" cy="46.5" r="2.5"></circle><circle class="vg" cx="22" cy="46.5" r="2.5"></circle><circle class="vu" cx="28" cy="46.5" r="2.5"></circle><path class="vl" d="M42 45h4v5h-4zM49 44h4v6h-4zM56 45h4v5h-4z"></path><use href="#v-rain"></use></symbol>
+<symbol id="mini" viewBox="0 0 200 80" preserveAspectRatio="xMidYMax slice"><rect class="op" width="200" height="80" fill="url(#gS)" style="opacity: var(--oS)"></rect><rect class="op" width="200" height="80" fill="url(#gC)" style="opacity: var(--oC)"></rect><rect class="op" width="200" height="80" fill="url(#gR)" style="opacity: var(--oR)"></rect><rect class="op" width="200" height="80" fill="url(#gH)" style="opacity: var(--oH)"></rect><g style="transform: var(--msT); transform-box: fill-box; transform-origin: center"><circle class="kh" cx="140" cy="22" r="15"></circle><circle class="ku" cx="140" cy="22" r="9"></circle></g><g style="transform: var(--mcL)"><use href="#cl" class="kcl" transform="translate(26 2) scale(.42)"></use><use href="#cl" class="kcl2" transform="translate(58 16) scale(.3)"></use></g><g style="transform: var(--mcR)"><use href="#cl" class="kcl" transform="translate(112 0) scale(.46)"></use><use href="#cl" class="kcl2" transform="translate(152 18) scale(.3)"></use></g><path class="kf" d="M0 52C20 46 40 46 60 50S100 54 130 48 180 44 200 46V62H0Z"></path><path class="kc" d="M62 34h9V61H62zM73 26h10V61H73zM85 38h8V61H85zM95 22h9V61H95zM106 32h10V61H106zM118 40h7V61H118z"></path><path class="kn" style="opacity: var(--winO)" d="M67.5 38h1.4v2h-1.4zM78.5 45h1.4v2h-1.4zM87 42h1.4v2H87zM100.5 31h1.4v2h-1.4zM100.5 46h1.4v2h-1.4zM108 41h1.4v2H108zM120 44h1.4v2H120z"></path><path class="kb" d="M4 60Q50 0 96 60H92Q50 8 8 60zM-4 49h110v2.2H-4zM92 42h7v19h-7zM0 42h7v19H0z"></path><path class="ks" d="M122 59C124 50 130 44 138 42C135 48 135 54 137 59ZM134 59C136 48 144 40 156 38C151 46 151 53 153 59ZM150 59C152 51 158 47 166 46C163 51 163 55 165 59Z"></path><rect class="kw" y="58.5" width="200" height="21.5"></rect><path class="kg" style="opacity: var(--glO)" d="M130 62h20v1.4h-20zM134 66h12v1.2h-12z"></path><use href="#wm" y="66" style="opacity: var(--heatO)" fill="none" stroke="#FFE2B0" stroke-width="1.2"></use><rect y="0" width="200" height="80" fill="url(#rnM)" style="opacity: var(--rainO)"></rect></symbol>
+<symbol id="v-mark" viewBox="0 0 72 72" overflow="visible"><use href="#v-wx"></use><path class="vs" d="M-150 52H222V90H-150z"></path><path class="vd" d="M0 58Q30 6 60 58h-5Q30 16 5 58zM-150 40H222v3H-150zM-4 32h8v26h-8zM56 32h8v26h-8z"></path><path class="vn" d="M36 57h40v4H36z"></path><path class="vl" d="M40 58c1-8 6-13 13-14-2 5-2 10-1 14zM50 58c1-9 7-15 15-16-3 6-3 11-2 16zM60 58c1-6 5-10 10-10-2 3-2 7-1 10z"></path><path class="vl" opacity=".5" d="M6 64h12v1.2H6zM22 68h10v1.2H22z"></path><use href="#v-rain"></use></symbol>
+</defs>
+</svg>
+
+<!-- harbour window -->
+<header style="position: absolute; left: 16px; top: 16px; width: 1408px; height: 330px">
+<div class="t" style="position: absolute; inset: 0; border-radius: 30px; overflow: hidden; isolation: isolate; background-color: #1C2645; box-shadow: 0 0 0 1px var(--line), 0 26px 50px -34px rgba(10,20,40,0.6)">
+<svg width="1408" height="330" viewBox="0 0 1408 330" aria-hidden="true" style="position: absolute; left: 0; top: 0; display: block">
+<rect class="op" width="1408" height="330" fill="url(#gS)" style="opacity: var(--oS)"></rect>
+<rect class="op" width="1408" height="330" fill="url(#gC)" style="opacity: var(--oC)"></rect>
+<rect class="op" width="1408" height="330" fill="url(#gR)" style="opacity: var(--oR)"></rect>
+<rect class="op" width="1408" height="330" fill="url(#gH)" style="opacity: var(--oH)"></rect>
+<g class="mv" style="transform: var(--sunT); transition-delay: var(--sunD)"><circle class="kh" cx="1150" cy="92" r="62"></circle><circle class="kh" cx="1150" cy="92" r="46"></circle><circle class="ku" cx="1150" cy="92" r="32"></circle></g>
+<g class="op" style="opacity: var(--gullO)"><g class="gu"><path class="kb" transform="translate(600 14)" d="M226 58q4-5 8 0q4-5 8 0q-4-2.5-8 1q-4-3.5-8-1zM248 44q3-4 6 0q3-4 6 0q-3-2-6 .8q-3-2.8-6-.8z"></path></g></g>
+<g class="sl" style="transform: var(--clL)"><g class="dr"><use href="#cl" class="kcl2" transform="translate(30 104) scale(1.3)"></use><use href="#cl" class="kcl" transform="translate(190 26) scale(1.1)"></use><use href="#cl" class="kcl" transform="translate(360 124) scale(.9)"></use><use href="#cl" class="kcl2" transform="translate(520 46) scale(1.2)"></use></g></g>
+<g class="sl" style="transform: var(--clR)"><g class="dr" style="animation-duration: 23s; animation-delay: -8s"><use href="#cl" class="kcl" transform="translate(760 70) scale(1.25)"></use><use href="#cl" class="kcl2" transform="translate(940 18) scale(1)"></use><use href="#cl" class="kcl" transform="translate(1080 112) scale(1.1)"></use><use href="#cl" class="kcl2" transform="translate(1240 36) scale(1.3)"></use></g></g>
+<path class="kf" d="M0 240C110 228 220 230 330 238S560 246 680 236 900 224 1020 232 1240 242 1408 230V272H0Z"></path>
+<path class="kc" d="M912 196h22v76h-22zM958 170h26v102h-26zM1010 184h28v88h-28zM1062 206h22v66h-22zM1110 190h24v82h-24zM988.5 140h4v132h-4zM980 148h21v11h-21zM989.5 124h2v16h-2z"></path>
+<path class="kc2" d="M934 214h22v58h-22zM984 180h24v92h-24zM1040 200h20v72h-20zM1086 222h22v50h-22zM1136 212h20v60h-20z"></path>
+<g style="opacity: var(--winO); transition: opacity .9s ease var(--winD)"><path class="kn" d="M922 203h2v3h-2zM916 221h2v3h-2zM928 230h2v3h-2zM916 248h2v3h-2zM962 177h2v3h-2zM974 177h2v3h-2zM968 195h2v3h-2zM962 213h2v3h-2zM974 213h2v3h-2zM974 240h2v3h-2zM1014 191h2v3h-2zM1032 191h2v3h-2zM1020 200h2v3h-2zM1032 227h2v3h-2zM1014 245h2v3h-2zM1026 254h2v3h-2zM1072 213h2v3h-2zM1078 240h2v3h-2zM1072 258h2v3h-2zM1114 197h2v3h-2zM1120 206h2v3h-2zM1126 233h2v3h-2zM1114 260h2v3h-2zM938 221h2v3h-2zM950 221h2v3h-2zM944 239h2v3h-2zM938 257h2v3h-2zM994 187h2v3h-2zM988 205h2v3h-2zM1000 214h2v3h-2zM988 232h2v3h-2zM994 250h2v3h-2zM1044 216h2v3h-2zM1050 243h2v3h-2zM1090 229h2v3h-2zM1096 256h2v3h-2zM1140 219h2v3h-2zM1146 246h2v3h-2zM982 151h17v2h-17z"></path></g>
+<path class="kb" d="M470 262Q680 100 890 262H878Q680 120 482 262zM520.4 227.8h1.6V244h-1.6zM554 210.2h1.6V244h-1.6zM587.6 196.7h1.6V244h-1.6zM621.2 187.4h1.6V244h-1.6zM654.8 182.2h1.6V244h-1.6zM688.4 181.1h1.6V244h-1.6zM722 184.2h1.6V244h-1.6zM755.6 191.5h1.6V244h-1.6zM789.2 202.9h1.6V244h-1.6zM822.8 218.5h1.6V244h-1.6zM856.4 238.2h1.6V244h-1.6zM420 244h520v5H420zM452 226h24v46h-24zM448 221h32v6h-32zM884 226h24v46h-24zM880 221h32v6h-32z"></path>
+<g transform="translate(895 -26) scale(1.1)">
+<path class="kp" d="M252 258h108v14H252z"></path>
+<path class="kss" d="M258 259C260 250 266 244 276 242C272 248 272 254 274 259ZM296 259C292 248 292 234 298 220C298 236 300 250 303 259ZM322 259C318 246 318 230 326 214C326 232 328 248 330 259ZM342 259C338 250 338 240 344 230C344 242 346 252 348 259Z"></path>
+<path class="ks" d="M266 259C268 240 280 226 298 220C292 234 292 248 296 259ZM286 259C290 236 304 220 326 214C318 230 318 246 322 259ZM312 259C316 242 328 232 344 230C338 240 338 250 342 259Z"></path>
+</g>
+<g style="opacity: var(--heatO); transition: opacity 1.1s ease"><rect class="hz" x="0" y="130" width="1408" height="140" fill="url(#gHz)"></rect></g>
+<rect class="kw" x="0" y="266" width="1408" height="64"></rect>
+<rect class="kw2" x="0" y="266" width="1408" height="2.5"></rect>
+<g class="dr" style="animation-duration: 11s"><path class="kw2" opacity=".6" d="M40 286h140v2H40zM300 300h200v2H300zM620 318h240v2H620zM980 292h180v2H980zM1200 312h160v2h-160zM140 322h120v2H140z"></path></g>
+<g class="op" style="opacity: var(--glO)"><g class="sl" style="transform: var(--glX)"><path class="kg" d="M1134 274h32v3h-32zM1140 282h20v3h-20zM1128 290h44v2.5h-44zM1142 298h16v2.5h-16zM1136 307h28v2.5h-28zM1145 318h10v2h-10z"></path></g></g>
+<g style="opacity: var(--winO); transition: opacity .9s ease var(--winD)"><path class="kn" opacity=".5" d="M918 274h2v10h-2zM946 278h2v14h-2zM970 274h2v12h-2zM996 280h2v9h-2zM1024 274h2v12h-2zM1050 278h2v10h-2zM1076 274h2v8h-2zM1120 278h2v12h-2zM1146 274h2v9h-2z"></path></g>
+<g class="op" style="opacity: var(--sparkO)"><use href="#spk" class="kg tw" x="120" y="296"></use><use href="#spk" class="kg tw" style="animation-delay: -.8s" x="660" y="304"></use><use href="#spk" class="kg tw" style="animation-delay: -1.6s" x="760" y="288"></use><use href="#spk" class="kg tw" style="animation-delay: -2.1s" x="900" y="318"></use><use href="#spk" class="kg tw" style="animation-delay: -.4s" x="1010" y="300"></use><use href="#spk" class="kg tw" style="animation-delay: -1.2s" x="1210" y="322"></use><use href="#spk" class="kg tw" style="animation-delay: -1.9s" x="1330" y="292"></use><use href="#spk" class="kg tw" style="animation-delay: -.6s" x="1100" y="316"></use></g>
+<g style="opacity: var(--rainO); transition: opacity .8s ease var(--rainD)" fill="none" stroke="#9FB2E3" stroke-width="1.2"><ellipse class="rp" cx="640" cy="290" rx="10" ry="2.4"></ellipse><ellipse class="rp" style="animation-delay: -.9s" cx="760" cy="312" rx="10" ry="2.4"></ellipse><ellipse class="rp" style="animation-delay: -1.7s" cx="880" cy="296" rx="10" ry="2.4"></ellipse><ellipse class="rp" style="animation-delay: -.4s" cx="1000" cy="318" rx="10" ry="2.4"></ellipse><ellipse class="rp" style="animation-delay: -2.2s" cx="1120" cy="288" rx="10" ry="2.4"></ellipse><ellipse class="rp" style="animation-delay: -1.3s" cx="1240" cy="310" rx="10" ry="2.4"></ellipse><ellipse class="rp" style="animation-delay: -.6s" cx="1350" cy="296" rx="10" ry="2.4"></ellipse></g>
+<g style="opacity: var(--heatO); transition: opacity 1.1s ease"><rect class="sh" x="0" y="278" width="1460" height="8" fill="url(#wvp)" opacity=".8"></rect><rect class="sh" style="animation-duration: 3.6s" x="0" y="294" width="1460" height="8" fill="url(#wvp)" opacity=".6"></rect><rect class="sh" style="animation-duration: 2.4s" x="0" y="310" width="1460" height="8" fill="url(#wvp)" opacity=".5"></rect></g>
+</svg>
+<div aria-hidden="true" class="fer" style="position: absolute; left: 0; top: 278px; width: 64px; height: 28px; animation-delay: -46s"><svg class="bob" width="64" height="28" viewBox="-6 -8 64 28" style="display: block; overflow: visible"><path fill="#F4F4F0" opacity=".7" d="M-18 17h14v1.6h-14zM-30 19.5h20v1.4h-20z"></path><path fill="#1F6A4A" d="M0 11h58l-6 9H6zM26-6h6v7h-6z"></path><path fill="#E9B94A" d="M26-6h6v2h-6z"></path><path fill="#F3E7C9" d="M7 3h42v8H7zM15-2h26v5H15z"></path><path class="kfw" d="M10 5h4v3h-4zM17 5h4v3h-4zM24 5h4v3h-4zM31 5h4v3h-4zM38 5h4v3h-4zM18-.5h3v2.5h-3zM24-.5h3v2.5h-3zM30-.5h3v2.5h-3z"></path></svg></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; opacity: var(--rainO); transition: opacity .8s ease var(--rainD)">
+<div style="position: absolute; inset: -60px; transform: rotate(9deg)">
+<div class="fa" style="position: absolute; left: 0; right: 0; top: -100px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rn1)"></rect></svg></div>
+<div class="fa2" style="position: absolute; left: 0; right: 0; top: -140px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rn2)"></rect></svg></div>
+</div>
+</div>
+<svg aria-hidden="true" width="1408" height="330" style="position: absolute; left: 0; top: 0; opacity: .06; pointer-events: none"><rect width="1408" height="330" filter="url(#grain)"></rect></svg>
+<div style="position: absolute; left: 32px; top: 26px; width: 560px">
+<p class="t" style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px 0 11px; border-radius: 999px; background-color: var(--card); color: var(--ink); font-size: 13px; font-weight: 600; box-shadow: 0 6px 16px -8px rgba(10,20,40,0.45)"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3v4M15.5 3v4"></path></svg>Sat 3 – Sun 4 Oct · Sydney weekend finder</p>
+<h1 class="u" style="margin-top: 14px; color: var(--hl); font-weight: 700">
+<sc-if value="{{isSun}}" hint-placeholder-val="{{true}}"><span class="hw"><span class="a-rise hwd">Sunny?</span></span><span class="a-fu hl2">Get out on the water.</span></sc-if>
+<sc-if value="{{isCloud}}" hint-placeholder-val="{{false}}"><span class="hw"><span class="a-rise hwd">Cloudy?</span></span><span class="a-fu hl2">Soft light, easy walks.</span></sc-if>
+<sc-if value="{{isRain}}" hint-placeholder-val="{{false}}"><span class="hw"><span class="a-rise hwd">Rainy?</span></span><span class="a-fu hl2">Stay dry, still out.</span></sc-if>
+<sc-if value="{{isHot}}" hint-placeholder-val="{{false}}"><span class="hw"><span class="a-rise hwd">Hot 30°+?</span></span><span class="a-fu hl2">Chase the sea breeze.</span></sc-if>
+</h1>
+</div>
+</div>
+<fieldset style="position: absolute; left: 28px; bottom: -1px; margin: 0; padding: 0; border: 0; min-width: 0">
+<legend class="sr">Weather</legend>
+<div style="display: flex; align-items: flex-end; gap: 8px">
+<sc-for list="{{weathers}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="tb" style="width: 138px; height: {{w.h}}; margin-bottom: {{w.mb}}; padding: 7px 7px 0; box-sizing: border-box; border: 0; border-radius: {{w.rad}}; background-color: {{w.bg}}; box-shadow: {{w.ring}}; color: var(--ink); display: flex; flex-direction: column; align-items: stretch; gap: 7px">
+<span class="{{w.cls}}" style="position: relative; display: block; height: 46px; border-radius: 11px; overflow: hidden">
+<svg class="fx" aria-hidden="true"><use href="#mini"></use></svg>
+</span>
+<span style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: {{w.fw}}; white-space: nowrap"><svg width="15" height="15" aria-hidden="true"><use href="{{w.gHref}}"></use></svg>{{w.label}}</span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</header>
+
+<!-- filters -->
+<aside aria-label="Filters" class="t hs" style="position: absolute; left: 16px; top: 362px; width: 300px; bottom: 16px; box-sizing: border-box; padding: 20px 18px; border-radius: 24px; background-color: var(--card); box-shadow: 0 0 0 1px var(--line); overflow-y: auto; scrollbar-width: none">
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend class="lab" style="padding: 0">Who’s coming</legend>
+<div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{whos}}" as="o" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="pr" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{o.bd}}; background-color: {{o.bg}}; color: {{o.fg}}; font-size: 14.5px; font-weight: 600">{{o.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+<fieldset style="margin: 22px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="lab" style="padding: 0">How long</legend>
+<div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{durs}}" as="o" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="pr" style="height: 44px; padding: 0 15px; border-radius: 999px; border: 1.5px solid {{o.bd}}; background-color: {{o.bg}}; color: {{o.fg}}; font-size: 14px; font-weight: 600">{{o.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+<button type="button" aria-pressed="{{freePressed}}" onClick="{{toggleFree}}" class="pr" style="margin-top: 16px; width: 100%; height: 48px; padding: 0 14px; border-radius: 14px; border: 1.5px solid {{freeBd}}; background-color: {{freeBg}}; color: {{freeFg}}; font-size: 14.5px; font-weight: 600; display: flex; align-items: center; justify-content: space-between">Free only<span aria-hidden="true" style="position: relative; width: 34px; height: 20px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{trackBd}}; background-color: {{trackBg}}; transition: background-color .3s ease"><span style="position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background-color: {{knobBg}}; transform: {{knobX}}; transition: transform .38s cubic-bezier(.34,1.56,.64,1)"></span></span></button>
+
+<section class="t" style="margin-top: 22px; padding: 14px 16px; border-radius: 18px; background-color: var(--soft)">
+<h2 class="lab">How we rate it</h2>
+<p style="margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: 14px"><svg width="13" height="13" aria-hidden="true"><use href="#tG"></use></svg><b>Great</b><span style="color: var(--mute)">ideal conditions</span></p>
+<p style="margin-top: 7px; display: flex; align-items: center; gap: 8px; font-size: 14px"><svg width="13" height="13" aria-hidden="true"><use href="#tO"></use></svg><b>OK</b><span style="color: var(--mute)">doable, with caveats</span></p>
+<p style="margin-top: 7px; display: flex; align-items: center; gap: 8px; font-size: 14px"><svg width="13" height="13" aria-hidden="true"><use href="#tS"></use></svg><b>Skip</b><span style="color: var(--mute)">hidden from results</span></p>
+</section>
+<button type="button" onClick="{{resetFilters}}" class="pr" style="margin-top: 12px; height: 44px; padding: 0 6px; border: 0; background: transparent; color: var(--ink); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px">Reset filters</button>
+</aside>
+
+<!-- results -->
+<main class="hs" style="position: absolute; left: 328px; top: 346px; width: 728px; bottom: 0; box-sizing: border-box; padding: 16px 10px 28px; overflow-y: auto; scrollbar-width: none">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 4px 4px 14px">
+<h2 class="u" style="font-size: 22px; font-weight: 600; line-height: 1.2; letter-spacing: -0.015em">{{resultTitle}}</h2>
+<sc-if value="{{hasHidden}}" hint-placeholder-val="{{true}}">
+<p class="a-fade" style="flex-shrink: 0; display: flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--mute)"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4.2 9.5 6-.4.8-1.3 2-2.5 3.2M6.2 7.6C4.4 8.8 3.1 10.6 2.5 12c1 1.8 4.5 6 9.5 6 1.5 0 2.9-.4 4.1-1"></path></svg>{{hiddenNote}}</p>
+</sc-if>
+</div>
+<sc-if value="{{noResults}}" hint-placeholder-val="{{false}}">
+<div class="a-up t" style="padding: 24px; border-radius: 22px; background-color: var(--card); box-shadow: 0 0 0 1px var(--line)">
+<p class="u" style="font-size: 19px; font-weight: 600">Nothing fits that forecast yet.</p>
+<p style="margin-top: 6px; font-size: 14.5px; line-height: 1.45; color: var(--mute)">Try another group, or turn off Free only.</p>
+<button type="button" onClick="{{resetFilters}}" class="pr" style="margin-top: 14px; height: 44px; padding: 0 18px; border-radius: 14px; border: 0; background-color: var(--acc); color: var(--accInk); font-weight: 700">Reset filters</button>
+</div>
+</sc-if>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="4">
+<article class="a-up cd" style="animation-delay: {{c.delay}}; border-radius: 22px; background-color: var(--card); box-shadow: 0 0 0 1px var(--line), 0 12px 24px -20px rgba(10,20,40,0.5); overflow: hidden">
+<button type="button" onClick="{{c.open}}" style="width: 100%; padding: 14px 14px 12px; border: 0; background: transparent; text-align: left; display: flex; gap: 14px; align-items: flex-start">
+<span class="t" style="flex-shrink: 0; display: block; width: 80px; height: 80px; border-radius: 18px; overflow: hidden; background-color: var(--vsky)"><svg class="vi" viewBox="0 0 72 72" aria-hidden="true"><use href="{{c.vHref}}"></use></svg></span>
+<span style="flex: 1; min-width: 0; display: block">
+<span style="display: block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.cat}} · {{c.area}}</span>
+<span style="display: block; margin-top: 5px; font-size: 17px; font-weight: 700; line-height: 1.22; letter-spacing: -0.01em">{{c.name}}</span>
+<span style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 7px; font-size: 13px; color: var(--mute)">
+<span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>{{c.dur}}</span>
+<span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M4 9V7a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a3 3 0 0 0 0 6v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a3 3 0 0 0 0-6z"></path></svg>{{c.cost}}</span>
+</span>
+</span>
+</button>
+<div style="margin: 0 12px 10px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{c.wx}}" as="x" hint-placeholder-count="4">
+<span class="tl" style="display: flex; flex-direction: column; gap: 4px; padding: 7px 4px 8px 8px; border-radius: 12px; background-color: {{x.cellBg}}; color: {{x.cellFg}}; transform: {{x.cellT}}">
+<span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600"><svg width="13" height="13" aria-hidden="true"><use href="{{x.gHref}}"></use></svg>{{x.short}}<span class="sr">: </span></span>
+<span style="display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700"><svg width="11" height="11" aria-hidden="true"><use href="{{x.tHref}}"></use></svg>{{x.fitLabel}}</span>
+</span>
+</sc-for>
+</div>
+<div style="margin: 0 12px 12px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" aria-pressed="{{c.satPressed}}" aria-label="{{c.satAria}}" onClick="{{c.toggleSat}}" class="pr" style="height: 44px; border-radius: 13px; border: 1.5px solid {{c.satBd}}; background-color: {{c.satBg}}; color: {{c.satFg}}; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px"><sc-if value="{{c.inSat}}" hint-placeholder-val="{{false}}"><svg class="a-pop" width="15" height="15" aria-hidden="true"><use href="#iOk"></use></svg></sc-if><sc-if value="{{c.notSat}}" hint-placeholder-val="{{true}}"><svg width="15" height="15" aria-hidden="true"><use href="#iAdd"></use></svg></sc-if>Sat 3</button>
+<button type="button" aria-pressed="{{c.sunPressed}}" aria-label="{{c.sunAria}}" onClick="{{c.toggleSun}}" class="pr" style="height: 44px; border-radius: 13px; border: 1.5px solid {{c.sunBd}}; background-color: {{c.sunBg}}; color: {{c.sunFg}}; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px"><sc-if value="{{c.inSun}}" hint-placeholder-val="{{false}}"><svg class="a-pop" width="15" height="15" aria-hidden="true"><use href="#iOk"></use></svg></sc-if><sc-if value="{{c.notSun}}" hint-placeholder-val="{{true}}"><svg width="15" height="15" aria-hidden="true"><use href="#iAdd"></use></svg></sc-if>Sun 4</button>
+</div>
+</article>
+</sc-for>
+</div>
+</main>
+
+<!-- postcard rail -->
+<aside aria-label="This weekend" class="t hs" style="position: absolute; left: 1064px; top: 362px; width: 360px; bottom: 16px; box-sizing: border-box; padding: 18px 14px 22px; border-radius: 24px; background-color: var(--soft); overflow-y: auto; scrollbar-width: none">
+<header style="padding: 0 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<div>
+<h2 class="u" style="font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em">This weekend</h2>
+<p style="margin-top: 4px; font-size: 13.5px; color: var(--mute)">{{planCountLabel}}</p>
+</div>
+<button type="button" aria-pressed="{{sharePressed}}" onClick="{{toggleShare}}" class="pr" style="flex-shrink: 0; height: 44px; padding: 0 16px 0 13px; border-radius: 999px; border: 1.5px solid {{shareBd}}; background-color: {{shareBg}}; color: {{shareFg}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px">
+<sc-if value="{{notShared}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"></path><path d="M5 12v6.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V12"></path></svg></sc-if>
+<sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><svg class="a-pop" width="16" height="16" aria-hidden="true"><use href="#iOk"></use></svg></sc-if>
+Share</button>
+</div>
+<p aria-live="polite" style="font-size: 13.5px; font-weight: 600"><sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><span class="a-toast t" style="display: flex; align-items: center; gap: 7px; margin-top: 10px; padding: 9px 12px; border-radius: 12px; background-color: var(--card); box-shadow: 0 0 0 1px var(--line)"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg>{{shareLabel}}</span></sc-if></p>
+</header>
+
+<sc-for list="{{days}}" as="day" hint-placeholder-count="2">
+<section class="{{day.cls}}" style="animation-delay: {{day.delay}}; margin-top: 16px">
+<div class="t" style="transform: {{day.tilt}}; padding: 8px 8px 12px; border-radius: 22px; background-color: var(--card); color: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 20px 32px -24px rgba(10,20,40,0.6)">
+<div style="position: relative; height: 96px; border-radius: 15px; overflow: hidden">
+<svg class="fx" viewBox="0 0 200 80" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><rect class="op" width="200" height="80" fill="url(#gS)" style="opacity: var(--oS)"></rect><rect class="op" width="200" height="80" fill="url(#gC)" style="opacity: var(--oC)"></rect><rect class="op" width="200" height="80" fill="url(#gR)" style="opacity: var(--oR)"></rect><rect class="op" width="200" height="80" fill="url(#gH)" style="opacity: var(--oH)"></rect><g class="mv" style="transform: var(--msT); transition-delay: var(--sunD)"><circle class="kh" cx="140" cy="22" r="15"></circle><circle class="ku" cx="140" cy="22" r="9"></circle></g><g class="sl" style="transform: var(--mcL)"><use href="#cl" class="kcl" transform="translate(26 2) scale(.42)"></use><use href="#cl" class="kcl2" transform="translate(58 16) scale(.3)"></use></g><g class="sl" style="transform: var(--mcR)"><use href="#cl" class="kcl" transform="translate(112 0) scale(.46)"></use><use href="#cl" class="kcl2" transform="translate(152 18) scale(.3)"></use></g><path class="kf" d="M0 52C20 46 40 46 60 50S100 54 130 48 180 44 200 46V62H0Z"></path><path class="kc" d="M62 34h9V61H62zM73 26h10V61H73zM85 38h8V61H85zM95 22h9V61H95zM106 32h10V61H106zM118 40h7V61H118z"></path><g class="op" style="opacity: var(--winO); transition-delay: var(--winD)"><path class="kn" d="M64 38h1.4v2H64zM67.5 48h1.4v2h-1.4zM78.5 45h1.4v2h-1.4zM87 42h1.4v2H87zM97 31h1.4v2H97zM100.5 36h1.4v2h-1.4zM100.5 51h1.4v2h-1.4zM111.5 36h1.4v2h-1.4zM108 46h1.4v2H108zM120 49h1.4v2H120z"></path></g><path class="kb" d="M4 60Q50 0 96 60H92Q50 8 8 60zM-4 49h110v2.2H-4zM92 42h7v19h-7zM0 42h7v19H0z"></path><path class="ks" d="M122 59C124 50 130 44 138 42C135 48 135 54 137 59ZM134 59C136 48 144 40 156 38C151 46 151 53 153 59ZM150 59C152 51 158 47 166 46C163 51 163 55 165 59Z"></path><rect class="kw" y="58.5" width="200" height="21.5"></rect><path class="kg" style="opacity: var(--glO)" d="M130 62h20v1.4h-20zM134 66h12v1.2h-12z"></path><use href="#wm" class="op" y="66" style="opacity: var(--heatO)" fill="none" stroke="#FFE2B0" stroke-width="1.2"></use><g style="opacity: var(--rainO); transition: opacity .8s ease var(--rainD)"><rect class="fam" y="-30" width="200" height="110" fill="url(#rnM)"></rect></g></svg>
+<div aria-hidden="true" class="t" style="position: absolute; right: 9px; top: 9px; width: 44px; padding: 5px 0 4px; border-radius: 3px; background-color: var(--card); color: var(--ink); text-align: center; box-shadow: 0 0 0 3px var(--card), 0 0 0 4px var(--line), 0 8px 16px -8px rgba(10,20,40,0.6)">
+<span style="display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.12em">{{day.short}}</span>
+<span class="u" style="display: block; font-size: 19px; font-weight: 700; line-height: 1.05">{{day.dayNum}}</span>
+<span style="display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.12em">OCT</span>
+</div>
+</div>
+<div style="padding: 12px 6px 0; display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<h3 class="u" style="font-size: 19px; font-weight: 600; letter-spacing: -0.02em">{{day.label}}</h3>
+<p style="font-size: 13px; color: var(--mute)">{{day.forecastLabel}} forecast</p>
+</div>
+<sc-if value="{{day.hasWarn}}" hint-placeholder-val="{{false}}"><p class="a-fade" style="margin: 8px 6px 0; display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background-color: var(--soft); font-size: 12.5px; font-weight: 700"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>{{day.warnText}}</p></sc-if>
+<fieldset style="margin: 10px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="sr">{{day.label}} forecast</legend>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px">
+<sc-for list="{{day.wx}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" aria-label="{{w.aria}}" onClick="{{w.pick}}" class="pr" style="height: 44px; padding: 0; border: 0; border-radius: 12px; background-color: {{w.bg}}; color: {{w.fg}}; font-size: 12.5px; font-weight: {{w.fw}}; display: flex; align-items: center; justify-content: center; gap: 4px"><svg width="15" height="15" aria-hidden="true"><use href="{{w.gHref}}"></use></svg><span aria-hidden="true">{{w.short}}</span></button>
+</sc-for>
+</div>
+</fieldset>
+
+<sc-for list="{{day.items}}" as="it" hint-placeholder-count="2">
+<div class="a-up t" style="animation-delay: {{it.delay}}; margin-top: 8px; border-radius: 15px; background-color: var(--soft)">
+<div style="display: flex; align-items: center; gap: 4px; padding: 3px 3px 3px 13px">
+<button type="button" onClick="{{it.open}}" style="flex: 1; min-width: 0; min-height: 54px; padding: 7px 0; border: 0; background: transparent; text-align: left; color: inherit; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 14.5px; font-weight: 650; line-height: 1.25">{{it.name}}</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--mute)"><svg width="11" height="11" aria-hidden="true" style="color: var(--ink)"><use href="{{it.tHref}}"></use></svg>{{it.fitLabel}} · {{it.dur}}</span>
+</button>
+<button type="button" aria-label="{{it.removeLabel}}" onClick="{{it.remove}}" class="pr" style="flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 12px; background: transparent; color: var(--mute); display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<sc-if value="{{it.hasBackup}}" hint-placeholder-val="{{false}}">
+<div class="a-note" style="position: relative; margin: 4px 10px 12px 16px; padding: 16px 13px 13px; border-radius: 6px 6px 16px 6px; background-color: var(--note); color: var(--ink); transform: rotate(-1.2deg); box-shadow: 0 12px 22px -14px rgba(10,20,40,0.65)">
+<span aria-hidden="true" style="position: absolute; left: 50%; top: -8px; width: 54px; height: 15px; margin-left: -27px; background: rgba(255,255,255,0.55); transform: rotate(3deg); box-shadow: 0 0 0 1px rgba(0,0,0,0.05)"></span>
+<p style="font-size: 12.5px; line-height: 1.4; color: var(--mute)">{{it.badText}}</p>
+<p style="margin-top: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">Plan B</p>
+<p class="u" style="margin-top: 3px; font-size: 15px; font-weight: 600; line-height: 1.22">{{it.backup.name}}</p>
+<p style="margin-top: 3px; font-size: 12.5px; color: var(--mute)">{{it.backup.area}} · {{it.backup.dur}}</p>
+<button type="button" onClick="{{it.backup.swap}}" class="pr" style="margin-top: 9px; height: 44px; padding: 0 15px; border: 0; border-radius: 12px; background-color: var(--acc); color: var(--accInk); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="stroke-width: 2.4"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg>Swap it in</button>
+</div>
+</sc-if>
+<sc-if value="{{it.badOnly}}" hint-placeholder-val="{{false}}">
+<p class="a-note" style="margin: 4px 10px 12px 16px; padding: 11px 13px; border-radius: 6px 6px 16px 6px; background-color: var(--note); transform: rotate(-1.2deg); font-size: 13px; line-height: 1.4">{{it.badText}} Try moving it to the other day.</p>
+</sc-if>
+</div>
+</sc-for>
+
+<sc-if value="{{day.isEmpty}}" hint-placeholder-val="{{false}}">
+<div class="a-fade" style="margin-top: 10px; padding: 14px; border-radius: 15px; border: 1.5px dashed var(--line)">
+<p style="font-size: 14.5px; font-weight: 600">Nothing planned for {{day.label}} yet.</p>
+<p style="margin-top: 4px; font-size: 13px; color: var(--mute)">Use the Sat and Sun buttons on any card.</p>
+</div>
+</sc-if>
+</div>
+</section>
+</sc-for>
+</aside>
+
+<!-- ================= DETAIL: the full detail page (B-Detail-Desktop), sharing this prototype's weather and weekend plan ================= -->
+<sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
+<div class="a-fade" style="position: absolute; inset: 0; z-index: 30">
+<dc-import name="B-Detail-Desktop" activity="{{d.id}}" weather="{{weather}}" in-sat="{{d.inSat}}" in-sun="{{d.inSun}}" back="{{goBack}}" toggle-sat="{{d.toggleSat}}" toggle-sun="{{d.toggleSun}}" set-weather="{{setWeather}}" open-activity="{{openActivity}}" hint-size="1440px,960px"></dc-import>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startWeather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"sun"},"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      screen: "discover", from: "discover", openId: null,
+      weather: (this.props && this.props.startWeather) || "sun",
+      who: "any", dur: "any", freeOnly: false,
+      sat: ["bondi-coogee", "rocks-markets"], sun: ["three-sisters"],
+      satW: "sun", sunW: "rain", shared: false
+    };
+    // Rating vocabulary: index 0 = skip, 1 = ok, 2 = great. A direction may reword these (keep them short).
+    this.FIT = [
+      { label: "Skip", note: "Save it for another day" },
+      { label: "OK", note: "Doable, with caveats" },
+      { label: "Great", note: "Ideal conditions" }
+    ];
+    this.WX = [
+      { key: "sun", label: "Sunny", short: "Sun", adj: "sunny", bad: "Not ideal in full sun." },
+      { key: "cloud", label: "Cloudy", short: "Cloud", adj: "cloudy", bad: "Not ideal under heavy cloud." },
+      { key: "rain", label: "Rainy", short: "Rain", adj: "rainy", bad: "Not great in the rain." },
+      { key: "hot", label: "Hot 30°+", short: "Hot", adj: "hot", bad: "Not great in the heat." }
+    ];
+    this.WHO = [
+      { key: "any", label: "Anyone" }, { key: "date", label: "Date" },
+      { key: "friends", label: "Friends" }, { key: "family", label: "Family" }, { key: "solo", label: "Solo" }
+    ];
+    this.DUR = [
+      { key: "any", label: "Any length" }, { key: "short", label: "Under 3 hrs" },
+      { key: "half", label: "Half day" }, { key: "full", label: "Full day" }
+    ];
+    // w = [sunny, cloudy, rainy, hot]: 2 great, 1 ok, 0 skip · h = [minHours, maxHours]
+    this.acts = [
+      { id: "bondi-coogee", name: "Bondi to Coogee Coastal Walk", area: "Eastern Suburbs", cat: "Coastal walk", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Sydney's most famous clifftop walk, linking six beaches and ocean pools.",
+        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach. Bus back to the city from Coogee.",
+        tip: "Pack swimmers: Bronte and Clovelly make great mid-walk dips. Lots of stairs, so leave the pram at home.",
+        wxTip: "Exposed clifftops with little shade. Go early on hot days, and skip it in rain when the rocks get slippery." },
+      { id: "manly", name: "Ferry to Manly & Shelly Beach", area: "Northern Beaches", cat: "Ferry & beach", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "The harbour's best-value view, then a relaxed beach town with calm snorkelling.",
+        getThere: "F1 ferry from Circular Quay, about 30 min. Tap on with Opal or a contactless card.",
+        tip: "Grab an outside seat for Opera House and Harbour Bridge views. Walk along to Shelly Beach for calmer water and snorkelling.",
+        wxTip: "The ferry ride is lovely even under cloud. Beach time needs sunshine." },
+      { id: "spit-manly", name: "Spit Bridge to Manly Walk", area: "Northern Beaches", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "solo"],
+        blurb: "Ten kilometres of bush, hidden beaches and harbour lookouts, ending in Manly.",
+        getThere: "Bus from Wynyard to Spit Bridge. Ferry home from Manly to Circular Quay.",
+        tip: "About 10 km of bush, hidden beaches and harbour lookouts. Finish with fish and chips in Manly and ride the ferry home.",
+        wxTip: "Mostly shaded, so it's bearable when warm. Muddy and slippery after rain." },
+      { id: "three-sisters", name: "Three Sisters & Echo Point", area: "Blue Mountains", cat: "Lookout & walk", dur: "Full day", h: [6, 9], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "The iconic sandstone peaks over the Jamison Valley, two hours by train.",
+        getThere: "Blue Mountains line from Central to Katoomba (about 2 hrs), then a local bus or 25 min walk to Echo Point.",
+        tip: "Walk the Prince Henry Cliff Walk between lookouts. It's several degrees cooler than the city, so bring a layer.",
+        wxTip: "Low cloud can hide the valley completely. A great escape on a scorching city day." },
+      { id: "wentworth", name: "Wentworth Falls & National Pass", area: "Blue Mountains", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "$", w: [2, 1, 0, 1], with: ["friends", "solo"],
+        blurb: "Stairs cut into cliffs beside a tall waterfall. A proper adventure.",
+        getThere: "Train from Central to Wentworth Falls station, then walk to the Falls Reserve picnic area.",
+        tip: "One of the most spectacular walks in the mountains, with stairs cut into the cliffs. Check NSW National Parks for track closures first.",
+        wxTip: "Steep stairs and cliff edges get dangerous when wet. Start early in summer." },
+      { id: "botanic", name: "Royal Botanic Garden & Mrs Macquarie's Chair", area: "City", cat: "Gardens", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Harbourside gardens with the classic Opera House and Bridge photo spot.",
+        getThere: "Walk from Circular Quay or Martin Place station.",
+        tip: "Follow the harbour path to Mrs Macquarie's Chair for the classic Opera House and Bridge photo. Picnics welcome.",
+        wxTip: "Shady lawns help on warm days, but there's little shelter in rain." },
+      { id: "opera-tour", name: "Sydney Opera House Tour", area: "City", cat: "Culture", dur: "1 hr", h: [1, 1], cost: "$$", w: [2, 2, 2, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Go behind the sails of Australia's most famous building.",
+        getThere: "Short walk from Circular Quay station and ferry wharves.",
+        tip: "Book the guided tour online. Stay for a drink at the Opera Bar steps afterwards.",
+        wxTip: "Indoors, so it works in any weather." },
+      { id: "agnsw", name: "Art Gallery of NSW", area: "The Domain", cat: "Gallery", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [1, 2, 2, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Free, world-class art across two buildings, with a rooftop harbour view.",
+        getThere: "Walk from St James or Martin Place station through the Domain.",
+        tip: "General entry is free. Don't miss the newer Naala Badu building and its rooftop views.",
+        wxTip: "A perfect refuge on a rainy or sweltering day." },
+      { id: "aus-museum", name: "Australian Museum", area: "City", cat: "Museum", dur: "2 hrs", h: [2, 2], cost: "Free", w: [1, 2, 2, 2], with: ["date", "family", "solo"],
+        blurb: "First Nations cultures, dinosaurs and Australia's strange wildlife, for free.",
+        getThere: "Opposite Hyde Park, near Museum and St James stations.",
+        tip: "Free general entry. A great introduction to First Nations cultures and Australia's unusual wildlife.",
+        wxTip: "Indoors and air-conditioned." },
+      { id: "taronga", name: "Taronga Zoo", area: "Mosman", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "Koalas, kangaroos and giraffes with a harbour skyline behind them.",
+        getThere: "F2 ferry from Circular Quay to Taronga Zoo wharf, about 12 min.",
+        tip: "Ride the Sky Safari cable car up from the wharf, then walk downhill. Koalas and kangaroos with harbour views.",
+        wxTip: "Mostly outdoors and hilly. Light rain means thinner crowds." },
+      { id: "watsons", name: "Watsons Bay & The Gap", area: "Eastern Suburbs", cat: "Ferry & lookout", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 0, 1], with: ["date", "friends", "family"],
+        blurb: "Ferry out to fish and chips, then wild ocean cliffs at South Head.",
+        getThere: "F9 ferry from Circular Quay to Watsons Bay.",
+        tip: "Fish and chips by the wharf, then walk up to the Gap cliffs and Hornby Lighthouse at South Head.",
+        wxTip: "Windy and exposed on the cliffs. Best on a clear day." },
+      { id: "bridge-walk", name: "Walk across the Harbour Bridge", area: "The Rocks", cat: "Landmark", dur: "1 hr", h: [1, 1], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Cross the Coathanger on foot for free, with the Opera House below.",
+        getThere: "Stairs up from Cumberland St in The Rocks. Finish at Milsons Point station.",
+        tip: "Use the eastern footpath for Opera House views. Pay a few dollars for the Pylon Lookout, or splurge on BridgeClimb.",
+        wxTip: "Fine under an umbrella, but very exposed in the heat." },
+      { id: "rocks-markets", name: "The Rocks Markets", area: "The Rocks", cat: "Markets", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Weekend stalls, street food and sandstone laneways by the harbour.",
+        getThere: "Short walk from Circular Quay or Wynyard.",
+        tip: "Runs on weekends. Wander the sandstone laneways and historic pubs afterwards.",
+        wxTip: "Partly covered, so it's workable in light rain." },
+      { id: "cockatoo", name: "Cockatoo Island", area: "Sydney Harbour", cat: "History", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "A convict-era island of tunnels and shipyards in the middle of the harbour.",
+        getThere: "F3 or F8 ferry from Circular Quay.",
+        tip: "A UNESCO-listed convict site with tunnels and old shipyards. You can even glamp overnight.",
+        wxTip: "Tunnels and industrial sheds give some shelter." },
+      { id: "balmoral", name: "Balmoral Beach", area: "Mosman", cat: "Beach", dur: "Half day", h: [3, 5], cost: "Free", w: [2, 1, 0, 2], with: ["date", "family"],
+        blurb: "A calm harbour beach with fig trees, a promenade and gentle water.",
+        getThere: "Bus from Wynyard or the city, about 40 min.",
+        tip: "Calm, sheltered harbour water that suits kids and newer swimmers. Great spot for a picnic under the fig trees.",
+        wxTip: "Best on hot days when ocean beaches are rough or packed." },
+      { id: "icebergs", name: "Bondi Icebergs Pool", area: "Bondi", cat: "Swimming", dur: "1–2 hrs", h: [1, 2], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "solo"],
+        blurb: "Laps in the famous ocean pool where waves crash over the edge.",
+        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach.",
+        tip: "Swim in the famous ocean pool at the south end of Bondi. On the beach itself, always swim between the red and yellow flags.",
+        wxTip: "Made for hot days." },
+      { id: "sea-life", name: "SEA LIFE Aquarium", area: "Darling Harbour", cat: "Wildlife", dur: "2 hrs", h: [2, 2], cost: "$$$", w: [1, 2, 2, 2], with: ["date", "family"],
+        blurb: "Sharks, dugongs and the Great Barrier Reef, all under one roof.",
+        getThere: "Walk from Town Hall or Wynyard station.",
+        tip: "Book online for cheaper entry, and look at combo tickets with WILD LIFE Sydney Zoo next door.",
+        wxTip: "Indoors: a reliable rainy-day pick for kids." },
+      { id: "featherdale", name: "Featherdale Wildlife Park", area: "Western Sydney", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "Hand-feed kangaroos and meet koalas up close.",
+        getThere: "Train to Blacktown, then a short bus ride.",
+        tip: "Get up close with kangaroos, wallabies and koalas. A first-month favourite for newcomers.",
+        wxTip: "Mostly outdoors, with some covered areas." },
+      { id: "chinatown", name: "Haymarket & Chinatown Food Crawl", area: "Haymarket", cat: "Food", dur: "2–3 hrs", h: [2, 3], cost: "$$", w: [1, 2, 2, 2], with: ["date", "friends", "family"],
+        blurb: "Dumplings, Thai Town and bustling food courts in the city's south.",
+        getThere: "Train to Central or Town Hall, or light rail to Chinatown.",
+        tip: "Graze through Dixon Street, the food courts and Thai Town on Campbell Street. Go hungry.",
+        wxTip: "Food courts and restaurants keep you dry and cool." },
+      { id: "newtown", name: "Newtown Street Art & King St", area: "Inner West", cat: "Neighbourhood", dur: "2–3 hrs", h: [2, 3], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "solo"],
+        blurb: "Murals, vintage shops and food from everywhere on one long street.",
+        getThere: "Train to Newtown station.",
+        tip: "Murals, vintage shops, bookstores and food from everywhere. Stays lively into the night.",
+        wxTip: "Plenty of cafés and shops to duck into." },
+      { id: "royal-np", name: "Royal National Park via Bundeena", area: "Sutherland Shire", cat: "Coastal walk", dur: "Full day", h: [6, 8], cost: "$", w: [2, 1, 0, 1], with: ["date", "friends", "solo"],
+        blurb: "A little ferry to the world's second-oldest national park.",
+        getThere: "Train to Cronulla, then the small ferry across Port Hacking to Bundeena.",
+        tip: "Walk to Jibbon Beach and the Aboriginal rock engravings. Carry plenty of water, as facilities are few.",
+        wxTip: "Exposed coastal heath. Hard going in the heat." },
+      { id: "palm-beach", name: "Palm Beach & Barrenjoey Lighthouse", area: "Northern Beaches", cat: "Lookout & beach", dur: "Full day", h: [6, 8], cost: "$", w: [2, 1, 0, 1], with: ["date", "friends"],
+        blurb: "A lighthouse climb at the tip of the Northern Beaches.",
+        getThere: "Bus from Manly wharf (about 75 min), or drive.",
+        tip: "Climb the short, steep track to Barrenjoey Lighthouse for views over Pittwater and the ocean.",
+        wxTip: "Only worth the long trip on a clear day." },
+      { id: "clovelly", name: "Clovelly Beach", area: "Eastern Suburbs", cat: "Swimming", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "A calm, narrow inlet made for swimming and snorkelling with friendly fish.",
+        getThere: "Bus 339 from Central to Clovelly, then a short walk down to the water.",
+        tip: "Bring a mask and snorkel: the blue groper here are famously curious. The concrete platforms make it easy to get in.",
+        wxTip: "Sheltered from big swell, so it's good when surf beaches are rough. Little shade, and no fun in the rain." },
+      { id: "coogee", name: "Coogee Beach & Ocean Pools", area: "Eastern Suburbs", cat: "Beach", dur: "Half day", h: [2, 5], cost: "Free", w: [2, 2, 1, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Relaxed beach with three ocean pools at either end and cafés across the road.",
+        getThere: "Bus 372 from Central or 373 from Circular Quay to Coogee Beach.",
+        tip: "Wylie's Baths, at the south end, is a beautiful old tidal pool on the rocks. It's the best swim when the surf is up.",
+        wxTip: "Great on sunny and hot days. On a grey day the cafés on Coogee Bay Rd carry it." },
+      { id: "north-head", name: "North Head Lookouts", area: "Manly", cat: "Lookout & walk", dur: "2–3 hrs", h: [2, 4], cost: "$", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Cliff-top views across the harbour entrance, a short walk from Manly.",
+        getThere: "Ferry to Manly, then bus 135 up to North Head, or walk up via Shelly Beach (about 1 hr).",
+        tip: "Fairfax Lookout is the view, but the old military tunnels and the quiet bush walks are what make it a morning.",
+        wxTip: "Fine under cloud. Very exposed in heat and wind, and the views vanish in rain." },
+      { id: "cronulla", name: "Cronulla Beach & Esplanade", area: "Sutherland Shire", cat: "Beach", dur: "Half day", h: [2, 5], cost: "Free", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "The only Sydney surf beach on the train line, with a long seaside path and rock pools.",
+        getThere: "T4 Illawarra line to Cronulla, the last stop. The beach is a 6 minute walk.",
+        tip: "Walk the Esplanade south to the ocean pools at Shelly Park, then get fish and chips back near the station.",
+        wxTip: "Best on hot and sunny days. Swim between the flags: the surf can be strong." },
+      { id: "carriageworks", name: "Carriageworks Farmers Market", area: "Inner City", cat: "Markets", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 2, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Saturday-morning food market inside giant old railway workshops.",
+        getThere: "Train to Redfern, then an 8 minute walk through Little Eveleigh St.",
+        tip: "Saturdays only, roughly 8am to 1pm. Go early, bring a bag, and have breakfast there.",
+        wxTip: "Under cover in the old rail sheds, so it works in any weather." },
+      { id: "parramatta", name: "Parramatta River & Eat Street", area: "Parramatta", cat: "Neighbourhood", dur: "Half day", h: [2, 5], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Riverside walks, colonial history and a whole street of restaurants.",
+        getThere: "T1 train to Parramatta, or the slow, scenic F3 ferry up the river from Circular Quay.",
+        tip: "Take the ferry one way for the river views, then eat on Church St. Old Government House is in Parramatta Park.",
+        wxTip: "Restaurants and the museum-style sights work in rain. The river walk is exposed on hot days." },
+      { id: "leura", name: "Leura Village & Gardens", area: "Blue Mountains", cat: "Neighbourhood", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 2], with: ["date", "friends", "family"],
+        blurb: "A pretty mountain village of cafés and gardens, a short walk from the cliffs.",
+        getThere: "Blue Mountains Line to Leura. The village starts at the station.",
+        tip: "Easy to pair with Echo Point, one stop on. Walk down to Leura Cascades for a quick taste of the bush.",
+        wxTip: "Cooler than the city, so good on hot days. The cafés and shops make a wet day work too." }
+    ];
+  }
+
+  // ---- Shared behaviour: identical in every direction. Do not change the logic. ----
+  baseVals() {
+    const s = this.state, WX = this.WX, WHO = this.WHO, DUR = this.DUR, FIT = this.FIT, acts = this.acts;
+    const byId = {};
+    acts.forEach((a) => { byId[a.id] = a; });
+    const wIdx = (k) => WX.findIndex((w) => w.key === k);
+    const flags = (k) => ({ isSun: k === "sun", isCloud: k === "cloud", isRain: k === "rain", isHot: k === "hot" });
+    const fitFlags = (f) => ({ fit: f, isGreat: f === 2, isOk: f === 1, isSkip: f === 0, fitLabel: FIT[f].label, fitNote: FIT[f].note });
+    const inSat = (id) => s.sat.indexOf(id) >= 0;
+    const inSun = (id) => s.sun.indexOf(id) >= 0;
+    const inPlan = (id) => inSat(id) || inSun(id);
+    const open = (id) => () => this.setState({ screen: "detail", openId: id, from: this.state.screen === "detail" ? this.state.from : this.state.screen });
+    const toggleDay = (key, id) => () => {
+      const list = this.state[key];
+      this.setState({ [key]: list.indexOf(id) >= 0 ? list.filter((x) => x !== id) : list.concat([id]) });
+    };
+    const pickable = (list, cur, stateKey) => list.map((o, i) => ({
+      key: o.key, label: o.label, index: i, selected: cur === o.key, notSelected: cur !== o.key,
+      pressed: cur === o.key ? "true" : "false", pick: () => this.setState({ [stateKey]: o.key })
+    }));
+    const dayBits = (a) => ({
+      inSat: inSat(a.id), notSat: !inSat(a.id), satPressed: inSat(a.id) ? "true" : "false",
+      satAria: inSat(a.id) ? "Remove " + a.name + " from Saturday" : "Add " + a.name + " to Saturday",
+      toggleSat: toggleDay("sat", a.id),
+      inSun: inSun(a.id), notSun: !inSun(a.id), sunPressed: inSun(a.id) ? "true" : "false",
+      sunAria: inSun(a.id) ? "Remove " + a.name + " from Sunday" : "Add " + a.name + " to Sunday",
+      toggleSun: toggleDay("sun", a.id),
+      planned: inPlan(a.id),
+      plannedLabel: "Planned for " + [inSat(a.id) ? "Saturday" : null, inSun(a.id) ? "Sunday" : null].filter(Boolean).join(" & ")
+    });
+
+    // Filters
+    const wi = wIdx(s.weather), cw = WX[wi];
+    const weathers = WX.map((w, i) => Object.assign(flags(w.key), {
+      key: w.key, label: w.label, short: w.short, index: i, selected: s.weather === w.key, notSelected: s.weather !== w.key,
+      pressed: s.weather === w.key ? "true" : "false", pick: () => this.setState({ weather: w.key })
+    }));
+
+    // Ranking (spec 6.1)
+    const durOk = (a) => s.dur === "any"
+      || (s.dur === "short" && a.h[1] <= 3)
+      || (s.dur === "half" && a.h[0] <= 5 && a.h[1] >= 2)
+      || (s.dur === "full" && a.h[1] >= 5);
+    const pool = acts.filter((a) => (s.who === "any" || a.with.indexOf(s.who) >= 0) && (!s.freeOnly || a.cost === "Free") && durOk(a));
+    const shown = pool.filter((a) => a.w[wi] > 0).sort((a, b) =>
+      (b.w[wi] - a.w[wi]) || ((inPlan(a.id) ? 1 : 0) - (inPlan(b.id) ? 1 : 0)) || a.name.localeCompare(b.name));
+    const hidden = pool.length - shown.length;
+    const cards = shown.map((a, i) => Object.assign(fitFlags(a.w[wi]), dayBits(a), {
+      id: a.id, index: i, num: (i + 1 < 10 ? "0" : "") + (i + 1), delay: (i * 60) + "ms", isFirst: i === 0, notFirst: i !== 0,
+      name: a.name, area: a.area, cat: a.cat, dur: a.dur, cost: a.cost, blurb: a.blurb,
+      fitText: FIT[a.w[wi]].label + " when " + cw.adj,
+      open: open(a.id),
+      wx: WX.map((w, j) => Object.assign(flags(w.key), fitFlags(a.w[j]), { wname: w.label, short: w.short, current: j === wi, notCurrent: j !== wi }))
+    }));
+
+    // Detail
+    const a = byId[s.openId] || acts[0];
+    const d = Object.assign(dayBits(a), {
+      id: a.id, name: a.name, area: a.area, cat: a.cat, dur: a.dur, cost: a.cost, blurb: a.blurb,
+      getThere: a.getThere, tip: a.tip, wxTip: a.wxTip,
+      withTags: a.with.map((k) => ({ label: (WHO.find((o) => o.key === k) || {}).label })),
+      wxRows: WX.map((w, j) => Object.assign(flags(w.key), fitFlags(a.w[j]), { label: w.label, short: w.short, current: j === wi })),
+      nowFit: Object.assign(fitFlags(a.w[wi]), { text: FIT[a.w[wi]].label + " when " + cw.adj }),
+      satLabel: inSat(a.id) ? "On Saturday" : "Add to Saturday",
+      sunLabel: inSun(a.id) ? "On Sunday" : "Add to Sunday"
+    });
+
+    // My weekend + Plan B (spec 6.2)
+    const used = {};
+    s.sat.concat(s.sun).forEach((id) => { used[id] = true; });
+    const costRank = { "Free": 0, "$": 1, "$$": 2, "$$$": 3 };
+    const indoor = (x) => x.w[2] === 2;
+    const planB = (x, di) => {
+      const cands = acts.filter((c) => !used[c.id] && c.w[di] === 2 && c.with.some((t) => x.with.indexOf(t) >= 0));
+      if (!cands.length) return null;
+      const score = (c) => (c.area === x.area ? 3 : 0) + (indoor(c) === indoor(x) ? 2 : 0)
+        + (c.h[0] <= x.h[1] && c.h[1] >= x.h[0] ? 1 : 0) + (costRank[c.cost] <= costRank[x.cost] ? 1 : 0);
+      cands.sort((p, q) => (score(q) - score(p)) || p.name.localeCompare(q.name));
+      return cands[0];
+    };
+    const goDiscover = () => this.setState({ screen: "discover" });
+    const days = [["sat", "Saturday", "Sat 3 Oct", "Sat", "3"], ["sun", "Sunday", "Sun 4 Oct", "Sun", "4"]].map((row) => {
+      const key = row[0], label = row[1];
+      const dw = s[key + "W"], di = wIdx(dw);
+      const items = s[key].map((id, i) => {
+        const it = byId[id], bad = it.w[di] === 0;
+        let backup = null;
+        if (bad) {
+          const b = planB(it, di);
+          if (b) {
+            used[b.id] = true;
+            backup = { name: b.name, area: b.area, dur: b.dur, cat: b.cat, swap: () => this.setState({ [key]: this.state[key].map((v) => (v === id ? b.id : v)) }) };
+          }
+        }
+        return Object.assign(fitFlags(it.w[di]), {
+          id: id, index: i, delay: (i * 80) + "ms", name: it.name, area: it.area, dur: it.dur, cat: it.cat, cost: it.cost,
+          badText: WX[di].bad, hasBackup: !!backup, badOnly: bad && !backup,
+          backup: backup || { name: "", area: "", dur: "", cat: "", swap: null },
+          open: open(id), removeLabel: "Remove " + it.name + " from " + label,
+          remove: () => this.setState({ [key]: this.state[key].filter((v) => v !== id) })
+        });
+      });
+      return Object.assign(flags(dw), {
+        key: key, label: label, date: row[2], short: row[3], dayNum: row[4],
+        forecast: dw, forecastLabel: WX[di].label, forecastAdj: WX[di].adj,
+        items: items, isEmpty: items.length === 0, hasItems: items.length > 0, find: goDiscover,
+        warnCount: items.filter((x) => x.isSkip).length,
+        wx: WX.map((w) => Object.assign(flags(w.key), {
+          key: w.key, short: w.short, label: w.label, aria: label + " forecast: " + w.label,
+          selected: dw === w.key, notSelected: dw !== w.key, pressed: dw === w.key ? "true" : "false",
+          pick: () => this.setState({ [key + "W"]: w.key })
+        }))
+      });
+    });
+
+    const count = s.sat.length + s.sun.length;
+    const scr = s.screen;
+    return Object.assign(flags(s.weather), {
+      isDiscover: scr === "discover", isDetail: scr === "detail", isPlan: scr === "plan",
+      notDetail: scr !== "detail", showTabs: scr !== "detail",
+      weather: s.weather, wxLabel: cw.label, wxAdj: cw.adj, wxShort: cw.short,
+      weathers: weathers, whos: pickable(WHO, s.who, "who"), durs: pickable(DUR, s.dur, "dur"),
+      freeOnly: s.freeOnly, notFreeOnly: !s.freeOnly, freePressed: s.freeOnly ? "true" : "false",
+      toggleFree: () => this.setState({ freeOnly: !this.state.freeOnly }),
+      resetFilters: () => this.setState({ weather: "sun", who: "any", dur: "any", freeOnly: false }),
+      cards: cards, resultCount: String(cards.length), noResults: cards.length === 0, hasResults: cards.length > 0,
+      resultTitle: cards.length + (cards.length === 1 ? " idea" : " ideas") + " for a " + cw.adj + " day",
+      hasHidden: hidden > 0, hiddenCount: String(hidden),
+      hiddenNote: hidden + (hidden === 1 ? " more is" : " more are") + " better saved for another day",
+      d: d, goBack: () => this.setState({ screen: this.state.from || "discover" }),
+      days: days, planCount: String(count),
+      planCountLabel: count + (count === 1 ? " activity" : " activities"),
+      shared: s.shared, notShared: !s.shared,
+      shareLabel: s.shared ? "Link copied: send it to your group" : "Share plan with your group",
+      toggleShare: () => this.setState({ shared: !this.state.shared }),
+      goDiscover: goDiscover, goPlan: () => this.setState({ screen: "plan" }),
+      setWeather: (k) => this.setState({ weather: k }),
+      openActivity: (id) => this.setState({ screen: "detail", openId: id }),
+      tabDiscoverCurrent: scr === "discover" ? "page" : "false", tabPlanCurrent: scr === "plan" ? "page" : "false"
+    });
+  }
+
+  // ---- Direction-specific values (colours per weather, per-item styles). Write this per artboard. ----
+  themeVals(v) {
+    // Harbour Window desktop: same weather classes as the phone; this picks classes, symbol refs, tab shapes and pressed states.
+    const VG = { "Coastal walk": "walk", "Bushwalk": "walk", "Lookout & walk": "walk", "Ferry & beach": "ferry", "Ferry & lookout": "ferry", "History": "ferry", "Beach": "beach", "Swimming": "beach", "Lookout & beach": "beach", "Gallery": "museum", "Museum": "museum", "Wildlife": "wild", "Gardens": "garden", "Food": "food", "Markets": "market", "Neighbourhood": "market", "Culture": "mark", "Landmark": "mark" };
+    const vf = (cat) => ({ vHref: "#v-" + (VG[cat] || "mark") });
+    const keyOf = (x) => (x.isSun ? "sun" : x.isCloud ? "cloud" : x.isRain ? "rain" : "hot");
+    const GL = { sun: "#gSu", cloud: "#gCl", rain: "#gRa", hot: "#gHo" }, TK = ["#tS", "#tO", "#tG"];
+    const sym = (x) => Object.assign({}, x, { gHref: GL[keyOf(x)], tHref: TK[x.fit] });
+    const tone = (on, pre) => {
+      const o = {};
+      o[pre + "Bg"] = on ? "var(--acc)" : "var(--card)";
+      o[pre + "Fg"] = on ? "var(--accInk)" : "var(--ink)";
+      o[pre + "Bd"] = on ? "var(--acc)" : "var(--line)";
+      return o;
+    };
+    const pill = (o) => { const t = tone(o.selected, "x"); return Object.assign({}, o, { bg: t.xBg, fg: t.xFg, bd: t.xBd }); };
+    const weathers = v.weathers.map((w) => Object.assign(sym(w), {
+      cls: "w-" + w.key, fw: w.selected ? "700" : "500",
+      bg: w.selected ? "var(--surf)" : "var(--card)",
+      h: w.selected ? "98px" : "82px", mb: w.selected ? "0px" : "12px",
+      rad: w.selected ? "20px 20px 0 0" : "16px",
+      ring: w.selected ? "0 -12px 26px -18px rgba(8,16,36,0.6)" : "0 0 0 1px var(--line), 0 14px 24px -14px rgba(8,16,36,0.6)"
+    }));
+    const cards = v.cards.map((c) => Object.assign({}, c, vf(c.cat), tone(c.inSat, "sat"), tone(c.inSun, "sun"), {
+      wx: c.wx.map((x) => Object.assign(sym(x), {
+        cellBg: x.current ? "var(--ink)" : "var(--soft)", cellFg: x.current ? "var(--card)" : "var(--ink)",
+        cellT: x.current ? "translateY(-3px)" : "translateY(0px)"
+      }))
+    }));
+    const d = Object.assign({}, v.d, vf(v.d.cat), tone(v.d.inSat, "sat"), tone(v.d.inSun, "sun"), {
+      nowFit: sym(v.d.nowFit),
+      wxRows: v.d.wxRows.map((r) => Object.assign(sym(r), { cls: "w-" + keyOf(r), ring: r.current ? "0 0 0 2px var(--ink)" : "0 0 0 1px var(--line)" }))
+    });
+    const days = v.days.map((day, i) => {
+      const n = day.warnCount;
+      return Object.assign({}, day, {
+        cls: "a-up w-" + day.forecast, tilt: i % 2 ? "rotate(0.5deg)" : "rotate(-0.5deg)", delay: (i * 120 + 80) + "ms",
+        hasWarn: n > 0, warnText: n + (n === 1 ? " pick doesn’t suit this forecast" : " picks don’t suit this forecast"),
+        items: day.items.map(sym),
+        wx: day.wx.map((w) => Object.assign(sym(w), { bg: w.selected ? "var(--ink)" : "var(--soft)", fg: w.selected ? "var(--card)" : "var(--ink)", fw: w.selected ? "700" : "500" }))
+      });
+    });
+    return Object.assign({
+      rootCls: "w-" + v.weather, weathers: weathers, whos: v.whos.map(pill), durs: v.durs.map(pill), cards: cards, d: d, days: days,
+      trackBg: v.freeOnly ? "var(--accInk)" : "transparent", trackBd: v.freeOnly ? "var(--accInk)" : "var(--ink)",
+      knobBg: v.freeOnly ? "var(--acc)" : "var(--ink)", knobX: v.freeOnly ? "translateX(14px)" : "translateX(0px)",
+      sharePressed: v.shared ? "true" : "false"
+    }, tone(v.freeOnly, "free"), tone(v.shared, "share"));
+  }
+
+  renderVals() {
+    const v = this.baseVals();
+    return Object.assign(v, this.themeVals(v));
+  }
+}
+</script>
+</body>
+</html>

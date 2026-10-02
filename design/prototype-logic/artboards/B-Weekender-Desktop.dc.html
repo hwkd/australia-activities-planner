@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>The Weekender, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#F3EEE4;color:#121212;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;margin:0;background:none;border:0;padding:0;text-align:inherit}
+p,h1,h2,h3,ol,figure,blockquote{margin:0}
+ol{padding:0;list-style:none}
+:focus-visible{outline:2px solid #5B3FD1;outline-offset:2px}
+.ed-night :focus-visible{outline-color:#CBBFF8}
+.ed-day{--bg:#F3EEE4;--ink:#121212;--sub:#4A4A48;--rule:rgba(18,18,18,.18);--acc:#5B3FD1;--hi:#DCD3FA}
+.ed-night{--bg:#121212;--ink:#F3EEE4;--sub:#BDB7AC;--rule:rgba(243,238,228,.24);--acc:#CBBFF8;--hi:rgba(203,191,248,.13)}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+.mono{font-family:'Geist Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.09em;font-variant-numeric:tabular-nums}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.scr::-webkit-scrollbar{display:none}
+.dt{display:inline-block;width:6px;height:6px;border-radius:50%;border:1px solid currentColor;box-sizing:border-box}
+.tc{transition:background-color .8s ease,color .8s ease,border-color .8s ease}
+.ln{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.ln>span{display:block;animation:rise 1.1s cubic-bezier(.19,1,.22,1) both}
+.late{animation:fadeUp .7s cubic-bezier(.2,.7,.1,1) .5s both}
+.tick{display:flex;width:max-content;animation:marquee 60s linear infinite}
+.tick>span{padding-right:36px;white-space:pre}
+.rise-in{animation:fadeUp .6s cubic-bezier(.2,.7,.1,1) both}
+.turn{animation:turn .8s cubic-bezier(.77,0,.18,1) both}
+.turn-shade{animation:shade .8s cubic-bezier(.77,0,.18,1) both}
+.note-in{animation:noteIn .7s cubic-bezier(.2,.7,.1,1) .2s both}
+.pop{animation:pop .4s cubic-bezier(.3,1.6,.5,1) both}
+.toast{animation:fadeUp .4s cubic-bezier(.2,.7,.1,1) both}
+.lk:hover .tt{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.tg:hover{box-shadow:inset 0 0 0 1px #121212}
+.q::before{content:"\201C";position:absolute;margin-left:-.42em}
+.q::after{content:"\201D"}
+.opt+.opt::before{content:"\00B7";display:inline-block;margin-right:14px;color:#4A4A48;font-style:normal}
+.cols>li{break-inside:avoid}
+@keyframes rise{from{transform:translateY(108%)}to{transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes turn{from{clip-path:inset(0 0 0 100%);transform:translateX(64px)}to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes shade{from{opacity:1}to{opacity:0}}
+@keyframes noteIn{from{opacity:0;transform:translateX(28px);clip-path:inset(0 0 0 100%)}to{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 1440px; height: 960px; overflow: hidden; display: flex; flex-direction: column; background: #F3EEE4; color: #121212; font-family: 'Geist', system-ui, sans-serif">
+
+<!-- ================= MASTHEAD ================= -->
+<header style="flex: none; padding: 16px 40px 0">
+<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 24px; padding-bottom: 12px">
+<p class="mono" style="font-size: 11px; line-height: 1.55; color: #4A4A48">Sydney<br>Issue of Sat 3 &amp; Sun 4 Oct 2026</p>
+<p class="serif" style="font-size: 68px; line-height: 0.82; letter-spacing: -0.02em">The Weekender</p>
+<p class="mono" style="font-size: 11px; line-height: 1.55; color: #4A4A48; text-align: right">For new Sydneysiders<br><span style="color: #5B3FD1">{{edition}}</span></p>
+</div>
+<div style="height: 2px; border-top: 1px solid #121212; border-bottom: 1px solid #121212"></div>
+</header>
+
+<div aria-hidden="true" style="flex: none; height: 36px; display: flex; align-items: center; overflow: hidden; border-bottom: 1px solid #121212; mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%)">
+<div class="tick mono" style="font-size: 11px; color: #4A4A48; animation-duration: {{tickerDur}}"><span>{{tickerText}}</span><span>{{tickerText}}</span></div>
+</div>
+
+<div style="flex: 1 1 auto; min-height: 0; display: flex">
+
+<!-- ================= LEFT: THE ISSUE ================= -->
+<div style="position: relative; width: 900px; flex: none; overflow: hidden">
+<main class="scr" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none">
+
+<section class="{{cvCls}}" aria-label="Cover story">
+<div class="tc" style="background: var(--bg); color: var(--ink); padding: 30px 40px 0">
+<p class="mono late tc" style="font-size: 11px; color: var(--acc); display: flex; justify-content: space-between; gap: 16px"><span>Cover story — {{edition}}</span><span class="num">{{storyCount}} in this issue</span></p>
+
+<sc-if value="{{isSun}}" hint-placeholder-val="{{false}}">
+<h1 class="serif" style="margin-top: 18px; font-size: 124px; line-height: 0.9; letter-spacing: -0.025em">
+<span class="ln"><span style="animation-delay: 60ms">Sunny weekend?</span></span>
+<span class="ln"><span style="animation-delay: 160ms"><em class="tc" style="color: var(--acc)">{{hlWays}}</em></span></span>
+<span class="ln"><span style="animation-delay: 260ms">to make the</span></span>
+<span class="ln"><span style="animation-delay: 360ms">most of it.</span></span>
+</h1>
+</sc-if>
+<sc-if value="{{isCloud}}" hint-placeholder-val="{{false}}">
+<h1 class="serif" style="margin-top: 18px; font-size: 124px; line-height: 0.9; letter-spacing: -0.025em">
+<span class="ln"><span style="animation-delay: 60ms">Grey skies?</span></span>
+<span class="ln"><span style="animation-delay: 160ms"><em class="tc" style="color: var(--acc)">{{hlPlans}}</em></span></span>
+<span class="ln"><span style="animation-delay: 260ms">that don’t need</span></span>
+<span class="ln"><span style="animation-delay: 360ms">the sun.</span></span>
+</h1>
+</sc-if>
+<sc-if value="{{isRain}}" hint-placeholder-val="{{true}}">
+<h1 class="serif" style="margin-top: 18px; font-size: 124px; line-height: 0.9; letter-spacing: -0.025em">
+<span class="ln"><span style="animation-delay: 60ms">Rainy weekend?</span></span>
+<span class="ln"><span style="animation-delay: 160ms"><em class="tc" style="color: var(--acc)">{{hlWays}}</em></span></span>
+<span class="ln"><span style="animation-delay: 260ms">to love it</span></span>
+<span class="ln"><span style="animation-delay: 360ms">anyway.</span></span>
+</h1>
+</sc-if>
+<sc-if value="{{isHot}}" hint-placeholder-val="{{false}}">
+<h1 class="serif" style="margin-top: 18px; font-size: 124px; line-height: 0.9; letter-spacing: -0.025em">
+<span class="ln"><span style="animation-delay: 60ms">Over 30°?</span></span>
+<span class="ln"><span style="animation-delay: 160ms"><em class="tc" style="color: var(--acc)">{{hlPlans}}</em></span></span>
+<span class="ln"><span style="animation-delay: 260ms">that can take</span></span>
+<span class="ln"><span style="animation-delay: 360ms">the heat.</span></span>
+</h1>
+</sc-if>
+
+<div style="margin-top: 26px; display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 40px; align-items: end">
+<p class="late tc" style="padding-bottom: 14px; font-size: 15px; line-height: 1.5; color: var(--sub)">{{dek}}</p>
+<div>
+<h2 class="sr">Choose the weather</h2>
+<div style="position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule)">
+<sc-for list="{{weathers}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="tc" style="min-height: 64px; display: flex; align-items: center; justify-content: center; gap: 9px; color: {{w.fg}}">
+<sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"></path></svg></sc-if>
+<sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 9.1 4.5 4.5 0 0 0 7 18z"></path></svg></sc-if>
+<sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 14h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 5.1 4.5 4.5 0 0 0 7 14z"></path><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"></path></svg></sc-if>
+<sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13.5V5a2 2 0 0 1 4 0v8.5a4 4 0 1 1-4 0z"></path><path d="M12 9v7M17.5 5h3M17.5 9h2"></path></svg></sc-if>
+<span class="serif" style="font-size: 23px; font-style: italic">{{w.label}}</span>
+</button>
+</sc-for>
+<span aria-hidden="true" class="tc" style="position: absolute; left: 0; bottom: 0; width: 25%; height: 3px; background: var(--acc); transform: {{wxX}}; transition: transform .6s cubic-bezier(.65,0,.35,1), background-color .8s ease"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Filters" style="margin: 0 40px; border-bottom: 1px solid #121212">
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; min-height: 56px; border-bottom: 1px solid rgba(18,18,18,.18)">
+<p class="mono" style="font-size: 10.5px; color: #4A4A48">For</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px">
+<sc-for list="{{whos}}" as="o" hint-placeholder-count="5">
+<button type="button" class="opt serif" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="min-height: 48px; font-size: 24px; font-style: italic; color: {{o.fg}}; text-decoration-line: {{o.deco}}; text-decoration-color: #5B3FD1; text-decoration-thickness: 2px; text-underline-offset: 7px">{{o.word}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; align-items: center; min-height: 56px">
+<p class="mono" style="font-size: 10.5px; color: #4A4A48">Length</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px">
+<sc-for list="{{durs}}" as="o" hint-placeholder-count="4">
+<button type="button" class="opt serif" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="min-height: 48px; font-size: 24px; font-style: italic; color: {{o.fg}}; text-decoration-line: {{o.deco}}; text-decoration-color: #5B3FD1; text-decoration-thickness: 2px; text-underline-offset: 7px">{{o.word}}</button>
+</sc-for>
+</div>
+<button type="button" aria-pressed="{{freePressed}}" onClick="{{toggleFree}}" style="min-height: 48px; display: flex; align-items: center; gap: 10px; padding-left: 18px; border-left: 1px solid rgba(18,18,18,.18)">
+<span aria-hidden="true" style="width: 18px; height: 18px; box-sizing: border-box; border: 1.5px solid #121212; background: {{freeBox}}; color: #F3EEE4; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{freeOnly}}" hint-placeholder-val="{{false}}"><svg class="pop" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+</span>
+<span class="serif" style="font-size: 24px; font-style: italic">Free only</span>
+</button>
+</div>
+</section>
+
+<div style="margin: 38px 40px 0; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 12px">
+<h2 class="serif" style="font-size: 44px; line-height: 1">In this issue</h2>
+<p class="mono num" style="font-size: 11px; color: #4A4A48">{{storyCount}} — ranked for a {{wxAdj}} weekend</p>
+</div>
+
+<sc-if value="{{noResults}}" hint-placeholder-val="{{false}}">
+<div class="rise-in" style="margin: 0 40px; padding: 30px 0 40px; border-top: 1px solid #121212; display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+<p class="serif" style="font-size: 52px; line-height: 1">Nothing in this issue fits <em>those filters.</em></p>
+<p style="font-size: 16px; line-height: 1.5; color: #4A4A48">Try another group, a different length, or turn off Free only.</p>
+<button type="button" onClick="{{resetFilters}}" class="mono" style="min-height: 48px; padding: 0 20px; border: 1px solid #121212; font-size: 11px">Reset filters</button>
+</div>
+</sc-if>
+
+<sc-for list="{{leadCards}}" as="c" hint-placeholder-count="1">
+<article class="rise-in" style="margin: 0 40px; padding: 20px 0 36px; border-top: 1px solid #121212; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 0 36px">
+<figure>
+<div style="position: relative; aspect-ratio: 5 / 4; background: #DCD3FA; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle, #5B3FD1 1.2px, transparent 1.6px); background-size: 7px 7px; mask-image: radial-gradient(circle at {{c.px}} {{c.py}}, #000 0, #000 18%, transparent 58%)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle, #5B3FD1 2.5px, transparent 2.9px); background-size: 7px 7px; mask-image: radial-gradient(circle at {{c.px}} {{c.py}}, #000 0, #000 10%, transparent 22%)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle, #121212 1.7px, transparent 2.1px); background-size: 6px 6px; mask-image: linear-gradient(to top, #000 0, #000 {{c.hzA}}, transparent {{c.hzB}})"></div>
+<p class="mono" style="position: absolute; left: 12px; top: 12px; max-width: calc(100% - 24px); font-size: 10px; letter-spacing: .06em; background: #F3EEE4; padding: 5px 8px; line-height: 1.3">{{c.photo}}</p>
+</div>
+<figcaption class="mono" style="display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; font-size: 10px; color: #4A4A48"><span>{{c.plateNo}}</span><span>Photograph: [Credit]</span></figcaption>
+</figure>
+<div style="display: flex; flex-direction: column; min-width: 0">
+<p class="mono" style="font-size: 11px; color: #5B3FD1">{{c.kick}}</p>
+<button type="button" onClick="{{c.open}}" class="lk" style="margin-top: 12px">
+<span class="serif tt" style="display: block; font-size: 54px; line-height: 0.95; letter-spacing: -0.015em">{{c.name}}</span>
+</button>
+<p style="margin-top: 14px; font-size: 16px; line-height: 1.55; color: #4A4A48">{{c.blurb}}</p>
+<p class="mono" style="margin-top: 14px; font-size: 10.5px; color: #4A4A48">{{c.meta}}</p>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 18px; border-top: 1px solid #121212; border-bottom: 1px solid rgba(18,18,18,.18)">
+<sc-for list="{{c.wx}}" as="x" hint-placeholder-count="4">
+<span class="mono" style="display: flex; flex-direction: column; gap: 4px; padding: 9px 8px 8px; font-size: 10px; background: {{x.cellBg}}; color: {{x.cellFg}}">
+<span style="display: flex; align-items: center; justify-content: space-between; gap: 4px"><span>{{x.short}}</span><span aria-hidden="true" style="display: inline-flex; gap: 2px"><span class="dt" style="background: {{x.d1}}"></span><span class="dt" style="background: {{x.d2}}"></span><span class="dt" style="background: {{x.d3}}"></span></span></span>
+<span style="font-weight: 600; font-size: 11px">{{x.fitLabel}}</span>
+</span>
+</sc-for>
+</div>
+<div style="margin-top: 18px; display: flex; align-items: center; gap: 8px">
+<button type="button" class="mono tg" aria-pressed="{{c.satPressed}}" aria-label="{{c.satAria}}" onClick="{{c.toggleSat}}" style="min-height: 44px; min-width: 72px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #121212; background: {{c.satBg}}; color: {{c.satFg}}; font-size: 10.5px; transition: background-color .25s ease, color .25s ease">
+<sc-if value="{{c.inSat}}" hint-placeholder-val="{{false}}"><svg class="pop" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+<sc-if value="{{c.notSat}}" hint-placeholder-val="{{true}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>Sat</span>
+</button>
+<button type="button" class="mono tg" aria-pressed="{{c.sunPressed}}" aria-label="{{c.sunAria}}" onClick="{{c.toggleSun}}" style="min-height: 44px; min-width: 72px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #121212; background: {{c.sunBg}}; color: {{c.sunFg}}; font-size: 10.5px; transition: background-color .25s ease, color .25s ease">
+<sc-if value="{{c.inSun}}" hint-placeholder-val="{{false}}"><svg class="pop" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+<sc-if value="{{c.notSun}}" hint-placeholder-val="{{true}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>Sun</span>
+</button>
+<button type="button" onClick="{{c.open}}" class="mono" style="margin-left: auto; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font-size: 10.5px; color: #5B3FD1">Read the story<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+</div>
+</article>
+</sc-for>
+
+<ol class="cols" style="margin: 0 40px; columns: 2; column-gap: 56px; column-rule: 1px solid rgba(18,18,18,.18)">
+<sc-for list="{{restCards}}" as="c" hint-placeholder-count="6">
+<li class="rise-in" style="animation-delay: {{c.delay}}; border-top: 1px solid rgba(18,18,18,.18); padding: 18px 0 22px; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 0 10px">
+<span class="serif num" style="font-size: 40px; line-height: 0.85; color: #5B3FD1">{{c.num}}</span>
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<p class="mono" style="font-size: 10px; color: #4A4A48">{{c.cat}}</p>
+<button type="button" onClick="{{c.open}}" class="lk" style="min-height: 44px"><span class="serif tt" style="display: block; font-size: 29px; line-height: 1">{{c.name}}</span></button>
+<p class="mono" style="font-size: 10px; color: #4A4A48">{{c.meta}}</p>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 6px; border-top: 1px solid rgba(18,18,18,.18)">
+<sc-for list="{{c.wx}}" as="x" hint-placeholder-count="4">
+<span class="mono" style="display: flex; flex-direction: column; gap: 4px; padding: 7px 6px 6px; font-size: 9.5px; background: {{x.cellBg}}; color: {{x.cellFg}}">
+<span style="display: flex; align-items: center; justify-content: space-between; gap: 3px"><span>{{x.short}}</span><span aria-hidden="true" style="display: inline-flex; gap: 2px"><span class="dt" style="background: {{x.d1}}"></span><span class="dt" style="background: {{x.d2}}"></span><span class="dt" style="background: {{x.d3}}"></span></span></span>
+<span style="font-weight: 600; font-size: 10.5px">{{x.fitLabel}}</span>
+</span>
+</sc-for>
+</div>
+<div style="margin-top: 6px; display: flex; gap: 8px">
+<button type="button" class="mono tg" aria-pressed="{{c.satPressed}}" aria-label="{{c.satAria}}" onClick="{{c.toggleSat}}" style="min-height: 44px; min-width: 68px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #121212; background: {{c.satBg}}; color: {{c.satFg}}; font-size: 10px; transition: background-color .25s ease, color .25s ease">
+<sc-if value="{{c.inSat}}" hint-placeholder-val="{{false}}"><svg class="pop" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+<sc-if value="{{c.notSat}}" hint-placeholder-val="{{true}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>Sat</span>
+</button>
+<button type="button" class="mono tg" aria-pressed="{{c.sunPressed}}" aria-label="{{c.sunAria}}" onClick="{{c.toggleSun}}" style="min-height: 44px; min-width: 68px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #121212; background: {{c.sunBg}}; color: {{c.sunFg}}; font-size: 10px; transition: background-color .25s ease, color .25s ease">
+<sc-if value="{{c.inSun}}" hint-placeholder-val="{{false}}"><svg class="pop" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+<sc-if value="{{c.notSun}}" hint-placeholder-val="{{true}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>Sun</span>
+</button>
+</div>
+</div>
+</li>
+</sc-for>
+</ol>
+
+<footer style="margin: 0 40px; padding: 22px 0 44px; border-top: 1px solid #121212; display: flex; justify-content: space-between; align-items: baseline; gap: 24px">
+<sc-if value="{{hasHidden}}" hint-placeholder-val="{{true}}"><p style="font-size: 14px; line-height: 1.5; color: #4A4A48; max-width: 520px">{{hiddenLine}}</p></sc-if>
+<p class="mono" style="font-size: 10.5px; color: #4A4A48; margin-left: auto">End of issue — The Weekender, Sydney</p>
+</footer>
+</main>
+
+<!-- ================= DETAIL (page turn over the left spread) ================= -->
+<sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
+<article class="turn scr" aria-label="{{d.name}}" style="position: absolute; inset: 0; z-index: 5; overflow-y: auto; scrollbar-width: none; background: #F3EEE4">
+<div style="position: sticky; top: 0; z-index: 2; margin: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #F3EEE4; border-bottom: 1px solid #121212">
+<button type="button" onClick="{{goBack}}" class="mono" style="min-height: 56px; display: flex; align-items: center; gap: 10px; font-size: 11px; padding-right: 16px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Back to the issue
+</button>
+<p class="mono" style="font-size: 10.5px; color: #4A4A48">{{d.byline}}</p>
+</div>
+
+<div style="padding: 30px 40px 48px">
+<p class="mono" style="font-size: 11px; color: #5B3FD1">{{d.kick}}</p>
+<h1 class="serif" style="margin-top: 16px; font-size: 96px; line-height: 0.9; letter-spacing: -0.025em; max-width: 800px">{{d.name}}</h1>
+<p class="serif" style="margin-top: 18px; font-size: 30px; line-height: 1.15; font-style: italic; color: #4A4A48; max-width: 660px">{{d.blurb}}</p>
+
+<div style="margin-top: 34px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 0 40px; align-items: start">
+<figure>
+<div style="position: relative; aspect-ratio: 4 / 5; background: #DCD3FA; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle, #5B3FD1 1.2px, transparent 1.6px); background-size: 7px 7px; mask-image: radial-gradient(circle at {{d.px}} {{d.py}}, #000 0, #000 18%, transparent 58%)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle, #5B3FD1 2.5px, transparent 2.9px); background-size: 7px 7px; mask-image: radial-gradient(circle at {{d.px}} {{d.py}}, #000 0, #000 10%, transparent 22%)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle, #121212 1.7px, transparent 2.1px); background-size: 6px 6px; mask-image: linear-gradient(to top, #000 0, #000 {{d.hzA}}, transparent {{d.hzB}})"></div>
+<p class="mono" style="position: absolute; left: 12px; top: 12px; max-width: calc(100% - 24px); font-size: 10px; letter-spacing: .06em; background: #F3EEE4; padding: 5px 8px; line-height: 1.3">{{d.photo}}</p>
+</div>
+<figcaption class="mono" style="display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; font-size: 10px; color: #4A4A48"><span>{{d.area}}</span><span>Photograph: [Credit]</span></figcaption>
+</figure>
+
+<div style="display: flex; flex-direction: column; gap: 30px; min-width: 0">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+<button type="button" aria-pressed="{{d.satPressed}}" onClick="{{d.toggleSat}}" style="min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #121212; background: {{d.satBg}}; color: {{d.satFg}}; font-size: 14.5px; font-weight: 600; transition: background-color .3s ease, color .3s ease">
+<sc-if value="{{d.inSat}}" hint-placeholder-val="{{false}}"><svg class="pop" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+<sc-if value="{{d.notSat}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>{{d.satLabel}}</span>
+</button>
+<button type="button" aria-pressed="{{d.sunPressed}}" onClick="{{d.toggleSun}}" style="min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #121212; background: {{d.sunBg}}; color: {{d.sunFg}}; font-size: 14.5px; font-weight: 600; transition: background-color .3s ease, color .3s ease">
+<sc-if value="{{d.inSun}}" hint-placeholder-val="{{false}}"><svg class="pop" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+<sc-if value="{{d.notSun}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<span>{{d.sunLabel}}</span>
+</button>
+</div>
+
+<section>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid #121212">
+<h2 class="serif" style="font-size: 36px; line-height: 1">The verdict</h2>
+<p class="mono" style="font-size: 10.5px; color: #5B3FD1">{{d.nowFit.text}}</p>
+</div>
+<sc-for list="{{d.wxRows}}" as="r" hint-placeholder-count="4">
+<div style="display: grid; grid-template-columns: 22px 78px 32px minmax(0, 1fr); align-items: center; gap: 0 12px; min-height: 50px; padding: 8px 10px; border-bottom: 1px solid rgba(18,18,18,.18); background: {{r.rowBg}}; color: {{r.rowFg}}">
+<sc-if value="{{r.isSun}}" hint-placeholder-val="{{true}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"></path></svg></sc-if>
+<sc-if value="{{r.isCloud}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 9.1 4.5 4.5 0 0 0 7 18z"></path></svg></sc-if>
+<sc-if value="{{r.isRain}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 14h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 5.1 4.5 4.5 0 0 0 7 14z"></path><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"></path></svg></sc-if>
+<sc-if value="{{r.isHot}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13.5V5a2 2 0 0 1 4 0v8.5a4 4 0 1 1-4 0z"></path><path d="M12 9v7M17.5 5h3M17.5 9h2"></path></svg></sc-if>
+<span style="font-size: 15px; font-weight: 500">{{r.label}}</span>
+<span aria-hidden="true" style="display: inline-flex; gap: 2px"><span class="dt" style="background: {{r.d1}}"></span><span class="dt" style="background: {{r.d2}}"></span><span class="dt" style="background: {{r.d3}}"></span></span>
+<span style="display: flex; align-items: baseline; gap: 10px; min-width: 0"><span class="mono" style="font-size: 11px; font-weight: 600">{{r.fitLabel}}</span><span style="font-size: 13px; line-height: 1.3">{{r.fitNote}}</span></span>
+</div>
+</sc-for>
+<p style="margin-top: 14px; font-size: 15px; line-height: 1.55"><span class="mono" style="font-size: 10px; color: #5B3FD1">Weather note — </span>{{d.wxTip}}</p>
+</section>
+
+<section style="padding-top: 12px; border-top: 1px solid #121212; display: grid; grid-template-columns: 1fr 1fr; gap: 24px">
+<div>
+<h2 class="mono" style="font-size: 10.5px; font-weight: 500; color: #4A4A48">Getting there</h2>
+<p style="margin-top: 10px; font-size: 15.5px; line-height: 1.55">{{d.getThere}}</p>
+</div>
+<div>
+<h2 class="mono" style="font-size: 10.5px; font-weight: 500; color: #4A4A48">Good for</h2>
+<p class="serif" style="margin-top: 8px; font-size: 26px; line-height: 1.1; font-style: italic">{{d.withText}}</p>
+</div>
+</section>
+</div>
+</div>
+
+<figure style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #121212; display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 0 40px">
+<figcaption class="mono" style="font-size: 11px; color: #5B3FD1; padding-top: 12px">Newcomer tip</figcaption>
+<blockquote class="serif" style="font-size: 46px; line-height: 1.05; font-style: italic; max-width: 640px"><span class="q">{{d.tip}}</span></blockquote>
+</figure>
+</div>
+</article>
+<div aria-hidden="true" class="turn-shade" style="position: absolute; inset: 0; z-index: 4; pointer-events: none; background: rgba(18,18,18,.12)"></div>
+</sc-if>
+</div>
+
+<!-- ================= RIGHT: YOUR ITINERARY ================= -->
+<aside aria-label="Your itinerary" style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; border-left: 1px solid #121212; padding-left: 3px">
+<div class="scr" style="flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; border-left: 1px solid #121212">
+<div style="padding: 28px 40px 22px">
+<p class="mono late" style="font-size: 10.5px; color: #5B3FD1; display: flex; justify-content: space-between; gap: 12px"><span>Clip &amp; keep</span><span class="num">{{planCountLabel}}</span></p>
+<h2 class="serif" style="margin-top: 12px; font-size: 68px; line-height: 0.9; letter-spacing: -0.02em">
+<span class="ln"><span style="animation-delay: 120ms">Your <em style="color: #5B3FD1">itinerary</em></span></span>
+</h2>
+<p class="mono late" style="margin-top: 12px; font-size: 10.5px; color: #4A4A48">Sat 3 &amp; Sun 4 Oct 2026 — set each day’s forecast</p>
+</div>
+
+<sc-for list="{{days}}" as="dy" hint-placeholder-count="2">
+<section class="{{dy.ed}}" aria-label="{{dy.label}}">
+<div class="tc" style="background: var(--bg); color: var(--ink); padding: 22px 40px 26px; border-top: 1px solid #121212">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<h3 class="serif" style="font-size: 44px; line-height: 0.95">{{dy.label}}</h3>
+<p class="mono tc" style="margin-top: 6px; font-size: 10px; color: var(--sub)">{{dy.status}}</p>
+</div>
+<p aria-hidden="true" class="serif num tc" style="font-size: 84px; line-height: 0.72; color: var(--acc); font-style: italic">{{dy.dayNum}}</p>
+</div>
+<div style="position: relative; margin-top: 14px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule)">
+<sc-for list="{{dy.wx}}" as="x" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{x.pressed}}" aria-label="{{x.aria}}" onClick="{{x.pick}}" class="tc" style="min-height: 46px; display: flex; align-items: center; justify-content: center; gap: 7px; color: {{x.fg}}">
+<sc-if value="{{x.isSun}}" hint-placeholder-val="{{true}}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"></path></svg></sc-if>
+<sc-if value="{{x.isCloud}}" hint-placeholder-val="{{false}}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 9.1 4.5 4.5 0 0 0 7 18z"></path></svg></sc-if>
+<sc-if value="{{x.isRain}}" hint-placeholder-val="{{false}}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 14h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 5.1 4.5 4.5 0 0 0 7 14z"></path><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"></path></svg></sc-if>
+<sc-if value="{{x.isHot}}" hint-placeholder-val="{{false}}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13.5V5a2 2 0 0 1 4 0v8.5a4 4 0 1 1-4 0z"></path><path d="M12 9v7M17.5 5h3M17.5 9h2"></path></svg></sc-if>
+<span class="mono" style="font-size: 10px">{{x.short}}</span>
+</button>
+</sc-for>
+<span aria-hidden="true" class="tc" style="position: absolute; left: 0; bottom: -1px; width: 25%; height: 2px; background: var(--acc); transform: {{dy.tabX}}; transition: transform .55s cubic-bezier(.65,0,.35,1), background-color .8s ease"></span>
+</div>
+
+<ol style="margin-top: 6px">
+<sc-for list="{{dy.items}}" as="it" hint-placeholder-count="2">
+<li class="rise-in" style="animation-delay: {{it.delay}}; padding: 14px 0 14px; border-bottom: 1px solid var(--rule)">
+<div style="display: grid; grid-template-columns: 40px minmax(0, 1fr) 44px; gap: 0 10px; align-items: start">
+<span class="serif num tc" style="font-size: 32px; line-height: 0.95; color: var(--acc)">{{it.no}}</span>
+<button type="button" onClick="{{it.open}}" class="lk" style="min-height: 44px; display: flex; flex-direction: column; gap: 5px; min-width: 0">
+<span class="serif tt" style="font-size: 25px; line-height: 1.04">{{it.name}}</span>
+<span class="mono tc" style="font-size: 9.5px; color: var(--sub)">{{it.meta}}</span>
+<span class="mono tc" style="display: flex; align-items: center; gap: 8px; margin-top: 2px; font-size: 10.5px; font-weight: 600; color: {{it.vFg}}"><span aria-hidden="true" style="display: inline-flex; gap: 2px"><span class="dt" style="background: {{it.d1}}"></span><span class="dt" style="background: {{it.d2}}"></span><span class="dt" style="background: {{it.d3}}"></span></span>{{it.verdict}}</span>
+</button>
+<button type="button" onClick="{{it.remove}}" aria-label="{{it.removeLabel}}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; margin-top: -8px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+</div>
+<sc-if value="{{it.hasBackup}}" hint-placeholder-val="{{false}}">
+<aside class="note-in tc" aria-label="Editor's note" style="margin: 14px 0 2px 50px; padding: 14px 16px 16px; border: 1px solid var(--acc); background: var(--hi); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; align-items: end">
+<div style="min-width: 0">
+<p class="mono tc" style="font-size: 10px; color: var(--acc)">Editor’s note — Plan B</p>
+<p class="serif" style="margin-top: 8px; font-size: 19px; line-height: 1.2; font-style: italic">{{it.badText}} Swap in:</p>
+<p class="serif" style="margin-top: 6px; font-size: 25px; line-height: 1.04">{{it.backup.name}}</p>
+<p class="mono tc" style="margin-top: 6px; font-size: 9.5px; color: var(--sub)">{{it.backup.meta}}</p>
+</div>
+<button type="button" onClick="{{it.backup.swap}}" class="mono tc" style="min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--bg); font-size: 10.5px; white-space: nowrap">Swap it in<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</aside>
+</sc-if>
+<sc-if value="{{it.badOnly}}" hint-placeholder-val="{{false}}">
+<aside class="note-in tc" aria-label="Editor's note" style="margin: 14px 0 2px 50px; padding: 12px 14px; border: 1px solid var(--acc)">
+<p class="mono tc" style="font-size: 10px; color: var(--acc)">Editor’s note</p>
+<p style="margin-top: 6px; font-size: 14px; line-height: 1.45">{{it.badText}} No like-for-like swap is left in this issue.</p>
+</aside>
+</sc-if>
+</li>
+</sc-for>
+</ol>
+
+<sc-if value="{{dy.isEmpty}}" hint-placeholder-val="{{false}}">
+<div class="rise-in" style="padding: 18px 0 2px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<p class="serif" style="font-size: 26px; line-height: 1.05; font-style: italic">Nothing planned yet.</p>
+<button type="button" onClick="{{dy.find}}" class="mono tc" style="min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--ink); font-size: 10.5px">Browse the issue<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+</sc-if>
+</div>
+</section>
+</sc-for>
+</div>
+
+<div style="position: relative; flex: none; padding: 14px 40px 18px; border-top: 1px solid #121212; border-left: 1px solid #121212; background: #F3EEE4">
+<div aria-live="polite" style="position: absolute; left: 40px; right: 40px; bottom: calc(100% + 10px); display: flex; justify-content: center; pointer-events: none">
+<sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><p class="toast mono" style="padding: 8px 12px; background: #121212; color: #F3EEE4; font-size: 10px">Link copied — send it to your group</p></sc-if>
+</div>
+<button type="button" aria-pressed="{{sharePressed}}" onClick="{{toggleShare}}" style="width: 100%; min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #121212; background: {{shareBg}}; color: {{shareFg}}; font-size: 14.5px; font-weight: 600; transition: background-color .3s ease, color .3s ease">
+<sc-if value="{{notShared}}" hint-placeholder-val="{{true}}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 14v6h14v-6"></path></svg></sc-if>
+<sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><svg class="pop" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+<span>{{shareLabel}}</span>
+</button>
+</div>
+</aside>
+</div>
+
+<svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; z-index: 30; pointer-events: none; opacity: .09; mix-blend-mode: multiply"><filter id="grainD"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#grainD)"></rect></svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startWeather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"rain"},"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      screen: "discover", from: "discover", openId: null,
+      weather: (this.props && this.props.startWeather) || "sun",
+      who: "any", dur: "any", freeOnly: false,
+      sat: ["bondi-coogee", "rocks-markets"], sun: ["three-sisters"],
+      satW: "sun", sunW: "rain", shared: false
+    };
+    // Rating vocabulary: index 0 = skip, 1 = ok, 2 = great. A direction may reword these (keep them short).
+    this.FIT = [
+      { label: "Skip", note: "Save it for another day" },
+      { label: "Maybe", note: "Doable, with caveats" },
+      { label: "Go", note: "Ideal conditions" }
+    ];
+    this.WX = [
+      { key: "sun", label: "Sunny", short: "Sun", adj: "sunny", bad: "Not ideal in full sun." },
+      { key: "cloud", label: "Cloudy", short: "Cloud", adj: "cloudy", bad: "Not ideal under heavy cloud." },
+      { key: "rain", label: "Rainy", short: "Rain", adj: "rainy", bad: "Not great in the rain." },
+      { key: "hot", label: "Hot 30°+", short: "Hot", adj: "hot", bad: "Not great in the heat." }
+    ];
+    this.WHO = [
+      { key: "any", label: "Anyone" }, { key: "date", label: "Date" },
+      { key: "friends", label: "Friends" }, { key: "family", label: "Family" }, { key: "solo", label: "Solo" }
+    ];
+    this.DUR = [
+      { key: "any", label: "Any length" }, { key: "short", label: "Under 3 hrs" },
+      { key: "half", label: "Half day" }, { key: "full", label: "Full day" }
+    ];
+    // w = [sunny, cloudy, rainy, hot]: 2 great, 1 ok, 0 skip · h = [minHours, maxHours]
+    this.acts = [
+      { id: "bondi-coogee", name: "Bondi to Coogee Coastal Walk", area: "Eastern Suburbs", cat: "Coastal walk", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Sydney's most famous clifftop walk, linking six beaches and ocean pools.",
+        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach. Bus back to the city from Coogee.",
+        tip: "Pack swimmers: Bronte and Clovelly make great mid-walk dips. Lots of stairs, so leave the pram at home.",
+        wxTip: "Exposed clifftops with little shade. Go early on hot days, and skip it in rain when the rocks get slippery." },
+      { id: "manly", name: "Ferry to Manly & Shelly Beach", area: "Northern Beaches", cat: "Ferry & beach", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "The harbour's best-value view, then a relaxed beach town with calm snorkelling.",
+        getThere: "F1 ferry from Circular Quay, about 30 min. Tap on with Opal or a contactless card.",
+        tip: "Grab an outside seat for Opera House and Harbour Bridge views. Walk along to Shelly Beach for calmer water and snorkelling.",
+        wxTip: "The ferry ride is lovely even under cloud. Beach time needs sunshine." },
+      { id: "spit-manly", name: "Spit Bridge to Manly Walk", area: "Northern Beaches", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "solo"],
+        blurb: "Ten kilometres of bush, hidden beaches and harbour lookouts, ending in Manly.",
+        getThere: "Bus from Wynyard to Spit Bridge. Ferry home from Manly to Circular Quay.",
+        tip: "About 10 km of bush, hidden beaches and harbour lookouts. Finish with fish and chips in Manly and ride the ferry home.",
+        wxTip: "Mostly shaded, so it's bearable when warm. Muddy and slippery after rain." },
+      { id: "three-sisters", name: "Three Sisters & Echo Point", area: "Blue Mountains", cat: "Lookout & walk", dur: "Full day", h: [6, 9], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "The iconic sandstone peaks over the Jamison Valley, two hours by train.",
+        getThere: "Blue Mountains line from Central to Katoomba (about 2 hrs), then a local bus or 25 min walk to Echo Point.",
+        tip: "Walk the Prince Henry Cliff Walk between lookouts. It's several degrees cooler than the city, so bring a layer.",
+        wxTip: "Low cloud can hide the valley completely. A great escape on a scorching city day." },
+      { id: "wentworth", name: "Wentworth Falls & National Pass", area: "Blue Mountains", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "$", w: [2, 1, 0, 1], with: ["friends", "solo"],
+        blurb: "Stairs cut into cliffs beside a tall waterfall. A proper adventure.",
+        getThere: "Train from Central to Wentworth Falls station, then walk to the Falls Reserve picnic area.",
+        tip: "One of the most spectacular walks in the mountains, with stairs cut into the cliffs. Check NSW National Parks for track closures first.",
+        wxTip: "Steep stairs and cliff edges get dangerous when wet. Start early in summer." },
+      { id: "botanic", name: "Royal Botanic Garden & Mrs Macquarie's Chair", area: "City", cat: "Gardens", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Harbourside gardens with the classic Opera House and Bridge photo spot.",
+        getThere: "Walk from Circular Quay or Martin Place station.",
+        tip: "Follow the harbour path to Mrs Macquarie's Chair for the classic Opera House and Bridge photo. Picnics welcome.",
+        wxTip: "Shady lawns help on warm days, but there's little shelter in rain." },
+      { id: "opera-tour", name: "Sydney Opera House Tour", area: "City", cat: "Culture", dur: "1 hr", h: [1, 1], cost: "$$", w: [2, 2, 2, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Go behind the sails of Australia's most famous building.",
+        getThere: "Short walk from Circular Quay station and ferry wharves.",
+        tip: "Book the guided tour online. Stay for a drink at the Opera Bar steps afterwards.",
+        wxTip: "Indoors, so it works in any weather." },
+      { id: "agnsw", name: "Art Gallery of NSW", area: "The Domain", cat: "Gallery", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [1, 2, 2, 2], with: ["date", "friends", "family", "solo"],
+        blurb: "Free, world-class art across two buildings, with a rooftop harbour view.",
+        getThere: "Walk from St James or Martin Place station through the Domain.",
+        tip: "General entry is free. Don't miss the newer Naala Badu building and its rooftop views.",
+        wxTip: "A perfect refuge on a rainy or sweltering day." },
+      { id: "aus-museum", name: "Australian Museum", area: "City", cat: "Museum", dur: "2 hrs", h: [2, 2], cost: "Free", w: [1, 2, 2, 2], with: ["date", "family", "solo"],
+        blurb: "First Nations cultures, dinosaurs and Australia's strange wildlife, for free.",
+        getThere: "Opposite Hyde Park, near Museum and St James stations.",
+        tip: "Free general entry. A great introduction to First Nations cultures and Australia's unusual wildlife.",
+        wxTip: "Indoors and air-conditioned." },
+      { id: "taronga", name: "Taronga Zoo", area: "Mosman", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "Koalas, kangaroos and giraffes with a harbour skyline behind them.",
+        getThere: "F2 ferry from Circular Quay to Taronga Zoo wharf, about 12 min.",
+        tip: "Ride the Sky Safari cable car up from the wharf, then walk downhill. Koalas and kangaroos with harbour views.",
+        wxTip: "Mostly outdoors and hilly. Light rain means thinner crowds." },
+      { id: "watsons", name: "Watsons Bay & The Gap", area: "Eastern Suburbs", cat: "Ferry & lookout", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 0, 1], with: ["date", "friends", "family"],
+        blurb: "Ferry out to fish and chips, then wild ocean cliffs at South Head.",
+        getThere: "F9 ferry from Circular Quay to Watsons Bay.",
+        tip: "Fish and chips by the wharf, then walk up to the Gap cliffs and Hornby Lighthouse at South Head.",
+        wxTip: "Windy and exposed on the cliffs. Best on a clear day." },
+      { id: "bridge-walk", name: "Walk across the Harbour Bridge", area: "The Rocks", cat: "Landmark", dur: "1 hr", h: [1, 1], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Cross the Coathanger on foot for free, with the Opera House below.",
+        getThere: "Stairs up from Cumberland St in The Rocks. Finish at Milsons Point station.",
+        tip: "Use the eastern footpath for Opera House views. Pay a few dollars for the Pylon Lookout, or splurge on BridgeClimb.",
+        wxTip: "Fine under an umbrella, but very exposed in the heat." },
+      { id: "rocks-markets", name: "The Rocks Markets", area: "The Rocks", cat: "Markets", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
+        blurb: "Weekend stalls, street food and sandstone laneways by the harbour.",
+        getThere: "Short walk from Circular Quay or Wynyard.",
+        tip: "Runs on weekends. Wander the sandstone laneways and historic pubs afterwards.",
+        wxTip: "Partly covered, so it's workable in light rain." },
+      { id: "cockatoo", name: "Cockatoo Island", area: "Sydney Harbour", cat: "History", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "A convict-era island of tunnels and shipyards in the middle of the harbour.",
+        getThere: "F3 or F8 ferry from Circular Quay.",
+        tip: "A UNESCO-listed convict site with tunnels and old shipyards. You can even glamp overnight.",
+        wxTip: "Tunnels and industrial sheds give some shelter." },
+      { id: "balmoral", name: "Balmoral Beach", area: "Mosman", cat: "Beach", dur: "Half day", h: [3, 5], cost: "Free", w: [2, 1, 0, 2], with: ["date", "family"],
+        blurb: "A calm harbour beach with fig trees, a promenade and gentle water.",
+        getThere: "Bus from Wynyard or the city, about 40 min.",
+        tip: "Calm, sheltered harbour water that suits kids and newer swimmers. Great spot for a picnic under the fig trees.",
+        wxTip: "Best on hot days when ocean beaches are rough or packed." },
+      { id: "icebergs", name: "Bondi Icebergs Pool", area: "Bondi", cat: "Swimming", dur: "1–2 hrs", h: [1, 2], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "solo"],
+        blurb: "Laps in the famous ocean pool where waves crash over the edge.",
+        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach.",
+        tip: "Swim in the famous ocean pool at the south end of Bondi. On the beach itself, always swim between the red and yellow flags.",
+        wxTip: "Made for hot days." },
+      { id: "sea-life", name: "SEA LIFE Aquarium", area: "Darling Harbour", cat: "Wildlife", dur: "2 hrs", h: [2, 2], cost: "$$$", w: [1, 2, 2, 2], with: ["date", "family"],
+        blurb: "Sharks, dugongs and the Great Barrier Reef, all under one roof.",
+        getThere: "Walk from Town Hall or Wynyard station.",
+        tip: "Book online for cheaper entry, and look at combo tickets with WILD LIFE Sydney Zoo next door.",
+        wxTip: "Indoors: a reliable rainy-day pick for kids." },
+      { id: "featherdale", name: "Featherdale Wildlife Park", area: "Western Sydney", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
+        blurb: "Hand-feed kangaroos and meet koalas up close.",
+        getThere: "Train to Blacktown, then a short bus ride.",
+        tip: "Get up close with kangaroos, wallabies and koalas. A first-month favourite for newcomers.",
+        wxTip: "Mostly outdoors, with some covered areas." },
+      { id: "chinatown", name: "Haymarket & Chinatown Food Crawl", area: "Haymarket", cat: "Food", dur: "2–3 hrs", h: [2, 3], cost: "$$", w: [1, 2, 2, 2], with: ["date", "friends", "family"],
+        blurb: "Dumplings, Thai Town and bustling food courts in the city's south.",
+        getThere: "Train to Central or Town Hall, or light rail to Chinatown.",
+        tip: "Graze through Dixon Street, the food courts and Thai Town on Campbell Street. Go hungry.",
+        wxTip: "Food courts and restaurants keep you dry and cool." },
+      { id: "newtown", name: "Newtown Street Art & King St", area: "Inner West", cat: "Neighbourhood", dur: "2–3 hrs", h: [2, 3], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "solo"],
+        blurb: "Murals, vintage shops and food from everywhere on one long street.",
+        getThere: "Train to Newtown station.",
+        tip: "Murals, vintage shops, bookstores and food from everywhere. Stays lively into the night.",
+        wxTip: "Plenty of cafés and shops to duck into." },
+      { id: "royal-np", name: "Royal National Park via Bundeena", area: "Sutherland Shire", cat: "Coastal walk", dur: "Full day", h: [6, 8], cost: "$", w: [2, 1, 0, 1], with: ["date", "friends", "solo"],
+        blurb: "A little ferry to the world's second-oldest national park.",
+        getThere: "Train to Cronulla, then the small ferry across Port Hacking to Bundeena.",
+        tip: "Walk to Jibbon Beach and the Aboriginal rock engravings. Carry plenty of water, as facilities are few.",
+        wxTip: "Exposed coastal heath. Hard going in the heat." },
+      { id: "palm-beach", name: "Palm Beach & Barrenjoey Lighthouse", area: "Northern Beaches", cat: "Lookout & beach", dur: "Full day", h: [6, 8], cost: "$", w: [2, 1, 0, 1], with: ["date", "friends"],
+        blurb: "A lighthouse climb at the tip of the Northern Beaches.",
+        getThere: "Bus from Manly wharf (about 75 min), or drive.",
+        tip: "Climb the short, steep track to Barrenjoey Lighthouse for views over Pittwater and the ocean.",
+        wxTip: "Only worth the long trip on a clear day." }
+    ];
+  }
+
+  // ---- Shared behaviour: identical in every direction. Do not change the logic. ----
+  baseVals() {
+    const s = this.state, WX = this.WX, WHO = this.WHO, DUR = this.DUR, FIT = this.FIT, acts = this.acts;
+    const byId = {};
+    acts.forEach((a) => { byId[a.id] = a; });
+    const wIdx = (k) => WX.findIndex((w) => w.key === k);
+    const flags = (k) => ({ isSun: k === "sun", isCloud: k === "cloud", isRain: k === "rain", isHot: k === "hot" });
+    const fitFlags = (f) => ({ fit: f, isGreat: f === 2, isOk: f === 1, isSkip: f === 0, fitLabel: FIT[f].label, fitNote: FIT[f].note });
+    const inSat = (id) => s.sat.indexOf(id) >= 0;
+    const inSun = (id) => s.sun.indexOf(id) >= 0;
+    const inPlan = (id) => inSat(id) || inSun(id);
+    const open = (id) => () => this.setState({ screen: "detail", openId: id, from: this.state.screen === "detail" ? this.state.from : this.state.screen });
+    const toggleDay = (key, id) => () => {
+      const list = this.state[key];
+      this.setState({ [key]: list.indexOf(id) >= 0 ? list.filter((x) => x !== id) : list.concat([id]) });
+    };
+    const pickable = (list, cur, stateKey) => list.map((o, i) => ({
+      key: o.key, label: o.label, index: i, selected: cur === o.key, notSelected: cur !== o.key,
+      pressed: cur === o.key ? "true" : "false", pick: () => this.setState({ [stateKey]: o.key })
+    }));
+    const dayBits = (a) => ({
+      inSat: inSat(a.id), notSat: !inSat(a.id), satPressed: inSat(a.id) ? "true" : "false",
+      satAria: inSat(a.id) ? "Remove " + a.name + " from Saturday" : "Add " + a.name + " to Saturday",
+      toggleSat: toggleDay("sat", a.id),
+      inSun: inSun(a.id), notSun: !inSun(a.id), sunPressed: inSun(a.id) ? "true" : "false",
+      sunAria: inSun(a.id) ? "Remove " + a.name + " from Sunday" : "Add " + a.name + " to Sunday",
+      toggleSun: toggleDay("sun", a.id),
+      planned: inPlan(a.id),
+      plannedLabel: "Planned for " + [inSat(a.id) ? "Saturday" : null, inSun(a.id) ? "Sunday" : null].filter(Boolean).join(" & ")
+    });
+
+    // Filters
+    const wi = wIdx(s.weather), cw = WX[wi];
+    const weathers = WX.map((w, i) => Object.assign(flags(w.key), {
+      key: w.key, label: w.label, short: w.short, index: i, selected: s.weather === w.key, notSelected: s.weather !== w.key,
+      pressed: s.weather === w.key ? "true" : "false", pick: () => this.setState({ weather: w.key })
+    }));
+
+    // Ranking (spec 6.1)
+    const durOk = (a) => s.dur === "any"
+      || (s.dur === "short" && a.h[1] <= 3)
+      || (s.dur === "half" && a.h[0] <= 5 && a.h[1] >= 2)
+      || (s.dur === "full" && a.h[1] >= 5);
+    const pool = acts.filter((a) => (s.who === "any" || a.with.indexOf(s.who) >= 0) && (!s.freeOnly || a.cost === "Free") && durOk(a));
+    const shown = pool.filter((a) => a.w[wi] > 0).sort((a, b) =>
+      (b.w[wi] - a.w[wi]) || ((inPlan(a.id) ? 1 : 0) - (inPlan(b.id) ? 1 : 0)) || a.name.localeCompare(b.name));
+    const hidden = pool.length - shown.length;
+    const cards = shown.map((a, i) => Object.assign(fitFlags(a.w[wi]), dayBits(a), {
+      id: a.id, index: i, num: (i + 1 < 10 ? "0" : "") + (i + 1), delay: (i * 60) + "ms", isFirst: i === 0, notFirst: i !== 0,
+      name: a.name, area: a.area, cat: a.cat, dur: a.dur, cost: a.cost, blurb: a.blurb,
+      fitText: FIT[a.w[wi]].label + " when " + cw.adj,
+      open: open(a.id),
+      wx: WX.map((w, j) => Object.assign(flags(w.key), fitFlags(a.w[j]), { wname: w.label, short: w.short, current: j === wi, notCurrent: j !== wi }))
+    }));
+
+    // Detail
+    const a = byId[s.openId] || acts[0];
+    const d = Object.assign(dayBits(a), {
+      id: a.id, name: a.name, area: a.area, cat: a.cat, dur: a.dur, cost: a.cost, blurb: a.blurb,
+      getThere: a.getThere, tip: a.tip, wxTip: a.wxTip,
+      withTags: a.with.map((k) => ({ label: (WHO.find((o) => o.key === k) || {}).label })),
+      wxRows: WX.map((w, j) => Object.assign(flags(w.key), fitFlags(a.w[j]), { label: w.label, short: w.short, current: j === wi })),
+      nowFit: Object.assign(fitFlags(a.w[wi]), { text: FIT[a.w[wi]].label + " when " + cw.adj }),
+      satLabel: inSat(a.id) ? "On Saturday" : "Add to Saturday",
+      sunLabel: inSun(a.id) ? "On Sunday" : "Add to Sunday"
+    });
+
+    // My weekend + Plan B (spec 6.2)
+    const used = {};
+    s.sat.concat(s.sun).forEach((id) => { used[id] = true; });
+    const costRank = { "Free": 0, "$": 1, "$$": 2, "$$$": 3 };
+    const indoor = (x) => x.w[2] === 2;
+    const planB = (x, di) => {
+      const cands = acts.filter((c) => !used[c.id] && c.w[di] === 2 && c.with.some((t) => x.with.indexOf(t) >= 0));
+      if (!cands.length) return null;
+      const score = (c) => (c.area === x.area ? 3 : 0) + (indoor(c) === indoor(x) ? 2 : 0)
+        + (c.h[0] <= x.h[1] && c.h[1] >= x.h[0] ? 1 : 0) + (costRank[c.cost] <= costRank[x.cost] ? 1 : 0);
+      cands.sort((p, q) => (score(q) - score(p)) || p.name.localeCompare(q.name));
+      return cands[0];
+    };
+    const goDiscover = () => this.setState({ screen: "discover" });
+    const days = [["sat", "Saturday", "Sat 3 Oct", "Sat", "3"], ["sun", "Sunday", "Sun 4 Oct", "Sun", "4"]].map((row) => {
+      const key = row[0], label = row[1];
+      const dw = s[key + "W"], di = wIdx(dw);
+      const items = s[key].map((id, i) => {
+        const it = byId[id], bad = it.w[di] === 0;
+        let backup = null;
+        if (bad) {
+          const b = planB(it, di);
+          if (b) {
+            used[b.id] = true;
+            backup = { name: b.name, area: b.area, dur: b.dur, cat: b.cat, swap: () => this.setState({ [key]: this.state[key].map((v) => (v === id ? b.id : v)) }) };
+          }
+        }
+        return Object.assign(fitFlags(it.w[di]), {
+          id: id, index: i, delay: (i * 80) + "ms", name: it.name, area: it.area, dur: it.dur, cat: it.cat, cost: it.cost,
+          badText: WX[di].bad, hasBackup: !!backup, badOnly: bad && !backup,
+          backup: backup || { name: "", area: "", dur: "", cat: "", swap: null },
+          open: open(id), removeLabel: "Remove " + it.name + " from " + label,
+          remove: () => this.setState({ [key]: this.state[key].filter((v) => v !== id) })
+        });
+      });
+      return Object.assign(flags(dw), {
+        key: key, label: label, date: row[2], short: row[3], dayNum: row[4],
+        forecast: dw, forecastLabel: WX[di].label, forecastAdj: WX[di].adj,
+        items: items, isEmpty: items.length === 0, hasItems: items.length > 0, find: goDiscover,
+        warnCount: items.filter((x) => x.isSkip).length,
+        wx: WX.map((w) => Object.assign(flags(w.key), {
+          key: w.key, short: w.short, label: w.label, aria: label + " forecast: " + w.label,
+          selected: dw === w.key, notSelected: dw !== w.key, pressed: dw === w.key ? "true" : "false",
+          pick: () => this.setState({ [key + "W"]: w.key })
+        }))
+      });
+    });
+
+    const count = s.sat.length + s.sun.length;
+    const scr = s.screen;
+    return Object.assign(flags(s.weather), {
+      isDiscover: scr === "discover", isDetail: scr === "detail", isPlan: scr === "plan",
+      notDetail: scr !== "detail", showTabs: scr !== "detail",
+      weather: s.weather, wxLabel: cw.label, wxAdj: cw.adj, wxShort: cw.short,
+      weathers: weathers, whos: pickable(WHO, s.who, "who"), durs: pickable(DUR, s.dur, "dur"),
+      freeOnly: s.freeOnly, notFreeOnly: !s.freeOnly, freePressed: s.freeOnly ? "true" : "false",
+      toggleFree: () => this.setState({ freeOnly: !this.state.freeOnly }),
+      resetFilters: () => this.setState({ weather: "sun", who: "any", dur: "any", freeOnly: false }),
+      cards: cards, resultCount: String(cards.length), noResults: cards.length === 0, hasResults: cards.length > 0,
+      resultTitle: cards.length + (cards.length === 1 ? " idea" : " ideas") + " for a " + cw.adj + " day",
+      hasHidden: hidden > 0, hiddenCount: String(hidden),
+      hiddenNote: hidden + (hidden === 1 ? " more is" : " more are") + " better saved for another day",
+      d: d, goBack: () => this.setState({ screen: this.state.from || "discover" }),
+      days: days, planCount: String(count),
+      planCountLabel: count + (count === 1 ? " activity" : " activities"),
+      shared: s.shared, notShared: !s.shared,
+      shareLabel: s.shared ? "Link copied: send it to your group" : "Share plan with your group",
+      toggleShare: () => this.setState({ shared: !this.state.shared }),
+      goDiscover: goDiscover, goPlan: () => this.setState({ screen: "plan" }),
+      tabDiscoverCurrent: scr === "discover" ? "page" : "false", tabPlanCurrent: scr === "plan" ? "page" : "false"
+    });
+  }
+
+  // ---- Direction-specific values (colours per weather, per-item styles). Write this per artboard. ----
+  themeVals(v) {
+    const INK = "#121212", CREAM = "#F3EEE4", SUB = "#4A4A48", ACC = "#5B3FD1", LAV = "#DCD3FA";
+    const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty-one", "Twenty-two"];
+    const EDITION = ["Sunny-day edition", "Overcast edition", "Rainy-day edition", "Hot-weather edition"];
+    const WHO_W = { any: "anyone", date: "a date", friends: "friends", family: "the family", solo: "just me" };
+    const DUR_W = { any: "any length", short: "under 3 hrs", half: "a half day", full: "a full day" };
+    const n = v.cards.length, word = WORDS[n] || String(n);
+    const wi = Math.max(0, v.weathers.findIndex((w) => w.selected));
+    const slide = (i) => "translateX(" + (i * 100) + "%)";
+    const dots = (f) => ({ d1: f > 0 ? "currentColor" : "transparent", d2: f > 0 ? "currentColor" : "transparent", d3: f === 2 ? "currentColor" : "transparent" });
+    const hash = (s) => s.split("").reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) % 9973, 17);
+    const plate = (id) => {
+      const h = hash(id), a = 20 + (h % 17);
+      return { px: (18 + (h % 64)) + "%", py: (14 + (Math.floor(h / 7) % 28)) + "%", hzA: a + "%", hzB: (a + 22) + "%" };
+    };
+    const onOff = (on) => ({ bg: on ? INK : "transparent", fg: on ? CREAM : INK });
+    const cards = v.cards.map((c) => Object.assign({}, c, plate(c.id), {
+      kick: "No. " + c.num + " — " + c.cat, plateNo: "Plate " + c.num,
+      meta: c.area + " — " + c.dur + " — " + c.cost, photo: "[Photo: " + c.name + "]",
+      satBg: onOff(c.inSat).bg, satFg: onOff(c.inSat).fg, sunBg: onOff(c.inSun).bg, sunFg: onOff(c.inSun).fg,
+      wx: c.wx.map((x) => Object.assign({}, x, dots(x.fit), { cellBg: x.current ? LAV : "transparent", cellFg: x.isSkip ? SUB : INK }))
+    }));
+    const d = Object.assign({}, v.d, plate(v.d.id), {
+      kick: v.d.cat + " — " + v.d.area, photo: "[Photo: " + v.d.name + "]",
+      byline: v.d.area + " — " + v.d.dur + " — " + v.d.cost,
+      withText: v.d.withTags.map((t) => t.label).join(", "),
+      satBg: onOff(v.d.inSat).bg, satFg: onOff(v.d.inSat).fg, sunBg: onOff(v.d.inSun).bg, sunFg: onOff(v.d.inSun).fg,
+      wxRows: v.d.wxRows.map((r) => Object.assign({}, r, dots(r.fit), { rowBg: r.current ? LAV : "transparent", rowFg: r.isSkip ? SUB : INK }))
+    });
+    const days = v.days.map((dy) => {
+      const di = Math.max(0, dy.wx.findIndex((x) => x.selected)), cnt = dy.items.length;
+      return Object.assign({}, dy, {
+        ed: dy.isRain ? "ed-night" : "ed-day", tabX: slide(di),
+        status: dy.forecastLabel + " forecast — " + (dy.warnCount ? dy.warnCount + " to rethink" : (cnt ? "all set" : "nothing planned")),
+        wx: dy.wx.map((x) => Object.assign({}, x, { fg: x.selected ? "var(--ink)" : "var(--sub)" })),
+        items: dy.items.map((it, i) => Object.assign({}, it, dots(it.fit), {
+          no: (i < 9 ? "0" : "") + (i + 1), meta: it.area + " — " + it.dur + " — " + it.cost,
+          verdict: it.fitLabel + " on a " + dy.forecastAdj + " day", vFg: it.isSkip ? "var(--acc)" : "var(--ink)",
+          backup: Object.assign({}, it.backup, { meta: it.backup.area + " — " + it.backup.dur })
+        }))
+      });
+    });
+    const opt = (o, W) => Object.assign({}, o, { word: W[o.key], fg: o.selected ? INK : SUB, deco: o.selected ? "underline" : "none" });
+    const who = v.whos.find((o) => o.selected) || v.whos[0], dur = v.durs.find((o) => o.selected) || v.durs[0];
+    const tick = n ? cards.map((c) => "No. " + c.num + "  " + c.name).join("   —   ") + "   —   " : "Nothing in this issue matches those filters   —   ";
+    const hc = Number(v.hiddenCount);
+    const nav = (on) => ({ fg: on ? INK : SUB, line: on ? ACC : "transparent", st: on ? "italic" : "normal" });
+    return {
+      cards: cards, leadCards: cards.slice(0, 1), restCards: cards.slice(1), d: d, days: days,
+      weathers: v.weathers.map((w) => Object.assign({}, w, { fg: w.selected ? "var(--ink)" : "var(--sub)" })),
+      whos: v.whos.map((o) => opt(o, WHO_W)), durs: v.durs.map((o) => opt(o, DUR_W)),
+      whoWord: WHO_W[who.key], durWord: DUR_W[dur.key],
+      cvCls: v.isRain ? "ed-night" : "ed-day", edition: EDITION[wi], wxX: slide(wi),
+      hlWays: word + (n === 1 ? " way" : " ways"), hlPlans: word + (n === 1 ? " plan" : " plans"),
+      dek: n ? v.resultTitle + ", ranked best first." + (hc ? " " + hc + " rated Skip " + (hc === 1 ? "is" : "are") + " held for another day." : "") : "Nothing in this issue fits those filters yet.",
+      storyCount: n + (n === 1 ? " story" : " stories"),
+      hiddenLine: hc + (hc === 1 ? " more story is" : " more stories are") + " held for another day: rated Skip when " + v.wxAdj + ".",
+      tickerText: tick, tickerDur: Math.max(40, Math.round(tick.length * 0.22)) + "s",
+      freeBox: v.freeOnly ? INK : "transparent",
+      sharePressed: v.shared ? "true" : "false", shareBg: v.shared ? INK : "transparent", shareFg: v.shared ? CREAM : INK,
+      navDFg: nav(v.isDiscover).fg, navDLine: nav(v.isDiscover).line, navDStyle: nav(v.isDiscover).st,
+      navPFg: nav(v.isPlan).fg, navPLine: nav(v.isPlan).line, navPStyle: nav(v.isPlan).st
+    };
+  }
+
+  renderVals() {
+    const v = this.baseVals();
+    return Object.assign(v, this.themeVals(v));
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,627 @@
+{
+  "id": "aus-museum",
+  "status": "verified",
+  "name": "Australian Museum",
+  "city": "sydney",
+  "area": "City",
+  "category": "museum",
+  "categoryLabel": "Museum",
+  "blurb": "First Nations cultures, dinosaurs and Australia's strange wildlife, for free.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Indoors and air-conditioned.",
+  "goodFor": [
+    "date",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "2 hrs",
+    "minHours": 2,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "Opposite Hyde Park, near Museum and St James stations.",
+  "newcomerTip": "Free general entry. A great introduction to First Nations cultures and Australia's unusual wildlife.",
+  "location": {
+    "lat": -33.8743,
+    "lng": 151.2131
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "7 min from Museum station"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8743,
+      "lng": 151.2131,
+      "label": "Australian Museum"
+    },
+    "pt": {
+      "total": "≈ 10 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "title": "Train to Museum",
+          "mins": 2
+        },
+        {
+          "mode": "walk",
+          "title": "Across Hyde Park to William St",
+          "mins": 7
+        }
+      ],
+      "back": {
+        "text": "Same way back. It's also a 20 min walk down to Central."
+      }
+    },
+    "drive": {
+      "total": "≈ 8 min",
+      "perCar": [
+        15,
+        30
+      ],
+      "perCarLabel": "Parking, 2 hrs",
+      "notes": [
+        "There's no museum car park. Weekend flat rates at nearby car parks are usually the best deal."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "show",
+        "label": "Ticketed exhibition",
+        "per": [
+          20,
+          30
+        ],
+        "on": false
+      },
+      {
+        "id": "food",
+        "label": "Bistro or café",
+        "per": [
+          12,
+          22
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "Go at opening time with kids. It gets busy on rainy weekends.",
+    "hours": "Open daily 10am to 5pm. Closed Christmas Day.",
+    "bring": [
+      "A small bag (bigger ones go in the cloakroom)",
+      "A light layer: it's air-conditioned"
+    ],
+    "facilities": [
+      "Toilets, a parents' room (level 2) and a cloakroom (lower ground)",
+      "Bistro Gadi on level 4 with harbour views (11am–3pm), a family café on level 2 and an espresso bar"
+    ],
+    "access": "Step-free entry on William St, lifts to every floor and a Changing Places toilet on level 2.",
+    "safety": [
+      "Rainy weekends get crowded: agree on a meeting spot if you have kids with you"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Art Gallery of NSW",
+      "why": "Free art",
+      "dist": "≈ 12 min walk",
+      "activityId": "agnsw"
+    },
+    {
+      "name": "Haymarket & Chinatown Food Crawl",
+      "why": "Dinner after",
+      "dist": "≈ 15 min walk",
+      "activityId": "chinatown"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Museum Station",
+        "type": "start",
+        "note": "Use the Liverpool St / Hyde Park exit.",
+        "lng": 151.2101,
+        "lat": -33.87573
+      },
+      {
+        "n": 2,
+        "name": "Anzac Memorial",
+        "type": "lookout",
+        "note": "War memorial and reflection pool in Hyde Park. Free.",
+        "lng": 151.21095,
+        "lat": -33.87575
+      },
+      {
+        "n": 3,
+        "name": "Australian Museum",
+        "type": "end",
+        "note": "Entrance on William St, opposite Hyde Park.",
+        "lng": 151.21326,
+        "lat": -33.87435
+      },
+      {
+        "n": 4,
+        "name": "Cook + Phillip Park",
+        "type": "pool",
+        "note": "Indoor pools next door.",
+        "lng": 151.21524,
+        "lat": -33.87258
+      },
+      {
+        "n": 5,
+        "name": "St Mary's Cathedral",
+        "type": "lookout",
+        "note": "Two minutes' walk north.",
+        "lng": 151.21336,
+        "lat": -33.87124
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21012,
+          -33.87574
+        ],
+        [
+          151.20987,
+          -33.87639
+        ],
+        [
+          151.2098,
+          -33.87636
+        ],
+        [
+          151.20971,
+          -33.87653
+        ],
+        [
+          151.20983,
+          -33.87661
+        ],
+        [
+          151.20977,
+          -33.87667
+        ],
+        [
+          151.20989,
+          -33.87673
+        ],
+        [
+          151.20995,
+          -33.87667
+        ],
+        [
+          151.21003,
+          -33.87669
+        ],
+        [
+          151.21007,
+          -33.87661
+        ],
+        [
+          151.21018,
+          -33.87663
+        ],
+        [
+          151.21063,
+          -33.8766
+        ],
+        [
+          151.21064,
+          -33.87656
+        ],
+        [
+          151.21081,
+          -33.87658
+        ],
+        [
+          151.21089,
+          -33.87614
+        ],
+        [
+          151.21099,
+          -33.87615
+        ],
+        [
+          151.21102,
+          -33.87598
+        ],
+        [
+          151.21092,
+          -33.87597
+        ],
+        [
+          151.21095,
+          -33.87581
+        ],
+        [
+          151.2109,
+          -33.87578
+        ],
+        [
+          151.21091,
+          -33.87572
+        ],
+        [
+          151.2109,
+          -33.87578
+        ],
+        [
+          151.21095,
+          -33.87581
+        ],
+        [
+          151.21092,
+          -33.87597
+        ],
+        [
+          151.21102,
+          -33.87598
+        ],
+        [
+          151.21099,
+          -33.87615
+        ],
+        [
+          151.21089,
+          -33.87614
+        ],
+        [
+          151.21081,
+          -33.87658
+        ],
+        [
+          151.21097,
+          -33.87659
+        ],
+        [
+          151.21102,
+          -33.87634
+        ],
+        [
+          151.21119,
+          -33.87629
+        ],
+        [
+          151.2114,
+          -33.87613
+        ],
+        [
+          151.21158,
+          -33.87535
+        ],
+        [
+          151.21217,
+          -33.875
+        ],
+        [
+          151.21222,
+          -33.87493
+        ],
+        [
+          151.21256,
+          -33.87496
+        ],
+        [
+          151.21266,
+          -33.87412
+        ],
+        [
+          151.2127,
+          -33.87412
+        ],
+        [
+          151.21268,
+          -33.87425
+        ],
+        [
+          151.21325,
+          -33.87434
+        ],
+        [
+          151.21333,
+          -33.87396
+        ],
+        [
+          151.21427,
+          -33.8741
+        ],
+        [
+          151.21421,
+          -33.87384
+        ],
+        [
+          151.21427,
+          -33.87343
+        ],
+        [
+          151.21435,
+          -33.87344
+        ],
+        [
+          151.21475,
+          -33.87293
+        ],
+        [
+          151.21503,
+          -33.87241
+        ],
+        [
+          151.2151,
+          -33.87235
+        ],
+        [
+          151.21526,
+          -33.87245
+        ],
+        [
+          151.21553,
+          -33.87217
+        ],
+        [
+          151.21553,
+          -33.8721
+        ],
+        [
+          151.21528,
+          -33.87188
+        ],
+        [
+          151.21476,
+          -33.87171
+        ],
+        [
+          151.21433,
+          -33.87108
+        ],
+        [
+          151.214,
+          -33.87085
+        ],
+        [
+          151.21357,
+          -33.87064
+        ],
+        [
+          151.21356,
+          -33.87072
+        ],
+        [
+          151.21376,
+          -33.87084
+        ],
+        [
+          151.21374,
+          -33.87108
+        ],
+        [
+          151.21367,
+          -33.87117
+        ],
+        [
+          151.21357,
+          -33.87116
+        ],
+        [
+          151.21356,
+          -33.87129
+        ],
+        [
+          151.21349,
+          -33.87128
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20981,
+        "lat": -33.87641
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21368,
+        "lat": -33.87106
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20986,
+        "lat": -33.87649
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20909,
+        "lat": -33.87675
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20943,
+        "lat": -33.87519
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21541,
+        "lat": -33.87357
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21625,
+        "lat": -33.87189
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21491,
+        "lat": -33.87392
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21324,
+        "lat": -33.87431
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "coords": [
+            [
+              151.20724,
+              -33.88419
+            ],
+            [
+              151.20807,
+              -33.88258
+            ],
+            [
+              151.20902,
+              -33.87849
+            ],
+            [
+              151.20991,
+              -33.87608
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.2099,
+              -33.87608
+            ],
+            [
+              151.21012,
+              -33.87554
+            ],
+            [
+              151.21008,
+              -33.87553
+            ],
+            [
+              151.21028,
+              -33.8751
+            ],
+            [
+              151.21001,
+              -33.87493
+            ],
+            [
+              151.20983,
+              -33.8749
+            ],
+            [
+              151.20985,
+              -33.87474
+            ],
+            [
+              151.20992,
+              -33.87471
+            ],
+            [
+              151.21,
+              -33.87458
+            ],
+            [
+              151.21131,
+              -33.87376
+            ],
+            [
+              151.21212,
+              -33.87388
+            ],
+            [
+              151.21223,
+              -33.87395
+            ],
+            [
+              151.2123,
+              -33.87395
+            ],
+            [
+              151.21239,
+              -33.87382
+            ],
+            [
+              151.21274,
+              -33.87386
+            ],
+            [
+              151.2127,
+              -33.87389
+            ],
+            [
+              151.21266,
+              -33.87412
+            ],
+            [
+              151.2127,
+              -33.87412
+            ],
+            [
+              151.21268,
+              -33.87425
+            ],
+            [
+              151.2131,
+              -33.87432
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "Ticketed exhibition prices: they change with each exhibition."
+    },
+    {
+      "section": "cost",
+      "note": "Bistro and café prices."
+    },
+    {
+      "section": "driving",
+      "note": "Parking prices at nearby car parks."
+    }
+  ]
+}

@@ -1,0 +1,638 @@
+{
+  "id": "sea-life",
+  "status": "verified",
+  "name": "SEA LIFE Aquarium",
+  "city": "sydney",
+  "area": "Darling Harbour",
+  "category": "wildlife",
+  "categoryLabel": "Wildlife",
+  "blurb": "Sharks, dugongs and the Great Barrier Reef, all under one roof.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Indoors: a reliable rainy-day pick for kids.",
+  "goodFor": [
+    "date",
+    "family"
+  ],
+  "duration": {
+    "label": "2 hrs",
+    "minHours": 2,
+    "maxHours": 2
+  },
+  "cost": "$$$",
+  "gettingThere": "Walk from Town Hall or Wynyard station.",
+  "newcomerTip": "Book online: adult tickets start at $39, against about $56 at the door. Combo tickets add WILD LIFE Sydney Zoo next door.",
+  "location": {
+    "lat": -33.8696,
+    "lng": 151.2022
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "12 min from Town Hall"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Ticket"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8696,
+      "lng": 151.2022,
+      "label": "SEA LIFE Sydney Aquarium"
+    },
+    "pt": {
+      "total": "≈ 20 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T1",
+          "title": "Train to Town Hall",
+          "mins": 3,
+          "detail": "Or any T4 or T8 train to Town Hall"
+        },
+        {
+          "mode": "walk",
+          "title": "Down Market St to Darling Harbour",
+          "mins": 12
+        }
+      ],
+      "back": {
+        "text": "Same way back, or walk along the waterfront to Barangaroo and Wynyard."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        12,
+        35
+      ],
+      "perCarLabel": "Car park, 3 hrs",
+      "notes": [
+        "Pre-booking a car park online is usually cheaper: SEA LIFE lists a $12 all-day Wilson Parking deal (code MERLIN)."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      39,
+      56
+    ],
+    "entryChild": [
+      24,
+      42
+    ],
+    "extras": [
+      {
+        "id": "combo",
+        "label": "Add WILD LIFE Sydney Zoo",
+        "per": [
+          20,
+          30
+        ],
+        "on": false
+      },
+      {
+        "id": "food",
+        "label": "Lunch at Darling Harbour",
+        "per": [
+          18,
+          30
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-02"
+  },
+  "visit": {
+    "bestTime": "First thing in the morning, or after 2pm. Rainy weekends are the busiest.",
+    "hours": "Open daily, 10am to 5pm on weekdays and 9:30am to 5pm on weekends (9am in NSW school holidays). Last entry 4pm.",
+    "bring": [
+      "Tickets on your phone",
+      "A light layer: it's cool inside"
+    ],
+    "facilities": [
+      "Toilets and a parents' room inside",
+      "Cafés and restaurants along the wharf"
+    ],
+    "access": "Step-free throughout, with lifts. Prams are fine but it gets crowded.",
+    "safety": [
+      "The tunnels are dim and crowded: keep small children close"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Haymarket & Chinatown Food Crawl",
+      "why": "Eat after",
+      "dist": "≈ 12 min walk",
+      "activityId": "chinatown"
+    },
+    {
+      "name": "Australian Museum",
+      "why": "More for a rainy day",
+      "dist": "≈ 20 min walk",
+      "activityId": "aus-museum"
+    }
+  ],
+  "lastVerified": "2026-10-02",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Town Hall Station",
+        "type": "start",
+        "note": "Take the Queen Victoria Building exit and head west on Market St.",
+        "lng": 151.20685,
+        "lat": -33.87357
+      },
+      {
+        "n": 2,
+        "name": "Queen Victoria Building",
+        "type": "food",
+        "note": "Grand old shopping arcade with cafés.",
+        "lng": 151.20667,
+        "lat": -33.87144
+      },
+      {
+        "n": 3,
+        "name": "SEA LIFE Aquarium",
+        "type": "end",
+        "note": "Entrance on the Darling Harbour waterfront.",
+        "lng": 151.20191,
+        "lat": -33.86961
+      },
+      {
+        "n": 4,
+        "name": "WILD LIFE Sydney Zoo",
+        "type": "paid",
+        "note": "Koalas and kangaroos indoors, right next door.",
+        "lng": 151.20228,
+        "lat": -33.86931
+      },
+      {
+        "n": 5,
+        "name": "Pyrmont Bridge",
+        "type": "lookout",
+        "note": "Walk across for the Darling Harbour view.",
+        "lng": 151.1992,
+        "lat": -33.87034
+      },
+      {
+        "n": 6,
+        "name": "Cockle Bay Wharf",
+        "type": "food",
+        "note": "Waterfront restaurants and takeaways.",
+        "lng": 151.2012,
+        "lat": -33.87367
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.20687,
+          -33.87357
+        ],
+        [
+          151.20695,
+          -33.8731
+        ],
+        [
+          151.20713,
+          -33.87312
+        ],
+        [
+          151.20715,
+          -33.87289
+        ],
+        [
+          151.20672,
+          -33.87267
+        ],
+        [
+          151.2067,
+          -33.87106
+        ],
+        [
+          151.2068,
+          -33.87084
+        ],
+        [
+          151.20712,
+          -33.87062
+        ],
+        [
+          151.20712,
+          -33.87071
+        ],
+        [
+          151.20706,
+          -33.87071
+        ],
+        [
+          151.20705,
+          -33.87086
+        ],
+        [
+          151.20643,
+          -33.87093
+        ],
+        [
+          151.20542,
+          -33.87099
+        ],
+        [
+          151.20479,
+          -33.87108
+        ],
+        [
+          151.20454,
+          -33.87103
+        ],
+        [
+          151.2036,
+          -33.87108
+        ],
+        [
+          151.2034,
+          -33.87121
+        ],
+        [
+          151.20245,
+          -33.87106
+        ],
+        [
+          151.20252,
+          -33.87079
+        ],
+        [
+          151.20242,
+          -33.87078
+        ],
+        [
+          151.20249,
+          -33.87038
+        ],
+        [
+          151.20242,
+          -33.87023
+        ],
+        [
+          151.20136,
+          -33.86989
+        ],
+        [
+          151.20128,
+          -33.86974
+        ],
+        [
+          151.20156,
+          -33.86902
+        ],
+        [
+          151.20242,
+          -33.86891
+        ],
+        [
+          151.20243,
+          -33.86895
+        ],
+        [
+          151.20242,
+          -33.86891
+        ],
+        [
+          151.20278,
+          -33.86882
+        ],
+        [
+          151.20287,
+          -33.86919
+        ],
+        [
+          151.20274,
+          -33.86954
+        ],
+        [
+          151.20274,
+          -33.87024
+        ],
+        [
+          151.20279,
+          -33.87031
+        ],
+        [
+          151.20274,
+          -33.87082
+        ],
+        [
+          151.2023,
+          -33.8708
+        ],
+        [
+          151.20229,
+          -33.87086
+        ],
+        [
+          151.19866,
+          -33.87025
+        ],
+        [
+          151.19827,
+          -33.87014
+        ],
+        [
+          151.198,
+          -33.86998
+        ],
+        [
+          151.19798,
+          -33.87003
+        ],
+        [
+          151.19822,
+          -33.87019
+        ],
+        [
+          151.19836,
+          -33.87034
+        ],
+        [
+          151.19847,
+          -33.87026
+        ],
+        [
+          151.19862,
+          -33.87033
+        ],
+        [
+          151.19905,
+          -33.8704
+        ],
+        [
+          151.19913,
+          -33.87046
+        ],
+        [
+          151.19909,
+          -33.87107
+        ],
+        [
+          151.19942,
+          -33.87125
+        ],
+        [
+          151.19946,
+          -33.87132
+        ],
+        [
+          151.19936,
+          -33.87222
+        ],
+        [
+          151.20023,
+          -33.87351
+        ],
+        [
+          151.20076,
+          -33.8735
+        ],
+        [
+          151.20097,
+          -33.87379
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20267,
+        "lat": -33.87072
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.19898,
+        "lat": -33.87022
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20684,
+        "lat": -33.87183
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20678,
+        "lat": -33.87425
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2078,
+        "lat": -33.87275
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2066,
+        "lat": -33.87243
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20678,
+        "lat": -33.87101
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20129,
+        "lat": -33.87409
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20662,
+        "lat": -33.87188
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20717,
+        "lat": -33.87263
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20376,
+        "lat": -33.8715
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20678,
+        "lat": -33.87109
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T1",
+          "coords": [
+            [
+              151.20683,
+              -33.88395
+            ],
+            [
+              151.20754,
+              -33.88319
+            ],
+            [
+              151.20794,
+              -33.88238
+            ],
+            [
+              151.20864,
+              -33.87975
+            ],
+            [
+              151.20875,
+              -33.87868
+            ],
+            [
+              151.20843,
+              -33.87775
+            ],
+            [
+              151.20702,
+              -33.87647
+            ],
+            [
+              151.20664,
+              -33.87585
+            ],
+            [
+              151.20654,
+              -33.87524
+            ],
+            [
+              151.20671,
+              -33.87365
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.20676,
+              -33.87365
+            ],
+            [
+              151.20677,
+              -33.87356
+            ],
+            [
+              151.20585,
+              -33.87349
+            ],
+            [
+              151.20523,
+              -33.87318
+            ],
+            [
+              151.20518,
+              -33.87271
+            ],
+            [
+              151.20503,
+              -33.87272
+            ],
+            [
+              151.20485,
+              -33.87146
+            ],
+            [
+              151.20471,
+              -33.87147
+            ],
+            [
+              151.20418,
+              -33.87111
+            ],
+            [
+              151.20398,
+              -33.87112
+            ],
+            [
+              151.20393,
+              -33.87093
+            ],
+            [
+              151.20373,
+              -33.87086
+            ],
+            [
+              151.20376,
+              -33.87076
+            ],
+            [
+              151.20368,
+              -33.87006
+            ],
+            [
+              151.20339,
+              -33.87008
+            ],
+            [
+              151.20341,
+              -33.87023
+            ],
+            [
+              151.20293,
+              -33.87024
+            ],
+            [
+              151.20291,
+              -33.87018
+            ],
+            [
+              151.20294,
+              -33.87031
+            ],
+            [
+              151.20279,
+              -33.87031
+            ],
+            [
+              151.20274,
+              -33.87024
+            ],
+            [
+              151.20274,
+              -33.8696
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-02"
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "The price of adding WILD LIFE Sydney Zoo: tickets are now sold as multi-attraction bundles."
+    }
+  ]
+}

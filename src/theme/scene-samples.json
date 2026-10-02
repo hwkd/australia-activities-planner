@@ -1,0 +1,91 @@
+{
+  "sampled": "2026-10-01",
+  "sunny": {
+    "phone": {
+      "glass": {
+        "dark": "#0C2D80",
+        "light": "#FFDF7B"
+      },
+      "skyText": {
+        "dark": "#1042BB",
+        "light": "#62749B"
+      }
+    },
+    "desktop": {
+      "glass": {
+        "dark": "#0B2C83",
+        "light": "#ECC962"
+      },
+      "skyText": {
+        "dark": "#1143BC",
+        "light": "#5069A4"
+      }
+    }
+  },
+  "cloudy": {
+    "phone": {
+      "glass": {
+        "dark": "#94A1AD",
+        "light": "#EEF1F4"
+      },
+      "skyText": {
+        "dark": "#9DA7B4",
+        "light": "#EEF0F3"
+      }
+    },
+    "desktop": {
+      "glass": {
+        "dark": "#949EAC",
+        "light": "#E5E9ED"
+      },
+      "skyText": {
+        "dark": "#AAB3BE",
+        "light": "#EDF0F3"
+      }
+    }
+  },
+  "rainy": {
+    "phone": {
+      "glass": {
+        "dark": "#0E193A",
+        "light": "#334684"
+      },
+      "skyText": {
+        "dark": "#0D1838",
+        "light": "#2B3C6F"
+      }
+    },
+    "desktop": {
+      "glass": {
+        "dark": "#0C1635",
+        "light": "#304380"
+      },
+      "skyText": {
+        "dark": "#0D1738",
+        "light": "#283766"
+      }
+    }
+  },
+  "hot": {
+    "phone": {
+      "glass": {
+        "dark": "#9F2F0C",
+        "light": "#FFF0CC"
+      },
+      "skyText": {
+        "dark": "#9F300C",
+        "light": "#BC461C"
+      }
+    },
+    "desktop": {
+      "glass": {
+        "dark": "#9E300C",
+        "light": "#FFF1CD"
+      },
+      "skyText": {
+        "dark": "#A0310D",
+        "light": "#BC461B"
+      }
+    }
+  }
+}
