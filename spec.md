@@ -34,7 +34,7 @@ A mobile-first web app (PWA) for newcomers to Sydney. Users choose the weather a
 
 The layout is designed for a phone width of 360–430 px and must work up to desktop.
 - **Phone:** two bottom tabs, **Discover** and **My plans**. The tab bar is hidden on Activity detail.
-- **Desktop (≥ 1024 px):** My plans and activity pages have a top bar with Discover and My plans. Discover has no top bar (A · Sky Mode — Desktop): the left side (product name, headline, Set the sky, filters in a card), the results as tiles (two columns at 1440 px, more on wider screens, one column of cards below about 1180 px) and a **Coming up** rail: Open My plans, Share, and the next planned days, each in its own sky with its sky picker, its plans (remove, with Undo) and a Plan B where one doesn't suit the sky. Tablets (768–1023 px) keep the phone layout with the results as tiles. Activity detail opens as a full page over Discover, with **Back to results** and **Add to a day** in its top bar. My plans is its own page (§3.3).
+- **Desktop (≥ 1024 px):** My plans and activity pages have a top bar with Discover and My plans. Discover (A · Sky Mode — Desktop) has the left side (product name, headline, Set the sky, filters in a card) and the results as tiles (three columns at 1440 px, more on wider screens, fewer on narrower ones), with the same Discover | My plans switch in the top right; planned days, their skies and Plan B live on the My plans page (owner, 3 Oct 2026: no Coming up rail on Discover). Tablets (768–1023 px) keep the phone layout with the results as tiles. Activity detail opens as a full page over Discover, with **Back to results** and **Add to a day** in its top bar. My plans is its own page (§3.3).
 
 ### 3.1 Discover (`/`)
 

@@ -24,8 +24,8 @@ const CHIP = "glass press tr h-11 shrink-0 rounded-full border font-semibold lg:
 
 /**
  * Group chips, then Free only and duration chips, then access; applied at once (spec §3.1, §11.6).
- * Desktop (A · Sky Mode — Desktop) labels the groups "Who's coming" and "How long", with Free only at
- * the right of the How long label; phones show the chips alone, Free only first in its row.
+ * Desktop (A · Sky Mode — Desktop) labels the groups "Who's coming" and "How long", then Free only in
+ * its own Price row under a divider; phones show the chips alone, Free only first in its row.
  */
 export default function FilterBar({ value, onChange, accessFilters }: Props) {
   const free = (
@@ -83,13 +83,9 @@ export default function FilterBar({ value, onChange, accessFilters }: Props) {
       </fieldset>
       <fieldset className="m-0 mt-2 min-w-0 border-0 p-0 lg:mt-3.5">
         <legend className="sr-only">{t.discover.filters.lengthLegend}</legend>
-        {/* Desktop: the label with Free only beside it. */}
-        <div className="hidden items-center justify-between gap-3 lg:flex">
-          <p aria-hidden="true" className={LABEL} style={{ color: "var(--mute)" }}>
-            {t.discover.filters.lengthLabel}
-          </p>
-          <span className="-my-2 -mr-1.5">{free}</span>
-        </div>
+        <p aria-hidden="true" className={`${LABEL} hidden lg:block`} style={{ color: "var(--mute)" }}>
+          {t.discover.filters.lengthLabel}
+        </p>
         <div className={ROW}>
           <span className="contents lg:hidden">{free}</span>
           {DURATIONS.map((d) => (
@@ -104,6 +100,16 @@ export default function FilterBar({ value, onChange, accessFilters }: Props) {
               {t.discover.filters.durations[d.key]}
             </button>
           ))}
+        </div>
+        {/* Desktop: Free only in its own row, under a divider, so it doesn't crowd the chips. */}
+        <div
+          className="mt-3.5 hidden items-center justify-between gap-3 border-t pt-3.5 lg:flex"
+          style={{ borderColor: "var(--line)" }}
+        >
+          <p aria-hidden="true" className={LABEL} style={{ color: "var(--mute)" }}>
+            {t.discover.filters.priceLabel}
+          </p>
+          {free}
         </div>
       </fieldset>
       {accessFilters && (

@@ -180,10 +180,10 @@ export default function AddToDaySheet({ sheet, cards }: Props) {
                   aria-pressed={on}
                   aria-label={s.quickDay(longLabel(q.date), q.holiday, shut, qs ? WEATHER_WORD[qs] : null)}
                   onClick={() => pickDate(q.date)}
-                  className="press relative flex h-20 min-w-14 flex-[1_0_auto] flex-col items-center justify-between rounded-[18px] border px-2 pt-[9px] pb-2"
+                  className="press relative flex h-20 min-w-[60px] flex-[1_0_60px] flex-col items-center justify-between rounded-[18px] border px-1 pt-[9px] pb-2"
                   style={{ background: on ? "var(--sel)" : "var(--glass)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" }}
                 >
-                  <span className="text-[11.5px] font-bold tracking-[0.03em] whitespace-nowrap">{q.label}</span>
+                  <span className="text-[11px] font-bold tracking-[0.01em] whitespace-nowrap">{q.label}</span>
                   <span className="num text-[22px] leading-none font-bold" style={{ textDecoration: shut ? "line-through" : "none" }}>
                     {Number(q.date.slice(8))}
                   </span>

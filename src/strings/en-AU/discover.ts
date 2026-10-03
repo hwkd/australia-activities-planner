@@ -39,6 +39,8 @@ export const discover = {
     lengthLegend: "Length and price",
     /** The visible label over the duration chips on desktop. */
     lengthLabel: "How long",
+    /** Desktop: the label of the row that holds Free only. */
+    priceLabel: "Price",
     freeOnly,
     durations,
     accessLegend: "Access",
@@ -82,36 +84,5 @@ export const discover = {
     add: "Add to a day",
     another: "Another one",
     close: "Close the surprise pick",
-  },
-  /** The desktop Coming up rail. */
-  comingUp: {
-    eyebrow: "Your plans",
-    title: "Coming up",
-    emptyTitle: "Nothing planned yet",
-    emptyBody: "Tap Add on any idea to put it on a day. Any day works, weekdays included.",
-    openPlans: "Open My plans",
-    /** "3 activities. Each day reads its own forecast." */
-    count: (n: number) => `${n} ${n === 1 ? "activity" : "activities"}. Each day reads its own forecast.`,
-    share: "Share",
-    /** Beside Share once the link is out. */
-    shareDone: "Link copied: send it to your group",
-    shareSent: "Shared with your group",
-    /** A day's heading links to it in My plans. */
-    openDay: (label: string, date: string) => `${label}, ${date}: open in My plans`,
-    /** Under a day's heading, after its date. */
-    skyLine: {
-      auto: (word: string) => `${word} forecast`,
-      manual: (word: string) => `${word}, your pick`,
-      none: "Sky not set",
-    },
-    /** On a plan that doesn't suit the day's sky. */
-    notGreat: {
-      sunny: "Not ideal in full sun.",
-      cloudy: "Not ideal under heavy cloud.",
-      rainy: "Not great in the rain.",
-      hot: "Not great in the heat.",
-    },
-    planBMeta: (area: string, duration: string) => `${area} · ${duration}`,
-    swapIn: "Swap it in",
   },
 } as const;

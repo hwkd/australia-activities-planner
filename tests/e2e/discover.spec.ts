@@ -134,10 +134,12 @@ test("Surprise me picks a Perfect idea for the sky, never the last three again, 
   await expect(pick).toHaveCount(0);
 });
 
-// A · Sky Mode — Desktop: no top bar; the Coming up rail shows each planned day in its own sky, with
-// its sky picker, its plans and Open My plans, and a plan can be removed there (with Undo).
-test("desktop Coming up rail: days in their own sky, remove with undo, no top bar", async ({ page }, info) => {
-  test.skip(!info.project.name.startsWith("desktop"), "the rail is desktop-only");
+// A · Sky Mode — Desktop: no Coming up rail; the Discover | My plans switch in the top right opens My
+// plans (with the plan count), and the results take the room as three tiles across at 1440 px.
+test("desktop: the My plans switch opens its own page; no Coming up rail; three tiles across", async ({
+  page,
+}, info) => {
+  test.skip(!info.project.name.startsWith("desktop"), "desktop layout");
   await page.clock.setFixedTime(new Date("2026-10-02T01:00:00Z"));
   await page.addInitScript(() => {
     localStorage.setItem(
@@ -153,18 +155,19 @@ test("desktop Coming up rail: days in their own sky, remove with undo, no top ba
     );
   });
   await page.goto("/?w=sunny");
-  const rail = page.getByRole("complementary", { name: "Coming up" });
-  await expect(rail.getByRole("link", { name: "Open My plans" })).toHaveAttribute("href", "/plan");
-  await expect(page.getByRole("navigation", { name: /main/i })).toBeHidden();
-  await expect(rail.getByText("2 activities. Each day reads its own forecast.")).toBeVisible();
-  const sat = rail.getByRole("region", { name: "Tomorrow, Sat 3 Oct" });
-  await expect(sat).toHaveAttribute("data-weather", "sunny");
-  await expect(sat.getByText("Sat 3 Oct · Sunny forecast")).toBeVisible();
-  const sun = rail.getByRole("region", { name: "Sunday, Sun 4 Oct" });
-  await expect(sun.getByText("Sun 4 Oct · Rainy, your pick")).toBeVisible();
-  await expect(sun.getByRole("button", { name: "Rainy" })).toHaveAttribute("aria-pressed", "true");
-  await sat.getByRole("button", { name: "Remove Bondi to Coogee Coastal Walk from Sat 3 Oct" }).click();
-  await expect(rail.getByText("1 activity. Each day reads its own forecast.")).toBeVisible();
-  await page.getByRole("button", { name: "Undo" }).click();
-  await expect(rail.getByText("2 activities. Each day reads its own forecast.")).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Coming up" })).toHaveCount(0);
+  const nav = page.getByRole("navigation", { name: /main/i });
+  await expect(nav).toBeVisible();
+  await expect(nav.getByRole("link", { name: /Discover/ })).toHaveAttribute("aria-current", "page");
+  const plans = nav.getByRole("link", { name: /My plans/ });
+  await expect(plans).toHaveAttribute("href", "/plan");
+  await expect(plans).toContainText("2");
+  const tops = await page
+    .locator(".rc-list > li")
+    .evaluateAll((els) => els.slice(0, 4).map((e) => Math.round(e.getBoundingClientRect().top)));
+  expect(tops[0]).toBe(tops[1]);
+  expect(tops[1]).toBe(tops[2]);
+  expect(tops[3]).toBeGreaterThan(tops[0]);
+  await plans.click();
+  await expect(page).toHaveURL(/\/plan/);
 });
