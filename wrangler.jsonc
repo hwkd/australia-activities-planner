@@ -11,9 +11,10 @@
     {
       "binding": "DB",
       "database_name": "sydney-weekend-finder",
-      // Set to the real ID from `npx wrangler d1 create sydney-weekend-finder` (owner, M0.5).
-      // Local development and tests use a local D1 in .wrangler/state and ignore this.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      // The production database (created 3 Oct 2026, region OC). Local development and tests use a
+      // local D1 in .wrangler/state, keyed by preview_database_id.
+      "database_id": "b3ece8d8-7852-41be-a2d2-f2ecd5f08694",
+      "preview_database_id": "00000000-0000-0000-0000-000000000000",
       "migrations_dir": "db/migrations"
     }
   ],
@@ -21,11 +22,14 @@
   // through /map/*. Create with `npx wrangler r2 bucket create sydney-weekend-finder-map` (owner), then
   // `npx tsx scripts/map/upload.ts --remote`. Without the files, the app keeps the schematic maps.
   "r2_buckets": [{ "binding": "MAP", "bucket_name": "sydney-weekend-finder-map" }],
+  // Production at https://sydney.hwkd.com.au (Cloudflare manages the DNS record and certificate).
+  "routes": [{ "pattern": "sydney.hwkd.com.au", "custom_domain": true }],
   // Every 3 hours: refresh the live forecast from Open-Meteo (spec §11.1).
   "triggers": { "crons": ["0 */3 * * *"] },
   "vars": {
     // "published": only published activities that are verified; "preview": drafts may be published
-    // (local, staging). Production must use "published" (spec §4.3: no drafts in production).
+    // (local, staging). Production must use "published" (spec §4.3: no drafts in production), which
+    // `npm run deploy` sets with --var.
     "CONTENT_MODE": "preview"
   }
 }

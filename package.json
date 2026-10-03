@@ -21,7 +21,7 @@
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
     "db:reset": "tsx scripts/db/reset.ts",
     "db:user": "tsx scripts/db/create-user.ts",
-    "deploy": "npm run build && wrangler d1 migrations apply DB --remote && tsx scripts/db/refresh-derived.ts --remote && wrangler deploy",
+    "deploy": "npm run build && wrangler d1 migrations apply DB --remote && tsx scripts/db/refresh-derived.ts --remote && wrangler deploy --var CONTENT_MODE:published",
     "map:fetch": "node scripts/map/fetch-assets.mjs",
     "map:upload": "tsx scripts/map/upload.ts",
     "db:refresh": "tsx scripts/db/refresh-derived.ts"
