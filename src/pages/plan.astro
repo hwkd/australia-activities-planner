@@ -42,6 +42,10 @@ const cards: PlanCard[] = [...all, ...events].map(toPlanCard);
   }
   /* Desktop (A · My plans calendar — Desktop): month grid on the left, the selected day as a side panel. */
   @media (min-width: 1024px) {
+    /* The switch lines up with the day panel's right edge, also once the page stops growing at 1400 px. */
+    :global(:root) {
+      --tabbar-right: max(24px, calc((100vw - 1400px) / 2 + 24px));
+    }
     .plans {
       max-width: 1400px;
       padding: 24px 24px 48px 40px;
