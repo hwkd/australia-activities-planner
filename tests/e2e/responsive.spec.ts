@@ -43,3 +43,28 @@ test("Discover's result columns follow the width", async ({ page }, info) => {
     expect(got, `columns at ${width}px`).toBe(cols);
   }
 });
+
+// The Discover | My plans switch keeps to the page's right edge, also once the page stops growing
+// (Discover at 1760 px, My plans at 1400 px).
+test("the desktop switch lines up with the content's right edge", async ({ page }, info) => {
+  test.skip(info.project.name !== "desktop", "one project is enough for the width sweep");
+  const pages: [string, string][] = [
+    ["/?w=sunny", 'ol[aria-label="Ranked results"]'],
+    ["/plan?d=2026-10-04", 'section[aria-labelledby="cal-day"]'],
+  ];
+  // One load per page, then resize in place (each load also warms the offline copies, which is heavy).
+  for (const [path, content] of pages) {
+    await page.setViewportSize({ width: 1024, height: 900 });
+    await page.goto(path);
+    await page.locator(content).waitFor();
+    for (const width of [1024, 1280, 1440, 1920, 2560]) {
+      await page.setViewportSize({ width, height: 900 });
+      const [nav, edge] = await page.evaluate((sel) => {
+        // Settle the cards' entrance animation (it scales them a little).
+        document.getAnimations().forEach((a) => a.effect?.getTiming().iterations !== Infinity && a.finish());
+        return [document.querySelector(".tabbar")!, document.querySelector(sel)!].map((e) => Math.round(e.getBoundingClientRect().right));
+      }, content);
+      expect(nav, `${path} at ${width}px`).toBe(edge);
+    }
+  }
+});

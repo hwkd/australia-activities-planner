@@ -84,7 +84,8 @@ test("the My plans count is there from the first paint, so the Discover | My pla
     expect(first, path).toEqual(last);
     shapes.push(last);
   }
-  expect(shapes[0], "the same switch on both pages").toEqual(shapes[1]);
+  // Same tabs on both pages (where the switch sits follows each page's right edge: responsive.spec).
+  expect(shapes[0].map(([, w]) => w), "the same tabs on both pages").toEqual(shapes[1].map(([, w]) => w));
 });
 
 test("AC 6 and 7: a rainy Sunday gets a Plan B that runs that day; Swap keeps the time; no duplicates", async ({ page }) => {
