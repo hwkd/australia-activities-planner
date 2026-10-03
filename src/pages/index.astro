@@ -5,9 +5,7 @@ import TabBar from "~/components/TabBar.astro";
 import SetTheSky from "~/components/islands/SetTheSky";
 import DiscoverFilters from "~/components/islands/DiscoverFilters";
 import DiscoverExplorer from "~/components/islands/DiscoverExplorer";
-import ComingUpRail from "~/components/islands/ComingUpRail";
 import { publishedCards } from "~/server/activities";
-import { toPlanCard } from "~/lib/planDays";
 import { publishedEventCards } from "~/server/eventsPublic";
 import { mapAvailable } from "~/server/map";
 import { contentMode, db } from "~/server/env";
@@ -17,13 +15,12 @@ import { t } from "~/strings/en-AU";
 /**
  * Discover (spec §3.1). Phone: one column (A · Sky Mode — Mobile). Tablet (768–1023 px): one wider
  * column whose results are tiles. Desktop (≥ 1024 px, A · Sky Mode — Desktop): header, sky and
- * filters on the left, results in the middle (tiles, two at 1440 px and more on wider screens), Coming
- * up on the right; no top bar, the rail links to My plans.
+ * filters on the left, results on the right (tiles, three at 1440 px and more on wider screens), and the
+ * Discover | My plans switch in the top right; My plans is its own page.
  */
 const cards = await publishedCards(db(), contentMode());
 const events = await publishedEventCards(db(), contentMode());
 const mapView = await mapAvailable();
-const planCards = [...cards, ...events].map(toPlanCard);
 ---
 
 <Base title={t.discover.pageTitle(SITE_NAME)} cards={cards} events={events}>
@@ -87,11 +84,8 @@ const planCards = [...cards, ...events].map(toPlanCard);
       <DiscoverExplorer client:load cards={cards} events={events} mapView={mapView} />
     </main>
 
-    <aside class="rail glass-strong tr" aria-label={t.discover.comingUp.title}>
-      <ComingUpRail client:media="(min-width: 1024px)" cards={planCards} />
-    </aside>
   </div>
-  <TabBar current="discover" phoneOnly />
+  <TabBar current="discover" />
 </Base>
 
 <style>
@@ -100,7 +94,6 @@ const planCards = [...cards, ...events].map(toPlanCard);
     margin: 0 auto;
     padding: 22px 16px 24px;
   }
-  .rail,
   .brand {
     display: none;
   }
@@ -189,13 +182,17 @@ const planCards = [...cards, ...events].map(toPlanCard);
     }
   }
   @media (min-width: 1024px) {
+    /* The switch lines up with the results' right edge, also once the page stops growing at 1760 px. */
+    :global(:root) {
+      --tabbar-right: max(24px, calc((100vw - 1760px) / 2 + 24px));
+    }
     .discover {
       max-width: 1760px;
       padding: 0 24px 0 0;
       display: grid;
-      /* The artboard's 540 / 532 / 344 at 1440 px. Narrower, the left side gives way first so the
-         results keep two columns down to about 1180 px; wider, the results take the extra room. */
-      grid-template-columns: clamp(360px, calc(100vw - 900px), 540px) minmax(0, 1fr) clamp(300px, 23.9vw, 344px);
+      /* The artboard's 540 px left side at 1440 px (results three tiles across). Narrower, the left side
+         gives way first so the results keep two columns; wider, the results take the extra room. */
+      grid-template-columns: clamp(360px, calc(100vw - 900px), 540px) minmax(0, 1fr);
       align-items: start;
     }
     .side {
@@ -207,18 +204,9 @@ const planCards = [...cards, ...events].map(toPlanCard);
       scrollbar-width: none;
       container-type: inline-size;
     }
+    /* No right padding: the results line up with the Discover | My plans switch above them. */
     .results {
-      padding: 40px 14px 48px 10px;
-    }
-    .rail {
-      position: sticky;
-      top: 24px;
-      height: calc(100dvh - 48px);
-      margin-top: 24px;
-      border-radius: 32px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      padding: 40px 0 48px 10px;
     }
     .brand {
       margin: 0;

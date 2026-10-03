@@ -18,17 +18,17 @@ for (const path of PAGES) {
   });
 }
 
-// Discover's results (A · Sky Mode): one column of cards on phones and narrow desktops, tiles on
-// tablets and desktops, two columns at the artboard's 1440 px and more on wider screens.
+// Discover's results (A · Sky Mode): one column of cards on phones, tiles on tablets and desktops,
+// three columns at the artboard's 1440 px (no Coming up rail since 3 Oct 2026) and more on wider screens.
 test("Discover's result columns follow the width", async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "one project is enough for the width sweep");
   const expected: [number, number][] = [
     [390, 1],
     [820, 2],
-    [1024, 1],
-    [1280, 2],
-    [1440, 2],
-    [1920, 3],
+    [1024, 2],
+    [1280, 3],
+    [1440, 3],
+    [1920, 4],
   ];
   for (const [width, cols] of expected) {
     await page.setViewportSize({ width, height: 900 });

@@ -10,6 +10,7 @@
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&amp;display=swap">
 <style>
+p,h1,h2,h3,dd,li{text-wrap:pretty}
 body{margin:0;background:#0F3FB8;font-family:'Mona Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;cursor:pointer;margin:0;-webkit-tap-highlight-color:transparent}
 button:focus-visible,a:focus-visible{outline:3px solid #FFFFFF;outline-offset:2px;box-shadow:0 0 0 2px #0A1330!important}
@@ -184,7 +185,7 @@ p,h1,h2,h3{margin:0}
 <button type="button" onClick="{{useForecast}}" class="glass press" style="flex-shrink: 0; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass}}; color: {{ink}}; font-size: 13.5px; font-weight: 700">Use forecast</button>
 </div>
 </sc-if>
-<p style="margin-top: 2px"><a href="https://open-meteo.com/" target="_blank" rel="noopener" class="lnk">Weather data: Open-Meteo</a></p>
+<p style="margin-top: 2px; padding-left: {{creditInset}}"><a href="https://open-meteo.com/" target="_blank" rel="noopener" class="lnk">Weather data: Open-Meteo</a></p>
 </div>
 
 <div class="glass tr" style="margin-top: 16px; padding: 16px 18px; border-radius: 26px; border: 1px solid {{line}}; background: {{glass}}; box-shadow: {{shadow}}">
@@ -198,14 +199,15 @@ p,h1,h2,h3{margin:0}
 </fieldset>
 <fieldset style="margin: 14px 0 0; padding: 0; border: 0; min-width: 0">
 <legend class="sr">How long, and price</legend>
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
-<span class="eb" aria-hidden="true" style="color: {{mute}}">How long</span>
-<button type="button" aria-pressed="{{freePressed}}" onClick="{{toggleFree}}" class="press" style="height: 44px; margin: -8px -6px -8px 0; padding: 0 12px 0 10px; border-radius: 999px; border: 1px solid {{freeBd}}; background: {{freeBg}}; color: {{freeFg}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 9px"><span aria-hidden="true" style="position: relative; width: 30px; height: 18px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{trackBd}}; background: {{trackBg}}; transition: background-color 300ms ease"><span style="position: absolute; left: 3px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: {{knobBg}}; transform: {{knobX}}; transition: transform 380ms cubic-bezier(.34,1.56,.64,1)"></span></span>Free only</button>
-</div>
+<span class="eb" aria-hidden="true" style="display: block; color: {{mute}}">How long</span>
 <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{durs}}" as="o" hint-placeholder-count="4">
 <button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="press" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-size: 14px; font-weight: 600">{{o.label}}</button>
 </sc-for>
+</div>
+<div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid {{line}}; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span class="eb" aria-hidden="true" style="color: {{mute}}">Price</span>
+<button type="button" aria-pressed="{{freePressed}}" onClick="{{toggleFree}}" class="press" style="height: 44px; flex-shrink: 0; padding: 0 12px 0 10px; border-radius: 999px; border: 1px solid {{freeBd}}; background: {{freeBg}}; color: {{freeFg}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 9px"><span aria-hidden="true" style="position: relative; width: 30px; height: 18px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{trackBd}}; background: {{trackBg}}; transition: background-color 300ms ease"><span style="position: absolute; left: 3px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: {{knobBg}}; transform: {{knobX}}; transition: transform 380ms cubic-bezier(.34,1.56,.64,1)"></span></span>Free only</button>
 </div>
 </fieldset>
 </div>
@@ -213,7 +215,7 @@ p,h1,h2,h3{margin:0}
 </header>
 
 <!-- ================= CENTRE: results ================= -->
-<main class="hs" aria-labelledby="results-title" style="position: absolute; left: 540px; top: 0; bottom: 0; width: 532px; overflow-y: auto; scrollbar-width: none; padding: 40px 14px 40px 10px; box-sizing: border-box">
+<main class="hs" aria-labelledby="results-title" style="position: absolute; left: 540px; top: 0; bottom: 0; width: 876px; overflow-y: auto; scrollbar-width: none; padding: 40px 14px 40px 10px; box-sizing: border-box">
 <div style="padding: 0 4px">
 <h2 id="results-title" aria-live="polite" class="disp tr" style="font-size: 32px; font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90; color: {{ink}}; text-shadow: {{hlShadow}}">{{resultTitle}}</h2>
 <sc-if value="{{hasHidden}}" hint-placeholder-val="{{true}}">
@@ -278,7 +280,7 @@ p,h1,h2,h3{margin:0}
 <p style="font-size: 14.5px; line-height: 1.45"><span style="font-weight: 700">Map view:</span> the same results as labelled pins on a real map (loads map tiles).</p>
 </div>
 <p class="eb" style="padding: 10px 18px 4px; color: {{mute}}">{{pinCountLabel}}</p>
-<ul aria-label="Map pins" style="list-style: none; margin: 0; padding: 0 6px 6px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 4px">
+<ul aria-label="Map pins" style="list-style: none; margin: 0; padding: 0 6px 6px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 4px">
 <sc-for list="{{pins}}" as="pin" hint-placeholder-count="6">
 <li><button type="button" aria-pressed="{{pin.pressed}}" aria-label="{{pin.aria}}" onClick="{{pin.pick}}" class="press" style="width: 100%; min-height: 44px; padding: 6px 10px; border: 0; border-radius: 14px; background: {{pin.bg}}; color: {{pin.fg}}; text-align: left; display: flex; align-items: center; gap: 8px; font-size: 13.5px"><span class="disp" style="flex-shrink: 0; width: 20px; font-weight: 800; font-variation-settings: 'wdth' 80">{{pin.num}}</span><span style="flex: 1; min-width: 0; font-weight: 600; line-height: 1.3">{{pin.name}}</span><span style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700"><svg width="15" height="12" viewBox="0 0 18 14" aria-hidden="true"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{pin.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{pin.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{pin.m3}}"></rect></svg>{{pin.fitLabel}}</span></button></li>
 </sc-for>
@@ -287,7 +289,7 @@ p,h1,h2,h3{margin:0}
 <sc-if value="{{noPin}}" hint-placeholder-val="{{true}}"><p class="tr" style="margin-top: 10px; padding: 0 4px; font-size: 13.5px; color: {{skyMute}}">Choose a pin to see its card here.</p></sc-if>
 </sc-if>
 
-<ol aria-label="Ranked results" style="list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch">
+<ol aria-label="Ranked results" style="list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch">
 <sc-for list="{{listCards}}" as="c" hint-placeholder-count="6">
 <li style="display: flex; min-width: 0">
 <article class="glass a-up lift" style="animation-delay: {{c.delay}}; flex: 1; min-width: 0; display: flex; flex-direction: column; border-radius: 24px; background: {{glass}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; overflow: hidden">
@@ -301,7 +303,7 @@ p,h1,h2,h3{margin:0}
 <span style="display: block; margin-top: 7px; font-size: 13.5px; line-height: 1.45; color: {{mute}}">{{c.blurb}}</span>
 <sc-if value="{{c.isPlanned}}" hint-placeholder-val="{{false}}"><span style="margin-top: 9px; display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: {{accent}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{c.plannedText}}</span></sc-if>
 </button>
-<span style="display: flex; align-items: center; gap: 12px; padding: 10px 16px 0; font-size: 12.5px; color: {{mute}}">
+<span style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 12px 16px 0; font-size: 12.5px; color: {{mute}}">
 <span style="display: inline-flex; align-items: center; gap: 5px"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>{{c.dur}}</span>
 <span style="display: inline-flex; align-items: center; gap: 5px"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M4 9V7a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a3 3 0 0 0 0 6v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a3 3 0 0 0 0-6z"></path></svg><span class="sr">Cost: </span>{{c.cost}}</span>
 </span>
@@ -316,7 +318,7 @@ p,h1,h2,h3{margin:0}
 </li>
 </sc-for>
 </ul>
-<div style="margin-top: auto; padding: 12px; display: grid; grid-template-columns: 1fr; gap: 6px">
+<div style="padding: 12px; display: grid; grid-template-columns: 1fr; gap: 6px">
 <a href="A-Calendar-Desktop.dc.html" aria-label="Add {{c.name}} to a day" class="press" style="height: 44px; padding: 0 8px; box-sizing: border-box; border-radius: 14px; border: 1px solid {{sel}}; background: {{sel}}; color: {{selInk}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add to a day</a>
 </div>
 </article>
@@ -325,107 +327,12 @@ p,h1,h2,h3{margin:0}
 </ol>
 </main>
 
-<!-- ================= RIGHT: Coming up, always live ================= -->
-<aside aria-label="Coming up" class="glass2 tr" style="position: absolute; right: 24px; top: 24px; bottom: 24px; width: 344px; border-radius: 32px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; display: flex; flex-direction: column; overflow: hidden">
-<div style="padding: 22px 22px 14px">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: -10px -8px 0 0">
-<p class="eb" style="color: {{mute}}">Your plans</p>
-<a href="A-Calendar-Desktop.dc.html" class="press" style="height: 44px; padding: 0 10px; border-radius: 12px; display: inline-flex; align-items: center; gap: 5px; color: {{ink}}; font-size: 13.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px">Open My plans<svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
-</div>
-<h2 class="disp" style="margin-top: 2px; font-size: 38px; font-weight: 750; line-height: 0.95; letter-spacing: -0.035em; font-variation-settings: 'wdth' 80">Coming up</h2>
-<p style="margin-top: 8px; font-size: 13.5px; color: {{mute}}">{{planCountLabel}}. Each day reads its own forecast.</p>
-<div style="margin-top: 12px; display: flex; align-items: center; gap: 10px">
-<button type="button" aria-pressed="{{sharePressed}}" onClick="{{toggleShare}}" class="press" style="flex-shrink: 0; height: 44px; padding: 0 16px 0 13px; border-radius: 999px; border: 1px solid {{line}}; background: {{shareBg}}; color: {{shareFg}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px">
-<sc-if value="{{notShared}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"></path><path d="M5 12v6.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V12"></path></svg></sc-if>
-<sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><svg class="a-pop ic icb" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
-Share</button>
-<p aria-live="polite" style="font-size: 12.5px; font-weight: 600; line-height: 1.3; color: {{mute}}"><sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="display: inline-block">{{shareLabel}}</span></sc-if></p>
-</div>
-</div>
+<!-- ================= TOP RIGHT: Discover | My plans (My plans has its own page) ================= -->
+<nav aria-label="Main" class="glass tr" style="position: absolute; right: 38px; top: 28px; z-index: 5; height: 54px; padding: 4px; box-sizing: border-box; border-radius: 999px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; display: flex; gap: 4px; white-space: nowrap">
+<a href="A-Sky-Desktop.dc.html" aria-current="page" class="press" style="height: 44px; padding: 0 18px 0 14px; border-radius: 999px; background: {{sel}}; color: {{selInk}}; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; text-decoration: none"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM15.5 8.5l-2 5-5 2 2-5z"></path></svg>Discover</a>
+<a href="A-Calendar-Desktop.dc.html" class="press" style="height: 44px; padding: 0 10px 0 14px; border-radius: 999px; color: {{ink}}; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; text-decoration: none"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6.5 5h11A2.5 2.5 0 0 1 20 7.5v10a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-10A2.5 2.5 0 0 1 6.5 5zM4 10h16M8.5 3v4M15.5 3v4"></path></svg>My plans<span style="min-width: 24px; height: 24px; padding: 0 7px; box-sizing: border-box; border-radius: 999px; background: {{sel}}; color: {{selInk}}; font-size: 12.5px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center">{{planCount}}<span class="sr"> coming up</span></span></a>
+</nav>
 
-<div class="hs" style="flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 0 12px 12px; display: flex; flex-direction: column; gap: 12px">
-<sc-for list="{{days}}" as="day" hint-placeholder-count="2">
-<section class="a-up" style="animation-delay: {{day.delay}}; flex-shrink: 0; position: relative; min-height: 210px; border-radius: 26px; overflow: hidden; isolation: isolate; color: {{day.ink}}; box-shadow: 0 16px 36px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.18); transition: color 900ms ease">
-<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1">
-<div class="sky" style="opacity: {{day.opSun}}; background: linear-gradient(170deg, #0F3FB8 0%, #2659D8 100%)">
-<svg class="spin60" width="180" height="180" viewBox="0 0 300 300" style="position: absolute; right: -66px; top: -66px"><path d="M150 66V30M192 77.3L210 46.1M222.7 108L253.9 90M234 150H270M222.7 192L253.9 210M192 222.7L210 253.9M150 234V270M108 222.7L90 253.9M77.3 192L46.1 210M66 150H30M77.3 108L46.1 90M108 77.3L90 46.1" fill="none" stroke="#FFD66B" stroke-width="3" stroke-linecap="round" opacity="0.5"></path></svg>
-<div style="position: absolute; right: -14px; top: -14px; width: 76px; height: 76px; border-radius: 50%; background: radial-gradient(circle at 36% 34%, #FFF2C2 0%, #FFD65C 38%, #FFC940 64%, #F2A51E 100%); box-shadow: 0 0 40px 12px rgba(255,201,64,0.32)"></div>
-<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 56px; background: linear-gradient(180deg, #1B4FD2, #0B2C82)"><span class="gl" style="left: 40%; top: 12px; width: 26px"></span><span class="gl" style="left: 72%; top: 26px; width: 18px; animation-delay: -1.2s"></span><span class="gl" style="left: 16%; top: 34px; width: 14px; animation-delay: -2.3s"></span></div>
-</div>
-<div class="sky" style="opacity: {{day.opCloud}}; background: linear-gradient(170deg, #8E9AA8 0%, #C9D1D9 100%)">
-<svg class="dT" width="180" height="81" viewBox="0 0 200 90" style="position: absolute; left: 140px; top: 6px; opacity: 0.8; animation-duration: 30s; animation-delay: -10s"><use href="#cl" fill="url(#cg)"></use></svg>
-<svg class="dT" width="130" height="59" viewBox="0 0 200 90" style="position: absolute; left: 20px; top: 130px; opacity: 0.6; filter: blur(2px); animation-duration: 40s; animation-delay: -20s"><use href="#cl" fill="url(#cg)"></use></svg>
-</div>
-<div class="sky" style="opacity: {{day.opRain}}; background: linear-gradient(170deg, #0A1330 0%, #1C2B55 100%)">
-<div style="position: absolute; inset: -20%; transform: rotate(10deg)">
-<div class="f2" style="position: absolute; left: 0; right: 0; top: -160px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rM)"></rect></svg></div>
-<div class="f3" style="position: absolute; left: 0; right: 0; top: -220px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rN)"></rect></svg></div>
-</div>
-</div>
-<div class="sky" style="opacity: {{day.opHot}}; background: linear-gradient(170deg, #9A2D0B 0%, #C04A18 100%)">
-<div class="breathe" style="position: absolute; right: -40px; top: -40px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle at 45% 40%, #FFF4D6 0%, #FFE3A1 45%, #FFD07A 100%); box-shadow: 0 0 60px 20px rgba(255,200,120,0.35)"></div>
-<svg width="660" height="40" viewBox="0 0 660 40" style="position: absolute; left: 0; top: 86px"><g fill="none" stroke="rgba(255,236,200,0.35)" stroke-width="2" stroke-linecap="round"><path class="wv" d="M0 10q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0"></path><path class="wv" d="M0 30q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" style="animation-duration: 8s"></path></g></svg>
-</div>
-</div>
-
-<div style="padding: 10px 12px 12px">
-<div style="padding: 0 6px">
-<h3 class="disp" style="font-size: 32px; font-weight: 750; line-height: 0.95; letter-spacing: -0.035em; font-variation-settings: 'wdth' 80"><a href="A-Calendar-Desktop.dc.html" aria-label="{{day.label}}, {{day.date}}: open in My plans" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: inherit; text-decoration: none">{{day.label}}<svg width="20" height="20" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="opacity: 0.75"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></h3>
-<p style="margin-top: 2px; font-size: 13.5px; font-weight: 600">{{day.date}} · {{day.forecastLabel}} forecast</p>
-<sc-if value="{{day.hasWarn}}" hint-placeholder-val="{{false}}"><p class="glass a-fade" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: {{day.glass}}; border: 1px solid {{day.line}}; font-size: 12px; font-weight: 700"><svg width="13" height="13" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>{{day.warnText}}</p></sc-if>
-</div>
-<fieldset style="margin: 12px 0 0; padding: 0; border: 0; min-width: 0">
-<legend class="sr">{{day.label}} forecast</legend>
-<div class="glass" style="padding: 3px; border-radius: 16px; background: {{day.glass}}; border: 1px solid {{day.line}}; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px">
-<sc-for list="{{day.wx}}" as="w" hint-placeholder-count="4">
-<button type="button" aria-pressed="{{w.pressed}}" aria-label="{{w.aria}}" onClick="{{w.pick}}" class="press" style="height: 44px; padding: 0; border: 0; border-radius: 13px; background: {{w.bg}}; color: {{w.fg}}; font-size: 12px; font-weight: {{w.fw}}; display: flex; align-items: center; justify-content: center; gap: 4px">
-<sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2M12 19.2v2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M2.8 12h2M19.2 12h2M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg></sc-if>
-<sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7.5 18.5h9.5a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.9 9.2 4.7 4.7 0 0 0 7.5 18.5z"></path></svg></sc-if>
-<sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7.5 14.5h9.5a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.9 5.2 4.7 4.7 0 0 0 7.5 14.5z"></path><path d="M8.5 17.5l-1 3M12.5 17.5l-1 3M16.5 17.5l-1 3"></path></svg></sc-if>
-<sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="9" r="3.6"></circle><path d="M12 2.6v1.3M6.8 4.6l.9.9M17.2 4.6l-.9.9M4.8 9.5h1.3M17.9 9.5h1.3M4 15.5c1.3-1 2.7-1 4 0s2.7 1 4 0 2.7-1 4 0 2.7 1 4 0M4 19.5c1.3-1 2.7-1 4 0s2.7 1 4 0 2.7-1 4 0 2.7 1 4 0"></path></svg></sc-if>
-<span aria-hidden="true">{{w.tag}}</span>
-</button>
-</sc-for>
-</div>
-</fieldset>
-
-<sc-for list="{{day.items}}" as="it" hint-placeholder-count="2">
-<div class="glass a-up" style="animation-delay: {{it.delay}}; margin-top: 8px; border-radius: 18px; background: {{it.glass}}; border: 1px solid {{it.line}}; overflow: hidden; color: {{it.ink}}">
-<div style="display: flex; align-items: center; gap: 2px; padding: 4px 4px 4px 14px">
-<button type="button" onClick="{{it.open}}" style="flex: 1; min-width: 0; min-height: 52px; padding: 5px 0; border: 0; background: transparent; text-align: left; color: inherit; display: flex; flex-direction: column; gap: 4px">
-<span style="font-size: 14.5px; font-weight: 650; line-height: 1.25">{{it.name}}</span>
-<span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: {{it.mute}}"><svg width="15" height="12" viewBox="0 0 18 14" aria-hidden="true" style="color: {{it.meterCol}}"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{it.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{it.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{it.m3}}"></rect></svg>{{it.fitLabel}} · {{it.dur}}</span>
-</button>
-<button type="button" aria-label="{{it.removeLabel}}" onClick="{{it.remove}}" class="press" style="flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 13px; background: transparent; color: {{it.mute}}; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-</div>
-<sc-if value="{{it.hasBackup}}" hint-placeholder-val="{{false}}">
-<div class="a-slide" style="margin: 0 5px 5px; padding: 12px; border-radius: 15px; background: {{it.soft}}; display: flex; gap: 10px">
-<span class="a-swing" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px; color: {{it.accent}}"><svg width="24" height="24" viewBox="0 0 24 24" class="ic"><path d="M3 12a9 9 0 0 1 18 0z"></path><path d="M12 12v6.5a2 2 0 0 1-4 0M12 3V2"></path></svg></span>
-<span style="flex: 1; min-width: 0">
-<span style="display: block; font-size: 12.5px; line-height: 1.4; color: {{it.mute}}">{{it.badText}}</span>
-<span class="eb" style="display: block; margin-top: 7px; font-size: 10.5px">Plan B</span>
-<span class="disp" style="display: block; margin-top: 2px; font-size: 17px; font-weight: 700; line-height: 1.1; letter-spacing: -0.015em">{{it.backup.name}}</span>
-<span style="display: block; margin-top: 2px; font-size: 12px; color: {{it.mute}}">{{it.backup.area}} · {{it.backup.dur}}</span>
-<button type="button" onClick="{{it.backup.swap}}" class="press" style="margin-top: 9px; height: 44px; padding: 0 14px; border: 0; border-radius: 13px; background: {{it.sel}}; color: {{it.selInk}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="15" height="15" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg>Swap it in</button>
-</span>
-</div>
-</sc-if>
-<sc-if value="{{it.badOnly}}" hint-placeholder-val="{{false}}">
-<p class="a-slide" style="margin: 0 5px 5px; padding: 11px 12px; border-radius: 15px; background: {{it.soft}}; font-size: 12.5px; line-height: 1.4">{{it.badText}} Try moving it to the other day.</p>
-</sc-if>
-</div>
-</sc-for>
-
-<sc-if value="{{day.isEmpty}}" hint-placeholder-val="{{false}}">
-<div class="glass a-fade" style="margin-top: 8px; padding: 14px; border-radius: 18px; background: {{day.glass}}; border: 1px dashed {{day.line}}">
-<p style="font-size: 14px; font-weight: 600">Nothing planned for {{day.label}} yet. Use Add to a day on any idea.</p>
-</div>
-</sc-if>
-</div>
-</section>
-</sc-for>
-</div>
-</aside>
 <!-- ================= DETAIL: the full detail page (A-Detail-Desktop), sharing this prototype's weather and weekend plan ================= -->
 <sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
 <div class="a-fade" style="position: absolute; inset: 0; z-index: 30">
@@ -471,22 +378,22 @@ class Component extends DCLogic {
     this.acts = [
       { id: "bondi-coogee", name: "Bondi to Coogee Coastal Walk", area: "Eastern Suburbs", cat: "Coastal walk", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
         blurb: "Sydney's most famous clifftop walk, linking six beaches and ocean pools.",
-        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach. Bus back to the city from Coogee.",
+        getThere: "Train to Bondi Junction, then bus 333 or 380 to Bondi Beach. Bus 374 back to Central from Coogee.",
         tip: "Pack swimmers: Bronte and Clovelly make great mid-walk dips. Lots of stairs, so leave the pram at home.",
         wxTip: "Exposed clifftops with little shade. Go early on hot days, and skip it in rain when the rocks get slippery." },
       { id: "manly", name: "Ferry to Manly & Shelly Beach", area: "Northern Beaches", cat: "Ferry & beach", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 2], with: ["date", "friends", "family", "solo"],
         blurb: "The harbour's best-value view, then a relaxed beach town with calm snorkelling.",
-        getThere: "F1 ferry from Circular Quay, about 30 min. Tap on with Opal or a contactless card.",
+        getThere: "F1 ferry from Circular Quay, about 25 min. Tap on with Opal or a contactless card.",
         tip: "Grab an outside seat for Opera House and Harbour Bridge views. Walk along to Shelly Beach for calmer water and snorkelling.",
         wxTip: "The ferry ride is lovely even under cloud. Beach time needs sunshine." },
       { id: "spit-manly", name: "Spit Bridge to Manly Walk", area: "Northern Beaches", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "Free", w: [2, 2, 0, 1], with: ["date", "friends", "solo"],
         blurb: "Ten kilometres of bush, hidden beaches and harbour lookouts, ending in Manly.",
-        getThere: "Bus from Wynyard to Spit Bridge. Ferry home from Manly to Circular Quay.",
+        getThere: "Train to Wynyard and bus 173X to the Spit. Ferry home from Manly to Circular Quay.",
         tip: "About 10 km of bush, hidden beaches and harbour lookouts. Finish with fish and chips in Manly and ride the ferry home.",
         wxTip: "Mostly shaded, so it's bearable when warm. Muddy and slippery after rain." },
       { id: "three-sisters", name: "Three Sisters & Echo Point", area: "Blue Mountains", cat: "Lookout & walk", dur: "Full day", h: [6, 9], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
         blurb: "The iconic sandstone peaks over the Jamison Valley, two hours by train.",
-        getThere: "Blue Mountains line from Central to Katoomba (about 2 hrs), then a local bus or 25 min walk to Echo Point.",
+        getThere: "Blue Mountains line from Central to Katoomba (about 2 hrs), then bus 686 or a 25 min walk to Echo Point.",
         tip: "Walk the Prince Henry Cliff Walk between lookouts. It's several degrees cooler than the city, so bring a layer.",
         wxTip: "Low cloud can hide the valley completely. A great escape on a scorching city day." },
       { id: "wentworth", name: "Wentworth Falls & National Pass", area: "Blue Mountains", cat: "Bushwalk", dur: "3–4 hrs", h: [3, 4], cost: "$", w: [2, 1, 0, 1], with: ["friends", "solo"],
@@ -502,7 +409,7 @@ class Component extends DCLogic {
       { id: "opera-tour", name: "Sydney Opera House Tour", area: "City", cat: "Culture", dur: "1 hr", h: [1, 1], cost: "$$", w: [2, 2, 2, 2], with: ["date", "friends", "family", "solo"],
         blurb: "Go behind the sails of Australia's most famous building.",
         getThere: "Short walk from Circular Quay station and ferry wharves.",
-        tip: "Book the guided tour online. Stay for a drink at the Opera Bar steps afterwards.",
+        tip: "Book the guided tour online ($50, or $55 at the door). Arrive 15 min early for security. Stay for a drink at Opera Bar afterwards.",
         wxTip: "Indoors, so it works in any weather." },
       { id: "agnsw", name: "Art Gallery of NSW", area: "The Domain", cat: "Gallery", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [1, 2, 2, 2], with: ["date", "friends", "family", "solo"],
         blurb: "Free, world-class art across two buildings, with a rooftop harbour view.",
@@ -517,7 +424,7 @@ class Component extends DCLogic {
       { id: "taronga", name: "Taronga Zoo", area: "Mosman", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
         blurb: "Koalas, kangaroos and giraffes with a harbour skyline behind them.",
         getThere: "F2 ferry from Circular Quay to Taronga Zoo wharf, about 12 min.",
-        tip: "Ride the Sky Safari cable car up from the wharf, then walk downhill. Koalas and kangaroos with harbour views.",
+        tip: "The Sky Safari cable car is closed while it's rebuilt (due back in late 2027): take the bus up from the wharf to the top entrance, then walk downhill. Koalas and kangaroos with harbour views.",
         wxTip: "Mostly outdoors and hilly. Light rain means thinner crowds." },
       { id: "watsons", name: "Watsons Bay & The Gap", area: "Eastern Suburbs", cat: "Ferry & lookout", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 0, 1], with: ["date", "friends", "family"],
         blurb: "Ferry out to fish and chips, then wild ocean cliffs at South Head.",
@@ -526,22 +433,22 @@ class Component extends DCLogic {
         wxTip: "Windy and exposed on the cliffs. Best on a clear day." },
       { id: "bridge-walk", name: "Walk across the Harbour Bridge", area: "The Rocks", cat: "Landmark", dur: "1 hr", h: [1, 1], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
         blurb: "Cross the Coathanger on foot for free, with the Opera House below.",
-        getThere: "Stairs up from Cumberland St in The Rocks. Finish at Milsons Point station.",
-        tip: "Use the eastern footpath for Opera House views. Pay a few dollars for the Pylon Lookout, or splurge on BridgeClimb.",
+        getThere: "Stairs or the lift up from Cumberland St in The Rocks. Finish at Milsons Point station.",
+        tip: "Use the eastern footpath for Opera House views. The Pylon Lookout (about $30) has the view from the top of the south-east pylon, or splurge on BridgeClimb.",
         wxTip: "Fine under an umbrella, but very exposed in the heat." },
       { id: "rocks-markets", name: "The Rocks Markets", area: "The Rocks", cat: "Markets", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
         blurb: "Weekend stalls, street food and sandstone laneways by the harbour.",
         getThere: "Short walk from Circular Quay or Wynyard.",
-        tip: "Runs on weekends. Wander the sandstone laneways and historic pubs afterwards.",
+        tip: "Runs Friday to Sunday. Wander the sandstone laneways and historic pubs afterwards.",
         wxTip: "Partly covered, so it's workable in light rain." },
       { id: "cockatoo", name: "Cockatoo Island", area: "Sydney Harbour", cat: "History", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
         blurb: "A convict-era island of tunnels and shipyards in the middle of the harbour.",
-        getThere: "F3 or F8 ferry from Circular Quay.",
+        getThere: "Train to Wynyard, walk to Barangaroo, then the F3 ferry (or the F3 from Circular Quay).",
         tip: "A UNESCO-listed convict site with tunnels and old shipyards. You can even glamp overnight.",
         wxTip: "Tunnels and industrial sheds give some shelter." },
       { id: "balmoral", name: "Balmoral Beach", area: "Mosman", cat: "Beach", dur: "Half day", h: [3, 5], cost: "Free", w: [2, 1, 0, 2], with: ["date", "family"],
         blurb: "A calm harbour beach with fig trees, a promenade and gentle water.",
-        getThere: "Bus from Wynyard or the city, about 40 min.",
+        getThere: "Train to Wynyard, the B-Line bus to Spit Junction, then bus 114 down to the beach: about 40 min.",
         tip: "Calm, sheltered harbour water that suits kids and newer swimmers. Great spot for a picnic under the fig trees.",
         wxTip: "Best on hot days when ocean beaches are rough or packed." },
       { id: "icebergs", name: "Bondi Icebergs Pool", area: "Bondi", cat: "Swimming", dur: "1–2 hrs", h: [1, 2], cost: "$", w: [2, 1, 0, 2], with: ["date", "friends", "solo"],
@@ -552,11 +459,11 @@ class Component extends DCLogic {
       { id: "sea-life", name: "SEA LIFE Aquarium", area: "Darling Harbour", cat: "Wildlife", dur: "2 hrs", h: [2, 2], cost: "$$$", w: [1, 2, 2, 2], with: ["date", "family"],
         blurb: "Sharks, dugongs and the Great Barrier Reef, all under one roof.",
         getThere: "Walk from Town Hall or Wynyard station.",
-        tip: "Book online for cheaper entry, and look at combo tickets with WILD LIFE Sydney Zoo next door.",
+        tip: "Book online: adult tickets start at $39, against about $56 at the door. Combo tickets add WILD LIFE Sydney Zoo next door.",
         wxTip: "Indoors: a reliable rainy-day pick for kids." },
       { id: "featherdale", name: "Featherdale Wildlife Park", area: "Western Sydney", cat: "Wildlife", dur: "Half day", h: [3, 5], cost: "$$", w: [2, 2, 1, 1], with: ["date", "friends", "family"],
         blurb: "Hand-feed kangaroos and meet koalas up close.",
-        getThere: "Train to Blacktown, then a short bus ride.",
+        getThere: "Train to Blacktown, then bus 729 to the park gate on Kildare Rd.",
         tip: "Get up close with kangaroos, wallabies and koalas. A first-month favourite for newcomers.",
         wxTip: "Mostly outdoors, with some covered areas." },
       { id: "chinatown", name: "Haymarket & Chinatown Food Crawl", area: "Haymarket", cat: "Food", dur: "2–3 hrs", h: [2, 3], cost: "$$", w: [1, 2, 2, 2], with: ["date", "friends", "family"],
@@ -576,37 +483,37 @@ class Component extends DCLogic {
         wxTip: "Exposed coastal heath. Hard going in the heat." },
       { id: "palm-beach", name: "Palm Beach & Barrenjoey Lighthouse", area: "Northern Beaches", cat: "Lookout & beach", dur: "Full day", h: [6, 8], cost: "$", w: [2, 1, 0, 1], with: ["date", "friends"],
         blurb: "A lighthouse climb at the tip of the Northern Beaches.",
-        getThere: "Bus from Manly wharf (about 75 min), or drive.",
+        getThere: "Train to Wynyard, the B-Line to Warriewood, then bus 199 to Palm Beach: about 1 hr 40 min.",
         tip: "Climb the short, steep track to Barrenjoey Lighthouse for views over Pittwater and the ocean.",
         wxTip: "Only worth the long trip on a clear day." },
       { id: "clovelly", name: "Clovelly Beach", area: "Eastern Suburbs", cat: "Swimming", dur: "2–3 hrs", h: [2, 3], cost: "Free", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
         blurb: "A calm, narrow inlet made for swimming and snorkelling with friendly fish.",
-        getThere: "Bus 339 from Central to Clovelly, then a short walk down to the water.",
+        getThere: "Bus 339 from Central (Foveaux St) to its last stop at Clovelly Beach.",
         tip: "Bring a mask and snorkel: the blue groper here are famously curious. The concrete platforms make it easy to get in.",
         wxTip: "Sheltered from big swell, so it's good when surf beaches are rough. Little shade, and no fun in the rain." },
       { id: "coogee", name: "Coogee Beach & Ocean Pools", area: "Eastern Suburbs", cat: "Beach", dur: "Half day", h: [2, 5], cost: "Free", w: [2, 2, 1, 2], with: ["date", "friends", "family", "solo"],
         blurb: "Relaxed beach with three ocean pools at either end and cafés across the road.",
-        getThere: "Bus 372 from Central or 373 from Circular Quay to Coogee Beach.",
+        getThere: "Bus 374 from Central (Elizabeth St), or the T4 to Bondi Junction and bus 350.",
         tip: "Wylie's Baths, at the south end, is a beautiful old tidal pool on the rocks. It's the best swim when the surf is up.",
         wxTip: "Great on sunny and hot days. On a grey day the cafés on Coogee Bay Rd carry it." },
       { id: "north-head", name: "North Head Lookouts", area: "Manly", cat: "Lookout & walk", dur: "2–3 hrs", h: [2, 4], cost: "$", w: [2, 2, 0, 1], with: ["date", "friends", "family", "solo"],
         blurb: "Cliff-top views across the harbour entrance, a short walk from Manly.",
-        getThere: "Ferry to Manly, then bus 135 up to North Head, or walk up via Shelly Beach (about 1 hr).",
+        getThere: "Ferry to Manly, then bus 161 up to North Head, or walk up via Shelly Beach (about 1 hr).",
         tip: "Fairfax Lookout is the view, but the old military tunnels and the quiet bush walks are what make it a morning.",
         wxTip: "Fine under cloud. Very exposed in heat and wind, and the views vanish in rain." },
       { id: "cronulla", name: "Cronulla Beach & Esplanade", area: "Sutherland Shire", cat: "Beach", dur: "Half day", h: [2, 5], cost: "Free", w: [2, 1, 0, 2], with: ["date", "friends", "family", "solo"],
         blurb: "The only Sydney surf beach on the train line, with a long seaside path and rock pools.",
-        getThere: "T4 Illawarra line to Cronulla, the last stop. The beach is a 6 minute walk.",
+        getThere: "T4 Illawarra line to Cronulla, the last stop. The beach is a 7 minute walk.",
         tip: "Walk the Esplanade south to the ocean pools at Shelly Park, then get fish and chips back near the station.",
         wxTip: "Best on hot and sunny days. Swim between the flags: the surf can be strong." },
       { id: "carriageworks", name: "Carriageworks Farmers Market", area: "Inner City", cat: "Markets", dur: "1–2 hrs", h: [1, 2], cost: "Free", w: [2, 2, 2, 2], with: ["date", "friends", "family", "solo"],
         blurb: "Saturday-morning food market inside giant old railway workshops.",
-        getThere: "Train to Redfern, then an 8 minute walk through Little Eveleigh St.",
-        tip: "Saturdays only, roughly 8am to 1pm. Go early, bring a bag, and have breakfast there.",
+        getThere: "Train to Redfern, then an 11 minute walk along Little Eveleigh St.",
+        tip: "Saturdays only, 8am to 1pm. Go early, bring a bag, and have breakfast there.",
         wxTip: "Under cover in the old rail sheds, so it works in any weather." },
       { id: "parramatta", name: "Parramatta River & Eat Street", area: "Parramatta", cat: "Neighbourhood", dur: "Half day", h: [2, 5], cost: "$", w: [2, 2, 1, 1], with: ["date", "friends", "family", "solo"],
         blurb: "Riverside walks, colonial history and a whole street of restaurants.",
-        getThere: "T1 train to Parramatta, or the slow, scenic F3 ferry up the river from Circular Quay.",
+        getThere: "T1 train to Parramatta, or the slow, scenic F3 ferry up the river from Circular Quay (≈ 85 min, about hourly).",
         tip: "Take the ferry one way for the river views, then eat on Church St. Old Government House is in Parramatta Park.",
         wxTip: "Restaurants and the museum-style sights work in rain. The river walk is exposed on hot days." },
       { id: "leura", name: "Leura Village & Gardens", area: "Blue Mountains", cat: "Neighbourhood", dur: "Half day", h: [3, 5], cost: "$", w: [2, 2, 1, 2], with: ["date", "friends", "family"],
@@ -889,7 +796,7 @@ class Component extends DCLogic {
 
     return {
       // Forecast (spec §11.1)
-      fcMatches: fcMatches, fcDiffers: !fcMatches,
+      fcMatches: fcMatches, fcDiffers: !fcMatches, creditInset: fcMatches ? "22px" : "0",
       fcCaption: "Forecast: " + fw.adj + ", " + FORECAST.rainChance + "% chance of rain · " + FORECAST.age,
       fcDiffersText: "The forecast says " + fw.adj + " (" + FORECAST.rainChance + "% chance of rain).",
       useForecast: () => this.setState({ weather: FORECAST.sky }),

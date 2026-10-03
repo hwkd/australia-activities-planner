@@ -59,6 +59,32 @@ test("AC 5: Add from a card offers the quick days and stays on Discover", async 
   await sheet(page).getByRole("button", { name: /^Add to Sat 3 Oct/ }).click();
   await expect(sheet(page).getByText("Added to Saturday 3 October")).toBeVisible();
   await expect(page).toHaveURL((u) => u.pathname === "/");
+  await expect(page.locator(".tab-badge")).toHaveText(/^1/);
+});
+
+test("the My plans count is there from the first paint, so the Discover | My plans switch never changes size", async ({ page }) => {
+  await seed(page, "swf.plan.v2", plan({ "2026-09-30": { items: [{ id: "agnsw", start: "10:00" }] }, "2026-10-04": { items: [{ id: "three-sisters", start: "09:00" }, { id: "agnsw", start: "14:00" }] } }));
+  // The switch's geometry as the page is parsed (before islands or module scripts run), then once settled.
+  await page.addInitScript(() => {
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = [...document.querySelectorAll(".tabbar a")].map((a) => a.getBoundingClientRect());
+      (window as unknown as { first: number[][] }).first = links.map((r) => [r.left, r.width]);
+    });
+  });
+  const shapes: number[][][] = [];
+  for (const path of ["/?w=sunny", "/plan"]) {
+    await open(page, path);
+    await idle(page);
+    const badge = page.locator(".tab-badge");
+    await expect(badge).toHaveText(/^2/); // yesterday's plan isn't coming up
+    const [first, last] = await page.evaluate(() => [
+      (window as unknown as { first: number[][] }).first,
+      [...document.querySelectorAll(".tabbar a")].map((a) => [a.getBoundingClientRect().left, a.getBoundingClientRect().width]),
+    ]);
+    expect(first, path).toEqual(last);
+    shapes.push(last);
+  }
+  expect(shapes[0], "the same switch on both pages").toEqual(shapes[1]);
 });
 
 test("AC 6 and 7: a rainy Sunday gets a Plan B that runs that day; Swap keeps the time; no duplicates", async ({ page }) => {

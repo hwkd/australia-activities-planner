@@ -1,20 +1,18 @@
 ---
-import PlanBadge from "~/components/islands/PlanBadge";
 import { t } from "~/strings/en-AU";
 
 /**
  * Discover and My plans (spec §3). Phone: bottom tab bar. Desktop (≥ 1024 px): a pill in the top right.
- * Plain links; the current tab is known at build time.
+ * Plain links; the current tab is known at build time. The count of plans coming up is filled in
+ * before paint from storage, then kept up to date, so the switch never changes size after it shows.
  */
 interface Props {
   current: "discover" | "plans";
-  /** Desktop Discover has no top bar: its Coming up rail links to My plans (A · Sky Mode — Desktop). */
-  phoneOnly?: boolean;
 }
-const { current, phoneOnly = false } = Astro.props;
+const { current } = Astro.props;
 ---
 
-<nav aria-label={t.layout.tabs.label} class:list={["tabbar glass-strong tr", { "phone-only": phoneOnly }]}>
+<nav aria-label={t.layout.tabs.label} class="tabbar glass-strong tr">
   <a href="/" aria-current={current === "discover" ? "page" : undefined} class="press">
     <svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true">
       <circle cx="12" cy="12" r="9"></circle>
@@ -28,9 +26,52 @@ const { current, phoneOnly = false } = Astro.props;
       <path d="M4 10h16M8.5 3v4M15.5 3v4"></path>
     </svg>
     {t.layout.tabs.plans}
-    <PlanBadge client:idle />
+    <span class="tab-badge" data-plan-badge hidden
+      ><span data-n></span><span class="sr-only">{t.common.planBadge}</span></span
+    >
   </a>
 </nav>
+<script is:inline>
+  // Before paint (like the sky theme in Base.astro): the plans stay in this browser, so the HTML can't
+  // carry the count, and filling it in after load made the switch grow and jump.
+  (function () {
+    const badge = document.querySelector("[data-plan-badge]");
+    let n = 0;
+    try {
+      const p = Object.fromEntries(
+        new Intl.DateTimeFormat("en-AU", { timeZone: "Australia/Sydney", year: "numeric", month: "2-digit", day: "2-digit" })
+          .formatToParts(new Date())
+          .map(function (x) { return [x.type, x.value]; }),
+      );
+      const today = p.year + "-" + p.month + "-" + p.day;
+      const days = JSON.parse(localStorage.getItem("swf.plan.v2") || "{}").days || {};
+      for (const d in days) if (d >= today && Array.isArray(days[d].items)) n += days[d].items.length;
+    } catch {
+      /* storage blocked or unreadable: the script below fills it in */
+    }
+    if (n > 0) {
+      badge.querySelector("[data-n]").textContent = n;
+      badge.hidden = false;
+    }
+  })();
+</script>
+<script>
+  // Then follow the plan as it changes (here, in a sheet, or in another tab).
+  import { $plan } from "~/stores/plan";
+  import { todayInSydney } from "~/lib/dates";
+
+  const badge = document.querySelector<HTMLElement>("[data-plan-badge]");
+  if (badge) {
+    $plan.subscribe((plan) => {
+      const today = todayInSydney();
+      const n = Object.entries(plan.days)
+        .filter(([d]) => d >= today)
+        .reduce((sum, [, e]) => sum + e.items.length, 0);
+      badge.querySelector("[data-n]")!.textContent = String(n);
+      badge.hidden = n === 0;
+    });
+  }
+</script>
 
 <style>
   .tabbar {
@@ -64,7 +105,7 @@ const { current, phoneOnly = false } = Astro.props;
     background: var(--sel);
     color: var(--sel-ink);
   }
-  .tabbar :global(.tab-badge) {
+  .tab-badge {
     min-width: 22px;
     height: 22px;
     padding: 0 6px;
@@ -78,14 +119,18 @@ const { current, phoneOnly = false } = Astro.props;
     align-items: center;
     justify-content: center;
   }
-  .tabbar a[aria-current="page"] :global(.tab-badge) {
+  .tab-badge[hidden] {
+    display: none;
+  }
+  .tabbar a[aria-current="page"] .tab-badge {
     background: var(--sel-ink);
     color: var(--sel);
   }
   @media (min-width: 1024px) {
     .tabbar {
       left: auto;
-      right: 24px;
+      /* A page whose content is narrower than the window sets --tabbar-right to line up with it. */
+      right: var(--tabbar-right, 24px);
       top: 24px;
       bottom: auto;
       width: auto;
@@ -100,9 +145,6 @@ const { current, phoneOnly = false } = Astro.props;
     .tabbar a {
       padding: 0 18px;
       border-radius: 999px;
-    }
-    .tabbar.phone-only {
-      display: none;
     }
   }
 </style>
