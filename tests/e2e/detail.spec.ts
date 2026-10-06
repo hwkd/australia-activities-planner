@@ -1,6 +1,7 @@
 import { idle, open } from "./helpers";
 import { expect, test, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
+import { tipParts } from "../../src/lib/tips";
 
 type Leg = { mode: string; line?: string; title: string };
 type MapLeg = { mode: string; line?: string };
@@ -118,7 +119,9 @@ test("AC 20: the Driving? note: time, parking per car and tips; why you can't dr
   await expect(go.getByRole("heading", { name: "Driving?" })).toBeVisible();
   await expect(go.getByText(`${a.routes.drive!.total} from the city`)).toBeVisible();
   await expect(go.getByText("Parking, 3 hrs: $15–30 per car, est.")).toBeVisible();
-  for (const n of a.routes.drive!.notes) await expect(go.getByText(n)).toBeVisible();
+  // Notes show as written, an "Our tip:" sentence with its label instead of the raw prefix.
+  for (const n of a.routes.drive!.notes)
+    for (const part of tipParts(n)) await expect(go.getByText(part.text, { exact: false }).first()).toBeVisible();
   await expect(go.locator("[data-ride]")).toHaveText(`Rideshare: ${a.routes.ride}`);
   // The cost's transport line is always public transport; parking isn't in the total.
   await expect(transport(page)).toContainText("Opal fares, return");
@@ -182,13 +185,43 @@ test("M17.6: outdoor activities show NSW RFS fire danger (or where to check it);
   await expect(page.locator("li[data-fire]")).toHaveCount(0);
 });
 
-test("Not yet confirmed: each section lists the activity's unconfirmed details for it, and only those", async ({ page }) => {
-  const a = JSON.parse(readFileSync("db/seed/activities/royal-np.json", "utf8")) as { unconfirmed: { section: string; note: string }[] };
+test("Not yet confirmed: each section lists the activity's unconfirmed details for it, and only those, with a way to check each", async ({ page }) => {
+  type U = { section: string; note: string; check?: { label: string; url: string } };
+  const a = JSON.parse(readFileSync("db/seed/activities/royal-np.json", "utf8")) as { unconfirmed: U[] };
   await open(page, "/a/royal-np");
   const go = goSection(page).locator("[data-unconfirmed]");
   await expect(go).toContainText("Not yet confirmed");
-  for (const u of a.unconfirmed.filter((x) => x.section === "gettingThere" || x.section === "driving")) await expect(go).toContainText(u.note);
+  for (const u of a.unconfirmed.filter((x) => x.section === "gettingThere" || x.section === "driving")) {
+    await expect(go).toContainText(u.note);
+    if (!u.check) continue;
+    // The link names its source; an https page opens in a new tab, a tel: number dials.
+    const link = go.getByRole("link", { name: `How to check: ${u.check.label}` });
+    await expect(link).toHaveAttribute("href", u.check.url);
+    if (u.check.url.startsWith("https:")) await expect(link).toHaveAttribute("target", "_blank");
+  }
   // Royal NP has nothing unconfirmed about its cost or access.
   await expect(page.locator('section[aria-labelledby="h-cost"] [data-unconfirmed]')).toHaveCount(0);
   await expect(page.locator('section[aria-labelledby="h-access"] [data-unconfirmed]')).toHaveCount(0);
+});
+
+test("Notice: a temporary warning (a track closure) shows at the top of the page with its link", async ({ page }) => {
+  const a = JSON.parse(readFileSync("db/seed/activities/wentworth.json", "utf8")) as { notice: { text: string; link: { label: string; url: string } } };
+  await open(page, "/a/wentworth");
+  const notice = page.locator("[data-notice]");
+  await expect(notice).toContainText(a.notice.text);
+  await expect(notice.getByRole("link", { name: a.notice.link.label })).toHaveAttribute("href", a.notice.link.url);
+  // Activities without one show nothing.
+  await open(page, "/a/bondi-coogee");
+  await expect(page.locator("[data-notice]")).toHaveCount(0);
+});
+
+test("Our tip: advice no official source confirms is labelled, and confirmed facts aren't", async ({ page }) => {
+  await open(page, "/a/bondi-coogee");
+  const go = goSection(page);
+  const tip = go.locator("[data-tip]").first();
+  await expect(tip).toContainText("Our tip");
+  await expect(tip).toContainText("It fills by 9am on warm weekends.");
+  // The confirmed fact before it stays plain text, and the raw "Our tip:" prefix never shows.
+  await expect(go).toContainText("Parking near the beach is metered.");
+  await expect(page.locator("body")).not.toContainText("Our tip: it fills");
 });

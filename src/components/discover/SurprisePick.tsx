@@ -23,7 +23,7 @@ export default function SurprisePick({ card, fallback, weather, turn, onAdd, onA
   useEffect(() => ref.current?.focus(), [turn]);
   const fit = card ? card.weatherFit[weather] : 0;
   return (
-    <section ref={ref} key={turn} tabIndex={-1} aria-labelledby="surprise-title" className="glass-strong tr surprise-in relative mb-3 rounded-[26px] p-[18px] outline-none">
+    <section ref={ref} key={turn} tabIndex={-1} aria-labelledby="surprise-title" className="glass-strong surprise-in relative mb-3 rounded-[26px] p-[18px] outline-none">
       <div className="flex items-start justify-between gap-3">
         <p className="m-0 inline-flex items-center gap-1.5 text-[11.5px] font-semibold tracking-[0.1em] uppercase" style={{ color: "var(--accent)" }}>
           <Icon name="spark" size={15} />

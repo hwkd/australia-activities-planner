@@ -91,11 +91,11 @@
       "total": "≈ 25 min",
       "perCar": [
         0,
-        10
+        0
       ],
       "perCarLabel": "Parking",
       "notes": [
-        "The car park and nearby streets fill early on warm weekends. Time limits apply."
+        "Street parking is free: Randwick Council decided against beach meters in June 2026."
       ]
     }
   },
@@ -124,7 +124,7 @@
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-06"
   },
   "visit": {
     "bestTime": "Morning on a calm, sunny day, when the water is clearest.",
@@ -683,12 +683,20 @@
   },
   "unconfirmed": [
     {
-      "section": "driving",
-      "note": "Parking rules and prices around Clovelly."
+      "section": "access",
+      "note": "A beach wheelchair isn't guaranteed on the day: book one ahead through Randwick Council.",
+      "check": {
+        "label": "Book a beach wheelchair with Randwick Council",
+        "url": "https://www.randwick.nsw.gov.au/facilities-and-recreation/beaches-and-coast/book-a-beach-wheelchair"
+      }
     },
     {
-      "section": "access",
-      "note": "Whether a beach wheelchair is available."
+      "section": "driving",
+      "note": "We haven't confirmed the time limits near the beach, or how early the car park fills on warm weekends: check the signs when you park.",
+      "check": {
+        "label": "Randwick Council: beach parking decision",
+        "url": "https://www.yoursay.randwick.nsw.gov.au/visitorpayparking"
+      }
     }
   ]
 }

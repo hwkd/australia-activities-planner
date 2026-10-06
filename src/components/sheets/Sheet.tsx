@@ -1,4 +1,5 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
+import { settleTheme } from "~/stores/weather";
 
 interface Props {
   label: string;
@@ -18,6 +19,14 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), selec
  */
 export default function Sheet({ label, onClose, children, footer, weather }: Props) {
   const ref = useRef<HTMLElement>(null);
+  // A new sky for the sheet (another date picked) switches its colours at once, like the page's.
+  const root = useRef<HTMLDivElement>(null);
+  const shown = useRef(weather);
+  useLayoutEffect(() => {
+    if (shown.current === weather) return;
+    shown.current = weather;
+    if (root.current) settleTheme(root.current);
+  }, [weather]);
   useEffect(() => {
     const opener = document.activeElement as HTMLElement | null;
     const el = ref.current!;
@@ -56,9 +65,9 @@ export default function Sheet({ label, onClose, children, footer, weather }: Pro
   }, [onClose]);
 
   return (
-    <div className="sheet-root" data-weather={weather}>
+    <div ref={root} className="sheet-root" data-weather={weather}>
       <div className="sheet-scrim" aria-hidden="true" onClick={onClose} />
-      <section ref={ref} role="dialog" aria-modal="true" aria-label={label} tabIndex={-1} className="sheet glass-strong tr">
+      <section ref={ref} role="dialog" aria-modal="true" aria-label={label} tabIndex={-1} className="sheet glass-strong">
         <span aria-hidden="true" className="sheet-grip" />
         <div className="sheet-body hs">{children}</div>
         {footer && <div className="sheet-foot">{footer}</div>}

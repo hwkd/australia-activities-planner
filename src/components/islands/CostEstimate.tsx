@@ -61,7 +61,7 @@ export default function CostEstimate({ pt, costs }: Props) {
         <legend className="sr-only">{t.detail.cost.group}</legend>
         <div className="grid grid-cols-4 gap-1.5">
           {PRESETS.map((p) => (
-            <button key={p.key} type="button" aria-pressed={preset === p.key} onClick={() => updateTrip((s) => setPeople(s, p.adults, p.kids))} className="press tr h-11 rounded-[14px] border text-sm font-bold" style={pill(preset === p.key)}>
+            <button key={p.key} type="button" aria-pressed={preset === p.key} onClick={() => updateTrip((s) => setPeople(s, p.adults, p.kids))} className="press h-11 rounded-[14px] border text-sm font-bold" style={pill(preset === p.key)}>
               {p.label}
             </button>
           ))}
@@ -113,7 +113,7 @@ export default function CostEstimate({ pt, costs }: Props) {
                   type="button"
                   aria-pressed={on}
                   onClick={() => updateTrip((s) => ({ ...s, extras: { ...s.extras, [x.id]: !(s.extras[x.id] ?? x.on) } }))}
-                  className="press tr flex min-h-[50px] items-center gap-[11px] rounded-2xl border py-2 pr-3.5 pl-2.5 text-left"
+                  className="press flex min-h-[50px] items-center gap-[11px] rounded-2xl border py-2 pr-3.5 pl-2.5 text-left"
                   style={{ background: on ? "var(--sel)" : "transparent", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" }}
                 >
                   <span aria-hidden="true" className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg" style={{ boxShadow: `inset 0 0 0 1.8px ${on ? "var(--sel-ink)" : "var(--ink)"}`, background: on ? "var(--sel-ink)" : "transparent", color: "var(--sel)" }}>
@@ -130,7 +130,7 @@ export default function CostEstimate({ pt, costs }: Props) {
         </>
       )}
 
-      <div className="tr mt-3.5 rounded-[20px] p-4" style={{ background: "var(--sel)", color: "var(--sel-ink)" }}>
+      <div className="mt-3.5 rounded-[20px] p-4" style={{ background: "var(--sel)", color: "var(--sel-ink)" }}>
         <p className="m-0 flex justify-between gap-2 text-xs font-bold tracking-[0.12em] uppercase">
           <span>{t.detail.cost.total}</span>
           <span className="font-semibold tracking-[0.02em] normal-case">{t.detail.cost.publicTransport}</span>

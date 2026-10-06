@@ -9,7 +9,7 @@ export default function UndoToast({ toast }: { toast: NonNullable<Toast> }) {
     return () => clearTimeout(timer);
   }, [toast.id]);
   return (
-    <div role="status" className="toast glass-strong tr">
+    <div role="status" className="toast glass-strong">
       <span className="min-w-0 flex-1 text-sm font-semibold">{toast.message}</span>
       {toast.undo && (
         <button

@@ -26,7 +26,7 @@ export default function SharedPlanView({ shared, cards, onDone }: Props) {
   };
 
   return (
-    <section aria-labelledby="shared-title" className="glass tr card-in mt-5 rounded-[28px] p-4">
+    <section aria-labelledby="shared-title" className="glass card-in mt-5 rounded-[28px] p-4">
       <p className="eb m-0" style={{ color: "var(--mute)" }}>
         {t.plans.shared.eyebrow}
       </p>

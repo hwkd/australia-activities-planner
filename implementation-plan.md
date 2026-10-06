@@ -96,7 +96,7 @@ The rule: **render everything that's the same for every visitor as Astro HTML on
 
 **Plain Astro, no JavaScript:**
 - Layout, header and footer, tab bar and top nav (plain links; the active tab is known on the server).
-- The **sky scenes** for all four weathers, crossfaded by CSS from `html[data-weather]`.
+- The **sky scenes** for all four weathers, crossfaded by CSS from `html[data-weather]` (600 ms; the colours switch at once).
 - Discover's **headline weather word**: all four words are in the HTML and CSS shows the one matching `data-weather`.
 - On the activity page: hero, facts strip, the **fit callout** (four versions, CSS shows one), plan your visit, newcomer tip, heads up, and **Make a day of it** (plain links to other activity pages, so "reset on open" happens naturally).
 - The 404 page and the privacy page.
@@ -193,7 +193,7 @@ Port, don't rewrite. The engines in `design/prototype-logic/engines/` have been 
 
 ### 5.1 Tokens
 
-One theme map, `themes[weather]`, holds every per-weather value; components read CSS variables and never hard-code a weather colour (§3.5). Values come from Sky Mode's palette: `ink`, `mute`, `sky`, `glass`, `glass2`, `line`, `soft`, `sel`, `selInk`, `accent`, `great`, `shadow`, `hl`, `scrim`. Set the page theme with `data-weather` on `<html>`; components that show another day's sky (calendar badges, the Add to a day sheet) take a `weather` prop instead. Colour, background and border transitions run over 900 ms to match the sky crossfade.
+One theme map, `themes[weather]`, holds every per-weather value; components read CSS variables and never hard-code a weather colour (§3.5). Values come from Sky Mode's palette: `ink`, `mute`, `sky`, `glass`, `glass2`, `line`, `soft`, `sel`, `selInk`, `accent`, `great`, `shadow`, `hl`, `scrim`. Set the page theme with `data-weather` on `<html>`; components that show another day's sky (calendar badges, the Add to a day sheet) take a `weather` prop instead. On a sky change the colours switch at once and only the sky scene crossfades (`applyTheme` in `src/stores/weather.ts`; all instant with reduced motion); elements don't run their own colour transitions (6 Oct 2026: hundreds of them made phones drop frames and left text the same grey as the sky halfway through; a whole-page View Transition was tried and dropped because Chromium and Safari block taps while one runs).
 
 ### 5.2 Typography
 

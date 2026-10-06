@@ -119,7 +119,7 @@
     "pricesChecked": "2026-10-02"
   },
   "visit": {
-    "bestTime": "Morning tours are quieter. Book a day or two ahead on weekends.",
+    "bestTime": "Our tip: book a day or two ahead on weekends, and morning tours are quieter.",
     "hours": "Tours run daily through the day: pick a time when you book. The forecourt and steps are always open.",
     "bring": [
       "Your booking on your phone",
@@ -463,11 +463,19 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Opera House car park rates."
+      "note": "The $20–45 estimate for 2 hours in the Opera House car park is a guess: check Wilson Parking's current rates.",
+      "check": {
+        "label": "Wilson Parking: Sydney Opera House car park",
+        "url": "https://www.wilsonparking.com.au/parking-locations/new-south-wales/sydney-cbd/sydney-opera-house-car-park-2A-macquarie-st-sydney"
+      }
     },
     {
       "section": "cost",
-      "note": "Opera Bar prices."
+      "note": "The $12–20 drink estimate at Opera Bar is ours: check the bar's menus for current prices.",
+      "check": {
+        "label": "Opera Bar menus",
+        "url": "https://operabar.com.au/menus/"
+      }
     }
   ]
 }

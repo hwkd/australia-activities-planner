@@ -160,7 +160,7 @@ export default function CalendarExportSheet({ sheet }: { sheet: ExportSheet; car
           </legend>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {scopes.map((o) => (
-              <button key={o.key} type="button" aria-pressed={scope === o.key} onClick={() => setScope(o.key)} className="press tr h-11 rounded-full border px-4 text-sm font-semibold" style={pill(scope === o.key)}>
+              <button key={o.key} type="button" aria-pressed={scope === o.key} onClick={() => setScope(o.key)} className="press h-11 rounded-full border px-4 text-sm font-semibold" style={pill(scope === o.key)}>
                 {o.label}
               </button>
             ))}
@@ -173,7 +173,7 @@ export default function CalendarExportSheet({ sheet }: { sheet: ExportSheet; car
           </legend>
           <div className="mt-2 grid gap-1.5">
             {TARGETS.map((o) => (
-              <button key={o.key} type="button" aria-pressed={target === o.key} onClick={() => setTarget(o.key)} className="press tr flex min-h-[52px] items-center gap-3 rounded-2xl border px-3.5 text-left" style={pill(target === o.key)}>
+              <button key={o.key} type="button" aria-pressed={target === o.key} onClick={() => setTarget(o.key)} className="press flex min-h-[52px] items-center gap-3 rounded-2xl border px-3.5 text-left" style={pill(target === o.key)}>
                 <Icon name={o.key === "google" ? "external" : "calendar"} size={18} />
                 <span className="min-w-0 flex-1">
                   <span className="block text-[14.5px] font-bold">{o.label}</span>
@@ -191,7 +191,7 @@ export default function CalendarExportSheet({ sheet }: { sheet: ExportSheet; car
             </legend>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {REMINDERS.map((r) => (
-                <button key={r.key} type="button" aria-pressed={remind === r.key} onClick={() => setRemind(r.key)} className="press tr h-11 rounded-full border px-4 text-sm font-semibold" style={pill(remind === r.key)}>
+                <button key={r.key} type="button" aria-pressed={remind === r.key} onClick={() => setRemind(r.key)} className="press h-11 rounded-full border px-4 text-sm font-semibold" style={pill(remind === r.key)}>
                   {r.label}
                 </button>
               ))}
@@ -199,7 +199,7 @@ export default function CalendarExportSheet({ sheet }: { sheet: ExportSheet; car
           </fieldset>
         )}
 
-        <button type="button" aria-pressed={directions} onClick={() => setDirections((d) => !d)} className="press tr mt-4 flex min-h-[52px] w-full items-center gap-3 rounded-2xl border px-3.5 text-left" style={pill(directions)}>
+        <button type="button" aria-pressed={directions} onClick={() => setDirections((d) => !d)} className="press mt-4 flex min-h-[52px] w-full items-center gap-3 rounded-2xl border px-3.5 text-left" style={pill(directions)}>
           <Icon name="tram" size={18} />
           <span className="min-w-0 flex-1">
             <span className="block text-[14.5px] font-bold">{s.directions}</span>

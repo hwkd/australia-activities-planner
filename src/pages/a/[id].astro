@@ -8,6 +8,7 @@ import { fireDanger } from "~/server/alerts";
 import { needsFireAlert, ratingLabel, RFS_PAGE } from "~/lib/alerts";
 import GettingThere from "~/components/detail/GettingThere.astro";
 import Unconfirmed from "~/components/detail/Unconfirmed.astro";
+import Tipped from "~/components/shared/Tipped.astro";
 import CostEstimate from "~/components/islands/CostEstimate";
 import AddToDayButton from "~/components/islands/AddToDayButton";
 import PlannedNote from "~/components/islands/PlannedNote";
@@ -31,14 +32,20 @@ const found = preview ? await draftActivity(db(), id) : await publishedActivity(
 if (!found) return Astro.rewrite("/404");
 const a = found;
 /** Details not yet confirmed, by section of this page (spec §4.1). */
-const unconfirmed = (...sections: string[]) => (a.unconfirmed ?? []).filter((u) => sections.includes(u.section)).map((u) => u.note);
+const unconfirmed = (...sections: string[]) => (a.unconfirmed ?? []).filter((u) => sections.includes(u.section));
 const cards = await publishedCards(db(), contentMode());
 const events = await publishedEventCards(db(), contentMode());
 const mapView = await mapAvailable();
 // Fire danger for outdoor activities (spec §11.2): fetched by the Worker, cached 15 minutes.
 const fire = needsFireAlert(a) && !preview ? { value: await fireDanger() } : null;
-const longDate = (ymd: string) => new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(ymd));
-const sydneyTime = (iso: string) => new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit", timeZone: "Australia/Sydney" }).format(new Date(iso));
+const longDate = (ymd: string) =>
+  new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(
+    new Date(ymd),
+  );
+const sydneyTime = (iso: string) =>
+  new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit", timeZone: "Australia/Sydney" }).format(
+    new Date(iso),
+  );
 // Pairings link only to activities that are published; others show as plain text (spec §3.2 item 9).
 const names = new Map(cards.map((c) => [c.id, c.name]));
 const headsUp = [
@@ -53,7 +60,11 @@ const headsUp = [
 ---
 
 <Base title={t.detail.hero.pageTitle(a.name, SITE_NAME)} description={a.blurb} cards={cards} events={events}>
-  {preview && <p class="draft-banner" role="note">{t.detail.hero.previewBanner}</p>}
+  {preview && (
+    <p class="draft-banner" role="note">
+      {t.detail.hero.previewBanner}
+    </p>
+  )}
   <main class="detail">
     <div class="flex items-center justify-between gap-2">
       <a
@@ -66,7 +77,9 @@ const headsUp = [
         <Icon name="back" size={22} strokeWidth={2.5} />
       </a>
       <span class="glass eb rounded-full px-3.5 py-2 whitespace-nowrap">{a.categoryLabel}</span>
-      <div class="desk-add"><AddToDayButton client:idle id={a.id} name={a.name} /></div>
+      <div class="desk-add">
+        <AddToDayButton client:idle id={a.id} name={a.name} />
+      </div>
     </div>
     <script is:inline>
       // Back returns to the screen the user came from (pairings replace history, so that's never the
@@ -87,17 +100,37 @@ const headsUp = [
         });
       })();
     </script>
-    <h1 class="w90 tr name">{a.name}</h1>
+    <h1 class="w90 name">{a.name}</h1>
     <script is:inline define:vars={{ id: a.id }}>
       // Analytics (spec §7): which activities people open.
       if (window.plausible) window.plausible("activity_view", { props: { id } });
     </script>
-    <p class="area tr">
+    <p class="area">
       <Icon name="pin" size={16} /> {a.area}
     </p>
-    <p class="blurb tr">{a.blurb}</p>
+    <p class="blurb">{a.blurb}</p>
+    {
+      a.notice && (
+        <div class="notice card-in" role="note" data-notice style="animation-delay: 60ms">
+          <Icon name="warn" size={18} className="mt-0.5 shrink-0" />
+          <div class="min-w-0">
+            <p class="m-0 font-bold">{a.notice.text}</p>
+            {a.notice.link && (
+              <a
+                href={a.notice.link.url}
+                {...(a.notice.link.url.startsWith("https:") ? { target: "_blank", rel: "noopener" } : {})}
+                class="notice-link"
+              >
+                {a.notice.link.label}
+                {a.notice.link.url.startsWith("https:") && <span class="sr-only">{t.detail.newTab}</span>}
+              </a>
+            )}
+          </div>
+        </div>
+      )
+    }
 
-    <section class="glass tr card-in callout" style="animation-delay: 80ms" aria-label={t.detail.hero.fitLabel}>
+    <section class="glass card-in callout" style="animation-delay: 80ms" aria-label={t.detail.hero.fitLabel}>
       {WEATHERS.map((w) => (
         <div class={`fitv fitv-${w}`}>
           <FitMeter fit={a.weatherFit[w]} />
@@ -112,7 +145,7 @@ const headsUp = [
         </div>
       ))}
     </section>
-    <dl class="glass tr card-in facts" style="animation-delay: 130ms">
+    <dl class="glass card-in facts" style="animation-delay: 130ms">
       {a.facts.map((f) => (
         <div>
           <dt>{f.k}</dt>
@@ -122,7 +155,7 @@ const headsUp = [
     </dl>
     <PlannedNote client:idle id={a.id} />
 
-    <section class="card glass tr card-in" style="animation-delay: 180ms" aria-labelledby="h-wx">
+    <section class="card glass card-in" style="animation-delay: 180ms" aria-labelledby="h-wx">
       <div class="flex items-center justify-between gap-2 px-0.5">
         <h2 id="h-wx" class="eb" style="color: var(--mute)">
           {t.detail.weather.heading}
@@ -134,40 +167,46 @@ const headsUp = [
       <WeatherTiles client:visible fit={a.weatherFit} />
       <p class="mt-3.5 flex gap-2.5 pt-3 text-sm leading-[1.45]" style="border-top: 1px solid var(--line)">
         <Icon name="info" size={18} className="mt-0.5 shrink-0" />
-        {a.weatherNote}
+        <span><Tipped text={a.weatherNote} /></span>
       </p>
     </section>
 
-    <section class="card glass tr card-in map-card col-map" style="animation-delay: 240ms" aria-labelledby="h-map">
+    <section class="card glass card-in map-card col-map" style="animation-delay: 240ms" aria-labelledby="h-map">
       <h2 id="h-map" class="eb px-1" style="color: var(--mute)">
         <Icon name="map" size={16} />
         {t.detail.map.heading}
       </h2>
-      <RouteMap client:visible name={a.name} geo={a.geo} mapView={mapView} checked={a.geo.checked ? longDate(a.geo.checked) : null} />
-      <Unconfirmed notes={unconfirmed("map")} />
+      <RouteMap
+        client:visible
+        name={a.name}
+        geo={a.geo}
+        mapView={mapView}
+        checked={a.geo.checked ? longDate(a.geo.checked) : null}
+      />
+      <Unconfirmed items={unconfirmed("map")} />
     </section>
 
     <div class="col-right">
-      <section class="card glass tr card-in" style="animation-delay: 300ms" aria-labelledby="h-go">
+      <section class="card glass card-in" style="animation-delay: 300ms" aria-labelledby="h-go">
         <h2 id="h-go" class="eb px-0.5" style="color: var(--mute)">
           <Icon name="tram" size={16} />
           {t.detail.gettingThere.heading}
         </h2>
         <GettingThere routes={a.routes} />
-        <Unconfirmed notes={unconfirmed("gettingThere", "driving")} />
+        <Unconfirmed items={unconfirmed("gettingThere", "driving")} />
       </section>
 
-      <section class="card glass tr card-in" style="animation-delay: 360ms" aria-labelledby="h-cost">
+      <section class="card glass card-in" style="animation-delay: 360ms" aria-labelledby="h-cost">
         <h2 id="h-cost" class="eb px-0.5" style="color: var(--mute)">
           <Icon name="ticket" size={16} />
           {t.detail.cost.heading} <span class="ml-auto">{t.detail.cost.currency}</span>
         </h2>
         <CostEstimate client:visible pt={a.routes.pt} costs={a.costs} />
-        <Unconfirmed notes={unconfirmed("cost")} />
+        <Unconfirmed items={unconfirmed("cost")} />
       </section>
     </div>
 
-    <section class="card glass tr card-in visit" aria-labelledby="h-visit">
+    <section class="card glass card-in visit" aria-labelledby="h-visit">
       <h2 id="h-visit" class="eb" style="color: var(--mute)">
         <Icon name="calendar" size={16} />
         {t.detail.visit.heading}
@@ -177,7 +216,7 @@ const headsUp = [
           <Icon name="clock" size={18} />
           <p>
             <b>{t.detail.visit.bestTime}</b>
-            {a.visit.bestTime}
+            <Tipped text={a.visit.bestTime} />
           </p>
         </div>
         <div class="vr">
@@ -213,7 +252,7 @@ const headsUp = [
           <Icon name="access" size={18} />
           <p>
             <b>{t.detail.visit.access}</b>
-            {a.visit.access}
+            <Tipped text={a.visit.access} />
           </p>
         </div>
         {a.visit.safety.length > 0 && (
@@ -225,88 +264,88 @@ const headsUp = [
               </p>
               <ul class="mt-1 grid gap-[3px]">
                 {a.visit.safety.map((s) => (
-                  <li>{s}</li>
+                  <li>
+                    <Tipped text={s} />
+                  </li>
                 ))}
               </ul>
             </div>
           </div>
         )}
       </div>
-      <Unconfirmed notes={unconfirmed("visit")} />
+      <Unconfirmed items={unconfirmed("visit")} />
     </section>
 
-    <section class="card glass tr card-in visit" aria-labelledby="h-access">
+    <section class="card glass card-in visit" aria-labelledby="h-access">
       <h2 id="h-access" class="eb" style="color: var(--mute)">
         <Icon name="access" size={16} />
         {t.detail.access.heading}
       </h2>
-      {
-        a.access ? (
-          <>
-            <dl class="access mt-3 grid gap-2 text-[14.5px]">
-              <div>
-                <dt>{t.detail.access.prams}</dt>
-                <dd>{t.detail.access.level[a.access.prams]}</dd>
-              </div>
-              <div>
-                <dt>{t.detail.access.stepFree}</dt>
-                <dd>{t.detail.access.level[a.access.stepFree]}</dd>
-              </div>
-              <div>
-                <dt>{t.detail.access.toilet}</dt>
-                <dd>{t.detail.access.toiletLevel(a.access.accessibleToilet)}</dd>
-              </div>
-            </dl>
-            {a.access.notes && <p class="mt-2.5 text-[14.5px] leading-[1.45]">{a.access.notes}</p>}
-            {a.lastVerified && (
-              <p class="mt-2 text-[13px]" style="color: var(--mute)">
-                {t.detail.access.checked(longDate(a.lastVerified))}
-              </p>
-            )}
-          </>
-        ) : (
-          <p class="mt-2 text-[14.5px] leading-[1.45]">{t.detail.access.notChecked}</p>
-        )
-      }
-      <Unconfirmed notes={unconfirmed("access")} />
+      {a.access ? (
+        <>
+          <dl class="access mt-3 grid gap-2 text-[14.5px]">
+            <div>
+              <dt>{t.detail.access.prams}</dt>
+              <dd>{t.detail.access.level[a.access.prams]}</dd>
+            </div>
+            <div>
+              <dt>{t.detail.access.stepFree}</dt>
+              <dd>{t.detail.access.level[a.access.stepFree]}</dd>
+            </div>
+            <div>
+              <dt>{t.detail.access.toilet}</dt>
+              <dd>{t.detail.access.toiletLevel(a.access.accessibleToilet)}</dd>
+            </div>
+          </dl>
+          {a.access.notes && <p class="mt-2.5 text-[14.5px] leading-[1.45]">{a.access.notes}</p>}
+          {a.lastVerified && (
+            <p class="mt-2 text-[13px]" style="color: var(--mute)">
+              {t.detail.access.checked(longDate(a.lastVerified))}
+            </p>
+          )}
+        </>
+      ) : (
+        <p class="mt-2 text-[14.5px] leading-[1.45]">{t.detail.access.notChecked}</p>
+      )}
+      <Unconfirmed items={unconfirmed("access")} />
     </section>
 
-    <section class="card glass tr card-in visit" aria-labelledby="h-tip">
+    <section class="card glass card-in visit" aria-labelledby="h-tip">
       <h2 id="h-tip" class="eb" style="color: var(--mute)">
         <Icon name="bulb" size={16} />
         {t.detail.tip.heading}
       </h2>
-      <p class="mt-2 text-[15px] leading-[1.5]">{a.newcomerTip}</p>
+      <p class="mt-2 text-[15px] leading-[1.5]">
+        <Tipped text={a.newcomerTip} />
+      </p>
     </section>
 
     {(headsUp.length > 0 || a.links?.length || fire) && (
-      <section class="card glass tr card-in visit" aria-labelledby="h-heads">
+      <section class="card glass card-in visit" aria-labelledby="h-heads">
         <h2 id="h-heads" class="eb" style="color: var(--mute)">
           <Icon name="warn" size={16} />
           {t.detail.headsUp.heading}
         </h2>
         <ul class="mt-2.5 grid gap-2 text-[14.5px] leading-[1.45]">
-          {
-            fire && (
-              <li data-fire>
-                {fire.value ? (
-                  <>
-                    <b>{t.detail.headsUp.fireToday(ratingLabel(fire.value.today), fire.value.banToday)}</b>{" "}
-                    {t.detail.headsUp.fireTomorrow(ratingLabel(fire.value.tomorrow), fire.value.banTomorrow)}{" "}
-                    <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
-                      {t.detail.headsUp.fireSource(sydneyTime(fire.value.fetchedAt))}
-                      <span class="sr-only">{t.detail.newTab}</span>
-                    </a>
-                  </>
-                ) : (
+          {fire && (
+            <li data-fire>
+              {fire.value ? (
+                <>
+                  <b>{t.detail.headsUp.fireToday(ratingLabel(fire.value.today), fire.value.banToday)}</b>{" "}
+                  {t.detail.headsUp.fireTomorrow(ratingLabel(fire.value.tomorrow), fire.value.banTomorrow)}{" "}
                   <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
-                    {t.detail.headsUp.fireUnknown}
+                    {t.detail.headsUp.fireSource(sydneyTime(fire.value.fetchedAt))}
                     <span class="sr-only">{t.detail.newTab}</span>
                   </a>
-                )}
-              </li>
-            )
-          }
+                </>
+              ) : (
+                <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
+                  {t.detail.headsUp.fireUnknown}
+                  <span class="sr-only">{t.detail.newTab}</span>
+                </a>
+              )}
+            </li>
+          )}
           {headsUp.map((h) => (
             <li>{h}</li>
           ))}
@@ -335,23 +374,21 @@ const headsUp = [
     <section class="mt-6" aria-labelledby="h-pairs">
       <h2
         id="h-pairs"
-        class="w90 tr px-1 text-[26px] leading-[1.05] font-bold tracking-[-0.025em] lg:px-0"
+        class="w90 px-1 text-[26px] leading-[1.05] font-bold tracking-[-0.025em] lg:px-0"
         style="text-shadow: var(--hl)"
       >
         {t.detail.pairings.heading}
       </h2>
       <ul class="hs pairs">
         {a.pairings.map((p) => (
-          <li class="glass tr pair">
-            {
-              names.has(p.activityId) ? (
-                <a href={`/a/${p.activityId}`} data-pairing class="pair-link w90">
-                  {names.get(p.activityId)}
-                </a>
-              ) : (
-                <span class="pair-link w90">{p.name}</span>
-              )
-            }
+          <li class="glass pair">
+            {names.has(p.activityId) ? (
+              <a href={`/a/${p.activityId}`} data-pairing class="pair-link w90">
+                {names.get(p.activityId)}
+              </a>
+            ) : (
+              <span class="pair-link w90">{p.name}</span>
+            )}
             <span class="text-[13.5px] leading-[1.35]" style="color: var(--mute)">
               {p.why}
             </span>
@@ -376,7 +413,7 @@ const headsUp = [
     </script>
   </main>
 
-  <div class="footer glass-strong tr">
+  <div class="footer glass-strong">
     <AddToDayButton client:idle id={a.id} name={a.name} />
   </div>
 </Base>
@@ -650,5 +687,32 @@ const headsUp = [
       border-radius: 22px;
       display: none;
     }
+  }
+  /* A temporary warning (a track closure) under the description: solid, unlike Not yet confirmed. */
+  .notice {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 1.5px solid var(--accent);
+    background: var(--glass2);
+    color: var(--ink);
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+  .notice :global(svg) {
+    color: var(--accent);
+  }
+  .notice-link {
+    margin-top: 2px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>

@@ -88,7 +88,7 @@
       ],
       "perCarLabel": "Car park, 3 hrs",
       "notes": [
-        "Pre-booking a car park online is usually cheaper: SEA LIFE lists a $12 all-day Wilson Parking deal (code MERLIN)."
+        "SEA LIFE's parking page lists nearby car parks, including 100 Murray St (Harbourside), Darling Park and Kent St."
       ]
     }
   },
@@ -134,9 +134,9 @@
       "Toilets and a parents' room inside",
       "Cafés and restaurants along the wharf"
     ],
-    "access": "Step-free throughout, with lifts. Prams are fine but it gets crowded.",
+    "access": "Step-free throughout, with lifts. Our tip: prams are fine but it gets crowded.",
     "safety": [
-      "The tunnels are dim and crowded: keep small children close"
+      "The tunnels are dim: keep small children close. Our tip: they get crowded."
     ]
   },
   "pairings": [
@@ -632,7 +632,19 @@
   "unconfirmed": [
     {
       "section": "cost",
-      "note": "The price of adding WILD LIFE Sydney Zoo: tickets are now sold as multi-attraction bundles."
+      "note": "The $20–30 for adding WILD LIFE Sydney Zoo is a guess: tickets are now sold as multi-attraction passes.",
+      "check": {
+        "label": "SEA LIFE Sydney: tickets and passes",
+        "url": "https://www.visitsealife.com/sydney/tickets-passes/"
+      }
+    },
+    {
+      "section": "driving",
+      "note": "The $12–35 estimate for 3 hours is a guess: the $12 online deal we listed before is no longer on SEA LIFE's parking page.",
+      "check": {
+        "label": "SEA LIFE: cheap parking nearby",
+        "url": "https://www.visitsealife.com/sydney/plan-your-day/before-you-visit/directions-parking/cheap-parking/"
+      }
     }
   ]
 }

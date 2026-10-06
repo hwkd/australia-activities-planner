@@ -122,8 +122,8 @@
     "pricesChecked": "2026-10-02"
   },
   "visit": {
-    "bestTime": "Late morning, before the lunch crowd. The full market runs Saturday and Sunday, 10am to 5pm.",
-    "hours": "Saturday and Sunday 10am to 5pm, and a smaller Friday market 10am to 3pm. The laneways and pubs are open every day.",
+    "bestTime": "The full market runs Saturday and Sunday, 10am to 5pm. Our tip: go late morning, before the lunch crowd.",
+    "hours": "Saturday and Sunday 10am to 5pm, and a smaller Friday market 10am to 3pm (9 January to 18 December). The laneways and pubs are open every day.",
     "bring": [
       "A tote bag",
       "A card: most stalls take contactless",
@@ -546,12 +546,20 @@
   },
   "unconfirmed": [
     {
-      "section": "visit",
-      "note": "Whether the Friday market runs all year."
+      "section": "driving",
+      "note": "The $20–40 estimate for 2 hours in The Rocks is a guess: rates vary by car park and street.",
+      "check": {
+        "label": "Parking in The Rocks",
+        "url": "https://therocks.com/getting-here"
+      }
     },
     {
-      "section": "driving",
-      "note": "Parking prices in The Rocks."
+      "section": "cost",
+      "note": "The $12–22 street food and $10–40 souvenir estimates are ours: stallholders set their own prices.",
+      "check": {
+        "label": "Stalls at The Rocks Markets",
+        "url": "https://www.therocks.com/whats-on/market-overview"
+      }
     }
   ]
 }

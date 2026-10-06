@@ -16,7 +16,7 @@ export default function OnSoon({ events, weather, plannedLabel, onAdd }: Props) 
   const s = t.discover.onSoon;
   return (
     <section aria-labelledby="on-soon" className="mt-7">
-      <h2 id="on-soon" className="tr w90 m-0 mx-1 text-[22px] leading-[1.05] font-bold tracking-[-0.022em]" style={{ textShadow: "var(--hl)" }}>
+      <h2 id="on-soon" className="w90 m-0 mx-1 text-[22px] leading-[1.05] font-bold tracking-[-0.022em]" style={{ textShadow: "var(--hl)" }}>
         {s.heading}
       </h2>
       <ul className="hs -mx-4 mt-3 flex list-none gap-3 overflow-x-auto px-4 pb-1 lg:mx-0 lg:grid lg:grid-cols-2 lg:overflow-visible lg:px-0">
@@ -24,7 +24,7 @@ export default function OnSoon({ events, weather, plannedLabel, onAdd }: Props) 
           const fit = e.weatherFit[weather];
           const planned = plannedLabel(e.id);
           return (
-            <li key={e.id} className="glass tr card-in flex w-[280px] shrink-0 flex-col rounded-[24px] p-4 lg:w-auto">
+            <li key={e.id} className="glass card-in flex w-[280px] shrink-0 flex-col rounded-[24px] p-4 lg:w-auto">
               <p className="m-0 text-[11.5px] font-semibold tracking-[0.1em] uppercase" style={{ color: "var(--accent)" }}>
                 {e.categoryLabel} · {datesLabel(e.dates.from, e.dates.to)}
               </p>
