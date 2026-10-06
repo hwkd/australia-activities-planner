@@ -142,8 +142,9 @@ test("AC 11: weather re-themes at once; with reduced motion nothing loops and th
   const page = await ctx.newPage();
   await open(page, "/?w=sunny");
   const running = () => page.evaluate(() => document.getAnimations().filter((a) => a.playState === "running").length);
-  // 1 ms animations under reduced motion; polled, because a busy headless WebKit can take a while to tick.
-  await expect.poll(running, { timeout: 3000 }).toBe(0);
+  // 1 ms animations under reduced motion; polled, because a busy headless WebKit can take a while to
+  // tick (on a shared CI runner, hundreds were still running after 3 s).
+  await expect.poll(running, { timeout: 10_000 }).toBe(0);
   const ms = await page.evaluate(async () => {
     const b = [...document.querySelectorAll("button")].find((x) => x.textContent === "Rainy")!;
     const t0 = performance.now();

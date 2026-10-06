@@ -12,7 +12,14 @@ export default defineConfig({
   // One local preview server (workerd + D1) serves every engine; more than four browsers at once
   // starves it and pages time out (seen with Firefox). CI runners have fewer cores anyway.
   workers: process.env.CI ? undefined : 4,
-  use: { baseURL: "http://localhost:4329" },
+  // On CI: one retry (a pass on retry is still reported as flaky), a trace of the retry, and an HTML
+  // report for the workflow's playwright-report artifact.
+  retries: process.env.CI ? 1 : 0,
+  reporter: process.env.CI ? [["list"], ["html", { open: "never" }]] : "list",
+  // Browsers run on Sydney time whatever the machine's zone (CI runners are UTC). Tests freeze time with
+  // page.clock, whose fake Date constructor returns plain Dates, so TZDate (a Date subclass) loses its
+  // zone and reads the device's instead; on a UTC device 8:30am in Sydney came out as 5pm.
+  use: { baseURL: "http://localhost:4329", timezoneId: "Australia/Sydney", trace: "on-first-retry" },
   // Always a fresh build and a freshly seeded database on its own port (Astro's background preview
   // server is shared per project, so reusing one could test a stale build).
   webServer: {
