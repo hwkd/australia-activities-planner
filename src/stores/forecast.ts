@@ -1,9 +1,8 @@
 import "./storage";
 import { persistentAtom } from "@nanostores/persistent";
-import { $weather, weatherFromLink, type Weather } from "./weather";
 import { $plan } from "./plan";
 import { todayInSydney, type DateStr } from "~/lib/dates";
-import { applyForecast, forecastFor, NO_FORECAST, type ForecastAlert, type ForecastData } from "~/lib/forecast";
+import { applyForecast, NO_FORECAST, type ForecastAlert, type ForecastData } from "~/lib/forecast";
 import type { PlanCard } from "~/lib/planDays";
 
 const json = <T>(fallback: T) => ({
@@ -26,9 +25,6 @@ export const $forecast = persistentAtom<ForecastData>("swf.forecast", NO_FORECAS
 /** Days whose forecast changed and now make a plan a Skip; shown on My plans until dismissed. */
 export const $forecastAlerts = persistentAtom<ForecastAlert[]>("swf.forecastAlerts", [], json<ForecastAlert[]>([]));
 
-/** The day the user last picked Discover's sky by hand; that day the forecast doesn't change it. */
-export const $skyPickedOn = persistentAtom<string>("swf.skyPickedOn", "");
-
 let loading: Promise<void> | null = null;
 export function loadForecast(): Promise<void> {
   loading ??= fetch("/data/forecast.json")
@@ -40,22 +36,6 @@ export function loadForecast(): Promise<void> {
       /* offline: keep the last forecast */
     });
   return loading;
-}
-
-/** The user picks a sky (Set the sky, weather tiles): it stays for the rest of the day. */
-export function chooseWeather(w: Weather) {
-  $weather.set(w);
-  $skyPickedOn.set(todayInSydney());
-}
-
-/**
- * Discover's default sky is today's forecast for the city, unless the user picked one today or the
- * link carries a sky (`?w=`, e.g. from a day in My plans).
- */
-export function applyForecastWeather(today: DateStr = todayInSydney()) {
-  if ($skyPickedOn.get() === today || weatherFromLink) return;
-  const f = forecastFor($forecast.get(), today);
-  if (f && $weather.get() !== f.sky) $weather.set(f.sky);
 }
 
 /** Pre-sets forecast days in the plan (auto skies) and records alerts for changed days. */

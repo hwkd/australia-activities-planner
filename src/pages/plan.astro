@@ -11,9 +11,8 @@ import { toPlanCard, type PlanCard } from "~/lib/planDays";
 import { t } from "~/strings/en-AU";
 
 /** My plans (spec §3.3) and shared plans (§3.4). The island is client-only; the skeleton keeps the layout stable. */
-const all = await publishedCards(db(), contentMode());
-const events = await publishedEventCards(db(), contentMode());
-const mapView = await mapAvailable();
+// Independent lookups, run at once rather than one after another.
+const [all, events, mapView] = await Promise.all([publishedCards(db(), contentMode()), publishedEventCards(db(), contentMode()), mapAvailable()]);
 const cards: PlanCard[] = [...all, ...events].map(toPlanCard);
 ---
 

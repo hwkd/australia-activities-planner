@@ -22,6 +22,8 @@
   // through /map/*. Create with `npx wrangler r2 bucket create sydney-weekend-finder-map` (owner), then
   // `npx tsx scripts/map/upload.ts --remote`. Without the files, the app keeps the schematic maps.
   "r2_buckets": [{ "binding": "MAP", "bucket_name": "sydney-weekend-finder-map" }],
+  // Analytics events (spec §7, D7): written by /api/event, queried with the Analytics Engine SQL API.
+  "analytics_engine_datasets": [{ "binding": "EVENTS", "dataset": "australia_activities_events" }],
   // Production at https://sydney.hwkd.com.au (Cloudflare manages the DNS record and certificate).
   "routes": [{ "pattern": "sydney.hwkd.com.au", "custom_domain": true }],
   // Every 3 hours: refresh the live forecast from Open-Meteo (spec §11.1).

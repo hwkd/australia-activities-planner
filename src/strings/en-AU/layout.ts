@@ -55,7 +55,7 @@ export const layout = {
       },
       {
         heading: "Your plans stay on your device",
-        body: "Plans, the sky you pick and your filters are saved in this browser's storage. They never leave your device unless you share them. Clearing your browser's site data removes them.",
+        body: "Plans, the sky you pick and your filters are saved in this browser's storage. Your plans never leave your device unless you share them; which sky and filters get picked is counted anonymously (see Analytics). Clearing your browser's site data removes what's saved.",
       },
       {
         heading: "Share links",
@@ -67,7 +67,11 @@ export const layout = {
       },
       {
         heading: "Analytics",
-        body: 'If analytics is on, we use Plausible, which counts page views and a few anonymous events (for example "a plan was added") without cookies and without identifying you.',
+        body: 'We use Cloudflare Web Analytics, which counts page views and how quickly pages load, without cookies. The app also counts a few anonymous events on our own server (for example "a plan was added" or "the Rainy sky was picked"), and the analytics data keeps only the event: never your IP address or anything that identifies you.',
+      },
+      {
+        heading: "Security check",
+        body: "Cloudflare, which hosts and protects this site, may set a cookie (cf_clearance) after a quick automatic check that you're not a bot. It's used for that check, not to track you.",
       },
       {
         heading: "Error reports",

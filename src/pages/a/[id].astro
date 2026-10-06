@@ -28,14 +28,18 @@ import { t } from "~/strings/en-AU";
  */
 const id = Astro.params.id ?? "";
 const preview = Astro.url.searchParams.has("preview") && !!(await requestUser(Astro.request));
-const found = preview ? await draftActivity(db(), id) : await publishedActivity(db(), id, contentMode());
+// The activity, the cards and events (for pairings) and the map check don't depend on each other, so
+// they run at once rather than one after another (each is a round trip to D1 or R2).
+const [found, cards, events, mapView] = await Promise.all([
+  preview ? draftActivity(db(), id) : publishedActivity(db(), id, contentMode()),
+  publishedCards(db(), contentMode()),
+  publishedEventCards(db(), contentMode()),
+  mapAvailable(),
+]);
 if (!found) return Astro.rewrite("/404");
 const a = found;
 /** Details not yet confirmed, by section of this page (spec §4.1). */
 const unconfirmed = (...sections: string[]) => (a.unconfirmed ?? []).filter((u) => sections.includes(u.section));
-const cards = await publishedCards(db(), contentMode());
-const events = await publishedEventCards(db(), contentMode());
-const mapView = await mapAvailable();
 // Fire danger for outdoor activities (spec §11.2): fetched by the Worker, cached 15 minutes.
 const fire = needsFireAlert(a) && !preview ? { value: await fireDanger() } : null;
 const longDate = (ymd: string) =>
@@ -100,10 +104,12 @@ const headsUp = [
         });
       })();
     </script>
-    <h1 class="w90 name">{a.name}</h1>
-    <script is:inline define:vars={{ id: a.id }}>
-      // Analytics (spec §7): which activities people open.
-      if (window.plausible) window.plausible("activity_view", { props: { id } });
+    <h1 class="w90 name" data-activity-id={a.id}>{a.name}</h1>
+    <script>
+      import { track } from "~/lib/analytics";
+      // Analytics (spec §7): which activities people open. An editor's draft preview doesn't count.
+      const id = document.querySelector<HTMLElement>("[data-activity-id]")?.dataset.activityId;
+      if (id && !new URLSearchParams(location.search).has("preview")) track({ name: "activity_view", props: { id } });
     </script>
     <p class="area">
       <Icon name="pin" size={16} /> {a.area}

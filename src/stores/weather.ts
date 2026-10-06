@@ -12,19 +12,34 @@ export const $weather = persistentAtom<Weather>("swf.weather", "sunny", {
   decode: (v) => (isWeather(v) ? v : "sunny")
 });
 
-/** Whether this page was opened with a sky in its link (read before Discover rewrites the URL). */
-export let weatherFromLink = false;
-
 // A weather in the URL (`?w=rainy`, from a shared or bookmarked Discover link) wins over the saved
 // one, matching the theme-before-paint script in the layout, except after Back/Forward.
 if (typeof location !== "undefined" && !isBackForward()) {
   try {
     const w = new URLSearchParams(location.search).get("w");
-    weatherFromLink = isWeather(w);
     if (isWeather(w) && w !== $weather.get()) $weather.set(w);
   } catch {
     /* no query */
   }
+}
+
+// "swf.skyPickedOn" recorded the day Discover's sky was picked by hand, so the forecast left it alone
+// (D16 removed the forecast from Discover); clear it from returning visitors' storage.
+// Reading localStorage itself throws when storage is blocked, so all of it stays inside the try.
+if (typeof window !== "undefined") {
+  try {
+    window.localStorage.removeItem("swf.skyPickedOn");
+  } catch {
+    /* storage blocked */
+  }
+}
+
+/**
+ * The user picks a sky (Set the sky, an activity page's weather tiles). It's saved, and Discover opens on
+ * it next time (spec §3.1, D16: Discover doesn't follow the forecast).
+ */
+export function chooseWeather(w: Weather): void {
+  $weather.set(w);
 }
 
 /**

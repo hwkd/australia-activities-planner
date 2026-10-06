@@ -12,14 +12,14 @@ const durations = {
 export const discover = {
   /** Document title on Discover. */
   pageTitle: (site: string) => `${site} · What to do in Sydney for the weather`,
-  /** Discover's header: "Sydney · Thu 1 Oct", then "Sydney's looking sunny." */
+  /** Discover's header: "Sydney · Thu 1 Oct", then "If it's looking sunny." (D16: no place, so it never claims the weather). */
   header: {
     city: "Sydney",
-    headline1: "Sydney's",
+    headline1: "If it's",
     headline2: "looking",
     /** The headline's weather word, with its full stop. */
     headlineWord: (word: string) => `${word}.`,
-    intro: "Tap a sky. Sydney re-ranks around it.",
+    intro: "Tap the sky you're expecting. The list re-ranks around it.",
   },
   /** Accessible name of the results column. */
   resultsLabel: "Ideas",

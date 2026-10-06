@@ -29,6 +29,10 @@ test("Discover's Map shows the ranked results as labelled pins; a pin shows its 
   await page.getByRole("button", { name: "Map", exact: true }).click();
   await expect(page.getByRole("button", { name: "Map", exact: true })).toHaveAttribute("aria-pressed", "true");
   if (!(await mapOrFallback(page, /^Map of \d+ ideas for a sunny day$/))) return;
+  // MapLibre's stylesheet comes with the map code (not a render-blocking link on every page), once,
+  // and styles the map. (That it loads before the map is created is the module's top-level await.)
+  await expect(page.locator("link[data-maplibre-css]")).toHaveCount(1);
+  expect(await page.locator(".maplibregl-canvas").evaluate((c) => getComputedStyle(c).position)).toBe("absolute");
   const pin = page.getByRole("button", { name: /^Balmoral Beach: Perfect when sunny$/ });
   await expect(pin).toHaveText("Perfect");
   // By keyboard (pins are real buttons); MapLibre keeps nudging pins while tiles load, so a pointer

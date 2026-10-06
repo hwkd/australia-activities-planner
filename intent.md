@@ -39,7 +39,7 @@ They usually:
 - People **share the plan** with the person or group they're going with, and **add it to their own calendar**.
 - People **come back most weeks**, because there's always something they haven't tried.
 
-Early signals to track: plans created per weekly user (and how many fall on weekdays and public holidays), share rate, calendar exports, how often Plan B is used, and return visits over consecutive weeks. These need an analytics tool with custom events (spec §7–8).
+Early signals to track: plans created per weekly user (and how many fall on weekdays and public holidays), share rate, calendar exports, how often Plan B is used, and return visits over consecutive weeks. These need an analytics tool with custom events (spec §7–8). Since D7 (Cloudflare only, no visitor identifier) they're measured as totals: per-user and return-visit figures aren't available.
 
 ## Principles
 
