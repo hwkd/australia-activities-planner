@@ -122,7 +122,7 @@
     "pricesChecked": "2026-10-02"
   },
   "visit": {
-    "bestTime": "Afternoon in the park, then dinner on Church St as it gets busy.",
+    "bestTime": "Afternoon in the park, then dinner on Church St. Our tip: Church St gets busy in the evening.",
     "hours": "Park and river paths always open. Old Government House opens Thursday and Friday 10am to 4pm, and weekends 11am to 4pm (last entry 3:30pm).",
     "bring": [
       "Comfy shoes",
@@ -1018,16 +1018,20 @@
   },
   "unconfirmed": [
     {
-      "section": "visit",
-      "note": "Old Government House hours come from a museums directory, not the National Trust's own page."
-    },
-    {
       "section": "gettingThere",
-      "note": "The time of the last ferry back."
+      "note": "We haven't confirmed when the last ferry back leaves: check the F3 timetable before you go.",
+      "check": {
+        "label": "F3 Parramatta River timetable",
+        "url": "https://transportnsw.info/routes/details/sydney-ferries/f3/090f3"
+      }
     },
     {
       "section": "driving",
-      "note": "Parking prices."
+      "note": "The $10–25 estimate for 3 hours is a guess: check the City of Parramatta's car park fees.",
+      "check": {
+        "label": "City of Parramatta: where to park",
+        "url": "https://www.cityofparramatta.nsw.gov.au/community/getting-around/parking/car-parks/where-to-park-in-parramatta"
+      }
     }
   ]
 }

@@ -10,8 +10,23 @@ const legMode = z.enum(["walk", "train", "bus", "ferry", "metro", "light-rail"])
 const accessLevel = z.enum(["yes", "partial", "no"]);
 
 export const categories = [
-  "coastal-walk", "bushwalk", "beach", "swimming", "ferry", "lookout", "landmark", "museum", "gallery",
-  "market", "food", "neighbourhood", "wildlife", "garden", "history", "water-sport", "event"
+  "coastal-walk",
+  "bushwalk",
+  "beach",
+  "swimming",
+  "ferry",
+  "lookout",
+  "landmark",
+  "museum",
+  "gallery",
+  "market",
+  "food",
+  "neighbourhood",
+  "wildlife",
+  "garden",
+  "history",
+  "water-sport",
+  "event",
 ] as const;
 
 const leg = z.object({
@@ -19,7 +34,7 @@ const leg = z.object({
   line: z.string().optional(),
   title: z.string().min(1),
   detail: z.string().optional(),
-  mins: z.number().int().positive()
+  mins: z.number().int().positive(),
 });
 
 /**
@@ -35,16 +50,22 @@ const routes = z.object({
     nonOpal: money.optional(),
     nonOpalChild: money.optional(),
     legs: z.array(leg).min(1),
-    back: z.object({ text: z.string() })
+    back: z.object({ text: z.string() }),
   }),
-  drive: z.object({ total: z.string(), perCar: money, perCarLabel: z.string().min(1), notes: z.array(z.string()) }).nullable(),
+  drive: z
+    .object({ total: z.string(), perCar: money, perCarLabel: z.string().min(1), notes: z.array(z.string()) })
+    .nullable(),
   ride: z.string().min(1).optional(),
-  unavailable: z.object({ drive: z.string().optional() }).optional()
+  unavailable: z.object({ drive: z.string().optional() }).optional(),
 });
 
 const lngLat = z.tuple([z.number().min(150).max(152), z.number().min(-35).max(-33)]);
 const placeType = z.enum(["start", "end", "beach", "pool", "lookout", "food", "stop", "paid"]);
-const mapLeg = z.object({ mode: z.enum(["walk", "train", "bus", "ferry", "metro", "light-rail"]), line: z.string().optional(), coords: z.array(lngLat).min(2) });
+const mapLeg = z.object({
+  mode: z.enum(["walk", "train", "bus", "ferry", "metro", "light-rail"]),
+  line: z.string().optional(),
+  coords: z.array(lngLat).min(2),
+});
 
 /**
  * The real map (spec §3.2 item 3, §4.3): the numbered places, the activity's own walking line,
@@ -54,18 +75,42 @@ const mapLeg = z.object({ mode: z.enum(["walk", "train", "bus", "ferry", "metro"
  */
 const geo = z.object({
   places: z
-    .array(z.object({ n: z.number().int().positive(), name: z.string().min(1), type: placeType, note: z.string(), lng: z.number().min(150).max(152), lat: z.number().min(-35).max(-33) }))
+    .array(
+      z.object({
+        n: z.number().int().positive(),
+        name: z.string().min(1),
+        type: placeType,
+        note: z.string(),
+        lng: z.number().min(150).max(152),
+        lat: z.number().min(-35).max(-33),
+      }),
+    )
     .min(1),
   trail: z.array(z.array(lngLat).min(2)).optional(),
   facilities: z.array(z.object({ kind: z.enum(["toilet", "cafe"]), lng: z.number(), lat: z.number() })).optional(),
   trip: z.object({ legs: z.array(mapLeg).min(1) }).optional(),
   back: z.object({ legs: z.array(mapLeg).min(1) }).optional(),
   source: z.string().min(1),
-  checked: date.nullable()
+  checked: date.nullable(),
 });
 
 /** Where a detail that isn't confirmed yet shows on the activity page (spec §4.1). */
 export const unconfirmedSections = ["map", "gettingThere", "driving", "cost", "visit", "access"] as const;
+
+/**
+ * How a visitor can check an unconfirmed detail themselves: the page (or phone number) that has the
+ * answer, e.g. the operator's car park page, the Transport for NSW timetable, "Call Wylie's Baths".
+ */
+export const unconfirmedCheck = z.object({
+  label: z.string().min(1).max(60),
+  url: z
+    .string()
+    .max(500)
+    .refine(
+      (u) => /^https:\/\/[^\s]+$/.test(u) || /^tel:\+?[0-9]{6,15}$/.test(u),
+      "use an https:// link or a tel: number",
+    ),
+});
 
 export const activitySchema = z
   .object({
@@ -86,7 +131,10 @@ export const activitySchema = z
     newcomerTip: z.string().min(1).max(240),
     safetyNotes: z.array(z.string()).optional(),
     bookingRequired: z.boolean().optional(),
-    days: z.array(z.enum(["mon", "tue", "wed", "thu", "fri", "sat", "sun"])).min(1).optional(),
+    days: z
+      .array(z.enum(["mon", "tue", "wed", "thu", "fri", "sat", "sun"]))
+      .min(1)
+      .optional(),
     seasonal: z.object({ months: z.array(z.number().int().min(1).max(12)).min(1), note: z.string() }).optional(),
     suggestedStart: hhmm,
     location: z.object({ lat: z.number(), lng: z.number() }),
@@ -98,7 +146,7 @@ export const activitySchema = z
       entry: money,
       entryChild: money.optional(),
       extras: z.array(z.object({ id: z.string(), label: z.string(), per: money, on: z.boolean() })),
-      pricesChecked: date.nullable()
+      pricesChecked: date.nullable(),
     }),
     visit: z.object({
       bestTime: z.string(),
@@ -106,27 +154,52 @@ export const activitySchema = z
       bring: z.array(z.string()),
       facilities: z.array(z.string()),
       access: z.string(),
-      safety: z.array(z.string())
+      safety: z.array(z.string()),
     }),
     pairings: z.array(z.object({ name: z.string(), why: z.string(), dist: z.string(), activityId: z.string() })),
     /** Phase 2 accessibility facts (spec §11.6): only from the venue or NSW National Parks, never guessed. */
     access: z
-      .object({ prams: accessLevel, stepFree: accessLevel, accessibleToilet: z.boolean(), notes: z.string().max(240).optional() })
+      .object({
+        prams: accessLevel,
+        stepFree: accessLevel,
+        accessibleToilet: z.boolean(),
+        notes: z.string().max(240).optional(),
+      })
       .optional(),
     lastVerified: date.nullable(),
     /**
      * Details no official source could confirm when the activity was checked (spec §4.1). Each shows
      * as "Not yet confirmed" in its section until someone confirms it and the entry is removed.
      */
-    unconfirmed: z.array(z.object({ section: z.enum(unconfirmedSections), note: z.string().min(1).max(200) })).optional()
+    /**
+     * A temporary warning shown at the top of the activity page, e.g. a track closure from NSW National
+     * Parks alerts, with the page that has the latest. Remove it when it no longer applies.
+     */
+    notice: z.object({ text: z.string().min(1).max(240), link: unconfirmedCheck.optional() }).optional(),
+    unconfirmed: z
+      .array(
+        z.object({
+          section: z.enum(unconfirmedSections),
+          note: z.string().min(1).max(200),
+          check: unconfirmedCheck.optional(),
+        }),
+      )
+      .optional(),
   })
   .superRefine((a, ctx) => {
-    if (a.duration.minHours > a.duration.maxHours) ctx.addIssue({ code: "custom", message: "duration.minHours > maxHours", path: ["duration"] });
+    if (a.duration.minHours > a.duration.maxHours)
+      ctx.addIssue({ code: "custom", message: "duration.minHours > maxHours", path: ["duration"] });
     if (a.status === "verified" && (!a.lastVerified || !a.costs.pricesChecked))
-      ctx.addIssue({ code: "custom", message: "verified activities need lastVerified and costs.pricesChecked", path: ["status"] });
-    if (!a.routes.drive && !a.routes.unavailable?.drive) ctx.addIssue({ code: "custom", message: "drive is null without a reason", path: ["routes", "unavailable"] });
+      ctx.addIssue({
+        code: "custom",
+        message: "verified activities need lastVerified and costs.pricesChecked",
+        path: ["status"],
+      });
+    if (!a.routes.drive && !a.routes.unavailable?.drive)
+      ctx.addIssue({ code: "custom", message: "drive is null without a reason", path: ["routes", "unavailable"] });
     const ns = a.geo.places.map((p) => p.n);
-    if (new Set(ns).size !== ns.length) ctx.addIssue({ code: "custom", message: "places need different numbers", path: ["geo", "places"] });
+    if (new Set(ns).size !== ns.length)
+      ctx.addIssue({ code: "custom", message: "places need different numbers", path: ["geo", "places"] });
   });
 
 export type Activity = z.infer<typeof activitySchema>;

@@ -93,7 +93,7 @@
       ],
       "perCarLabel": "Parking",
       "notes": [
-        "The small on-site car park (enter at 229 Wilson St) fills early on market days. On busy days there's extra parking in the Sydney Trains lot at Wilson St and Ivy Lane."
+        "Limited on-site parking: enter at 229 Wilson St. More may be available at South Eveleigh (2 Central Ave), a 15 min walk. Our tip: the on-site car park fills early on market days."
       ]
     }
   },
@@ -125,7 +125,7 @@
     "pricesChecked": "2026-10-02"
   },
   "visit": {
-    "bestTime": "Arrive by 9am for the best produce and shorter coffee queues.",
+    "bestTime": "Our tip: arrive by 9am for the best produce and shorter coffee queues.",
     "hours": "Saturdays only, 8am to 1pm. Check the Carriageworks site for holiday closures.",
     "bring": [
       "A shopping bag",
@@ -136,9 +136,9 @@
       "Toilets inside Carriageworks",
       "Seating in the sheds and outside"
     ],
-    "access": "Level access throughout, with a ramp from Wilson St (no. 245) to the main entrance. Crowded at peak times.",
+    "access": "Level access throughout, with a ramp from Wilson St (no. 245) to the main entrance. Our tip: it's crowded at peak times.",
     "safety": [
-      "Crowded at peak times: keep small children close"
+      "Keep small children close. Our tip: it's crowded at peak times."
     ]
   },
   "pairings": [
@@ -606,11 +606,19 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Whether the on-site car park is free: Carriageworks' visit pages don't say."
+      "note": "We couldn't confirm whether the small on-site car park is free: Carriageworks' visit page doesn't say.",
+      "check": {
+        "label": "Call Carriageworks",
+        "url": "tel:+61285719099"
+      }
     },
     {
       "section": "cost",
-      "note": "Stall prices."
+      "note": "Stall prices vary by stallholder and season: the breakfast and produce figures are our estimates.",
+      "check": {
+        "label": "This week's stallholders at Carriageworks",
+        "url": "https://carriageworks.com.au/events/carriageworks-farmers-market/"
+      }
     }
   ]
 }

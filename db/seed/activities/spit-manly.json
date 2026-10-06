@@ -1661,11 +1661,19 @@
   "unconfirmed": [
     {
       "section": "visit",
-      "note": "The high-tide section near Clontarf and the Clontarf kiosk."
+      "note": "We haven't confirmed the high-tide detour near Clontarf or the Clontarf kiosk's opening hours.",
+      "check": {
+        "label": "Manly scenic walkway on NSW National Parks",
+        "url": "https://www.nationalparks.nsw.gov.au/things-to-do/walking-tracks/manly-scenic-walkway"
+      }
     },
     {
       "section": "driving",
-      "note": "Parking prices near the Spit."
+      "note": "The $10–20 estimate for 4 hours near the Spit is a guess: Mosman Council doesn't publish its meter rates online.",
+      "check": {
+        "label": "Mosman Council: public parking",
+        "url": "https://mosman.nsw.gov.au/residents/transport/public-parking-and-carparks"
+      }
     }
   ]
 }

@@ -1122,11 +1122,19 @@
   "unconfirmed": [
     {
       "section": "gettingThere",
-      "note": "The time of the last ferry back on weekends."
+      "note": "We haven't confirmed when the last weekend ferry back leaves: check the F9 timetable.",
+      "check": {
+        "label": "F9 Watsons Bay timetable",
+        "url": "https://transportnsw.info/routes/details/sydney-ferries/f9/090f9"
+      }
     },
     {
       "section": "gettingThere",
-      "note": "The Opal fare for train and ferry."
+      "note": "The $10–13 Opal fare for train and ferry is our estimate: check Transport for NSW's fare tables.",
+      "check": {
+        "label": "Opal fares on Transport for NSW",
+        "url": "https://transportnsw.info/tickets-fares/fares/adult-opal-fares"
+      }
     }
   ]
 }

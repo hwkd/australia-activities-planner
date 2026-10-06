@@ -13,7 +13,7 @@
     "rainy": 1,
     "hot": 1
   },
-  "weatherNote": "Mostly outdoors and hilly. Light rain means thinner crowds.",
+  "weatherNote": "Mostly outdoors and hilly. Our tip: light rain means thinner crowds.",
   "goodFor": [
     "date",
     "friends",
@@ -101,7 +101,7 @@
       ],
       "perCarLabel": "Zoo car park, all day",
       "notes": [
-        "The zoo car park fills by late morning on sunny weekends.",
+        "Our tip: the zoo car park fills by late morning on sunny weekends.",
         "A toll applies coming back across the harbour."
       ]
     },
@@ -109,12 +109,12 @@
   },
   "costs": {
     "entry": [
-      51,
-      56
+      51.3,
+      57
     ],
     "entryChild": [
-      31,
-      35
+      29.7,
+      33
     ],
     "extras": [
       {
@@ -136,7 +136,7 @@
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-06"
   },
   "visit": {
     "bestTime": "Arrive at opening, when the animals are most active. Start at the top and walk downhill.",
@@ -911,16 +911,20 @@
   },
   "unconfirmed": [
     {
-      "section": "cost",
-      "note": "Ticket prices at the gate: only online prices were found."
-    },
-    {
       "section": "map",
-      "note": "Where the seals, Australian walkabout and top entrance are inside the zoo: placed by hand."
+      "note": "Pins for the seals, the Australian walkabout and the top entrance inside the zoo are approximate.",
+      "check": {
+        "label": "Taronga Zoo map (PDF)",
+        "url": "https://www.taronga.org.au/sydney-zoo/map"
+      }
     },
     {
       "section": "gettingThere",
-      "note": "How often the F2 ferry runs on weekends."
+      "note": "We haven't confirmed how often the F2 ferry runs on weekends: check the F2 timetable.",
+      "check": {
+        "label": "F2 Taronga Zoo timetable",
+        "url": "https://transportnsw.info/routes/details/sydney-ferries/f2/090f2"
+      }
     }
   ]
 }

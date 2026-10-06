@@ -90,12 +90,12 @@
     "drive": {
       "total": "≈ 25 min",
       "perCar": [
-        8,
-        20
+        0,
+        0
       ],
       "perCarLabel": "Parking, 3 hrs",
       "notes": [
-        "Beachfront parking is metered and fills by mid-morning on warm weekends."
+        "Beach parking is free: Randwick Council decided against beach meters in June 2026."
       ]
     }
   },
@@ -124,7 +124,7 @@
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-06"
   },
   "visit": {
     "bestTime": "Morning, before the sea breeze. Late afternoon is lovely on the pools.",
@@ -609,12 +609,20 @@
   },
   "unconfirmed": [
     {
-      "section": "driving",
-      "note": "Beachfront parking meter rates."
+      "section": "cost",
+      "note": "The $20–32 brunch estimate is ours: prices vary between cafés on Coogee Bay Rd.",
+      "check": {
+        "label": "Brunch on Coogee Bay Rd on Google Maps",
+        "url": "https://www.google.com/maps/search/?api=1&query=brunch%20Coogee%20Bay%20Rd%20Coogee"
+      }
     },
     {
-      "section": "cost",
-      "note": "Brunch prices."
+      "section": "driving",
+      "note": "We haven't confirmed the time limits on beach parking, or how early it fills on warm weekends: check the signs when you park.",
+      "check": {
+        "label": "Randwick Council: beach parking decision",
+        "url": "https://www.yoursay.randwick.nsw.gov.au/visitorpayparking"
+      }
     }
   ]
 }
