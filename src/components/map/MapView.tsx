@@ -201,6 +201,6 @@ export default function MapView({ pins, lines, facilities, transit, selected, on
     if (m && p && !m.getBounds().contains(p)) m.easeTo({ center: p, duration: matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 400 });
   }, [selected, pinKey]);
 
-  if (failed) return <p className="glass tr m-0 rounded-[22px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>;
-  return <div ref={box} role="region" aria-label={label} className="map-view tr overflow-hidden rounded-[24px]" style={{ height }} />;
+  if (failed) return <p className="glass m-0 rounded-[22px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>;
+  return <div ref={box} role="region" aria-label={label} className="map-view overflow-hidden rounded-[24px]" style={{ height }} />;
 }

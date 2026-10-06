@@ -18,7 +18,6 @@
     color: var(--ink);
     font-family: var(--font-mona), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    transition: color 900ms ease;
   }
   /* No one-word last lines in paragraphs and headings. */
   p, h1, h2, h3, dd, li {
@@ -35,9 +34,12 @@
   }
 }
 
-/* Colour, background and border follow the sky crossfade (implementation-plan.md §5). */
-.tr {
-  transition: background-color 600ms ease, color 600ms ease, border-color 600ms ease, box-shadow 500ms ease;
+/* A sky change switches the colours at once while the sky scene fades (applyTheme in
+   stores/weather.ts, spec §3.5). While the new theme's colours are computed, the elements with colour
+   transitions (.press, .cell, .dday) don't run them; listing them, not `*`, keeps the switch from
+   restyling the whole page twice. */
+.theme-switching :is(.press, .cell, .dday) {
+  transition: none !important;
 }
 
 /* Three fixed widths (spec AC 23: type never changes with the weather). */

@@ -35,15 +35,15 @@ export default function SkyPicker({
       <legend className="sr-only">{legend}</legend>
       {full && (
         <div aria-hidden="true" className="mb-2 flex items-baseline justify-between px-1">
-          <p className="tr m-0 text-[11.5px] font-bold tracking-[0.14em] uppercase" style={{ color: "var(--mute)" }}>
+          <p className="m-0 text-[11.5px] font-bold tracking-[0.14em] uppercase" style={{ color: "var(--mute)" }}>
             {heading}
           </p>
-          <p className="tr m-0 text-[12.5px] font-semibold lg:text-[13px]" style={{ color: "var(--mute)" }}>
+          <p className="m-0 text-[12.5px] font-semibold lg:text-[13px]" style={{ color: "var(--mute)" }}>
             {note}
           </p>
         </div>
       )}
-      <div className={`glass tr grid grid-cols-4 gap-1 ${full ? "rounded-[26px] p-[5px]" : "rounded-[18px] p-1"}`}>
+      <div className={`glass grid grid-cols-4 gap-1 ${full ? "rounded-[26px] p-[5px]" : "rounded-[18px] p-1"}`}>
         {WEATHERS.map((w) => {
           const on = value === w;
           const theme = THEMES[w];

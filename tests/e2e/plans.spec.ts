@@ -1,4 +1,4 @@
-import { fakeClipboard, idle, open } from "./helpers";
+import { fakeClipboard, idle, open, themeChange } from "./helpers";
 import { expect, test, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
 
@@ -86,6 +86,34 @@ test("the My plans count is there from the first paint, so the Discover | My pla
   }
   // Same tabs on both pages (where the switch sits follows each page's right edge: responsive.spec).
   expect(shapes[0].map(([, w]) => w), "the same tabs on both pages").toEqual(shapes[1].map(([, w]) => w));
+});
+
+// With motion on in every engine (the WebKit and Firefox projects otherwise reduce motion): a new sky
+// switches the colours at once, and no element runs its own colour transition (spec §3.5).
+test.describe("sky changes with motion", () => {
+  test.use({ reducedMotion: "no-preference" });
+
+  test("My plans: setting a day's sky starts no per-element colour transitions", async ({ page }) => {
+    await seed(page, "swf.plan.v2", plan({ "2026-10-04": { items: [{ id: "agnsw", start: "10:00" }] } }));
+    await open(page, "/plan?d=2026-10-04");
+    const panel = dayPanel(page);
+    const { transitions } = await themeChange(page, "rainy", () =>
+      panel.getByRole("group", { name: /Set the sky/ }).getByRole("button", { name: /Rainy/ }).click(),
+    );
+    expect(transitions).toBeLessThanOrEqual(4);
+  });
+
+  test("Add to a day: picking a date with another sky re-themes the sheet without colour transitions", async ({ page }) => {
+    await seed(page, "swf.plan.v2", plan({ "2026-10-03": { sky: "cloudy", items: [{ id: "agnsw", start: "10:00" }] } }));
+    await open(page, "/?w=sunny");
+    await idle(page);
+    const first = page.getByRole("list", { name: "Ranked results" }).getByRole("listitem").first();
+    await first.getByRole("button", { name: /to a day$/ }).click();
+    const saturday = sheet(page).getByRole("group", { name: "Quick days" }).getByRole("button", { name: /^Saturday 3 October/ });
+    await expect(saturday).toBeVisible();
+    const { transitions } = await themeChange(page, "cloudy", () => saturday.click(), ".sheet-root");
+    expect(transitions).toBeLessThanOrEqual(2);
+  });
 });
 
 test("AC 6 and 7: a rainy Sunday gets a Plan B that runs that day; Swap keeps the time; no duplicates", async ({ page }) => {

@@ -37,3 +37,35 @@ export async function fakeClipboard(context: BrowserContext) {
     });
   });
 }
+
+/**
+ * Runs `act`, waits for `data-weather` on `target` (the page, or a sheet with its own sky) to become
+ * `to` and reports what the theme change set off one frame later. Only the sky scene fades; the
+ * colours switch at once, so no other element should start a visible CSS transition (hundreds of those
+ * made phones drop frames). Fails with a clear message if the sky never changes.
+ */
+export async function themeChange(page: Page, to: string, act: () => Promise<void>, target = "html") {
+  await page.evaluate(
+    ([to, target]) => {
+      const el = document.querySelector<HTMLElement>(target)!;
+      (window as unknown as { themed: Promise<number> }).themed = new Promise((done, fail) => {
+        const timer = setTimeout(() => fail(new Error(`data-weather on ${target} never became "${to}"`)), 5000);
+        const mo = new MutationObserver(() => {
+          if (el.dataset.weather !== to) return;
+          mo.disconnect();
+          clearTimeout(timer);
+          // Longer than 1 ms: under reduced motion every property change is a 1 ms transition (global.css).
+          const visible = (a: Animation) =>
+            a instanceof CSSTransition &&
+            Number(a.effect?.getTiming().duration) > 1 &&
+            !((a.effect as KeyframeEffect).target as Element).closest(".scene");
+          requestAnimationFrame(() => done(document.getAnimations().filter(visible).length));
+        });
+        mo.observe(el, { attributes: true, attributeFilter: ["data-weather"] });
+      });
+    },
+    [to, target] as const,
+  );
+  await act();
+  return { transitions: await page.evaluate(() => (window as unknown as { themed: Promise<number> }).themed) };
+}

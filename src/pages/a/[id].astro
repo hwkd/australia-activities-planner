@@ -100,15 +100,15 @@ const headsUp = [
         });
       })();
     </script>
-    <h1 class="w90 tr name">{a.name}</h1>
+    <h1 class="w90 name">{a.name}</h1>
     <script is:inline define:vars={{ id: a.id }}>
       // Analytics (spec §7): which activities people open.
       if (window.plausible) window.plausible("activity_view", { props: { id } });
     </script>
-    <p class="area tr">
+    <p class="area">
       <Icon name="pin" size={16} /> {a.area}
     </p>
-    <p class="blurb tr">{a.blurb}</p>
+    <p class="blurb">{a.blurb}</p>
     {
       a.notice && (
         <div class="notice card-in" role="note" data-notice style="animation-delay: 60ms">
@@ -130,7 +130,7 @@ const headsUp = [
       )
     }
 
-    <section class="glass tr card-in callout" style="animation-delay: 80ms" aria-label={t.detail.hero.fitLabel}>
+    <section class="glass card-in callout" style="animation-delay: 80ms" aria-label={t.detail.hero.fitLabel}>
       {WEATHERS.map((w) => (
         <div class={`fitv fitv-${w}`}>
           <FitMeter fit={a.weatherFit[w]} />
@@ -145,7 +145,7 @@ const headsUp = [
         </div>
       ))}
     </section>
-    <dl class="glass tr card-in facts" style="animation-delay: 130ms">
+    <dl class="glass card-in facts" style="animation-delay: 130ms">
       {a.facts.map((f) => (
         <div>
           <dt>{f.k}</dt>
@@ -155,7 +155,7 @@ const headsUp = [
     </dl>
     <PlannedNote client:idle id={a.id} />
 
-    <section class="card glass tr card-in" style="animation-delay: 180ms" aria-labelledby="h-wx">
+    <section class="card glass card-in" style="animation-delay: 180ms" aria-labelledby="h-wx">
       <div class="flex items-center justify-between gap-2 px-0.5">
         <h2 id="h-wx" class="eb" style="color: var(--mute)">
           {t.detail.weather.heading}
@@ -171,7 +171,7 @@ const headsUp = [
       </p>
     </section>
 
-    <section class="card glass tr card-in map-card col-map" style="animation-delay: 240ms" aria-labelledby="h-map">
+    <section class="card glass card-in map-card col-map" style="animation-delay: 240ms" aria-labelledby="h-map">
       <h2 id="h-map" class="eb px-1" style="color: var(--mute)">
         <Icon name="map" size={16} />
         {t.detail.map.heading}
@@ -187,7 +187,7 @@ const headsUp = [
     </section>
 
     <div class="col-right">
-      <section class="card glass tr card-in" style="animation-delay: 300ms" aria-labelledby="h-go">
+      <section class="card glass card-in" style="animation-delay: 300ms" aria-labelledby="h-go">
         <h2 id="h-go" class="eb px-0.5" style="color: var(--mute)">
           <Icon name="tram" size={16} />
           {t.detail.gettingThere.heading}
@@ -196,7 +196,7 @@ const headsUp = [
         <Unconfirmed items={unconfirmed("gettingThere", "driving")} />
       </section>
 
-      <section class="card glass tr card-in" style="animation-delay: 360ms" aria-labelledby="h-cost">
+      <section class="card glass card-in" style="animation-delay: 360ms" aria-labelledby="h-cost">
         <h2 id="h-cost" class="eb px-0.5" style="color: var(--mute)">
           <Icon name="ticket" size={16} />
           {t.detail.cost.heading} <span class="ml-auto">{t.detail.cost.currency}</span>
@@ -206,7 +206,7 @@ const headsUp = [
       </section>
     </div>
 
-    <section class="card glass tr card-in visit" aria-labelledby="h-visit">
+    <section class="card glass card-in visit" aria-labelledby="h-visit">
       <h2 id="h-visit" class="eb" style="color: var(--mute)">
         <Icon name="calendar" size={16} />
         {t.detail.visit.heading}
@@ -276,7 +276,7 @@ const headsUp = [
       <Unconfirmed items={unconfirmed("visit")} />
     </section>
 
-    <section class="card glass tr card-in visit" aria-labelledby="h-access">
+    <section class="card glass card-in visit" aria-labelledby="h-access">
       <h2 id="h-access" class="eb" style="color: var(--mute)">
         <Icon name="access" size={16} />
         {t.detail.access.heading}
@@ -310,7 +310,7 @@ const headsUp = [
       <Unconfirmed items={unconfirmed("access")} />
     </section>
 
-    <section class="card glass tr card-in visit" aria-labelledby="h-tip">
+    <section class="card glass card-in visit" aria-labelledby="h-tip">
       <h2 id="h-tip" class="eb" style="color: var(--mute)">
         <Icon name="bulb" size={16} />
         {t.detail.tip.heading}
@@ -321,7 +321,7 @@ const headsUp = [
     </section>
 
     {(headsUp.length > 0 || a.links?.length || fire) && (
-      <section class="card glass tr card-in visit" aria-labelledby="h-heads">
+      <section class="card glass card-in visit" aria-labelledby="h-heads">
         <h2 id="h-heads" class="eb" style="color: var(--mute)">
           <Icon name="warn" size={16} />
           {t.detail.headsUp.heading}
@@ -374,14 +374,14 @@ const headsUp = [
     <section class="mt-6" aria-labelledby="h-pairs">
       <h2
         id="h-pairs"
-        class="w90 tr px-1 text-[26px] leading-[1.05] font-bold tracking-[-0.025em] lg:px-0"
+        class="w90 px-1 text-[26px] leading-[1.05] font-bold tracking-[-0.025em] lg:px-0"
         style="text-shadow: var(--hl)"
       >
         {t.detail.pairings.heading}
       </h2>
       <ul class="hs pairs">
         {a.pairings.map((p) => (
-          <li class="glass tr pair">
+          <li class="glass pair">
             {names.has(p.activityId) ? (
               <a href={`/a/${p.activityId}`} data-pairing class="pair-link w90">
                 {names.get(p.activityId)}
@@ -413,7 +413,7 @@ const headsUp = [
     </script>
   </main>
 
-  <div class="footer glass-strong tr">
+  <div class="footer glass-strong">
     <AddToDayButton client:idle id={a.id} name={a.name} />
   </div>
 </Base>
