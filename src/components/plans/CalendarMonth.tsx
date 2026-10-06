@@ -27,7 +27,7 @@ interface Props {
 export default function CalendarMonth({ plan, month, onMonth, selected, onSelect, today, last, needsLook, names }: Props) {
   const [y, m] = month.split("-").map(Number);
   return (
-    <section aria-labelledby="cal-month" className="glass tr card-in mt-5 rounded-[28px] p-3">
+    <section aria-labelledby="cal-month" className="glass card-in mt-5 rounded-[28px] p-3">
       <div className="flex items-center justify-between">
         <button type="button" aria-label={t.plans.calendar.prevMonth} disabled={month <= monthOf(today)} onClick={() => onMonth(addMonths(month, -1))} className="press flex h-11 w-11 items-center justify-center rounded-full border-0 bg-transparent disabled:opacity-35">
           <Icon name="back" size={20} strokeWidth={2.5} />

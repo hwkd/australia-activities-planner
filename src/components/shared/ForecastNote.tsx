@@ -29,7 +29,7 @@ export default function ForecastNote({ date, area = "city", value, onUse }: Prop
   const age = forecastAge(fc.updatedAt);
   return (
     <div
-      className="tr mt-2 px-1 text-[12.5px] leading-[1.45]"
+      className="mt-2 px-1 text-[12.5px] leading-[1.45]"
       style={{ color: "var(--sky-mute, var(--mute))" }}
       data-forecast={f.sky}
     >

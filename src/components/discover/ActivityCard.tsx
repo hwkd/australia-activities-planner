@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { WEATHERS, type Weather } from "~/stores/weather";
 import type { CardData } from "~/lib/content";
 import { FitMeter, Icon, WeatherIcon } from "~/theme/icons";
@@ -19,13 +20,24 @@ interface Props {
  * Mode — Mobile) and, in desktop's two-column grid, the tile (A · Sky Mode — Desktop): big number, the
  * fit strip with icons over labels, and a full-width Add to a day. The `rc-` classes in global.css
  * switch between them with a container query, so nothing moves after the page loads.
+ *
+ * The entrance plays once: re-ranking moves cards in the DOM, and a moved element restarts its CSS
+ * animations, so `card-in` comes off when it ends, or at hydration if it already has (it starts with
+ * the server HTML, so on a slow phone it can end before React is listening).
  */
 export default function ActivityCard({ card: c, index, weather, planned, onAdd }: Props) {
   const fit = c.weatherFit[weather];
+  const [entered, setEntered] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!ref.current?.getAnimations().length) setEntered(true);
+  }, []);
   return (
     <article
-      className="rc glass tr card-in relative overflow-hidden rounded-[26px]"
-      style={{ animationDelay: `${Math.min(index, 8) * 60}ms` }}
+      ref={ref}
+      className={`rc glass ${entered ? "" : "card-in "}relative overflow-hidden rounded-[26px]`}
+      style={entered ? undefined : { animationDelay: `${Math.min(index, 8) * 60}ms` }}
+      onAnimationEnd={(e) => e.target === e.currentTarget && setEntered(true)}
     >
       <div className="rc-head px-[18px] pt-[18px]">
         <div className="rc-top flex items-center justify-between gap-2.5">
@@ -92,7 +104,7 @@ export default function ActivityCard({ card: c, index, weather, planned, onAdd }
           return (
             <li
               key={w}
-              className="rc-cell tr flex h-9 items-center justify-center gap-[5px] rounded-xl text-xs"
+              className="rc-cell flex h-9 items-center justify-center gap-[5px] rounded-xl text-xs"
               style={{
                 background: cur ? "var(--sel)" : "transparent",
                 color: cur ? "var(--sel-ink)" : "var(--mute)",

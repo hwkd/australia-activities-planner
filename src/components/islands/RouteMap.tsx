@@ -87,7 +87,7 @@ export default function RouteMap({ name, geo, mapView, checked }: Props) {
     [geo.trip, geo.back, showBack],
   );
   const drawn = drawnLines(geo, showBack);
-  const unavailable = <p className="glass tr m-0 rounded-[18px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>;
+  const unavailable = <p className="glass m-0 rounded-[18px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>;
 
   return (
     <>
@@ -98,7 +98,7 @@ export default function RouteMap({ name, geo, mapView, checked }: Props) {
               type="button"
               aria-pressed={trip.showFacilities}
               onClick={() => updateTrip((s) => ({ ...s, showFacilities: !s.showFacilities }))}
-              className="press tr inline-flex h-11 shrink-0 items-center gap-[9px] rounded-full border pr-[15px] pl-[11px] text-sm font-semibold"
+              className="press inline-flex h-11 shrink-0 items-center gap-[9px] rounded-full border pr-[15px] pl-[11px] text-sm font-semibold"
               style={tog(trip.showFacilities)}
             >
               <Switch on={trip.showFacilities} />
@@ -110,7 +110,7 @@ export default function RouteMap({ name, geo, mapView, checked }: Props) {
               type="button"
               aria-pressed={trip.showBack}
               onClick={() => updateTrip((s) => ({ ...s, showBack: !s.showBack }))}
-              className="press tr inline-flex h-11 shrink-0 items-center gap-[9px] rounded-full border pr-[15px] pl-[11px] text-sm font-semibold"
+              className="press inline-flex h-11 shrink-0 items-center gap-[9px] rounded-full border pr-[15px] pl-[11px] text-sm font-semibold"
               style={tog(trip.showBack)}
             >
               <Switch on={trip.showBack} />
@@ -123,7 +123,7 @@ export default function RouteMap({ name, geo, mapView, checked }: Props) {
       <div className="mt-3">
         {mapView ? (
           <MapBoundary fallback={unavailable}>
-            <Suspense fallback={<div className="tr rounded-[24px]" style={{ height: 340, background: "var(--soft)" }} />}>
+            <Suspense fallback={<div className="rounded-[24px]" style={{ height: 340, background: "var(--soft)" }} />}>
               <MapView
                 pins={pins}
                 lines={geo.trail ?? []}

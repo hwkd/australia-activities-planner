@@ -124,15 +124,13 @@ export default function DiscoverExplorer({
 
   const n = shown.length;
   const word = t.common.weather.word[weather];
-  // Re-run the card entrance whenever the ranking inputs change.
-  const listKey = `${weather}|${filters.group}|${filters.duration}|${filters.freeOnly}|${filters.pram}|${filters.stepFree}`;
 
   return (
     <>
       {soon.length > 0 && <OnSoon events={soon} weather={weather} plannedLabel={plannedLabel} onAdd={add} />}
       <div className="results-head mx-1 mt-8 lg:first:mt-0">
         <h2
-          className="tr w90 m-0 text-[27px] leading-[1.05] font-bold tracking-[-0.025em] lg:text-[32px]"
+          className="w90 m-0 text-[27px] leading-[1.05] font-bold tracking-[-0.025em] lg:text-[32px]"
           style={{ textShadow: "var(--hl)" }}
           aria-live="polite"
         >
@@ -140,7 +138,7 @@ export default function DiscoverExplorer({
         </h2>
         {hidden > 0 && (
           <p
-            className="tr m-0 mt-2 flex items-start gap-[7px] text-[13px] leading-[1.4] lg:text-[13.5px]"
+            className="m-0 mt-2 flex items-start gap-[7px] text-[13px] leading-[1.4] lg:text-[13.5px]"
             style={{ color: "var(--sky-mute)" }}
           >
             <Icon name="hidden" className="mt-0.5 shrink-0" />
@@ -164,7 +162,7 @@ export default function DiscoverExplorer({
           {mapView && (
             <fieldset className="m-0 min-w-0 border-0 p-0">
               <legend className="sr-only">{t.common.map.viewLegend}</legend>
-              <div className="glass tr grid grid-cols-2 gap-1 rounded-full p-1">
+              <div className="glass grid grid-cols-2 gap-1 rounded-full p-1">
                 {(["list", "map"] as const).map((v) => (
                   <button
                     key={v}
@@ -204,11 +202,9 @@ export default function DiscoverExplorer({
         {mapView && view === "map" && n > 0 ? (
           <div className="grid gap-3">
             <MapBoundary
-              fallback={<p className="glass tr m-0 rounded-[22px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>}
+              fallback={<p className="glass m-0 rounded-[22px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>}
             >
-              <Suspense
-                fallback={<p className="glass tr m-0 rounded-[24px] p-4 text-[14.5px]">{t.common.map.loading}</p>}
-              >
+              <Suspense fallback={<p className="glass m-0 rounded-[24px] p-4 text-[14.5px]">{t.common.map.loading}</p>}>
                 <MapView
                   pins={pins}
                   selected={pinned}
@@ -244,7 +240,9 @@ export default function DiscoverExplorer({
             </button>
           </div>
         ) : (
-          <ol key={listKey} className="rc-list m-0 list-none p-0" aria-label={t.discover.rankedResults}>
+          // One list for every sky and filter: cards keep their element and just reorder, and only
+          // ones newly shown play the entrance (rebuilding all of them made phones drop frames).
+          <ol className="rc-list m-0 list-none p-0" aria-label={t.discover.rankedResults}>
             {shown.map((c, i) => (
               <li key={c.id}>
                 <ActivityCard card={c} index={i} weather={weather} planned={plannedLabel(c.id)} onAdd={add} />

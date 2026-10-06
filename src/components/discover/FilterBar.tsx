@@ -20,7 +20,7 @@ const chip = (on: boolean) => ({
 const ROW =
   "hs -mx-4 flex gap-2 overflow-x-auto px-4 py-0.5 lg:mx-0 lg:mt-2.5 lg:flex-wrap lg:overflow-visible lg:px-0";
 const LABEL = "eb m-0 text-[11.5px]";
-const CHIP = "glass press tr h-11 shrink-0 rounded-full border font-semibold lg:px-3.5 lg:text-[14px]";
+const CHIP = "glass press h-11 shrink-0 rounded-full border font-semibold lg:px-3.5 lg:text-[14px]";
 
 /**
  * Group chips, then Free only and duration chips, then access; applied at once (spec §3.1, §11.6).
@@ -35,7 +35,7 @@ export default function FilterBar({ value, onChange, accessFilters }: Props) {
       onClick={() =>
         onChange({ ...value, freeOnly: !value.freeOnly }, { filter: "free", value: String(!value.freeOnly) })
       }
-      className="free glass press tr inline-flex h-11 shrink-0 items-center gap-[9px] rounded-full border pr-4 pl-3 text-sm font-semibold lg:pr-3 lg:pl-2.5 lg:text-[13.5px] lg:font-bold"
+      className="free glass press inline-flex h-11 shrink-0 items-center gap-[9px] rounded-full border pr-4 pl-3 text-sm font-semibold lg:pr-3 lg:pl-2.5 lg:text-[13.5px] lg:font-bold"
       style={chip(value.freeOnly)}
     >
       <span

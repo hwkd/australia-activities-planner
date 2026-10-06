@@ -8,6 +8,7 @@ import { dayItems, type PlanCard } from "~/lib/planDays";
 import { planBs } from "~/lib/planB";
 import { readShare } from "~/lib/share";
 import { DEFAULT_WEATHER, THEMES, WEATHER_WORD } from "~/theme/tokens";
+import { applyTheme } from "~/stores/weather";
 import { Icon, WeatherIcon } from "~/theme/icons";
 import { t } from "~/strings/en-AU";
 import CalendarMonth from "~/components/plans/CalendarMonth";
@@ -44,10 +45,10 @@ export default function MyPlans({ cards, mapView = false }: { cards: PlanCard[];
     history.replaceState(history.state, "", `/plan?d=${d}`);
   };
 
-  // The page crossfades to the selected day's sky (unset reads as the default theme).
+  // The page takes the selected day's sky, its scene fading in (unset reads as the default theme).
   const sky = plan.days[selected]?.sky ?? DEFAULT_WEATHER;
   useEffect(() => {
-    document.documentElement.dataset.weather = sky;
+    applyTheme(sky);
   }, [sky]);
 
   const backups = useMemo(() => planBs(plan.days, cards, today), [plan, cards, today]);
@@ -65,7 +66,7 @@ export default function MyPlans({ cards, mapView = false }: { cards: PlanCard[];
     <>
       <header className="flex items-end justify-between gap-3 px-1">
         <div>
-          <p className="eb tr m-0" style={{ color: "var(--sky-mute)" }}>
+          <p className="eb m-0" style={{ color: "var(--sky-mute)" }}>
             <span>{t.plans.header.city}</span>
             <span aria-hidden="true" className="h-1 w-1 rounded-full bg-current" />
             <span>{t.plans.header.comingUp(total)}</span>
@@ -93,7 +94,7 @@ export default function MyPlans({ cards, mapView = false }: { cards: PlanCard[];
       )}
 
       {alerts.length > 0 && (
-        <section role="status" aria-label={t.plans.forecastAlert.label} className="glass-strong tr card-in mt-4 rounded-[22px] p-3.5">
+        <section role="status" aria-label={t.plans.forecastAlert.label} className="glass-strong card-in mt-4 rounded-[22px] p-3.5">
           <ul className="m-0 grid list-none gap-1 p-0">
             {alerts.map((a) => (
               <li key={a.date}>
@@ -116,10 +117,10 @@ export default function MyPlans({ cards, mapView = false }: { cards: PlanCard[];
 
       {upcoming.length > 0 && (
         <section aria-labelledby="cal-up" className="coming-up mt-6">
-          <h2 id="cal-up" className="w90 tr m-0 px-1 text-[26px] leading-[1.05] font-bold tracking-[-0.025em]" style={{ textShadow: "var(--hl)" }}>
+          <h2 id="cal-up" className="w90 m-0 px-1 text-[26px] leading-[1.05] font-bold tracking-[-0.025em]" style={{ textShadow: "var(--hl)" }}>
             {t.plans.comingUp.heading}
           </h2>
-          <ul className="glass tr m-0 mt-3 list-none rounded-[24px] p-1.5">
+          <ul className="glass m-0 mt-3 list-none rounded-[24px] p-1.5">
             {upcoming.map((d) => {
               const e = plan.days[d];
               const names = dayItems(d, e.items, byId).map((r) => r.card.name).join(", ");
