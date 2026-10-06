@@ -2,7 +2,7 @@
 <html lang="en-AU">
 <head>
 <meta charset="utf-8">
-<title>Discover, phone · Australia Activities Planner</title>
+<title>A1 · State switch — Mobile · Australia Activities Planner</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -134,10 +134,10 @@ p,h1,h2,h3{margin:0}
 <sc-if value="{{isDiscover}}" hint-placeholder-val="{{true}}">
 <main class="hs a-fade" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 22px 16px 124px; box-sizing: border-box">
 <header style="padding: 0 4px">
-<p class="tr" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: {{skyMute}}"><span>Sydney</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>Thu 1 Oct</span></p>
+<div style="display: flex; align-items: center; gap: 10px"><button type="button" aria-haspopup="dialog" aria-expanded="{{pickerExpanded}}" onClick="{{openPicker}}" class="glass press tr" style="height: 44px; padding: 0 12px 0 11px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass2}}; color: {{ink}}; display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>{{stName}}<svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg><span class="sr">: change state</span></button><p class="tr" style="margin-top: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: {{skyMute}}">Thu 1 Oct</p></div>
 <h1 class="disp tr" style="margin-top: 16px; font-size: 46px; font-weight: 500; line-height: 0.94; letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; color: {{ink}}; text-shadow: {{hlShadow}}">
-<span style="display: block">Sydney’s</span>
-<span style="display: block">looking</span>
+<span style="display: block">{{place1}}</span>
+<span style="display: block">{{place2}}</span>
 <span style="display: block; position: relative; height: 84px; margin-top: 2px; font-size: 86px; font-weight: 800; line-height: 0.95; letter-spacing: -0.045em; font-variation-settings: 'wdth' 80; color: {{accent}}">
 <sc-if value="{{isSun}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0">sunny.</span></sc-if>
 <sc-if value="{{isCloud}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0">cloudy.</span></sc-if>
@@ -145,7 +145,7 @@ p,h1,h2,h3{margin:0}
 <sc-if value="{{isHot}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0; display: flex; align-items: flex-start; gap: 10px">hot.<span style="margin-top: 14px; padding: 5px 11px; border: 2px solid currentColor; border-radius: 999px; font-size: 20px; font-weight: 700; letter-spacing: 0; font-variation-settings: 'wdth' 100">30°+</span></span></sc-if>
 </span>
 </h1>
-<p class="tr" style="margin-top: 14px; font-size: 15.5px; line-height: 1.4; color: {{skyMute}}">Tap a sky. Sydney re-ranks around it.</p>
+<p class="tr" style="margin-top: 14px; font-size: 15.5px; line-height: 1.4; color: {{skyMute}}">{{rerank}}</p>
 </header>
 
 <fieldset style="margin: 22px 0 0; padding: 0; border: 0; min-width: 0">
@@ -161,19 +161,6 @@ p,h1,h2,h3{margin:0}
 </div>
 </fieldset>
 
-<!-- Forecast under Set the sky (spec §11.1): caption when the sky matches, or what it says plus Use forecast -->
-<div class="tr" style="margin-top: 8px; padding: 0 4px; font-size: 12.5px; line-height: 1.45; color: {{skyMute}}">
-<sc-if value="{{fcMatches}}" hint-placeholder-val="{{true}}">
-<p style="display: flex; align-items: center; gap: 7px; min-height: 22px"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>{{fcCaption}}</span></p>
-</sc-if>
-<sc-if value="{{fcDiffers}}" hint-placeholder-val="{{false}}">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
-<p style="flex: 1; min-width: 0">{{fcDiffersText}}</p>
-<button type="button" onClick="{{useForecast}}" class="glass press" style="flex-shrink: 0; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass}}; color: {{ink}}; font-size: 13.5px; font-weight: 700">Use forecast</button>
-</div>
-</sc-if>
-<p style="margin-top: 2px; padding-left: {{creditInset}}"><a href="https://open-meteo.com/" target="_blank" rel="noopener" class="lnk">Weather data: Open-Meteo</a></p>
-</div>
 
 <fieldset style="margin: 20px 0 0; padding: 0; border: 0; min-width: 0">
 <legend class="sr">Who’s coming</legend>
@@ -423,9 +410,15 @@ Share plan</button>
 <dc-import name="A-Detail-Mobile" activity="{{d.id}}" weather="{{weather}}" in-sat="{{d.inSat}}" in-sun="{{d.inSun}}" back="{{goBack}}" toggle-sat="{{d.toggleSat}}" toggle-sun="{{d.toggleSun}}" set-weather="{{setWeather}}" open-activity="{{openActivity}}" hint-size="390px,844px"></dc-import>
 </div>
 </sc-if>
+
+<!-- ================= A1 · State picker: bottom sheet ================= -->
+<sc-if value="{{pickerOpen}}" hint-placeholder-val="{{true}}">
+<button type="button" tabindex="-1" aria-hidden="true" onClick="{{closePicker}}" class="a-fade" style="position: absolute; inset: 0; z-index: 40; border: 0; padding: 0; background: {{scrim}}; cursor: default"></button>
+<section role="dialog" aria-modal="true" aria-labelledby="st-title" class="glass a-up" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 41; max-height: 92%; overflow-y: auto; padding: 10px 16px 24px; box-sizing: border-box; border-radius: 30px 30px 0 0; border-top: 1px solid {{line}}; background: {{glass2}}; box-shadow: {{shadow}}; color: {{ink}}"><div aria-hidden="true" style="width: 40px; height: 5px; margin: 0 auto 14px; border-radius: 3px; background: {{line}}"></div><div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px"><div style="min-width: 0"><h2 id="st-title" class="disp" style="font-size: 26px; font-weight: 750; line-height: 1.1; letter-spacing: -0.02em; font-variation-settings: 'wdth' 90">Where are you exploring?</h2><p style="margin-top: 6px; font-size: 14px; line-height: 1.45; color: {{mute}}">Pick a state. We’re starting with New South Wales and adding more over time.</p></div><button type="button" aria-label="Close" onClick="{{closePicker}}" class="press" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 999px; border: 1px solid {{line}}; background: transparent; color: {{ink}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div><ul style="margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 6px"><sc-for list="{{liveRows}}" as="o" hint-placeholder-count="1"><li><button type="button" aria-current="{{o.current}}" onClick="{{o.pick}}" class="press" style="width: 100%; min-height: 64px; padding: 10px 16px 10px 14px; box-sizing: border-box; border-radius: 20px; border: 1.5px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; display: flex; align-items: center; gap: 12px; text-align: left"><svg width="20" height="20" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg><span style="flex: 1; min-width: 0"><span style="display: block; font-size: 16px; font-weight: 700">{{o.name}}</span><span style="display: block; margin-top: 2px; font-size: 13px; font-weight: 600; opacity: 0.85">{{o.note}}</span></span><sc-if value="{{o.selected}}" hint-placeholder-val="{{true}}"><svg width="20" height="20" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></button></li></sc-for></ul><p style="margin-top: 18px; padding: 0 4px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{mute}}">Other states and territories</p><ul style="margin: 8px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px"><sc-for list="{{otherStates}}" as="o" hint-placeholder-count="7"><li><button type="button" onClick="{{o.pick}}" class="press" style="width: 100%; height: 100%; min-height: 50px; padding: 7px 12px; box-sizing: border-box; border-radius: 16px; border: 1px {{o.sBs}} {{o.sBd}}; background: {{o.sBg}}; color: {{o.sFg}}; display: flex; align-items: center; gap: 9px; text-align: left"><span aria-hidden="true" style="width: 34px; flex-shrink: 0; font-size: 12px; font-weight: 800; letter-spacing: 0.06em">{{o.short}}</span><span aria-hidden="true" style="font-size: 13.5px; font-weight: 600; line-height: 1.25">{{o.name}}</span><span class="sr">{{o.sAria}}</span></button></li></sc-for></ul><p aria-live="polite" style="min-height: 42px; margin-top: 12px; padding: 0 4px; font-size: 14px; line-height: 1.45"><sc-if value="{{hasPeek}}" hint-placeholder-val="{{false}}"><span class="a-fade" style="display: block"><span style="font-weight: 700">{{peekTitle}}.</span> <span style="color: {{mute}}">{{peekText}}</span></span></sc-if></p></section>
+</sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"startWeather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"rain"},"$preview":{"width":390,"height":844}}'>
+<script type="text/x-dc" data-dc-script data-props='{"picker":{"editor":"enum","options":["open","closed"],"default":"open"},"startWeather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"rain"},"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);
@@ -438,6 +431,24 @@ class Component extends DCLogic {
     };
     // Spec §11 additions: Surprise me (pick + recent picks) and the List / Map view.
     Object.assign(this.state, { surprise: null, recent: [], view: "list", pinned: null });
+    // ---- Where you're exploring (owner, 6 Oct 2026): all of Australia is the aim; New South Wales is live first. ----
+    this.VARIANT = "switch";
+    this.STATES = [
+      { key: "nsw", short: "NSW", name: "New South Wales", live: true },
+      { key: "vic", short: "VIC", name: "Victoria" }, { key: "qld", short: "QLD", name: "Queensland" },
+      { key: "wa", short: "WA", name: "Western Australia" }, { key: "sa", short: "SA", name: "South Australia" },
+      { key: "tas", short: "TAS", name: "Tasmania" }, { key: "act", short: "ACT", name: "Australian Capital Territory" },
+      { key: "nt", short: "NT", name: "Northern Territory" }
+    ];
+    // A3's tile map of Australia: [x, y, w, h] in a 300 × 262 grid, schematic, not to scale.
+    this.TILES = { wa: [0, 40, 100, 170], nt: [104, 20, 76, 90], sa: [104, 114, 86, 96], qld: [184, 0, 104, 120], nsw: [194, 124, 94, 62], vic: [194, 190, 68, 40], act: [266, 190, 26, 26], tas: [212, 236, 44, 26] };
+    this.TILE_K = 1.12;
+    // A2's regions: the activities so far are in Sydney or the Blue Mountains; the rest of NSW comes next.
+    this.REGIONS = [{ key: "all", label: "All of NSW" }, { key: "sydney", label: "Sydney" }, { key: "blue", label: "Blue Mountains" }];
+    this.SOON_REGIONS = ["Hunter Valley", "South Coast", "North Coast"];
+    // A1 · State switch (owner, 6 Oct 2026): the list covers a whole state, and the visitor sets the sky they expect.
+    // Discover shows no forecast; activity pages and My plans keep the forecast for each activity's own area.
+    Object.assign(this.state, { st: "nsw", region: "all", picker: !(this.props && this.props.picker === "closed"), peek: null });
     // Rating vocabulary: index 0 = skip, 1 = ok, 2 = great. A direction may reword these (keep them short).
     this.FIT = [
       { label: "Skip", note: "Save it for another day" },
@@ -903,10 +914,85 @@ class Component extends DCLogic {
     };
   }
 
+
+  // ---- Where (state and region). The three directions share these values; only the markup differs. ----
+  regionOf(a) { return a.area === "Blue Mountains" ? "blue" : "sydney"; }
+
+  // A2: the results for the chosen region, renumbered, with its own hidden count and title.
+  regionCut(v) {
+    const s = this.state, wi = this.WX.findIndex((w) => w.key === s.weather), byId = {};
+    this.acts.forEach((a) => { byId[a.id] = a; });
+    const inRegion = (a) => !!a && this.regionOf(a) === s.region;
+    const cards = v.cards.filter((c) => inRegion(byId[c.id])).map((c, i) => Object.assign(c, {
+      index: i, num: (i + 1 < 10 ? "0" : "") + (i + 1), delay: (i * 60) + "ms", isFirst: i === 0, notFirst: i !== 0 }));
+    const durOk = (a) => s.dur === "any" || (s.dur === "short" && a.h[1] <= 3) || (s.dur === "half" && a.h[0] <= 5 && a.h[1] >= 2) || (s.dur === "full" && a.h[1] >= 5);
+    const hidden = this.acts.filter((a) => inRegion(a) && (s.who === "any" || a.with.indexOf(s.who) >= 0) && (!s.freeOnly || a.cost === "Free") && durOk(a) && a.w[wi] === 0).length;
+    const where = s.region === "blue" ? " in the Blue Mountains" : " in Sydney";
+    Object.assign(v, { cards: cards, resultCount: String(cards.length), noResults: cards.length === 0, hasResults: cards.length > 0,
+      resultTitle: cards.length + (cards.length === 1 ? " idea" : " ideas") + " for a " + v.wxAdj + " day" + where,
+      hasHidden: hidden > 0, hiddenCount: String(hidden), hiddenNote: hidden + (hidden === 1 ? " more is" : " more are") + " better saved for another day" });
+  }
+
+  placeVals(v) {
+    const s = this.state, total = this.acts.length, k = this.TILE_K;
+    const cur = this.STATES.find((o) => o.key === s.st) || this.STATES[0];
+    const states = this.STATES.map((o) => {
+      const live = !!o.live, on = o.key === s.st, peek = o.key === s.peek, t = this.TILES[o.key], big = t[2] * t[3] >= 2600;
+      return Object.assign({}, o, {
+        live: live, soon: !live, selected: on, pressed: on ? "true" : "false", peeked: peek,
+        countLabel: live ? total + " things to do so far" : "Coming soon",
+        tileNote: live ? total + " to do" : "Soon", big: big, small: !big,
+        bg: on ? v.sel : peek ? v.glass2 : live ? v.glass2 : v.glass, fg: on ? v.selInk : live || peek ? v.ink : v.mute,
+        bd: on ? v.sel : peek ? v.ink : v.line, bs: live || peek ? "solid" : "dashed",
+        x: Math.round(t[0] * k) + "px", y: Math.round(t[1] * k) + "px", w: Math.round(t[2] * k) + "px", h: Math.round(t[3] * k) + "px",
+        fs: big ? "15px" : "11.5px", r: big ? "14px" : "9px",
+        aria: o.name + (live ? ", " + total + " things to do" : ", coming soon"),
+        pick: () => this.setState(live ? { st: o.key, picker: false, peek: null } : { peek: o.key })
+      });
+    });
+    const pk = this.STATES.find((o) => o.key === s.peek) || null;
+    const regions = this.REGIONS.map((r) => {
+      const n = r.key === "all" ? total : this.acts.filter((a) => this.regionOf(a) === r.key).length, on = s.region === r.key;
+      return { key: r.key, label: r.label, count: String(n), selected: on, pressed: on ? "true" : "false",
+        bg: on ? v.sel : v.glass, fg: on ? v.selInk : v.ink, bd: on ? v.sel : v.line, pick: () => this.setState({ region: r.key }) };
+    });
+    const HL = { all: ["NSW is", "looking", "NSW re-ranks around it."], sydney: ["Sydney’s", "looking", "Sydney re-ranks around it."],
+      blue: ["Blue Mountains", "are looking", "The Blue Mountains re-rank around it."] };
+    // A1: no place in the headline, so it never claims the weather somewhere: it frames the sky the visitor picked.
+    const h = this.VARIANT === "switch" ? ["If it’s", "looking", "Tap the sky you’re expecting. The list re-ranks around it."] : HL[this.VARIANT === "chips" ? s.region : "all"];
+    const liveRows = states.filter((o) => o.live).map((o) => Object.assign({}, o, {
+      current: o.selected ? "true" : "false", note: total + " days out so far, from Sydney’s beaches to the Blue Mountains",
+      pick: () => this.setState({ st: o.key, picker: false, peek: null }) }));
+    // The other states can be tapped: each says it isn't here yet.
+    const others = states.filter((o) => !o.live).map((o) => Object.assign({}, o, {
+      sBg: o.peeked ? v.glass2 : "transparent", sFg: o.peeked ? v.ink : v.mute, sBd: o.peeked ? v.ink : v.line, sBs: o.peeked ? "solid" : "dashed",
+      sAria: o.name + ", not here yet" }));
+    const close = () => this.setState({ picker: false, peek: null });
+    return {
+      stName: cur.name, stShort: cur.short, states: states,
+      liveStates: states.filter((o) => o.live), soonStates: states.filter((o) => o.soon),
+      soonList: "Coming soon: " + this.STATES.filter((o) => !o.live).map((o) => o.name).join(", ") + ".",
+      pickerOpen: !!s.picker, pickerExpanded: s.picker ? "true" : "false",
+      openPicker: () => this.setState({ picker: true, peek: null }), closePicker: close,
+      togglePicker: () => this.setState({ picker: !this.state.picker, peek: null }),
+      goLive: () => this.setState({ st: "nsw", picker: false, peek: null }),
+      hasPeek: !!pk, noPeek: !pk,
+      peekTitle: pk ? pk.name + " isn’t here yet" : "",
+      peekText: pk ? "We’re starting with New South Wales and adding more over time." : "",
+      nswBlurb: total + " things to do so far, from Sydney’s beaches and harbour to the Blue Mountains.",
+      mapW: Math.round(300 * k) + "px", mapH: Math.round(262 * k) + "px",
+      regions: regions, soonRegions: this.SOON_REGIONS.map((l) => ({ label: l })),
+      place1: h[0], place2: h[1], rerank: this.VARIANT === "switch" ? h[2] : "Tap a sky. " + h[2], rerankDated: "Thu 1 Oct. Tap a sky. " + h[2],
+      liveRows: liveRows, otherStates: others
+    };
+  }
+
   renderVals() {
     const v = this.baseVals();
+    if (this.VARIANT === "chips" && this.state.region !== "all") this.regionCut(v);
     Object.assign(v, this.themeVals(v));
-    return Object.assign(v, this.extraVals(v));
+    Object.assign(v, this.extraVals(v));
+    return Object.assign(v, this.placeVals(v));
   }
 }
 </script>
