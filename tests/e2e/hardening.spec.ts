@@ -1,4 +1,5 @@
 import { fakeClipboard, idle, open } from "./helpers";
+import { eventFields } from "../../src/lib/analytics";
 import { expect, test } from "@playwright/test";
 
 test("AC 14: after the first visit, the app and the saved plan load with no network", async ({ page, context, browserName }) => {
@@ -96,13 +97,19 @@ test("AC 13: with all storage blocked nothing breaks", async ({ browser, browser
 test("M10.3: every analytics event in spec §7 fires with the right properties", async ({ page, context }) => {
   test.setTimeout(60_000); // a long walk through every screen; slower in Firefox on a busy run
   await fakeClipboard(context);
-  await context.addInitScript(() => {
-    const w = window as unknown as { plausible: unknown; __events: unknown[] };
-    w.__events = JSON.parse(sessionStorage.getItem("__events") ?? "[]");
-    w.plausible = (name: string, opts?: { props?: unknown }) => {
-      w.__events.push([name, opts?.props ?? {}]);
-      sessionStorage.setItem("__events", JSON.stringify(w.__events));
-    };
+  // track() skips automated browsers (so tests and perf scripts stay out of the counts); this walk
+  // through is the one place that wants the events, so it looks like an ordinary browser.
+  await context.addInitScript(() => Object.defineProperty(Navigator.prototype, "webdriver", { get: () => false }));
+  // The events the pages send to our endpoint (D7: Workers Analytics Engine), and what it answered.
+  const events: [string, Record<string, string>][] = [];
+  const statuses: number[] = [];
+  context.on("request", (r) => {
+    if (r.method() !== "POST" || !r.url().endsWith("/api/event")) return;
+    const e = JSON.parse(r.postData() ?? "{}") as { name: string; props?: Record<string, string> };
+    events.push([e.name, e.props ?? {}]);
+  });
+  context.on("response", (r) => {
+    if (r.url().endsWith("/api/event")) statuses.push(r.status());
   });
   await page.clock.setFixedTime(new Date("2026-10-01T00:00:00Z"));
   await open(page, "/");
@@ -126,7 +133,7 @@ test("M10.3: every analytics event in spec §7 fires with the right properties",
   await panel.getByRole("button", { name: "Share this day" }).click();
   await page.getByRole("button", { name: "Add Sat 3 Oct to my calendar" }).click();
   await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Download calendar file" }).click()]);
-  const events = (await page.evaluate(() => (window as unknown as { __events: [string, Record<string, string>][] }).__events)) as [string, Record<string, string>][];
+  await expect.poll(() => events.some(([n]) => n === "calendar_export")).toBe(true);
   const has = (n: string, props: Record<string, string>) => expect(events, n).toContainEqual([n, props]);
   has("filter_change", { filter: "group", value: "family" });
   has("plan_add", { source: "card", dayType: "weekend" });
@@ -135,6 +142,37 @@ test("M10.3: every analytics event in spec §7 fires with the right properties",
   has("plan_share", { scope: "day" });
   has("calendar_export", { target: "ics", scope: "day" });
   if (events.some(([n]) => n === "plan_b_swap")) has("plan_b_swap", {});
+  // Every event is one the endpoint accepts, and every answer seen is a 204 (WebKit doesn't report the
+  // answer to a beacon sent just before the page navigates, so not every request has one here).
+  expect(events.filter(([name, props]) => !eventFields({ name, props })), "events the endpoint would refuse").toEqual([]);
+  await expect.poll(() => statuses.length).toBeGreaterThan(0);
+  expect(statuses.filter((s) => s !== 204), "events the endpoint refused").toEqual([]);
+});
+
+test("D7: the event endpoint takes only the app's own events, from this site", async ({ request, baseURL }) => {
+  const post = (data: unknown, origin = baseURL!) =>
+    request.post("/api/event", { data: typeof data === "string" ? data : JSON.stringify(data), headers: { Origin: origin, "Content-Type": "text/plain" } });
+  expect((await post({ name: "plan_share", props: { scope: "day" } })).status()).toBe(204);
+  expect((await post({ name: "plan_b_swap", props: {} })).status()).toBe(204);
+  expect((await post({ name: "filter_change", props: { filter: "stepFree", value: "true" } })).status(), "access filter").toBe(204);
+  expect((await post("x".repeat(2048))).status(), "too big").toBe(413);
+  expect((await post({ name: "page_view", props: {} })).status(), "unknown event").toBe(400);
+  expect((await post({ name: "plan_share", props: { scope: "week" } })).status(), "value not allowed").toBe(400);
+  expect((await post({ name: "plan_share", props: { scope: "day", email: "a@b.c" } })).status(), "extra property").toBe(400);
+  expect((await post({ name: "activity_view", props: { id: "<script>" } })).status(), "not a token").toBe(400);
+  expect((await post("not json")).status()).toBe(400);
+  expect((await post({ name: "plan_share", props: { scope: "day" } }, "https://evil.example")).status(), "another site (Astro's origin check)").toBe(403);
+  const json = await request.post("/api/event", { data: { name: "plan_share", props: { scope: "day" } }, headers: { Origin: "https://evil.example" } });
+  expect(json.status(), "JSON (which Astro's origin check doesn't cover) is refused").toBe(415);
+  expect((await request.get("/api/event")).status(), "GET").toBe(404);
+});
+
+test("no page's first load includes MapLibre's stylesheet (it comes with the map code)", async ({ request }) => {
+  for (const path of ["/", "/a/bondi-coogee", "/plan"]) {
+    const html = await (await request.get(path)).text();
+    const sheets = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]*>/g)].map((m) => m[0]);
+    expect(sheets.filter((s) => /maplibre|MapView/i.test(s)), path).toEqual([]);
+  }
 });
 
 test("AC 11: weather re-themes at once; with reduced motion nothing loops and the change is instant", async ({ browser }) => {

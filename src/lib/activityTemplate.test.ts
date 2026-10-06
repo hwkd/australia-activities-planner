@@ -21,6 +21,8 @@ describe("new activity template", () => {
   it("slugs names into ids", () => {
     expect(slugify("Bondi to Coogee Coastal Walk")).toBe("bondi-to-coogee-coastal-walk");
     expect(slugify("  Haymarket & Chinatown  ")).toBe("haymarket-and-chinatown");
+    // Cut at 60 on a hyphen: the id must not end with one (it wouldn't be valid kebab-case).
+    expect(slugify("a".repeat(59) + " b")).toBe("a".repeat(59));
     expect(slugify("Café São Paulo!")).toBe("cafe-sao-paulo");
   });
 });

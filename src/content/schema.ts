@@ -114,7 +114,7 @@ export const unconfirmedCheck = z.object({
 
 export const activitySchema = z
   .object({
-    id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id must be kebab-case"),
+    id: z.string().max(60, "id must be 60 characters or fewer").regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id must be kebab-case"),
     status: z.enum(["draft", "verified"]),
     name: z.string().min(1),
     city: z.literal("sydney"),

@@ -25,7 +25,6 @@ const { title, description = t.layout.meta.description, sky = true, cards = [], 
 const draftCount = cards.filter((a) => a.status === "draft").length;
 // A compact index for Add to a day on every page (names, durations, days, fit; spec §3.3).
 const planCards: PlanCard[] = [...cards, ...events].map(toPlanCard);
-const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
 const sentryLoaderKey = import.meta.env.PUBLIC_SENTRY_LOADER_KEY;
 ---
 
@@ -42,17 +41,6 @@ const sentryLoaderKey = import.meta.env.PUBLIC_SENTRY_LOADER_KEY;
     <meta name="theme-color" content="#1B4BC8" />
     <Font cssVariable="--font-mona" preload />
     <ThemeStyle />
-    {
-      plausibleDomain && (
-        <>
-          {/* Plausible's queue: events sent before the script loads are kept and sent once it does. */}
-          <script is:inline>
-            window.plausible = window.plausible || function (...args) { (window.plausible.q = window.plausible.q || []).push(args); };
-          </script>
-          <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js" />
-        </>
-      )
-    }
     <!-- Theme before paint: the saved or linked weather, so the right sky shows with no flash (implementation-plan.md §3.3). -->
     <script is:inline>
       (function () {
