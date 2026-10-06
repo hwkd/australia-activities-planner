@@ -203,7 +203,7 @@ One theme map, `themes[weather]`, holds every per-weather value; components read
 
 ### 5.3 Glass, spacing and shape
 
-- Glass panels: `backdrop-filter: blur(18px) saturate(135%)`, with a solid fallback under `@supports not (backdrop-filter: …)` and `prefers-reduced-transparency`.
+- Glass panels: a tint per sky (`--glass`, the colour the blurred panels used to show, at 82 %), with a heavier fill under `prefers-reduced-transparency`. Sheets, the toast and the fixed bars (`.glass-strong`) are solid: the heavier fill over the sky's base colour. No `backdrop-filter` anywhere: over the moving sky it was redrawn every frame and made phones stutter (7 Oct 2026).
 - 4/8 px spacing grid; inner radius = outer radius − padding.
 - Hit targets at least 44 px everywhere, including calendar days.
 
@@ -339,7 +339,7 @@ Three groups, in this order: **finish the MVP** (M12, plus the owner's go-live s
 | Daylight-saving and time-zone bugs | Plans or calendar events an hour out | All date logic in `Australia/Sydney` via date-fns-tz; `TZID` with `VTIMEZONE` in `.ics`; unit tests on both change days; acceptance 26 |
 | Calendar apps read `.ics` differently | Events missing reminders or times | Validator in CI; manual import in three apps each release; keep to widely supported fields |
 | Holiday rules change or a one-off holiday is declared | Wrong labels or fares on a holiday | Rules tested against the NSW Government table; review each November and add one-off days to the `EXTRA` list |
-| `backdrop-filter` is slow on mid-range Android | Janky scrolling | Lower blur on small screens, limit glass layers, solid fallback; measure in M3 |
+| `backdrop-filter` is slow on phones | Janky scrolling | Happened (7 Oct 2026): no blur anywhere now (tinted panels, solid sheets and bars); measure drawing work with `scripts/perf/compositor.mjs`, which sees GPU cost that CPU throttling doesn't |
 | Contrast over animated skies | Fails AA | Worst-case backgrounds (section 5.5) |
 | JavaScript budget | Over 150 KB | Baseline in M0 (React is the biggest fixed cost); islands only where needed (section 3.3); Zod runs on the server and in the admin only, never on public pages; export code lazy-loaded; calendar code only on `/plan` |
 | Islands drift out of sync | Two islands show different weather or plans | All shared state in nanostores (section 3.4); e2e tests change state in one island and check another |

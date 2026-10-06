@@ -47,10 +47,10 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://
     <defs>
       <path id="sky-cl" d="M36 80C16 80 6 66 12 54 17 43 30 40 40 44 42 26 60 16 78 20 88 6 112 2 128 14 140 22 144 32 142 40 158 34 180 42 184 58 188 72 178 80 164 80Z"></path>
       <linearGradient id="sky-cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#DCE2E9"></stop></linearGradient>
-      <!-- Rain: about a third of the artboard density (owner feedback, 1 Oct 2026). Tile heights match the fall distances so the loop is seamless. -->
-      <pattern id="sky-rF" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M14 8v13M82 68v13" fill="none" stroke="#C4D4FF" stroke-width="1" stroke-linecap="round" opacity="0.4"></path></pattern>
-      <pattern id="sky-rM" width="170" height="160" patternUnits="userSpaceOnUse"><path d="M22 18v22M118 98v22" fill="none" stroke="#D2DEFF" stroke-width="1.3" stroke-linecap="round" opacity="0.44"></path></pattern>
-      <pattern id="sky-rN" width="240" height="220" patternUnits="userSpaceOnUse"><path d="M34 26v36M166 136v36" fill="none" stroke="#E4ECFF" stroke-width="1.7" stroke-linecap="round" opacity="0.4"></path></pattern>
+      <!-- Rain: about a third of the artboard density (owner feedback, 1 Oct 2026). The streaks lean 10° by rotating the pattern, not the layers, so each layer only covers the screen plus one fall (a rotated layer had to be about 1.5 screens to fill the corners, all of it redrawn every frame). Each layer falls one tile height along the lean, so the loop is seamless. -->
+      <pattern id="sky-rF" patternTransform="rotate(10)" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M14 8v13M82 68v13" fill="none" stroke="#C4D4FF" stroke-width="1" stroke-linecap="round" opacity="0.4"></path></pattern>
+      <pattern id="sky-rM" patternTransform="rotate(10)" width="170" height="160" patternUnits="userSpaceOnUse"><path d="M22 18v22M118 98v22" fill="none" stroke="#D2DEFF" stroke-width="1.3" stroke-linecap="round" opacity="0.44"></path></pattern>
+      <pattern id="sky-rN" patternTransform="rotate(10)" width="240" height="220" patternUnits="userSpaceOnUse"><path d="M34 26v36M166 136v36" fill="none" stroke="#E4ECFF" stroke-width="1.7" stroke-linecap="round" opacity="0.4"></path></pattern>
     </defs>
   </svg>
 
@@ -296,18 +296,18 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://
   }
   .rain {
     position: absolute;
-    inset: -12%;
-    transform: rotate(10deg);
+    inset: 0;
   }
+  /* Each layer falls one tile height along the 10° lean: (−h·sin 10°, h·cos 10°) for tile heights
+     120, 160 and 220. It starts that far above the screen and reaches that far past its right edge. */
   .rain > div {
     position: absolute;
     left: 0;
-    right: 0;
     bottom: 0;
   }
-  .f1 { top: -120px; animation: fall1 1.1s linear infinite; }
-  .f2 { top: -160px; animation: fall2 0.75s linear infinite; }
-  .f3 { top: -220px; animation: fall3 0.5s linear infinite; }
+  .f1 { top: -118.177px; right: -20.838px; animation: fall1 1.1s linear infinite; }
+  .f2 { top: -157.569px; right: -27.784px; animation: fall2 0.75s linear infinite; }
+  .f3 { top: -216.658px; right: -38.203px; animation: fall3 0.5s linear infinite; }
   .pulse {
     animation: pulse 8s ease-in-out infinite;
   }
@@ -355,11 +355,19 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://
     .hot-sun { left: calc(57% - 480px); top: 68%; width: 960px; height: 960px; background: radial-gradient(circle at 50% 30%, #fff4d6 0%, #ffe3a1 35%, #ffd07a 100%); box-shadow: 0 0 180px 70px rgba(255, 200, 120, 0.4); }
   }
 
+  /* Film grain, desktop only: on a phone's dense screen it can't be seen, and blending it over the
+     moving sky cost about 40 % of the drawing work while scrolling. */
   .grain {
+    display: none;
     position: absolute;
     inset: 0;
     opacity: 0.16;
     mix-blend-mode: overlay;
+  }
+  @media (min-width: 1024px) {
+    .grain {
+      display: block;
+    }
   }
 
   .spin60 {
@@ -369,9 +377,9 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes drift { from { transform: translate3d(-70px, 0, 0); } to { transform: translate3d(70px, 0, 0); } }
   @keyframes drift-wide { from { transform: translate3d(-130px, 0, 0); } to { transform: translate3d(130px, 0, 0); } }
-  @keyframes fall1 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 120px, 0); } }
-  @keyframes fall2 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 160px, 0); } }
-  @keyframes fall3 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 220px, 0); } }
+  @keyframes fall1 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-20.838px, 118.177px, 0); } }
+  @keyframes fall2 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-27.784px, 157.569px, 0); } }
+  @keyframes fall3 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-38.203px, 216.658px, 0); } }
   @keyframes wave { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-120px, 0, 0); } }
   @keyframes glint { 0%, 100% { opacity: 0; transform: scaleX(0.3); } 50% { opacity: 0.95; transform: scaleX(1); } }
   @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }

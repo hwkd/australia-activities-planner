@@ -40,6 +40,11 @@ function checks(): Check[] {
         add("headline weather word (large)", t.accent, sky, skyName, 3);
       }
     }
+    // Sheets, the toast and the fixed bars (`.glass-strong`): the heavier fill over the sky's base colour.
+    const strong = over(parseColor(t.glass2), parseColor(t.bg));
+    const strongName = `glass2 over bg ${t.bg}`;
+    add("ink on glass-strong", t.ink, strong, strongName, 4.5);
+    add("mute on glass-strong", t.mute, strong, strongName, 4.5);
     add("selected control text", t.selInk, parseColor(t.sel), `sel ${t.sel}`, 4.5);
     for (const stop of gradientStops(t.seg)) add("selected sky segment label", "#FFFFFF", parseColor(stop), `seg ${stop}`, 4.5);
   }

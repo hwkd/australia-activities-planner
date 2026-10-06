@@ -63,6 +63,8 @@ test("AC 13: with localStorage blocked the app works for the whole session", asy
   await open(page, "/");
   await idle(page);
   await page.getByRole("button", { name: "Rainy" }).click();
+  // The list re-ranks a frame after the sky changes (spec §3.5): read it once it has.
+  await expect(page.getByRole("heading", { level: 2 }).first()).toContainText("rainy day");
   const first = page.getByRole("list", { name: "Ranked results" }).getByRole("listitem").first();
   const name = (await first.getByRole("heading", { level: 3 }).textContent())!.trim();
   await first.getByRole("button", { name: `Add ${name} to a day` }).click();

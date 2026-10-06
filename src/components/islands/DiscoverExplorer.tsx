@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useCallback, useDeferredValue, useEffect, useMemo, useState } from "react";
 import { $weather } from "~/stores/weather";
 import { $filters } from "~/stores/filters";
 import { $plan, initPlan } from "~/stores/plan";
@@ -46,7 +46,9 @@ export default function DiscoverExplorer({
   events?: EventCard[];
   mapView?: boolean;
 }) {
-  const weather = useHydratedStore($weather, "sunny");
+  // A sky change re-themes the page at once (applyTheme) and the list follows a frame or two later:
+  // re-ranking and moving the cards was most of the work on a tap, and held back the new sky on phones.
+  const weather = useDeferredValue(useHydratedStore($weather, "sunny"));
   const filters = useHydratedStore($filters, DEFAULT_FILTER_STATE);
   const plan = useHydratedStore($plan, EMPTY_PLAN);
   const planningDay = useHydratedStore($planningDate, null);
@@ -92,8 +94,11 @@ export default function DiscoverExplorer({
     $filters.set(next);
     track({ name: "filter_change", props: changed });
   };
-  const add = (activityId: string) =>
-    $sheet.set({ kind: "add", activityId, source: "card", ...(planningDay ? { date: planningDay } : {}) });
+  const add = useCallback(
+    (activityId: string) =>
+      $sheet.set({ kind: "add", activityId, source: "card", ...(planningDay ? { date: planningDay } : {}) }),
+    [planningDay],
+  );
 
   // On soon (spec §11.4): events in the next 14 days for the chosen group.
   const soon = today

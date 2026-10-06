@@ -48,38 +48,26 @@
 .w100 { font-variation-settings: "wdth" 100; }
 
 /* ---- Glass panels (M3.3) ----
-   Lower blur on small screens (cheaper on mid-range Android); a heavier solid fill when blur isn't
-   supported or the user asks for less transparency. */
+   Tinted, not blurred: a backdrop blur over the moving sky has to be redrawn for every panel on every
+   frame, and that made scrolling and sky changes stutter on phones (about three quarters of the
+   drawing work while scrolling). The contrast test checks text on these fills over the sharp scene. A
+   heavier fill when the user asks for less transparency. */
 .glass {
   background: var(--glass);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  -webkit-backdrop-filter: blur(14px) saturate(135%);
-  backdrop-filter: blur(14px) saturate(135%);
-}
-@media (min-width: 768px) {
-  .glass {
-    -webkit-backdrop-filter: blur(18px) saturate(135%);
-    backdrop-filter: blur(18px) saturate(135%);
-  }
-}
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass { background: var(--glass2); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  .glass {
-    background: var(--glass2);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
+  .glass { background: var(--glass2); }
 }
-/* Sheets and dialogs always use the heavier fill. */
+/* Sheets, dialogs, the toast and the bars fixed over the page: the heavier fill over the sky's base
+   colour, so solid (about what the blurred version averaged to) and nothing behind shows through. A
+   blur here was redrawn every frame too: the bars sit over content that scrolls, a sheet over the
+   moving sky. */
 .glass-strong {
-  background: var(--glass2);
+  background: linear-gradient(var(--glass2), var(--glass2)), var(--bg);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
-  backdrop-filter: blur(18px) saturate(135%);
 }
 
 .sr-only-focusable:not(:focus) {
@@ -91,8 +79,11 @@
   white-space: nowrap;
 }
 
+/* Reduced motion: animations take 1 ms (so their end events still fire) and transitions are off. A
+   1 ms transition on every element turned any style change into one, and in an off-screen card
+   (content-visibility) Firefox leaves those running until the card is seen. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; transition-delay: 0s !important; }
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; transition-delay: 0s !important; }
 }
 
 .draft-banner {
@@ -129,6 +120,12 @@
  * 232 px+ columns as fit (two at 1440 px, as in the artboard).
  */
 .rc-list { display: flex; flex-direction: column; gap: 12px; }
+/* Cards off screen skip style, layout and paint (a sky change restyles the whole page, and the cards
+   were four in five of its elements). Sized from the real cards until they've been seen once. Their
+   buttons don't fade colours: a skipped card's styles catch up when it scrolls into view, and a fade
+   would then run from the old sky's colours. */
+.rc { content-visibility: auto; contain-intrinsic-size: auto 262px; }
+.rc .press { transition: transform 180ms ease; }
 .rc-add-long { display: none; }
 @media (min-width: 768px) {
   .results { container: results / inline-size; }
@@ -136,7 +133,7 @@
 @container results (min-width: 460px) {
   .rc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 14px; align-items: stretch; }
   .rc-list > li { display: flex; min-width: 0; }
-  .rc { flex: 1; min-width: 0; display: flex; flex-direction: column; border-radius: 24px; }
+  .rc { flex: 1; min-width: 0; display: flex; flex-direction: column; border-radius: 24px; contain-intrinsic-size: auto 340px; }
   .rc-head { padding: 16px 16px 0; }
   .rc-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 8px; }
   .rc-tag { display: contents; }
