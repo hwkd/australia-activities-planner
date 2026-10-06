@@ -248,3 +248,17 @@ html.paused .dsky *, html:not(.sky-live) .dsky * { animation-play-state: paused;
 .map-view .maplibregl-ctrl-attrib { font-size: 11px; }
 .map-pin--sm { min-width: 28px; width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 12.5px; }
 .map-pin--sm::after { display: none; }
+
+/* "Our tip" (spec §4.1): advice no official source confirms, set apart from the facts around it. */
+.tip-label {
+  display: inline-block;
+  padding: 0 7px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.6;
+  vertical-align: 1px;
+  white-space: nowrap;
+}

@@ -13,7 +13,7 @@
     "rainy": 0,
     "hot": 2
   },
-  "weatherNote": "Best on hot days when ocean beaches are rough or packed.",
+  "weatherNote": "Best on hot days. Our tip: it's calmer when the ocean beaches are rough or packed.",
   "goodFor": [
     "date",
     "family"
@@ -97,7 +97,7 @@
       ],
       "perCarLabel": "Parking, 3 hrs",
       "notes": [
-        "Beachfront parking is metered and full by 10am on hot weekends."
+        "Parking along The Esplanade is metered. Our tip: it's full by 10am on hot weekends."
       ]
     }
   },

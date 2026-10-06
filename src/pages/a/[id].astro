@@ -8,6 +8,7 @@ import { fireDanger } from "~/server/alerts";
 import { needsFireAlert, ratingLabel, RFS_PAGE } from "~/lib/alerts";
 import GettingThere from "~/components/detail/GettingThere.astro";
 import Unconfirmed from "~/components/detail/Unconfirmed.astro";
+import Tipped from "~/components/shared/Tipped.astro";
 import CostEstimate from "~/components/islands/CostEstimate";
 import AddToDayButton from "~/components/islands/AddToDayButton";
 import PlannedNote from "~/components/islands/PlannedNote";
@@ -166,7 +167,7 @@ const headsUp = [
       <WeatherTiles client:visible fit={a.weatherFit} />
       <p class="mt-3.5 flex gap-2.5 pt-3 text-sm leading-[1.45]" style="border-top: 1px solid var(--line)">
         <Icon name="info" size={18} className="mt-0.5 shrink-0" />
-        {a.weatherNote}
+        <span><Tipped text={a.weatherNote} /></span>
       </p>
     </section>
 
@@ -215,7 +216,7 @@ const headsUp = [
           <Icon name="clock" size={18} />
           <p>
             <b>{t.detail.visit.bestTime}</b>
-            {a.visit.bestTime}
+            <Tipped text={a.visit.bestTime} />
           </p>
         </div>
         <div class="vr">
@@ -251,7 +252,7 @@ const headsUp = [
           <Icon name="access" size={18} />
           <p>
             <b>{t.detail.visit.access}</b>
-            {a.visit.access}
+            <Tipped text={a.visit.access} />
           </p>
         </div>
         {a.visit.safety.length > 0 && (
@@ -263,7 +264,9 @@ const headsUp = [
               </p>
               <ul class="mt-1 grid gap-[3px]">
                 {a.visit.safety.map((s) => (
-                  <li>{s}</li>
+                  <li>
+                    <Tipped text={s} />
+                  </li>
                 ))}
               </ul>
             </div>
@@ -312,7 +315,9 @@ const headsUp = [
         <Icon name="bulb" size={16} />
         {t.detail.tip.heading}
       </h2>
-      <p class="mt-2 text-[15px] leading-[1.5]">{a.newcomerTip}</p>
+      <p class="mt-2 text-[15px] leading-[1.5]">
+        <Tipped text={a.newcomerTip} />
+      </p>
     </section>
 
     {(headsUp.length > 0 || a.links?.length || fire) && (

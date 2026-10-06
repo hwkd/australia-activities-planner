@@ -13,7 +13,7 @@
     "rainy": 1,
     "hot": 1
   },
-  "weatherNote": "Mostly outdoors and hilly. Light rain means thinner crowds.",
+  "weatherNote": "Mostly outdoors and hilly. Our tip: light rain means thinner crowds.",
   "goodFor": [
     "date",
     "friends",
@@ -101,7 +101,7 @@
       ],
       "perCarLabel": "Zoo car park, all day",
       "notes": [
-        "The zoo car park fills by late morning on sunny weekends.",
+        "Our tip: the zoo car park fills by late morning on sunny weekends.",
         "A toll applies coming back across the harbour."
       ]
     },

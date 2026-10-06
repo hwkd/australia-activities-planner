@@ -106,6 +106,12 @@ export const detail = {
     checked: (date: string) => `Checked against official sources on ${date}.`,
     notChecked: "Not yet checked. Ask the venue before you go.",
   },
+  /** The label on "Our tip:" sentences: advice no official source confirms. */
+  ourTip: {
+    label: "Our tip",
+    sr: ": our advice, not from an official source.",
+    title: "Our advice, not from an official source",
+  },
   unconfirmed: {
     heading: "Not yet confirmed",
     hint: "We couldn't confirm these with an official source yet, so check them before you rely on them.",

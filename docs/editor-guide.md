@@ -58,6 +58,10 @@ Every activity starts with **Content status: Draft**. The live site shows only *
 5. **Map:** see "Checking the map" below. When the places and lines are right, press **Map checked
    today**.
 6. **Make a day of it:** 2–3 nearby activities, each chosen from the list.
+6a. **Our tip:** when you write advice or an observation that no official page confirms (a car park
+   that fills by 9am, a path that gets crowded, quieter mornings), put it in its own sentence starting
+   "Our tip:", e.g. "Parking near the beach is metered. Our tip: it fills by 9am on warm weekends." The
+   page shows it with an "Our tip" label. Facts you've confirmed on an official page get no label.
 6b. **Notice:** for something temporary that changes the visit (a track closure, works, a venue
    closed for a season), fill in **Notice** with what's affected and until when, and link the page with
    the latest (the NSW National Parks alert, the venue's notice). It shows at the top of the activity

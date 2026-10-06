@@ -102,7 +102,7 @@
       ],
       "perCarLabel": "Parking + M4 toll",
       "notes": [
-        "Echo Point parking is paid and busy by 10am on weekends.",
+        "Echo Point parking is metered. Our tip: it's busy by 10am on weekends.",
         "Driving lets you add Leura or Wentworth Falls on the way."
       ]
     },
@@ -136,7 +136,7 @@
     "pricesChecked": "2026-10-02"
   },
   "visit": {
-    "bestTime": "Arrive by 10am. Mornings are usually clearer; afternoon cloud can roll into the valley.",
+    "bestTime": "Arrive by 10am. Our tip: mornings are usually clearer, and afternoon cloud can roll into the valley.",
     "hours": "Lookouts are always open. The visitor centre keeps daytime hours.",
     "bring": [
       "A warm layer",
