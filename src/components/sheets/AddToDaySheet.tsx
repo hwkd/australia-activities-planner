@@ -203,7 +203,7 @@ export default function AddToDaySheet({ sheet, cards }: Props) {
           )}
         </fieldset>
 
-        <details className="tr mt-3.5 rounded-[20px] border" style={{ background: "var(--soft)", borderColor: "var(--line)" }} open={pickOpen} onToggle={(e) => setPickOpen((e.currentTarget as HTMLDetailsElement).open)}>
+        <details className="mt-3.5 rounded-[20px] border" style={{ background: "var(--soft)", borderColor: "var(--line)" }} open={pickOpen} onToggle={(e) => setPickOpen((e.currentTarget as HTMLDetailsElement).open)}>
           <summary className="flex min-h-[52px] cursor-pointer list-none items-center gap-2.5 rounded-[20px] px-3.5">
             <Icon name="calendar" size={18} />
             <span className="flex-1 text-[15px] font-[650]">{s.pickDate}</span>
@@ -268,7 +268,7 @@ export default function AddToDaySheet({ sheet, cards }: Props) {
           </p>
         </fieldset>
 
-        <section className="tr mt-[18px] rounded-[20px] border p-3.5" style={{ background: "var(--soft)", borderColor: "var(--line)" }} aria-live="polite" aria-label={s.check}>
+        <section className="mt-[18px] rounded-[20px] border p-3.5" style={{ background: "var(--soft)", borderColor: "var(--line)" }} aria-live="polite" aria-label={s.check}>
           <h3 className="k m-0" style={{ color: "var(--mute)" }}>
             {s.check}
           </h3>

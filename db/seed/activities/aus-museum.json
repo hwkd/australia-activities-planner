@@ -88,7 +88,7 @@
       ],
       "perCarLabel": "Parking, 2 hrs",
       "notes": [
-        "There's no museum car park. Weekend flat rates at nearby car parks are usually the best deal."
+        "There's no museum car park. Our tip: weekend flat rates at nearby car parks are usually the best deal."
       ]
     }
   },
@@ -120,7 +120,7 @@
     "pricesChecked": "2026-10-02"
   },
   "visit": {
-    "bestTime": "Go at opening time with kids. It gets busy on rainy weekends.",
+    "bestTime": "Go at opening time with kids. Our tip: it gets busy on rainy weekends.",
     "hours": "Open daily 10am to 5pm. Closed Christmas Day.",
     "bring": [
       "A small bag (bigger ones go in the cloakroom)",
@@ -132,7 +132,7 @@
     ],
     "access": "Step-free entry on William St, lifts to every floor and a Changing Places toilet on level 2.",
     "safety": [
-      "Rainy weekends get crowded: agree on a meeting spot if you have kids with you"
+      "Agree on a meeting spot if you have kids with you. Our tip: rainy weekends get crowded."
     ]
   },
   "pairings": [
@@ -613,15 +613,27 @@
   "unconfirmed": [
     {
       "section": "cost",
-      "note": "Ticketed exhibition prices: they change with each exhibition."
+      "note": "Ticketed exhibition prices ($20–30) change with each show: check the museum's What's On page for the current one.",
+      "check": {
+        "label": "What's on at the Australian Museum",
+        "url": "https://australian.museum/visit/whats-on/"
+      }
     },
     {
       "section": "cost",
-      "note": "Bistro and café prices."
+      "note": "The $12–22 bistro and café estimate is ours, not the museum's: check the menus before you go.",
+      "check": {
+        "label": "Food and drink at the Australian Museum",
+        "url": "https://australian.museum/visit/food/"
+      }
     },
     {
       "section": "driving",
-      "note": "Parking prices at nearby car parks."
+      "note": "The $15–30 estimate for 2 hours is a guess: the museum has no car park, and nearby car parks set their own rates.",
+      "check": {
+        "label": "Parking near the Australian Museum",
+        "url": "https://australian.museum/visit/parking-and-transport/"
+      }
     }
   ]
 }

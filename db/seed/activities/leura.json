@@ -4265,11 +4265,19 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "The M4 toll per car."
+      "note": "The $8–20 M4 toll estimate is a guess: check the current toll on Linkt.",
+      "check": {
+        "label": "M4 toll prices on Linkt",
+        "url": "https://www.linkt.com.au/using-toll-roads/about-sydney-toll-roads/westconnex/toll-pricing"
+      }
     },
     {
       "section": "cost",
-      "note": "Café prices."
+      "note": "The $18–30 café lunch estimate is ours: prices vary along the Mall.",
+      "check": {
+        "label": "Cafés on Leura Mall on Google Maps",
+        "url": "https://www.google.com/maps/search/?api=1&query=cafes%20Leura%20Mall%20Leura"
+      }
     }
   ]
 }

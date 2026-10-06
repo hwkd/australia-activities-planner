@@ -1,7 +1,8 @@
 ---
 /**
  * The four Sky Mode scenes (tracker M3.4), ported from the A · Sky Mode artboards. No JavaScript:
- * `html[data-weather]` picks the visible scene with a 900 ms crossfade. Only the visible scene
+ * `html[data-weather]` picks the visible scene with a 600 ms crossfade, the only part of a sky change
+ * that animates (the colours switch at once: applyTheme in stores/weather.ts). Only the visible scene
  * animates; the layout's inline script adds `paused` to <html> while the tab is hidden, and reduced
  * motion shows a still frame. The loops start once the page has loaded and gone idle (`sky-live`, set
  * by the layout), so the first paint is a still scene and loading isn't competing with animation. Phone layout below 1024 px (positions from the 390 px artboard, as
@@ -116,7 +117,13 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://
     inset: 0;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 900ms ease;
+  }
+  /* 600 ms (spec §3.5), front-loaded: the colours switch at once, so the new sky has to arrive fast or
+     the new text sits on the old one. Estimated from each theme's flat `bg` colour mixed linearly (the
+     real scenes are gradients, so take these as rough): with `ease`, new text to or from Cloudy stayed
+     under 3:1 contrast for about 176 ms; with this curve, about 37 ms. */
+  .sky {
+    transition: opacity 600ms cubic-bezier(0.05, 0.7, 0.1, 1);
   }
   :global(html[data-weather="sunny"]) .sky-sunny,
   :global(html[data-weather="cloudy"]) .sky-cloudy,
@@ -132,6 +139,12 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://
   :global(html.paused) .scene *,
   :global(html:not(.sky-live)) .scene * {
     animation-play-state: paused;
+  }
+  /* A sky being faded out keeps moving until its fade ends (applyTheme adds `leaving` to the layer and
+     removes it on transitionend), rather than freezing mid-fall; never while the tab is hidden or
+     before the loops start. */
+  :global(html.sky-live:not(.paused)) .sky:global(.leaving) * {
+    animation-play-state: running;
   }
   .m,
   .d {
@@ -364,7 +377,7 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://
   @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
   @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
 
-  /* Reduced motion: a still frame (glints rest visible), and the crossfade is instant. */
+  /* Reduced motion: a still frame (glints rest visible), and the sky switches at once. */
   @media (prefers-reduced-motion: reduce) {
     .scene *,
     .sky {

@@ -90,7 +90,7 @@
       ],
       "perCarLabel": "Parking, 3 hrs",
       "notes": [
-        "Beachfront parking is metered and fills early on hot days."
+        "Our tip: beachfront parking fills early on hot days."
       ]
     },
     "ride": "The train is much cheaper and drops you a short walk from the sand."
@@ -1162,11 +1162,19 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Beach parking rates."
+      "note": "We couldn't confirm beachfront parking costs: the $8–20 is a guess. The council's Croydon St car parks show time limits but no fees.",
+      "check": {
+        "label": "Sutherland Shire Council: car parks",
+        "url": "https://www.sutherlandshire.nsw.gov.au/living-here/roads,-traffic-and-parking/council-car-parks"
+      }
     },
     {
       "section": "gettingThere",
-      "note": "How often trains run on weekends."
+      "note": "Weekend train frequency is our estimate: check the T4 timetable for trains to Cronulla.",
+      "check": {
+        "label": "T4 timetable on Transport for NSW",
+        "url": "https://transportnsw.info/routes/details/sydney-trains-network/t4/020t4"
+      }
     }
   ]
 }

@@ -97,12 +97,12 @@
     "drive": {
       "total": "≈ 35 min",
       "perCar": [
-        20,
-        35
+        26,
+        40.5
       ],
-      "perCarLabel": "Parking, half day",
+      "perCarLabel": "Council car park, half day",
       "notes": [
-        "Weekend parking in Manly is limited and paid.",
+        "Council car parks in Manly are free for the first 2 hours, then $26 for 3½–4 hours and $40.50 for 4–5 hours.",
         "The ferry is faster to board and half the fun."
       ]
     },
@@ -133,7 +133,7 @@
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-06"
   },
   "visit": {
     "bestTime": "Ferry over mid-morning; Shelly Beach is calmest in the morning and sheltered on windy days.",
@@ -837,16 +837,20 @@
   },
   "unconfirmed": [
     {
-      "section": "driving",
-      "note": "Parking prices in Manly."
-    },
-    {
       "section": "cost",
-      "note": "Snorkel hire prices."
+      "note": "The $20–30 snorkel hire estimate is ours: check with the hire shops in Manly.",
+      "check": {
+        "label": "Snorkel hire in Manly on Google Maps",
+        "url": "https://www.google.com/maps/search/?api=1&query=snorkel%20hire%20Manly"
+      }
     },
     {
       "section": "gettingThere",
-      "note": "The Opal fare for train and ferry."
+      "note": "The $8–10 Opal fare for train and ferry is our estimate: check Transport for NSW's fare tables.",
+      "check": {
+        "label": "Opal fares on Transport for NSW",
+        "url": "https://transportnsw.info/tickets-fares/fares/adult-opal-fares"
+      }
     }
   ]
 }

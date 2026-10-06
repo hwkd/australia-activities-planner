@@ -13,7 +13,7 @@
     "rainy": 0,
     "hot": 2
   },
-  "weatherNote": "Best on hot days when ocean beaches are rough or packed.",
+  "weatherNote": "Best on hot days. Our tip: it's calmer when the ocean beaches are rough or packed.",
   "goodFor": [
     "date",
     "family"
@@ -97,7 +97,7 @@
       ],
       "perCarLabel": "Parking, 3 hrs",
       "notes": [
-        "Beachfront parking is metered and full by 10am on hot weekends."
+        "Parking along The Esplanade is metered. Our tip: it's full by 10am on hot weekends."
       ]
     }
   },
@@ -722,15 +722,27 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Parking meter rates: Mosman Council only publishes permit prices."
+      "note": "The $15–30 estimate for 3 hours is a guess: Mosman Council doesn't publish its Balmoral meter rates online.",
+      "check": {
+        "label": "Mosman Council: public parking",
+        "url": "https://mosman.nsw.gov.au/residents/transport/public-parking-and-carparks"
+      }
     },
     {
       "section": "cost",
-      "note": "Kayak and paddleboard hire prices."
+      "note": "The $25–35 kayak and paddleboard hire estimate is ours: check the Balmoral Boatshed's current rates.",
+      "check": {
+        "label": "Balmoral Boatshed: paddleboard hire",
+        "url": "https://balmoralboatshed.com.au/paddle-board-hire/"
+      }
     },
     {
       "section": "gettingThere",
-      "note": "The Opal fare."
+      "note": "The $7–10 Opal fare is our estimate: check Transport for NSW's fare tables or the Trip Planner.",
+      "check": {
+        "label": "Opal fares on Transport for NSW",
+        "url": "https://transportnsw.info/tickets-fares/fares/adult-opal-fares"
+      }
     }
   ]
 }

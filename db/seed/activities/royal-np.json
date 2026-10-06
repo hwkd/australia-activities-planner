@@ -1528,15 +1528,11 @@
   "unconfirmed": [
     {
       "section": "gettingThere",
-      "note": "Whether the Bundeena ferry takes Opal: sources disagree, so pay on board for now."
-    },
-    {
-      "section": "gettingThere",
-      "note": "The time of the last ferry back."
-    },
-    {
-      "section": "driving",
-      "note": "The park's vehicle entry fee."
+      "note": "We haven't confirmed when the last ferry back from Bundeena leaves: check the Cronulla Ferries timetable.",
+      "check": {
+        "label": "Cronulla Ferries: Bundeena timetable",
+        "url": "https://cronullaferries.com.au/ferries-to-bundeena/bundeena-timetable/"
+      }
     }
   ]
 }

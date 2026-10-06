@@ -1633,11 +1633,19 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Parking prices at North Head."
+      "note": "The $5–15 estimate for 3 hours is a guess: check NSW National Parks' North Head parking fees.",
+      "check": {
+        "label": "North Head fees on NSW National Parks",
+        "url": "https://www.nationalparks.nsw.gov.au/things-to-do/lookouts/north-head/visitor-info"
+      }
     },
     {
       "section": "cost",
-      "note": "Café prices."
+      "note": "The $12–22 estimate for Bella Vista Café is ours: check its menus for current prices.",
+      "check": {
+        "label": "Bella Vista Café menus",
+        "url": "https://www.bellavistamanly.com.au/"
+      }
     }
   ]
 }

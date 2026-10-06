@@ -102,7 +102,7 @@
       ],
       "perCarLabel": "Parking + M4 toll",
       "notes": [
-        "Echo Point parking is paid and busy by 10am on weekends.",
+        "Echo Point parking is metered. Our tip: it's busy by 10am on weekends.",
         "Driving lets you add Leura or Wentworth Falls on the way."
       ]
     },
@@ -136,7 +136,7 @@
     "pricesChecked": "2026-10-02"
   },
   "visit": {
-    "bestTime": "Arrive by 10am. Mornings are usually clearer; afternoon cloud can roll into the valley.",
+    "bestTime": "Arrive by 10am. Our tip: mornings are usually clearer, and afternoon cloud can roll into the valley.",
     "hours": "Lookouts are always open. The visitor centre keeps daytime hours.",
     "bring": [
       "A warm layer",
@@ -191,7 +191,7 @@
         "n": 3,
         "name": "Three Sisters",
         "type": "end",
-        "note": "Cross Honeymoon Bridge onto the first Sister.",
+        "note": "Honeymoon Bridge onto the first Sister is closed (rockfall hazard).",
         "lng": 150.31496,
         "lat": -33.73536
       },
@@ -4524,11 +4524,26 @@
   "unconfirmed": [
     {
       "section": "cost",
-      "note": "Scenic World prices: from ticket resellers, not Scenic World's own site."
+      "note": "Scenic World prices ($45–61) come from ticket resellers, not Scenic World: check its own site before you book.",
+      "check": {
+        "label": "Scenic World tickets",
+        "url": "https://www.scenicworld.com.au/tickets"
+      }
     },
     {
       "section": "driving",
-      "note": "Echo Point parking and the M4 toll."
+      "note": "The $15–30 for Echo Point parking plus the M4 toll is a guess: check Blue Mountains Council's visitor parking fees.",
+      "check": {
+        "label": "Blue Mountains Council: visitor parking fees",
+        "url": "https://www.bmcc.nsw.gov.au/pay-to-park"
+      }
     }
-  ]
+  ],
+  "notice": {
+    "text": "Honeymoon Bridge onto the first Sister is closed because of rockfall hazards (NSW National Parks alert).",
+    "link": {
+      "label": "Latest Three Sisters walk alerts",
+      "url": "https://www.nationalparks.nsw.gov.au/things-to-do/walking-tracks/three-sisters-walk/local-alerts"
+    }
+  }
 }

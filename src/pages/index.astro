@@ -27,7 +27,7 @@ const mapView = await mapAvailable();
   <div class="discover">
     <header class="side">
       <div class="px-1">
-        <p class="brand tr">
+        <p class="brand">
           <svg width="22" height="22" viewBox="0 0 24 24" class="ic" aria-hidden="true">
             <circle cx="9" cy="9" r="3.4"></circle>
             <path d="M9 2.6v1.2M3.9 4l.8.8M2.6 9h1.2M14.1 4l-.8.8"></path>
@@ -35,7 +35,7 @@ const mapView = await mapAvailable();
           </svg>
           {SITE_NAME}
         </p>
-        <p class="eyebrow tr">
+        <p class="eyebrow">
           <span>{t.discover.header.city}</span>
           <span class="dot" aria-hidden="true"></span>
           <span data-today></span>
@@ -58,7 +58,7 @@ const mapView = await mapAvailable();
             }
           })();
         </script>
-        <h1 class="headline w90 tr">
+        <h1 class="headline w90">
           <span class="block">{t.discover.header.headline1}</span>
           <span class="block">{t.discover.header.headline2}</span>
           <span class="word w80">
@@ -70,12 +70,12 @@ const mapView = await mapAvailable();
             ))}
           </span>
         </h1>
-        <p class="intro tr">{t.discover.header.intro}</p>
+        <p class="intro">{t.discover.header.intro}</p>
       </div>
       <div class="sky-set mt-[22px]">
         <SetTheSky client:load />
       </div>
-      <div class="filters tr">
+      <div class="filters">
         <DiscoverFilters client:load accessFilters={cards.some((c) => c.access)} />
       </div>
     </header>
@@ -169,16 +169,16 @@ const mapView = await mapAvailable();
     line-height: 1.4;
     color: var(--sky-mute);
   }
+  /* Opacity and transform only (spec §3.5): a blur here was redrawn every frame on each sky change,
+     the biggest single cost on iPhones. */
   @keyframes rise {
     from {
       opacity: 0;
       transform: translate3d(0, 0.42em, 0);
-      filter: blur(10px);
     }
     to {
       opacity: 1;
       transform: none;
-      filter: blur(0);
     }
   }
   @media (min-width: 1024px) {

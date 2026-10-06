@@ -41,6 +41,21 @@ describe("content (AC 15)", () => {
     long.unconfirmed = [{ section: "cost", note: "x".repeat(201) }];
     expect(activitySchema.safeParse(long).success).toBe(false);
   });
+  it("accepts a way to check an unconfirmed detail only as an https link or a tel: number", () => {
+    const withCheck = (url: string) => {
+      const a = clone(raw[0]);
+      a.unconfirmed = [{ section: "driving", note: "Parking prices.", check: { label: "Wilson Parking", url } }];
+      return activitySchema.safeParse(a).success;
+    };
+    expect(withCheck("https://www.wilsonparking.com.au/")).toBe(true);
+    expect(withCheck("tel:+61292650111")).toBe(true);
+    expect(withCheck("http://example.com/")).toBe(false);
+    expect(withCheck("javascript:alert(1)")).toBe(false);
+    expect(withCheck("tel:+61 2 9265 0111")).toBe(false);
+    const noLabel = clone(raw[0]);
+    noLabel.unconfirmed = [{ section: "driving", note: "Parking prices.", check: { label: "", url: "https://example.com/" } }];
+    expect(activitySchema.safeParse(noLabel).success).toBe(false);
+  });
   it("catches duplicate ids", () => {
     expect(checkActivities([parsed[0], parsed[0]])).toContain(`${parsed[0].id}: duplicate id`);
   });

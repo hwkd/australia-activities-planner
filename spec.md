@@ -1,10 +1,12 @@
-# Spec: Australia Activities Planner (Sydney first)
+# Spec: Australia Activities Planner (New South Wales first)
+
+> **6 October 2026: a state switch, and no forecast on Discover** (decision D16). Discover lists a whole state, starting with New South Wales; a **New South Wales** switch in the header shows the other states and territories as not here yet (§3.1). The visitor sets the sky they're expecting: Discover shows no forecast, and the headline frames the chosen sky ("If it's looking rainy.") instead of claiming the weather somewhere. My plans and Add to a day keep the forecast for each planned activity's own area (§11.1).
 
 > **2 October 2026: the real map replaces the schematic** (decision D15). Activity pages show each activity's places, walking line, facilities and the real route of the trip from Central on a real map (§3.2 item 3, §4.3, §11.2).
 
 > **2 October 2026: Getting there is simplified** (decision D14). Each activity has one public transport trip from the city centre (Central Station), with the last stretch to the door and a short "Driving?" note. There's no origin picker, no Transport / Drive / Rideshare switch and no weekly fare calculation; the trip from the visitor's own street opens in Google Maps (§3.2 item 4, §4.3, §6.6).
 
-> **2 October 2026: the product is now called Australia Activities Planner** (decision D9). It launches with Sydney only; more cities are Phase 3 (spec §12.5). Older notes may use the earlier working name, Sydney Weekend Finder.
+> **2 October 2026: the product is now called Australia Activities Planner** (decision D9). It launches with Sydney only; more cities are Phase 3 (spec §12.5; since D16, more states). Older notes may use the earlier working name, Sydney Weekend Finder.
 
 > **1 October 2026: planning works on any day, not just weekends.** Plans are made per date with a start time, viewed in a calendar ("My plans"), and can be added to Apple Calendar, Google Calendar or Outlook. The product was later renamed Australia Activities Planner (open question 9, resolved).
 >
@@ -38,13 +40,21 @@ The layout is designed for a phone width of 360–430 px and must work up to des
 
 ### 3.1 Discover (`/`)
 
-**Header:** the eyebrow "Sydney · {today, e.g. Thu 1 Oct}" and a headline that includes the current weather word (e.g. "Sydney's looking rainy."). The weather here is the sky the user is browsing for; each planned day keeps its own sky (§3.3).
+**Header:** the **state switch** and today's date ("Thu 1 Oct"), then a headline that frames the sky the visitor picked: "If it's looking rainy." (sunny, cloudy, rainy, hot), and "Tap the sky you're expecting. The list re-ranks around it." The headline names no place, so it never claims the weather anywhere. The weather here is the sky the user is browsing for; each planned day keeps its own sky (§3.3). On desktop the product name sits above the switch.
+
+**State switch** (D16; design: A1 · State switch on the canvas):
+- A pill button with a pin icon and the state's name, **New South Wales**, and a down arrow. Its accessible name is "New South Wales: change state", with `aria-haspopup="dialog"` and `aria-expanded`.
+- It opens **Where are you exploring?** ("Pick a state. We're starting with New South Wales and adding more over time."): a bottom sheet on phones (the shared sheet: focus moves in, Tab stays inside, Escape or the backdrop closes it, focus returns to the pill) and a popover under the pill on desktop (not modal; closes on Escape, a click outside or focus leaving it). The backdrop is not a control: it isn't in the Tab order or read by screen readers.
+- **New South Wales** is the one live state, marked `aria-current="true"`, with "{n} days out so far, from Sydney's beaches to the Blue Mountains" ({n} = published activities).
+- **Other states and territories:** Victoria, Queensland, Western Australia, South Australia, Tasmania, the Australian Capital Territory and the Northern Territory, as dashed tiles. Each can be tapped: it gets a solid border and the sheet says "Victoria isn't here yet. We're starting with New South Wales and adding more over time." (a polite live region), and the tap is counted (`state_interest`, §7). No dates or promises per state.
+- While New South Wales is the only live state, nothing needs storing and URLs don't change: Discover stays at `/` and activities at `/a/[id]`. Once a second state is live, the choice is stored locally (with the in-memory fallback, §7) and goes in the URL (§12.5).
+- The visitor's location is never asked for.
 
 **Filters**, all single-select and applied instantly:
 
 | Control | Options | Default |
 |---|---|---|
-| Weather selector, "Set the sky" (4) | Sunny, Cloudy, Rainy, Hot 30°+ | Sunny (Phase 2: the forecast) |
+| Weather selector, "Set the sky" (4) | Sunny, Cloudy, Rainy, Hot 30°+ | The last sky picked; Sunny on a first visit (D16: no forecast on Discover) |
 | Group chips | Anyone, Date, Friends, Family, Solo | Anyone |
 | "Free only" toggle | on / off | off |
 | Duration chips | Any, Under 3 hrs, Half day, Full day | Any |
@@ -57,7 +67,7 @@ The layout is designed for a phone width of 360–430 px and must work up to des
 - Choosing a segment re-themes the app (§3.5) and re-ranks the list at once.
 - Design reference: the "Set the sky" comparison artboard; Variant 2 (sky strip) was chosen on 1 Oct 2026.
 
-Filters are kept in the URL query string (`?w=rainy&g=family&free=1&d=half`) so a view can be shared and survives the back button. The last-used filters are also saved to localStorage and restored when the app opens with no query string.
+Filters are kept in the URL query string (`?w=rainy&g=family&free=1&d=half`) so a view can be shared and survives the back button. The last-used filters, including the sky, are also saved to localStorage and restored when the app opens with no query string. A link from a day in My plans carries that day's sky (`?w=`), which wins over the saved one.
 
 **Results:**
 - The title is "{n} ideas for a {weather-adjective} day".
@@ -129,7 +139,11 @@ The detail page answers four questions a newcomer has before committing: **Is it
    - Openable pairings show an arrow. A pairing without an `activityId` is shown as plain text (none in the current content).
 10. **Add to a day:** a sticky footer button on phone and a top-bar button on desktop. It opens the **Add to a day** sheet (§3.3). If the activity is already planned, the button reads "Planned · Sat 3 Oct" and the sheet also lists those dates. An activity can be planned on several days, but only once per day.
 
-**Not yet confirmed:** the Map, Getting there (with Driving?), What it'll cost, Plan your visit and Access sections each end with a dashed **Not yet confirmed** note listing the activity's `unconfirmed` entries for that section (§4.1), with "We couldn't confirm these with an official source. Check before you rely on them." Nothing shows when there are none.
+**Our tip:** advice and observations no official source can confirm (when a car park fills, when it gets crowded, which time is quieter) are written as their own sentence starting "Our tip:" in any text field (§4.1). Activity pages show the prefix as a small **Our tip** label (screen readers hear "our advice, not from an official source"); facts an official page confirms are never labelled, and claims that are neither confirmed nor advice go in `unconfirmed`.
+
+**Notice:** an activity's `notice` (§4.1), when set, shows under the description at the top of the page as a solid warning box (warning icon, the accent colour) with its link, e.g. "The National Pass loop is closed until at least 31 March 2027 …" and **Latest alerts on NSW National Parks**. Editors remove it when it no longer applies.
+
+**Not yet confirmed:** the Map, Getting there (with Driving?), What it'll cost, Plan your visit and Access sections each end with a dashed **Not yet confirmed** note listing the activity's `unconfirmed` entries for that section (§4.1), headed by "We couldn't confirm these with an official source yet, so check them before you rely on them." Each entry is a plain sentence saying which figure is an estimate, followed, where there is one, by a **How to check** link naming the source (the operator's or council's page, the Transport for NSW timetable or fares page, NSW National Parks, a menu on Google Maps; external pages open in a new tab) or a number to call. Nothing shows when there are none.
 
 **Motion:**
 - When an activity page opens, the last-stretch legs slide in, staggered.
@@ -197,7 +211,7 @@ The requirements below apply whichever variant ships.
 - **Theme changes follow state.**
   - Changing the Discover weather re-themes Discover and the detail screen.
   - My plans follows the selected day's sky; the Add to a day sheet follows the sky of the date being picked.
-- **Transition:** the switch between themes crossfades or morphs over 600–1,200 ms, using only `opacity`, `transform` and colour transitions. It must never block input, and the list re-ranks immediately.
+- **Transition:** the sky scene crossfades over 600 ms using only `opacity`; the colours switch at once (owner, 6 Oct 2026: per-element colour transitions made phones drop frames and left text the same grey as the sky halfway through, and a whole-page View Transition blocked taps while it ran). It must never block input, and the list re-ranks immediately.
 - **Signature moments** (and only these carry expressive motion):
   1. Changing the weather: the scene changes and the headline weather word animates in.
   2. Adding to a day: a confirmation animation plays in the Add to a day sheet and on the card.
@@ -230,7 +244,8 @@ type Cost = "Free" | "$" | "$$" | "$$$";   // $ < ~$20pp, $$ < ~$60pp, $$$ ≥ ~
 interface Activity {
   id: string;                         // kebab-case, unique, stable (used in URLs)
   name: string;
-  city: "sydney";                     // Phase 3: more cities (§12.5)
+  state: "nsw";                       // D16: the state it's listed under; a union of the 8 states and territories once another is live (§12.5)
+  city: "sydney";                     // kept for now; retired with §12.5
   area: string;
   category: Category;                 // see 4.2
   blurb: string;                      // ≤ 90 chars, shown on cards
@@ -252,9 +267,16 @@ interface Activity {
   access?: AccessInfo;                // Phase 2 (§11.6)
   status: "draft" | "verified";       // draft = written but not yet checked against official sources
   lastVerified: string | null;        // YYYY-MM-DD; null while status is "draft"
+  notice?: {                          // a temporary warning at the top of the page, e.g. a track closure
+    text: string;                     //   ≤ 240 chars: what's affected and until when
+    link?: { label: string; url: string }; // the page with the latest (https://) or a number (tel:)
+  };
   unconfirmed?: {                     // details no official source could confirm when it was checked
     section: "map" | "gettingThere" | "driving" | "cost" | "visit" | "access";
-    note: string;                     // one plain sentence, ≤ 200 chars, e.g. "Parking prices in The Rocks."
+    note: string;                     // one plain sentence for visitors, ≤ 200 chars, naming the estimate,
+                                      //   e.g. "The $15–30 parking estimate for The Rocks is a guess: car parks there don't publish casual rates."
+    check?: { label: string; url: string }; // how a visitor can check it: the page with the answer (https://)
+                                      //   or a number to call (tel:+61…); label names the source, ≤ 60 chars
   }[];
 }
 ```
@@ -470,7 +492,7 @@ Warning banner text for each weather:
 
 ### 6.8 Add to your calendar
 
-- **Event fields:** title = activity name; start and end from §4.4 and §6.4; location = the activity's meeting point plus "Sydney NSW"; notes = the getting-there summary when **Include directions** is on, then a link back to the activity page; reminder as chosen.
+- **Event fields:** title = activity name; start and end from §4.4 and §6.4; location = the activity's meeting point plus its area and "NSW" (e.g. "Echo Point, Blue Mountains NSW"); notes = the getting-there summary when **Include directions** is on, then a link back to the activity page; reminder as chosen.
 - **`.ics` file** (Apple Calendar, Outlook): one `VCALENDAR` with a `VTIMEZONE` for `Australia/Sydney` and one `VEVENT` per plan, `DTSTART;TZID=Australia/Sydney` with a `DURATION` (not a wall-clock `DTEND`, which would be ambiguous in the repeated hour when clocks go back), a stable `UID` per date and activity (so re-adding updates rather than duplicates), and a `VALARM` for the reminder. Generated in the browser; file name `sydney-plans-{date or "upcoming"}.ics`.
 - **Google Calendar:** a `calendar.google.com/calendar/render?action=TEMPLATE` link per event with `dates` in local time and `ctz=Australia/Sydney`. Google uses the user's default reminders; the sheet says so. More than one event shows one link per event.
 - No calendar account access or permissions are requested; nothing is synced back.
@@ -496,6 +518,7 @@ Warning banner text for each weather:
   - `plan_b_swap`
   - `plan_share`
   - `calendar_export` (with target: `ics` or `google`, and scope)
+  - `state_picker_open` and `state_interest` (with the state tapped, e.g. `vic`): which state people want next (D16)
   These measure the success signals in intent.md: plans created, share rate, Plan B use and return visits.
 - **Browsers:** the last two versions of Safari iOS, Chrome Android, Chrome, Safari, Firefox and Edge. The end-to-end tests run in Chromium, WebKit and Firefox.
 - **Reliability:** if D1 can't be reached, public pages show a short "Couldn't load right now" page with a retry (and the cached copy when offline support has one); the saved plan is never affected. D1's point-in-time restore (Time Travel: 30 days on the Workers Paid plan, 7 on Free) is the backup, and the revisions table keeps every version of every activity.
@@ -508,7 +531,7 @@ Warning banner text for each weather:
 | Hosting | Cloudflare Workers (`@astrojs/cloudflare`) with Cloudflare D1 for content and admin accounts; static files served as Workers assets (`wrangler deploy`, preview URLs per branch) |
 | Content admin | Custom admin at `/admin` (§4.5): built-in accounts (owner and editor roles, invite links), structured editor, map editor, draft / preview / publish, history |
 | Scheduled jobs | **GitHub Actions** for jobs whose output a person reviews (they open pull requests): an optional weekly check of each activity's trip from Central (§4.3); a venue-page change check that flags price or hours changes. **Workers Cron Triggers** for jobs that write D1 directly: the forecast refresh (§11.1) |
-| Data sources | Transport for NSW Trip Planner API for the optional trip check (CC BY 4.0, free key); Opal daily caps from transportnsw.info; Open-Meteo (§11.1). All credited in the footer. |
+| Data sources | Transport for NSW Trip Planner API for the optional trip check (CC BY 4.0, free key); Opal daily caps from transportnsw.info; Open-Meteo for My plans (§11.1). All credited in the footer. |
 | Analytics | Plausible (cookieless, supports the custom events in §7; from about US$9/month), or self-hosted Umami. Cloudflare Web Analytics was dropped: it doesn't support custom events. |
 | Styling | Tailwind + CSS variables driven by a per-weather theme map (`themes[weather]`, §3.5). Final tokens and fonts come from the chosen design direction; the v1 sandstone/ferry-green palette is retired. Fonts are self-hosted with the Astro Fonts API (local provider) so a trimmed variable font can be used. |
 | Motion | CSS transitions and keyframes for theme changes and loops; a small spring helper (e.g. Motion One) for the add confirmation and Plan B entrance only |
@@ -556,6 +579,8 @@ Warning banner text for each weather:
 31. When two editors open the same activity and both save, the second save is refused with "Someone else changed this activity", and nothing is lost from the first.
 32. A wrong password is refused without saying whether the email exists; a change sent from another site (wrong Origin) is refused; an editor can't open or call the owner-only Users pages; a disabled account is signed out at once.
 33. After one visit to Discover with the network on, every published activity page opens with the network off.
+34. Discover's **New South Wales** switch opens "Where are you exploring?" with New South Wales current and the seven other states and territories; tapping Victoria says "Victoria isn't here yet…" and records `state_interest`; Escape, the backdrop (phone) or a click outside (desktop) and Close all close it, and focus returns to the switch. Nothing is added to the URL.
+35. Discover shows no forecast (no caption, no Use forecast, no credit). The headline reads "If it's looking rainy." for the sky picked; a first visit opens on Sunny, a later visit on the last sky picked, and a link from a day in My plans on that day's sky. My plans still pre-sets forecast days, shows their caption and raises the change alert.
 
 
 ## 10. Not doing (for now)
@@ -574,7 +599,8 @@ These are deliberate non-goals, carried over from [intent.md](intent.md). Revisi
 
 ### 11.1 Live forecast
 
-- **Source:** Open-Meteo daily forecast (no API key, CC BY 4.0), fetched by a Workers Cron Trigger every 3 hours for each area (city, Blue Mountains, Northern Beaches, Royal National Park) and stored in a D1 `forecasts` table; never fetched from the client. Each activity uses the nearest area to its `location`, so no content change is needed. The app reads it from one small JSON endpoint (`/data/forecast.json`, cached for 1 hour). Show a credit ("Weather data: Open-Meteo") on Discover and My plans.
+- **Source:** Open-Meteo daily forecast (no API key, CC BY 4.0), fetched by a Workers Cron Trigger every 3 hours for each area (city, Blue Mountains, Northern Beaches, Royal National Park) and stored in a D1 `forecasts` table; never fetched from the client. Each activity uses the nearest area to its `location`, so no content change is needed. The app reads it from one small JSON endpoint (`/data/forecast.json`, cached for 1 hour). Show a credit ("Weather data: Open-Meteo") on My plans.
+- **Where it's used (D16, 6 Oct 2026):** My plans and Add to a day only, for each planned activity's own area, where the place is known. Discover doesn't use the forecast: a state is too big for one sky, and the visitor sets the sky they're expecting (§3.1). Activity pages show the app's sky and each sky's fit, not a forecast.
 - **Not the Bureau of Meteorology directly:** it has no public API, its free forecast files are not for commercial use, and its copyright terms don't allow passing the data on. Open-Meteo's free tier is also non-commercial; if the app ever carries ads or paid features, move to its paid plan.
 - **Accuracy:** a forecast made on Wednesday or Thursday is reliable for "hot or not" and only indicative for rain. Show the rain chance in the caption ("Forecast: rainy, 60% chance") and keep the manual override.
 - **Mapping,** applied in this order:
@@ -583,9 +609,9 @@ These are deliberate non-goals, carried over from [intent.md](intent.md). Revisi
   3. otherwise cloudy if `cloud_cover_mean ≥ 70`
   4. otherwise sunny
 - **Behaviour:**
-  - Discover's default weather is today's city forecast, or the selected day's when Discover is opened from a day in My plans (that link carries the day's sky). A sky the user picks on Discover or an activity page stays for the rest of that day; **Use forecast** goes back to the forecast.
+  - ~~Discover's default weather is today's city forecast~~ Removed by D16: Discover opens on the last sky picked (Sunny on a first visit) or the sky a link carries (§3.1). Discover has no **Use forecast**.
   - Each day within the forecast range is pre-set with `skySource: "auto"` and a caption, e.g. "Forecast: rainy, 60% chance of rain · updated 2 h ago". A day with plans uses the forecast for its first plan's area ("Forecast for the Blue Mountains: …").
-  - Picking a weather manually sets `"manual"` and is never overwritten. A **Use forecast** link restores auto.
+  - Picking a day's weather manually in My plans sets `"manual"` and is never overwritten. A **Use forecast** link on that day restores auto.
 - **Caching and failure:** cache for 1 hour. If offline, use the last cached forecast with its age. If none exists, fall back to manual with no error state.
 - **Change alert:** when an auto forecast changes and a planned item becomes Skip, show a banner on My plans: "Sunday now looks rainy. 1 activity needs a Plan B." Forecasts cover about 7 days ahead; later days keep a manual sky.
 
@@ -669,11 +695,12 @@ These are deliberate non-goals, carried over from [intent.md](intent.md). Revisi
 - **Language picker** in settings, defaulting to the browser language. The choice goes in the URL (`/ko/…`) for sharing.
 - **Quality:** translations are human-reviewed, and safety notes always are. Machine drafts are allowed only as a starting point.
 
-### 12.5 More cities
+### 12.5 More states
 
-- **Cities:** Melbourne and Brisbane first, each with at least 40 activities and the same content rules (§5).
-- **City switcher** in the header. The chosen city is stored locally and appears in the URL (`/melbourne`).
-- **Per city:** `city` becomes a union and an indexed column in D1, and the admin filters by city. Each city has its own time zone for dates, times and calendar export (e.g. Perth is UTC+8), its own forecast coordinates, and its own transit copy (e.g. myki in Melbourne, go card in Brisbane). Getting there needs no per-city data source: each activity's trip from that city's centre, last stretch and Driving? note are written and checked by hand (D14), and the cost estimate needs only that fare system's daily cap.
+- **States:** after New South Wales, each new state or territory goes live with at least 40 activities and the same content rules (§5). Which comes second is open (§13 Q14); `state_interest` counts (§7) help decide.
+- **State switch:** built with the MVP (§3.1); a new state becomes selectable when it's live. From the second state on, the chosen state is stored locally and appears in the URL (`/vic`), and NSW's pages keep their current addresses.
+- **Distance within a state:** a whole-state list works while every activity is a day out from Sydney. Once a state's list spans places hours apart (e.g. Byron Bay, the Snowy Mountains), add a "Where in NSW" choice (design: A2 · State and region chips) or a travel-time filter (§11.3), so a list doesn't mix a day out with a nine-hour drive.
+- **Per state:** `state` becomes a union and an indexed column in D1 (replacing `city`), and the admin filters by state. Each state has its own time zone for dates, times and calendar export (e.g. Perth is UTC+8, Brisbane has no daylight saving), its own public holidays, forecast areas for My plans, and transit copy (e.g. myki in Victoria, go card in Queensland). Getting there needs no per-state data source: each activity's trip from its capital city's centre, last stretch and Driving? note are written and checked by hand (D14), and the cost estimate needs only that fare system's daily cap.
 - **Theme scenes** may get city-specific elements (e.g. skyline), but they share the theme map and motion rules (§3.5).
 
 ---
@@ -695,3 +722,5 @@ Questions 1–4 and 6 have proposed answers that the MVP was built with (TRACKER
 11. Phase 3 accounts (§12.1): build on the existing Worker and D1 (proposed: one stack, one bill, no second vendor), or on Supabase as first planned? Either way, which email service sends magic links?
 12. Which Phase 2 features, if any, should ship with the launch? Proposed: none are required; build them in the order in implementation-plan.md §7.2 while the content is being verified, and switch each on only when its content is ready.
 13. NSW National Parks closure alerts (§11.2): no open feed was found. Find out whether NPWS offers one (possibly through the NSW Government API portal, with a key), or keep linking to each park's page?
+14. Which state or territory goes live second (§12.5)? `state_interest` counts can inform it.
+15. The live address is sydney.hwkd.com.au. Move to an address that fits Australia-wide before promoting the app?

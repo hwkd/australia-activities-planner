@@ -1,4 +1,5 @@
 ---
+import Tipped from "~/components/shared/Tipped.astro";
 import { changesLabel, directionsHref, drivingNote, kindOf, lastStretch, minsLabel, wayIn, type Routes } from "~/lib/route";
 import { tripFare } from "~/lib/cost";
 import { legCss, legRail } from "~/theme/map-palette";
@@ -165,7 +166,7 @@ const drive = drivingNote(routes);
                 <span style="color: var(--accent)">
                   <Icon name="bulb" size={16} className="mt-0.5 shrink-0" />
                 </span>
-                {n}
+                <span><Tipped text={n} /></span>
               </li>
             ))}
           </ul>

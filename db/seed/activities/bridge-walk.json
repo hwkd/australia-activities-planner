@@ -582,7 +582,11 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Parking prices in The Rocks."
+      "note": "The $20–40 estimate for 2 hours in The Rocks is a guess: rates vary by car park and street.",
+      "check": {
+        "label": "Parking in The Rocks",
+        "url": "https://therocks.com/getting-here"
+      }
     }
   ]
 }

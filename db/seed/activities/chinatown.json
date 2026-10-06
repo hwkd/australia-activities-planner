@@ -606,11 +606,19 @@
   "unconfirmed": [
     {
       "section": "cost",
-      "note": "Food prices."
+      "note": "Food prices are our estimates and vary a lot between restaurants, food courts and dessert bars.",
+      "check": {
+        "label": "Chinatown restaurants on Google Maps",
+        "url": "https://www.google.com/maps/search/?api=1&query=Chinatown%20Haymarket%20Sydney%20restaurants"
+      }
     },
     {
       "section": "driving",
-      "note": "City car park rates."
+      "note": "The $15–35 estimate for 3 hours in a city car park is a guess: check the rates for the car park you use.",
+      "check": {
+        "label": "Wilson Parking: Market City, Haymarket",
+        "url": "https://www.wilsonparking.com.au/parking-locations/new-south-wales/cbd-sydney-south/market-city-car-park/"
+      }
     }
   ]
 }

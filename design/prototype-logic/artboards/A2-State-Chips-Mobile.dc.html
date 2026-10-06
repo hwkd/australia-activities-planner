@@ -2,7 +2,7 @@
 <html lang="en-AU">
 <head>
 <meta charset="utf-8">
-<title>Discover, desktop · Australia Activities Planner</title>
+<title>A2 · State and region chips — Mobile · Australia Activities Planner</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&amp;display=swap">
 <style>
 p,h1,h2,h3,dd,li{text-wrap:pretty}
-body{margin:0;background:#0F3FB8;font-family:'Mona Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:#0A1330;font-family:'Mona Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;cursor:pointer;margin:0;-webkit-tap-highlight-color:transparent}
 button:focus-visible,a:focus-visible{outline:3px solid #FFFFFF;outline-offset:2px;box-shadow:0 0 0 2px #0A1330!important}
 a{-webkit-tap-highlight-color:transparent}
@@ -19,22 +19,17 @@ a{-webkit-tap-highlight-color:transparent}
 p,h1,h2,h3{margin:0}
 .sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icb{stroke-width:2.5}
-.eb{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .hs{scrollbar-width:none}.hs::-webkit-scrollbar{display:none}
 .disp{font-family:'Mona Sans',system-ui,sans-serif}
 .glass{-webkit-backdrop-filter:blur(18px) saturate(135%);backdrop-filter:blur(18px) saturate(135%)}
-.glass2{-webkit-backdrop-filter:blur(30px) saturate(140%);backdrop-filter:blur(30px) saturate(140%)}
 .sky{position:absolute;inset:0;overflow:hidden;transition:opacity 900ms ease}
 .tr{transition:background-color 600ms ease,color 600ms ease,border-color 600ms ease,box-shadow 500ms ease}
 .spring{transition:transform 560ms cubic-bezier(.34,1.56,.64,1),box-shadow 500ms ease}
 .press{transition:transform 180ms ease,background-color 400ms ease,color 400ms ease,border-color 400ms ease}
 .press:active{transform:scale(.95)}
-.lift{transition:transform 360ms cubic-bezier(.2,.8,.2,1),background-color 600ms ease,color 600ms ease,border-color 600ms ease}
-.lift:hover{transform:translateY(-3px)}
-.orb:hover .orbi{transform:translateY(-3px) scale(1.04)}
 .gl{position:absolute;display:block;height:2px;border-radius:2px;background:#FFE9A8;opacity:0;animation:glint 3.4s ease-in-out infinite}
 .spin60{animation:spin 60s linear infinite}
-.dD{animation:dD 50s ease-in-out infinite alternate}
+.dA{animation:dA 40s ease-in-out infinite alternate}
 .dT{animation:dT 30s ease-in-out infinite alternate}
 .f1{animation:fall1 1.1s linear infinite}.f2{animation:fall2 .75s linear infinite}.f3{animation:fall3 .5s linear infinite}
 .wv{animation:wave 6s linear infinite}
@@ -43,12 +38,11 @@ p,h1,h2,h3{margin:0}
 .a-rise{animation:rise 820ms cubic-bezier(.2,.8,.2,1) both}
 .a-up{animation:up 640ms cubic-bezier(.2,.8,.2,1) backwards}
 .a-fade{animation:fade 420ms ease both}
-.a-sheet{animation:sheet 620ms cubic-bezier(.2,.9,.25,1) both}
 .a-pop{animation:pop 560ms cubic-bezier(.34,1.56,.64,1) both}
 .a-slide{animation:slide 620ms cubic-bezier(.2,.8,.2,1) both}
 .a-swing{display:inline-flex;transform-origin:50% 15%;animation:swing 2.8s ease-in-out infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes dD{from{transform:translate3d(-130px,0,0)}to{transform:translate3d(130px,0,0)}}
+@keyframes dA{from{transform:translate3d(-70px,0,0)}to{transform:translate3d(70px,0,0)}}
 @keyframes dT{from{transform:translate3d(-40px,0,0)}to{transform:translate3d(40px,0,0)}}
 @keyframes fall1{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,120px,0)}}
 @keyframes fall2{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,160px,0)}}
@@ -56,67 +50,58 @@ p,h1,h2,h3{margin:0}
 @keyframes wave{from{transform:translate3d(0,0,0)}to{transform:translate3d(-120px,0,0)}}
 @keyframes glint{0%,100%{opacity:0;transform:scaleX(.3)}50%{opacity:.95;transform:scaleX(1)}}
 @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
-@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
 @keyframes rise{from{opacity:0;transform:translate3d(0,.42em,0)}to{opacity:1;transform:none}}
 @keyframes up{from{opacity:0;transform:translate3d(0,28px,0) scale(.98)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes sheet{from{opacity:0;transform:translate3d(0,48px,0) scale(.97)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(0) rotate(-35deg)}60%{transform:scale(1.35) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
 @keyframes slide{from{opacity:0;transform:translate3d(-18px,6px,0)}to{opacity:1;transform:none}}
 @keyframes swing{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
 </style>
 </helmet>
-<div style="position: relative; width: 1440px; height: 960px; overflow: hidden; background: #0F3FB8; color: {{ink}}; font-family: 'Mona Sans', system-ui, sans-serif; transition: color 900ms ease">
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0A1330; color: {{ink}}; font-family: 'Mona Sans', system-ui, sans-serif; transition: color 900ms ease">
 
-<!-- ================= SKY: four full-bleed scenes, crossfaded by opacity ================= -->
+<!-- ================= SKY: four stacked scenes, crossfaded by opacity ================= -->
 <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none">
 
-<!-- Sunny -->
+<!-- Sunny: harbour cobalt, warm sun, glinting water -->
 <div class="sky" style="opacity: {{opSun}}; background: linear-gradient(180deg, #0F3FB8 0%, #1B4BC8 45%, #3E7BF0 100%)">
-<div style="position: absolute; left: 240px; top: -330px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(255,214,102,0.34) 0%, rgba(255,214,102,0.12) 38%, rgba(255,214,102,0) 62%)"></div>
-<svg class="spin60" width="480" height="480" viewBox="0 0 300 300" style="position: absolute; left: 320px; top: -250px"><g fill="none" stroke="#FFD66B" stroke-linecap="round"><path d="M150 66V30M192 77.3L210 46.1M222.7 108L253.9 90M234 150H270M222.7 192L253.9 210M192 222.7L210 253.9M150 234V270M108 222.7L90 253.9M77.3 192L46.1 210M66 150H30M77.3 108L46.1 90M108 77.3L90 46.1" stroke-width="2" opacity="0.5"></path><path d="M173.8 61.1L177.4 47.6M215.1 84.9L225 75M238.9 126.2L252.4 122.6M238.9 173.8L252.4 177.4M215.1 215.1L225 225M173.8 238.9L177.4 252.4M126.2 238.9L122.6 252.4M84.9 215.1L75 225M61.1 173.8L47.6 177.4M61.1 126.2L47.6 122.6M84.9 84.9L75 75M126.2 61.1L122.6 47.6" stroke-width="1.4" opacity="0.38"></path></g></svg>
-<div style="position: absolute; left: 460px; top: -110px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 36% 34%, #FFF2C2 0%, #FFD65C 36%, #FFC940 62%, #F2A51E 100%); box-shadow: 0 0 110px 34px rgba(255,201,64,0.32)"></div>
-<svg width="560" height="103" viewBox="0 0 390 72" style="position: absolute; left: 30px; bottom: 198px; opacity: 0.7"><g fill="#0A2A86"><rect x="22" y="40" width="12" height="32" rx="1"></rect><rect x="232" y="40" width="12" height="32" rx="1"></rect><path d="M298 72c4-18 14-30 30-36-6 10-8 22-7 36zM318 72c5-20 17-32 36-38-8 12-10 24-9 38zM342 72c4-14 12-23 24-27-5 9-6 18-5 27z"></path></g><g fill="none" stroke="#0A2A86"><path d="M28 56Q133 -2 238 56" stroke-width="2.4"></path><path d="M0 58H290" stroke-width="2.8"></path><path d="M54 43.4V58M80 34.4V58M106 28.9V58M133 27V58M160 28.9V58M186 34.4V58M212 43.4V58" stroke-width="1"></path></g></svg>
-<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 200px; background: linear-gradient(180deg, #1D52D6 0%, #0F37A2 30%, #0A2878 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35)">
-<div style="position: absolute; inset: 0; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 12px)"></div>
-<div style="position: absolute; left: 510px; top: 0; width: 110px; height: 100%; background: linear-gradient(180deg, rgba(255,214,102,0.4), rgba(255,214,102,0)); filter: blur(10px)"></div>
-<span class="gl" style="left: 540px; top: 12px; width: 48px; animation-delay: -0.2s"></span>
-<span class="gl" style="left: 580px; top: 30px; width: 28px; animation-delay: -1.4s"></span>
-<span class="gl" style="left: 520px; top: 52px; width: 36px; animation-delay: -2.2s"></span>
-<span class="gl" style="left: 560px; top: 78px; width: 52px; animation-delay: -0.9s"></span>
-<span class="gl" style="left: 545px; top: 112px; width: 30px; animation-delay: -1.1s"></span>
-<span class="gl" style="left: 90px; top: 34px; width: 22px; animation-delay: -1.8s"></span>
-<span class="gl" style="left: 230px; top: 64px; width: 30px; animation-delay: -2.9s"></span>
-<span class="gl" style="left: 380px; top: 20px; width: 18px; animation-delay: -0.5s"></span>
-<span class="gl" style="left: 160px; top: 120px; width: 34px; animation-delay: -2.5s"></span>
-<span class="gl" style="left: 760px; top: 40px; width: 26px; animation-delay: -1.6s"></span>
-<span class="gl" style="left: 920px; top: 90px; width: 34px; animation-delay: -0.7s"></span>
-<span class="gl" style="left: 1100px; top: 26px; width: 22px; animation-delay: -2.1s"></span>
-<span class="gl" style="left: 1280px; top: 70px; width: 30px; animation-delay: -3s"></span>
-<span class="gl" style="left: 440px; top: 150px; width: 24px; animation-delay: -1.3s"></span>
+<div style="position: absolute; left: 150px; top: -180px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(255,214,102,0.34) 0%, rgba(255,214,102,0.12) 38%, rgba(255,214,102,0) 62%)"></div>
+<svg class="spin60" width="300" height="300" viewBox="0 0 300 300" style="position: absolute; left: 210px; top: -120px"><g fill="none" stroke="#FFD66B" stroke-linecap="round"><path d="M150 66V30M192 77.3L210 46.1M222.7 108L253.9 90M234 150H270M222.7 192L253.9 210M192 222.7L210 253.9M150 234V270M108 222.7L90 253.9M77.3 192L46.1 210M66 150H30M77.3 108L46.1 90M108 77.3L90 46.1" stroke-width="2.4" opacity="0.55"></path><path d="M173.8 61.1L177.4 47.6M215.1 84.9L225 75M238.9 126.2L252.4 122.6M238.9 173.8L252.4 177.4M215.1 215.1L225 225M173.8 238.9L177.4 252.4M126.2 238.9L122.6 252.4M84.9 215.1L75 225M61.1 173.8L47.6 177.4M61.1 126.2L47.6 122.6M84.9 84.9L75 75M126.2 61.1L122.6 47.6" stroke-width="1.6" opacity="0.4"></path></g></svg>
+<div style="position: absolute; left: 296px; top: -34px; width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle at 36% 34%, #FFF2C2 0%, #FFD65C 36%, #FFC940 62%, #F2A51E 100%); box-shadow: 0 0 70px 22px rgba(255,201,64,0.32)"></div>
+<svg width="390" height="72" viewBox="0 0 390 72" style="position: absolute; left: 0; bottom: 178px; opacity: 0.7"><g fill="#0A2A86"><rect x="22" y="40" width="12" height="32" rx="1"></rect><rect x="232" y="40" width="12" height="32" rx="1"></rect><path d="M298 72c4-18 14-30 30-36-6 10-8 22-7 36zM318 72c5-20 17-32 36-38-8 12-10 24-9 38zM342 72c4-14 12-23 24-27-5 9-6 18-5 27z"></path></g><g fill="none" stroke="#0A2A86"><path d="M28 56Q133 -2 238 56" stroke-width="2.6"></path><path d="M0 58H290" stroke-width="3"></path><path d="M54 43.4V58M80 34.4V58M106 28.9V58M133 27V58M160 28.9V58M186 34.4V58M212 43.4V58" stroke-width="1.2"></path></g></svg>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 180px; background: linear-gradient(180deg, #1D52D6 0%, #0F37A2 30%, #0A2878 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35)">
+<div style="position: absolute; inset: 0; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 11px)"></div>
+<div style="position: absolute; left: 296px; top: 0; width: 76px; height: 100%; background: linear-gradient(180deg, rgba(255,214,102,0.38), rgba(255,214,102,0)); filter: blur(8px)"></div>
+<span class="gl" style="left: 312px; top: 10px; width: 36px; animation-delay: -0.2s"></span>
+<span class="gl" style="left: 344px; top: 26px; width: 22px; animation-delay: -1.4s"></span>
+<span class="gl" style="left: 300px; top: 44px; width: 28px; animation-delay: -2.2s"></span>
+<span class="gl" style="left: 330px; top: 64px; width: 40px; animation-delay: -0.9s"></span>
+<span class="gl" style="left: 352px; top: 96px; width: 26px; animation-delay: -1.1s"></span>
+<span class="gl" style="left: 60px; top: 30px; width: 18px; animation-delay: -1.8s"></span>
+<span class="gl" style="left: 150px; top: 52px; width: 24px; animation-delay: -2.9s"></span>
+<span class="gl" style="left: 220px; top: 18px; width: 16px; animation-delay: -0.5s"></span>
+<span class="gl" style="left: 100px; top: 90px; width: 30px; animation-delay: -2.5s"></span>
 </div>
 </div>
 
-<!-- Cloudy -->
+<!-- Cloudy: pearl grey-blue, parallax clouds -->
 <div class="sky" style="opacity: {{opCloud}}; background: linear-gradient(180deg, #8E9AA8 0%, #A9B4C0 50%, #C9D1D9 100%)">
-<div style="position: absolute; left: -200px; top: -300px; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0) 65%)"></div>
-<svg class="dD" width="240" height="108" viewBox="0 0 200 90" style="position: absolute; left: 120px; top: 90px; opacity: 0.6; filter: blur(3px); animation-duration: 60s; animation-delay: -20s"><use href="#cl" fill="url(#cg)"></use></svg>
-<svg class="dD" width="380" height="171" viewBox="0 0 200 90" style="position: absolute; left: 640px; top: 30px; opacity: 0.85; filter: blur(1.5px); animation-duration: 44s; animation-delay: -10s"><use href="#cl" fill="url(#cg)"></use></svg>
-<svg class="dD" width="300" height="135" viewBox="0 0 200 90" style="position: absolute; left: 1060px; top: 330px; opacity: 0.6; filter: blur(2px); animation-duration: 52s; animation-delay: -30s"><use href="#cl" fill="url(#cg)"></use></svg>
-<svg class="dD" width="560" height="252" viewBox="0 0 200 90" style="position: absolute; left: 160px; top: 620px; opacity: 0.75; filter: blur(1px); animation-duration: 30s; animation-delay: -6s"><use href="#cl" fill="url(#cg)"></use></svg>
-<svg class="dD" width="260" height="117" viewBox="0 0 200 90" style="position: absolute; left: 820px; top: 480px; opacity: 0.5; filter: blur(3px); animation-duration: 70s; animation-delay: -40s"><use href="#cl" fill="url(#cg)"></use></svg>
-<svg class="dD" width="200" height="90" viewBox="0 0 200 90" style="position: absolute; left: 1220px; top: 200px; opacity: 0.7; filter: blur(2px); animation-duration: 56s; animation-delay: -18s"><use href="#cl" fill="url(#cg)"></use></svg>
-<div style="position: absolute; left: -100px; right: -100px; bottom: -120px; height: 320px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.5), rgba(255,255,255,0) 70%)"></div>
+<div style="position: absolute; left: -120px; top: -160px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.42), rgba(255,255,255,0) 65%)"></div>
+<svg class="dA" width="170" height="77" viewBox="0 0 200 90" style="position: absolute; left: 200px; top: 120px; opacity: 0.55; filter: blur(3px); animation-duration: 60s; animation-delay: -20s"><use href="#cl" fill="url(#cg)"></use></svg>
+<svg class="dA" width="260" height="117" viewBox="0 0 200 90" style="position: absolute; left: 20px; top: 40px; opacity: 0.8; filter: blur(1.5px); animation-duration: 40s; animation-delay: -10s"><use href="#cl" fill="url(#cg)"></use></svg>
+<svg class="dA" width="220" height="99" viewBox="0 0 200 90" style="position: absolute; left: 190px; top: 360px; opacity: 0.6; filter: blur(2px); animation-duration: 48s; animation-delay: -30s"><use href="#cl" fill="url(#cg)"></use></svg>
+<svg class="dA" width="420" height="189" viewBox="0 0 200 90" style="position: absolute; left: -40px; top: 540px; opacity: 0.75; filter: blur(1px); animation-duration: 28s; animation-delay: -5s"><use href="#cl" fill="url(#cg)"></use></svg>
+<div style="position: absolute; left: -60px; right: -60px; bottom: -80px; height: 220px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%)"></div>
 </div>
 
-<!-- Rainy -->
+<!-- Rainy: deep night ink, three depths of rain, cosy glow -->
 <div class="sky" style="opacity: {{opRain}}; background: linear-gradient(180deg, #0A1330 0%, #131F44 50%, #1C2B55 100%)">
-<div class="pulse" style="position: absolute; left: -220px; bottom: -300px; width: 860px; height: 860px; border-radius: 50%; background: radial-gradient(circle, rgba(110,140,255,0.28), rgba(110,140,255,0) 65%)"></div>
-<div class="pulse" style="position: absolute; right: -200px; bottom: 60px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(255,176,110,0.14), rgba(255,176,110,0) 65%); animation-delay: -4s"></div>
-<svg class="dD" width="620" height="279" viewBox="0 0 200 90" style="position: absolute; left: -60px; top: -120px; opacity: 0.9; animation-duration: 80s; animation-delay: -20s"><use href="#cl" fill="#1F2E5C"></use></svg>
-<svg class="dD" width="480" height="216" viewBox="0 0 200 90" style="position: absolute; left: 520px; top: -40px; opacity: 0.75; animation-duration: 64s; animation-delay: -40s"><use href="#cl" fill="#26376A"></use></svg>
-<svg class="dD" width="520" height="234" viewBox="0 0 200 90" style="position: absolute; left: 1000px; top: -90px; opacity: 0.7; animation-duration: 72s; animation-delay: -12s"><use href="#cl" fill="#22325F"></use></svg>
+<div class="pulse" style="position: absolute; left: -140px; bottom: -160px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(110,140,255,0.3), rgba(110,140,255,0) 65%)"></div>
+<div class="pulse" style="position: absolute; right: -170px; bottom: 90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(255,176,110,0.15), rgba(255,176,110,0) 65%); animation-delay: -4s"></div>
+<svg class="dA" width="360" height="162" viewBox="0 0 200 90" style="position: absolute; left: -40px; top: -60px; opacity: 0.9; animation-duration: 70s; animation-delay: -30s"><use href="#cl" fill="#1F2E5C"></use></svg>
+<svg class="dA" width="300" height="135" viewBox="0 0 200 90" style="position: absolute; left: 150px; top: 10px; opacity: 0.75; animation-duration: 55s; animation-delay: -12s"><use href="#cl" fill="#26376A"></use></svg>
 <div style="position: absolute; inset: -12%; transform: rotate(10deg)">
 <div class="f1" style="position: absolute; left: 0; right: 0; top: -120px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rF)"></rect></svg></div>
 <div class="f2" style="position: absolute; left: 0; right: 0; top: -160px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rM)"></rect></svg></div>
@@ -124,11 +109,11 @@ p,h1,h2,h3{margin:0}
 </div>
 </div>
 
-<!-- Hot 30+ -->
+<!-- Hot 30+: terracotta to amber, huge pale sun, heat shimmer -->
 <div class="sky" style="opacity: {{opHot}}; background: linear-gradient(180deg, #9A2D0B 0%, #B8421A 45%, #E8702A 100%)">
-<div style="position: absolute; left: 0; right: 0; top: 500px; height: 320px; background: linear-gradient(180deg, rgba(255,190,110,0), rgba(255,190,110,0.22), rgba(255,190,110,0))"></div>
-<div class="breathe" style="position: absolute; left: 340px; top: 650px; width: 960px; height: 960px; border-radius: 50%; background: radial-gradient(circle at 50% 30%, #FFF4D6 0%, #FFE3A1 35%, #FFD07A 100%); box-shadow: 0 0 180px 70px rgba(255,200,120,0.4)"></div>
-<svg width="1680" height="270" viewBox="0 0 1680 270" style="position: absolute; left: 0; top: 560px"><g fill="none" stroke-linecap="round" stroke-width="2"><path class="wv" d="M0 20q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(255,236,200,0.4)" style="animation-duration: 7s"></path><path class="wv" d="M0 54q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(255,236,200,0.3)" style="animation-duration: 5s"></path><path class="wv" d="M0 110q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.55)" style="animation-duration: 6s"></path><path class="wv" d="M0 152q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.5)" stroke-width="3" style="animation-duration: 8s"></path><path class="wv" d="M0 200q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.45)" stroke-width="4" style="animation-duration: 4.5s"></path><path class="wv" d="M0 250q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.4)" stroke-width="5" style="animation-duration: 9s"></path></g></svg>
+<div style="position: absolute; left: 0; right: 0; top: 440px; height: 260px; background: linear-gradient(180deg, rgba(255,190,110,0), rgba(255,190,110,0.22), rgba(255,190,110,0))"></div>
+<div class="breathe" style="position: absolute; left: -35px; top: 590px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle at 50% 38%, #FFF4D6 0%, #FFE3A1 42%, #FFD07A 100%); box-shadow: 0 0 120px 50px rgba(255,200,120,0.4)"></div>
+<svg width="660" height="210" viewBox="0 0 660 210" style="position: absolute; left: 0; top: 520px"><g fill="none" stroke-linecap="round" stroke-width="2"><path class="wv" d="M0 20q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(255,236,200,0.4)" style="animation-duration: 7s"></path><path class="wv" d="M0 48q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(255,236,200,0.3)" style="animation-duration: 5s"></path><path class="wv" d="M0 92q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.55)" style="animation-duration: 6s"></path><path class="wv" d="M0 124q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.5)" stroke-width="3" style="animation-duration: 8s"></path><path class="wv" d="M0 160q30-7 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.45)" stroke-width="4" style="animation-duration: 4.5s"></path><path class="wv" d="M0 196q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" stroke="rgba(214,92,30,0.4)" stroke-width="5" style="animation-duration: 9s"></path></g></svg>
 </div>
 
 <!-- Grain + shared defs -->
@@ -145,42 +130,45 @@ p,h1,h2,h3{margin:0}
 </svg>
 </div>
 
-<!-- ================= LEFT: headline, sky dial, filters ================= -->
-<header style="position: absolute; left: 0; top: 0; bottom: 0; width: 540px; padding: 38px 36px 32px 56px; box-sizing: border-box; display: flex; flex-direction: column">
-<p class="tr" style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; color: {{skyMute}}"><svg width="22" height="22" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="9" cy="9" r="3.4"></circle><path d="M9 2.6v1.2M3.9 4l.8.8M2.6 9h1.2M14.1 4l-.8.8"></path><path d="M9.5 20h8.5a3.6 3.6 0 0 0 .4-7.17A5 5 0 0 0 9.8 12.3 3.9 3.9 0 0 0 9.5 20z"></path></svg>Australia Activities Planner</p>
-<p class="eb tr" style="margin-top: 36px; display: flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; color: {{skyMute}}"><span>Sydney</span><span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: currentColor"></span><span>Thu 1 Oct</span></p>
-<h1 class="disp tr" style="margin-top: 16px; font-size: 72px; font-weight: 500; line-height: 0.94; letter-spacing: -0.038em; font-variation-settings: 'wdth' 80; color: {{ink}}; text-shadow: {{hlShadow}}">
-<span style="display: block">Sydney’s</span>
-<span style="display: block">looking</span>
-<span style="display: block; position: relative; height: 120px; margin-top: 2px; font-size: 124px; font-weight: 800; line-height: 0.95; letter-spacing: -0.048em; font-variation-settings: 'wdth' 80; color: {{accent}}">
-<sc-if value="{{isSun}}" hint-placeholder-val="{{true}}"><span class="a-rise" style="position: absolute; left: 0; top: 0">sunny.</span></sc-if>
+<!-- ================= DISCOVER ================= -->
+<sc-if value="{{isDiscover}}" hint-placeholder-val="{{true}}">
+<main class="hs a-fade" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 22px 16px 124px; box-sizing: border-box">
+<header style="padding: 0 4px">
+<nav aria-label="State" style="display: flex; align-items: center; gap: 8px"><sc-for list="{{liveStates}}" as="o" hint-placeholder-count="1"><button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="glass press tr" style="flex-shrink: 0; height: 44px; padding: 0 14px 0 12px; border-radius: 999px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 800; letter-spacing: 0.04em"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>{{o.short}}<span class="sr">: {{o.name}}</span></button></sc-for><p class="tr" style="min-width: 0; height: 44px; padding: 0 14px; box-sizing: border-box; border-radius: 999px; border: 1px dashed {{line}}; color: {{skyMute}}; display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; overflow: hidden"><span aria-hidden="true" style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase">Soon</span><span aria-hidden="true" style="display: inline-flex; gap: 7px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.04em"><sc-for list="{{soonStates}}" as="o" hint-placeholder-count="7"><span title="{{o.name}}">{{o.short}}</span></sc-for></span><span class="sr">{{soonList}}</span></p></nav>
+<h1 class="disp tr" style="margin-top: 16px; font-size: 46px; font-weight: 500; line-height: 0.94; letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; color: {{ink}}; text-shadow: {{hlShadow}}">
+<span style="display: block">{{place1}}</span>
+<span style="display: block">{{place2}}</span>
+<span style="display: block; position: relative; height: 84px; margin-top: 2px; font-size: 86px; font-weight: 800; line-height: 0.95; letter-spacing: -0.045em; font-variation-settings: 'wdth' 80; color: {{accent}}">
+<sc-if value="{{isSun}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0">sunny.</span></sc-if>
 <sc-if value="{{isCloud}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0">cloudy.</span></sc-if>
-<sc-if value="{{isRain}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0">rainy.</span></sc-if>
-<sc-if value="{{isHot}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0; display: flex; align-items: flex-start; gap: 14px">hot.<span style="margin-top: 22px; padding: 7px 15px; border: 2.5px solid currentColor; border-radius: 999px; font-size: 28px; font-weight: 700; letter-spacing: 0; font-variation-settings: 'wdth' 100">30°+</span></span></sc-if>
+<sc-if value="{{isRain}}" hint-placeholder-val="{{true}}"><span class="a-rise" style="position: absolute; left: 0; top: 0">rainy.</span></sc-if>
+<sc-if value="{{isHot}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="position: absolute; left: 0; top: 0; display: flex; align-items: flex-start; gap: 10px">hot.<span style="margin-top: 14px; padding: 5px 11px; border: 2px solid currentColor; border-radius: 999px; font-size: 20px; font-weight: 700; letter-spacing: 0; font-variation-settings: 'wdth' 100">30°+</span></span></sc-if>
 </span>
 </h1>
-<p class="tr" style="margin-top: 14px; font-size: 17px; line-height: 1.4; color: {{skyMute}}">Tap a sky. Sydney re-ranks around it.</p>
+<p class="tr" style="margin-top: 14px; font-size: 15.5px; line-height: 1.4; color: {{skyMute}}">{{rerankDated}}</p>
+</header>
+<fieldset style="margin: 20px 0 0; padding: 0; border: 0; min-width: 0"><legend style="padding: 0 4px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{mute}}">Where in NSW</legend><div class="hs" style="margin: 8px -16px 0; padding: 2px 16px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none"><sc-for list="{{regions}}" as="r" hint-placeholder-count="3"><button type="button" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}" class="press" style="flex-shrink: 0; height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid {{r.bd}}; background: {{r.bg}}; color: {{r.fg}}; display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700">{{r.label}}<span style="font-size: 12.5px; font-weight: 700; opacity: 0.75">{{r.count}}</span></button></sc-for><sc-for list="{{soonRegions}}" as="r" hint-placeholder-count="3"><span style="flex-shrink: 0; height: 44px; padding: 0 14px; box-sizing: border-box; border-radius: 999px; border: 1px dashed {{line}}; color: {{mute}}; display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600">{{r.label}}<span style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85">Soon</span><span class="sr">: coming soon</span></span></sc-for></div></fieldset>
 
-<fieldset style="margin: 26px 0 0; padding: 0; border: 0; min-width: 0">
+<fieldset style="margin: 22px 0 0; padding: 0; border: 0; min-width: 0">
 <legend class="sr">Weather</legend>
 <div aria-hidden="true" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; padding: 0 4px">
 <p class="tr" style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{mute}}">Set the sky</p>
-<p class="tr" style="font-size: 13px; font-weight: 600; color: {{mute}}">Re-ranks the list</p>
+<p class="tr" style="font-size: 12.5px; font-weight: 600; color: {{mute}}">Re-ranks the list</p>
 </div>
 <div class="glass tr" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 5px; border-radius: 26px; border: 1px solid {{line}}; background: {{glass}}; box-shadow: {{shadow}}">
 <sc-for list="{{weathers}}" as="w" hint-placeholder-count="4">
-<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="press" style="height: 72px; padding: 0; border: 0; border-radius: 21px; background: {{w.segBg}}; color: {{w.segFg}}; box-shadow: {{w.segShadow}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px"><sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg></sc-if><sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 18.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 18.5z"></path></svg></sc-if><sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 14.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 14.5z"></path><path d="M8.5 17.5l-1 2.8M12.5 17.5l-1 2.8M16.5 17.5l-1 2.8"></path></svg></sc-if><sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 13.9V5a2 2 0 0 0-4 0v8.9a4 4 0 1 0 4 0z"></path><path d="M12 9.5v6.5"></path><path d="M18 4.5l1.2-1.2M19.5 8h1.7M18 11.5l1.2 1.2"></path></svg></sc-if><span style="font-size: 14px; font-weight: {{w.lblW}}; white-space: nowrap">{{w.label}}</span></button>
+<button type="button" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}" class="press" style="height: 68px; padding: 0; border: 0; border-radius: 21px; background: {{w.segBg}}; color: {{w.segFg}}; box-shadow: {{w.segShadow}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px"><sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg></sc-if><sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 18.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 18.5z"></path></svg></sc-if><sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 14.5h9.4a3.9 3.9 0 0 0 .4-7.78 5.4 5.4 0 0 0-10.3 1.15A3.4 3.4 0 0 0 7.4 14.5z"></path><path d="M8.5 17.5l-1 2.8M12.5 17.5l-1 2.8M16.5 17.5l-1 2.8"></path></svg></sc-if><sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 13.9V5a2 2 0 0 0-4 0v8.9a4 4 0 1 0 4 0z"></path><path d="M12 9.5v6.5"></path><path d="M18 4.5l1.2-1.2M19.5 8h1.7M18 11.5l1.2 1.2"></path></svg></sc-if><span style="font-size: 13px; font-weight: {{w.lblW}}; white-space: nowrap">{{w.label}}</span></button>
 </sc-for>
 </div>
 </fieldset>
 
 <!-- Forecast under Set the sky (spec §11.1): caption when the sky matches, or what it says plus Use forecast -->
-<div class="tr" style="margin-top: 8px; padding: 0 4px; font-size: 13px; line-height: 1.45; color: {{skyMute}}">
-<sc-if value="{{fcMatches}}" hint-placeholder-val="{{false}}">
+<div class="tr" style="margin-top: 8px; padding: 0 4px; font-size: 12.5px; line-height: 1.45; color: {{skyMute}}">
+<sc-if value="{{fcMatches}}" hint-placeholder-val="{{true}}">
 <p style="display: flex; align-items: center; gap: 7px; min-height: 22px"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>{{fcCaption}}</span></p>
 </sc-if>
-<sc-if value="{{fcDiffers}}" hint-placeholder-val="{{true}}">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<sc-if value="{{fcDiffers}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
 <p style="flex: 1; min-width: 0">{{fcDiffersText}}</p>
 <button type="button" onClick="{{useForecast}}" class="glass press" style="flex-shrink: 0; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass}}; color: {{ink}}; font-size: 13.5px; font-weight: 700">Use forecast</button>
 </div>
@@ -188,49 +176,41 @@ p,h1,h2,h3{margin:0}
 <p style="margin-top: 2px; padding-left: {{creditInset}}"><a href="https://open-meteo.com/" target="_blank" rel="noopener" class="lnk">Weather data: Open-Meteo</a></p>
 </div>
 
-<div class="glass tr" style="margin-top: 16px; padding: 16px 18px; border-radius: 26px; border: 1px solid {{line}}; background: {{glass}}; box-shadow: {{shadow}}">
-<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
-<legend class="eb" style="padding: 0; color: {{mute}}">Who’s coming</legend>
-<div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px">
+<fieldset style="margin: 20px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="sr">Who’s coming</legend>
+<div class="hs" style="display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px">
 <sc-for list="{{whos}}" as="o" hint-placeholder-count="5">
-<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="press" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-size: 14px; font-weight: 600">{{o.label}}</button>
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="glass press" style="flex-shrink: 0; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-size: 14.5px; font-weight: 600">{{o.label}}</button>
 </sc-for>
 </div>
 </fieldset>
-<fieldset style="margin: 14px 0 0; padding: 0; border: 0; min-width: 0">
-<legend class="sr">How long, and price</legend>
-<span class="eb" aria-hidden="true" style="display: block; color: {{mute}}">How long</span>
-<div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px">
+<fieldset style="margin: 8px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="sr">Length and price</legend>
+<div class="hs" style="display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px">
+<button type="button" aria-pressed="{{freePressed}}" onClick="{{toggleFree}}" class="glass press" style="flex-shrink: 0; height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid {{freeBd}}; background: {{freeBg}}; color: {{freeFg}}; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 9px"><span aria-hidden="true" style="position: relative; width: 30px; height: 18px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{trackBd}}; background: {{trackBg}}; transition: background-color 300ms ease"><span style="position: absolute; left: 3px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: {{knobBg}}; transform: {{knobX}}; transition: transform 380ms cubic-bezier(.34,1.56,.64,1)"></span></span>Free only</button>
 <sc-for list="{{durs}}" as="o" hint-placeholder-count="4">
-<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="press" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-size: 14px; font-weight: 600">{{o.label}}</button>
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" class="glass press" style="flex-shrink: 0; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-size: 14px; font-weight: 600">{{o.label}}</button>
 </sc-for>
 </div>
-<div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid {{line}}; display: flex; align-items: center; justify-content: space-between; gap: 12px">
-<span class="eb" aria-hidden="true" style="color: {{mute}}">Price</span>
-<button type="button" aria-pressed="{{freePressed}}" onClick="{{toggleFree}}" class="press" style="height: 44px; flex-shrink: 0; padding: 0 12px 0 10px; border-radius: 999px; border: 1px solid {{freeBd}}; background: {{freeBg}}; color: {{freeFg}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 9px"><span aria-hidden="true" style="position: relative; width: 30px; height: 18px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{trackBd}}; background: {{trackBg}}; transition: background-color 300ms ease"><span style="position: absolute; left: 3px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: {{knobBg}}; transform: {{knobX}}; transition: transform 380ms cubic-bezier(.34,1.56,.64,1)"></span></span>Free only</button>
-</div>
 </fieldset>
-</div>
 
-</header>
-
-<!-- ================= CENTRE: results ================= -->
-<main class="hs" aria-labelledby="results-title" style="position: absolute; left: 540px; top: 0; bottom: 0; width: 876px; overflow-y: auto; scrollbar-width: none; padding: 40px 14px 40px 10px; box-sizing: border-box">
+<!-- ================= RESULTS ================= -->
+<section aria-labelledby="results-title" style="margin-top: 32px">
 <div style="padding: 0 4px">
-<h2 id="results-title" aria-live="polite" class="disp tr" style="font-size: 32px; font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90; color: {{ink}}; text-shadow: {{hlShadow}}">{{resultTitle}}</h2>
+<h2 id="results-title" aria-live="polite" class="disp tr" style="font-size: 27px; font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; font-variation-settings: 'wdth' 90; color: {{ink}}; text-shadow: {{hlShadow}}">{{resultTitle}}</h2>
 <sc-if value="{{hasHidden}}" hint-placeholder-val="{{true}}">
-<p class="tr" style="margin-top: 8px; display: flex; align-items: flex-start; gap: 7px; font-size: 13.5px; line-height: 1.4; color: {{skyMute}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4.2 9.5 6-.4.8-1.3 2-2.5 3.2M6.2 7.6C4.4 8.8 3.1 10.6 2.5 12c1 1.8 4.5 6 9.5 6 1.5 0 2.9-.4 4.1-1"></path></svg><span>{{hiddenNote}}</span></p>
+<p class="tr" style="margin-top: 8px; display: flex; align-items: flex-start; gap: 7px; font-size: 13px; line-height: 1.4; color: {{skyMute}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 1.5px"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4.2 9.5 6-.4.8-1.3 2-2.5 3.2M6.2 7.6C4.4 8.8 3.1 10.6 2.5 12c1 1.8 4.5 6 9.5 6 1.5 0 2.9-.4 4.1-1"></path></svg><span>{{hiddenNote}}</span></p>
 </sc-if>
 </div>
 
 <sc-if value="{{hasResults}}" hint-placeholder-val="{{true}}">
-<div style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
-<button type="button" onClick="{{surpriseMe}}" class="glass press" style="height: 44px; padding: 0 18px 0 14px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass}}; color: {{ink}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"></path></svg>Surprise me</button>
+<div style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<button type="button" onClick="{{surpriseMe}}" class="glass press" style="height: 44px; padding: 0 16px 0 13px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass}}; color: {{ink}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"></path></svg>Surprise me</button>
 <fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
 <legend class="sr">Show results as</legend>
 <div class="glass tr" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid {{line}}; background: {{glass}}">
-<button type="button" aria-pressed="{{listPressed}}" onClick="{{showList}}" class="press" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: {{listBg}}; color: {{listFg}}; font-size: 14px; font-weight: 700">List</button>
-<button type="button" aria-pressed="{{mapPressed}}" onClick="{{showMap}}" class="press" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: {{mapBg}}; color: {{mapFg}}; font-size: 14px; font-weight: 700">Map</button>
+<button type="button" aria-pressed="{{listPressed}}" onClick="{{showList}}" class="press" style="height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: {{listBg}}; color: {{listFg}}; font-size: 14px; font-weight: 700">List</button>
+<button type="button" aria-pressed="{{mapPressed}}" onClick="{{showMap}}" class="press" style="height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: {{mapBg}}; color: {{mapFg}}; font-size: 14px; font-weight: 700">Map</button>
 </div>
 </fieldset>
 </div>
@@ -239,21 +219,21 @@ p,h1,h2,h3{margin:0}
 <!-- Surprise me reveal (spec §11.5) -->
 <div aria-live="polite">
 <sc-if value="{{showSurprise}}" hint-placeholder-val="{{false}}">
-<section aria-label="Surprise pick" class="glass2 a-up tr" style="margin-top: 14px; padding: 18px 20px 20px; border-radius: 26px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}">
+<section aria-label="Surprise pick" class="glass a-up tr" style="margin-top: 12px; padding: 16px 18px 18px; border-radius: 26px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
-<p class="eb" style="display: inline-flex; align-items: center; gap: 7px; color: {{accent}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>Surprise pick</p>
+<p style="display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>Surprise pick</p>
 <button type="button" onClick="{{closeSurprise}}" aria-label="Close the surprise pick" class="press" style="flex-shrink: 0; width: 44px; height: 44px; margin: -10px -12px -10px 0; padding: 0; border: 0; border-radius: 999px; background: transparent; color: {{ink}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </div>
 <sc-if value="{{spHas}}" hint-placeholder-val="{{true}}">
 <button type="button" onClick="{{sp.open}}" style="display: block; width: 100%; margin-top: 4px; padding: 0; border: 0; background: transparent; text-align: left; color: inherit">
-<sc-if value="{{sp.even}}" hint-placeholder-val="{{true}}"><span class="disp a-rise" style="display: block; font-size: 28px; font-weight: 700; line-height: 1.06; letter-spacing: -0.022em; font-variation-settings: 'wdth' 90">{{sp.name}}</span></sc-if>
-<sc-if value="{{sp.odd}}" hint-placeholder-val="{{false}}"><span class="disp a-rise" style="display: block; font-size: 28px; font-weight: 700; line-height: 1.06; letter-spacing: -0.022em; font-variation-settings: 'wdth' 90">{{sp.name}}</span></sc-if>
-<span style="display: block; margin-top: 6px; max-width: 60ch; font-size: 14.5px; line-height: 1.45; color: {{mute}}">{{sp.blurb}}</span>
+<sc-if value="{{sp.even}}" hint-placeholder-val="{{true}}"><span class="disp a-rise" style="display: block; font-size: 26px; font-weight: 700; line-height: 1.06; letter-spacing: -0.022em; font-variation-settings: 'wdth' 90">{{sp.name}}</span></sc-if>
+<sc-if value="{{sp.odd}}" hint-placeholder-val="{{false}}"><span class="disp a-rise" style="display: block; font-size: 26px; font-weight: 700; line-height: 1.06; letter-spacing: -0.022em; font-variation-settings: 'wdth' 90">{{sp.name}}</span></sc-if>
+<span style="display: block; margin-top: 6px; font-size: 14.5px; line-height: 1.45; color: {{mute}}">{{sp.blurb}}</span>
 </button>
 <p style="margin-top: 10px; display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700"><svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true" style="color: {{sp.meterCol}}"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{sp.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{sp.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{sp.m3}}"></rect></svg>{{sp.fitText}}</p>
 <sc-if value="{{sp.fallback}}" hint-placeholder-val="{{false}}"><p style="margin-top: 6px; font-size: 13px; line-height: 1.4; color: {{mute}}">{{sp.fallbackNote}}</p></sc-if>
 <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px">
-<a href="A-Calendar-Desktop.dc.html" aria-label="Add {{sp.name}} to a day" class="press" style="height: 44px; padding: 0 16px; box-sizing: border-box; border-radius: 14px; background: {{sel}}; color: {{selInk}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add to a day</a>
+<a href="A-AddToDay-Mobile.dc.html" aria-label="Add {{sp.name}} to a day" class="press" style="height: 44px; padding: 0 16px; box-sizing: border-box; border-radius: 14px; background: {{sel}}; color: {{selInk}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add to a day</a>
 <button type="button" onClick="{{surpriseMe}}" class="press" style="height: 44px; padding: 0 16px; border-radius: 14px; border: 1px solid {{line}}; background: {{soft}}; color: {{ink}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>Another one</button>
 </div>
 </sc-if>
@@ -265,83 +245,188 @@ p,h1,h2,h3{margin:0}
 </div>
 
 <sc-if value="{{noResults}}" hint-placeholder-val="{{false}}">
-<div class="glass a-up" style="margin-top: 16px; padding: 26px; border-radius: 26px; background: {{glass}}; border: 1px solid {{line}}">
-<p class="disp" style="font-size: 28px; font-weight: 700; letter-spacing: -0.025em">Nothing fits those filters yet.</p>
-<p style="margin-top: 8px; font-size: 15px; line-height: 1.45; color: {{mute}}">Try another group or turn off Free only.</p>
-<button type="button" onClick="{{resetFilters}}" class="press" style="margin-top: 16px; height: 44px; padding: 0 20px; border-radius: 14px; border: 0; background: {{sel}}; color: {{selInk}}; font-weight: 700">Reset filters</button>
+<div class="glass a-up" style="margin-top: 14px; padding: 22px; border-radius: 26px; background: {{glass}}; border: 1px solid {{line}}">
+<p class="disp" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Nothing fits those filters yet.</p>
+<p style="margin-top: 6px; font-size: 14px; line-height: 1.45; color: {{mute}}">Try another group or turn off Free only.</p>
+<button type="button" onClick="{{resetFilters}}" class="press" style="margin-top: 14px; height: 44px; padding: 0 18px; border-radius: 14px; border: 0; background: {{sel}}; color: {{selInk}}; font-weight: 700">Reset filters</button>
 </div>
 </sc-if>
 
 <!-- Map (spec §11.2): an honest placeholder, then every pin as text; selecting a pin shows its card below -->
 <sc-if value="{{showMapView}}" hint-placeholder-val="{{false}}">
-<div class="glass a-fade tr" style="margin-top: 14px; border-radius: 26px; background: {{glass}}; border: 1px solid {{line}}; overflow: hidden">
-<div style="margin: 6px; padding: 22px 18px; border-radius: 20px; border: 1.5px dashed {{line}}; display: flex; align-items: flex-start; gap: 12px">
-<svg width="28" height="28" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; color: {{accent}}"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"></path><path d="M9 4v13.5M15 6.5V20"></path></svg>
-<p style="font-size: 14.5px; line-height: 1.45"><span style="font-weight: 700">Map view:</span> the same results as labelled pins on a real map (loads map tiles).</p>
+<div class="glass a-fade tr" style="margin-top: 12px; border-radius: 26px; background: {{glass}}; border: 1px solid {{line}}; overflow: hidden">
+<div style="margin: 6px; padding: 18px 16px; border-radius: 20px; border: 1.5px dashed {{line}}; display: flex; align-items: flex-start; gap: 12px">
+<svg width="26" height="26" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; color: {{accent}}"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"></path><path d="M9 4v13.5M15 6.5V20"></path></svg>
+<p style="font-size: 14px; line-height: 1.45"><span style="font-weight: 700">Map view:</span> the same results as labelled pins on a real map (loads map tiles).</p>
 </div>
-<p class="eb" style="padding: 10px 18px 4px; color: {{mute}}">{{pinCountLabel}}</p>
-<ul aria-label="Map pins" style="list-style: none; margin: 0; padding: 0 6px 6px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 4px">
-<sc-for list="{{pins}}" as="pin" hint-placeholder-count="6">
-<li><button type="button" aria-pressed="{{pin.pressed}}" aria-label="{{pin.aria}}" onClick="{{pin.pick}}" class="press" style="width: 100%; min-height: 44px; padding: 6px 10px; border: 0; border-radius: 14px; background: {{pin.bg}}; color: {{pin.fg}}; text-align: left; display: flex; align-items: center; gap: 8px; font-size: 13.5px"><span class="disp" style="flex-shrink: 0; width: 20px; font-weight: 800; font-variation-settings: 'wdth' 80">{{pin.num}}</span><span style="flex: 1; min-width: 0; font-weight: 600; line-height: 1.3">{{pin.name}}</span><span style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700"><svg width="15" height="12" viewBox="0 0 18 14" aria-hidden="true"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{pin.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{pin.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{pin.m3}}"></rect></svg>{{pin.fitLabel}}</span></button></li>
+<p style="padding: 10px 18px 4px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{mute}}">{{pinCountLabel}}</p>
+<ul aria-label="Map pins" style="list-style: none; margin: 0; padding: 0 6px 6px; display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{pins}}" as="pin" hint-placeholder-count="4">
+<li><button type="button" aria-pressed="{{pin.pressed}}" aria-label="{{pin.aria}}" onClick="{{pin.pick}}" class="press" style="width: 100%; min-height: 44px; padding: 6px 12px; border: 0; border-radius: 14px; background: {{pin.bg}}; color: {{pin.fg}}; text-align: left; display: flex; align-items: center; gap: 10px; font-size: 14px"><span class="disp" style="flex-shrink: 0; width: 22px; font-weight: 800; font-variation-settings: 'wdth' 80">{{pin.num}}</span><span style="flex: 1; min-width: 0; font-weight: 600; line-height: 1.3">{{pin.name}}</span><span style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700"><svg width="16" height="12" viewBox="0 0 18 14" aria-hidden="true"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{pin.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{pin.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{pin.m3}}"></rect></svg>{{pin.fitLabel}}</span></button></li>
 </sc-for>
 </ul>
 </div>
-<sc-if value="{{noPin}}" hint-placeholder-val="{{true}}"><p class="tr" style="margin-top: 10px; padding: 0 4px; font-size: 13.5px; color: {{skyMute}}">Choose a pin to see its card here.</p></sc-if>
+<sc-if value="{{noPin}}" hint-placeholder-val="{{true}}"><p class="tr" style="margin-top: 10px; padding: 0 4px; font-size: 13px; color: {{skyMute}}">Choose a pin to see its card here.</p></sc-if>
 </sc-if>
 
-<ol aria-label="Ranked results" style="list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch">
-<sc-for list="{{listCards}}" as="c" hint-placeholder-count="6">
-<li style="display: flex; min-width: 0">
-<article class="glass a-up lift" style="animation-delay: {{c.delay}}; flex: 1; min-width: 0; display: flex; flex-direction: column; border-radius: 24px; background: {{glass}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; overflow: hidden">
-<button type="button" onClick="{{c.open}}" style="display: block; width: 100%; padding: 16px 16px 0; border: 0; background: transparent; text-align: left; color: inherit">
-<span style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
-<span class="disp" style="font-size: 32px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; font-variation-settings: 'wdth' 80; color: {{accent}}">{{c.num}}</span>
-<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px 0 9px; border-radius: 999px; background: {{soft}}; border: 1px solid {{line}}; font-size: 12.5px; font-weight: 700"><svg width="16" height="13" viewBox="0 0 18 14" aria-hidden="true" style="color: {{c.meterCol}}"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{c.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{c.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{c.m3}}"></rect></svg>{{c.fitLabel}}<span class="sr"> when {{wxAdj}}</span></span>
+<ol aria-label="Ranked results" style="list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{listCards}}" as="c" hint-placeholder-count="3">
+<li>
+<article class="glass a-up tr" style="animation-delay: {{c.delay}}; border-radius: 26px; background: {{glass}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; overflow: hidden">
+<button type="button" onClick="{{c.open}}" style="display: block; width: 100%; padding: 18px 18px 0; border: 0; background: transparent; text-align: left; color: inherit">
+<span style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<span style="display: flex; align-items: baseline; gap: 10px; min-width: 0">
+<span class="disp" style="font-size: 16px; font-weight: 800; font-variation-settings: 'wdth' 80; color: {{accent}}">{{c.num}}</span>
+<span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: {{mute}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.cat}} · {{c.area}}</span>
 </span>
-<span class="eb" style="display: block; margin-top: 12px; font-size: 10.5px; font-weight: 600; color: {{mute}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.cat}} · {{c.area}}</span>
-<span class="disp" style="display: block; margin-top: 5px; font-size: 21px; font-weight: 650; line-height: 1.08; letter-spacing: -0.02em; font-variation-settings: 'wdth' 90">{{c.name}}</span>
-<span style="display: block; margin-top: 7px; font-size: 13.5px; line-height: 1.45; color: {{mute}}">{{c.blurb}}</span>
-<sc-if value="{{c.isPlanned}}" hint-placeholder-val="{{false}}"><span style="margin-top: 9px; display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: {{accent}}"><svg width="14" height="14" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{c.plannedText}}</span></sc-if>
+<span style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px 0 10px; border-radius: 999px; background: {{soft}}; border: 1px solid {{line}}; font-size: 13px; font-weight: 700"><svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true" style="color: {{c.meterCol}}"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{c.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{c.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{c.m3}}"></rect></svg>{{c.fitLabel}}<span class="sr"> when {{wxAdj}}</span></span>
+</span>
+<span class="disp" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-top: 10px; font-size: 24px; font-weight: 650; line-height: 1.06; letter-spacing: -0.022em; font-variation-settings: 'wdth' 90">{{c.name}}<svg width="20" height="20" viewBox="0 0 24 24" class="ic" aria-hidden="true" style="flex-shrink: 0; margin-top: 4px; opacity: 0.7"><path d="M7 17L17 7M9 7h8v8"></path></svg></span>
+<span style="display: block; margin-top: 8px; font-size: 14px; line-height: 1.45; color: {{mute}}">{{c.blurb}}</span>
+<sc-if value="{{c.isPlanned}}" hint-placeholder-val="{{false}}"><span style="margin-top: 10px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: {{accent}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{c.plannedText}}</span></sc-if>
 </button>
-<span style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 12px 16px 0; font-size: 12.5px; color: {{mute}}">
-<span style="display: inline-flex; align-items: center; gap: 5px"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>{{c.dur}}</span>
-<span style="display: inline-flex; align-items: center; gap: 5px"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M4 9V7a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a3 3 0 0 0 0 6v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a3 3 0 0 0 0-6z"></path></svg><span class="sr">Cost: </span>{{c.cost}}</span>
-</span>
-<ul aria-label="Fit for each sky" style="list-style: none; margin: 12px 12px 0; padding: 4px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; border-radius: 15px; background: {{soft}}">
+<ul aria-label="Fit for each sky" style="list-style: none; margin: 14px 14px 0; padding: 4px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; border-radius: 16px; background: {{soft}}">
 <sc-for list="{{c.wx}}" as="x" hint-placeholder-count="4">
-<li class="tr" style="height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border-radius: 11px; background: {{x.cellBg}}; color: {{x.cellFg}}; font-size: 11.5px; font-weight: {{x.cellW}}">
+<li class="tr" style="height: 36px; display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 12px; background: {{x.cellBg}}; color: {{x.cellFg}}; font-size: 12px; font-weight: {{x.cellW}}">
 <sc-if value="{{x.isSun}}" hint-placeholder-val="{{true}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2M12 19.2v2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M2.8 12h2M19.2 12h2M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg></sc-if>
 <sc-if value="{{x.isCloud}}" hint-placeholder-val="{{false}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7.5 18.5h9.5a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.9 9.2 4.7 4.7 0 0 0 7.5 18.5z"></path></svg></sc-if>
 <sc-if value="{{x.isRain}}" hint-placeholder-val="{{false}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7.5 14.5h9.5a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.9 5.2 4.7 4.7 0 0 0 7.5 14.5z"></path><path d="M8.5 17.5l-1 3M12.5 17.5l-1 3M16.5 17.5l-1 3"></path></svg></sc-if>
 <sc-if value="{{x.isHot}}" hint-placeholder-val="{{false}}"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="9" r="3.6"></circle><path d="M12 2.6v1.3M6.8 4.6l.9.9M17.2 4.6l-.9.9M4.8 9.5h1.3M17.9 9.5h1.3M4 15.5c1.3-1 2.7-1 4 0s2.7 1 4 0 2.7-1 4 0 2.7 1 4 0M4 19.5c1.3-1 2.7-1 4 0s2.7 1 4 0 2.7-1 4 0 2.7 1 4 0"></path></svg></sc-if>
-<span><span class="sr">{{x.wname}}: </span>{{x.fitLabel}}</span>
+<span class="sr">{{x.wname}}: </span>{{x.fitLabel}}
 </li>
 </sc-for>
 </ul>
-<div style="padding: 12px; display: grid; grid-template-columns: 1fr; gap: 6px">
-<a href="A-Calendar-Desktop.dc.html" aria-label="Add {{c.name}} to a day" class="press" style="height: 44px; padding: 0 8px; box-sizing: border-box; border-radius: 14px; border: 1px solid {{sel}}; background: {{sel}}; color: {{selInk}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add to a day</a>
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 14px 14px">
+<span style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding-left: 4px; font-size: 13px; color: {{mute}}">
+<span style="display: inline-flex; align-items: center; gap: 5px"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>{{c.dur}}</span>
+<span style="display: inline-flex; align-items: center; gap: 5px"><svg width="15" height="15" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M4 9V7a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a3 3 0 0 0 0 6v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a3 3 0 0 0 0-6z"></path></svg><span class="sr">Cost: </span>{{c.cost}}</span>
+</span>
+<a href="A-AddToDay-Mobile.dc.html" aria-label="Add {{c.name}} to a day" class="press" style="height: 44px; min-width: 88px; padding: 0 14px; box-sizing: border-box; border-radius: 14px; border: 1px solid {{sel}}; background: {{sel}}; color: {{selInk}}; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add</a>
 </div>
 </article>
 </li>
 </sc-for>
 </ol>
+</section>
 </main>
+</sc-if>
 
-<!-- ================= TOP RIGHT: Discover | My plans (My plans has its own page) ================= -->
-<nav aria-label="Main" class="glass tr" style="position: absolute; right: 38px; top: 28px; z-index: 5; height: 54px; padding: 4px; box-sizing: border-box; border-radius: 999px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; display: flex; gap: 4px; white-space: nowrap">
-<a href="A-Sky-Desktop.dc.html" aria-current="page" class="press" style="height: 44px; padding: 0 18px 0 14px; border-radius: 999px; background: {{sel}}; color: {{selInk}}; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; text-decoration: none"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM15.5 8.5l-2 5-5 2 2-5z"></path></svg>Discover</a>
-<a href="A-Calendar-Desktop.dc.html" class="press" style="height: 44px; padding: 0 10px 0 14px; border-radius: 999px; color: {{ink}}; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; text-decoration: none"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6.5 5h11A2.5 2.5 0 0 1 20 7.5v10a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-10A2.5 2.5 0 0 1 6.5 5zM4 10h16M8.5 3v4M15.5 3v4"></path></svg>My plans<span style="min-width: 24px; height: 24px; padding: 0 7px; box-sizing: border-box; border-radius: 999px; background: {{sel}}; color: {{selInk}}; font-size: 12.5px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center">{{planCount}}<span class="sr"> coming up</span></span></a>
+<!-- ================= MY WEEKEND ================= -->
+<sc-if value="{{isPlan}}" hint-placeholder-val="{{false}}">
+<main class="hs a-fade" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 22px 16px 124px; box-sizing: border-box">
+<header style="padding: 0 4px">
+<p style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: {{skyMute}}">Sat 3 – Sun 4 Oct</p>
+<h1 class="disp a-rise" style="margin-top: 12px; font-size: 50px; font-weight: 750; line-height: 0.92; letter-spacing: -0.04em; font-variation-settings: 'wdth' 80; text-shadow: {{hlShadow}}">Your weekend</h1>
+<p style="margin-top: 10px; font-size: 15px; line-height: 1.4; color: {{skyMute}}">{{planCountLabel}}. Each day reads its own forecast.</p>
+<div style="margin-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+<button type="button" aria-pressed="{{sharePressed}}" onClick="{{toggleShare}}" class="glass press" style="height: 46px; padding: 0 18px 0 14px; border-radius: 999px; border: 1px solid {{line}}; background: {{shareBg}}; color: {{shareFg}}; font-size: 14.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px">
+<sc-if value="{{notShared}}" hint-placeholder-val="{{true}}"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"></path><path d="M5 12v6.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V12"></path></svg></sc-if>
+<sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><svg class="a-pop ic icb" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+Share plan</button>
+<p aria-live="polite" style="font-size: 13.5px; font-weight: 600; color: {{skyMute}}"><sc-if value="{{shared}}" hint-placeholder-val="{{false}}"><span class="a-rise" style="display: inline-block">{{shareLabel}}</span></sc-if></p>
+</div>
+</header>
+
+<sc-for list="{{days}}" as="day" hint-placeholder-count="2">
+<section class="a-up" style="animation-delay: {{day.delay}}; position: relative; margin-top: 16px; min-height: 300px; border-radius: 32px; overflow: hidden; isolation: isolate; color: {{day.ink}}; box-shadow: 0 22px 50px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.18); transition: color 900ms ease">
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1">
+<div class="sky" style="opacity: {{day.opSun}}; background: linear-gradient(170deg, #0F3FB8 0%, #2659D8 100%)">
+<svg class="spin60" width="200" height="200" viewBox="0 0 300 300" style="position: absolute; right: -70px; top: -70px"><path d="M150 66V30M192 77.3L210 46.1M222.7 108L253.9 90M234 150H270M222.7 192L253.9 210M192 222.7L210 253.9M150 234V270M108 222.7L90 253.9M77.3 192L46.1 210M66 150H30M77.3 108L46.1 90M108 77.3L90 46.1" fill="none" stroke="#FFD66B" stroke-width="3" stroke-linecap="round" opacity="0.5"></path></svg>
+<div style="position: absolute; right: -12px; top: -12px; width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle at 36% 34%, #FFF2C2 0%, #FFD65C 38%, #FFC940 64%, #F2A51E 100%); box-shadow: 0 0 40px 12px rgba(255,201,64,0.32)"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 64px; background: linear-gradient(180deg, #1B4FD2, #0B2C82)"><span class="gl" style="left: 40%; top: 14px; width: 30px"></span><span class="gl" style="left: 70%; top: 30px; width: 20px; animation-delay: -1.2s"></span><span class="gl" style="left: 18%; top: 40px; width: 16px; animation-delay: -2.3s"></span></div>
+</div>
+<div class="sky" style="opacity: {{day.opCloud}}; background: linear-gradient(170deg, #8E9AA8 0%, #C9D1D9 100%)">
+<svg class="dT" width="200" height="90" viewBox="0 0 200 90" style="position: absolute; left: 150px; top: 8px; opacity: 0.8; animation-duration: 30s; animation-delay: -10s"><use href="#cl" fill="url(#cg)"></use></svg>
+<svg class="dT" width="150" height="68" viewBox="0 0 200 90" style="position: absolute; left: 20px; top: 150px; opacity: 0.6; filter: blur(2px); animation-duration: 40s; animation-delay: -20s"><use href="#cl" fill="url(#cg)"></use></svg>
+</div>
+<div class="sky" style="opacity: {{day.opRain}}; background: linear-gradient(170deg, #0A1330 0%, #1C2B55 100%)">
+<div style="position: absolute; inset: -20%; transform: rotate(10deg)">
+<div class="f2" style="position: absolute; left: 0; right: 0; top: -160px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rM)"></rect></svg></div>
+<div class="f3" style="position: absolute; left: 0; right: 0; top: -220px; bottom: 0"><svg width="100%" height="100%"><rect width="100%" height="100%" fill="url(#rN)"></rect></svg></div>
+</div>
+</div>
+<div class="sky" style="opacity: {{day.opHot}}; background: linear-gradient(170deg, #9A2D0B 0%, #C04A18 100%)">
+<div class="breathe" style="position: absolute; right: -40px; top: -40px; width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle at 45% 40%, #FFF4D6 0%, #FFE3A1 45%, #FFD07A 100%); box-shadow: 0 0 60px 20px rgba(255,200,120,0.35)"></div>
+<svg width="660" height="40" viewBox="0 0 660 40" style="position: absolute; left: 0; top: 92px"><g fill="none" stroke="rgba(255,236,200,0.35)" stroke-width="2" stroke-linecap="round"><path class="wv" d="M0 10q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0"></path><path class="wv" d="M0 30q30-6 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" style="animation-duration: 8s"></path></g></svg>
+</div>
+</div>
+
+<div style="padding: 22px 14px 14px">
+<div style="padding: 0 6px">
+<h2 class="disp" style="font-size: 38px; font-weight: 750; line-height: 0.95; letter-spacing: -0.035em; font-variation-settings: 'wdth' 80">{{day.label}}</h2>
+<p style="margin-top: 8px; font-size: 14px; font-weight: 600">{{day.date}} · {{day.forecastLabel}} forecast</p>
+<sc-if value="{{day.hasWarn}}" hint-placeholder-val="{{false}}"><p class="glass a-fade" style="margin-top: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; background: {{day.glass}}; border: 1px solid {{day.line}}; font-size: 12.5px; font-weight: 700"><svg width="14" height="14" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>{{day.warnText}}</p></sc-if>
+</div>
+<fieldset style="margin: 16px 0 0; padding: 0; border: 0; min-width: 0">
+<legend class="sr">{{day.label}} forecast</legend>
+<div class="glass" style="padding: 4px; border-radius: 18px; background: {{day.glass}}; border: 1px solid {{day.line}}; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{day.wx}}" as="w" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{w.pressed}}" aria-label="{{w.aria}}" onClick="{{w.pick}}" class="press" style="height: 44px; padding: 0; border: 0; border-radius: 14px; background: {{w.bg}}; color: {{w.fg}}; font-size: 12.5px; font-weight: {{w.fw}}; display: flex; align-items: center; justify-content: center; gap: 5px">
+<sc-if value="{{w.isSun}}" hint-placeholder-val="{{true}}"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2M12 19.2v2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M2.8 12h2M19.2 12h2M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg></sc-if>
+<sc-if value="{{w.isCloud}}" hint-placeholder-val="{{false}}"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7.5 18.5h9.5a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.9 9.2 4.7 4.7 0 0 0 7.5 18.5z"></path></svg></sc-if>
+<sc-if value="{{w.isRain}}" hint-placeholder-val="{{false}}"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M7.5 14.5h9.5a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.9 5.2 4.7 4.7 0 0 0 7.5 14.5z"></path><path d="M8.5 17.5l-1 3M12.5 17.5l-1 3M16.5 17.5l-1 3"></path></svg></sc-if>
+<sc-if value="{{w.isHot}}" hint-placeholder-val="{{false}}"><svg width="17" height="17" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="9" r="3.6"></circle><path d="M12 2.6v1.3M6.8 4.6l.9.9M17.2 4.6l-.9.9M4.8 9.5h1.3M17.9 9.5h1.3M4 15.5c1.3-1 2.7-1 4 0s2.7 1 4 0 2.7-1 4 0 2.7 1 4 0M4 19.5c1.3-1 2.7-1 4 0s2.7 1 4 0 2.7-1 4 0 2.7 1 4 0"></path></svg></sc-if>
+<span aria-hidden="true">{{w.tag}}</span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+
+<sc-for list="{{day.items}}" as="it" hint-placeholder-count="2">
+<div class="glass a-up" style="animation-delay: {{it.delay}}; margin-top: 10px; border-radius: 22px; background: {{it.glass}}; border: 1px solid {{it.line}}; overflow: hidden; color: {{it.ink}}">
+<div style="display: flex; align-items: center; gap: 4px; padding: 6px 6px 6px 16px">
+<button type="button" onClick="{{it.open}}" style="flex: 1; min-width: 0; min-height: 56px; padding: 6px 0; border: 0; background: transparent; text-align: left; color: inherit; display: flex; flex-direction: column; gap: 5px">
+<span style="font-size: 16px; font-weight: 650; line-height: 1.25">{{it.name}}</span>
+<span style="display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: {{it.mute}}"><svg width="16" height="12" viewBox="0 0 18 14" aria-hidden="true" style="color: {{it.meterCol}}"><rect x="0" y="8" width="4" height="6" rx="1.2" fill="currentColor" style="opacity: {{it.m1}}"></rect><rect x="7" y="4" width="4" height="10" rx="1.2" fill="currentColor" style="opacity: {{it.m2}}"></rect><rect x="14" y="0" width="4" height="14" rx="1.2" fill="currentColor" style="opacity: {{it.m3}}"></rect></svg>{{it.fitLabel}} · {{it.dur}}</span>
+</button>
+<button type="button" aria-label="{{it.removeLabel}}" onClick="{{it.remove}}" class="press" style="flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 14px; background: transparent; color: {{it.mute}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<sc-if value="{{it.hasBackup}}" hint-placeholder-val="{{false}}">
+<div class="a-slide" style="margin: 0 6px 6px; padding: 14px; border-radius: 18px; background: {{it.soft}}; display: flex; gap: 12px">
+<span class="a-swing" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px; color: {{it.accent}}"><svg width="26" height="26" viewBox="0 0 24 24" class="ic"><path d="M3 12a9 9 0 0 1 18 0z"></path><path d="M12 12v6.5a2 2 0 0 1-4 0M12 3V2"></path></svg></span>
+<span style="flex: 1; min-width: 0">
+<span style="display: block; font-size: 13px; line-height: 1.4; color: {{it.mute}}">{{it.badText}}</span>
+<span style="display: block; margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">Plan B</span>
+<span class="disp" style="display: block; margin-top: 2px; font-size: 19px; font-weight: 700; line-height: 1.1; letter-spacing: -0.015em">{{it.backup.name}}</span>
+<span style="display: block; margin-top: 3px; font-size: 12.5px; color: {{it.mute}}">{{it.backup.area}} · {{it.backup.dur}}</span>
+<button type="button" onClick="{{it.backup.swap}}" class="press" style="margin-top: 10px; height: 44px; padding: 0 16px; border: 0; border-radius: 14px; background: {{it.sel}}; color: {{it.selInk}}; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px"><svg width="16" height="16" viewBox="0 0 24 24" class="ic icb" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg>Swap it in</button>
+</span>
+</div>
+</sc-if>
+<sc-if value="{{it.badOnly}}" hint-placeholder-val="{{false}}">
+<p class="a-slide" style="margin: 0 6px 6px; padding: 12px 14px; border-radius: 18px; background: {{it.soft}}; font-size: 13px; line-height: 1.4">{{it.badText}} Try moving it to the other day.</p>
+</sc-if>
+</div>
+</sc-for>
+
+<sc-if value="{{day.isEmpty}}" hint-placeholder-val="{{false}}">
+<div class="glass a-fade" style="margin-top: 10px; padding: 18px; border-radius: 22px; background: {{day.glass}}; border: 1px dashed {{day.line}}">
+<p style="font-size: 15px; font-weight: 600">Nothing planned for {{day.label}} yet.</p>
+<button type="button" onClick="{{day.find}}" class="press" style="margin-top: 12px; height: 44px; padding: 0 16px; border-radius: 14px; border: 1px solid {{day.line}}; background: transparent; color: inherit; font-weight: 700">Find something</button>
+</div>
+</sc-if>
+</div>
+</section>
+</sc-for>
+</main>
+</sc-if>
+
+<!-- ================= TAB BAR ================= -->
+<sc-if value="{{showTabs}}" hint-placeholder-val="{{true}}">
+<nav aria-label="Main" class="glass tr" style="position: absolute; left: 16px; right: 16px; bottom: 16px; height: 68px; padding: 6px; box-sizing: border-box; border-radius: 26px; background: {{glass2}}; border: 1px solid {{line}}; box-shadow: {{shadow}}; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<button type="button" aria-current="{{tabDiscoverCurrent}}" onClick="{{goDiscover}}" class="press" style="border: 0; border-radius: 20px; background: {{tabDBg}}; color: {{tabDFg}}; font-size: 14.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg>Discover</button>
+<a href="A-Calendar-Mobile.dc.html" class="press" style="border: 0; border-radius: 20px; background: {{tabPBg}}; color: {{tabPFg}}; font-size: 14.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none"><svg width="19" height="19" viewBox="0 0 24 24" class="ic" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3v4M15.5 3v4"></path></svg>My plans<span style="min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: {{badgeBg}}; color: {{badgeFg}}; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center">{{planCount}}<span class="sr"> planned</span></span></a>
 </nav>
-
-<!-- ================= DETAIL: the full detail page (A-Detail-Desktop), sharing this prototype's weather and weekend plan ================= -->
+</sc-if>
+<!-- ================= DETAIL: the full detail page (A-Detail-Mobile), sharing this prototype's weather and weekend plan ================= -->
 <sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
 <div class="a-fade" style="position: absolute; inset: 0; z-index: 30">
-<dc-import name="A-Detail-Desktop" activity="{{d.id}}" weather="{{weather}}" in-sat="{{d.inSat}}" in-sun="{{d.inSun}}" back="{{goBack}}" toggle-sat="{{d.toggleSat}}" toggle-sun="{{d.toggleSun}}" set-weather="{{setWeather}}" open-activity="{{openActivity}}" hint-size="1440px,960px"></dc-import>
+<dc-import name="A-Detail-Mobile" activity="{{d.id}}" weather="{{weather}}" in-sat="{{d.inSat}}" in-sun="{{d.inSun}}" back="{{goBack}}" toggle-sat="{{d.toggleSat}}" toggle-sun="{{d.toggleSun}}" set-weather="{{setWeather}}" open-activity="{{openActivity}}" hint-size="390px,844px"></dc-import>
 </div>
 </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"startWeather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"sun"},"$preview":{"width":1440,"height":960}}'>
+<script type="text/x-dc" data-dc-script data-props='{"startWeather":{"editor":"enum","options":["sun","cloud","rain","hot"],"default":"rain"},"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);
@@ -354,6 +439,22 @@ class Component extends DCLogic {
     };
     // Spec §11 additions: Surprise me (pick + recent picks) and the List / Map view.
     Object.assign(this.state, { surprise: null, recent: [], view: "list", pinned: null });
+    // ---- Where you're exploring (owner, 6 Oct 2026): all of Australia is the aim; New South Wales is live first. ----
+    this.VARIANT = "chips";
+    this.STATES = [
+      { key: "nsw", short: "NSW", name: "New South Wales", live: true },
+      { key: "vic", short: "VIC", name: "Victoria" }, { key: "qld", short: "QLD", name: "Queensland" },
+      { key: "wa", short: "WA", name: "Western Australia" }, { key: "sa", short: "SA", name: "South Australia" },
+      { key: "tas", short: "TAS", name: "Tasmania" }, { key: "act", short: "ACT", name: "Australian Capital Territory" },
+      { key: "nt", short: "NT", name: "Northern Territory" }
+    ];
+    // A3's tile map of Australia: [x, y, w, h] in a 300 × 262 grid, schematic, not to scale.
+    this.TILES = { wa: [0, 40, 100, 170], nt: [104, 20, 76, 90], sa: [104, 114, 86, 96], qld: [184, 0, 104, 120], nsw: [194, 124, 94, 62], vic: [194, 190, 68, 40], act: [266, 190, 26, 26], tas: [212, 236, 44, 26] };
+    this.TILE_K = 1.12;
+    // A2's regions: the activities so far are in Sydney or the Blue Mountains; the rest of NSW comes next.
+    this.REGIONS = [{ key: "all", label: "All of NSW" }, { key: "sydney", label: "Sydney" }, { key: "blue", label: "Blue Mountains" }];
+    this.SOON_REGIONS = ["Hunter Valley", "South Coast", "North Coast"];
+    Object.assign(this.state, { st: "nsw", region: "all", picker: !(this.props && this.props.picker === "closed"), peek: null });
     // Rating vocabulary: index 0 = skip, 1 = ok, 2 = great. A direction may reword these (keep them short).
     this.FIT = [
       { label: "Skip", note: "Save it for another day" },
@@ -683,7 +784,7 @@ class Component extends DCLogic {
     const meter = (f, q) => ({ m1: f > 0 ? 1 : 0.28, m2: f > 0 ? 1 : 0.28, m3: f === 2 ? 1 : 0.28, meterCol: f === 2 ? q.great : q.ink });
     const ops = (k) => ({ opSun: k === "sun" ? 1 : 0, opCloud: k === "cloud" ? 1 : 0, opRain: k === "rain" ? 1 : 0, opHot: k === "hot" ? 1 : 0 });
     const tone = (on, q, off) => ({ bg: on ? q.sel : (off || q.soft), fg: on ? q.selInk : q.ink, bd: on ? q.sel : q.line });
-    const pill = (o) => { const t = tone(o.selected, p, p.soft); return Object.assign({}, o, { bg: t.bg, fg: t.fg, bd: t.bd }); };
+    const pill = (o) => { const t = tone(o.selected, p, p.glass); return Object.assign({}, o, { bg: t.bg, fg: t.fg, bd: t.bd }); };
     // "Set the sky" strip: the chosen segment fills with a slightly deeper mini sky so a white cloud still reads.
     const SEG = { sun: "linear-gradient(160deg, #1546C4 0%, #386DE5 100%)", cloud: "linear-gradient(165deg, #5F6D7F 0%, #697789 100%)", rain: "linear-gradient(165deg, #101B40 0%, #24356A 100%)", hot: "linear-gradient(165deg, #A8330D 0%, #BB581E 100%)" };
     const weathers = v.weathers.map((w) => Object.assign({}, w, {
@@ -718,14 +819,16 @@ class Component extends DCLogic {
         wx: day.wx.map((w) => Object.assign({}, w, { tag: TAG[w.key], bg: w.selected ? q.sel : "transparent", fg: w.selected ? q.selInk : q.ink, fw: w.selected ? "700" : "500" }))
       });
     });
-    const sh = tone(v.shared, p);
+    const onD = v.isDiscover, onP = v.isPlan, sh = tone(v.shared, p, p.glass);
     return Object.assign(ops(v.weather), {
       ink: p.ink, mute: p.mute, skyMute: p.sky, glass: p.glass, glass2: p.glass2, line: p.line, soft: p.soft,
       sel: p.sel, selInk: p.selInk, accent: p.accent, shadow: p.shadow, hlShadow: p.hl, scrim: p.scrim,
       weathers: weathers, whos: v.whos.map(pill), durs: v.durs.map(pill), cards: cards, d: d, days: days,
-      freeBg: v.freeOnly ? p.sel : p.soft, freeFg: v.freeOnly ? p.selInk : p.ink, freeBd: v.freeOnly ? p.sel : p.line,
+      freeBg: v.freeOnly ? p.sel : p.glass, freeFg: v.freeOnly ? p.selInk : p.ink, freeBd: v.freeOnly ? p.sel : p.line,
       trackBg: v.freeOnly ? p.selInk : "transparent", trackBd: v.freeOnly ? p.selInk : p.ink, knobBg: v.freeOnly ? p.sel : p.ink,
       knobX: v.freeOnly ? "translateX(12px)" : "translateX(0)",
+      tabDBg: onD ? p.sel : "transparent", tabDFg: onD ? p.selInk : p.ink, tabPBg: onP ? p.sel : "transparent", tabPFg: onP ? p.selInk : p.ink,
+      badgeBg: onP ? p.selInk : p.sel, badgeFg: onP ? p.sel : p.selInk,
       sharePressed: v.shared ? "true" : "false", shareBg: sh.bg, shareFg: sh.fg
     });
   }
@@ -817,10 +920,76 @@ class Component extends DCLogic {
     };
   }
 
+
+  // ---- Where (state and region). The three directions share these values; only the markup differs. ----
+  regionOf(a) { return a.area === "Blue Mountains" ? "blue" : "sydney"; }
+
+  // A2: the results for the chosen region, renumbered, with its own hidden count and title.
+  regionCut(v) {
+    const s = this.state, wi = this.WX.findIndex((w) => w.key === s.weather), byId = {};
+    this.acts.forEach((a) => { byId[a.id] = a; });
+    const inRegion = (a) => !!a && this.regionOf(a) === s.region;
+    const cards = v.cards.filter((c) => inRegion(byId[c.id])).map((c, i) => Object.assign(c, {
+      index: i, num: (i + 1 < 10 ? "0" : "") + (i + 1), delay: (i * 60) + "ms", isFirst: i === 0, notFirst: i !== 0 }));
+    const durOk = (a) => s.dur === "any" || (s.dur === "short" && a.h[1] <= 3) || (s.dur === "half" && a.h[0] <= 5 && a.h[1] >= 2) || (s.dur === "full" && a.h[1] >= 5);
+    const hidden = this.acts.filter((a) => inRegion(a) && (s.who === "any" || a.with.indexOf(s.who) >= 0) && (!s.freeOnly || a.cost === "Free") && durOk(a) && a.w[wi] === 0).length;
+    const where = s.region === "blue" ? " in the Blue Mountains" : " in Sydney";
+    Object.assign(v, { cards: cards, resultCount: String(cards.length), noResults: cards.length === 0, hasResults: cards.length > 0,
+      resultTitle: cards.length + (cards.length === 1 ? " idea" : " ideas") + " for a " + v.wxAdj + " day" + where,
+      hasHidden: hidden > 0, hiddenCount: String(hidden), hiddenNote: hidden + (hidden === 1 ? " more is" : " more are") + " better saved for another day" });
+  }
+
+  placeVals(v) {
+    const s = this.state, total = this.acts.length, k = this.TILE_K;
+    const cur = this.STATES.find((o) => o.key === s.st) || this.STATES[0];
+    const states = this.STATES.map((o) => {
+      const live = !!o.live, on = o.key === s.st, peek = o.key === s.peek, t = this.TILES[o.key], big = t[2] * t[3] >= 2600;
+      return Object.assign({}, o, {
+        live: live, soon: !live, selected: on, pressed: on ? "true" : "false", peeked: peek,
+        countLabel: live ? total + " things to do so far" : "Coming soon",
+        tileNote: live ? total + " to do" : "Soon", big: big, small: !big,
+        bg: on ? v.sel : peek ? v.glass2 : live ? v.glass2 : v.glass, fg: on ? v.selInk : live || peek ? v.ink : v.mute,
+        bd: on ? v.sel : peek ? v.ink : v.line, bs: live || peek ? "solid" : "dashed",
+        x: Math.round(t[0] * k) + "px", y: Math.round(t[1] * k) + "px", w: Math.round(t[2] * k) + "px", h: Math.round(t[3] * k) + "px",
+        fs: big ? "15px" : "11.5px", r: big ? "14px" : "9px",
+        aria: o.name + (live ? ", " + total + " things to do" : ", coming soon"),
+        pick: () => this.setState(live ? { st: o.key, picker: false, peek: null } : { peek: o.key })
+      });
+    });
+    const pk = this.STATES.find((o) => o.key === s.peek) || null;
+    const regions = this.REGIONS.map((r) => {
+      const n = r.key === "all" ? total : this.acts.filter((a) => this.regionOf(a) === r.key).length, on = s.region === r.key;
+      return { key: r.key, label: r.label, count: String(n), selected: on, pressed: on ? "true" : "false",
+        bg: on ? v.sel : v.glass, fg: on ? v.selInk : v.ink, bd: on ? v.sel : v.line, pick: () => this.setState({ region: r.key }) };
+    });
+    const HL = { all: ["NSW is", "looking", "NSW re-ranks around it."], sydney: ["Sydney’s", "looking", "Sydney re-ranks around it."],
+      blue: ["Blue Mountains", "are looking", "The Blue Mountains re-rank around it."] };
+    const h = HL[this.VARIANT === "chips" ? s.region : "all"];
+    const close = () => this.setState({ picker: false, peek: null });
+    return {
+      stName: cur.name, stShort: cur.short, states: states,
+      liveStates: states.filter((o) => o.live), soonStates: states.filter((o) => o.soon),
+      soonList: "Coming soon: " + this.STATES.filter((o) => !o.live).map((o) => o.name).join(", ") + ".",
+      pickerOpen: !!s.picker, pickerExpanded: s.picker ? "true" : "false",
+      openPicker: () => this.setState({ picker: true, peek: null }), closePicker: close,
+      togglePicker: () => this.setState({ picker: !this.state.picker, peek: null }),
+      goLive: () => this.setState({ st: "nsw", picker: false, peek: null }),
+      hasPeek: !!pk, noPeek: !pk,
+      peekTitle: pk ? pk.name + " isn’t here yet" : "",
+      peekText: pk ? "We’re starting with New South Wales. " + pk.name + " is on the list." : "",
+      nswBlurb: total + " things to do so far, from Sydney’s beaches and harbour to the Blue Mountains.",
+      mapW: Math.round(300 * k) + "px", mapH: Math.round(262 * k) + "px",
+      regions: regions, soonRegions: this.SOON_REGIONS.map((l) => ({ label: l })),
+      place1: h[0], place2: h[1], rerank: "Tap a sky. " + h[2], rerankDated: "Thu 1 Oct. Tap a sky. " + h[2]
+    };
+  }
+
   renderVals() {
     const v = this.baseVals();
+    if (this.VARIANT === "chips" && this.state.region !== "all") this.regionCut(v);
     Object.assign(v, this.themeVals(v));
-    return Object.assign(v, this.extraVals(v));
+    Object.assign(v, this.extraVals(v));
+    return Object.assign(v, this.placeVals(v));
   }
 }
 </script>

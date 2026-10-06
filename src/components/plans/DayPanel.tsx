@@ -56,7 +56,7 @@ export default function DayPanel({ plan, date, today, cards, backups, mapView = 
   return (
     <section
       aria-labelledby="cal-day"
-      className="glass tr card-in mt-3 rounded-[28px] p-4"
+      className="glass card-in mt-3 rounded-[28px] p-4"
       style={{ animationDelay: "80ms" }}
     >
       <p className="eb m-0" style={{ color: "var(--mute)" }}>
@@ -121,7 +121,7 @@ export default function DayPanel({ plan, date, today, cards, backups, mapView = 
           {showMap && (
             <div className="mt-3">
               <MapBoundary
-                fallback={<p className="glass tr m-0 rounded-[22px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>}
+                fallback={<p className="glass m-0 rounded-[22px] p-4 text-[14.5px]">{t.common.map.unavailable}</p>}
               >
                 <Suspense fallback={<p className="m-0 text-[14px]">{t.common.map.loading}</p>}>
                   <MapView

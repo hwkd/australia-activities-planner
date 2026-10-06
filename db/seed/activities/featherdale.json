@@ -912,11 +912,15 @@
   "unconfirmed": [
     {
       "section": "cost",
-      "note": "Koala photo and animal feed prices."
+      "note": "The koala photo ($30–40) and feed cup ($3–5) prices are our estimates: check with Featherdale before you go.",
+      "check": {
+        "label": "Featherdale: koala experience",
+        "url": "https://www.featherdale.com.au/encounters/koala-encounter-with-a-photo/"
+      }
     },
     {
       "section": "map",
-      "note": "Where the koala, kangaroo and reptile areas are inside the park: there's no public map data."
+      "note": "Pins for the koala, kangaroo and reptile areas inside the park are approximate."
     }
   ]
 }

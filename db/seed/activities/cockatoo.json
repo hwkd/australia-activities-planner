@@ -693,11 +693,19 @@
   "unconfirmed": [
     {
       "section": "gettingThere",
-      "note": "The Opal fare for train and ferry: the weekend daily cap may make it lower."
+      "note": "The $10–13 Opal fare for train and ferry is our estimate: the weekend daily cap may make it lower.",
+      "check": {
+        "label": "Opal fares on Transport for NSW",
+        "url": "https://transportnsw.info/tickets-fares/fares/adult-opal-fares"
+      }
     },
     {
       "section": "cost",
-      "note": "Café prices."
+      "note": "The $15–28 lunch estimate is ours: check the island's café menus for current prices.",
+      "check": {
+        "label": "Eat and drink at Cockatoo Island",
+        "url": "https://www.cockatooisland.gov.au/en/visit-us/eat-and-drink/"
+      }
     }
   ]
 }
