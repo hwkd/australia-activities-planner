@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { chooseWeather } from "~/stores/forecast";
-import { $weather, bindThemeToWeather, WEATHERS, type Weather } from "~/stores/weather";
+import { $weather, bindThemeToWeather, chooseWeather, WEATHERS, type Weather } from "~/stores/weather";
 import { useHydratedStore } from "~/stores/useHydratedStore";
 import { track } from "~/lib/analytics";
 import { FIT_LABEL, THEMES, WEATHER_LABEL } from "~/theme/tokens";

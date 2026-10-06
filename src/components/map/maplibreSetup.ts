@@ -2,7 +2,11 @@ import * as maplibregl from "maplibre-gl";
 import { Protocol } from "pmtiles";
 import { layers, namedFlavor } from "@protomaps/basemaps";
 import type { StyleSpecification } from "maplibre-gl";
-import "maplibre-gl/dist/maplibre-gl.css";
+// MapLibre's stylesheet comes with the map code, not with every page: as a plain import it became a
+// render-blocking <link> on every page (83 KB, about 11 KB compressed), delaying Discover's first
+// paint on phones even though most visits never open a map. This module waits for it, so a lazily
+// loaded map (behind its Suspense fallback) is never drawn unstyled.
+import cssUrl from "maplibre-gl/dist/maplibre-gl.css?url";
 // MapLibre's web worker, bundled by Vite so it loads in dev and in builds (MapLibre's own default
 // resolves it next to its module, which Vite's dependency bundling breaks). Imported as the worker's
 // own entry: a side-effect import of it from a file of ours is dropped in builds, because maplibre-gl
@@ -15,6 +19,21 @@ import { t } from "~/strings/en-AU";
  * PMTiles protocol over our own tiles (/map/…), and the base style themed light or dark. Imported only
  * by lazily loaded map components, so it's never in a page's first load.
  */
+function loadStylesheet(href: string): Promise<void> {
+  const existing = document.querySelector<HTMLLinkElement>("link[data-maplibre-css]");
+  if (existing) return Promise.resolve();
+  return new Promise((resolve) => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    link.dataset.maplibreCss = "";
+    // A failed stylesheet still lets the map show (unstyled controls), rather than never loading.
+    link.onload = link.onerror = () => resolve();
+    document.head.appendChild(link);
+  });
+}
+if (typeof document !== "undefined") await loadStylesheet(cssUrl);
+
 let ready = false;
 export function setUpMapLibre(): typeof maplibregl {
   if (!ready) {

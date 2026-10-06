@@ -2,7 +2,7 @@ import { idle, open } from "./helpers";
 import { expect, test, type Page } from "@playwright/test";
 
 /**
- * The live forecast (spec §11.1, tracker M16). The forecast endpoint is answered with a fixed
+ * The live forecast (spec §11.1, tracker M16): My plans and Add to a day only since D16. The forecast endpoint is answered with a fixed
  * forecast here, so the shared test database stays forecast-free for every other test.
  */
 const FORECAST = {
@@ -19,20 +19,28 @@ test.beforeEach(async ({ page }) => {
 });
 const skyButton = (page: Page, name: string) => page.getByRole("group", { name: "Weather" }).getByRole("button", { name });
 
-test("Discover starts on today's forecast, keeps a sky the user picks, and Use forecast goes back", async ({ page }) => {
+test("AC 35: Discover shows no forecast; it opens on Sunny, then on the last sky picked (D16)", async ({ page }) => {
+  // Today's forecast says rainy, and it still reaches the page (Add to a day uses it), but Discover
+  // doesn't follow it: the visitor sets the sky. The checks wait until the forecast has arrived.
+  const forecast = page.waitForResponse("**/data/forecast.json");
   await open(page, "/");
-  await expect(skyButton(page, "Rainy")).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByText("Forecast: rainy, 60% chance of rain · updated 2 h ago")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Weather data: Open-Meteo" })).toBeVisible();
-
-  await skyButton(page, "Sunny").click();
-  await expect(page.getByText("The forecast says rainy (60% chance of rain).")).toBeVisible();
-  await open(page, "/");
+  await forecast;
+  await idle(page);
   await expect(skyButton(page, "Sunny")).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("h1")).toHaveText(/^If it's\s*looking/); // no place in the headline
+  await expect(page.getByText(/Forecast:|The forecast says/)).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Use forecast" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Weather data: Open-Meteo" })).toHaveCount(0);
 
-  await page.getByRole("button", { name: "Use forecast" }).click();
-  await expect(skyButton(page, "Rainy")).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator("html")).toHaveAttribute("data-weather", "rainy");
+  // A sky that isn't today's forecast, so following the forecast and remembering the pick differ.
+  await skyButton(page, "Cloudy").click();
+  await expect(page.locator("html")).toHaveAttribute("data-weather", "cloudy");
+  const again = page.waitForResponse("**/data/forecast.json");
+  await open(page, "/");
+  await again;
+  await idle(page);
+  await expect(skyButton(page, "Cloudy")).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("html")).toHaveAttribute("data-weather", "cloudy");
 });
 
 test("My plans pre-sets forecast skies, never over the user's, and flags a change that needs a Plan B", async ({ page }) => {

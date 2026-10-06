@@ -33,7 +33,7 @@ export const common = {
     viewLegend: "Show results as",
     loading: "Loading the map…",
   },
-  /** The live forecast (spec §11.1), on Discover and My plans. */
+  /** The live forecast (spec §11.1), on My plans and in Add to a day (not on Discover since D16). */
   forecast: {
     /** "Forecast: rainy, 60% chance of rain · updated 2 h ago" */
     caption: (word: string, rain: number, age: string) => `Forecast: ${word}, ${rain}% chance of rain · ${age}`,
@@ -55,7 +55,7 @@ export const common = {
   weather: {
     /** Each sky's label on every screen (Set the sky, fit strips, weather tiles). */
     label: weatherLabel,
-    /** Each sky as a lower-case word or adjective in sentences ("Sydney's looking sunny.", "for a hot day"). */
+    /** Each sky as a lower-case word or adjective in sentences ("If it's looking sunny.", "for a hot day"). */
     word: weatherWord,
   },
   fit: {
