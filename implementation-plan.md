@@ -51,7 +51,7 @@ The Discover and activity-page prototypes still show the old Sat / Sun buttons a
 | 9. Keep the name "Weekend Finder"? | **Decided (2 Oct 2026): Australia Activities Planner**, Sydney first | Applied in `src/site.ts` and the PWA manifest |
 | 10. Week view on desktop? | **Not in the MVP** | Month view plus the day panel covers it |
 
-Also decided: **analytics is Plausible** (about US$9/month), because Cloudflare Web Analytics doesn't support custom events and the success signals need them. Self-hosted Umami is the free alternative if running a small server is acceptable.
+Also decided: **analytics is Cloudflare only** (owner, 6 Oct 2026; TRACKER.md D7). Cloudflare Web Analytics counts page views and Core Web Vitals; the custom events the success signals need go to the app's own `/api/event` endpoint and Workers Analytics Engine. Plausible (about US$9/month) was the earlier choice and is dropped.
 
 ## 3. Architecture
 
@@ -69,7 +69,7 @@ Also decided: **analytics is Plausible** (about US$9/month), because Cloudflare 
 | Fonts | Astro Fonts API, `fontProviders.local()` with the trimmed Mona Sans file |
 | Dates | `date-fns` 4 + `@date-fns/tz` (`TZDate` in `Australia/Sydney`) |
 | Offline | Service worker generated after the build with `workbox-build` (`generateSW` over `dist/client`): static files precached, pages network-first, admin never cached. `@vite-pwa/astro` isn't used: its peer range stops at Astro 5. |
-| Analytics, errors | Plausible script; Sentry's lazy loader in the browser; Workers Logs on the server |
+| Analytics, errors | Cloudflare Web Analytics; events through `/api/event` to Workers Analytics Engine; Sentry's lazy loader in the browser; Workers Logs on the server |
 | Tests | Vitest 5 (D1 code runs on Node's `node:sqlite` with the real migrations), Playwright 1.6x on a throwaway local D1, `@astrojs/check` for `.astro` type checks, axe, Lighthouse CI (through a gzip proxy locally) |
 | CI and deploys | GitHub Actions for checks and the weekly data job; Cloudflare Workers Builds (or `wrangler versions upload` in CI) for preview URLs on every branch |
 
@@ -259,7 +259,7 @@ All of these are done locally except the items that need the owner's accounts or
 
 | # | Milestone | Main work | Done when | Days |
 |---|---|---|---|---|
-| M0 | Set-up | Repo, Astro 7 site with React islands (static at first; server output since M11), Tailwind 4, lint, `astro check`, Vitest, Playwright, CI, Cloudflare Workers static assets with preview URLs, service worker skeleton (workbox-build), Plausible and Sentry wired, nanostores in place. **Measure an empty build's JS** against the 150 KB budget and record the headroom. | A preview deploys on every PR; baseline JS size recorded | 3 |
+| M0 | Set-up | Repo, Astro 7 site with React islands (static at first; server output since M11), Tailwind 4, lint, `astro check`, Vitest, Playwright, CI, Cloudflare Workers static assets with preview URLs, service worker skeleton (workbox-build), analytics (Plausible at first; Cloudflare only since D7) and Sentry wired, nanostores in place. **Measure an empty build's JS** against the 150 KB budget and record the headroom. | A preview deploys on every PR; baseline JS size recorded | 3 |
 | M1 | Content pipeline and editor tools | Zod schema; port `design/prototype-logic/content` to `scripts/content`; draft gate; pairing and `suggestedStart` checks; NSW holiday import. **Editor tools:** originally Decap CMS plus a map editor; replaced in M11 by a custom admin on D1 with the map editor built in. | A production build refuses drafts; an editor can change an activity and its map without touching JSON by hand; acceptance 15 | 6 |
 | M2 | Core logic | Port section 4 with golden tests; add Sydney time and daylight saving, plan v2 and v1 migration, share v2, the `.ics` writer, the weekday cap | Golden and new unit tests pass; logic for acceptance 1, 3, 6–9, 18, 20, 26, 28 and 29 covered by unit tests | 7 |
 | M3 | Theme and Set the sky | Tokens, theme script, Mona Sans (trimmed, Astro Fonts API), glass, scenes, Set the sky island, contrast test (section 5.5) | Weather switch under 1.2 s at 60 fps on a mid-range Android; contrast test passes; acceptance 24 | 5 |
@@ -284,7 +284,7 @@ All of these are done locally except the items that need the owner's accounts or
 
 Three groups, in this order: **finish the MVP** (M12, plus the owner's go-live steps), then **Phase 2** (M13–M18, spec §11), then **Phase 3** (M19–M23, spec §12). Phase 3 should start only after launch, once the success signals in intent.md show people are using the app (spec §10). Each Phase 2 feature is switched on only when its content is ready, so none of them holds up the launch (spec open question 12).
 
-**Owner steps that gate launch (not development):** create the Cloudflare D1 database and deploy (M11.11, M0.5), the first owner account, `CONTENT_MODE=published`, Plausible and Sentry keys (M0.7, M0.8), the Transport for NSW Open Data Hub key (done 2 Oct 2026; since D14 only needed for the optional trip check, M9a, and the deferred M18), device checks (M3.8, M7.5, M10.6), the product name (D9) and C1 content.
+**Owner steps that gate launch (not development):** done: the D1 database and production deploy in published mode (`npm run deploy` sets `CONTENT_MODE=published`; 3 Oct 2026), the Transport for NSW key (2 Oct 2026) and the product name (D9, 2 Oct 2026). Still open: preview URLs per branch (M0.5), the first owner account (M11.11), the Sentry key (M0.8), adding the Transport for NSW key as the Worker and GitHub Actions secret (since D14 only needed for the optional trip check, M9a, and the deferred M18), device checks (M3.8, M7.5, M10.6) and C1 content.
 
 #### Finish the MVP
 
@@ -301,7 +301,7 @@ Three groups, in this order: **finish the MVP** (M12, plus the owner's go-live s
 | M13 | Surprise me (§11.5) | Button on Discover, pick from fit-2 results (fit 1 with a note when there are none), no repeats of the last three, reveal motion, **Add to a day** and **Another one**; analytics event | Unit tests for the pick rules; e2e | – | 2 |
 | M14 | Accessibility filters (§11.6) | `access` in the schema and the admin editor; "Pram-friendly" and "Step-free" chips (in the URL, saved filters); **Access** section on the activity page with "Not yet checked" | Unit and e2e tests; axe clean | Editor fills `access` from official sources | 3 |
 | M15 | Events and seasonal highlights (§11.4) | D1 `events` table (migration), repository with draft / publish / history like activities, admin list and editor; **On soon** row on Discover; Add to a day limited to the event's dates; events in plans, share links and calendar export; Seasonal tag and boost within a fit tier | Editors can publish an event and visitors can plan it; expired events disappear | Editor curates 3–10 events per fortnight | 6 |
-| M16 | Live forecast (§11.1) | Workers Cron Trigger every 3 h → Open-Meteo for four areas → D1 `forecasts`; `/data/forecast.json` (1 h cache); nearest area per activity; Discover defaults to today's forecast; days pre-set with `skySource: "auto"`, **Use forecast**, captions with age and rain chance; change alert on My plans; offline uses the last forecast; credit line | Mapping rules unit-tested; cron tested locally (`wrangler dev --test-scheduled`); manual sky never overwritten (e2e) | Open-Meteo's free tier is non-commercial (spec §11.1) | 5 |
+| M16 | Live forecast (§11.1) | Workers Cron Trigger every 3 h → Open-Meteo for four areas → D1 `forecasts`; `/data/forecast.json` (1 h cache); nearest area per activity; originally Discover defaulted to today's forecast; days pre-set with `skySource: "auto"`, **Use forecast**, captions with age and rain chance; change alert on My plans; offline uses the last forecast; credit line *(removed by D16, 6 Oct 2026: Discover doesn't use the forecast; My plans and Add to a day do)* | Mapping rules unit-tested; cron tested locally (`wrangler dev --test-scheduled`); manual sky never overwritten (e2e) | Open-Meteo's free tier is non-commercial (spec §11.1) | 5 |
 | M17 | Map view (§11.2) | Sydney Protomaps extract in R2; MapLibre loaded only when a map opens; Discover **List / Map** with fit-labelled pins and a compact card; activity maps from GeoJSON (NPWS tracks, OSM facilities, reviewed in the admin) with the schematic map as the fallback; My plans day map; RFS and NPWS alerts fetched and cached by the Worker | First-load JS budget unchanged (map code lazy); keyboard and screen-reader parity with the list | Owner creates the R2 bucket | 12 |
 | M18 | Travel time from your suburb (§11.3). **Deferred by D14:** a separate Discover feature; outside NSW it needs a self-hosted trip planner or a paid API | Suburb list and picker (stored locally); weekly job fills D1 `travel_times` (spread over the week within the API's daily limit); "about 45 min" on cards; "Within 1 hr" filter; tie-break in ranking | Ranking golden tests updated; job tested with recorded responses | Transport for NSW key | 6 |
 
@@ -349,7 +349,7 @@ Three groups, in this order: **finish the MVP** (M12, plus the owner's go-live s
 | Routes change but maps don't | Map shows the wrong lines | Editors check the trip and its map at review and at the 6-month re-check; the optional weekly check (M9a) flags drift for Sydney |
 | Hand-kept fares go stale | Transport estimate off by a dollar or two | The Opal daily cap bounds most day trips; fares and caps rechecked each July and at the 6-month re-check; the estimate is always a range marked est. |
 | Content not verified in time | Launch slips | C1 from day one; editor tools in M1; draft gate makes status visible |
-| Analytics cost or outage | Can't measure success | Plausible is low cost; events are fire-and-forget and never block the UI |
+| Analytics cost, outage or spam | Can't measure success, or counts skewed | Cloudflare's free tiers (Web Analytics; Analytics Engine's free daily allowances, per Cloudflare's published limits, not re-checked); events are fire-and-forget (`sendBeacon`) and never block the UI; only the app's own events are accepted and other sites' pages are refused, but there's no rate limit, so a script could inflate counts or use up the day's allowance: add a Workers rate limit if that happens |
 | Open-data terms | Compliance | Credit Transport for NSW (CC BY) in the footer; don't store Google data |
 | Pages now depend on D1 at request time | An outage or slow query takes the site down or slows it | Network-first service worker serves cached pages; friendly error page (M12.6); small derived card and export columns so Discover is one query; measure TTFB after deploy and add edge caching if needed (M12.7) |
 | Production set to preview mode by mistake | Drafts go live | `CONTENT_MODE` defaults to `preview` only in `wrangler.jsonc`; the go-live checklist (M11.11) sets `published`; the draft banner makes preview content obvious |
@@ -377,7 +377,7 @@ Three groups, in this order: **finish the MVP** (M12, plus the owner's go-live s
 | Finding | Change |
 |---|---|
 | Built the weekend planner the product had moved away from | Scope, routes, logic, components and milestones now cover any-day planning, the calendar and calendar export (M6, M7); spec and intent updated to match |
-| Cloudflare Web Analytics can't record custom events | Plausible chosen; spec §7–8 and feasibility.md corrected |
+| Cloudflare Web Analytics can't record custom events | Plausible chosen; spec §7–8 and feasibility.md corrected. *Superseded 6 Oct 2026 (D7): events go to Workers Analytics Engine, Cloudflare only.* |
 | Prototype logic and scripts only existed in temporary folders | Copied to `design/prototype-logic/` with artboard snapshots; every check runs from the repo |
 | Transport job underestimated | Split into M9a (5 days) and M9b (4 days) |
 | Auto-updated routes could drift from hand-drawn maps | Drift check in M9a |

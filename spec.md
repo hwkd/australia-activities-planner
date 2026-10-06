@@ -510,16 +510,17 @@ Warning banner text for each weather:
   - Every calendar day, time control and sheet is reachable and operable by keyboard; sheets and dialogs trap focus and return it on close.
   - Motion respects `prefers-reduced-motion` (§3.5).
 - **Internationalisation:** all visitor-facing UI text goes in a strings file (`src/strings/en-AU.ts`), and dates and numbers use `Intl` with `en-AU`. There's no translation in the MVP (see §12.4). The admin is English-only and is exempt.
-- **Privacy:** no visitor accounts and no tracking cookies. The only cookie is the admin session cookie, set only for signed-in content editors (strictly necessary). Analytics are cookieless, aggregate-only, and support custom events (Plausible, §8). The events tracked are:
-  - `filter_change`
-  - `activity_view`
+- **Privacy:** no visitor accounts and no tracking cookies. The app's only cookie is the admin session cookie, set only for signed-in content editors (strictly necessary); Cloudflare's bot check may also set `cf_clearance` (a security cookie, not used for tracking; the privacy page says so). Analytics are cookieless and aggregate-only, and all on Cloudflare (D7, §8): Cloudflare Web Analytics, whose beacon Cloudflare adds at the edge, counts page views and Core Web Vitals; the app loads no analytics script of its own. The app's events go to its own endpoint (`POST /api/event`, a `text/plain` body sent with `sendBeacon` so it never slows the page; browsers driven by automation send nothing), which accepts only the events and values below (`EVENT_SCHEMA` in `src/lib/analytics.ts`) and, in production only, writes each to Workers Analytics Engine as the event name and its properties: the dataset holds no IP address, user agent or other identifier. (Workers Logs, if switched on for the Worker in the dashboard, keeps its own request logs; it isn't set in `wrangler.jsonc`.) Other sites' pages can't post to it (Astro's origin check); a script outside a browser could, so the counts are indicative. The events tracked are:
+  - `filter_change` (filter: `weather`, `group`, `duration`, `free`, `pram`, `stepFree` or `reset`; value: the option picked)
+  - `activity_view` (the activity's id)
   - `plan_add` (with source: `card`, `detail` or `calendar`, and whether the day is a weekend, weekday or public holiday)
   - `plan_change` (time or day)
   - `plan_b_swap`
-  - `plan_share`
-  - `calendar_export` (with target: `ics` or `google`, and scope)
-  - `state_picker_open` and `state_interest` (with the state tapped, e.g. `vic`): which state people want next (D16)
-  These measure the success signals in intent.md: plans created, share rate, Plan B use and return visits.
+  - `plan_share` (scope: `day` or `fortnight`)
+  - `calendar_export` (with target: `ics` or `google`, and scope: `item`, `day` or `all`)
+  - `surprise_pick` (whether it fell back to fit 1; §11.5)
+  - To come with the state switch (M26.4; to be added to `EVENT_SCHEMA`, which refuses them until then): `state_picker_open` and `state_interest` (with the state tapped, e.g. `vic`), which state people want next (D16)
+  These measure the success signals in intent.md as totals: plans created, shares, Plan B use and calendar exports. Events carry no visitor identifier (D7), so per-visitor measures (plans per weekly user, return visits over consecutive weeks) aren't available; Cloudflare Web Analytics gives visits and page views, not returning visitors.
 - **Browsers:** the last two versions of Safari iOS, Chrome Android, Chrome, Safari, Firefox and Edge. The end-to-end tests run in Chromium, WebKit and Firefox.
 - **Reliability:** if D1 can't be reached, public pages show a short "Couldn't load right now" page with a retry (and the cached copy when offline support has one); the saved plan is never affected. D1's point-in-time restore (Time Travel: 30 days on the Workers Paid plan, 7 on Free) is the backup, and the revisions table keeps every version of every activity.
 
@@ -532,7 +533,7 @@ Warning banner text for each weather:
 | Content admin | Custom admin at `/admin` (§4.5): built-in accounts (owner and editor roles, invite links), structured editor, map editor, draft / preview / publish, history |
 | Scheduled jobs | **GitHub Actions** for jobs whose output a person reviews (they open pull requests): an optional weekly check of each activity's trip from Central (§4.3); a venue-page change check that flags price or hours changes. **Workers Cron Triggers** for jobs that write D1 directly: the forecast refresh (§11.1) |
 | Data sources | Transport for NSW Trip Planner API for the optional trip check (CC BY 4.0, free key); Opal daily caps from transportnsw.info; Open-Meteo for My plans (§11.1). All credited in the footer. |
-| Analytics | Plausible (cookieless, supports the custom events in §7; from about US$9/month), or self-hosted Umami. Cloudflare Web Analytics was dropped: it doesn't support custom events. |
+| Analytics | Cloudflare only (owner, 6 Oct 2026; D7): Cloudflare Web Analytics for page views and Core Web Vitals, and Workers Analytics Engine (binding `EVENTS`, dataset `australia_activities_events`) for the custom events in §7, read with its SQL API (`scripts/analytics/events.mjs`). The app loads no analytics script of its own (Cloudflare adds the Web Analytics beacon at the edge). Plausible was considered and dropped. |
 | Styling | Tailwind + CSS variables driven by a per-weather theme map (`themes[weather]`, §3.5). Final tokens and fonts come from the chosen design direction; the v1 sandstone/ferry-green palette is retired. Fonts are self-hosted with the Astro Fonts API (local provider) so a trimmed variable font can be used. |
 | Motion | CSS transitions and keyframes for theme changes and loops; a small spring helper (e.g. Motion One) for the add confirmation and Plan B entrance only |
 | Dates and time zones | date-fns-tz (chosen over the Temporal polyfill for size); all date logic in `Australia/Sydney` (§6.4) |

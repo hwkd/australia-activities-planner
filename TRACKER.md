@@ -15,18 +15,18 @@ The working checklist for building the MVP. [implementation-plan.md](implementat
 ## Current focus
 
 - **Built (2 Oct 2026): D14 and D15.** Getting there is one public transport trip from the city centre (way-in strip, last stretch, getting back, Directions from where you are, Driving? note, rideshare line), and the real map is the only map on activity pages: the trip from Central and the way back from the Trip Planner, the walking line, numbered places synced with the list, toilets and cafés. The admin edits places on a real map. M24 and M25 are done; canvas Version 41 shows the real map.
-- **Decided (owner, 6 Oct 2026): D16.** Discover lists a whole state (New South Wales first) with a state switch in the header, and shows no forecast: the visitor sets the sky, and the headline reads "If it's looking rainy." My plans and Add to a day keep the forecast. Spec and canvas (A1 · State switch, Version 53) are updated; the app still shows Sydney and the forecast on Discover until **M26** is built.
-- **Next up:** **M26** (state switch, no forecast on Discover; about 4 days), then content. C1.1, C1.2, C1.6 and C1.8 are done (all 29 activities verified 2 Oct 2026; open points per activity in `docs/activity-verification.md`). Next: **C1.3** (11 more activities to reach 40), then C1.4, C1.5, C1.7. M12.7 waits for the deploy. M18 stays deferred (D14). Phase 3 (M19–M23) waits for launch and D12.
+- **Decided (owner, 6 Oct 2026): D16.** Discover lists a whole state (New South Wales first) with a state switch in the header, and shows no forecast: the visitor sets the sky, and the headline reads "If it's looking rainy." My plans and Add to a day keep the forecast. Spec and canvas (A1 · State switch, Version 53) are updated. M26.3 is built (no forecast on Discover, the new headline); the state switch and the rest of M26 are not, so the app still says Sydney.
+- **Next up:** **M26** (state switch, no forecast on Discover; about 4 days), then content. C1.1, C1.2, C1.6 and C1.8 are done (all 29 activities verified 2 Oct 2026; open points per activity in `docs/activity-verification.md`). Next: **C1.3** (11 more activities to reach 40), then C1.4, C1.5, C1.7. M18 stays deferred (D14). Phase 3 (M19–M23) waits for launch and D12.
 - **The map tiles are now a launch requirement:** without the R2 bucket and upload (below), activity pages show the fallback list instead of a map.
-- **Live** at https://sydney.hwkd.com.au since 3 Oct 2026. Still needs the first owner account (M11.11), then the remaining owner items below, real-device checks (M3.8, M7.5, M10.6), D9 and C1 content.
-- **Working assumptions:** D1–D8 are being built with their proposed answers (owner said to begin); flag any change.
-- **Blocked on the owner:** git remote + first commit (M0.1); Cloudflare account to create the D1 database, deploy and get preview URLs (M0.5, M11.11); the first owner account on the real database (M11.11); Plausible domain and Sentry loader key (M0.7, M0.8 activate when set); Transport for NSW Open Data Hub key: done 2 Oct 2026 (in `.dev.vars` locally; still to add as the Worker secret and the GitHub Actions secret when deploying). Map tiles (needed at launch, D15): `npx wrangler r2 bucket create sydney-weekend-finder-map`, then `npm run map:fetch` and `npx tsx scripts/map/upload.ts --remote` (the extract command is in scripts/map/fetch-assets.mjs).
+- **Live** at https://sydney.hwkd.com.au since 3 Oct 2026. Still needs the first owner account (M11.11), then the remaining owner items below, real-device checks (M3.8, M7.5, M10.6) and C1 content.
+- **Working assumptions:** D1–D6 and D8 are being built with their proposed answers (owner said to begin); D7 is decided (Cloudflare only); flag any change.
+- **Blocked on the owner:** done since 3 Oct 2026: the GitHub repository and history (M0.1), the D1 database, R2 map tiles and the production deploy at https://sydney.hwkd.com.au. Still open: preview URLs per branch (M0.5), the first owner account on the real database (M11.11), the Sentry loader key (M0.8 activates when set), and adding the Transport for NSW key (in `.dev.vars` locally) as the Worker secret and the GitHub Actions secret.
 
 ## 1. Status
 
 | Milestone | Status | Tasks | Est. days | Delivers |
 |---|---|---|---|---|
-| M0 Set-up | In progress (2 need owner accounts) | 8 / 10 | 3 | Repo, CI, previews, baseline JS size |
+| M0 Set-up | In progress (preview URLs per branch and Sentry need the owner) | 9 / 10 | 3 | Repo, CI, previews, baseline JS size |
 | M1 Content pipeline and editor tools | Done (CMS task moved to M11) | 9 / 9 | 6 | Schema, draft gate, holidays, CMS, map editor · AC 15 |
 | M2 Core logic | Done | 12 / 12 | 7 | All `src/lib` with tests · AC 1, 3, 6–9, 18, 20, 26, 28, 29 (logic) |
 | M3 Theme and Set the sky | In progress (real-device frame check left) | 7 / 8 | 5 | Tokens, fonts, glass, scenes, contrast test · AC 12, 24 |
@@ -38,13 +38,13 @@ The working checklist for building the MVP. [implementation-plan.md](implementat
 | M9a Transport job: routes and tolls | Narrowed (D14): optional weekly check of the trip from Central; not a launch gate. Tolls dropped | 2 / 5 | 2 | Weekly PR, map drift check |
 | M9b Transport job: Opal fares | Dropped (D14): fares hand-kept, Opal cap does the rest | – | – | – |
 | M10 Hardening | 8 / 9 done (screen-reader passes need devices) | 8 / 9 | 5 | AC 11, 13, 14, 23; Lighthouse 90+ |
-| M11 D1 and custom content admin | Done locally; going live needs the owner (M11.11) | 10 / 11 | – | Content in D1, pages rendered on demand, `/admin` |
+| M11 D1 and custom content admin | Live since 3 Oct 2026; the first owner account is left (M11.11) | 10 / 11 | – | Content in D1, pages rendered on demand, `/admin` |
 | C1 Content (editor, parallel) | In progress: the 29 drafts verified (C1.1, C1.2, C1.6, C1.8); 11 more to write | 3 / 7 | 4–5 weeks | 40+ verified activities |
-| **MVP total** | | **97 / 111** | **57 + 13 contingency** | |
-| M12 MVP gaps | Done except M12.7 (needs the deploy) | 7 / 8 | 8 | Spec §7 gaps · AC 33 |
+| **MVP total** | | **98 / 111** | **57 + 13 contingency** | |
+| M12 MVP gaps | Done | 8 / 8 | 8 | Spec §7 gaps · AC 33 |
 | M24 Getting there, simplified (D14) | Done | 7 / 7 | 4 | Spec §3.2 items 3–5, §4.3, §6.6 · AC 16, 20, 21 |
 | M25 Real map replaces the schematic (D15) | Done (editors check each map: C1.8) | 6 / 6 | 4 | Spec §3.2 item 3, §4.3, §11.2 · AC 16, 17, 19 |
-| M26 State switch, no forecast on Discover (D16) | Not started | 0 / 7 | 4 | Spec §3.1, §4.1, §7, §11.1, §12.5 · AC 34, 35 |
+| M26 State switch, no forecast on Discover (D16) | M26.3 done (perf pass, 6 Oct); the rest not started | 1 / 7 | 4 | Spec §3.1, §4.1, §7, §11.1, §12.5 · AC 34, 35 |
 | M13 Surprise me | Done | 3 / 3 | 2 | Spec §11.5 |
 | M14 Accessibility filters | Done (needs access facts from the editor) | 3 / 3 | 3 | Spec §11.6 |
 | M15 Events and seasonal | Done (events need an editor to curate them) | 5 / 5 | 6 | Spec §11.4 |
@@ -65,7 +65,7 @@ The working checklist for building the MVP. [implementation-plan.md](implementat
 | D4 | "Hot" threshold (Q4) | Fixed 30°C | Open |
 | D5 | Photos at launch (Q6) | None | Open |
 | D6 | Transport job before or after launch | Before launch (77 days); after launch saves 9 days | Superseded by D14: no transport job is needed for launch |
-| D7 | Analytics account | Plausible, about US$9/month | Open |
+| D7 | Analytics | Cloudflare only: Web Analytics (page views, Core Web Vitals; enabled on the zone) and Workers Analytics Engine for the custom events via `/api/event` (owner, 6 Oct 2026; Plausible dropped) | Decided |
 | D8 | Who edits content (C1) | An editor, in the custom admin (`/admin`) with the built-in map editor | Open (tool decided: custom admin, 1 Oct 2026) |
 | D9 | Product name (Q9) | Australia Activities Planner, starting with Sydney (owner, 2 Oct 2026) | Decided |
 | D10 | Where content lives | Cloudflare D1, public pages rendered on demand from it (owner, 1 Oct 2026; replaces the static build and Decap) | Decided |
@@ -91,7 +91,7 @@ The working checklist for building the MVP. [implementation-plan.md](implementat
 | Content | Cloudflare D1 (`db/migrations/`), `astro/zod` schema on every save and publish; custom admin at `/admin` (D10, D11); `db/seed/activities/` seeds fresh databases |
 | Plan storage | `$plan` persistent store, localStorage `swf.plan.v2`, in-memory fallback, v1 migration, cross-tab sync |
 | Offline | Service worker from `workbox-build` after `astro build` over `dist/client`: static files precached, pages network-first, admin never cached (`@vite-pwa/astro` doesn't support Astro 7 yet) |
-| Analytics | Plausible (custom events in spec §7) |
+| Analytics | Cloudflare Web Analytics + Workers Analytics Engine (`/api/event`, binding `EVENTS`; spec §7, D7) |
 | Errors | Sentry free tier, personal data scrubbed |
 | Driving times | Hand-kept in content, one time from the city (D14) |
 | Scheduled jobs | GitHub Actions for reviewed jobs (open PRs); Workers Cron Triggers for jobs that write D1 (forecast, M16) |
@@ -102,13 +102,13 @@ The working checklist for building the MVP. [implementation-plan.md](implementat
 
 ### M0 · Set-up (3 days)
 
-- [~] **M0.1** `git init`, `.gitignore`, first commit of the existing docs, content and `design/`. *Done when:* the repo has history and a remote.
+- [x] **M0.1** `git init`, `.gitignore`, first commit of the existing docs, content and `design/`. *Done when:* the repo has history and a remote. *Done: GitHub `hwkd/australia-activities-planner`, PRs merged since 3 Oct 2026.*
 - [x] **M0.2** Create the Astro 7 project (TypeScript strict, `output: "static"`), add `@astrojs/react`, Tailwind 4 (`@tailwindcss/vite`), ESLint, Prettier. *Done when:* `npm run build` produces `dist/` and `astro check` passes.
 - [x] **M0.3** Vitest and Playwright set up with one passing test each.
 - [x] **M0.4** GitHub Actions CI: `astro check`, lint, unit, e2e, build on every PR.
 - [!] **M0.5** Cloudflare Workers static assets: `wrangler.jsonc`, `wrangler deploy` for production, preview URLs per branch (Workers Builds or `wrangler versions upload`). Turn off Auto Minify. *Done when:* a PR shows a preview URL.
 - [x] **M0.6** Service worker skeleton: `scripts/sw/` runs `workbox-build` `generateSW` over `dist/` after the build; manifest; registers in production only.
-- [x] **M0.7** Plausible script and a typed `track(event, props)` helper (no-op in dev and tests).
+- [x] **M0.7** A typed `track(event, props)` helper. *Plausible at first; since 6 Oct 2026 (D7) events go to `/api/event` and Workers Analytics Engine.*
 - [x] **M0.8** Sentry for the browser via its lazy loader script (no cost until an error), query strings stripped in `beforeSend`; turn off IP collection in the Sentry project. Source-map upload is deferred (the loader setup has no build step for it).
 - [x] **M0.9** Measure first-load JS (gzipped) of a page with one trivial React island, and record it in the Log (React's fixed cost); set the Lighthouse CI budget file (`budget.json`, in KB). *Done when:* the baseline and headroom against 150 KB are written down.
 - [x] **M0.10** Island scaffolding: `src/stores/` (`$weather`, `$sheet`, `$planningDate`, `$toast`; `$plan` arrives with M2.6), the base layout with the theme-before-paint inline script, an empty `SheetHost` (`client:idle`), and one test that changing a store in one island updates another.
@@ -267,7 +267,7 @@ From the spec audit (implementation-plan.md §7.2).
 - [x] **M12.4** Transport job reads the published activities from D1 (`wrangler d1 execute --remote`, read-only API token secret) instead of `db/seed/activities`. *Live runs need the deploy and the TfNSW key.* *Done: `scripts/transport/run.mjs` reads published activities from D1 (local by default, `--remote` in the workflow with `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets, `--seed` for the seed files). Live runs still need the TfNSW key and the deploy.*
 - [x] **M12.5** "Needs re-checking" flag and filter in the admin list for activities last verified more than 6 months ago (spec §5). *Done: "Needs re-checking" badge and filter in the admin list (`needsRecheck`, unit-tested).*
 - [x] **M12.6** Friendly error page with retry when D1 can't be reached (spec §7 Reliability). *Done: `src/pages/500.astro` (reads no content); the service worker treats a 5xx as offline and serves the cached page when it has one. Checked by serving a build against an empty D1.*
-- [!] **M12.7** After the first deploy: measure TTFB from Sydney; if p75 > 300 ms, cache public pages with the Workers Cache API and clear on publish. *Needs the deploy.*
+- [x] **M12.7** After the first deploy: measure TTFB from Sydney; if p75 > 300 ms, cache public pages with the Workers Cache API and clear on publish. *Measured 6 Oct 2026 from Sydney (`SYD`), 87 requests over all 29 activity pages: p50 207 ms, p75 231 ms, p90 269 ms, max 370 ms; Discover about 200 ms, My plans 150-210 ms. Under 300 ms, so no page cache; the page's lookups now run in parallel.*
 - [x] **M12.8** E2E for AC 30's last part: unpublishing an activity turns pairings to it into plain text on the public pages. *Done: admin e2e unpublishes Clovelly, checks Coogee's pairing is plain text, republishes.*
 
 ### M26 · State switch, no forecast on Discover (D16, 4 days, added 6 Oct 2026)
@@ -276,8 +276,8 @@ Behaviour in spec §3.1, §4.1, §7, §11.1 and §12.5; design in canvas A1 · S
 
 - [ ] **M26.1** `state` on activities (`"nsw"` for all 29): schema, D1 migration, seed files, admin field (only NSW selectable while it's the one live state). `city` stays until §12.5.
 - [ ] **M26.2** State switch on Discover (phone and desktop): pill with the state's name; "Where are you exploring?" as the shared sheet on phones and a non-modal popover on desktop (Escape, outside click, focus return; backdrop out of the Tab order); New South Wales current with the published count; the seven others tappable with the "isn't here yet" answer in a live region; a states config with the eight states and territories. Nothing stored and nothing in URLs while NSW is the only live state (spec §3.1).
-- [ ] **M26.3** No forecast on Discover: remove the caption, Use forecast and the credit from Discover; `SetTheSky` stops applying the forecast; Discover opens on the saved last sky (Sunny first), and `?w=` from My plans still wins. Headline "If it's looking {sky}." and intro "Tap the sky you're expecting. The list re-ranks around it." My plans and Add to a day keep the forecast (no change); the credit stays on My plans.
-- [ ] **M26.4** Analytics: `state_picker_open` and `state_interest` (`{ state }`) in `src/lib/analytics.ts`.
+- [x] **M26.3** No forecast on Discover: remove the caption, Use forecast and the credit from Discover; `SetTheSky` stops applying the forecast; Discover opens on the saved last sky (Sunny first), and `?w=` from My plans still wins. Headline "If it's looking {sky}." and intro "Tap the sky you're expecting. The list re-ranks around it." My plans and Add to a day keep the forecast (no change); the credit stays on My plans. *Done 6 Oct 2026 in the performance pass: the forecast arriving after load re-themed and re-ranked Discover and pushed the list down (CLS 0.51 phone, 0.73 desktop).*
+- [ ] **M26.4** Analytics: `state_picker_open` and `state_interest` (`{ state }`) in `src/lib/analytics.ts`, in both the `AnalyticsEvent` type and `EVENT_SCHEMA` (the endpoint refuses anything not in it).
 - [ ] **M26.5** Copy pass: "Sydney" in visitor-facing strings where it means the app's scope (page titles, meta descriptions, Discover and My plans eyebrows and descriptions) becomes New South Wales wording; Sydney stays where it's a place (the trip from Central, Greater Sydney fire danger). Calendar export location: meeting point, area and "NSW" (spec §6.8).
 - [ ] **M26.6** Tests: AC 34 and 35 end to end (phone and desktop, all three engines), unit tests for the default sky, visual baselines for the new header, axe on the picker.
 - [ ] **M26.7** Canvas: fold A1 into the A · Sky Mode Discover artboards once built (DF6).
@@ -371,7 +371,7 @@ D14. Behaviour in spec §3.2 items 3–5, §4.3 and §6.6; design in the A · Ac
 | 32 | Admin sign-in and permissions | M11 | [x] |
 | 33 | Every activity offline | M12 | [x] |
 | 34 | State switch and picker | M26 | [ ] |
-| 35 | No forecast on Discover, default sky | M26 | [ ] |
+| 35 | No forecast on Discover, default sky | M26.3 (forecast.spec AC 35; the My plans link's `?w=` in islands.spec) | [x] |
 
 ## 5. Design follow-ups (canvas)
 
@@ -425,11 +425,39 @@ scripts/fonts/trim.sh
 node scripts/perf/weather-switch.mjs http://localhost:4330 4
 ```
 
+Performance (against a preview or the live site; see the comments in each script):
+
+```bash
+node scripts/perf/lighthouse.mjs https://sydney.hwkd.com.au
+```
+
+```bash
+FORECAST_FROM=https://sydney.hwkd.com.au/data/forecast.json SCROLL=1 node scripts/perf/layout-shift.mjs http://localhost:4330/
+```
+
+```bash
+node scripts/perf/navigation.mjs http://localhost:4330 5
+```
+
+```bash
+node scripts/perf/scroll.mjs "http://localhost:4330/?w=sunny" 4
+```
+
+Analytics events (D7; an API token with Account Analytics: Read):
+
+```bash
+CLOUDFLARE_ACCOUNT_ID=… CLOUDFLARE_API_TOKEN=… node scripts/analytics/events.mjs 7
+```
+
 ## 7. Log
 
 Newest first. One line per session: date, what changed, anything learned or decided.
 
+- **2026-10-07** Audit rounds 3-4 of the performance pass and D7 (independent reviews; no code bugs left). Round 3: activity ids capped at 60 in the content schema (the event validator's limit); an editor's `?preview` draft page sends no `activity_view`; the capped body reader moved to `src/server/body.ts` with unit tests (chunked, no Content-Length, bytes not characters); spec §7 and intent.md say the events are totals only (no visitor identifier, so no return-visit or per-user figures); privacy wording narrowed to what the analytics dataset holds, with a Workers Logs caveat in the spec; Current focus, AC 35 row, plan M16/M0/risk rows corrected; `scripts/analytics/events.mjs` shows both properties. Round 4: M0.1 ticked (the repo and remote exist), M0/M11/MVP rows and the plan's owner steps match what's live; `slugify` no longer leaves a trailing hyphen when it cuts at 60 (pre-existing; made an invalid id); the events script falls back to 7 days on a non-number. Checks: Vitest 183, e2e 253 passed / 57 skipped, astro check 0, lint clean.
 - **2026-10-06** Fix: CI had failed at `npm run e2e` on every run since the import. Main cause: `page.clock`'s fake `Date` constructor returns plain Dates, so `TZDate` loses its zone and reads the device's; on Sydney Macs that's invisible, on the UTC runner an 8:30am plan exported as 5pm (export AC 25–27, plans AC 4/9/10). Browsers now run on `Australia/Sydney` (`playwright.config.ts`), and a new test checks export on a Los Angeles device on the real clock (the app itself was fine). Slow-runner races: Discover AC 2 polls for the filtered list after reload and its 100 ms budget is 600 ms on CI; AC 23 waits for the cards' entrance animation (scale 0.98) before measuring; AC 11 gives WebKit 10 s. On CI, failed tests retry once with a trace, and an HTML report fills the `playwright-report` artifact (it was always empty). The Lighthouse step, never reached before, couldn't start Chrome on Ubuntu 24.04 without `--no-sandbox` (now passed, as Playwright does). Checks: CI e2e 207 passed / 0 flaky; local `TZ=UTC CI=1` all engines pass; Lighthouse 97 / 100 locally. Open: detail AC 21 (desktop) failed in 3 of 5 earlier CI runs (the click on the Discover card didn't navigate) and passed on this one; the retry trace will show it if it comes back. After merging the 6 Oct release, AC 11 (WebKit) measured 1.3 s from click to repaint on CI against its 1.2 s guard: colours now switch in one frame, which is heavier in headless WebKit (median 122 → 154 ms locally), so CI's guard is 2.5 s (1.2 s locally); real-device timing stays with M3.8.
+- **2026-10-06** Audit of the performance pass and D7 (owner: audit until clean). Round 1 (code review): fixed `stepFree` filter events refused by a lower-case-only rule (filter names are now an explicit list), body size checked before reading, activity_view through `track()`, the endpoint's redundant Origin check, the stale `swf.skyPickedOn` key (its first cleanup crashed with storage blocked; caught by AC 13 tests, fixed). Round 2 (independent review): AC 35 test now waits for the forecast and picks a sky that isn't it (it would have passed on the old code); ids up to 60 characters (slugify's limit); the endpoint takes only `text/plain` (JSON bypassed Astro's origin check: now 415) and reads the body as a capped stream; only production writes (previews and local runs store nothing); automated browsers send no events (tests and perf scripts stay out of the counts; M10.3 opts back in); a test that no page's first load links MapLibre's stylesheet (runs in CI, unlike the map tests); spec §7 event list matches `EVENT_SCHEMA`; privacy page: sky and filter picks are counted anonymously, and Cloudflare's bot check sets `cf_clearance` (found on the live site; the spec's "only cookie" claim was untrue); stale M16 and forecast-string notes fixed. Kept: activity pages still run their lookups in parallel even when the id is unknown (one extra round of cheap reads on a 404, against faster pages for every real visit).
+- **2026-10-06** **D7 decided (owner): Cloudflare only, no Plausible.** Page views and Core Web Vitals from Cloudflare Web Analytics (already on the zone). The app's events (spec §7) now go by `sendBeacon` to `POST /api/event` (`src/pages/api/event.ts`), which accepts only `text/plain` bodies (so Astro's origin check always applies: other sites' pages get 403; JSON 415) with the events and property values in `EVENT_SCHEMA` (`src/lib/analytics.ts`; unknown events, extra properties, other values, non-tokens, non-JSON → 400; over 1 KB → 413, read as a capped stream) and writes each to Workers Analytics Engine (binding `EVENTS`, dataset `australia_activities_events`: blob1 = event, blob2… = properties, double1 = 1), storing no IP address or user agent. Plausible removed (layout script, activity page call, `.env.example`); privacy page now names Cloudflare Web Analytics and the anonymous events. `worker-configuration.d.ts` regenerated with the lockfile's wrangler 4.145.0 and without `.dev.vars` (as CI does). `scripts/analytics/events.mjs` reads the counts through the SQL API. Tests: unit tests for the event rules; M10.3 now captures the real requests and checks every event against the same rules (WebKit doesn't report the answer to a beacon sent just before a navigation); new D7 test of the endpoint's refusals. Spec §7 and §8, D7, M0.7, locked choices, owner steps, plan and feasibility updated (running cost now $0). Checks: Vitest 179, e2e 238 passed + the WebKit fix (repeated 3× in WebKit and Firefox), astro check 0, lint clean. Not deployed. **Owner, once deployed:** Analytics Engine needs no setup beyond the binding (the dataset is created on the first write); to read it, create an API token with Account Analytics: Read.
+- **2026-10-06** Release and performance pass (owner). Released PR #7 (activity content, smoother sky changes, D16 docs) and deployed; the live D1 already matched the seeds. Then measured, fixed, verified, repeated. **Found on the live site** (Lighthouse, phone): Discover performance 71, CLS 0.503: the forecast arrived after load, re-themed and re-ranked the list and added a note that pushed it down (CLS 0.51 phone, 0.73 desktop; reproduced locally with `FORECAST_FROM`). MapLibre's stylesheet (83 KB, 11 KB compressed) was a render-blocking link on every page. **Fixed:** M26.3 built (no forecast on Discover: no fetch-then-switch, no note; headline "If it's looking …", intro "Tap the sky you're expecting…"; Discover opens on the last sky picked, Sunny first; AC 35) → CLS 0.000 on phone and desktop, also while scrolling activity pages with the map drawing; MapLibre's CSS now loads with the map code (`?url` + a link the module awaits, so maps never draw unstyled; map e2e asserts it); Discover, activity pages and My plans run their D1/R2 lookups in parallel. Local Lighthouse 97 / 96 / 97, about 10 KB less per page. M12.7 measured: p75 231 ms, so no page cache. **Tried and dropped:** hover prefetch only helped with cacheable HTML (263 → 89 ms on desktop), but `Cache-Control: private, max-age=60` broke AC 30 (unpublish must 404 at once), and without it Chrome didn't reuse the prefetch; `content-visibility: auto` on phone cards cut main-thread work 29% but skipped cards missed the theme-switch transition suppression, so buttons animated colours and entrances replayed on a sky change. **Already fine:** sky change 60 fps (first frame 28-51 ms at 4x CPU), scrolling 60 fps, TBT 0. **Not code:** Cloudflare injects Web Analytics and a bot-detection script on every page (about 20 KB; the only best-practices failure, a deprecated storage API), from zone settings. New tools: `scripts/perf/layout-shift.mjs`, `navigation.mjs`, `scroll.mjs`. Checks: e2e 245 passed / 57 skipped, Vitest 177, astro check 0, lint clean.
 - **2026-10-06** Spec and tracker for **D16** (owner asked). spec.md: title (New South Wales first), header note, §3.1 header and new State switch section, default sky (last picked, Sunny first; `?w=` wins), §4.1 `state: "nsw"`, §6.8 export location (area + NSW), §7 events `state_picker_open` and `state_interest`, §8 data sources, new AC 34 and 35, §11.1 (forecast only on My plans and Add to a day; Discover's default removed), §12.5 now More states (switch built, URLs from the second state, distance within a state), §13 Q14 (which state second) and Q15 (the sydney.hwkd.com.au address). Correction to an earlier note: activity pages never showed a forecast, so "keep it on activity pages" means no change there. Tracker: D16, M26 (7 tasks, 4 days), M16 note, M23 renamed More states, AC 34–35, DF6. No code changed.
 - **2026-10-06** Canvas Version 53 (owner agreed: no forecast on Discover; the list covers the state; the visitor sets the sky). A1 back to **State switch**: pill "New South Wales"; headline "If it's looking rainy." (no place, so it never claims the weather anywhere) and "Tap the sky you're expecting. The list re-ranks around it."; the forecast caption, Use forecast and Open-Meteo credit removed from Discover (desktop left column gets its original gaps back); picker "Where are you exploring?": New South Wales (current, "29 days out so far, from Sydney's beaches to the Blue Mountains"), then the other seven, each answering "… isn't here yet. We're starting with New South Wales and adding more over time." The home-base model (Version 52) is set aside. Kept as decided: the forecast on activity pages and My plans, for each activity's own area. Not yet in spec.md or the app: Discover's default sky without a forecast, M16.3 changes, the state picker. Snapshot taken (DF3).
 - **2026-10-06** Canvas Version 52 (owner chose A1, then asked for a finer place than the state, so the forecast and headline can name it): A1 reworked as **Home base**. Visitors pick where they're exploring from, grouped by state; a base sets the forecast and headline, where Getting there starts (its hub) and which days out are listed. Pill "Sydney, NSW"; headline back to "Sydney's looking …" and "Tap a sky. Sydney re-ranks around it."; sheet (phone) / popover (desktop) "Where are you exploring from?": New South Wales with Sydney (selected, aria-current) and "More places in NSW over time.", then the other seven states, each tappable and answering "Victoria isn't here yet. We're starting with Sydney and adding more places over time." (audit fixes: headline names the forecast place, coming-soon taps get an answer, softer promise; backdrop out of the Tab order). Not yet in spec.md: the base model (bases with hub, forecast and fire areas; activity region; which bases list an activity; per-base trips). Snapshot taken (DF3).

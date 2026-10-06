@@ -18,9 +18,8 @@ import { t } from "~/strings/en-AU";
  * filters on the left, results on the right (tiles, three at 1440 px and more on wider screens), and the
  * Discover | My plans switch in the top right; My plans is its own page.
  */
-const cards = await publishedCards(db(), contentMode());
-const events = await publishedEventCards(db(), contentMode());
-const mapView = await mapAvailable();
+// Independent lookups, run at once rather than one after another.
+const [cards, events, mapView] = await Promise.all([publishedCards(db(), contentMode()), publishedEventCards(db(), contentMode()), mapAvailable()]);
 ---
 
 <Base title={t.discover.pageTitle(SITE_NAME)} cards={cards} events={events}>

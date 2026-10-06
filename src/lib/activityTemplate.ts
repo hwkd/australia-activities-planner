@@ -9,7 +9,9 @@ export const slugify = (s: string) =>
     .replace(/&/g, " and ")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
+    .slice(0, 60)
+    // Cutting at 60 can end on a hyphen, which isn't a valid id: trim again.
+    .replace(/-+$/, "");
 
 /** Where a new activity's map starts: Circular Quay, so the admin's map has somewhere to be. */
 const QUAY = { lat: -33.8612, lng: 151.2108 };

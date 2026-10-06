@@ -11,7 +11,7 @@ Not legal advice. Figures marked *unverified* could not be confirmed on an offic
 ## Verdict
 
 - **Everything in the design is buildable.** Nothing on the canvas needs a service that doesn't exist or is closed to a solo developer.
-- **Running cost is about US$9 a month for the MVP and Phase 2** (analytics with custom events; everything else is $0), and about US$35 a month once accounts and group plans (Phase 3) outgrow a free database tier.
+- **Running cost is $0 a month for the MVP and Phase 2** (since D7 analytics are Cloudflare only: Web Analytics plus Workers Analytics Engine for events; Plausible's US$9 a month is no longer needed), and about US$35 a month once accounts and group plans (Phase 3) outgrow a free database tier.
 - **Calendar export needs no service:** `.ics` files are generated in the browser, and Google Calendar takes a plain link.
 - **The real cost is your time, not money.** Three things are checked by hand: venue prices and hours, parking, and (since D14) each activity's one trip from the city. Budget about 2–3 hours a quarter at 29 activities, about 9 hours a quarter at 100.
 - **Getting there needs no paid or per-state service** (D14). Only NSW offers a hosted trip planner; a hand-written trip from the city centre works in any city, and the cost estimate needs only each fare system's daily cap.
@@ -122,7 +122,7 @@ This is the part of the design with the most numbers, so it matters most. **Sinc
 - **MVP and Phase 2:** Cloudflare Workers static assets, free (Cloudflare now recommends Workers over Pages for new projects; the site is fully static, so no paid Worker usage). Scheduled jobs run free on GitHub Actions (public repo) or Cloudflare Workers.
 - **Avoid Vercel's free plan if you ever monetise:** it is for non-commercial use only.
 - **Phase 3:** Supabase free tier (50,000 monthly users, 500 MB) is enough to start. Free projects pause after a week without activity; the paid tier is US$25 a month.
-- **Analytics:** Cloudflare Web Analytics is free and cookieless, but it **doesn't support custom events** (its FAQ: "Not yet"), so it can't count plans, shares or calendar exports. Use Plausible (cookieless, custom events, from about US$9/month) or self-hosted Umami. *(Corrected 1 Oct 2026 in the implementation-plan audit.)*
+- **Analytics:** Cloudflare Web Analytics is free and cookieless, but it **doesn't support custom events** (its FAQ: "Not yet"), so it can't count plans, shares or calendar exports. Use Plausible (cookieless, custom events, from about US$9/month) or self-hosted Umami. *(Corrected 1 Oct 2026 in the implementation-plan audit.)* **Superseded 6 Oct 2026 (D7):** Cloudflare only. Page views from Web Analytics; the custom events go to the app's own endpoint and Workers Analytics Engine (free on the Workers plans within daily write and query allowances, per Cloudflare's published limits; not re-checked today).
 
 ## Legal points for Phase 3
 
