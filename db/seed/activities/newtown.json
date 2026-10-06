@@ -542,12 +542,12 @@
   },
   "unconfirmed": [
     {
-      "section": "visit",
-      "note": "Toilets in Camperdown Memorial Rest Park and the lift at Newtown station."
-    },
-    {
       "section": "cost",
-      "note": "Food and shopping prices."
+      "note": "Food and shopping prices are our estimates: they vary a lot along King St.",
+      "check": {
+        "label": "King St, Newtown on Google Maps",
+        "url": "https://www.google.com/maps/search/?api=1&query=restaurants%20King%20St%20Newtown"
+      }
     }
   ]
 }

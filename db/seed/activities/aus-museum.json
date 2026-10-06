@@ -613,15 +613,27 @@
   "unconfirmed": [
     {
       "section": "cost",
-      "note": "Ticketed exhibition prices: they change with each exhibition."
+      "note": "Ticketed exhibition prices ($20–30) change with each show: check the museum's What's On page for the current one.",
+      "check": {
+        "label": "What's on at the Australian Museum",
+        "url": "https://australian.museum/visit/whats-on/"
+      }
     },
     {
       "section": "cost",
-      "note": "Bistro and café prices."
+      "note": "The $12–22 bistro and café estimate is ours, not the museum's: check the menus before you go.",
+      "check": {
+        "label": "Food and drink at the Australian Museum",
+        "url": "https://australian.museum/visit/food/"
+      }
     },
     {
       "section": "driving",
-      "note": "Parking prices at nearby car parks."
+      "note": "The $15–30 estimate for 2 hours is a guess: the museum has no car park, and nearby car parks set their own rates.",
+      "check": {
+        "label": "Parking near the Australian Museum",
+        "url": "https://australian.museum/visit/parking-and-transport/"
+      }
     }
   ]
 }

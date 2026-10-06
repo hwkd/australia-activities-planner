@@ -1382,7 +1382,11 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Parking meter rates near Bondi Beach."
+      "note": "The $15–30 estimate for 3 hours near Bondi Beach is a guess: check the meter or Waverley Council's parking page.",
+      "check": {
+        "label": "Waverley Council: parking meters",
+        "url": "https://www.waverley.nsw.gov.au/residents/parking/parking_meters"
+      }
     }
   ]
 }

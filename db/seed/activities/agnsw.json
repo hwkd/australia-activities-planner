@@ -84,12 +84,13 @@
     "drive": {
       "total": "≈ 10 min",
       "perCar": [
-        15,
-        30
+        16,
+        48
       ],
       "perCarLabel": "Domain car park, 3 hrs",
       "notes": [
-        "Street parking on Art Gallery Rd is metered and scarce."
+        "Street parking on Art Gallery Rd is metered and scarce.",
+        "Wilson's Domain car park is $48 drive-up for 2–3 hours; booking online on weekends is from $15.75."
       ]
     }
   },
@@ -118,7 +119,7 @@
         "on": true
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-06"
   },
   "visit": {
     "bestTime": "Any time. On Wednesdays the gallery stays open until 10pm.",
@@ -539,12 +540,12 @@
   },
   "unconfirmed": [
     {
-      "section": "driving",
-      "note": "Domain car park price: Wilson Parking doesn't publish casual rates online."
-    },
-    {
       "section": "cost",
-      "note": "Café prices."
+      "note": "The $12–25 café estimate is ours: check the gallery's café menus for current prices.",
+      "check": {
+        "label": "Cafés and menus at the Art Gallery of NSW",
+        "url": "https://www.artgallery.nsw.gov.au/visit/eat-drink/"
+      }
     }
   ]
 }

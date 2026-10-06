@@ -207,3 +207,23 @@ Legend: `[x]` checked and fixed · `[ ]` to do. "Unconfirmed" lists what no offi
   - Confirmed: Valley of the Waters and Conservation Hut pins; free entry.
   - Set: `lastVerified`, `pricesChecked`, `geo.checked` = 2026-10-02; `status: verified`.
   - Unconfirmed: current NSW National Parks track closures on the National Pass; Conservation Hut opening hours and prices; M4 toll ($8–20 kept).
+
+## Recheck, 6 Oct 2026
+
+Figures checked against the official pages linked from each activity's "How to check" notes:
+
+- `agnsw`: Wilson's Domain car park publishes $48 drive-up for 2–3 hrs, from $15.75 online on weekends: estimate now $16–48.
+- `coogee`, `clovelly`: Randwick Council voted on 30 June 2026 not to introduce visitor pay parking at beaches: parking now free (time limits).
+- `manly`: Northern Beaches Council's Manly car parks: first 2 hrs free, $26 for 3½–4 hrs, $40.50 for 4–5 hrs.
+- `botanic`: Mrs Macquaries Rd meters $9 an hour (8am–8pm): $18 for 2 hrs.
+- `taronga`: gate adult $57, child $33; online from $51.30 and $29.70.
+- `royal-np`: Cronulla Ferries "Sorry Opal cards are not accepted" (settled); park entry $12 per vehicle per day (confirmed).
+- `rocks-markets`: Friday markets run 9 January to 18 December.
+- `palm-beach`: Barrenjoey Lighthouse tour adult $15, concession $13, child $11.
+- `parramatta`: Old Government House hours match the National Trust page.
+- `newtown`: park toilets (Inner West Council) and the lift at Newtown station (Transport for NSW) confirmed.
+- `wentworth`: Conservation Hut 8am–3pm daily. NSW National Parks alert (1 Oct 2026 – 31 Mar 2027): National Pass west of the middle crossing and Valley of the Waters below Sylvia Falls are closed, so the loop can't be walked: kept published with a notice at the top of the page (owner's decision).
+- `three-sisters`: Honeymoon Bridge closed (rockfall hazards): notice added and the pin note changed.
+- Opal: the weekend daily cap ($9.65 Fri–Sun) is already applied by the cost estimate; the each-way fares stay as estimates.
+- Still unconfirmed: Cronulla beach parking fees, North Head (NSW National Parks $5 a day vs Harbour Trust free), Scenic World prices (a search summary suggests from $64).
+- Upfront pass (owner: be upfront about anything unconfirmed): Coogee and Clovelly no longer state "time-limited" or "fills early" as fact (a Not yet confirmed note now covers both); Three Sisters' pin no longer suggests Echo Point "instead" (not confirmed open); Cronulla no longer states the beachfront is metered (the council's Croydon St car parks list time limits but no fees); Rocks Markets stall prices got their missing note. Not changed: about 26 crowd and timing tips across 18 activities ("fills by 9am on warm weekends", "busy on rainy weekends") are local advice no official page can confirm.

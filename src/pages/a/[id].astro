@@ -31,14 +31,20 @@ const found = preview ? await draftActivity(db(), id) : await publishedActivity(
 if (!found) return Astro.rewrite("/404");
 const a = found;
 /** Details not yet confirmed, by section of this page (spec §4.1). */
-const unconfirmed = (...sections: string[]) => (a.unconfirmed ?? []).filter((u) => sections.includes(u.section)).map((u) => u.note);
+const unconfirmed = (...sections: string[]) => (a.unconfirmed ?? []).filter((u) => sections.includes(u.section));
 const cards = await publishedCards(db(), contentMode());
 const events = await publishedEventCards(db(), contentMode());
 const mapView = await mapAvailable();
 // Fire danger for outdoor activities (spec §11.2): fetched by the Worker, cached 15 minutes.
 const fire = needsFireAlert(a) && !preview ? { value: await fireDanger() } : null;
-const longDate = (ymd: string) => new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(ymd));
-const sydneyTime = (iso: string) => new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit", timeZone: "Australia/Sydney" }).format(new Date(iso));
+const longDate = (ymd: string) =>
+  new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(
+    new Date(ymd),
+  );
+const sydneyTime = (iso: string) =>
+  new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit", timeZone: "Australia/Sydney" }).format(
+    new Date(iso),
+  );
 // Pairings link only to activities that are published; others show as plain text (spec §3.2 item 9).
 const names = new Map(cards.map((c) => [c.id, c.name]));
 const headsUp = [
@@ -53,7 +59,11 @@ const headsUp = [
 ---
 
 <Base title={t.detail.hero.pageTitle(a.name, SITE_NAME)} description={a.blurb} cards={cards} events={events}>
-  {preview && <p class="draft-banner" role="note">{t.detail.hero.previewBanner}</p>}
+  {preview && (
+    <p class="draft-banner" role="note">
+      {t.detail.hero.previewBanner}
+    </p>
+  )}
   <main class="detail">
     <div class="flex items-center justify-between gap-2">
       <a
@@ -66,7 +76,9 @@ const headsUp = [
         <Icon name="back" size={22} strokeWidth={2.5} />
       </a>
       <span class="glass eb rounded-full px-3.5 py-2 whitespace-nowrap">{a.categoryLabel}</span>
-      <div class="desk-add"><AddToDayButton client:idle id={a.id} name={a.name} /></div>
+      <div class="desk-add">
+        <AddToDayButton client:idle id={a.id} name={a.name} />
+      </div>
     </div>
     <script is:inline>
       // Back returns to the screen the user came from (pairings replace history, so that's never the
@@ -96,6 +108,26 @@ const headsUp = [
       <Icon name="pin" size={16} /> {a.area}
     </p>
     <p class="blurb tr">{a.blurb}</p>
+    {
+      a.notice && (
+        <div class="notice card-in" role="note" data-notice style="animation-delay: 60ms">
+          <Icon name="warn" size={18} className="mt-0.5 shrink-0" />
+          <div class="min-w-0">
+            <p class="m-0 font-bold">{a.notice.text}</p>
+            {a.notice.link && (
+              <a
+                href={a.notice.link.url}
+                {...(a.notice.link.url.startsWith("https:") ? { target: "_blank", rel: "noopener" } : {})}
+                class="notice-link"
+              >
+                {a.notice.link.label}
+                {a.notice.link.url.startsWith("https:") && <span class="sr-only">{t.detail.newTab}</span>}
+              </a>
+            )}
+          </div>
+        </div>
+      )
+    }
 
     <section class="glass tr card-in callout" style="animation-delay: 80ms" aria-label={t.detail.hero.fitLabel}>
       {WEATHERS.map((w) => (
@@ -143,8 +175,14 @@ const headsUp = [
         <Icon name="map" size={16} />
         {t.detail.map.heading}
       </h2>
-      <RouteMap client:visible name={a.name} geo={a.geo} mapView={mapView} checked={a.geo.checked ? longDate(a.geo.checked) : null} />
-      <Unconfirmed notes={unconfirmed("map")} />
+      <RouteMap
+        client:visible
+        name={a.name}
+        geo={a.geo}
+        mapView={mapView}
+        checked={a.geo.checked ? longDate(a.geo.checked) : null}
+      />
+      <Unconfirmed items={unconfirmed("map")} />
     </section>
 
     <div class="col-right">
@@ -154,7 +192,7 @@ const headsUp = [
           {t.detail.gettingThere.heading}
         </h2>
         <GettingThere routes={a.routes} />
-        <Unconfirmed notes={unconfirmed("gettingThere", "driving")} />
+        <Unconfirmed items={unconfirmed("gettingThere", "driving")} />
       </section>
 
       <section class="card glass tr card-in" style="animation-delay: 360ms" aria-labelledby="h-cost">
@@ -163,7 +201,7 @@ const headsUp = [
           {t.detail.cost.heading} <span class="ml-auto">{t.detail.cost.currency}</span>
         </h2>
         <CostEstimate client:visible pt={a.routes.pt} costs={a.costs} />
-        <Unconfirmed notes={unconfirmed("cost")} />
+        <Unconfirmed items={unconfirmed("cost")} />
       </section>
     </div>
 
@@ -232,7 +270,7 @@ const headsUp = [
           </div>
         )}
       </div>
-      <Unconfirmed notes={unconfirmed("visit")} />
+      <Unconfirmed items={unconfirmed("visit")} />
     </section>
 
     <section class="card glass tr card-in visit" aria-labelledby="h-access">
@@ -240,35 +278,33 @@ const headsUp = [
         <Icon name="access" size={16} />
         {t.detail.access.heading}
       </h2>
-      {
-        a.access ? (
-          <>
-            <dl class="access mt-3 grid gap-2 text-[14.5px]">
-              <div>
-                <dt>{t.detail.access.prams}</dt>
-                <dd>{t.detail.access.level[a.access.prams]}</dd>
-              </div>
-              <div>
-                <dt>{t.detail.access.stepFree}</dt>
-                <dd>{t.detail.access.level[a.access.stepFree]}</dd>
-              </div>
-              <div>
-                <dt>{t.detail.access.toilet}</dt>
-                <dd>{t.detail.access.toiletLevel(a.access.accessibleToilet)}</dd>
-              </div>
-            </dl>
-            {a.access.notes && <p class="mt-2.5 text-[14.5px] leading-[1.45]">{a.access.notes}</p>}
-            {a.lastVerified && (
-              <p class="mt-2 text-[13px]" style="color: var(--mute)">
-                {t.detail.access.checked(longDate(a.lastVerified))}
-              </p>
-            )}
-          </>
-        ) : (
-          <p class="mt-2 text-[14.5px] leading-[1.45]">{t.detail.access.notChecked}</p>
-        )
-      }
-      <Unconfirmed notes={unconfirmed("access")} />
+      {a.access ? (
+        <>
+          <dl class="access mt-3 grid gap-2 text-[14.5px]">
+            <div>
+              <dt>{t.detail.access.prams}</dt>
+              <dd>{t.detail.access.level[a.access.prams]}</dd>
+            </div>
+            <div>
+              <dt>{t.detail.access.stepFree}</dt>
+              <dd>{t.detail.access.level[a.access.stepFree]}</dd>
+            </div>
+            <div>
+              <dt>{t.detail.access.toilet}</dt>
+              <dd>{t.detail.access.toiletLevel(a.access.accessibleToilet)}</dd>
+            </div>
+          </dl>
+          {a.access.notes && <p class="mt-2.5 text-[14.5px] leading-[1.45]">{a.access.notes}</p>}
+          {a.lastVerified && (
+            <p class="mt-2 text-[13px]" style="color: var(--mute)">
+              {t.detail.access.checked(longDate(a.lastVerified))}
+            </p>
+          )}
+        </>
+      ) : (
+        <p class="mt-2 text-[14.5px] leading-[1.45]">{t.detail.access.notChecked}</p>
+      )}
+      <Unconfirmed items={unconfirmed("access")} />
     </section>
 
     <section class="card glass tr card-in visit" aria-labelledby="h-tip">
@@ -286,27 +322,25 @@ const headsUp = [
           {t.detail.headsUp.heading}
         </h2>
         <ul class="mt-2.5 grid gap-2 text-[14.5px] leading-[1.45]">
-          {
-            fire && (
-              <li data-fire>
-                {fire.value ? (
-                  <>
-                    <b>{t.detail.headsUp.fireToday(ratingLabel(fire.value.today), fire.value.banToday)}</b>{" "}
-                    {t.detail.headsUp.fireTomorrow(ratingLabel(fire.value.tomorrow), fire.value.banTomorrow)}{" "}
-                    <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
-                      {t.detail.headsUp.fireSource(sydneyTime(fire.value.fetchedAt))}
-                      <span class="sr-only">{t.detail.newTab}</span>
-                    </a>
-                  </>
-                ) : (
+          {fire && (
+            <li data-fire>
+              {fire.value ? (
+                <>
+                  <b>{t.detail.headsUp.fireToday(ratingLabel(fire.value.today), fire.value.banToday)}</b>{" "}
+                  {t.detail.headsUp.fireTomorrow(ratingLabel(fire.value.tomorrow), fire.value.banTomorrow)}{" "}
                   <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
-                    {t.detail.headsUp.fireUnknown}
+                    {t.detail.headsUp.fireSource(sydneyTime(fire.value.fetchedAt))}
                     <span class="sr-only">{t.detail.newTab}</span>
                   </a>
-                )}
-              </li>
-            )
-          }
+                </>
+              ) : (
+                <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
+                  {t.detail.headsUp.fireUnknown}
+                  <span class="sr-only">{t.detail.newTab}</span>
+                </a>
+              )}
+            </li>
+          )}
           {headsUp.map((h) => (
             <li>{h}</li>
           ))}
@@ -343,15 +377,13 @@ const headsUp = [
       <ul class="hs pairs">
         {a.pairings.map((p) => (
           <li class="glass tr pair">
-            {
-              names.has(p.activityId) ? (
-                <a href={`/a/${p.activityId}`} data-pairing class="pair-link w90">
-                  {names.get(p.activityId)}
-                </a>
-              ) : (
-                <span class="pair-link w90">{p.name}</span>
-              )
-            }
+            {names.has(p.activityId) ? (
+              <a href={`/a/${p.activityId}`} data-pairing class="pair-link w90">
+                {names.get(p.activityId)}
+              </a>
+            ) : (
+              <span class="pair-link w90">{p.name}</span>
+            )}
             <span class="text-[13.5px] leading-[1.35]" style="color: var(--mute)">
               {p.why}
             </span>
@@ -650,5 +682,32 @@ const headsUp = [
       border-radius: 22px;
       display: none;
     }
+  }
+  /* A temporary warning (a track closure) under the description: solid, unlike Not yet confirmed. */
+  .notice {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 1.5px solid var(--accent);
+    background: var(--glass2);
+    color: var(--ink);
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+  .notice :global(svg) {
+    color: var(--accent);
+  }
+  .notice-link {
+    margin-top: 2px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>

@@ -679,11 +679,19 @@
   "unconfirmed": [
     {
       "section": "access",
-      "note": "Whether there's a step-free way down to the pool deck."
+      "note": "We couldn't confirm a step-free way down to the pool deck: call the pool to ask before you go.",
+      "check": {
+        "label": "Call Bondi Icebergs pool",
+        "url": "tel:+61291304804"
+      }
     },
     {
       "section": "driving",
-      "note": "Parking prices near the beach."
+      "note": "The $12–25 estimate for 2 hours near the beach is a guess: check the meter or Waverley Council's parking page.",
+      "check": {
+        "label": "Waverley Council: parking meters",
+        "url": "https://www.waverley.nsw.gov.au/residents/parking/parking_meters"
+      }
     }
   ]
 }

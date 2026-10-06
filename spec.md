@@ -129,7 +129,9 @@ The detail page answers four questions a newcomer has before committing: **Is it
    - Openable pairings show an arrow. A pairing without an `activityId` is shown as plain text (none in the current content).
 10. **Add to a day:** a sticky footer button on phone and a top-bar button on desktop. It opens the **Add to a day** sheet (§3.3). If the activity is already planned, the button reads "Planned · Sat 3 Oct" and the sheet also lists those dates. An activity can be planned on several days, but only once per day.
 
-**Not yet confirmed:** the Map, Getting there (with Driving?), What it'll cost, Plan your visit and Access sections each end with a dashed **Not yet confirmed** note listing the activity's `unconfirmed` entries for that section (§4.1), with "We couldn't confirm these with an official source. Check before you rely on them." Nothing shows when there are none.
+**Notice:** an activity's `notice` (§4.1), when set, shows under the description at the top of the page as a solid warning box (warning icon, the accent colour) with its link, e.g. "The National Pass loop is closed until at least 31 March 2027 …" and **Latest alerts on NSW National Parks**. Editors remove it when it no longer applies.
+
+**Not yet confirmed:** the Map, Getting there (with Driving?), What it'll cost, Plan your visit and Access sections each end with a dashed **Not yet confirmed** note listing the activity's `unconfirmed` entries for that section (§4.1), headed by "We couldn't confirm these with an official source yet, so check them before you rely on them." Each entry is a plain sentence saying which figure is an estimate, followed, where there is one, by a **How to check** link naming the source (the operator's or council's page, the Transport for NSW timetable or fares page, NSW National Parks, a menu on Google Maps; external pages open in a new tab) or a number to call. Nothing shows when there are none.
 
 **Motion:**
 - When an activity page opens, the last-stretch legs slide in, staggered.
@@ -252,9 +254,16 @@ interface Activity {
   access?: AccessInfo;                // Phase 2 (§11.6)
   status: "draft" | "verified";       // draft = written but not yet checked against official sources
   lastVerified: string | null;        // YYYY-MM-DD; null while status is "draft"
+  notice?: {                          // a temporary warning at the top of the page, e.g. a track closure
+    text: string;                     //   ≤ 240 chars: what's affected and until when
+    link?: { label: string; url: string }; // the page with the latest (https://) or a number (tel:)
+  };
   unconfirmed?: {                     // details no official source could confirm when it was checked
     section: "map" | "gettingThere" | "driving" | "cost" | "visit" | "access";
-    note: string;                     // one plain sentence, ≤ 200 chars, e.g. "Parking prices in The Rocks."
+    note: string;                     // one plain sentence for visitors, ≤ 200 chars, naming the estimate,
+                                      //   e.g. "The $15–30 parking estimate for The Rocks is a guess: car parks there don't publish casual rates."
+    check?: { label: string; url: string }; // how a visitor can check it: the page with the answer (https://)
+                                      //   or a number to call (tel:+61…); label names the source, ≤ 60 chars
   }[];
 }
 ```

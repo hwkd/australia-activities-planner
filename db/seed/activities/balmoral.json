@@ -722,15 +722,27 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Parking meter rates: Mosman Council only publishes permit prices."
+      "note": "The $15–30 estimate for 3 hours is a guess: Mosman Council doesn't publish its Balmoral meter rates online.",
+      "check": {
+        "label": "Mosman Council: public parking",
+        "url": "https://mosman.nsw.gov.au/residents/transport/public-parking-and-carparks"
+      }
     },
     {
       "section": "cost",
-      "note": "Kayak and paddleboard hire prices."
+      "note": "The $25–35 kayak and paddleboard hire estimate is ours: check the Balmoral Boatshed's current rates.",
+      "check": {
+        "label": "Balmoral Boatshed: paddleboard hire",
+        "url": "https://balmoralboatshed.com.au/paddle-board-hire/"
+      }
     },
     {
       "section": "gettingThere",
-      "note": "The Opal fare."
+      "note": "The $7–10 Opal fare is our estimate: check Transport for NSW's fare tables or the Trip Planner.",
+      "check": {
+        "label": "Opal fares on Transport for NSW",
+        "url": "https://transportnsw.info/tickets-fares/fares/adult-opal-fares"
+      }
     }
   ]
 }

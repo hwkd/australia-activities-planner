@@ -58,12 +58,22 @@ Every activity starts with **Content status: Draft**. The live site shows only *
 5. **Map:** see "Checking the map" below. When the places and lines are right, press **Map checked
    today**.
 6. **Make a day of it:** 2–3 nearby activities, each chosen from the list.
+6b. **Notice:** for something temporary that changes the visit (a track closure, works, a venue
+   closed for a season), fill in **Notice** with what's affected and until when, and link the page with
+   the latest (the NSW National Parks alert, the venue's notice). It shows at the top of the activity
+   page. Remove it when it no longer applies, and check NSW National Parks alerts for every bushwalk
+   when you recheck an activity.
 7. **Not yet confirmed:** anything you couldn't confirm with an official source (a car park that
    doesn't publish its rates, the last ferry time, a price only resellers list) goes under **Not yet
-   confirmed**, with the section it belongs to and one plain sentence ("Parking prices in The Rocks.").
-   Keep your best estimate in the field itself. The activity page shows these lines in their section
-   as "Not yet confirmed", so visitors know to check. When someone confirms one, correct the detail and
-   press **Confirmed: remove**. An unconfirmed detail doesn't stop an activity being verified.
+   confirmed**, with the section it belongs to and one plain sentence written for visitors that says
+   which figure is a guess ("The $15–30 parking estimate for The Rocks is a guess: car parks there don't
+   publish casual rates."). Add **How to check** wherever a visitor can find the answer themselves: the
+   page that has it (the car park operator, the council, the Transport for NSW timetable, NSW National
+   Parks; Google Maps for café menus) or `tel:+61…` for a number to call, with link text naming the
+   source ("Wilson Parking: The Domain", "Call Wylie's Baths"). Open the link first: it must be the
+   right page, not a home page. Keep your best estimate in the field itself. The activity page shows
+   these lines in their section as "Not yet confirmed". When someone confirms one, correct the detail
+   and press **Confirmed: remove**. An unconfirmed detail doesn't stop an activity being verified.
 8. When everything is checked: set **Content status: Verified**, **Last verified** and **Prices
    checked** to today, save, then publish.
 

@@ -108,7 +108,9 @@ export const detail = {
   },
   unconfirmed: {
     heading: "Not yet confirmed",
-    hint: "We couldn't confirm these with an official source. Check before you rely on them.",
+    hint: "We couldn't confirm these with an official source yet, so check them before you rely on them.",
+    /** Before each way to check: "How to check: Opal fares on Transport for NSW". */
+    checkPrefix: "How to check: ",
   },
   headsUp: {
     heading: "Heads up",

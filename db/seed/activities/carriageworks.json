@@ -606,11 +606,19 @@
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "Whether the on-site car park is free: Carriageworks' visit pages don't say."
+      "note": "We couldn't confirm whether the small on-site car park is free: Carriageworks' visit page doesn't say.",
+      "check": {
+        "label": "Call Carriageworks",
+        "url": "tel:+61285719099"
+      }
     },
     {
       "section": "cost",
-      "note": "Stall prices."
+      "note": "Stall prices vary by stallholder and season: the breakfast and produce figures are our estimates.",
+      "check": {
+        "label": "This week's stallholders at Carriageworks",
+        "url": "https://carriageworks.com.au/events/carriageworks-farmers-market/"
+      }
     }
   ]
 }

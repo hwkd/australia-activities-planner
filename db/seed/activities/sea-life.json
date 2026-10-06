@@ -632,7 +632,11 @@
   "unconfirmed": [
     {
       "section": "cost",
-      "note": "The price of adding WILD LIFE Sydney Zoo: tickets are now sold as multi-attraction bundles."
+      "note": "The $20–30 for adding WILD LIFE Sydney Zoo is a guess: tickets are now sold as multi-attraction passes.",
+      "check": {
+        "label": "SEA LIFE Sydney: tickets and passes",
+        "url": "https://www.visitsealife.com/sydney/tickets-passes/"
+      }
     }
   ]
 }

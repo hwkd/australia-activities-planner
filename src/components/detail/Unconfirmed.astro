@@ -1,36 +1,75 @@
 ---
+import type { Activity } from "~/content/schema";
+import { Icon } from "~/theme/icons";
 import { t } from "~/strings/en-AU";
 
 /**
  * "Not yet confirmed" (spec §3.2, §4.1): the details in one section of the activity page that no
- * official source could confirm when the activity was checked. Renders nothing when there are none.
+ * official source could confirm when the activity was checked, each with a way to check it yourself
+ * where there is one (the page that has the answer, or a number to call). Renders nothing when there
+ * are none.
  */
 interface Props {
-  notes: string[];
+  items: NonNullable<Activity["unconfirmed"]>;
 }
-const { notes } = Astro.props;
+const { items } = Astro.props;
 const s = t.detail.unconfirmed;
 ---
 
-{
-  notes.length > 0 && (
-    <div class="unconfirmed mt-3 rounded-[16px] px-3.5 py-3 text-[14px] leading-[1.45]" role="note" data-unconfirmed>
-      <p class="m-0 font-bold">{s.heading}</p>
-      <ul class="m-0 mt-1.5 list-disc pl-5">
-        {notes.map((n) => (
-          <li>{n}</li>
-        ))}
-      </ul>
-      <p class="m-0 mt-1.5" style="color: var(--mute)">
-        {s.hint}
-      </p>
-    </div>
-  )
-}
+{items.length > 0 && (
+  <div class="unconfirmed mt-3 rounded-[16px] px-3.5 py-3 text-[14px] leading-[1.45]" role="note" data-unconfirmed>
+    <p class="m-0 flex items-center gap-2 font-bold">
+      <Icon name="info" size={16} className="shrink-0" />
+      {s.heading}
+    </p>
+    <p class="m-0 mt-1 text-[13px]" style="color: var(--mute)">
+      {s.hint}
+    </p>
+    <ul class="m-0 mt-2.5 grid list-none gap-2.5 p-0">
+      {items.map((u) => (
+        <li class="flex gap-2.5">
+          <span aria-hidden="true" class="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-70" />
+          <span class="min-w-0">
+            <span class="block">{u.note}</span>
+            {u.check &&
+              (u.check.url.startsWith("tel:") ? (
+                <a href={u.check.url} class="check" data-check>
+                  <Icon name="phone" size={14} className="shrink-0" />
+                  <span class="sr-only">{s.checkPrefix}</span>
+                  {u.check.label}
+                </a>
+              ) : (
+                <a href={u.check.url} target="_blank" rel="noopener" class="check" data-check>
+                  <Icon name="external" size={14} className="shrink-0" />
+                  <span class="sr-only">{s.checkPrefix}</span>
+                  {u.check.label}
+                  <span class="sr-only">{t.detail.newTab}</span>
+                </a>
+              ))}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
 
 <style>
   .unconfirmed {
     border: 1px dashed var(--line);
     background: var(--soft);
+  }
+  /* A link-sized target (≥ 24 px, WCAG 2.5.8) that still reads as a link, under the note it checks. */
+  .check {
+    margin-top: 3px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
   }
 </style>

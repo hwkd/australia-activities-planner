@@ -182,13 +182,32 @@ test("M17.6: outdoor activities show NSW RFS fire danger (or where to check it);
   await expect(page.locator("li[data-fire]")).toHaveCount(0);
 });
 
-test("Not yet confirmed: each section lists the activity's unconfirmed details for it, and only those", async ({ page }) => {
-  const a = JSON.parse(readFileSync("db/seed/activities/royal-np.json", "utf8")) as { unconfirmed: { section: string; note: string }[] };
+test("Not yet confirmed: each section lists the activity's unconfirmed details for it, and only those, with a way to check each", async ({ page }) => {
+  type U = { section: string; note: string; check?: { label: string; url: string } };
+  const a = JSON.parse(readFileSync("db/seed/activities/royal-np.json", "utf8")) as { unconfirmed: U[] };
   await open(page, "/a/royal-np");
   const go = goSection(page).locator("[data-unconfirmed]");
   await expect(go).toContainText("Not yet confirmed");
-  for (const u of a.unconfirmed.filter((x) => x.section === "gettingThere" || x.section === "driving")) await expect(go).toContainText(u.note);
+  for (const u of a.unconfirmed.filter((x) => x.section === "gettingThere" || x.section === "driving")) {
+    await expect(go).toContainText(u.note);
+    if (!u.check) continue;
+    // The link names its source; an https page opens in a new tab, a tel: number dials.
+    const link = go.getByRole("link", { name: `How to check: ${u.check.label}` });
+    await expect(link).toHaveAttribute("href", u.check.url);
+    if (u.check.url.startsWith("https:")) await expect(link).toHaveAttribute("target", "_blank");
+  }
   // Royal NP has nothing unconfirmed about its cost or access.
   await expect(page.locator('section[aria-labelledby="h-cost"] [data-unconfirmed]')).toHaveCount(0);
   await expect(page.locator('section[aria-labelledby="h-access"] [data-unconfirmed]')).toHaveCount(0);
+});
+
+test("Notice: a temporary warning (a track closure) shows at the top of the page with its link", async ({ page }) => {
+  const a = JSON.parse(readFileSync("db/seed/activities/wentworth.json", "utf8")) as { notice: { text: string; link: { label: string; url: string } } };
+  await open(page, "/a/wentworth");
+  const notice = page.locator("[data-notice]");
+  await expect(notice).toContainText(a.notice.text);
+  await expect(notice.getByRole("link", { name: a.notice.link.label })).toHaveAttribute("href", a.notice.link.url);
+  // Activities without one show nothing.
+  await open(page, "/a/bondi-coogee");
+  await expect(page.locator("[data-notice]")).toHaveCount(0);
 });

@@ -85,12 +85,12 @@
     "drive": {
       "total": "≈ 12 min",
       "perCar": [
-        15,
-        30
+        18,
+        18
       ],
       "perCarLabel": "Parking, 2 hrs",
       "notes": [
-        "Metered parking on Mrs Macquaries Rd is limited on sunny weekends.",
+        "Metered parking on Mrs Macquaries Rd ($9 an hour, 8am–8pm) is limited on sunny weekends.",
         "The train to Circular Quay is usually quicker."
       ]
     },
@@ -121,7 +121,7 @@
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-06"
   },
   "visit": {
     "bestTime": "Early morning or the hour before sunset, when the light on the Opera House is best.",
@@ -600,11 +600,5 @@
     },
     "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
     "checked": "2026-10-02"
-  },
-  "unconfirmed": [
-    {
-      "section": "driving",
-      "note": "Parking meter rates on Mrs Macquaries Rd."
-    }
-  ]
+  }
 }

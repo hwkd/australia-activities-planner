@@ -115,7 +115,7 @@
   },
   "visit": {
     "bestTime": "Start by 10am. The falls are best after rain, but the stairs are not: wait for a dry day.",
-    "hours": "Always open. Tracks close after rockfalls or heavy rain: check NSW National Parks alerts before you go.",
+    "hours": "The National Pass loop is closed until at least 31 March 2027 (NSW National Parks alert). Tracks also close after rockfalls or heavy rain: check the alerts before you go.",
     "bring": [
       "Sturdy shoes",
       "2 litres of water",
@@ -124,7 +124,7 @@
     ],
     "facilities": [
       "Toilets at the picnic area and Conservation Hut",
-      "Café at the Conservation Hut"
+      "Café at the Conservation Hut, 8am to 3pm daily"
     ],
     "access": "Hundreds of steep steps and narrow ledges. Not suitable for prams, wheelchairs or anyone uneasy with heights.",
     "safety": [
@@ -4242,15 +4242,34 @@
   "unconfirmed": [
     {
       "section": "visit",
-      "note": "Current track closures on the National Pass: check NSW National Parks alerts."
+      "note": "Closures can lift early or run longer than planned: check the National Pass alerts before you set off.",
+      "check": {
+        "label": "National Pass alerts on NSW National Parks",
+        "url": "https://www.nationalparks.nsw.gov.au/things-to-do/walking-tracks/national-pass/local-alerts"
+      }
     },
     {
       "section": "cost",
-      "note": "Conservation Hut opening hours and prices."
+      "note": "The $18–30 lunch estimate at the Conservation Hut is ours: it doesn't publish its prices.",
+      "check": {
+        "label": "Conservation Hut on NSW National Parks",
+        "url": "https://www.nationalparks.nsw.gov.au/things-to-do/cafes-and-kiosks/conservation-hut"
+      }
     },
     {
       "section": "driving",
-      "note": "The M4 toll per car."
+      "note": "The $8–20 M4 toll estimate is a guess: check the current toll on Linkt.",
+      "check": {
+        "label": "M4 toll prices on Linkt",
+        "url": "https://www.linkt.com.au/using-toll-roads/about-sydney-toll-roads/westconnex/toll-pricing"
+      }
     }
-  ]
+  ],
+  "notice": {
+    "text": "The National Pass loop is closed until at least 31 March 2027: National Pass west of the middle crossing (landslide) and Valley of the Waters below Sylvia Falls (rockfall).",
+    "link": {
+      "label": "Latest alerts on NSW National Parks",
+      "url": "https://www.nationalparks.nsw.gov.au/things-to-do/walking-tracks/national-pass/local-alerts"
+    }
+  }
 }

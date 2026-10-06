@@ -128,11 +128,11 @@
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-06"
   },
   "visit": {
     "bestTime": "A clear day. Climb to the lighthouse in the morning, then swim.",
-    "hours": "Always open. Guided tours inside the lighthouse run on Sundays (NSW National Parks).",
+    "hours": "Always open. Guided tours inside the lighthouse run on Sundays: adult $15, child $11 (NSW National Parks).",
     "bring": [
       "Walking shoes",
       "Water",
@@ -1694,16 +1694,20 @@
   },
   "unconfirmed": [
     {
-      "section": "visit",
-      "note": "Lighthouse tour prices."
-    },
-    {
       "section": "driving",
-      "note": "Parking prices at Governor Phillip Park."
+      "note": "The $15–40 estimate for Governor Phillip Park is a guess: check Northern Beaches Council's beach parking fees.",
+      "check": {
+        "label": "Northern Beaches Council: beach parking fees",
+        "url": "https://www.northernbeaches.nsw.gov.au/services/parking/beach-and-reserve-paid-parking"
+      }
     },
     {
       "section": "cost",
-      "note": "The Pittwater ferry fare."
+      "note": "The $10–20 Pittwater ferry fare is our estimate: check Palm Beach Ferries' current fares.",
+      "check": {
+        "label": "Palm Beach Ferries: fares",
+        "url": "https://palmbeachferries.com.au/prices/"
+      }
     }
   ]
 }
