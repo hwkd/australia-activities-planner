@@ -45,7 +45,9 @@ const pages = ["/", "/a/bondi-coogee", "/plan"];
 let failed = false;
 for (const path of pages) {
   // Async: the gzip proxy below runs in this process and must keep serving while Lighthouse runs.
-  const { stdout: out } = await promisify(execFile)("npx", ["lighthouse", base + path, "--quiet", "--chrome-flags=--headless=new", "--only-categories=performance,accessibility,best-practices,seo", "--output=json", "--output-path=stdout"], {
+  // --no-sandbox, as Playwright launches it: on Ubuntu 24.04 (CI) Chromium's sandbox can't start, and
+  // Chrome exits before Lighthouse can connect ("waiting for dynamic debugging port").
+  const { stdout: out } = await promisify(execFile)("npx", ["lighthouse", base + path, "--quiet", "--chrome-flags=--headless=new --no-sandbox", "--only-categories=performance,accessibility,best-practices,seo", "--output=json", "--output-path=stdout"], {
     env: { ...process.env, CHROME_PATH: chromium.executablePath() },
     maxBuffer: 64 * 1024 * 1024,
   });

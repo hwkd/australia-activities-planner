@@ -62,6 +62,25 @@ test("AC 27: Google Calendar: one link for one plan, one link per plan for sever
   await expect(sheet(page).getByRole("link", { name: /to Google Calendar/ })).toHaveCount(2);
 });
 
+test("AC 27: times stay Sydney's on a device set to another time zone", async ({ browser }) => {
+  // Browsers run on Sydney time (playwright.config.ts) because page.clock only works there, so this
+  // one runs abroad on the real clock, a fortnight ahead.
+  const ctx = await browser.newContext({ timezoneId: "America/Los_Angeles" });
+  const page = await ctx.newPage();
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Australia/Sydney" }).format(new Date());
+  const day = new Date(Date.parse(`${today}T00:00:00Z`) + 14 * 86_400_000).toISOString().slice(0, 10);
+  await seed(page, { [day]: [{ id: "bondi-coogee", start: "08:30" }] });
+  await open(page, `/plan?d=${day}`);
+  await idle(page);
+  await expect(page.getByText("8:30am").filter({ visible: true }).first()).toBeVisible();
+  await page.getByRole("button", { name: `Add ${act("bondi-coogee").name} to my calendar` }).click();
+  await sheet(page).getByRole("button", { name: /^Google Calendar/ }).click();
+  const u = new URL((await page.getByRole("link", { name: /Open in Google Calendar/ }).getAttribute("href"))!);
+  const ymd = day.replace(/-/g, "");
+  expect(u.searchParams.get("dates")).toMatch(new RegExp(`^${ymd}T083000/${ymd}T\\d{6}$`));
+  await ctx.close();
+});
+
 test("AC 28: Labour Day is shown and uses the weekend cap; a Wednesday uses the weekday cap", async ({ page }) => {
   await open(page, "/plan?d=2026-10-05");
   await expect(page.getByRole("button", { name: /^Monday 5 October, Labour Day/ })).toBeVisible();
