@@ -1,7 +1,7 @@
 import type { EventItem } from "~/content/eventSchema";
 import type { CardData } from "./content";
 import { addDays, shortLabel, type DateStr } from "./dates";
-import type { ExportInfo } from "./calendarExport";
+import { placeOf, type ExportInfo } from "./calendarExport";
 import { nearestArea } from "./forecast";
 import { lib } from "~/strings/en-AU/lib";
 
@@ -45,7 +45,8 @@ export const eventExportInfo = (e: EventItem): ExportInfo => ({
   id: e.id,
   name: e.name,
   duration: e.duration,
-  place: lib.calendarExport.place(`${e.venue.name}, ${e.area}`),
+  place: placeOf(e.venue.name, e.area),
+  geo: { lat: e.venue.lat, lng: e.venue.lng },
   directions: lib.events.directions(e.link.url),
   url: e.link.url,
 });

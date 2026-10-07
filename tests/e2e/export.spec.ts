@@ -2,7 +2,7 @@ import { idle, open } from "./helpers";
 import { expect, test, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
 
-const act = (id: string) => JSON.parse(readFileSync(`db/seed/activities/${id}.json`, "utf8")) as { name: string; routes: { dest: { label: string } } };
+const act = (id: string) => JSON.parse(readFileSync(`db/seed/activities/${id}.json`, "utf8")) as { name: string; area: string; routes: { dest: { label: string } } };
 test.beforeEach(async ({ page }) => {
   await page.clock.setFixedTime(new Date("2026-10-01T00:00:00Z"));
 });
@@ -27,7 +27,7 @@ test("AC 25: a day with two plans downloads one .ics with both events, place, di
   expect(ics.match(/BEGIN:VEVENT/g)).toHaveLength(2);
   expect(ics).toContain("DTSTART;TZID=Australia/Sydney:20261003T083000");
   expect(ics).toContain("DTSTART;TZID=Australia/Sydney:20261003T130000");
-  expect(ics).toContain(`LOCATION:${act("bondi-coogee").routes.dest.label}\\, Sydney NSW`);
+  expect(ics).toContain(`LOCATION:${act("bondi-coogee").routes.dest.label}\\, ${act("bondi-coogee").area} NSW`);
   expect(ics).toContain("By public transport from Central Station");
   expect(ics.match(/TRIGGER:-P1D/g)).toHaveLength(2);
   expect(ics).toContain("BEGIN:VTIMEZONE");

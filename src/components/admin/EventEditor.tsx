@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { sameData } from "~/lib/sameData";
 import { eventSchema, type EventItem } from "~/content/eventSchema";
 import type { ActivitySummary } from "~/server/activities";
 import type { User } from "~/server/auth";
@@ -157,7 +158,8 @@ export default function EventEditor({ id, user }: { id: string; user: User }) {
   if (!draft || !rec) return message ? <Notice kind="error">{message.text}</Notice> : <p className="text-slate-500">Loading…</p>;
 
   const live = !!rec.published;
-  const liveDiffers = live && JSON.stringify(rec.published) !== JSON.stringify(rec.draft);
+  // Compared as data, like the activity editor: key order or a cleared field isn't a change.
+  const liveDiffers = live && !sameData(rec.published, rec.draft);
   const ended = live && rec.published!.end < today;
   const linkOptions = [
     { value: "", label: "None" },

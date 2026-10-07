@@ -57,7 +57,7 @@ describe("events (spec §11.4)", () => {
   });
   it("exports with the venue and the official page", () => {
     const e = eventFromInfo(eventExportInfo(market), "2026-10-08", "18:00", { site: "https://example.test", includeDirections: true });
-    expect(e.location).toBe("Hyde Park North, Hyde Park, Sydney NSW");
+    expect(e.location).toBe("Hyde Park North, Hyde Park NSW");
     expect(e.url).toBe("https://example.org/night-noodle-markets");
     expect(e.description).toContain("official page");
   });

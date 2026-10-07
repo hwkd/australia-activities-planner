@@ -56,6 +56,14 @@ describe("content (AC 15)", () => {
     noLabel.unconfirmed = [{ section: "driving", note: "Parking prices.", check: { label: "", url: "https://example.com/" } }];
     expect(activitySchema.safeParse(noLabel).success).toBe(false);
   });
+  it("lists an activity saved without a state under New South Wales (D16; drafts from before migration 0004)", () => {
+    const old = clone(raw[0]);
+    delete old.state;
+    const r = activitySchema.safeParse(old);
+    expect(r.success).toBe(true);
+    expect(r.data?.state).toBe("nsw");
+    expect(activitySchema.safeParse({ ...clone(raw[0]), state: "vic" }).success, "only live states").toBe(false);
+  });
   it("catches duplicate ids", () => {
     expect(checkActivities([parsed[0], parsed[0]])).toContain(`${parsed[0].id}: duplicate id`);
   });
