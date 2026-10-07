@@ -8,22 +8,12 @@ import { activitySchema } from "../../src/content/schema";
 import { toCard } from "../../src/lib/content";
 import { exportInfo } from "../../src/lib/calendarExport";
 import { d1, d1Query } from "./wrangler";
+import { sameData } from "../../src/lib/sameData";
 
 const remote = process.argv.includes("--remote");
 const dry = process.argv.includes("--dry-run");
 const SEED = "db/seed/activities";
 const q = (v: string) => `'${v.replace(/'/g, "''")}'`;
-// Key order doesn't matter: compare parsed values.
-const same = (a: unknown, b: unknown): boolean => {
-  if (a === b) return true;
-  if (typeof a !== "object" || typeof b !== "object" || !a || !b || Array.isArray(a) !== Array.isArray(b)) return false;
-  const ka = Object.keys(a),
-    kb = Object.keys(b);
-  return (
-    ka.length === kb.length &&
-    ka.every((k) => same((a as Record<string, unknown>)[k], (b as Record<string, unknown>)[k]))
-  );
-};
 
 const rows = new Map(
   d1Query<{ id: string; version: number; draft_json: string; published_json: string | null }>(
@@ -47,8 +37,8 @@ for (const f of readdirSync(SEED)
   }
   const draft = JSON.parse(row.draft_json);
   const published = row.published_json ? JSON.parse(row.published_json) : null;
-  if (published && same(published, a) && same(draft, a)) continue;
-  if (!published || !same(draft, published)) {
+  if (published && sameData(published, a) && sameData(draft, a)) continue;
+  if (!published || !sameData(draft, published)) {
     skipped.push(a.id);
     continue;
   }

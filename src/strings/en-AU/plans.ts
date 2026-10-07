@@ -12,12 +12,13 @@ export const plans = {
   /** The /plan page shell: document title, meta description and the loading/no-JS fallbacks. */
   page: {
     title: (site: string) => `My plans · ${site}`,
-    description: "Your plans in Sydney, day by day.",
+    description: "Your plans in New South Wales, day by day.",
     loading: "Loading your plans",
     noscript: "My plans are stored on this device and need JavaScript to show.",
   },
   header: {
-    city: "Sydney",
+    /** The eyebrow's state (D16): short, so "NSW · 2 plans coming up" fits beside Today on a phone. */
+    city: "NSW",
     heading: "My plans",
     comingUp: (n: number) => `${n} ${n === 1 ? "plan" : "plans"} coming up`,
     today: "Today",

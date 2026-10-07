@@ -80,6 +80,7 @@ const UI = {
   access: <><circle cx="12" cy="4.5" r="1.8" /><path d="M12 7.5v6h5l2 5M12 10h5M9 11.5a5 5 0 1 0 6.5 6.5" /></>,
   shield: <path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6zM12 8.5v4M12 15.5h.01" />,
   next: <path d="M5 12h14M13 6l6 6-6 6" />,
+  chevronDown: <path d="M6 9l6 6 6-6" />,
   warn: <><path d="M12 4l9 16H3z" /><path d="M12 10v4M12 17h.01" /></>,
   // Leg modes (the artboard's transit icons).
   walk: <path d="M13 4v1M12 8l-2 6 3 3v4M12 8l3 3 3 1M10 14l-2.5 7M12 8l-4 2-1 3" />,

@@ -14,7 +14,21 @@ export const REMINDERS: readonly { key: Reminder; label: string; trigger: string
   { key: "1d", label: lib.calendarExport.reminders["1d"], trigger: "-P1D" },
 ];
 
-export type ExportActivity = Pick<Activity, "id" | "name" | "duration" | "routes">;
+export type ExportActivity = Pick<Activity, "id" | "name" | "area" | "duration" | "routes">;
+
+/** Areas that aren't places a calendar app can find; they read as the city instead. */
+const CITY_AREAS = new Set(["City", "Inner City"]);
+
+/**
+ * A calendar location (spec §6.8): the meeting point, its area and the state, e.g. "Echo Point Lookout,
+ * Blue Mountains NSW". "City" and "Inner City" read as Sydney, and an area the meeting point already
+ * ends with ("Dixon Street, Haymarket") isn't repeated.
+ */
+export function placeOf(meeting: string, area: string): string {
+  const where = CITY_AREAS.has(area) ? lib.calendarExport.city : area;
+  const named = meeting.trim().toLowerCase().endsWith(where.toLowerCase());
+  return lib.calendarExport.place(named || !meeting.trim() ? meeting.trim() || where : `${meeting.trim()}, ${where}`);
+}
 
 export interface CalendarEvent {
   uid: string;
@@ -25,6 +39,8 @@ export interface CalendarEvent {
   /** Real length in minutes. */
   minutes: number;
   location: string;
+  /** Where to meet, for calendar apps' maps (GEO). */
+  geo?: { lat: number; lng: number };
   description: string;
   url: string;
 }
@@ -48,8 +64,10 @@ export interface ExportInfo {
   id: string;
   name: string;
   duration: Activity["duration"];
-  /** "Bondi Beach, Sydney NSW" */
+  /** The meeting point, area and state (spec §6.8): "Echo Point Lookout, Blue Mountains NSW". */
   place: string;
+  /** The meeting point's coordinates (an activity's destination, an event's venue). */
+  geo?: { lat: number; lng: number };
   /** The getting-there summary from Central (directionsText). */
   directions: string;
   /** The link in the event; defaults to the activity page. Events link to their official page. */
@@ -59,7 +77,8 @@ export const exportInfo = (a: ExportActivity): ExportInfo => ({
   id: a.id,
   name: a.name,
   duration: a.duration,
-  place: lib.calendarExport.place(a.routes.dest.label),
+  place: placeOf(a.routes.dest.label, a.area),
+  geo: { lat: a.routes.dest.lat, lng: a.routes.dest.lng },
   directions: directionsText(a),
 });
 
@@ -75,6 +94,7 @@ export function eventFromInfo(a: ExportInfo, date: DateStr, start: TimeStr, o: E
     end: endOf(date, start, plannedMinutes(a)),
     minutes: plannedMinutes(a),
     location: a.place,
+    ...(a.geo ? { geo: a.geo } : {}),
     description: (o.includeDirections ? a.directions + "\n\n" : "") + lib.calendarExport.details(url),
     url,
   };
@@ -145,6 +165,7 @@ export function toIcs(events: readonly CalendarEvent[], reminder: Reminder = "no
       `DURATION:${isoDuration(e.minutes)}`,
       `SUMMARY:${escapeText(e.title)}`,
       `LOCATION:${escapeText(e.location)}`,
+      ...(e.geo ? [`GEO:${e.geo.lat.toFixed(6)};${e.geo.lng.toFixed(6)}`] : []),
       `DESCRIPTION:${escapeText(e.description)}`,
       `URL:${e.url}`
     );
