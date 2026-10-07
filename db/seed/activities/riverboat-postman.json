@@ -1,0 +1,1161 @@
+{
+  "id": "riverboat-postman",
+  "status": "verified",
+  "name": "Riverboat Postman",
+  "city": "sydney",
+  "area": "Brooklyn (Hawkesbury River)",
+  "category": "ferry",
+  "categoryLabel": "River cruise",
+  "blurb": "Ride along on the Hawkesbury River mail boat, with morning tea and lunch on board.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 2
+  },
+  "weatherNote": "It runs whatever the weather: \"the mail must get through\". Rain and low cloud dull the river views.",
+  "goodFor": [
+    "family",
+    "friends",
+    "solo"
+  ],
+  "duration": {
+    "label": "3 hr cruise",
+    "minHours": 3,
+    "maxHours": 3.5
+  },
+  "cost": "$$$",
+  "gettingThere": "Central Coast & Newcastle Line from Central to Hawkesbury River (about 1 hr). The wharf is beside the station. On weekdays the 8:50am train arrives about 9:50, in time for the 10am departure.",
+  "newcomerTip": "Book ahead: it's often full. Booking by phone (0400 600 111) avoids the online booking fee. Lunch is a ploughman's plate, and the bar serves wine, beer and soft drinks.",
+  "location": {
+    "lat": -33.54653,
+    "lng": 151.22734
+  },
+  "suggestedStart": "08:50",
+  "bookingRequired": true,
+  "days": [
+    "mon",
+    "tue",
+    "wed",
+    "thu",
+    "fri"
+  ],
+  "facts": [
+    {
+      "k": "Time",
+      "v": "10am to about 1pm"
+    },
+    {
+      "k": "Train",
+      "v": "≈ 1 hr each way"
+    },
+    {
+      "k": "Runs",
+      "v": "Weekdays, not public holidays"
+    },
+    {
+      "k": "Entry",
+      "v": "$72 adult, lunch included"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.54653,
+      "lng": 151.22734,
+      "label": "Riverboat Postman wharf, Dangar Rd, Brooklyn"
+    },
+    "pt": {
+      "total": "≈ 1 hr 5 min",
+      "changes": 0,
+      "fare": [
+        6,
+        9
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "CCN",
+          "title": "Train to Hawkesbury River",
+          "mins": 60,
+          "detail": "Weekdays: the 8:50am from Central gets in about 9:50, or take the 7:50am to be safe"
+        },
+        {
+          "mode": "walk",
+          "title": "Across Dangar Rd to the wharf",
+          "mins": 3,
+          "detail": "There's a lift off the platform"
+        }
+      ],
+      "back": {
+        "text": "The boat is back about 1:10pm. Trains to Central leave Hawkesbury River at about 1:24pm, then hourly (≈ 1 hr)."
+      }
+    },
+    "drive": {
+      "total": "≈ 1 hr",
+      "perCar": [
+        0,
+        20
+      ],
+      "perCarLabel": "Tolls, depending on your route (parking free)",
+      "notes": [
+        "Parking in Brooklyn is free. Some is 4-hour timed, which covers the cruise (Riverboat Postman).",
+        "You can drop passengers at the wharf, and there's limited disabled parking beside the Postman's shed."
+      ]
+    },
+    "ride": "Not practical: it's an hour's drive. The train stops right beside the wharf."
+  },
+  "costs": {
+    "entry": [
+      72,
+      72
+    ],
+    "entryChild": [
+      25,
+      25
+    ],
+    "extras": [],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "There's one cruise a day, at 10am. The office opens about 9am for check-in and tickets.",
+    "hours": "Departs 10am Monday to Friday and returns about 1:10pm. No mail run on public holidays. The ticket office opens about 9am.",
+    "bring": [
+      "Your booking name",
+      "A warm layer for the river",
+      "Sunscreen & hat",
+      "Opal or contactless card"
+    ],
+    "facilities": [
+      "Morning tea with home-made Anzac biscuits, and a ploughman's lunch at about midday",
+      "Licensed bar on board; water is always free",
+      "Cafés and a general store on Dangar Rd and Brooklyn Rd"
+    ],
+    "access": "Hawkesbury River station has a lift, and you can drive right up to the wharf to drop off. The Riverboat Postman doesn't publish access details for its boats: call 0400 600 111.",
+    "safety": [
+      "Cruises run in all weather: dress for wind and rain on the water",
+      "Tell them about dietary needs when you book (gluten-free and vegetarian are fine)"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Haymarket & Chinatown Food Crawl",
+      "why": "An early dinner back in town",
+      "dist": "≈ 10 min walk from Central",
+      "activityId": "chinatown"
+    },
+    {
+      "name": "Newtown Street Art & King St",
+      "why": "Street art and bars for the evening",
+      "dist": "One stop from Central",
+      "activityId": "newtown"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Hawkesbury River Station",
+        "type": "start",
+        "note": "Take the lift off the platform. The wharf is just across Dangar Rd.",
+        "lng": 151.2263,
+        "lat": -33.54708
+      },
+      {
+        "n": 2,
+        "name": "Brooklyn cafés",
+        "type": "food",
+        "note": "Grab a coffee near the station before you board.",
+        "lng": 151.22628,
+        "lat": -33.54792
+      },
+      {
+        "n": 3,
+        "name": "Riverboat Postman",
+        "type": "end",
+        "note": "Check in at the office from about 9am. The boat leaves at 10am and is back about 1:10pm.",
+        "lng": 151.22734,
+        "lat": -33.54653
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.22648,
+          -33.54694
+        ],
+        [
+          151.22665,
+          -33.54679
+        ],
+        [
+          151.22681,
+          -33.54691
+        ],
+        [
+          151.22674,
+          -33.54698
+        ],
+        [
+          151.22684,
+          -33.54707
+        ],
+        [
+          151.22635,
+          -33.54746
+        ],
+        [
+          151.22623,
+          -33.54764
+        ],
+        [
+          151.22623,
+          -33.54784
+        ],
+        [
+          151.22628,
+          -33.54794
+        ],
+        [
+          151.22622,
+          -33.54765
+        ],
+        [
+          151.22635,
+          -33.54746
+        ],
+        [
+          151.22684,
+          -33.54707
+        ],
+        [
+          151.22679,
+          -33.54702
+        ],
+        [
+          151.22716,
+          -33.54664
+        ],
+        [
+          151.22722,
+          -33.54667
+        ],
+        [
+          151.22733,
+          -33.54656
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "cafe",
+        "lng": 151.22544,
+        "lat": -33.54807
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.22628,
+        "lat": -33.54792
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "CCN",
+          "coords": [
+            [
+              151.20628,
+              -33.88357
+            ],
+            [
+              151.20527,
+              -33.88482
+            ],
+            [
+              151.20344,
+              -33.88643
+            ],
+            [
+              151.19933,
+              -33.89114
+            ],
+            [
+              151.19619,
+              -33.89319
+            ],
+            [
+              151.19447,
+              -33.89393
+            ],
+            [
+              151.19231,
+              -33.8945
+            ],
+            [
+              151.18333,
+              -33.89745
+            ],
+            [
+              151.18097,
+              -33.89772
+            ],
+            [
+              151.17688,
+              -33.89762
+            ],
+            [
+              151.17473,
+              -33.89698
+            ],
+            [
+              151.17228,
+              -33.89561
+            ],
+            [
+              151.16928,
+              -33.8945
+            ],
+            [
+              151.16797,
+              -33.89416
+            ],
+            [
+              151.16568,
+              -33.89412
+            ],
+            [
+              151.16183,
+              -33.89462
+            ],
+            [
+              151.16058,
+              -33.8945
+            ],
+            [
+              151.15838,
+              -33.89384
+            ],
+            [
+              151.15692,
+              -33.89361
+            ],
+            [
+              151.15281,
+              -33.89408
+            ],
+            [
+              151.15109,
+              -33.89398
+            ],
+            [
+              151.14833,
+              -33.89344
+            ],
+            [
+              151.138,
+              -33.88997
+            ],
+            [
+              151.13264,
+              -33.88955
+            ],
+            [
+              151.13019,
+              -33.88902
+            ],
+            [
+              151.12082,
+              -33.88583
+            ],
+            [
+              151.11898,
+              -33.88502
+            ],
+            [
+              151.11391,
+              -33.88202
+            ],
+            [
+              151.10991,
+              -33.87901
+            ],
+            [
+              151.10825,
+              -33.87817
+            ],
+            [
+              151.10479,
+              -33.87714
+            ],
+            [
+              151.10091,
+              -33.87649
+            ],
+            [
+              151.09972,
+              -33.87602
+            ],
+            [
+              151.09842,
+              -33.87521
+            ],
+            [
+              151.09607,
+              -33.87286
+            ],
+            [
+              151.09237,
+              -33.86996
+            ],
+            [
+              151.09156,
+              -33.86879
+            ],
+            [
+              151.08795,
+              -33.8587
+            ],
+            [
+              151.08623,
+              -33.85235
+            ],
+            [
+              151.08545,
+              -33.8471
+            ],
+            [
+              151.08531,
+              -33.8427
+            ],
+            [
+              151.08566,
+              -33.83799
+            ],
+            [
+              151.08838,
+              -33.82366
+            ],
+            [
+              151.09001,
+              -33.81634
+            ],
+            [
+              151.09017,
+              -33.81368
+            ],
+            [
+              151.0897,
+              -33.80911
+            ],
+            [
+              151.09004,
+              -33.80747
+            ],
+            [
+              151.09104,
+              -33.80512
+            ],
+            [
+              151.09114,
+              -33.80396
+            ],
+            [
+              151.09082,
+              -33.80267
+            ],
+            [
+              151.08984,
+              -33.80131
+            ],
+            [
+              151.089,
+              -33.8007
+            ],
+            [
+              151.08626,
+              -33.79929
+            ],
+            [
+              151.08514,
+              -33.79837
+            ],
+            [
+              151.08457,
+              -33.79769
+            ],
+            [
+              151.08395,
+              -33.79648
+            ],
+            [
+              151.08241,
+              -33.792
+            ],
+            [
+              151.08224,
+              -33.79077
+            ],
+            [
+              151.08229,
+              -33.7893
+            ],
+            [
+              151.08422,
+              -33.7779
+            ],
+            [
+              151.0841,
+              -33.77674
+            ],
+            [
+              151.08375,
+              -33.77558
+            ],
+            [
+              151.08197,
+              -33.77286
+            ],
+            [
+              151.0814,
+              -33.77061
+            ],
+            [
+              151.08158,
+              -33.76874
+            ],
+            [
+              151.08284,
+              -33.7657
+            ],
+            [
+              151.08293,
+              -33.76469
+            ],
+            [
+              151.08282,
+              -33.764
+            ],
+            [
+              151.08072,
+              -33.75791
+            ],
+            [
+              151.07984,
+              -33.75669
+            ],
+            [
+              151.07893,
+              -33.75594
+            ],
+            [
+              151.07772,
+              -33.75525
+            ],
+            [
+              151.07626,
+              -33.7548
+            ],
+            [
+              151.06843,
+              -33.75369
+            ],
+            [
+              151.06727,
+              -33.7532
+            ],
+            [
+              151.06658,
+              -33.75259
+            ],
+            [
+              151.06613,
+              -33.75183
+            ],
+            [
+              151.06597,
+              -33.751
+            ],
+            [
+              151.06612,
+              -33.7501
+            ],
+            [
+              151.06675,
+              -33.74866
+            ],
+            [
+              151.06674,
+              -33.7477
+            ],
+            [
+              151.06641,
+              -33.74684
+            ],
+            [
+              151.06544,
+              -33.74541
+            ],
+            [
+              151.06527,
+              -33.74458
+            ],
+            [
+              151.0655,
+              -33.74353
+            ],
+            [
+              151.06602,
+              -33.74281
+            ],
+            [
+              151.06677,
+              -33.74227
+            ],
+            [
+              151.06886,
+              -33.74146
+            ],
+            [
+              151.06979,
+              -33.74081
+            ],
+            [
+              151.08484,
+              -33.72472
+            ],
+            [
+              151.08632,
+              -33.72333
+            ],
+            [
+              151.0878,
+              -33.72251
+            ],
+            [
+              151.08947,
+              -33.72203
+            ],
+            [
+              151.09363,
+              -33.72195
+            ],
+            [
+              151.09537,
+              -33.7216
+            ],
+            [
+              151.09729,
+              -33.72067
+            ],
+            [
+              151.09889,
+              -33.7191
+            ],
+            [
+              151.09969,
+              -33.71739
+            ],
+            [
+              151.09985,
+              -33.71626
+            ],
+            [
+              151.09978,
+              -33.71536
+            ],
+            [
+              151.09927,
+              -33.71386
+            ],
+            [
+              151.09734,
+              -33.71059
+            ],
+            [
+              151.09706,
+              -33.70938
+            ],
+            [
+              151.09703,
+              -33.70815
+            ],
+            [
+              151.09829,
+              -33.70264
+            ],
+            [
+              151.09994,
+              -33.69706
+            ],
+            [
+              151.10056,
+              -33.69587
+            ],
+            [
+              151.10136,
+              -33.69484
+            ],
+            [
+              151.10766,
+              -33.6891
+            ],
+            [
+              151.10865,
+              -33.68797
+            ],
+            [
+              151.10979,
+              -33.68632
+            ],
+            [
+              151.11096,
+              -33.68373
+            ],
+            [
+              151.11374,
+              -33.67339
+            ],
+            [
+              151.11417,
+              -33.67234
+            ],
+            [
+              151.1148,
+              -33.6715
+            ],
+            [
+              151.11572,
+              -33.67068
+            ],
+            [
+              151.1194,
+              -33.66827
+            ],
+            [
+              151.12093,
+              -33.66704
+            ],
+            [
+              151.12262,
+              -33.66523
+            ],
+            [
+              151.124,
+              -33.66335
+            ],
+            [
+              151.125,
+              -33.66244
+            ],
+            [
+              151.13456,
+              -33.65668
+            ],
+            [
+              151.13559,
+              -33.65589
+            ],
+            [
+              151.13615,
+              -33.65522
+            ],
+            [
+              151.13674,
+              -33.6537
+            ],
+            [
+              151.13669,
+              -33.65085
+            ],
+            [
+              151.13726,
+              -33.64945
+            ],
+            [
+              151.13743,
+              -33.64856
+            ],
+            [
+              151.13734,
+              -33.64795
+            ],
+            [
+              151.13666,
+              -33.64664
+            ],
+            [
+              151.13639,
+              -33.64569
+            ],
+            [
+              151.13642,
+              -33.64505
+            ],
+            [
+              151.13678,
+              -33.64419
+            ],
+            [
+              151.13782,
+              -33.64321
+            ],
+            [
+              151.13857,
+              -33.64291
+            ],
+            [
+              151.14129,
+              -33.64234
+            ],
+            [
+              151.14238,
+              -33.64178
+            ],
+            [
+              151.14328,
+              -33.64102
+            ],
+            [
+              151.14862,
+              -33.63229
+            ],
+            [
+              151.14885,
+              -33.63082
+            ],
+            [
+              151.14855,
+              -33.62839
+            ],
+            [
+              151.14867,
+              -33.62766
+            ],
+            [
+              151.14914,
+              -33.62662
+            ],
+            [
+              151.15025,
+              -33.62544
+            ],
+            [
+              151.15621,
+              -33.62135
+            ],
+            [
+              151.15728,
+              -33.62032
+            ],
+            [
+              151.15843,
+              -33.61885
+            ],
+            [
+              151.15921,
+              -33.61737
+            ],
+            [
+              151.15971,
+              -33.61587
+            ],
+            [
+              151.16048,
+              -33.61033
+            ],
+            [
+              151.16092,
+              -33.60876
+            ],
+            [
+              151.16162,
+              -33.60751
+            ],
+            [
+              151.16454,
+              -33.60388
+            ],
+            [
+              151.16508,
+              -33.60297
+            ],
+            [
+              151.16528,
+              -33.60192
+            ],
+            [
+              151.16508,
+              -33.6004
+            ],
+            [
+              151.1652,
+              -33.59954
+            ],
+            [
+              151.16584,
+              -33.59865
+            ],
+            [
+              151.16664,
+              -33.59819
+            ],
+            [
+              151.16777,
+              -33.598
+            ],
+            [
+              151.16986,
+              -33.59811
+            ],
+            [
+              151.17084,
+              -33.59772
+            ],
+            [
+              151.17153,
+              -33.59704
+            ],
+            [
+              151.17186,
+              -33.5961
+            ],
+            [
+              151.17169,
+              -33.59173
+            ],
+            [
+              151.1718,
+              -33.59096
+            ],
+            [
+              151.17206,
+              -33.59031
+            ],
+            [
+              151.1741,
+              -33.58716
+            ],
+            [
+              151.17608,
+              -33.58536
+            ],
+            [
+              151.17719,
+              -33.58361
+            ],
+            [
+              151.17787,
+              -33.58304
+            ],
+            [
+              151.17911,
+              -33.58264
+            ],
+            [
+              151.18127,
+              -33.58287
+            ],
+            [
+              151.18248,
+              -33.58258
+            ],
+            [
+              151.18749,
+              -33.57881
+            ],
+            [
+              151.19099,
+              -33.57707
+            ],
+            [
+              151.19195,
+              -33.57617
+            ],
+            [
+              151.1922,
+              -33.5756
+            ],
+            [
+              151.19359,
+              -33.5696
+            ],
+            [
+              151.19468,
+              -33.56741
+            ],
+            [
+              151.1946,
+              -33.56483
+            ],
+            [
+              151.19477,
+              -33.56421
+            ],
+            [
+              151.19503,
+              -33.56368
+            ],
+            [
+              151.19663,
+              -33.56197
+            ],
+            [
+              151.19684,
+              -33.56129
+            ],
+            [
+              151.19689,
+              -33.55953
+            ],
+            [
+              151.19779,
+              -33.55776
+            ],
+            [
+              151.19766,
+              -33.55668
+            ],
+            [
+              151.1966,
+              -33.55531
+            ],
+            [
+              151.19637,
+              -33.55475
+            ],
+            [
+              151.1964,
+              -33.55385
+            ],
+            [
+              151.19677,
+              -33.5532
+            ],
+            [
+              151.19775,
+              -33.5525
+            ],
+            [
+              151.19933,
+              -33.5519
+            ],
+            [
+              151.20163,
+              -33.55194
+            ],
+            [
+              151.20253,
+              -33.5518
+            ],
+            [
+              151.20344,
+              -33.55135
+            ],
+            [
+              151.20452,
+              -33.55045
+            ],
+            [
+              151.20526,
+              -33.55017
+            ],
+            [
+              151.20637,
+              -33.55015
+            ],
+            [
+              151.20787,
+              -33.55067
+            ],
+            [
+              151.20886,
+              -33.55069
+            ],
+            [
+              151.21266,
+              -33.54929
+            ],
+            [
+              151.21523,
+              -33.5493
+            ],
+            [
+              151.21766,
+              -33.54841
+            ],
+            [
+              151.22487,
+              -33.5476
+            ],
+            [
+              151.22565,
+              -33.54736
+            ],
+            [
+              151.22642,
+              -33.5469
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.22643,
+              -33.54691
+            ],
+            [
+              151.22665,
+              -33.54679
+            ],
+            [
+              151.22679,
+              -33.54689
+            ],
+            [
+              151.22664,
+              -33.54703
+            ],
+            [
+              151.22679,
+              -33.54702
+            ],
+            [
+              151.22721,
+              -33.54659
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "unconfirmed": [
+    {
+      "section": "gettingThere",
+      "note": "The Trip Planner has the weekday train leaving Central at 8:50am; the Postman's own page says 8:45am. Check the timetable before you go.",
+      "check": {
+        "label": "Transport for NSW Trip Planner",
+        "url": "https://transportnsw.info/trip"
+      }
+    },
+    {
+      "section": "driving",
+      "note": "The $0–20 toll estimate is a guess: it depends on whether you take the M2 and NorthConnex or the free Pacific Hwy.",
+      "check": {
+        "label": "Linkt: NorthConnex tolls",
+        "url": "https://www.linkt.com.au/using-toll-roads/about-sydney-toll-roads/northconnex"
+      }
+    },
+    {
+      "section": "access",
+      "note": "We couldn't find whether the boats are wheelchair accessible: ask when you book.",
+      "check": {
+        "label": "Call the Riverboat Postman",
+        "url": "tel:+61400600111"
+      }
+    }
+  ]
+}

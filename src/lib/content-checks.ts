@@ -28,7 +28,8 @@ export function checkActivities(list: Activity[], fileIds?: string[]): string[] 
     // The way back is drawn only with Getting back's words next to it (AC 17).
     if (a.geo.back && !a.routes.pt.back.text.trim()) p(a, "the map draws a way back, but Getting back has no text");
     const d = a.routes.dest;
-    if (d.lng < 150 || d.lng > 152 || d.lat < -35 || d.lat > -33) p(a, `directions point outside the Sydney map (${d.lat}, ${d.lng})`);
+    // The map's tiles: greater Sydney plus the day trips by train, Newcastle to Kiama.
+    if (d.lng < 150 || d.lng > 152 || d.lat < -35 || d.lat > -32.5) p(a, `directions point outside the Sydney map (${d.lat}, ${d.lng})`);
     for (const pr of a.pairings) {
       if (pr.activityId === a.id) p(a, "pairs with itself");
       else if (!ids.has(pr.activityId)) p(a, `pairing "${pr.name}" points to "${pr.activityId}", which isn't an activity`);

@@ -1,0 +1,486 @@
+{
+  "id": "mca",
+  "status": "verified",
+  "name": "Museum of Contemporary Art Australia",
+  "city": "sydney",
+  "area": "Circular Quay",
+  "category": "gallery",
+  "categoryLabel": "Gallery",
+  "blurb": "Australian contemporary art in a harbourside building at Circular Quay.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Indoors and air-conditioned. On a sunny day you may rather be out on the harbour.",
+  "goodFor": [
+    "date",
+    "friends",
+    "solo"
+  ],
+  "duration": {
+    "label": "1.5–2 hrs",
+    "minHours": 1.5,
+    "maxHours": 2
+  },
+  "cost": "$$",
+  "days": [
+    "mon",
+    "wed",
+    "thu",
+    "fri",
+    "sat",
+    "sun"
+  ],
+  "gettingThere": "Train to Circular Quay (9 min), then a 7 min walk west along the waterfront.",
+  "newcomerTip": "Tickets are $25 adult and free for under 18s. Thursday nights (MCA Late, 5–9pm) have 2-for-1 tickets. Closed on Tuesdays.",
+  "location": {
+    "lat": -33.85996,
+    "lng": 151.20895
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1.5–2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "7 min from Circular Quay"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "$25 adult, under 18s free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.85965,
+      "lng": 151.209362,
+      "label": "MCA, Circular Quay West entrance"
+    },
+    "pt": {
+      "total": "≈ 16 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "title": "Train to Circular Quay",
+          "detail": "Or any T2 or T3 train",
+          "mins": 9
+        },
+        {
+          "mode": "walk",
+          "title": "West along the waterfront to the MCA",
+          "mins": 7
+        }
+      ],
+      "back": {
+        "text": "Same way back: walk 7 min to Circular Quay station for any train to Central."
+      }
+    },
+    "drive": {
+      "total": "≈ 12 min",
+      "perCar": [
+        20,
+        40
+      ],
+      "perCarLabel": "Parking in The Rocks, 2 hrs",
+      "notes": [
+        "The MCA has no car park. It points to the 155 George St and Clocktower car parks nearby.",
+        "Our tip: the train to Circular Quay is quicker and much cheaper."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      25,
+      25
+    ],
+    "entryChild": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "show",
+        "label": "Add the major exhibition",
+        "per": [
+          10,
+          10
+        ],
+        "on": false
+      },
+      {
+        "id": "food",
+        "label": "MCA Cafe",
+        "per": [
+          15,
+          30
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "At 10am opening, or Thursday evening for MCA Late (5–9pm), when tickets are 2-for-1.",
+    "hours": "Open 10am to 5pm, until 9pm on Thursdays. Closed Tuesdays and Christmas Day, but open on public holidays that fall on a Tuesday.",
+    "bring": [
+      "A card or phone to pay: the MCA is cashless",
+      "ID if you buy a concession ($20) or student ticket"
+    ],
+    "facilities": [
+      "Toilets on levels 2, 3 and 4; parents' rooms on the ground level and level 2",
+      "Cloakroom on level 1",
+      "MCA Cafe on the ground floor, and Canvas restaurant (lunch) on level 4"
+    ],
+    "access": "Enter from George St or Circular Quay West. Lifts reach all public areas. Wheelchairs from the level 1 information desk, accessible toilets on levels 2, 3 and 4, and benches throughout (mobile seating on request).",
+    "safety": [
+      "Children under 13 must come with a paying adult"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "The Rocks Markets",
+      "why": "Weekend stalls next door",
+      "dist": "≈ 3 min walk",
+      "activityId": "rocks-markets"
+    },
+    {
+      "name": "Sydney Opera House Tour",
+      "why": "Across Circular Quay",
+      "dist": "≈ 10 min walk",
+      "activityId": "opera-tour"
+    },
+    {
+      "name": "Barangaroo Reserve",
+      "why": "Harbour headland park",
+      "dist": "≈ 15 min walk",
+      "activityId": "barangaroo"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Circular Quay Station",
+        "type": "start",
+        "note": "Head west (left as you face the harbour) along the waterfront.",
+        "lng": 151.21072,
+        "lat": -33.86136
+      },
+      {
+        "n": 2,
+        "name": "Circular Quay West entrance",
+        "type": "paid",
+        "note": "Harbourside entrance. Tickets and the cloakroom are on level 1.",
+        "lng": 151.20936,
+        "lat": -33.85965
+      },
+      {
+        "n": 3,
+        "name": "Galleries",
+        "type": "stop",
+        "note": "Collection and exhibition floors, all reached by lift.",
+        "lng": 151.20907,
+        "lat": -33.85992
+      },
+      {
+        "n": 4,
+        "name": "MCA Cafe at Tallawoladah",
+        "type": "end",
+        "note": "Ground-floor café with harbour views.",
+        "lng": 151.20919,
+        "lat": -33.85955
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21072,
+          -33.86135
+        ],
+        [
+          151.2104,
+          -33.86132
+        ],
+        [
+          151.21042,
+          -33.86115
+        ],
+        [
+          151.20972,
+          -33.86108
+        ],
+        [
+          151.20957,
+          -33.86099
+        ],
+        [
+          151.20952,
+          -33.86085
+        ],
+        [
+          151.20956,
+          -33.86046
+        ],
+        [
+          151.20945,
+          -33.86046
+        ],
+        [
+          151.20952,
+          -33.85977
+        ],
+        [
+          151.20939,
+          -33.85975
+        ],
+        [
+          151.2094,
+          -33.85965
+        ],
+        [
+          151.20939,
+          -33.85975
+        ],
+        [
+          151.20925,
+          -33.85975
+        ],
+        [
+          151.20923,
+          -33.85993
+        ],
+        [
+          151.20925,
+          -33.85975
+        ],
+        [
+          151.20939,
+          -33.85975
+        ],
+        [
+          151.2094,
+          -33.85964
+        ],
+        [
+          151.20933,
+          -33.85951
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20987,
+        "lat": -33.86119
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2115,
+        "lat": -33.86143
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20925,
+        "lat": -33.85964
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20826,
+        "lat": -33.85951
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20815,
+        "lat": -33.86031
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20865,
+        "lat": -33.85887
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20997,
+        "lat": -33.86199
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20864,
+        "lat": -33.85935
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21016,
+        "lat": -33.86121
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21114,
+        "lat": -33.86149
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20843,
+        "lat": -33.86028
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T8",
+          "coords": [
+            [
+              151.20694,
+              -33.88402
+            ],
+            [
+              151.20768,
+              -33.88309
+            ],
+            [
+              151.20806,
+              -33.88217
+            ],
+            [
+              151.20868,
+              -33.87975
+            ],
+            [
+              151.20879,
+              -33.87852
+            ],
+            [
+              151.20842,
+              -33.87764
+            ],
+            [
+              151.20705,
+              -33.87642
+            ],
+            [
+              151.20665,
+              -33.87569
+            ],
+            [
+              151.20657,
+              -33.87506
+            ],
+            [
+              151.20684,
+              -33.87227
+            ],
+            [
+              151.20624,
+              -33.87007
+            ],
+            [
+              151.20546,
+              -33.86281
+            ],
+            [
+              151.20598,
+              -33.86183
+            ],
+            [
+              151.20695,
+              -33.86123
+            ],
+            [
+              151.2081,
+              -33.86107
+            ],
+            [
+              151.21031,
+              -33.86128
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.21031,
+              -33.86127
+            ],
+            [
+              151.21056,
+              -33.86134
+            ],
+            [
+              151.2104,
+              -33.86132
+            ],
+            [
+              151.21042,
+              -33.86115
+            ],
+            [
+              151.20956,
+              -33.86096
+            ],
+            [
+              151.20952,
+              -33.85977
+            ],
+            [
+              151.20939,
+              -33.85975
+            ],
+            [
+              151.20932,
+              -33.85941
+            ],
+            [
+              151.20936,
+              -33.85965
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "Online tickets add a booking and transaction fee, and the MCA doesn't say how much.",
+      "check": {
+        "label": "MCA tickets",
+        "url": "https://www.mca.com.au/tickets/"
+      }
+    },
+    {
+      "section": "cost",
+      "note": "The $15–30 café estimate is ours: check the MCA's eat and drink page for menus.",
+      "check": {
+        "label": "MCA: eat and drink",
+        "url": "https://www.mca.com.au/visitor-information/eat-and-drink/"
+      }
+    },
+    {
+      "section": "driving",
+      "note": "The $20–40 estimate for 2 hours in The Rocks is a guess: rates vary by car park.",
+      "check": {
+        "label": "Parking in The Rocks",
+        "url": "https://therocks.com/getting-here"
+      }
+    }
+  ]
+}

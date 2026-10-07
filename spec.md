@@ -399,7 +399,7 @@ interface Plan {
 - **Voice:** second person, plain English, short sentences, Australian spelling. Use no slang without explaining it.
 - **Pairings:** every "Make a day of it" pairing names an activity that is in the list and carries its `activityId`; the admin won't publish an activity with a pairing that points nowhere (§4.5). A place worth pairing that isn't an activity yet gets added as one (this is how Clovelly, Coogee, North Head, Cronulla, Carriageworks, Parramatta and Leura joined).
 - **Days and booking:** activities that run only on certain days set `days`, and those that need a ticket booked ahead set `bookingRequired`, so the detail page's Heads up section can show them.
-- **Current status:** 29 Sydney activities, all `status: "draft"` (§4.3); the launch target above is 40. Gaps against the mix: 6 activities rate `rainy: 2` (need 10), and solo has 10 activities fit for rain (need 12).
+- **Current status (7 Oct 2026):** 45 verified activities: greater Sydney, the Blue Mountains and day trips by train (Hawkesbury, Kiama and the Illawarra, Newcastle). The mix is met: 14 rate `rainy: 2`, 22 are Free, and every group has 19 or more fit for rain.
 
 ## 6. Logic
 

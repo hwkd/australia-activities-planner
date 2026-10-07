@@ -141,9 +141,11 @@ test("AC 30: unpublishing turns pairings to it into plain text; publishing bring
 
 test("M14: access facts entered in the admin turn on the Pram-friendly and Step-free filters", async ({ page }) => {
   const visitor = await (await page.context().browser()!.newContext()).newPage();
-  // Nothing has been checked yet: no access chips, and activity pages say so.
-  await visitor.goto("/?w=sunny");
-  await expect(visitor.getByRole("button", { name: "Pram-friendly" })).toHaveCount(0);
+  // The Art Gallery's access hasn't been checked: its page says so, and it isn't a Pram-friendly result
+  // (other activities can be, from access facts in their own content).
+  const results = visitor.getByRole("list", { name: "Ranked results" });
+  await visitor.goto("/?w=sunny&pram=1");
+  await expect(results.getByRole("heading", { level: 3, name: "Art Gallery of NSW" })).toHaveCount(0);
   await visitor.goto("/a/agnsw");
   await expect(visitor.getByRole("region", { name: "Access" })).toContainText("Not yet checked");
 
@@ -162,7 +164,7 @@ test("M14: access facts entered in the admin turn on the Pram-friendly and Step-
   await visitor.goto("/?w=sunny");
   await visitor.getByRole("button", { name: "Pram-friendly" }).click();
   await expect(visitor).toHaveURL(/pram=1/);
-  await expect(visitor.getByRole("list", { name: "Ranked results" }).getByRole("heading", { level: 3 })).toHaveText(["Art Gallery of NSW"]);
+  await expect(results.getByRole("heading", { level: 3, name: "Art Gallery of NSW" })).toBeVisible();
   await visitor.goto("/a/agnsw");
   const access = visitor.getByRole("region", { name: "Access" });
   await expect(access).toContainText("PramsYes");

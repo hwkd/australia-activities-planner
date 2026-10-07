@@ -1,0 +1,500 @@
+{
+  "id": "wild-life-zoo",
+  "status": "verified",
+  "name": "WILD LIFE Sydney Zoo",
+  "city": "sydney",
+  "area": "Darling Harbour",
+  "category": "wildlife",
+  "categoryLabel": "Wildlife",
+  "blurb": "Koalas, kangaroos, a wombat and a platypus, mostly indoors in Darling Harbour.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Mostly indoors, so a good rainy-day pick. The koala rooftop and the kangaroo area are open-air.",
+  "goodFor": [
+    "family",
+    "date"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "$$",
+  "gettingThere": "Train to Wynyard, then walk down King St to the Darling Harbour waterfront (≈ 12 min). Or walk down Market St from Town Hall.",
+  "newcomerTip": "Book online at least a day ahead for a weekday: $39 adult instead of $49. Weekends and school holidays are $49 either way. A 2 Attraction Pass with SEA LIFE next door starts at $45.",
+  "location": {
+    "lat": -33.8693,
+    "lng": 151.20192
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "12 min from Wynyard"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Ticket"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8693,
+      "lng": 151.20192,
+      "label": "WILD LIFE Sydney Zoo"
+    },
+    "pt": {
+      "total": "≈ 17 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T1",
+          "title": "Train to Wynyard",
+          "detail": "Or any T8 train to Wynyard",
+          "mins": 5
+        },
+        {
+          "mode": "walk",
+          "title": "Down King St to Darling Harbour",
+          "mins": 12
+        }
+      ],
+      "back": {
+        "text": "Walk back up to Wynyard (≈ 12 min) for any train to Central, or up Market St to Town Hall station."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        15,
+        40
+      ],
+      "perCarLabel": "Car park, 2–3 hrs",
+      "notes": [
+        "The zoo has no car park of its own. Its parking page lists Wilson car parks nearby: Harbourside (100 Murray St, open 24 hours), Citipark (Kent, Market and Sussex St), Darling Park (201 Sussex St), 383 Kent St and 321 Kent St.",
+        "Book ahead with Wilson for a cheaper rate."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      39,
+      49
+    ],
+    "entryChild": [
+      26,
+      36
+    ],
+    "extras": [
+      {
+        "id": "koala",
+        "label": "Koala photo, added to your ticket",
+        "per": [
+          15,
+          15
+        ],
+        "on": false
+      },
+      {
+        "id": "food",
+        "label": "Drink and snack at the Koala Rooftop Café",
+        "per": [
+          6,
+          15
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "Weekdays outside school holidays, or any day after 2pm, are the least crowded.",
+    "hours": "Open daily 10am to 5pm, and from 9:30am in NSW school holidays. Last entry 4pm.",
+    "bring": [
+      "Tickets on your phone (the zoo is cashless)",
+      "A hat for the rooftop"
+    ],
+    "facilities": [
+      "Baby-changing facilities inside",
+      "Koala Rooftop Café, 10:30am to 4pm (drinks and snacks)",
+      "Free wifi"
+    ],
+    "access": "Wheelchair accessible throughout, with lifts and gentle ramps between levels. Free wheelchairs at guest services (first come, first served; leave photo ID). Prams can go everywhere, but there's no pram parking inside. Carers with a Companion Card get in free.",
+    "safety": [
+      "Some areas are dimly lit and the ramps slope: mind your step",
+      "The kangaroo area's outdoor ground is uneven",
+      "Children under 16 must be with an adult"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "SEA LIFE Aquarium",
+      "why": "Next door, with combo passes",
+      "dist": "Next door",
+      "activityId": "sea-life"
+    },
+    {
+      "name": "Australian National Maritime Museum",
+      "why": "Free galleries and ships",
+      "dist": "≈ 8 min walk",
+      "activityId": "maritime-museum"
+    },
+    {
+      "name": "Haymarket & Chinatown Food Crawl",
+      "why": "Eat after",
+      "dist": "≈ 15 min walk",
+      "activityId": "chinatown"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Wynyard Station",
+        "type": "start",
+        "note": "Head west down King St towards the water.",
+        "lng": 151.20581,
+        "lat": -33.86599
+      },
+      {
+        "n": 2,
+        "name": "King Street Wharf",
+        "type": "food",
+        "note": "Waterfront restaurants and bars. Turn left along the water.",
+        "lng": 151.2014,
+        "lat": -33.86745
+      },
+      {
+        "n": 3,
+        "name": "WILD LIFE Sydney Zoo",
+        "type": "end",
+        "note": "Entrance on the Darling Harbour waterfront, 1-5 Wheat Rd.",
+        "lng": 151.20192,
+        "lat": -33.8693
+      },
+      {
+        "n": 4,
+        "name": "SEA LIFE Aquarium",
+        "type": "paid",
+        "note": "Next door. Combo passes cover both.",
+        "lng": 151.20208,
+        "lat": -33.86961
+      },
+      {
+        "n": 5,
+        "name": "Pyrmont Bridge",
+        "type": "lookout",
+        "note": "Walk across for the harbour view and the Maritime Museum.",
+        "lng": 151.1992,
+        "lat": -33.87034
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.2058,
+          -33.86599
+        ],
+        [
+          151.20579,
+          -33.86593
+        ],
+        [
+          151.20565,
+          -33.86594
+        ],
+        [
+          151.20565,
+          -33.86589
+        ],
+        [
+          151.20571,
+          -33.86589
+        ],
+        [
+          151.20579,
+          -33.86653
+        ],
+        [
+          151.20353,
+          -33.86674
+        ],
+        [
+          151.20352,
+          -33.86689
+        ],
+        [
+          151.20345,
+          -33.8669
+        ],
+        [
+          151.20195,
+          -33.86699
+        ],
+        [
+          151.20176,
+          -33.86704
+        ],
+        [
+          151.2018,
+          -33.86748
+        ],
+        [
+          151.2014,
+          -33.86751
+        ],
+        [
+          151.2014,
+          -33.86745
+        ],
+        [
+          151.2014,
+          -33.86751
+        ],
+        [
+          151.2018,
+          -33.86748
+        ],
+        [
+          151.20193,
+          -33.86872
+        ],
+        [
+          151.20204,
+          -33.86896
+        ],
+        [
+          151.20156,
+          -33.86902
+        ],
+        [
+          151.20128,
+          -33.86974
+        ],
+        [
+          151.20136,
+          -33.86989
+        ],
+        [
+          151.20242,
+          -33.87023
+        ],
+        [
+          151.20249,
+          -33.87038
+        ],
+        [
+          151.20242,
+          -33.87078
+        ],
+        [
+          151.20252,
+          -33.87079
+        ],
+        [
+          151.20251,
+          -33.87084
+        ],
+        [
+          151.2023,
+          -33.8708
+        ],
+        [
+          151.20229,
+          -33.87086
+        ],
+        [
+          151.1992,
+          -33.87034
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20267,
+        "lat": -33.87072
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.19898,
+        "lat": -33.87022
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20602,
+        "lat": -33.86628
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20397,
+        "lat": -33.86594
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20163,
+        "lat": -33.8681
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20549,
+        "lat": -33.86521
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20644,
+        "lat": -33.86681
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20613,
+        "lat": -33.86579
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20156,
+        "lat": -33.86682
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.2046,
+        "lat": -33.86738
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.2056,
+        "lat": -33.86622
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20402,
+        "lat": -33.86585
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T1",
+          "coords": [
+            [
+              151.20683,
+              -33.88395
+            ],
+            [
+              151.20763,
+              -33.88306
+            ],
+            [
+              151.20802,
+              -33.88216
+            ],
+            [
+              151.20864,
+              -33.87975
+            ],
+            [
+              151.20874,
+              -33.87852
+            ],
+            [
+              151.20828,
+              -33.87756
+            ],
+            [
+              151.20702,
+              -33.87647
+            ],
+            [
+              151.20659,
+              -33.87569
+            ],
+            [
+              151.20679,
+              -33.87227
+            ],
+            [
+              151.20615,
+              -33.87007
+            ],
+            [
+              151.20563,
+              -33.8659
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.20565,
+              -33.86589
+            ],
+            [
+              151.2058,
+              -33.86662
+            ],
+            [
+              151.20339,
+              -33.86683
+            ],
+            [
+              151.2035,
+              -33.86875
+            ],
+            [
+              151.2018,
+              -33.86902
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "unconfirmed": [
+    {
+      "section": "visit",
+      "note": "We couldn't confirm whether weekends outside school holidays open at 9:30am or 10am: check the zoo's calendar for your date.",
+      "check": {
+        "label": "WILD LIFE Sydney: opening hours",
+        "url": "https://www.wildlifesydney.com.au/plan-your-day/before-you-visit/opening-hours/"
+      }
+    },
+    {
+      "section": "driving",
+      "note": "The $15–40 parking estimate is a guess: the zoo lists car parks but not their prices.",
+      "check": {
+        "label": "WILD LIFE Sydney: cheap parking",
+        "url": "https://www.wildlifesydney.com.au/plan-your-day/before-you-visit/getting-here/cheap-parking/"
+      }
+    },
+    {
+      "section": "cost",
+      "note": "The $6–15 rooftop café estimate is ours: the zoo doesn't publish café prices.",
+      "check": {
+        "label": "WILD LIFE Sydney: facilities",
+        "url": "https://www.wildlifesydney.com.au/plan-your-day/before-you-visit/facilities/"
+      }
+    }
+  ]
+}

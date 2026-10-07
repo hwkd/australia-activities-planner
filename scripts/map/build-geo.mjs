@@ -5,7 +5,7 @@
 // from Central plus the way back (Transport for NSW Trip Planner, choosing the journey whose lines
 // match the written route). Everything is cached in .map-data/geo-cache.json; a report of what was
 // found, estimated or mismatched goes to .map-data/geo-report.md.
-//   node --env-file=.dev.vars scripts/map/build-geo.mjs [--write] [id …]
+//   node --env-file=.dev.vars scripts/map/build-geo.mjs [--write] [--date=YYYYMMDD] [id …]
 import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { nextSaturdayLateMorning, ORIGIN_STOPS, publicLine } from "../transport/tfnsw.mjs";
 
@@ -142,10 +142,14 @@ const legsOf = (j) =>
 const lineNames = (legs) => legs.filter((l) => l.line).map((l) => String(l.line).toUpperCase());
 
 async function trip(from, to, want) {
-  const key = `tp:${typeof from === "string" ? from : from.join(",")}>${typeof to === "string" ? to : to.join(",")}`;
+  const date = process.argv.find((x) => x.startsWith("--date="))?.slice(7);
+  const key = `tp:${typeof from === "string" ? from : from.join(",")}>${typeof to === "string" ? to : to.join(",")}${date ? `@${date}` : ""}`;
   const json = await cached(key, async () => {
     await sleep(300);
-    const when = nextSaturdayLateMorning(new Date("2026-10-02T00:00:00Z"));
+    // The coming Saturday (the Trip Planner only plans ahead), or --date=YYYYMMDD to skip a weekend of
+    // trackwork.
+    const date = process.argv.find((x) => x.startsWith("--date="))?.slice(7);
+    const when = date ? { itdDate: date, itdTime: "1030" } : nextSaturdayLateMorning();
     const q = new URLSearchParams({
       outputFormat: "rapidJSON",
       coordOutputFormat: "EPSG:4326",
@@ -165,6 +169,8 @@ async function trip(from, to, want) {
     });
     return r.ok ? await r.json() : null;
   });
+  // A failed or empty answer isn't cached, so the next run asks again.
+  if (!json?.journeys?.length) delete cache[key];
   const journeys = (json?.journeys ?? []).map(legsOf).filter((ls) => ls.some((l) => l.coords.length > 1));
   if (!journeys.length) return null;
   // The journey whose lines best match the written route.
@@ -178,12 +184,15 @@ async function trip(from, to, want) {
 
 // ---- Facilities (one Overpass query for the whole region) ----
 async function amenities() {
-  // Four tiles, each retried, so one busy moment at the public Overpass server doesn't sink the run.
+  // A few tiles, each retried, so one busy moment at the public Overpass server doesn't sink the run.
   const tiles = [
     [-34.25, 150.15, -33.875, 150.775],
     [-34.25, 150.775, -33.875, 151.4],
     [-33.875, 150.15, -33.5, 150.775],
     [-33.875, 150.775, -33.5, 151.4],
+    // The day trips by train beyond greater Sydney: Newcastle, and the Illawarra coast to Kiama.
+    [-33.0, 151.65, -32.85, 151.85],
+    [-34.75, 150.75, -34.25, 151.1],
   ];
   const out = [];
   for (const t of tiles) {

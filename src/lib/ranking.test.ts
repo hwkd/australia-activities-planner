@@ -8,10 +8,16 @@ import golden from "../../tests/fixtures/ranking.json";
 
 const cards = readdirSync("db/seed/activities").map((f) => toCard(activitySchema.parse(JSON.parse(readFileSync(`db/seed/activities/${f}`, "utf8")))));
 
+// The prototype engine ranks its own copy of the first 29 activities, so the golden runs compare on
+// those (every one shows in some combination); activities added since are ranked by the same rules.
+const prototypeIds = new Set(golden.flatMap((g) => g.ids));
+const prototypeCards = cards.filter((c) => prototypeIds.has(c.id));
+
 describe("ranking (spec §6.1)", () => {
   it(`matches the prototype for all ${golden.length} filter combinations`, () => {
+    expect(prototypeCards).toHaveLength(prototypeIds.size);
     for (const g of golden) {
-      const r = rank(cards, { weather: g.weather as Weather, group: g.group as GroupFilter, duration: g.duration as DurationFilter, freeOnly: g.freeOnly });
+      const r = rank(prototypeCards, { weather: g.weather as Weather, group: g.group as GroupFilter, duration: g.duration as DurationFilter, freeOnly: g.freeOnly });
       expect({ ids: r.shown.map((c) => c.id), hidden: r.hidden }, JSON.stringify(g).slice(0, 80)).toEqual({ ids: g.ids, hidden: g.hidden });
     }
   });

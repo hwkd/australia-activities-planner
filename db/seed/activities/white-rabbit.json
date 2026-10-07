@@ -1,0 +1,366 @@
+{
+  "id": "white-rabbit",
+  "status": "verified",
+  "name": "White Rabbit Gallery",
+  "city": "sydney",
+  "area": "Chippendale",
+  "category": "gallery",
+  "categoryLabel": "Gallery",
+  "blurb": "Free contemporary Chinese art, a new show twice a year, and a teahouse.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Indoors and only a short walk from Central: an easy pick on a rainy or hot day.",
+  "goodFor": [
+    "solo",
+    "date",
+    "friends"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "Walk from Central across Broadway into Chippendale (≈ 8 min), or from Redfern station (≈ 10 min).",
+  "newcomerTip": "Entry is free. Free public tours run at 11am and 3pm, Wednesday to Sunday: no need to book. Finish with dumplings and a pot of Chinese tea in the teahouse.",
+  "days": [
+    "wed",
+    "thu",
+    "fri",
+    "sat",
+    "sun"
+  ],
+  "location": {
+    "lat": -33.8865,
+    "lng": 151.20026
+  },
+  "suggestedStart": "11:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "8 min from Central"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.8865,
+      "lng": 151.20026,
+      "label": "White Rabbit Gallery, 30 Balfour St"
+    },
+    "pt": {
+      "total": "≈ 8 min",
+      "changes": 0,
+      "fare": [
+        0,
+        0
+      ],
+      "legs": [
+        {
+          "mode": "walk",
+          "title": "Walk from Central to Balfour St, Chippendale",
+          "mins": 8
+        }
+      ],
+      "back": {
+        "text": "Walk back to Central (≈ 8 min), or to Redfern station (≈ 10 min)."
+      }
+    },
+    "drive": {
+      "total": "≈ 5 min",
+      "perCar": [
+        0,
+        25
+      ],
+      "perCarLabel": "Parking, about 2 hrs",
+      "notes": [
+        "The gallery has no car park. Street parking nearby is 2-hour metered.",
+        "Broadway Shopping Centre's first 2 hours are free, and the gallery's partner Four Points by Sheraton offers parking for $25."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Dumplings and a pot of tea in the teahouse",
+        "per": [
+          16,
+          18
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "Join a free tour at 11am or 3pm. Dumplings are served from 11am to 3:30pm.",
+    "hours": "Wednesday to Sunday, 10am to 5pm. Closed Monday and Tuesday. The gallery also closes between exhibitions, usually in May and November.",
+    "bring": [
+      "A small bag (bulky items go in the free lockers)"
+    ],
+    "facilities": [
+      "Free cloakroom lockers at reception",
+      "Teahouse: tea 10am to 5pm, dumplings 11am to 3:30pm"
+    ],
+    "access": "Wheelchair access at the main entrance on Balfour St (staff will open the doors) and a lift to all levels. A wheelchair-accessible toilet with a fold-down change table is on the ground level. The nearest disabled parking is at 71 Regent St and on Myrtle St.",
+    "safety": [
+      "No food or drink in the galleries: finish it first or cloak it at reception",
+      "Photos are welcome, but no flash or tripods"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Haymarket & Chinatown Food Crawl",
+      "why": "Dinner after",
+      "dist": "≈ 12 min walk",
+      "activityId": "chinatown"
+    },
+    {
+      "name": "Carriageworks Farmers Market",
+      "why": "Saturday morning market first",
+      "dist": "≈ 15 min walk",
+      "activityId": "carriageworks"
+    },
+    {
+      "name": "Sydney Fish Market",
+      "why": "Seafood lunch by the bay",
+      "dist": "8 min walk + L1 from Central",
+      "activityId": "fish-market"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Central Station, Railway Square side",
+        "type": "start",
+        "note": "Leave by the Railway Square side and cross Broadway.",
+        "lng": 151.20341,
+        "lat": -33.88367
+      },
+      {
+        "n": 2,
+        "name": "Spice Alley",
+        "type": "food",
+        "note": "Hawker-style Asian food lane off Kensington St.",
+        "lng": 151.20195,
+        "lat": -33.88517
+      },
+      {
+        "n": 3,
+        "name": "Chippendale Green",
+        "type": "stop",
+        "note": "Small park in the Central Park precinct.",
+        "lng": 151.20039,
+        "lat": -33.8855
+      },
+      {
+        "n": 4,
+        "name": "White Rabbit Gallery",
+        "type": "end",
+        "note": "30 Balfour St. Free entry, teahouse on site.",
+        "lng": 151.20026,
+        "lat": -33.8865
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.2034,
+          -33.88366
+        ],
+        [
+          151.20309,
+          -33.88388
+        ],
+        [
+          151.20154,
+          -33.88432
+        ],
+        [
+          151.20174,
+          -33.88511
+        ],
+        [
+          151.20195,
+          -33.88508
+        ],
+        [
+          151.20197,
+          -33.88532
+        ],
+        [
+          151.2018,
+          -33.88535
+        ],
+        [
+          151.20181,
+          -33.8854
+        ],
+        [
+          151.2013,
+          -33.88551
+        ],
+        [
+          151.20016,
+          -33.88552
+        ],
+        [
+          151.20019,
+          -33.88624
+        ],
+        [
+          151.20014,
+          -33.88637
+        ],
+        [
+          151.20028,
+          -33.88639
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20194,
+        "lat": -33.88515
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20036,
+        "lat": -33.88503
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20204,
+        "lat": -33.88338
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20282,
+        "lat": -33.88325
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20409,
+        "lat": -33.88371
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20168,
+        "lat": -33.88549
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20323,
+        "lat": -33.88427
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20086,
+        "lat": -33.8845
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20026,
+        "lat": -33.88613
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20169,
+        "lat": -33.8843
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20099,
+        "lat": -33.88689
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20112,
+        "lat": -33.88589
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.2043,
+              -33.884
+            ],
+            [
+              151.20363,
+              -33.88467
+            ],
+            [
+              151.20333,
+              -33.88458
+            ],
+            [
+              151.20314,
+              -33.88477
+            ],
+            [
+              151.20275,
+              -33.88572
+            ],
+            [
+              151.20103,
+              -33.88598
+            ],
+            [
+              151.20099,
+              -33.88632
+            ],
+            [
+              151.2003,
+              -33.88643
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "notice": {
+    "text": "The current show, Black Myth, runs until 15 November 2026. The gallery then closes while the next exhibition goes in: check the gallery's website for the reopening date.",
+    "link": {
+      "label": "White Rabbit Gallery: visit",
+      "url": "https://whiterabbitcollection.org/visit/"
+    }
+  },
+  "unconfirmed": [
+    {
+      "section": "visit",
+      "note": "We couldn't confirm when the gallery reopens after Black Myth closes on 15 November 2026, or its public holiday hours.",
+      "check": {
+        "label": "White Rabbit Gallery: exhibitions",
+        "url": "https://whiterabbitcollection.org/exhibitions/"
+      }
+    }
+  ]
+}

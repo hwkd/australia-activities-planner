@@ -1,0 +1,331 @@
+{
+  "id": "hyde-park-barracks",
+  "status": "verified",
+  "name": "Hyde Park Barracks Museum",
+  "city": "sydney",
+  "area": "City",
+  "category": "history",
+  "categoryLabel": "History",
+  "blurb": "A World Heritage convict barracks, brought to life by a free immersive audio tour.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Almost all indoors. You only cross the open courtyard between buildings.",
+  "goodFor": [
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1.5–2 hrs",
+    "minHours": 1.5,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "Train to St James (4 min), then a 7 min walk across Queens Square to the Macquarie St entrance.",
+  "newcomerTip": "Entry is free; booking a timed session online is recommended, not required. The free audio guide knows where you're standing (about 90 min, best for ages 8+) and comes in eight languages.",
+  "location": {
+    "lat": -33.86962,
+    "lng": 151.2128
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1.5–2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "7 min from St James"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free (book a session)"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.869577,
+      "lng": 151.212586,
+      "label": "Hyde Park Barracks, Macquarie St entrance"
+    },
+    "pt": {
+      "total": "≈ 12 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "title": "Train to St James",
+          "detail": "Or any train that stops at St James",
+          "mins": 4
+        },
+        {
+          "mode": "walk",
+          "title": "Across Queens Square to the Macquarie St entrance",
+          "mins": 7
+        }
+      ],
+      "back": {
+        "text": "Same way back from St James station (7 min walk), or walk 7 min to Martin Place for the M1 metro to Central."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        16,
+        48
+      ],
+      "perCarLabel": "Domain car park, 2–3 hrs",
+      "notes": [
+        "The museum has no public parking. Metered street parking around Hyde Park and the Botanic Garden is limited.",
+        "Wilson's Domain car park is $19 drive-up on weekends ($15.75–17.75 online), or $32–48 for 2–3 hours on weekdays. Its lifts are out of order at the moment."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "entryChild": [
+      0,
+      0
+    ],
+    "extras": [],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "Any day. Book online first to pick your session time and skip the queue.",
+    "hours": "Open daily 10am to 6pm, last entry 4:30pm. Audio sessions start every half hour. Closed Good Friday and Christmas Day.",
+    "bring": [
+      "Your own headphones if you like (3.5 mm jack or Lightning)",
+      "Your booking on your phone"
+    ],
+    "facilities": [
+      "Toilets, a family room with a change table and an accessible toilet in the rear building",
+      "Free lockers at the rear of the site",
+      "Museum shop (10:30am–6pm)"
+    ],
+    "access": "Ramps give a continuous path through the site and the main building has a lift. A mobility version of the audio tour, neck loops, a descriptive version and captioned iPads are available. Wheelchairs and video magnifiers are free to borrow: book on 02 8239 2211.",
+    "safety": [
+      "Some rooms have bright, flickering lights and large ocean projections",
+      "Children under 15 must stay with an adult"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "State Library of NSW",
+      "why": "Free exhibitions up the street",
+      "dist": "≈ 6 min walk",
+      "activityId": "state-library"
+    },
+    {
+      "name": "Australian Museum",
+      "why": "Across Hyde Park",
+      "dist": "≈ 10 min walk",
+      "activityId": "aus-museum"
+    },
+    {
+      "name": "Art Gallery of NSW",
+      "why": "Free art through the Domain",
+      "dist": "≈ 10 min walk",
+      "activityId": "agnsw"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "St James Station",
+        "type": "start",
+        "note": "Take the northern exit into Queens Square.",
+        "lng": 151.21155,
+        "lat": -33.86967
+      },
+      {
+        "n": 2,
+        "name": "Macquarie St entrance",
+        "type": "stop",
+        "note": "The main gate between the guardhouses. Collect your audio device at Ticketing.",
+        "lng": 151.21259,
+        "lat": -33.86958
+      },
+      {
+        "n": 3,
+        "name": "Main Barracks building",
+        "type": "stop",
+        "note": "Francis Greenway's 1819 convict dormitory, over three floors with a lift.",
+        "lng": 151.2128,
+        "lat": -33.86962
+      },
+      {
+        "n": 4,
+        "name": "Rear building",
+        "type": "end",
+        "note": "Toilets, the family room and free lockers.",
+        "lng": 151.21316,
+        "lat": -33.86955
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21155,
+          -33.86967
+        ],
+        [
+          151.21156,
+          -33.86956
+        ],
+        [
+          151.21185,
+          -33.86959
+        ],
+        [
+          151.21188,
+          -33.8697
+        ],
+        [
+          151.21211,
+          -33.86972
+        ],
+        [
+          151.21246,
+          -33.86985
+        ],
+        [
+          151.21248,
+          -33.86972
+        ],
+        [
+          151.21303,
+          -33.86974
+        ],
+        [
+          151.21305,
+          -33.86954
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.21316,
+        "lat": -33.86955
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21194,
+        "lat": -33.8688
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21197,
+        "lat": -33.87041
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21147,
+        "lat": -33.86957
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T2",
+          "coords": [
+            [
+              151.20724,
+              -33.88419
+            ],
+            [
+              151.20807,
+              -33.88258
+            ],
+            [
+              151.20902,
+              -33.87849
+            ],
+            [
+              151.20953,
+              -33.87688
+            ],
+            [
+              151.21073,
+              -33.87429
+            ],
+            [
+              151.21146,
+              -33.87205
+            ],
+            [
+              151.21169,
+              -33.87065
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.2117,
+              -33.87064
+            ],
+            [
+              151.21178,
+              -33.87072
+            ],
+            [
+              151.2119,
+              -33.87045
+            ],
+            [
+              151.21168,
+              -33.87042
+            ],
+            [
+              151.21153,
+              -33.86995
+            ],
+            [
+              151.21209,
+              -33.86982
+            ],
+            [
+              151.21215,
+              -33.8693
+            ],
+            [
+              151.2124,
+              -33.86933
+            ],
+            [
+              151.21237,
+              -33.86955
+            ],
+            [
+              151.2125,
+              -33.86957
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  }
+}
