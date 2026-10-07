@@ -12,6 +12,12 @@ export function d1(args: string[], remote = false) {
 /** Runs one read-only SQL query and returns its rows (`wrangler d1 execute --json`). */
 export function d1Query<T = Record<string, unknown>>(sql: string, remote = false): T[] {
   const where = remote ? ["--remote"] : ["--local", ...(process.env.SWF_STATE ? ["--persist-to", process.env.SWF_STATE] : [])];
-  const out = execFileSync("npx", ["wrangler", "d1", "execute", "DB", ...where, "--json", "--command", sql], { encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] });
+  // Whole activity rows (draft and published JSON, maps included) run to several MB for 45 activities:
+  // well past Node's 1 MB default for captured output.
+  const out = execFileSync("npx", ["wrangler", "d1", "execute", "DB", ...where, "--json", "--command", sql], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "inherit"],
+    maxBuffer: 256 * 1024 * 1024,
+  });
   return (JSON.parse(out) as { results: T[] }[]).flatMap((r) => r.results);
 }
