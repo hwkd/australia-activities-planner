@@ -34,6 +34,7 @@ Run the validator from inside `design/prototype-logic/content/` (it reads `conte
 ## Notes
 
 - **Getting there (D14, 2 Oct 2026):** the A · Activity detail artboards (canvas Version 36) show one public transport trip from the city centre (way-in strip, last stretch, Directions from where you are) and a Driving? note, with no origin or mode pickers. Their logic block now differs from `engines/detail-engine.js`, which still models three origins and three modes and is kept as the reference for B and v1. The app follows the A artboards and spec §3.2 (TRACKER.md M24). `checks/t7.js` checks the travel-mode reset on B only.
+- **State switch (D16, 7 Oct 2026):** canvas Version 54 folds A1 · State switch into A · Sky Mode — Mobile and Desktop (the state switch, "If it's looking …", no forecast; picker closed and Sunny by default); A1 is marked chosen, A2 and A3 not chosen (kept for reference; A2's region chips for spec §12.5).
 - The Discover and detail engines still model weekend-only planning (Sat/Sun) internally, but since Version 33 their A · Sky Mode templates show Add to a day and My plans (linking to the calendar artboards). The calendar engine and spec §3.3 describe the any-day behaviour; the app (`src/`) is the source of truth.
 - The checks are CommonJS; `package.json` in this folder keeps them runnable inside the ESM app repo.
 - The engines use the prototype weather keys `sun | cloud | rain | hot`; the spec and production code use `sunny | cloudy | rainy | hot`.

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import ICAL from "ical.js";
 import { activities } from "../../tests/unit/cards";
-import { escapeText, eventFor, fold, googleLink, icsFileName, toIcs, type CalendarEvent } from "./calendarExport";
+import { escapeText, eventFor, fold, googleLink, icsFileName, placeOf, toIcs, type CalendarEvent } from "./calendarExport";
 import { plannedMinutes } from "./planDays";
 
 const SITE = "https://sydneyweekendfinder.com.au";
@@ -56,7 +56,7 @@ describe("calendar export (spec §6.8)", () => {
     const parsed = parse(ics);
     expect(parsed).toHaveLength(2);
     expect(parsed[0]).toMatchObject({ uid: "2026-10-03-bondi-coogee@sydneyweekendfinder.com.au", start: "2026-10-02T22:30:00.000Z", summary: a("bondi-coogee").name, alarm: "-PT2H" });
-    expect(parsed[0].location).toBe(`${a("bondi-coogee").routes.dest.label}, Sydney NSW`);
+    expect(parsed[0].location).toBe(`${a("bondi-coogee").routes.dest.label}, ${a("bondi-coogee").area} NSW`);
     expect(parsed[0].description).toContain("By public transport from Central Station");
     expect(parsed[0].description).toContain(`${SITE}/a/bondi-coogee`);
     expect(Date.parse(parsed[0].end) - Date.parse(parsed[0].start)).toBe(plannedMinutes(a("bondi-coogee")) * 60000);
@@ -100,6 +100,23 @@ describe("calendar export (spec §6.8)", () => {
     const folded = fold(long);
     expect(folded.split("\r\n").every((l) => new TextEncoder().encode(l).length <= 75)).toBe(true);
     expect(folded.replace(/\r\n /g, "")).toBe(long);
+  });
+});
+
+describe("calendar location (spec §6.8)", () => {
+  it("is the meeting point, its area and the state, with the city for areas that aren't places", () => {
+    expect(placeOf("Echo Point Lookout", "Blue Mountains")).toBe("Echo Point Lookout, Blue Mountains NSW");
+    expect(placeOf("Sydney Opera House", "City")).toBe("Sydney Opera House, Sydney NSW");
+    expect(placeOf("Carriageworks", "Inner City")).toBe("Carriageworks, Sydney NSW");
+  });
+  it("doesn't repeat an area the meeting point already ends with, or leave an empty part", () => {
+    expect(placeOf("Dixon Street, Haymarket", "Haymarket")).toBe("Dixon Street, Haymarket NSW");
+    expect(placeOf("", "Mosman")).toBe("Mosman NSW");
+  });
+  it("puts the meeting point's coordinates in the .ics as GEO", () => {
+    const ics = toIcs([eventFor(a("bondi-coogee"), "2026-10-03", "09:00", { site: "https://example.test", includeDirections: false })]);
+    const d = a("bondi-coogee").routes.dest;
+    expect(ics).toContain(`GEO:${d.lat.toFixed(6)};${d.lng.toFixed(6)}`);
   });
 });
 

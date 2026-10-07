@@ -11,15 +11,29 @@ const durations = {
 /** Visitor-facing text: discover (see src/strings/en-AU.ts). */
 export const discover = {
   /** Document title on Discover. */
-  pageTitle: (site: string) => `${site} · What to do in Sydney for the weather`,
-  /** Discover's header: "Sydney · Thu 1 Oct", then "If it's looking sunny." (D16: no place, so it never claims the weather). */
+  pageTitle: (site: string) => `${site} · What to do in New South Wales for the weather`,
+  /** Discover's header: the state switch and "Thu 1 Oct", then "If it's looking sunny." (D16: no place, so it never claims the weather). */
   header: {
-    city: "Sydney",
     headline1: "If it's",
     headline2: "looking",
     /** The headline's weather word, with its full stop. */
     headlineWord: (word: string) => `${word}.`,
     intro: "Tap the sky you're expecting. The list re-ranks around it.",
+  },
+  /** The state switch in Discover's header and its picker (D16, spec §3.1, canvas A1 · State switch). */
+  stateSwitch: {
+    /** After the state's name, for screen readers: "New South Wales: change state". */
+    change: ": change state",
+    title: "Where are you exploring?",
+    intro: "Pick a state. We're starting with New South Wales and adding more over time.",
+    close: "Close",
+    /** Under the live state's name: n = published activities. */
+    liveNote: (n: number) => `${n} ${n === 1 ? "day" : "days"} out so far, from Sydney's beaches to the Blue Mountains`,
+    othersHeading: "Other states and territories",
+    /** Screen-reader name of a state that isn't here yet. */
+    notYetLabel: (name: string) => `${name}, not here yet`,
+    notYetTitle: (name: string) => `${name} isn't here yet.`,
+    notYetBody: "We're starting with New South Wales and adding more over time.",
   },
   /** Accessible name of the results column. */
   resultsLabel: "Ideas",

@@ -35,6 +35,16 @@ for (const w of ["sunny", "cloudy"]) {
   });
 }
 
+test("axe: the state switch's picker (D16), open with a state tapped", async ({ page }) => {
+  await open(page, "/");
+  await idle(page);
+  await page.getByRole("button", { name: "New South Wales: change state" }).click();
+  const dialog = page.getByRole("dialog", { name: "Where are you exploring?" });
+  await dialog.getByRole("button", { name: "Queensland, not here yet" }).click();
+  await expect(dialog).toContainText("Queensland isn't here yet.");
+  await scan(page, "State picker");
+});
+
 test("axe: Add to a day and Add to your calendar sheets", async ({ page }) => {
   await open(page, "/a/agnsw");
   await idle(page);

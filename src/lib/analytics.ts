@@ -5,6 +5,8 @@
  * name and a few fixed properties: nothing that identifies a visitor, no cookies, and the endpoint
  * stores no IP address or user agent.
  */
+import { STATES, type StateKey } from "./states";
+
 export type AnalyticsEvent =
   | { name: "filter_change"; props: { filter: string; value: string } }
   | { name: "activity_view"; props: { id: string } }
@@ -13,7 +15,10 @@ export type AnalyticsEvent =
   | { name: "plan_b_swap"; props: Record<string, never> }
   | { name: "plan_share"; props: { scope: "day" | "fortnight" } }
   | { name: "surprise_pick"; props: { fallback: "yes" | "no" } }
-  | { name: "calendar_export"; props: { target: "ics" | "google"; scope: "item" | "day" | "all" } };
+  | { name: "calendar_export"; props: { target: "ics" | "google"; scope: "item" | "day" | "all" } }
+  // The state switch (D16): opening it, and which state people tap that isn't here yet.
+  | { name: "state_picker_open"; props: Record<string, never> }
+  | { name: "state_interest"; props: { state: StateKey } };
 
 const EVENT_ENDPOINT = "/api/event";
 
@@ -36,6 +41,9 @@ export const EVENT_SCHEMA: Record<AnalyticsEvent["name"], [key: string, ok: (v: 
   plan_share: [["scope", oneOf("day", "fortnight")]],
   surprise_pick: [["fallback", oneOf("yes", "no")]],
   calendar_export: [["target", oneOf("ics", "google")], ["scope", oneOf("item", "day", "all")]],
+  state_picker_open: [],
+  // Which state people want next: only ones that aren't live yet.
+  state_interest: [["state", oneOf(...STATES.filter((s) => !s.live).map((s) => s.key))]],
 };
 
 /** The event's name and property values in stored order, or null if it isn't one of ours exactly. */

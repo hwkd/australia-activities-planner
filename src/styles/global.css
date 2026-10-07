@@ -261,3 +261,19 @@ html.paused .dsky *, html:not(.sky-live) .dsky * { animation-play-state: paused;
   vertical-align: 1px;
   white-space: nowrap;
 }
+
+/* Discover's state switch (D16, canvas A1 · State switch): a pill with the state's name. */
+.state-pill {
+  min-height: 44px;
+  white-space: nowrap;
+  box-shadow: none;
+  padding: 0 12px 0 11px;
+  border-radius: 999px;
+  background: var(--glass2);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 700;
+}

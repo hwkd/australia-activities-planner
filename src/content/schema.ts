@@ -117,6 +117,12 @@ export const activitySchema = z
     id: z.string().max(60, "id must be 60 characters or fewer").regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id must be kebab-case"),
     status: z.enum(["draft", "verified"]),
     name: z.string().min(1),
+    /**
+     * D16: the state it's listed under; a union of the 8 states and territories once another is live
+     * (spec §12.5). Defaults to New South Wales, so a draft saved without it (an admin tab opened before
+     * migration 0004, or the old worker during a deploy) still saves and publishes.
+     */
+    state: z.literal("nsw").default("nsw"),
     city: z.literal("sydney"),
     area: z.string().min(1),
     category: z.enum(categories),

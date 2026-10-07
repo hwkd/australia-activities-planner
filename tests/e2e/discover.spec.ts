@@ -58,10 +58,12 @@ test("AC 2: filters update the list and the URL at once; reloading restores the 
   });
   // Headless Firefox and WebKit paint without a GPU (70–200 ms a frame here, and the URL effect runs
   // after paint), so the timing is checked in Chromium; the other engines check the behaviour, and
-  // Safari's timing is part of the device checks (M3.8).
+  // Safari's timing is part of the device checks (M3.8). Shared CI runners also host the server and
+  // other browsers on a few slow cores (250–350 ms seen), so there the budget only catches gross stalls.
   if (browserName === "chromium") {
-    expect(update).toBeLessThan(100);
-    expect(frame).toBeLessThan(100);
+    const budget = process.env.CI ? 600 : 100;
+    expect(update).toBeLessThan(budget);
+    expect(frame).toBeLessThan(budget);
   }
   await expect(page).toHaveURL(/\?w=cloudy&g=friends&free=1&d=half$/);
   const before = await names(page);
@@ -69,7 +71,8 @@ test("AC 2: filters update the list and the URL at once; reloading restores the 
   await page.waitForFunction(() => !document.querySelector('astro-island[client="load"][ssr]'));
   await expect(page.getByRole("button", { name: "Friends", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("button", { name: "Free only" })).toHaveAttribute("aria-pressed", "true");
-  expect(await names(page)).toEqual(before);
+  // The list re-renders once after hydration, so a slow engine can still show the unfiltered one here.
+  await expect.poll(() => names(page)).toEqual(before);
 });
 
 test("AC 2: last-used filters come back when the app opens with no query string", async ({ page }) => {

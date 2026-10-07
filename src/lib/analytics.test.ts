@@ -41,4 +41,13 @@ describe("analytics events (spec §7, D7)", () => {
     for (const props of sent) expect(eventFields({ name: "filter_change", props }), JSON.stringify(props)).not.toBeNull();
     expect(eventFields({ name: "filter_change", props: { filter: "colour", value: "red" } })).toBeNull();
   });
+
+  it("accepts the state switch's events (D16, M26.4), with a real state only", () => {
+    expect(eventFields({ name: "state_picker_open", props: {} })).toEqual(["state_picker_open"]);
+    for (const state of ["vic", "qld", "wa", "sa", "tas", "act", "nt"])
+      expect(eventFields({ name: "state_interest", props: { state } })).toEqual(["state_interest", state]);
+    expect(eventFields({ name: "state_interest", props: { state: "nz" } })).toBeNull();
+    expect(eventFields({ name: "state_interest", props: { state: "nsw" } }), "the live state isn't interest").toBeNull();
+    expect(eventFields({ name: "state_interest", props: {} })).toBeNull();
+  });
 });

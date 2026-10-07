@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { sameData } from "~/lib/sameData";
 import { activitySchema, categories, unconfirmedSections, type Activity } from "~/content/schema";
 import { api, ApiError, navigate } from "./api";
 import { geoFromGeoJson, legsFromGeoJson, MAP_LEG_MODES, type MapLeg } from "~/lib/geo";
@@ -231,7 +232,8 @@ export default function ActivityEditor({
     return message ? <Notice kind="error">{message.text}</Notice> : <p className="text-slate-500">Loading…</p>;
 
   const live = !!rec.published;
-  const liveDiffers = live && JSON.stringify(rec.published) !== JSON.stringify(rec.draft);
+  // Compared as data: stored copies can differ only in key order (e.g. after migration 0004).
+  const liveDiffers = live && !sameData(rec.published, rec.draft);
   const pt = draft.routes.pt;
   const others = names.filter((n) => n.id !== draft.id);
 
@@ -432,6 +434,14 @@ export default function ActivityEditor({
               value={draft.name}
               onChange={(v) => edit((a) => void (a.name = v))}
               error={err("name")}
+            />
+            <Text
+              id="f-state"
+              label="State"
+              value="New South Wales"
+              onChange={() => {}}
+              readOnly
+              hint="New South Wales is the one live state for now (D16). Other states become selectable when they go live."
             />
             <div className="grid gap-4 sm:grid-cols-2">
               <Text

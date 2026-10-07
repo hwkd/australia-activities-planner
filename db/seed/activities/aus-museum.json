@@ -2,6 +2,7 @@
   "id": "aus-museum",
   "status": "verified",
   "name": "Australian Museum",
+  "state": "nsw",
   "city": "sydney",
   "area": "City",
   "category": "museum",

@@ -25,6 +25,7 @@ export function newActivity(id: string, name: string): Activity {
     id,
     status: "draft",
     name,
+    state: "nsw",
     city: "sydney",
     area: "Area",
     category: "landmark",
