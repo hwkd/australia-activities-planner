@@ -143,7 +143,10 @@ export const lib = {
     /** "By public transport from Central Station, ≈ 35 min, 1 change: … .\nGetting back: …" */
     directions: (total: string, changes: string, steps: string, back: string) =>
       `By public transport from Central Station, ${total}, ${changes}: ${steps}.\nGetting back: ${back}`,
-    place: (label: string) => `${label}, Sydney NSW`,
+    /** The event's location (spec §6.8), e.g. "Echo Point Lookout, Blue Mountains NSW" (placeOf in lib/calendarExport). */
+    place: (where: string) => `${where} NSW`,
+    /** What an area that isn't a locality ("City", "Inner City") reads as in a calendar location. */
+    city: "Sydney",
     details: (url: string) => `Details: ${url}`,
   },
 } as const;

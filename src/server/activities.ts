@@ -1,5 +1,6 @@
 import { activitySchema, type Activity } from "~/content/schema";
 import { checkActivities } from "~/lib/content-checks";
+import { sameData } from "~/lib/sameData";
 import { toCard, type CardData } from "~/lib/content";
 import { exportInfo, type ExportInfo } from "~/lib/calendarExport";
 import { nowIso, type Db } from "./db";
@@ -81,7 +82,9 @@ export async function listActivities(db: Db): Promise<ActivitySummary[]> {
     .prepare(
       `SELECT a.id, a.name, a.area, a.category, a.status, a.version, a.updated_at, a.published_at,
               a.published_json IS NOT NULL AS published,
-              (a.published_json IS NOT NULL AND a.published_json <> a.draft_json) AS changed,
+              -- Both copies only where their text differs; whether the data differs is decided below.
+              CASE WHEN a.published_json IS NOT NULL AND a.published_json <> a.draft_json THEN a.draft_json END AS draft_if_differs,
+              CASE WHEN a.published_json IS NOT NULL AND a.published_json <> a.draft_json THEN a.published_json END AS published_if_differs,
               u.name AS updated_by, json_extract(a.draft_json, '$.lastVerified') AS last_verified
        FROM activities a LEFT JOIN users u ON u.id = a.updated_by ORDER BY a.name COLLATE NOCASE`
     )
@@ -97,7 +100,8 @@ export async function listActivities(db: Db): Promise<ActivitySummary[]> {
     updatedBy: (r.updated_by as string) ?? null,
     publishedAt: (r.published_at as string) ?? null,
     published: Boolean(r.published),
-    changed: Boolean(r.changed),
+    // Text that differs only in key order (e.g. after migration 0004, then a save) isn't a change.
+    changed: r.draft_if_differs != null && !sameData(JSON.parse(r.draft_if_differs as string), JSON.parse(r.published_if_differs as string)),
     lastVerified: (r.last_verified as string) ?? null,
   }));
 }

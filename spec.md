@@ -492,7 +492,7 @@ Warning banner text for each weather:
 
 ### 6.8 Add to your calendar
 
-- **Event fields:** title = activity name; start and end from §4.4 and §6.4; location = the activity's meeting point plus its area and "NSW" (e.g. "Echo Point, Blue Mountains NSW"); notes = the getting-there summary when **Include directions** is on, then a link back to the activity page; reminder as chosen.
+- **Event fields:** title = activity name; start and end from §4.4 and §6.4; location = the activity's meeting point plus its area and "NSW" (e.g. "Echo Point, Blue Mountains NSW"); the areas "City" and "Inner City" read as Sydney ("Sydney Opera House, Sydney NSW"), and an area the meeting point already ends with isn't repeated ("Dixon Street, Haymarket NSW"); `GEO` = the meeting point's coordinates (an event's venue), so calendar apps can place it exactly; notes = the getting-there summary when **Include directions** is on, then a link back to the activity page; reminder as chosen.
 - **`.ics` file** (Apple Calendar, Outlook): one `VCALENDAR` with a `VTIMEZONE` for `Australia/Sydney` and one `VEVENT` per plan, `DTSTART;TZID=Australia/Sydney` with a `DURATION` (not a wall-clock `DTEND`, which would be ambiguous in the repeated hour when clocks go back), a stable `UID` per date and activity (so re-adding updates rather than duplicates), and a `VALARM` for the reminder. Generated in the browser; file name `sydney-plans-{date or "upcoming"}.ics`.
 - **Google Calendar:** a `calendar.google.com/calendar/render?action=TEMPLATE` link per event with `dates` in local time and `ctz=Australia/Sydney`. Google uses the user's default reminders; the sheet says so. More than one event shows one link per event.
 - No calendar account access or permissions are requested; nothing is synced back.
@@ -519,7 +519,7 @@ Warning banner text for each weather:
   - `plan_share` (scope: `day` or `fortnight`)
   - `calendar_export` (with target: `ics` or `google`, and scope: `item`, `day` or `all`)
   - `surprise_pick` (whether it fell back to fit 1; §11.5)
-  - To come with the state switch (M26.4; to be added to `EVENT_SCHEMA`, which refuses them until then): `state_picker_open` and `state_interest` (with the state tapped, e.g. `vic`), which state people want next (D16)
+  - `state_picker_open` and `state_interest` (with the state tapped, e.g. `vic`; only states that aren't live yet, counted once per state each time the picker is open): which state people want next (D16)
   These measure the success signals in intent.md as totals: plans created, shares, Plan B use and calendar exports. Events carry no visitor identifier (D7), so per-visitor measures (plans per weekly user, return visits over consecutive weeks) aren't available; Cloudflare Web Analytics gives visits and page views, not returning visitors.
 - **Browsers:** the last two versions of Safari iOS, Chrome Android, Chrome, Safari, Firefox and Edge. The end-to-end tests run in Chromium, WebKit and Firefox.
 - **Reliability:** if D1 can't be reached, public pages show a short "Couldn't load right now" page with a retry (and the cached copy when offline support has one); the saved plan is never affected. D1's point-in-time restore (Time Travel: 30 days on the Workers Paid plan, 7 on Free) is the backup, and the revisions table keeps every version of every activity.

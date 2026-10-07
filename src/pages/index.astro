@@ -5,6 +5,7 @@ import TabBar from "~/components/TabBar.astro";
 import SetTheSky from "~/components/islands/SetTheSky";
 import DiscoverFilters from "~/components/islands/DiscoverFilters";
 import DiscoverExplorer from "~/components/islands/DiscoverExplorer";
+import StateSwitch from "~/components/islands/StateSwitch";
 import { publishedCards } from "~/server/activities";
 import { publishedEventCards } from "~/server/eventsPublic";
 import { mapAvailable } from "~/server/map";
@@ -34,11 +35,10 @@ const [cards, events, mapView] = await Promise.all([publishedCards(db(), content
           </svg>
           {SITE_NAME}
         </p>
-        <p class="eyebrow">
-          <span>{t.discover.header.city}</span>
-          <span class="dot" aria-hidden="true"></span>
-          <span data-today></span>
-        </p>
+        <div class="state-row" data-state-row>
+          <StateSwitch client:load count={cards.length} />
+          <p class="eyebrow"><span data-today></span></p>
+        </div>
         <script is:inline>
           // Today's date in Sydney (the build date would be wrong).
           (function () {
@@ -114,11 +114,12 @@ const [cards, events, mapView] = await Promise.all([publishedCards(db(), content
     text-transform: uppercase;
     color: var(--sky-mute);
   }
-  .dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: currentColor;
+  /* The state switch and today's date on one row (D16, canvas A1 · State switch). */
+  .state-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   .headline {
     margin: 16px 0 0;
@@ -216,8 +217,11 @@ const [cards, events, mapView] = await Promise.all([publishedCards(db(), content
       font-weight: 700;
       color: var(--sky-mute);
     }
+    .state-row {
+      margin-top: 22px;
+      gap: 12px;
+    }
     .eyebrow {
-      margin-top: 36px;
       font-size: 12.5px;
     }
     /* Type scales with the left column: 72 / 124 px at its full 540 px. */

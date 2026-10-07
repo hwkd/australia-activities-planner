@@ -5,7 +5,7 @@
 export const layout = {
   meta: {
     /** Default meta description. */
-    description: "Find something good to do in Sydney for the weather and the people you're with.",
+    description: "Find something good to do in New South Wales for the weather and the people you're with.",
   },
 
   /** Shown on preview sites while some activities are drafts (spec §4.3). */
@@ -28,7 +28,7 @@ export const layout = {
 
   notFound: {
     title: (site: string) => `Page not found · ${site}`,
-    eyebrow: "Sydney",
+    eyebrow: "New South Wales",
     heading: "We couldn't find that page",
     body: "It may have moved, or the link was cut short.",
     back: "Back to Discover",
@@ -36,7 +36,7 @@ export const layout = {
 
   error: {
     title: (site: string) => `Couldn't load right now · ${site}`,
-    eyebrow: "Sydney",
+    eyebrow: "New South Wales",
     heading: "Couldn't load right now",
     body: "Something went wrong on our side. Your plans are saved on this device and are safe.",
     retry: "Try again",

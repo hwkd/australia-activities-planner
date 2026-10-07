@@ -38,6 +38,9 @@ for (const path of ["/", "/a/bondi-coogee"]) {
       await open(page, `${path}?w=${w}`);
       await page.evaluate(() => document.fonts.ready);
       await page.waitForTimeout(300); // the results re-render once after hydration
+      // Measured widths include transforms, and re-rendered cards start their entrance at scale(0.98).
+      // Even 1 ms animations can still be on their first frame on a slow runner, so wait them out.
+      await expect.poll(() => page.evaluate(() => document.getAnimations().filter((a) => a.playState === "running").length)).toBe(0);
       runs.push(await typography(page));
     }
     const common = Object.keys(runs[0]).filter((k) => runs.every((r) => k in r));

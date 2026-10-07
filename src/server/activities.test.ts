@@ -62,6 +62,17 @@ describe("activities in D1", () => {
     expect((await publishedCards(db, "preview")).find((c) => c.id === "agnsw")?.blurb).toBe(x.blurb);
     expect((await listActivities(db)).find((s) => s.id === "agnsw")?.changed).toBe(false);
   });
+  it("a copy that differs only in key order isn't a change (migration 0004 appends state; a save re-orders)", async () => {
+    const db = await seeded();
+    const row = await db.prepare("SELECT published_json FROM activities WHERE id = ?").bind("agnsw").first<{ published_json: string }>();
+    const { state, ...rest } = JSON.parse(row!.published_json) as Record<string, unknown>;
+    await db.prepare("UPDATE activities SET published_json = ? WHERE id = ?").bind(JSON.stringify({ ...rest, state }), "agnsw").run();
+    expect((await listActivities(db)).find((s) => s.id === "agnsw")?.changed).toBe(false);
+    const x = a("agnsw");
+    x.blurb = "A real change.";
+    await saveActivity(db, "agnsw", x, 1, null);
+    expect((await listActivities(db)).find((s) => s.id === "agnsw")?.changed).toBe(true);
+  });
   it("stops two editors overwriting each other (optimistic locking)", async () => {
     const db = await seeded();
     await saveActivity(db, "agnsw", a("agnsw"), 1, null);
