@@ -57,10 +57,14 @@
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
-/* A glass control on a glass panel (the filter chips on the desktop card, a button in a day or a pick):
-   a light wash, since a second 82 % tint would match the panel it sits on. */
-:is(.glass, .glass-strong, .filters) .glass {
+/* A glass control on a glass panel (a button in a day or a pick; the filter chips on the desktop card,
+   which is only a card from 1024 px: on phones the chips sit on the sky and keep their tint): a light
+   wash, since a second 82 % tint would match the panel it sits on. Inline pills on panels use --soft. */
+:is(.glass, .glass-strong) .glass {
   background: var(--soft);
+}
+@media (min-width: 1024px) {
+  .filters .glass { background: var(--soft); }
 }
 /* Less transparency: panels go solid, like sheets (the heavier fill over the sky's base colour). */
 @media (prefers-reduced-transparency: reduce) {

@@ -209,7 +209,7 @@ test("M10.4: reduced transparency makes glass solid", async ({ page }, info) => 
   await cdp.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-transparency", value: "reduce" }] });
   await open(page, "/?w=sunny");
   const glass = await page
-    .locator(".glass")
+    .locator(".rc.glass") // an activity card: a real panel (the state pill has its own rules)
     .first()
     .evaluate((el) => ({ bf: getComputedStyle(el).backdropFilter, bg: getComputedStyle(el).backgroundColor, img: getComputedStyle(el).backgroundImage }));
   expect(glass.bf).toBe("none");
