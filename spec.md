@@ -165,7 +165,7 @@ Design reference: the "A · Plan any day" artboards (My plans calendar on phone 
 - **Set this day's sky:** a compact four-segment version of Set the sky (§3.1).
 - **Timeline** of the day's plans, ordered by start time (§6.7). Each plan shows start–end time, name, area and duration, a fit meter and label for the day's sky ("Set the sky to check the fit" if none), and:
   - a warning row when it overlaps another plan, or is planned on a day it doesn't run ("Carriageworks Farmers Market runs on Saturdays only.")
-  - **Plan B** with **Swap** when its fit is `0` (§6.2); swap keeps the start time
+  - **Plan B** with **Swap** when its fit is `0` (§6.2); a swap keeps the slot, but never starts before the backup's suggested start
   - controls: 30 min earlier, 30 min later, **Change day or time** (opens the Add to a day sheet in edit mode), **Add to my calendar** (this plan only), remove (with Undo, §6.7).
 - **Add {Sat 3 Oct} to my calendar** for the whole day.
 - Empty day: "Nothing planned for {Sat 3 Oct}" with **Find ideas for this day**, which opens Discover with that day's sky applied and remembers the date for the next Add.
@@ -430,7 +430,7 @@ For a planned item `x` on day `d` whose fit for `d.sky` is `0`:
 4. Pick the highest score. Ties go to the alphabetically first `name`.
 5. If nothing is left, show "Consider moving it to another day" with **Change day or time**.
 
-Plan B suggestions are recalculated whenever the plan or a day's sky changes. They are never stored. A swap keeps the original start time.
+Plan B suggestions are recalculated whenever the plan or a day's sky changes. They are never stored. A swap keeps the original start time, unless the backup's suggested start is later (a gallery that opens at 10 isn't planned for 9).
 
 ### 6.3 Fit labels
 
@@ -552,7 +552,7 @@ Warning banner text for each weather:
 3. Choosing Family shows only activities whose `goodFor` includes `family`.
 4. Adding an activity from its detail page with **Add to a day** (picking Wed 7 Oct, Evening) puts it in My plans on that date at 6pm, updates the tab badge, and shows "Planned · Wed 7 Oct" on its card and page.
 5. The **Add** button on a Discover card opens Add to a day; confirming adds the plan without leaving Discover. Today, Tomorrow, the next Saturday and Sunday and the next public holiday are offered as quick days.
-6. Setting Sun 4 Oct's sky to Rainy when it contains "Three Sisters & Echo Point" shows the warning and a Plan B with `rainy: 2` that runs on that day. Tapping Swap replaces the item and keeps its start time.
+6. Setting Sun 4 Oct's sky to Rainy when it contains "Three Sisters & Echo Point" shows the warning and a Plan B with `rainy: 2` that runs on that day. Tapping Swap replaces the item and keeps its start time, or moves it later to the backup's suggested start if that's later.
 7. The same Plan B is never suggested for two items at once.
 8. Changing a plan's time by +30 min re-sorts the day, persists after a reload, appears in the share URL, and can be undone within 5 seconds. Two plans whose times overlap both show "Overlaps with …".
 9. Carriageworks Farmers Market can't be confirmed on a Sunday in Add to a day ("Closed"), and **Change day or time** moves a plan to another date keeping its time.
