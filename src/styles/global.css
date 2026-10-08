@@ -57,8 +57,14 @@
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
+/* A glass control on a glass panel (the filter chips on the desktop card, a button in a day or a pick):
+   a light wash, since a second 82 % tint would match the panel it sits on. */
+:is(.glass, .glass-strong, .filters) .glass {
+  background: var(--soft);
+}
+/* Less transparency: panels go solid, like sheets (the heavier fill over the sky's base colour). */
 @media (prefers-reduced-transparency: reduce) {
-  .glass { background: var(--glass2); }
+  .glass { background: linear-gradient(var(--glass2), var(--glass2)), var(--bg); }
 }
 /* Sheets, dialogs, the toast and the bars fixed over the page: the heavier fill over the sky's base
    colour, so solid (about what the blurred version averaged to) and nothing behind shows through. A
@@ -276,4 +282,7 @@ html.paused .dsky *, html:not(.sky-live) .dsky * { animation-play-state: paused;
   gap: 7px;
   font-size: 14px;
   font-weight: 700;
+}
+@media (prefers-reduced-transparency: reduce) {
+  .state-pill { background: linear-gradient(var(--glass2), var(--glass2)), var(--bg); }
 }

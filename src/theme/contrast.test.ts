@@ -33,6 +33,11 @@ function checks(): Check[] {
           add("mute on " + fillName, t.mute, bg, name, 4.5);
           add("great meter on " + fillName, t.great, bg, name, 3);
         }
+        // A glass control on a glass panel (filter chips on the desktop card): the --soft wash over it.
+        const nested = over(parseColor(t.soft), over(parseColor(t.glass), scene));
+        const nestedName = `soft on glass over ${v} ${end} ${s[v].glass[end]}`;
+        add("ink on a control on glass", t.ink, nested, nestedName, 4.5);
+        add("mute on a control on glass", t.mute, nested, nestedName, 4.5);
         const sky = parseColor(s[v].skyText[end]);
         const skyName = `sky ${v} ${end} ${s[v].skyText[end]}`;
         add("sky text (eyebrow, intro)", t.skyMute, sky, skyName, 4.5);

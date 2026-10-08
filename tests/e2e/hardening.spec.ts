@@ -208,7 +208,12 @@ test("M10.4: reduced transparency makes glass solid", async ({ page }, info) => 
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-transparency", value: "reduce" }] });
   await open(page, "/?w=sunny");
-  const glass = await page.locator(".glass").first().evaluate((el) => ({ bf: getComputedStyle(el).backdropFilter, bg: getComputedStyle(el).backgroundColor }));
+  const glass = await page
+    .locator(".glass")
+    .first()
+    .evaluate((el) => ({ bf: getComputedStyle(el).backdropFilter, bg: getComputedStyle(el).backgroundColor, img: getComputedStyle(el).backgroundImage }));
   expect(glass.bf).toBe("none");
-  expect(glass.bg).toBe("rgba(8, 24, 80, 0.76)");
+  // Solid: the heavier fill (--glass2) over the sky's base colour (--bg, opaque).
+  expect(glass.bg).toBe("rgb(27, 75, 200)");
+  expect(glass.img).toContain("rgba(8, 24, 80, 0.76)");
 });

@@ -48,7 +48,8 @@ export default function DiscoverExplorer({
 }) {
   // A sky change re-themes the page at once (applyTheme) and the list follows a frame or two later:
   // re-ranking and moving the cards was most of the work on a tap, and held back the new sky on phones.
-  const weather = useDeferredValue(useHydratedStore($weather, "sunny"));
+  const liveWeather = useHydratedStore($weather, "sunny");
+  const weather = useDeferredValue(liveWeather);
   const filters = useHydratedStore($filters, DEFAULT_FILTER_STATE);
   const plan = useHydratedStore($plan, EMPTY_PLAN);
   const planningDay = useHydratedStore($planningDate, null);
@@ -72,7 +73,10 @@ export default function DiscoverExplorer({
   const [surprise, setSurprise] = useState<{ id: string | null; fallback: boolean; turn: number } | null>(null);
   const [recent, setRecent] = useState<string[]>([]);
   const surprisePick = () => {
-    const pick = pickSurprise(shown, weather, { planned: today ? plannedIdsFrom(plan, today) : undefined, recent });
+    // Always for the sky on screen, even in the frame or two before the list catches up with it.
+    const planned = today ? plannedIdsFrom(plan, today) : undefined;
+    const list = liveWeather === weather ? shown : rank(cards, { weather: liveWeather, ...filters }, { planned, month }).shown;
+    const pick = pickSurprise(list, liveWeather, { planned, recent });
     setSurprise((prev) => ({ id: pick?.card.id ?? null, fallback: !!pick?.fallback, turn: (prev?.turn ?? 0) + 1 }));
     if (pick) setRecent((r) => [...r, pick.card.id].slice(-10));
     track({ name: "surprise_pick", props: { fallback: pick?.fallback ? "yes" : "no" } });
