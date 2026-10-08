@@ -5,7 +5,7 @@
 // from Central plus the way back (Transport for NSW Trip Planner, choosing the journey whose lines
 // match the written route). Everything is cached in .map-data/geo-cache.json; a report of what was
 // found, estimated or mismatched goes to .map-data/geo-report.md.
-//   node --env-file=.dev.vars scripts/map/build-geo.mjs [--write] [--date=YYYYMMDD] [id …]
+//   node --env-file=.dev.vars scripts/map/build-geo.mjs [--write] [--date=YYYYMMDD [--time=HHMM]] [id …]
 import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { nextSaturdayLateMorning, ORIGIN_STOPS, publicLine } from "../transport/tfnsw.mjs";
 
@@ -143,13 +143,15 @@ const lineNames = (legs) => legs.filter((l) => l.line).map((l) => String(l.line)
 
 async function trip(from, to, want) {
   const date = process.argv.find((x) => x.startsWith("--date="))?.slice(7);
-  const key = `tp:${typeof from === "string" ? from : from.join(",")}>${typeof to === "string" ? to : to.join(",")}${date ? `@${date}` : ""}`;
+  const time = process.argv.find((x) => x.startsWith("--time="))?.slice(7);
+  const key = `tp:${typeof from === "string" ? from : from.join(",")}>${typeof to === "string" ? to : to.join(",")}${date ? `@${date}` : ""}${time ? `T${time}` : ""}`;
   const json = await cached(key, async () => {
     await sleep(300);
     // The coming Saturday (the Trip Planner only plans ahead), or --date=YYYYMMDD to skip a weekend of
-    // trackwork.
+    // trackwork, and --time=HHMM (with --date) for a line whose direct trains run every second hour.
     const date = process.argv.find((x) => x.startsWith("--date="))?.slice(7);
-    const when = date ? { itdDate: date, itdTime: "1030" } : nextSaturdayLateMorning();
+    const time = process.argv.find((x) => x.startsWith("--time="))?.slice(7) ?? "1030";
+    const when = date ? { itdDate: date, itdTime: time } : nextSaturdayLateMorning();
     const q = new URLSearchParams({
       outputFormat: "rapidJSON",
       coordOutputFormat: "EPSG:4326",
@@ -170,13 +172,18 @@ async function trip(from, to, want) {
     return r.ok ? await r.json() : null;
   });
   // A failed or empty answer isn't cached, so the next run asks again.
-  if (!json?.journeys?.length) delete cache[key];
+  if (!json?.journeys?.length) {
+    delete cache[key];
+    save(); // cached() already wrote it to disk
+  }
   const journeys = (json?.journeys ?? []).map(legsOf).filter((ls) => ls.some((l) => l.coords.length > 1));
   if (!journeys.length) return null;
   // The journey whose lines best match the written route.
   const score = (ls) => {
     const got = lineNames(ls);
-    return want.filter((w) => got.includes(w)).length * 2 - got.filter((g) => !want.includes(g)).length;
+    // Extra rides count against a journey too: "SCO › SCO" (a change at Thirroul) isn't the written
+    // direct "SCO".
+    return want.filter((w) => got.includes(w)).length * 2 - got.filter((g) => !want.includes(g)).length - Math.max(0, got.length - want.length);
   };
   const best = journeys.reduce((a, b) => (score(b) > score(a) ? b : a));
   return { legs: best, matched: score(best) === want.length * 2 && lineNames(best).length === want.length };
@@ -217,7 +224,10 @@ async function amenities() {
       return null; // not cached as data: the next run tries again
     });
     if (got) out.push(...got);
-    else delete cache[`overpass:amenities:${t.join(",")}`];
+    else {
+      delete cache[`overpass:amenities:${t.join(",")}`];
+      save();
+    }
   }
   return out;
 }
@@ -359,8 +369,9 @@ for (const f of files) {
       facilities.push({ kind, lng, lat });
   const end = places.find((p) => p.type === "end") ?? places[places.length - 1];
   const backText = a.routes.pt.back?.text ?? "";
-  const backWant = [...backText.matchAll(/\b(?:bus |ferry )?([A-Z]?\d{2,3}|T\d|F\d|M\d|L\d)\b/g)].map((m) =>
-    m[1].toUpperCase(),
+  // Lines named in the text: "bus 374", "route 21", "T4", "F2"; a bare number is a time ("≈ 15 min").
+  const backWant = [...backText.matchAll(/\b(?:(?:bus|route) ([A-Z]?\d{2,3}[A-Z]?)|([TFML]\d))\b/gi)].map((m) =>
+    (m[1] ?? m[2]).toUpperCase(),
   );
   // One-way activities (the old content's `back.lines`, or a way back already drawn).
   const oneWay = (a.routes.pt.back?.lines ?? []).length > 0 || !!a.geo?.back;

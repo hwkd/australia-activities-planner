@@ -121,7 +121,8 @@ export const detail = {
   headsUp: {
     heading: "Heads up",
     /** NSW RFS fire danger (spec §11.2), for outdoor activities. */
-    fireToday: (rating: string, ban: boolean) => `Fire danger in Greater Sydney today: ${rating}.${ban ? " Total fire ban today." : ""}`,
+    /** `where` names the RFS district: "Greater Sydney", "the Illawarra and Shoalhaven", … */
+    fireToday: (where: string, rating: string, ban: boolean) => `Fire danger in ${where} today: ${rating}.${ban ? " Total fire ban today." : ""}`,
     fireTomorrow: (rating: string, ban: boolean) => `Tomorrow: ${rating}.${ban ? " Total fire ban tomorrow." : ""}`,
     fireSource: (time: string) => `From NSW RFS at ${time}`,
     fireUnknown: "Fire danger: check the NSW RFS site before you go.",

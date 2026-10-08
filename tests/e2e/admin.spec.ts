@@ -141,10 +141,11 @@ test("AC 30: unpublishing turns pairings to it into plain text; publishing bring
 
 test("M14: access facts entered in the admin turn on the Pram-friendly and Step-free filters", async ({ page }) => {
   const visitor = await (await page.context().browser()!.newContext()).newPage();
-  // The Art Gallery's access hasn't been checked: its page says so, and it isn't a Pram-friendly result
-  // (other activities can be, from access facts in their own content).
+  // The Art Gallery's access hasn't been checked: its page says so, and it isn't a Pram-friendly result.
+  // The State Library is (its content has prams: yes), so the filtered list has rendered when we look.
   const results = visitor.getByRole("list", { name: "Ranked results" });
   await visitor.goto("/?w=sunny&pram=1");
+  await expect(results.getByRole("heading", { level: 3, name: "State Library of NSW" })).toBeVisible();
   await expect(results.getByRole("heading", { level: 3, name: "Art Gallery of NSW" })).toHaveCount(0);
   await visitor.goto("/a/agnsw");
   await expect(visitor.getByRole("region", { name: "Access" })).toContainText("Not yet checked");
