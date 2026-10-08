@@ -11,7 +11,15 @@ const cards = readdirSync("db/seed/activities").map((f) => toCard(activitySchema
 // The prototype engine ranks its own copy of the first 29 activities, so the golden runs compare on
 // those (every one shows in some combination); activities added since are ranked by the same rules.
 const prototypeIds = new Set(golden.flatMap((g) => g.ids));
-const prototypeCards = cards.filter((c) => prototypeIds.has(c.id));
+// Content changed since the prototype: day trips' durations now cover the whole outing from Central
+// (8 Oct 2026). The prototype's values are kept here so this stays a check of the ranking rules.
+const PROTOTYPE_DURATION: Record<string, { minHours: number; maxHours: number }> = {
+  wentworth: { minHours: 3, maxHours: 4 },
+  leura: { minHours: 3, maxHours: 5 },
+};
+const prototypeCards = cards
+  .filter((c) => prototypeIds.has(c.id))
+  .map((c) => (PROTOTYPE_DURATION[c.id] ? { ...c, duration: { ...c.duration, ...PROTOTYPE_DURATION[c.id] } } : c));
 
 describe("ranking (spec §6.1)", () => {
   it(`matches the prototype for all ${golden.length} filter combinations`, () => {

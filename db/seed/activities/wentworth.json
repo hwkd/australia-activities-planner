@@ -20,9 +20,9 @@
     "solo"
   ],
   "duration": {
-    "label": "3–4 hrs",
-    "minHours": 3,
-    "maxHours": 4
+    "label": "Full day",
+    "minHours": 7.5,
+    "maxHours": 9
   },
   "cost": "$",
   "gettingThere": "Train from Central to Wentworth Falls station, then walk to the Falls Reserve picnic area.",
@@ -35,7 +35,7 @@
   "facts": [
     {
       "k": "Time",
-      "v": "3–4 hrs"
+      "v": "3–4 hrs walking"
     },
     {
       "k": "Distance",

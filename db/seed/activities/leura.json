@@ -21,9 +21,9 @@
     "family"
   ],
   "duration": {
-    "label": "Half day",
-    "minHours": 3,
-    "maxHours": 5
+    "label": "Full day",
+    "minHours": 6.5,
+    "maxHours": 9
   },
   "cost": "$",
   "gettingThere": "Blue Mountains Line to Leura. The village starts at the station.",
@@ -32,11 +32,11 @@
     "lat": -33.712,
     "lng": 150.331
   },
-  "suggestedStart": "10:00",
+  "suggestedStart": "08:05",
   "facts": [
     {
       "k": "Time",
-      "v": "Half day"
+      "v": "3–5 hrs there"
     },
     {
       "k": "Train",

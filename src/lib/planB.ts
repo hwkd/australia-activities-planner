@@ -16,10 +16,20 @@ export function planBScore(c: PlanCard, x: PlanCard): number {
   );
 }
 
+/** Day-trip regions beyond greater Sydney: a Plan B there only for a plan already there. */
+const AWAY = new Set(["newcastle", "illawarra"]);
+const reachable = (c: PlanCard, x: PlanCard) => !AWAY.has(c.forecastArea ?? "") || c.forecastArea === x.forecastArea;
+
 /** The best swap for `x` on day `d` under `sky`, from `pool` (spec §6.2 steps 1–4), or null. */
 export function pickPlanB(x: PlanCard, d: DateStr, sky: Weather, pool: readonly PlanCard[], exclude: ReadonlySet<string>): PlanCard | null {
   const cands = pool.filter(
-    (c) => c.kind !== "event" && !exclude.has(c.id) && c.weatherFit[sky] === 2 && runsOn(c, d) && c.goodFor.some((g) => x.goodFor.includes(g))
+    (c) =>
+      c.kind !== "event" &&
+      !exclude.has(c.id) &&
+      c.weatherFit[sky] === 2 &&
+      runsOn(c, d) &&
+      c.goodFor.some((g) => x.goodFor.includes(g)) &&
+      reachable(c, x)
   );
   if (!cands.length) return null;
   return cands.sort((p, q) => planBScore(q, x) - planBScore(p, x) || p.name.localeCompare(q.name, "en-AU"))[0];

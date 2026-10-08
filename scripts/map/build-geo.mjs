@@ -369,10 +369,15 @@ for (const f of files) {
       facilities.push({ kind, lng, lat });
   const end = places.find((p) => p.type === "end") ?? places[places.length - 1];
   const backText = a.routes.pt.back?.text ?? "";
-  // Lines named in the text: "bus 374", "route 21", "T4", "F2"; a bare number is a time ("≈ 15 min").
-  const backWant = [...backText.matchAll(/\b(?:(?:bus|route) ([A-Z]?\d{2,3}[A-Z]?)|([TFML]\d))\b/gi)].map((m) =>
-    (m[1] ?? m[2]).toUpperCase(),
-  );
+  // Lines named in the text: "bus 374", "buses 324 or 325", "route 21", "T4", "F2", and intercity lines
+  // by name; a bare number is a time ("≈ 15 min").
+  const NUM = "[A-Z]?\\d{2,3}[A-Z]?";
+  const LINE_NAMES = { "south coast line": "SCO", "central coast & newcastle line": "CCN", "blue mountains line": "BMT", "southern highlands line": "SHL" };
+  const backWant = [
+    ...[...backText.matchAll(new RegExp(`\\b(?:bus(?:es)?|routes?) (${NUM}(?:(?:, | or | and )${NUM})*)`, "gi"))].flatMap((m) => m[1].split(/, | or | and /i)),
+    ...[...backText.matchAll(/\b([TFML]\d)\b/g)].map((m) => m[1]),
+    ...Object.entries(LINE_NAMES).filter(([name]) => backText.toLowerCase().includes(name)).map(([, code]) => code),
+  ].map((x) => x.toUpperCase());
   // One-way activities (the old content's `back.lines`, or a way back already drawn).
   const oneWay = (a.routes.pt.back?.lines ?? []).length > 0 || !!a.geo?.back;
   const back = oneWay ? await trip([end.lng, end.lat], ORIGIN_STOPS.central.id, backWant) : null;

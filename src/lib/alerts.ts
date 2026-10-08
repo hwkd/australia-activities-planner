@@ -18,7 +18,10 @@ export type District = keyof typeof DISTRICTS;
  * An activity's fire weather district, by latitude: everything we list sits on one north–south line
  * of districts. Greater Sydney runs from the Central Coast to Royal National Park (and west over the
  * Blue Mountains); Newcastle and Lake Macquarie are Greater Hunter; Wollongong (from Coalcliff,
- * about −34.2) to Kiama is Illawarra/Shoalhaven.
+ * about −34.2) to Kiama is Illawarra/Shoalhaven. Right for every activity today; latitude alone gets
+ * the edges wrong, so extend this before adding places there: Helensburgh and Wollondilly (Picton) are
+ * Illawarra/Shoalhaven, the northern Central Coast (−33.1 to −33.3) is Greater Sydney, and Lithgow and
+ * Hartley are Central Ranges (the RFS feed lists each district's councils).
  */
 export function fireDistrict(p: { lat: number }): District {
   if (p.lat > -33.3) return "Greater Hunter";

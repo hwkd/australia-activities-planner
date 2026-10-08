@@ -21,9 +21,9 @@
     "solo"
   ],
   "duration": {
-    "label": "4–5 hrs",
-    "minHours": 4,
-    "maxHours": 5
+    "label": "Full day",
+    "minHours": 7.5,
+    "maxHours": 9
   },
   "cost": "Free",
   "gettingThere": "Blue Mountains Line from Central to Blackheath (about 2 hrs 15), then walk 3 km along Govetts Leap Rd to the lookout. Bus 698 goes nearby but runs only a few times a day.",
@@ -32,7 +32,7 @@
     "lat": -33.62793,
     "lng": 150.31152
   },
-  "suggestedStart": "10:45",
+  "suggestedStart": "08:20",
   "facts": [
     {
       "k": "Time",
