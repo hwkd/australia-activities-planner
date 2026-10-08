@@ -122,7 +122,7 @@ The detail page answers four questions a newcomer has before committing: **Is it
    - **Way in:** a one-line strip of the lines ridden, without the walks (e.g. **T4 › 333**, **City Circle › F1**). Hidden when the trip is a walk only.
    - **Last stretch:** the legs from the last train, bus or ferry to the door, each with a mode icon, line badge, instruction, optional detail and minutes (e.g. "Bus to Bondi Beach → Walk to the start at the south end"). This is the part map apps explain worst.
    - **Getting back:** always shown for one-way trips, e.g. "From Coogee, bus 372 goes back to Central…".
-   - A reminder to tap on and off with Opal or a contactless card.
+   - A reminder to tap on and off with Opal or a contactless card, and, when the trip uses a train, metro or light rail, "Weekend trackwork sometimes swaps trains for buses" with a link to Transport for NSW travel alerts (trackwork changes every weekend, so activities don't carry their own trackwork notices).
    - **Directions from where you are:** a link that opens Google Maps with public transport directions to `dest`, for live times and the visitor's own route (opens in a new tab).
    - **Driving?** a short note, not a mode: the drive time from the city, the parking (or toll, or park entry) cost per car with "est.", and the parking tips. An activity you can't drive to says why instead (e.g. "You can't drive to Cockatoo Island: it's car-free and only reached by ferry."). A **Rideshare** line appears only when the content has one, as a tip ("Ride up, walk down through the zoo, and take the ferry home") or a warning ("Not practical: it's a long, expensive ride").
 5. **What it'll cost**, an estimate calculator (§6.6):
@@ -132,7 +132,7 @@ The detail page answers four questions a newcomer has before committing: **Is it
 6. **Plan your visit:** best time to go, hours, what to bring (chips), facilities, accessibility, and safety notes.
 7. **Newcomer tip:** `newcomerTip`, shown in a highlighted card.
 8. **Heads up:** booking required (`bookingRequired`, e.g. the Opera House tour), which days it runs (`days`, e.g. Carriageworks is Saturday only), and seasonal notes, if any apply. Links, if the activity has any.
-9. **Make a day of it:** 2–3 nearby pairings, with why and how far.
+9. **Make a day of it:** 2–3 nearby pairings, with why and how far (a day trip with little nearby may have one, or a suggestion back in town).
    - Every pairing points to another activity in the list (`activityId`, §5), and tapping it opens that activity's page, scrolled to the top.
    - The group size carries over. The selected map point, extras and Way back reset.
    - Back still returns to the screen the user came from, not the previous activity.
@@ -399,7 +399,7 @@ interface Plan {
 - **Voice:** second person, plain English, short sentences, Australian spelling. Use no slang without explaining it.
 - **Pairings:** every "Make a day of it" pairing names an activity that is in the list and carries its `activityId`; the admin won't publish an activity with a pairing that points nowhere (§4.5). A place worth pairing that isn't an activity yet gets added as one (this is how Clovelly, Coogee, North Head, Cronulla, Carriageworks, Parramatta and Leura joined).
 - **Days and booking:** activities that run only on certain days set `days`, and those that need a ticket booked ahead set `bookingRequired`, so the detail page's Heads up section can show them.
-- **Current status (7 Oct 2026):** 45 verified activities: greater Sydney, the Blue Mountains and day trips by train (Hawkesbury, Kiama and the Illawarra, Newcastle). The mix is met: 14 rate `rainy: 2`, 22 are Free, and every group has 19 or more fit for rain.
+- **Current status (7 Oct 2026):** 45 verified activities: greater Sydney, the Blue Mountains and day trips by train (Hawkesbury, Kiama and the Illawarra, Newcastle). The mix is met: 14 rate `rainy: 2`, 22 are Free, and every group has 20 or more fit for rain.
 
 ## 6. Logic
 

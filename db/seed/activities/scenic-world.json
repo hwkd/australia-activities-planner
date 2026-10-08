@@ -10,7 +10,7 @@
   "blurb": "A 52° railway, two cable cars and a rainforest boardwalk above the Jamison Valley.",
   "weatherFit": {
     "sunny": 2,
-    "cloudy": 2,
+    "cloudy": 1,
     "rainy": 1,
     "hot": 2
   },
@@ -28,7 +28,7 @@
   },
   "cost": "$$$",
   "gettingThere": "Blue Mountains Line from Central to Katoomba (about 2 hrs), then bus 686G or 686 from the Carrington Hotel stop to Scenic World (12 min).",
-  "newcomerTip": "Book a timed session online: in school and public holidays you can't buy at the ticket box. Ride the Railway down, walk the rainforest boardwalk and take the Cableway back up.",
+  "newcomerTip": "Book a timed session online: in busy periods tickets are often sold online only, not at the ticket box. Ride the Railway down, walk the rainforest boardwalk and take the Cableway back up.",
   "location": {
     "lat": -33.72893,
     "lng": 150.30123
@@ -49,7 +49,7 @@
     },
     {
       "k": "Entry",
-      "v": "$64 adult"
+      "v": "From $64 adult"
     }
   ],
   "routes": {

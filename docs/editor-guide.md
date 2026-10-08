@@ -57,7 +57,7 @@ Every activity starts with **Content status: Draft**. The live site shows only *
 4. **Safety and access:** check against NSW National Parks or the venue. Never guess access information.
 5. **Map:** see "Checking the map" below. When the places and lines are right, press **Map checked
    today**.
-6. **Make a day of it:** 2–3 nearby activities, each chosen from the list.
+6. **Make a day of it:** 2–3 nearby activities, each chosen from the list. A day trip with little else near it (Newcastle, Kiama, the Hawkesbury) can have one, or a suggestion for the evening back in town; never leave it empty.
 6a. **Our tip:** when you write advice or an observation that no official page confirms (a car park
    that fills by 9am, a path that gets crowded, quieter mornings), put it in its own sentence starting
    "Our tip:", e.g. "Parking near the beach is metered. Our tip: it fills by 9am on warm weekends." The

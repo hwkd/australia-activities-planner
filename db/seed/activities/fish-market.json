@@ -27,7 +27,7 @@
     "maxHours": 2
   },
   "cost": "$$",
-  "gettingThere": "L1 light rail from Central to Wentworth Park, then walk 400 m to the market. The old Fish Market stop is now called Bank Street and is about 700 m away.",
+  "gettingThere": "L1 light rail from Central to Wentworth Park, then a 10 min walk (about 400 m) to the market. The old Fish Market stop is now called Bank Street and is about 700 m away.",
   "newcomerTip": "The market moved to this new building at Blackwattle Bay in January 2026. It has 40+ seafood shops, restaurants and cafés, and a waterfront promenade. Each shop sets its own hours.",
   "location": {
     "lat": -33.87438,
@@ -134,7 +134,7 @@
     {
       "name": "Australian National Maritime Museum",
       "why": "Free galleries and ships",
-      "dist": "3 stops on the L1",
+      "dist": "4 stops on the L1",
       "activityId": "maritime-museum"
     },
     {

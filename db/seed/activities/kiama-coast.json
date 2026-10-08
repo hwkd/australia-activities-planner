@@ -130,7 +130,7 @@
     ],
     "access": "Not suitable end to end for prams or wheelchairs: Kiama's walk guide lists loose surfaces, steep sections and beach walking. Blowhole Point has accessible viewing platforms.",
     "safety": [
-      "Stay behind the fences at the Blowhole: people have been swept off the rock shelf there",
+      "Stay behind the fences at the Blowhole: big waves wash over the rock shelf",
       "Keep back from cliff edges on the headlands",
       "Signage is limited: follow the walk markers and check the map"
     ]
@@ -144,13 +144,6 @@
     }
   ],
   "lastVerified": "2026-10-07",
-  "notice": {
-    "text": "Trackwork: on Sat 10 and Sun 11 Oct buses replace trains between Central and Dapto. On 24–25 Oct South Coast trains run only as far as Sydenham: change there for T4 or metro.",
-    "link": {
-      "label": "Trackwork alert on Transport for NSW",
-      "url": "https://transportnsw.info/alerts/details/ems-78961"
-    }
-  },
   "geo": {
     "places": [
       {

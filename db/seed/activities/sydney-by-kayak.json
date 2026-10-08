@@ -11,8 +11,8 @@
   "weatherFit": {
     "sunny": 2,
     "cloudy": 2,
-    "rainy": 0,
-    "hot": 2
+    "rainy": 1,
+    "hot": 1
   },
   "weatherNote": "Tours still run in light rain, but they stop for storms or strong wind, and grey skies spoil the views. On hot days the morning tours beat the heat.",
   "goodFor": [

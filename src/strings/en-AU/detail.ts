@@ -48,6 +48,9 @@ export const detail = {
     legPrefix: (kind: string) => `${kind}: `,
     gettingBack: "Getting back",
     opal: "Tap on and off with Opal or a contactless card",
+    /** Every trip by train, metro or light rail: weekend trackwork changes too often to list per activity. */
+    trackwork: "Weekend trackwork sometimes swaps trains for buses.",
+    trackworkLink: "Check Transport for NSW travel alerts",
     directions: "Directions from where you are",
     directionsNote: "Live times and your own route, in Google Maps",
     driving: "Driving?",

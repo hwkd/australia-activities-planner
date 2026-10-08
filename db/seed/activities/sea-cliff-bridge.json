@@ -76,7 +76,7 @@
           "line": "SCO",
           "title": "South Coast Line to Coalcliff",
           "mins": 70,
-          "detail": "Direct every 2 hrs on weekends (e.g. 8:29, 10:29, 12:29). Other trains: change at Thirroul (≈ 1 hr 40)"
+          "detail": "Direct every 2 hrs on weekends (e.g. 8:29, 10:29, 12:29). With other trains, ride on to Thirroul and take the next train back north (≈ 1 hr 40 in all)."
         }
       ],
       "back": {
@@ -144,13 +144,6 @@
     }
   ],
   "lastVerified": "2026-10-07",
-  "notice": {
-    "text": "Trackwork: on Sat 10 and Sun 11 Oct buses replace trains between Central and Dapto. On 24–25 Oct South Coast trains run only as far as Sydenham: change there for T4 or metro.",
-    "link": {
-      "label": "Trackwork alert on Transport for NSW",
-      "url": "https://transportnsw.info/alerts/details/ems-78961"
-    }
-  },
   "geo": {
     "places": [
       {
@@ -2686,7 +2679,7 @@
     },
     {
       "section": "visit",
-      "note": "We couldn't confirm public toilets along the route, or what access the bridge footpath has: ask Destination Wollongong.",
+      "note": "We couldn't confirm public toilets along the route: ask Destination Wollongong.",
       "check": {
         "label": "Sea Cliff Bridge on Destination Wollongong",
         "url": "https://www.visitwollongong.com.au/operator/sea-cliff-bridge/"
