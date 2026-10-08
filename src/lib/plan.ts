@@ -117,7 +117,6 @@ export function moveItem(p: Plan, from: DateStr, to: DateStr, id: string, start?
   return addItem(removeItem(p, from, id), to, id, start ?? it.start);
 }
 
-/** Plan B swap: the backup takes the original's place and start time. */
 /**
  * Swaps a planned item for its Plan B. The backup keeps the slot, but never starts before its own
  * suggested start (a rained-out 9:45am walk becomes a gallery visit at 10am, when it opens).

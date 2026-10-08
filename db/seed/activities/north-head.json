@@ -22,7 +22,7 @@
     "solo"
   ],
   "duration": {
-    "label": "2–3 hrs",
+    "label": "2–4 hrs",
     "minHours": 2,
     "maxHours": 4
   },
@@ -37,7 +37,7 @@
   "facts": [
     {
       "k": "Time",
-      "v": "2–3 hrs"
+      "v": "2–4 hrs"
     },
     {
       "k": "Distance",
