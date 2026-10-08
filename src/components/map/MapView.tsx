@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import type { Map as MlMap, Marker } from "maplibre-gl";
-import { baseStyle, hasWebGL, MAX_BOUNDS, setUpMapLibre, SYDNEY_BOUNDS } from "./maplibreSetup";
+import { baseStyle, hasWebGL, MAX_BOUNDS, PIN_MAX_BOUNDS, setUpMapLibre, SYDNEY_BOUNDS } from "./maplibreSetup";
 import { TRANSIT_DASH, TRANSIT_LINE } from "~/theme/map-palette";
 import { kindOf, type LegKind, type LegMode } from "~/lib/route";
 import { t } from "~/strings/en-AU";
@@ -91,7 +91,7 @@ export default function MapView({ pins, lines, facilities, transit, selected, on
         container: box.current,
         style: baseStyle(dark),
         bounds: SYDNEY_BOUNDS,
-        maxBounds: MAX_BOUNDS,
+        maxBounds: overlays ? MAX_BOUNDS : PIN_MAX_BOUNDS,
         attributionControl: { compact: true },
         cooperativeGestures: true,
       });

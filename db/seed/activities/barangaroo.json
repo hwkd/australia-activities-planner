@@ -1,0 +1,632 @@
+{
+  "id": "barangaroo",
+  "status": "verified",
+  "state": "nsw",
+  "name": "Barangaroo Reserve",
+  "city": "sydney",
+  "area": "Barangaroo",
+  "category": "garden",
+  "categoryLabel": "Harbour park",
+  "blurb": "A sandstone harbour headland of native plants, coves and a netted swim spot.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 0,
+    "hot": 1
+  },
+  "weatherNote": "Little natural shade yet: bring a hat on hot days, or cool off at Marrinawi Cove. Exposed in rain.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "M1 metro to Barangaroo (6 min). The reserve starts at Nawi Cove, a 5 min walk from the station.",
+  "newcomerTip": "Follow Wulugul Walk round the headland, then climb to Stargazer Lawn for the view. Marrinawi Cove has a netted harbour swimming area. Picnics welcome, and you can bring your own drinks.",
+  "location": {
+    "lat": -33.85849,
+    "lng": 151.20116
+  },
+  "suggestedStart": "09:30",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "5 min from Barangaroo metro"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy, mostly level"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.85949,
+      "lng": 151.20189,
+      "label": "Nawi Cove, Barangaroo Reserve"
+    },
+    "pt": {
+      "total": "≈ 12 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "metro",
+          "line": "M1",
+          "title": "Metro to Barangaroo",
+          "mins": 6
+        },
+        {
+          "mode": "walk",
+          "title": "Along Hickson Rd to Nawi Cove",
+          "mins": 5
+        }
+      ],
+      "back": {
+        "text": "Walk back to Barangaroo station and take the M1 to Central (6 min). From Marrinawi Cove or Towns Place at the north end, the walk to the station is about 12 min."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        23,
+        35
+      ],
+      "perCarLabel": "Reserve car park, 2–3 hrs",
+      "notes": [
+        "Wilson's car park under the reserve (300 spaces, entry via Towns Place, 2.2 m height limit) is open 6am to midnight.",
+        "It's $25 drive-up on weekends ($23 online), or $25–35 for 2–3 hours on weekdays."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "entryChild": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Takeaway or picnic lunch",
+        "per": [
+          12,
+          25
+        ],
+        "on": true
+      },
+      {
+        "id": "tour",
+        "label": "Aboriginal cultural tour (Mon–Sat)",
+        "per": [
+          36.3,
+          36.3
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "A sunny morning or late afternoon. Our tip: the western shore catches the sunset.",
+    "hours": "The reserve is open 24 hours. The car park underneath is open 6am to midnight.",
+    "bring": [
+      "Hat & sunscreen",
+      "Water bottle (there are drinking fountains too)",
+      "Swimmers and shoes for the rocks at Marrinawi Cove",
+      "Picnic rug"
+    ],
+    "facilities": [
+      "Toilets at the Cutaway entrance, and toilets with a shower at the old Sewerage Pump House near Towns Place",
+      "Drinking fountains along the paths",
+      "Cafés and restaurants in Barangaroo South, along Wulugul Walk"
+    ],
+    "access": "Wulugul Walk is fairly level and 3.8 m wide, with stair-free access up to Waranara Terrace and Stargazer Lawn. Lifts link Nawi Cove, Waranara Terrace and Stargazer Lawn to the car park. The Towns Place entrance starts with 30 m of brick and cobbles.",
+    "safety": [
+      "Marrinawi Cove has a shark net but no lifeguards (Barangaroo Rangers keep watch). Rocks can be slippery, with oysters and algae",
+      "Check Beachwatch water quality before you swim",
+      "Little natural shade: cover up in summer"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "The Rocks Markets",
+      "why": "Weekend stalls in The Rocks",
+      "dist": "≈ 15 min walk",
+      "activityId": "rocks-markets"
+    },
+    {
+      "name": "Walk across the Harbour Bridge",
+      "why": "Up through the Argyle Cut",
+      "dist": "≈ 15 min walk",
+      "activityId": "bridge-walk"
+    },
+    {
+      "name": "Cockatoo Island",
+      "why": "F3 ferry from Barangaroo wharf",
+      "dist": "≈ 10 min walk to the wharf",
+      "activityId": "cockatoo"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "notice": {
+    "text": "Marrinawi Cove is being upgraded from September 2026, with the new facilities due this summer. The cove stays open where safe, with fencing and access changes on its eastern side.",
+    "link": {
+      "label": "Barangaroo: Marrinawi Cove upgrades",
+      "url": "https://www.barangaroo.com/editorials/marrinawi-cove-upgrades-to-deliver-more-space-for"
+    }
+  },
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Barangaroo Station",
+        "type": "start",
+        "note": "Hickson Rd exit. Follow the signs north to Nawi Cove.",
+        "lng": 151.20245,
+        "lat": -33.85944
+      },
+      {
+        "n": 2,
+        "name": "Nawi Cove",
+        "type": "stop",
+        "note": "The sheltered cove at the reserve's southern entrance.",
+        "lng": 151.20107,
+        "lat": -33.85919
+      },
+      {
+        "n": 3,
+        "name": "Wulugul Walk",
+        "type": "lookout",
+        "note": "The waterfront path round the sandstone headland, along the 1836 shoreline.",
+        "lng": 151.20054,
+        "lat": -33.8572
+      },
+      {
+        "n": 4,
+        "name": "Marrinawi Cove",
+        "type": "pool",
+        "note": "Netted harbour swimming area with a shower nearby. Not patrolled.",
+        "lng": 151.20193,
+        "lat": -33.85552
+      },
+      {
+        "n": 5,
+        "name": "Stargazer Lawn",
+        "type": "lookout",
+        "note": "The reserve's highest point, with views over the harbour.",
+        "lng": 151.20119,
+        "lat": -33.85762
+      },
+      {
+        "n": 6,
+        "name": "Waranara Terrace",
+        "type": "end",
+        "note": "Above the Cutaway. Head down to Hickson Rd and the station.",
+        "lng": 151.20143,
+        "lat": -33.85822
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.20245,
+          -33.85944
+        ],
+        [
+          151.20244,
+          -33.85913
+        ],
+        [
+          151.20219,
+          -33.85906
+        ],
+        [
+          151.20222,
+          -33.85894
+        ],
+        [
+          151.20219,
+          -33.85883
+        ],
+        [
+          151.20213,
+          -33.85885
+        ],
+        [
+          151.20214,
+          -33.85904
+        ],
+        [
+          151.20198,
+          -33.85917
+        ],
+        [
+          151.20193,
+          -33.85935
+        ],
+        [
+          151.20185,
+          -33.85943
+        ],
+        [
+          151.20088,
+          -33.85958
+        ],
+        [
+          151.20081,
+          -33.85935
+        ],
+        [
+          151.20088,
+          -33.85958
+        ],
+        [
+          151.20185,
+          -33.85943
+        ],
+        [
+          151.20193,
+          -33.85935
+        ],
+        [
+          151.20198,
+          -33.85917
+        ],
+        [
+          151.20214,
+          -33.85904
+        ],
+        [
+          151.20215,
+          -33.85888
+        ],
+        [
+          151.20194,
+          -33.85863
+        ],
+        [
+          151.20178,
+          -33.85858
+        ],
+        [
+          151.20178,
+          -33.85853
+        ],
+        [
+          151.20153,
+          -33.85858
+        ],
+        [
+          151.20152,
+          -33.85833
+        ],
+        [
+          151.20141,
+          -33.85833
+        ],
+        [
+          151.20122,
+          -33.85847
+        ],
+        [
+          151.20111,
+          -33.85847
+        ],
+        [
+          151.20069,
+          -33.85815
+        ],
+        [
+          151.20058,
+          -33.85786
+        ],
+        [
+          151.20034,
+          -33.85789
+        ],
+        [
+          151.20033,
+          -33.85782
+        ],
+        [
+          151.20034,
+          -33.85768
+        ],
+        [
+          151.20042,
+          -33.85754
+        ],
+        [
+          151.20037,
+          -33.85751
+        ],
+        [
+          151.20051,
+          -33.85732
+        ],
+        [
+          151.20054,
+          -33.85701
+        ],
+        [
+          151.20061,
+          -33.85701
+        ],
+        [
+          151.20055,
+          -33.8567
+        ],
+        [
+          151.20068,
+          -33.85666
+        ],
+        [
+          151.20072,
+          -33.85679
+        ],
+        [
+          151.20077,
+          -33.85678
+        ],
+        [
+          151.20079,
+          -33.85691
+        ],
+        [
+          151.20086,
+          -33.8569
+        ],
+        [
+          151.20077,
+          -33.85654
+        ],
+        [
+          151.20079,
+          -33.85638
+        ],
+        [
+          151.20102,
+          -33.85627
+        ],
+        [
+          151.20184,
+          -33.85636
+        ],
+        [
+          151.20216,
+          -33.85618
+        ],
+        [
+          151.20209,
+          -33.85611
+        ],
+        [
+          151.20216,
+          -33.85603
+        ],
+        [
+          151.20213,
+          -33.85551
+        ],
+        [
+          151.20216,
+          -33.85603
+        ],
+        [
+          151.20209,
+          -33.85611
+        ],
+        [
+          151.20216,
+          -33.85618
+        ],
+        [
+          151.20187,
+          -33.85632
+        ],
+        [
+          151.20186,
+          -33.85656
+        ],
+        [
+          151.20173,
+          -33.85658
+        ],
+        [
+          151.2017,
+          -33.85663
+        ],
+        [
+          151.20173,
+          -33.85681
+        ],
+        [
+          151.20163,
+          -33.85701
+        ],
+        [
+          151.2016,
+          -33.85748
+        ],
+        [
+          151.20148,
+          -33.85771
+        ],
+        [
+          151.2015,
+          -33.85785
+        ],
+        [
+          151.20157,
+          -33.85793
+        ],
+        [
+          151.20153,
+          -33.85858
+        ],
+        [
+          151.20178,
+          -33.85853
+        ],
+        [
+          151.20176,
+          -33.85829
+        ],
+        [
+          151.20143,
+          -33.85824
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20271,
+        "lat": -33.85965
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "metro",
+          "line": "M1",
+          "coords": [
+            [
+              151.20635,
+              -33.88409
+            ],
+            [
+              151.2083,
+              -33.88169
+            ],
+            [
+              151.20884,
+              -33.88029
+            ],
+            [
+              151.20878,
+              -33.87879
+            ],
+            [
+              151.20791,
+              -33.87606
+            ],
+            [
+              151.20821,
+              -33.87159
+            ],
+            [
+              151.20842,
+              -33.8708
+            ],
+            [
+              151.20927,
+              -33.86968
+            ],
+            [
+              151.20965,
+              -33.86884
+            ],
+            [
+              151.21007,
+              -33.86498
+            ],
+            [
+              151.20963,
+              -33.86404
+            ],
+            [
+              151.20855,
+              -33.86328
+            ],
+            [
+              151.20742,
+              -33.86306
+            ],
+            [
+              151.20512,
+              -33.8632
+            ],
+            [
+              151.20366,
+              -33.86261
+            ],
+            [
+              151.2031,
+              -33.86206
+            ],
+            [
+              151.20276,
+              -33.86142
+            ],
+            [
+              151.20254,
+              -33.85931
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.20255,
+              -33.85932
+            ],
+            [
+              151.20262,
+              -33.85953
+            ],
+            [
+              151.2024,
+              -33.85964
+            ],
+            [
+              151.20237,
+              -33.85913
+            ],
+            [
+              151.20219,
+              -33.85906
+            ],
+            [
+              151.20188,
+              -33.85948
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "The $12–25 lunch estimate is ours: prices vary across Barangaroo's cafés and takeaways.",
+      "check": {
+        "label": "Barangaroo: eat and drink",
+        "url": "https://www.barangaroo.com/eat-drink"
+      }
+    }
+  ]
+}

@@ -22,9 +22,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 6,
-    "maxHours": 9
+    "label": "4–6 hrs",
+    "minHours": 4,
+    "maxHours": 6
   },
   "cost": "$",
   "gettingThere": "Blue Mountains line from Central to Katoomba (about 2 hrs), then bus 686 or a 25 min walk to Echo Point.",
@@ -33,11 +33,11 @@
     "lat": -33.732,
     "lng": 150.312
   },
-  "suggestedStart": "08:30",
+  "suggestedStart": "10:00",
   "facts": [
     {
       "k": "Time",
-      "v": "Full day"
+      "v": "4–6 hrs there"
     },
     {
       "k": "Train",
@@ -126,15 +126,15 @@
       },
       {
         "id": "scenic",
-        "label": "Scenic World pass (prices vary by day)",
+        "label": "Scenic World day pass",
         "per": [
-          45,
-          61
+          64,
+          64
         ],
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-07"
   },
   "visit": {
     "bestTime": "Arrive by 10am. Our tip: mornings are usually clearer, and afternoon cloud can roll into the valley.",
@@ -167,6 +167,12 @@
       "why": "Big waterfall walk",
       "dist": "Two stops back",
       "activityId": "wentworth"
+    },
+    {
+      "name": "Scenic World",
+      "why": "Railway, Skyway and Cableway rides",
+      "dist": "≈ 30 min walk along Cliff Drive, or bus 686G or 686",
+      "activityId": "scenic-world"
     }
   ],
   "lastVerified": "2026-10-02",
@@ -208,7 +214,7 @@
         "n": 5,
         "name": "Scenic World",
         "type": "paid",
-        "note": "Railway, cableway and skyway. Day passes about $45–61, open 9am or 10am to 4pm or 5pm.",
+        "note": "Railway, Cableway, Skyway and Walkway. Day pass $64 adult; open 10am to 4pm on weekdays, 9am to 5pm on weekends and in school holidays.",
         "lng": 150.30126,
         "lat": -33.72895
       }
@@ -4523,14 +4529,6 @@
     "checked": "2026-10-02"
   },
   "unconfirmed": [
-    {
-      "section": "cost",
-      "note": "Scenic World prices ($45–61) come from ticket resellers, not Scenic World: check its own site before you book.",
-      "check": {
-        "label": "Scenic World tickets",
-        "url": "https://www.scenicworld.com.au/tickets"
-      }
-    },
     {
       "section": "driving",
       "note": "The $15–30 for Echo Point parking plus the M4 toll is a guess: check Blue Mountains Council's visitor parking fees.",

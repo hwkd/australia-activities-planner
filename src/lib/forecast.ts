@@ -5,7 +5,7 @@ import type { Plan } from "./plan";
 import { common } from "~/strings/en-AU/common";
 
 /**
- * The live forecast (spec §11.1). A scheduled job fetches Open-Meteo's daily forecast for four areas
+ * The live forecast (spec §11.1). A scheduled job fetches Open-Meteo's daily forecast for each area below
  * into D1; the app reads it from `/data/forecast.json` and turns each day into one of the four skies.
  */
 
@@ -14,12 +14,20 @@ export const AREAS = [
   { id: "blue-mountains", lat: -33.7125, lng: 150.3119 },
   { id: "northern-beaches", lat: -33.6773, lng: 151.3029 },
   { id: "royal-np", lat: -34.1, lng: 151.07 },
+  // The day trips by train beyond greater Sydney.
+  { id: "newcastle", lat: -32.9283, lng: 151.7817 },
+  { id: "illawarra", lat: -34.4278, lng: 150.8931 },
 ] as const;
 export type AreaId = (typeof AREAS)[number]["id"];
 export const isAreaId = (v: unknown): v is AreaId => AREAS.some((a) => a.id === v);
 
-/** The forecast area closest to a place (plain lat/lng distance is fine at Sydney's scale). */
+/**
+ * The forecast area closest to a place (plain lat/lng distance is fine at this scale). South of about
+ * −34.2 (Coalcliff and the Sea Cliff Bridge onwards) is the Illawarra, though the Royal National Park
+ * point is nearer: the same line as the fire districts (`fireDistrict` in alerts.ts).
+ */
 export function nearestArea(p: { lat: number; lng: number }): AreaId {
+  if (p.lat < -34.2) return "illawarra";
   let best: AreaId = "city";
   let bestD = Infinity;
   for (const a of AREAS) {

@@ -1,0 +1,640 @@
+{
+  "id": "sydney-by-kayak",
+  "status": "verified",
+  "state": "nsw",
+  "name": "Sydney By Kayak",
+  "city": "sydney",
+  "area": "Lavender Bay",
+  "category": "water-sport",
+  "categoryLabel": "Kayaking",
+  "blurb": "A guided paddle on Lavender Bay, with the Harbour Bridge and Opera House in view.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 1,
+    "hot": 1
+  },
+  "weatherNote": "Tours still run in light rain, but they stop for storms or strong wind, and grey skies spoil the views. On hot days the morning tours beat the heat.",
+  "goodFor": [
+    "date",
+    "friends",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1.5–2 hrs",
+    "minHours": 1.5,
+    "maxHours": 2
+  },
+  "cost": "$$$",
+  "gettingThere": "T1 from Central to North Sydney (12 min), then a 10 min walk down Lavender St and Lavender Crescent to the boat ramp at 1 Railway Ave.",
+  "newcomerTip": "New to kayaking? Pick the Highlights tour: it stays in calm Lavender Bay. The Harbour Bridge tour paddles under the bridge but needs a little experience. Guides take free photos, so your phone can stay ashore.",
+  "location": {
+    "lat": -33.84407,
+    "lng": 151.20728
+  },
+  "suggestedStart": "09:30",
+  "bookingRequired": true,
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1.5–2 hrs"
+    },
+    {
+      "k": "Train",
+      "v": "≈ 25 min from Central"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy to moderate"
+    },
+    {
+      "k": "Entry",
+      "v": "Tours from $79"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.84407,
+      "lng": 151.20728,
+      "label": "Lavender Bay boat ramp, 1 Railway Ave"
+    },
+    "pt": {
+      "total": "≈ 25 min",
+      "changes": 0,
+      "fare": [
+        3,
+        5
+      ],
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T1",
+          "title": "Train to North Sydney",
+          "mins": 12,
+          "detail": "North Shore T1 trains, every few minutes"
+        },
+        {
+          "mode": "walk",
+          "title": "Down Lavender St and Lavender Crescent to the boat ramp",
+          "mins": 10,
+          "detail": "Blue St exit, turn right, then take the stairs down to Lavender St"
+        }
+      ],
+      "back": {
+        "text": "Walk back up to North Sydney station (≈ 10 min) for a T1 to Central, or stroll around the bay past Luna Park to Milsons Point station (≈ 10 min)."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        0,
+        5
+      ],
+      "perCarLabel": "Harbour Bridge toll back (parking free, 2 hrs)",
+      "notes": [
+        "Free 2-hour parking on Lavender Crescent and King George St, with metered parking on nearby streets (Sydney By Kayak).",
+        "The 2-hour limit on Lavender Crescent starts at 8:30am."
+      ]
+    },
+    "ride": "Best for sunrise tours: Sydney By Kayak says trains and ferries often don't run early enough."
+  },
+  "costs": {
+    "entry": [
+      79,
+      195
+    ],
+    "extras": [],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "Mornings, when the harbour is calmest. Sydney By Kayak runs most tours before midday because of boat traffic, chop and afternoon heat.",
+    "hours": "Booked tours only. Highlights tour from 9:30am (allow 1.5 hrs, 60 min on the water); Harbour Bridge tour from 10am (allow 2 hrs). Sunrise tours start pre-dawn; kayak and gelato tours leave at 1pm or 4pm; sunset tours run in the evening.",
+    "bring": [
+      "Sunscreen, hat & sunglasses",
+      "Water",
+      "Clothes you don't mind getting wet",
+      "Water shoes (oyster shells on the beach)"
+    ],
+    "facilities": [
+      "Accessible toilet near the boat ramp, and another at the SBK Eco Hub, 208 Blues Point Rd",
+      "No shed or lockers at the ramp: it's a mobile operation"
+    ],
+    "access": "Sydney By Kayak lists a step-free route and an accessible toilet at the meeting point. With notice it offers an adaptive outrigger kayak (up to about 120 kg), help with transfers and an extra guide.",
+    "safety": [
+      "Ages 8 and up; under-15s must paddle with a parent or guardian aged 18 or over",
+      "Weight limit 110 kg per kayak",
+      "Life jackets and a safety briefing are included, and guides can tow tired paddlers",
+      "The Harbour Bridge tour crosses ferry lanes: you should have paddled at least once before",
+      "Tours are called off for storms or unsafe conditions (store credit, a new date or a 90% refund)"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Walk across the Harbour Bridge",
+      "why": "See the bridge from above",
+      "dist": "Ends ≈ 10 min walk away",
+      "activityId": "bridge-walk"
+    },
+    {
+      "name": "Sydney Opera House Tour",
+      "why": "Go inside the icon you paddled past",
+      "dist": "≈ 25 min by train and on foot",
+      "activityId": "opera-tour"
+    },
+    {
+      "name": "Taronga Zoo",
+      "why": "More harbour, by ferry",
+      "dist": "F2 ferry from Circular Quay",
+      "activityId": "taronga"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "North Sydney Station",
+        "type": "start",
+        "note": "Take the Blue St exit, turn right towards Walker St and take the stairs down to Lavender St.",
+        "lng": 151.20746,
+        "lat": -33.84121
+      },
+      {
+        "n": 2,
+        "name": "Lavender Bay boat ramp",
+        "type": "paid",
+        "note": "Meet at 1 Railway Ave, just back from the ramp. Look for the life jackets.",
+        "lng": 151.20728,
+        "lat": -33.84407
+      },
+      {
+        "n": 3,
+        "name": "Wendy Whiteley's Secret Garden",
+        "type": "stop",
+        "note": "Free hillside garden above the bay, a few minutes' walk from the ramp.",
+        "lng": 151.20875,
+        "lat": -33.84404
+      },
+      {
+        "n": 4,
+        "name": "Luna Park",
+        "type": "stop",
+        "note": "The famous smiling gate, on the foreshore walk to Milsons Point.",
+        "lng": 151.2098,
+        "lat": -33.84727
+      },
+      {
+        "n": 5,
+        "name": "Milsons Point Station",
+        "type": "end",
+        "note": "T1 trains back across the bridge to the city and Central.",
+        "lng": 151.21179,
+        "lat": -33.84586
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.20747,
+          -33.84121
+        ],
+        [
+          151.20749,
+          -33.84107
+        ],
+        [
+          151.20743,
+          -33.84106
+        ],
+        [
+          151.20743,
+          -33.84102
+        ],
+        [
+          151.20828,
+          -33.84115
+        ],
+        [
+          151.20821,
+          -33.84152
+        ],
+        [
+          151.20829,
+          -33.84158
+        ],
+        [
+          151.20828,
+          -33.84163
+        ],
+        [
+          151.20821,
+          -33.84162
+        ],
+        [
+          151.20793,
+          -33.84299
+        ],
+        [
+          151.20804,
+          -33.843
+        ],
+        [
+          151.20803,
+          -33.84312
+        ],
+        [
+          151.20792,
+          -33.84314
+        ],
+        [
+          151.20774,
+          -33.84401
+        ],
+        [
+          151.20727,
+          -33.84396
+        ],
+        [
+          151.20728,
+          -33.84407
+        ],
+        [
+          151.20727,
+          -33.84396
+        ],
+        [
+          151.20791,
+          -33.84403
+        ],
+        [
+          151.20797,
+          -33.84374
+        ],
+        [
+          151.20813,
+          -33.84377
+        ],
+        [
+          151.20853,
+          -33.84399
+        ],
+        [
+          151.20864,
+          -33.84395
+        ],
+        [
+          151.20877,
+          -33.84402
+        ],
+        [
+          151.20864,
+          -33.84395
+        ],
+        [
+          151.20853,
+          -33.84399
+        ],
+        [
+          151.20813,
+          -33.84377
+        ],
+        [
+          151.20797,
+          -33.84374
+        ],
+        [
+          151.20791,
+          -33.84403
+        ],
+        [
+          151.20798,
+          -33.84416
+        ],
+        [
+          151.20838,
+          -33.84424
+        ],
+        [
+          151.20867,
+          -33.8444
+        ],
+        [
+          151.20896,
+          -33.84465
+        ],
+        [
+          151.20902,
+          -33.84465
+        ],
+        [
+          151.20931,
+          -33.84495
+        ],
+        [
+          151.2094,
+          -33.84528
+        ],
+        [
+          151.20949,
+          -33.84668
+        ],
+        [
+          151.20941,
+          -33.84678
+        ],
+        [
+          151.20942,
+          -33.84682
+        ],
+        [
+          151.20949,
+          -33.84681
+        ],
+        [
+          151.20954,
+          -33.84712
+        ],
+        [
+          151.20964,
+          -33.84731
+        ],
+        [
+          151.20954,
+          -33.84712
+        ],
+        [
+          151.20949,
+          -33.84681
+        ],
+        [
+          151.20969,
+          -33.84679
+        ],
+        [
+          151.20975,
+          -33.84673
+        ],
+        [
+          151.2101,
+          -33.84671
+        ],
+        [
+          151.21018,
+          -33.84676
+        ],
+        [
+          151.2102,
+          -33.84704
+        ],
+        [
+          151.21064,
+          -33.84705
+        ],
+        [
+          151.21075,
+          -33.84667
+        ],
+        [
+          151.21103,
+          -33.84604
+        ],
+        [
+          151.21119,
+          -33.84591
+        ],
+        [
+          151.21123,
+          -33.84593
+        ],
+        [
+          151.21125,
+          -33.84603
+        ],
+        [
+          151.21192,
+          -33.84592
+        ],
+        [
+          151.21181,
+          -33.84585
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.20992,
+        "lat": -33.84711
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21211,
+        "lat": -33.84593
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20753,
+        "lat": -33.84124
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.20785,
+        "lat": -33.84052
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.2125,
+        "lat": -33.84611
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21128,
+        "lat": -33.84725
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20721,
+        "lat": -33.84116
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21109,
+        "lat": -33.84537
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20962,
+        "lat": -33.84355
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20702,
+        "lat": -33.84046
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "train",
+          "line": "T1",
+          "coords": [
+            [
+              151.20683,
+              -33.88395
+            ],
+            [
+              151.20763,
+              -33.88306
+            ],
+            [
+              151.20802,
+              -33.88216
+            ],
+            [
+              151.20864,
+              -33.87975
+            ],
+            [
+              151.20874,
+              -33.87852
+            ],
+            [
+              151.20828,
+              -33.87756
+            ],
+            [
+              151.20702,
+              -33.87647
+            ],
+            [
+              151.20659,
+              -33.87569
+            ],
+            [
+              151.20679,
+              -33.87227
+            ],
+            [
+              151.20615,
+              -33.87007
+            ],
+            [
+              151.20519,
+              -33.86279
+            ],
+            [
+              151.20522,
+              -33.86204
+            ],
+            [
+              151.2058,
+              -33.85977
+            ],
+            [
+              151.21217,
+              -33.84948
+            ],
+            [
+              151.21249,
+              -33.84817
+            ],
+            [
+              151.21237,
+              -33.84728
+            ],
+            [
+              151.21129,
+              -33.84444
+            ],
+            [
+              151.21037,
+              -33.84294
+            ],
+            [
+              151.20947,
+              -33.84207
+            ],
+            [
+              151.20884,
+              -33.84168
+            ],
+            [
+              151.20834,
+              -33.84146
+            ],
+            [
+              151.20703,
+              -33.84127
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.20704,
+              -33.84126
+            ],
+            [
+              151.20746,
+              -33.84121
+            ],
+            [
+              151.20743,
+              -33.84102
+            ],
+            [
+              151.20828,
+              -33.84115
+            ],
+            [
+              151.20831,
+              -33.84165
+            ],
+            [
+              151.20774,
+              -33.84401
+            ],
+            [
+              151.20727,
+              -33.84396
+            ],
+            [
+              151.20728,
+              -33.84407
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "unconfirmed": [
+    {
+      "section": "visit",
+      "note": "Sydney By Kayak doesn't publish which days each tour runs. Its Harbour Bridge tour page gives both 9am and 10am as the start: check the booking calendar.",
+      "check": {
+        "label": "Sydney By Kayak: compare tours",
+        "url": "https://sydneybykayak.com.au/tours/tour-comparison"
+      }
+    },
+    {
+      "section": "cost",
+      "note": "Prices are per person ($79 Highlights to $195 sunrise with breakfast). We couldn't find child prices: check when you book.",
+      "check": {
+        "label": "Sydney By Kayak: compare tours",
+        "url": "https://sydneybykayak.com.au/tours/tour-comparison"
+      }
+    },
+    {
+      "section": "driving",
+      "note": "The $0–5 for the Harbour Bridge toll back to the city is a guess: tolls change by time of day.",
+      "check": {
+        "label": "Linkt: Sydney Harbour Bridge and Tunnel",
+        "url": "https://www.linkt.com.au/using-toll-roads/about-sydney-toll-roads/sydney-harbour-bridge-and-tunnel"
+      }
+    }
+  ]
+}

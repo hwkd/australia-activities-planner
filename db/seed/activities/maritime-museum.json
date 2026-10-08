@@ -1,0 +1,505 @@
+{
+  "id": "maritime-museum",
+  "status": "verified",
+  "state": "nsw",
+  "name": "Australian National Maritime Museum",
+  "city": "sydney",
+  "area": "Darling Harbour",
+  "category": "museum",
+  "categoryLabel": "Museum",
+  "blurb": "Free maritime galleries, plus a destroyer, a submarine and Endeavour to climb aboard.",
+  "weatherFit": {
+    "sunny": 2,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 1
+  },
+  "weatherNote": "The galleries are indoors. The ships' decks are open to sun and rain, and the vessels close when it reaches 36°C.",
+  "goodFor": [
+    "family",
+    "friends",
+    "solo"
+  ],
+  "duration": {
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
+  },
+  "cost": "Free",
+  "gettingThere": "L1 light rail from Central to Pyrmont Bay, then cross the road to the museum. Or walk from Town Hall over Pyrmont Bridge (≈ 20 min).",
+  "newcomerTip": "The galleries are free. The See It All ticket ($35 adult, $25 child, 10% less if you book online ahead) adds the destroyer, the submarine and the Endeavour replica.",
+  "location": {
+    "lat": -33.86938,
+    "lng": 151.19874
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "2–3 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "7 min from Pyrmont Bay"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy (steep ship ladders)"
+    },
+    {
+      "k": "Entry",
+      "v": "Galleries free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.86938,
+      "lng": 151.19874,
+      "label": "Australian National Maritime Museum"
+    },
+    "pt": {
+      "total": "≈ 18 min",
+      "changes": 0,
+      "fare": [
+        2,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "light-rail",
+          "line": "L1",
+          "title": "Light rail to Pyrmont Bay",
+          "detail": "From the Central Grand Concourse stop, towards Dulwich Hill",
+          "mins": 11
+        },
+        {
+          "mode": "walk",
+          "title": "Across Murray St to the museum",
+          "mins": 7
+        }
+      ],
+      "back": {
+        "text": "Same way back: L1 from Pyrmont Bay to Central (≈ 12 min). Or walk over Pyrmont Bridge to Town Hall station (≈ 20 min)."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        15,
+        15
+      ],
+      "perCarLabel": "Validated parking, all day",
+      "notes": [
+        "Museum visitors pay $15 for the day at the Star car park (55 Pirrama Rd, 7am–6:30pm) or Wilson's Harbourside car park (100 Murray St, not the Novotel).",
+        "Get your parking ticket validated at museum reception to get the $15 rate."
+      ]
+    }
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "entryChild": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "ships",
+        "label": "See It All ticket (ships and exhibitions)",
+        "per": [
+          31.5,
+          35
+        ],
+        "on": false
+      },
+      {
+        "id": "food",
+        "label": "Coffee and lunch at HarbourWatch café",
+        "per": [
+          12,
+          25
+        ],
+        "on": true
+      }
+    ],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "Weekday afternoons in school term are the quietest. Get there by 3pm if you want the ships: last boarding is 3:10pm.",
+    "hours": "Open daily 10am to 4pm (last vessel boarding 3:10pm). In NSW school holidays 9:30am to 5pm (last boarding 4:10pm). Closed Christmas Day.",
+    "bring": [
+      "Flat, sensible shoes for the ship ladders",
+      "A hat and sunscreen for the outdoor wharves"
+    ],
+    "facilities": [
+      "Toilets, and a free cloakroom at the front desk",
+      "HarbourWatch café by the water, 9:30am to 4pm"
+    ],
+    "access": "Ramp into the main building, with lifts or ramps to every exhibition space, the wharves and the viewing platform. The ships have no wheelchair access. Accessible toilets on the lower level and in the entry foyer. Courtesy wheelchairs need photo ID and booking (02 9298 3777).",
+    "safety": [
+      "Ship stairs and ladders are narrow and steep",
+      "Children must be taller than 90 cm to board the ships"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "WILD LIFE Sydney Zoo",
+      "why": "Koalas indoors, across Pyrmont Bridge",
+      "dist": "≈ 8 min walk",
+      "activityId": "wild-life-zoo"
+    },
+    {
+      "name": "SEA LIFE Aquarium",
+      "why": "Sharks and dugongs, next to the zoo",
+      "dist": "≈ 8 min walk",
+      "activityId": "sea-life"
+    },
+    {
+      "name": "Sydney Fish Market",
+      "why": "Seafood lunch by Blackwattle Bay",
+      "dist": "4 stops on the L1",
+      "activityId": "fish-market"
+    }
+  ],
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Pyrmont Bay light rail stop",
+        "type": "start",
+        "note": "Cross Murray St towards the water.",
+        "lng": 151.19759,
+        "lat": -33.86946
+      },
+      {
+        "n": 2,
+        "name": "Maritime Museum, main building",
+        "type": "stop",
+        "note": "Free galleries. Buy ship tickets at the front desk.",
+        "lng": 151.19874,
+        "lat": -33.86938
+      },
+      {
+        "n": 3,
+        "name": "HarbourWatch café",
+        "type": "food",
+        "note": "Coffee and light meals by the water, 9:30am to 4pm.",
+        "lng": 151.19895,
+        "lat": -33.86921
+      },
+      {
+        "n": 4,
+        "name": "HMAS Vampire and HMAS Onslow",
+        "type": "paid",
+        "note": "A navy destroyer and a submarine at the museum wharf.",
+        "lng": 151.19982,
+        "lat": -33.86918
+      },
+      {
+        "n": 5,
+        "name": "HMB Endeavour",
+        "type": "paid",
+        "note": "Replica of Cook's ship, on the north wharf.",
+        "lng": 151.19955,
+        "lat": -33.86836
+      },
+      {
+        "n": 6,
+        "name": "Pyrmont Bridge",
+        "type": "end",
+        "note": "Walk across to Darling Harbour, SEA LIFE and Town Hall.",
+        "lng": 151.1992,
+        "lat": -33.87034
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.19758,
+          -33.86947
+        ],
+        [
+          151.19735,
+          -33.86929
+        ],
+        [
+          151.19781,
+          -33.86965
+        ],
+        [
+          151.19777,
+          -33.86989
+        ],
+        [
+          151.1982,
+          -33.86996
+        ],
+        [
+          151.19868,
+          -33.87013
+        ],
+        [
+          151.19921,
+          -33.87021
+        ],
+        [
+          151.19921,
+          -33.86952
+        ],
+        [
+          151.19906,
+          -33.86962
+        ],
+        [
+          151.19903,
+          -33.86957
+        ],
+        [
+          151.19902,
+          -33.86921
+        ],
+        [
+          151.19906,
+          -33.86962
+        ],
+        [
+          151.19931,
+          -33.86944
+        ],
+        [
+          151.19935,
+          -33.86947
+        ],
+        [
+          151.19976,
+          -33.86913
+        ],
+        [
+          151.19935,
+          -33.86947
+        ],
+        [
+          151.19931,
+          -33.86944
+        ],
+        [
+          151.19906,
+          -33.86962
+        ],
+        [
+          151.19903,
+          -33.86957
+        ],
+        [
+          151.19902,
+          -33.86895
+        ],
+        [
+          151.19919,
+          -33.86881
+        ],
+        [
+          151.19923,
+          -33.86884
+        ],
+        [
+          151.19921,
+          -33.86857
+        ],
+        [
+          151.19938,
+          -33.86857
+        ],
+        [
+          151.19959,
+          -33.86839
+        ],
+        [
+          151.19938,
+          -33.86857
+        ],
+        [
+          151.19921,
+          -33.86857
+        ],
+        [
+          151.19923,
+          -33.86884
+        ],
+        [
+          151.19919,
+          -33.86881
+        ],
+        [
+          151.19902,
+          -33.86895
+        ],
+        [
+          151.19903,
+          -33.86957
+        ],
+        [
+          151.19906,
+          -33.86962
+        ],
+        [
+          151.19921,
+          -33.86952
+        ],
+        [
+          151.19921,
+          -33.87021
+        ],
+        [
+          151.19868,
+          -33.87013
+        ],
+        [
+          151.198,
+          -33.86992
+        ],
+        [
+          151.198,
+          -33.86998
+        ],
+        [
+          151.19837,
+          -33.87017
+        ],
+        [
+          151.1992,
+          -33.87034
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.19898,
+        "lat": -33.87022
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.19668,
+        "lat": -33.86869
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "light-rail",
+          "line": "L1",
+          "coords": [
+            [
+              151.20673,
+              -33.88238
+            ],
+            [
+              151.20626,
+              -33.88202
+            ],
+            [
+              151.20707,
+              -33.88093
+            ],
+            [
+              151.20722,
+              -33.88032
+            ],
+            [
+              151.20711,
+              -33.88015
+            ],
+            [
+              151.20496,
+              -33.87961
+            ],
+            [
+              151.20115,
+              -33.87914
+            ],
+            [
+              151.20059,
+              -33.87886
+            ],
+            [
+              151.19827,
+              -33.8746
+            ],
+            [
+              151.19803,
+              -33.87296
+            ],
+            [
+              151.19822,
+              -33.87072
+            ],
+            [
+              151.19793,
+              -33.86987
+            ],
+            [
+              151.19747,
+              -33.86935
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.19745,
+              -33.86937
+            ],
+            [
+              151.19781,
+              -33.86965
+            ],
+            [
+              151.19777,
+              -33.86989
+            ],
+            [
+              151.19921,
+              -33.87021
+            ],
+            [
+              151.19921,
+              -33.86952
+            ],
+            [
+              151.19906,
+              -33.86962
+            ],
+            [
+              151.19903,
+              -33.86937
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "notice": {
+    "text": "Ship works from 19 October: Vampire and Endeavour close 19–23 Oct, the submarine Onslow for about 10 days, and Action Stations closes for good. Which ships are open may change until 28 Nov.",
+    "link": {
+      "label": "Maritime Museum: availability and closures",
+      "url": "https://www.sea.museum/en/visit"
+    }
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "The $12–25 café estimate is ours: the museum doesn't publish HarbourWatch prices.",
+      "check": {
+        "label": "Maritime Museum: HarbourWatch café",
+        "url": "https://www.sea.museum/en/visit/harbourwatch-cafe"
+      }
+    }
+  ]
+}

@@ -241,10 +241,10 @@ export default function DayPanel({ plan, date, today, cards, backups, mapView = 
                               </span>
                               <button
                                 type="button"
-                                aria-label={t.plans.planB.swapLabel(r.card.name, backup.name, clockLabel(r.span.start))}
+                                aria-label={t.plans.planB.swapLabel(r.card.name, backup.name, clockLabel(backup.suggestedStart > r.span.start ? backup.suggestedStart : r.span.start))}
                                 onClick={() => {
                                   const prev = before();
-                                  updatePlan((p) => swapItem(p, date, r.card.id, backup.id));
+                                  updatePlan((p) => swapItem(p, date, r.card.id, backup.id, backup.suggestedStart));
                                   track({ name: "plan_b_swap", props: {} });
                                   showToast(t.plans.planB.swapped(backup.name), () => $plan.set(prev));
                                 }}

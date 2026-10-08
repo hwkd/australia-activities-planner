@@ -1,8 +1,9 @@
 // Downloads the map's label fonts (glyph PBFs: Latin ranges only) from the Protomaps basemap assets
 // into .map-data/fonts, so they can be self-hosted in R2 next to the tiles (spec §11.2).
 //   node scripts/map/fetch-assets.mjs
-// The Sydney tiles come from: pmtiles extract https://build.protomaps.com/<date>.pmtiles .map-data/sydney.pmtiles
-//   --bbox=150.15,-34.25,151.40,-33.50 --maxzoom=14   (about 31 MB)
+// The tiles (still named sydney.pmtiles) come from: pmtiles extract https://build.protomaps.com/<date>.pmtiles
+//   .map-data/sydney.pmtiles --bbox=150.15,-34.75,151.85,-32.85 --maxzoom=14   (about 47 MB: greater Sydney
+//   plus the day trips by train, Newcastle to Kiama; build 20261001)
 import { mkdirSync, writeFileSync } from "node:fs";
 
 const BASE = "https://protomaps.github.io/basemaps-assets/fonts";

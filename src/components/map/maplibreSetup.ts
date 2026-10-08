@@ -53,9 +53,18 @@ export function hasWebGL(): boolean {
   }
 }
 
-/** The whole Sydney extract, and how far a visitor can pan. */
+/**
+ * Where the map opens (greater Sydney), and how far a visitor can pan: the tiles reach from Newcastle
+ * to Kiama, for the day trips by train (scripts/map/fetch-assets.mjs).
+ */
 export const SYDNEY_BOUNDS: [number, number, number, number] = [150.15, -34.25, 151.4, -33.5];
-export const MAX_BOUNDS: [number, number, number, number] = [149.9, -34.45, 151.65, -33.3];
+export const MAX_BOUNDS: [number, number, number, number] = [149.9, -34.95, 152.1, -32.65];
+/**
+ * How far the pin maps (Discover, a day in My plans) can pan. MapLibre zooms in until the view fits
+ * inside maxBounds, so the tight box above would stop a map from showing Newcastle and Kiama together;
+ * past the tiles the map is just background.
+ */
+export const PIN_MAX_BOUNDS: [number, number, number, number] = [144, -40, 158, -27];
 
 /** The base map style over our tiles; POI icons are left out (they'd need a sprite sheet). */
 export function baseStyle(dark: boolean): StyleSpecification {

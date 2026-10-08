@@ -15,8 +15,18 @@ export interface Filters {
 }
 export const DEFAULT_FILTERS: Filters = { weather: "sunny", group: "any", duration: "any", freeOnly: false };
 
-export function matchesDuration(c: Pick<CardData, "duration">, d: DurationFilter): boolean {
-  const { minHours: lo, maxHours: hi } = c.duration;
+/** An hour or more each way from Central: a day trip, whose travel counts towards the filters. */
+export const DAY_TRIP_MINS = 60;
+
+/**
+ * Duration filters (spec §3.1). `duration` is the time at the activity; for a day trip the filters
+ * judge the whole outing, so Newcastle Museum (2–3 hrs there, ≈ 3 hrs each way) is a Full day, never
+ * Under 3 hrs.
+ */
+export function matchesDuration(c: Pick<CardData, "duration" | "tripMins">, d: DurationFilter): boolean {
+  const travel = (c.tripMins ?? 0) >= DAY_TRIP_MINS ? (2 * (c.tripMins ?? 0)) / 60 : 0;
+  const lo = c.duration.minHours + travel,
+    hi = c.duration.maxHours + travel;
   if (d === "short") return hi <= 3;
   if (d === "half") return lo <= 5 && hi >= 2;
   if (d === "full") return hi >= 5;
