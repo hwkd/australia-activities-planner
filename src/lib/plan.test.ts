@@ -25,6 +25,9 @@ describe("plan edits", () => {
     expect(moved.days[SAT]).toBeUndefined();
     expect(moved.days["2026-10-07"].items).toEqual([{ id: "bondi-coogee", start: "08:30" }]);
     expect(swapItem(p, SAT, "bondi-coogee", "agnsw").days[SAT].items).toEqual([{ id: "agnsw", start: "08:30" }]);
+    // The backup never starts before its own suggested start; a later slot stays as it was.
+    expect(swapItem(p, SAT, "bondi-coogee", "agnsw", "10:30").days[SAT].items).toEqual([{ id: "agnsw", start: "10:30" }]);
+    expect(swapItem(p, SAT, "bondi-coogee", "agnsw", "07:00").days[SAT].items).toEqual([{ id: "agnsw", start: "08:30" }]);
   });
   it("moving onto a day that already has it does nothing", () => {
     let p = addItem(emptyPlan(), SAT, "bondi-coogee", "08:30");

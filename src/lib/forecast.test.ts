@@ -20,7 +20,7 @@ describe("forecast mapping (spec §11.1)", () => {
     expect(nearestArea({ lat: -33.8148, lng: 151.0017 })).toBe("city"); // Parramatta
     expect(nearestArea({ lat: -32.9269, lng: 151.7865 })).toBe("newcastle"); // Newcastle Museum
     expect(nearestArea({ lat: -34.6721, lng: 150.8628 })).toBe("illawarra"); // Kiama Blowhole
-    expect(nearestArea({ lat: -34.2551, lng: 150.9755 })).toBe("royal-np"); // Sea Cliff Bridge, just south of the park
+    expect(nearestArea({ lat: -34.2551, lng: 150.9755 })).toBe("illawarra"); // Sea Cliff Bridge, nearer the park's point but Illawarra weather
   });
   it("parses Open-Meteo's daily block and skips incomplete days", () => {
     const json = {

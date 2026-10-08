@@ -21,9 +21,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 6,
-    "maxHours": 8
+    "label": "4–6 hrs",
+    "minHours": 4,
+    "maxHours": 6
   },
   "cost": "$",
   "gettingThere": "Train to Cronulla, then the small ferry across Port Hacking to Bundeena.",
@@ -32,11 +32,11 @@
     "lat": -34.083,
     "lng": 151.151
   },
-  "suggestedStart": "08:00",
+  "suggestedStart": "09:45",
   "facts": [
     {
       "k": "Time",
-      "v": "Full day"
+      "v": "4–6 hrs there"
     },
     {
       "k": "Distance",

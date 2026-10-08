@@ -21,8 +21,13 @@ export const AREAS = [
 export type AreaId = (typeof AREAS)[number]["id"];
 export const isAreaId = (v: unknown): v is AreaId => AREAS.some((a) => a.id === v);
 
-/** The forecast area closest to a place (plain lat/lng distance is fine at this scale). */
+/**
+ * The forecast area closest to a place (plain lat/lng distance is fine at this scale). South of about
+ * −34.2 (Coalcliff and the Sea Cliff Bridge onwards) is the Illawarra, though the Royal National Park
+ * point is nearer: the same line as the fire districts (`fireDistrict` in alerts.ts).
+ */
 export function nearestArea(p: { lat: number; lng: number }): AreaId {
+  if (p.lat < -34.2) return "illawarra";
   let best: AreaId = "city";
   let bestD = Infinity;
   for (const a of AREAS) {

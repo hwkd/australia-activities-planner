@@ -20,9 +20,9 @@
     "friends"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 6,
-    "maxHours": 8
+    "label": "Half day",
+    "minHours": 3,
+    "maxHours": 5
   },
   "cost": "$",
   "gettingThere": "Train to Wynyard, the B-Line to Warriewood, then bus 199 to Palm Beach: about 1 hr 40 min.",
@@ -31,11 +31,11 @@
     "lat": -33.599,
     "lng": 151.324
   },
-  "suggestedStart": "08:30",
+  "suggestedStart": "10:15",
   "facts": [
     {
       "k": "Time",
-      "v": "Full day"
+      "v": "3–5 hrs there"
     },
     {
       "k": "Bus",

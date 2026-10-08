@@ -21,9 +21,9 @@
     "solo"
   ],
   "duration": {
-    "label": "5–6 hrs",
-    "minHours": 5.5,
-    "maxHours": 6
+    "label": "3 hr cruise",
+    "minHours": 3,
+    "maxHours": 3.25
   },
   "cost": "$$$",
   "gettingThere": "Central Coast & Newcastle Line from Central to Hawkesbury River (about 1 hr). The wharf is beside the station. On weekdays the 8:50am train arrives about 9:50, in time for the 10am departure.",
@@ -32,7 +32,7 @@
     "lat": -33.54653,
     "lng": 151.22734
   },
-  "suggestedStart": "08:50",
+  "suggestedStart": "10:00",
   "bookingRequired": true,
   "days": [
     "mon",

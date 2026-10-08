@@ -22,9 +22,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 6,
-    "maxHours": 9
+    "label": "4–6 hrs",
+    "minHours": 4,
+    "maxHours": 6
   },
   "cost": "$",
   "gettingThere": "Blue Mountains line from Central to Katoomba (about 2 hrs), then bus 686 or a 25 min walk to Echo Point.",
@@ -33,11 +33,11 @@
     "lat": -33.732,
     "lng": 150.312
   },
-  "suggestedStart": "08:30",
+  "suggestedStart": "10:00",
   "facts": [
     {
       "k": "Time",
-      "v": "Full day"
+      "v": "4–6 hrs there"
     },
     {
       "k": "Train",

@@ -23,12 +23,14 @@ export interface CardData {
   forecastArea?: AreaId;
   /** For pins on the map view (spec §11.2); cards published before M17 lack it. */
   location?: { lat: number; lng: number };
+  /** Minutes from Central, one way (the written trip), so the duration filters can count a day trip's travel. */
+  tripMins?: number;
 }
 export type AccessLevel = NonNullable<Activity["access"]>["prams"];
 
 export function toCard(a: Activity): CardData {
   const { id, status, name, area, category, categoryLabel, blurb, weatherFit, goodFor, duration, cost, days, seasonal, suggestedStart } = a;
   const access = a.access && { prams: a.access.prams, stepFree: a.access.stepFree };
-  return { id, status, name, area, category, categoryLabel, blurb, weatherFit, goodFor, duration, cost, days, seasonal, suggestedStart, access, forecastArea: nearestArea(a.location), location: a.location };
+  return { id, status, name, area, category, categoryLabel, blurb, weatherFit, goodFor, duration, cost, days, seasonal, suggestedStart, access, forecastArea: nearestArea(a.location), location: a.location, tripMins: a.routes.pt.legs.reduce((t, l) => t + l.mins, 0) };
 }
 

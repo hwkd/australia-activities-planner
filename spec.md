@@ -259,7 +259,7 @@ interface Activity {
   safetyNotes?: string[];
   bookingRequired?: boolean;
   days?: ("mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun")[];   // weekdays it runs; omit = every day
-  suggestedStart: string;             // HH:MM Sydney time, the default start in Add to a day; for a day trip (an hour or more each way from Central) when you leave Central, and `duration` then covers the whole outing
+  suggestedStart: string;             // HH:MM Sydney time, the default start in Add to a day: when you arrive (day trips too); `duration` is the time there
   seasonal?: { months: number[]; note: string };   // 1–12
   location: { lat: number; lng: number };
   links?: { label: string; url: string }[];
@@ -408,7 +408,7 @@ interface Plan {
 1. **Filter:** keep an activity if all of these hold:
    - the group is Anyone, or `goodFor` includes the group
    - Free only is off, or `cost === "Free"`
-   - the duration filter matches (Under 3 hrs: `maxHours ≤ 3`; Half day: `minHours ≤ 5 && maxHours ≥ 2`; Full day: `maxHours ≥ 5`)
+   - the duration filter matches (Under 3 hrs: `maxHours ≤ 3`; Half day: `minHours ≤ 5 && maxHours ≥ 2`; Full day: `maxHours ≥ 5`). For a day trip (60 minutes or more each way from Central, from the legs in Getting there) both bounds first add the travel there and back, so the filter judges the whole outing.
    - if `seasonal` is set, the current month (or the month of the day being planned, when Discover was opened from a day in My plans) is in `seasonal.months`
    - `days` doesn't filter Discover; it's enforced when choosing a day (§3.3)
 2. **Hide:** activities with `weatherFit[w] === 0`. Show how many were hidden.

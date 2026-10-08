@@ -21,9 +21,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 7.5,
-    "maxHours": 9
+    "label": "3–4 hrs",
+    "minHours": 3,
+    "maxHours": 4
   },
   "cost": "Free",
   "gettingThere": "South Coast Line train from Central to Minnamurra (≈ 2 hr 10, hourly). Walk south to the Blowhole, then it's 15 min to Kiama station for the train home.",
@@ -32,7 +32,7 @@
     "lat": -34.62589,
     "lng": 150.85242
   },
-  "suggestedStart": "08:30",
+  "suggestedStart": "10:45",
   "facts": [
     {
       "k": "Time",

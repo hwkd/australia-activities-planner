@@ -21,9 +21,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 7.5,
-    "maxHours": 9
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
   },
   "cost": "Free",
   "gettingThere": "Central Coast & Newcastle Line to Newcastle Interchange (≈ 2 hr 30, hourly), then the light rail two stops to Civic and a 4 min walk.",
@@ -32,7 +32,7 @@
     "lat": -32.92617,
     "lng": 151.7722
   },
-  "suggestedStart": "08:10",
+  "suggestedStart": "11:00",
   "days": [
     "tue",
     "wed",
@@ -44,7 +44,7 @@
   "facts": [
     {
       "k": "Time",
-      "v": "2–3 hrs there"
+      "v": "2–3 hrs"
     },
     {
       "k": "Walk",

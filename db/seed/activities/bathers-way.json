@@ -22,9 +22,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 8,
-    "maxHours": 9.5
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
   },
   "cost": "Free",
   "gettingThere": "Central Coast & Newcastle Line to Newcastle Interchange (≈ 2 hr 30, hourly), then light rail to Newcastle Beach and a 20 min walk to Nobbys. Bus 21 and the train take you back from Merewether.",
@@ -33,11 +33,11 @@
     "lat": -32.92155,
     "lng": 151.79529
   },
-  "suggestedStart": "08:00",
+  "suggestedStart": "11:15",
   "facts": [
     {
       "k": "Time",
-      "v": "2–3 hrs walking"
+      "v": "2–3 hrs"
     },
     {
       "k": "Distance",

@@ -22,9 +22,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Full day",
-    "minHours": 6.5,
-    "maxHours": 8
+    "label": "2–3 hrs",
+    "minHours": 2,
+    "maxHours": 3
   },
   "cost": "$$$",
   "gettingThere": "Blue Mountains Line from Central to Katoomba (about 2 hrs), then bus 686G or 686 from the Carrington Hotel stop to Scenic World (12 min).",
@@ -33,11 +33,11 @@
     "lat": -33.72893,
     "lng": 150.30123
   },
-  "suggestedStart": "08:10",
+  "suggestedStart": "10:00",
   "facts": [
     {
       "k": "Time",
-      "v": "2–3 hrs there"
+      "v": "2–3 hrs"
     },
     {
       "k": "Train",

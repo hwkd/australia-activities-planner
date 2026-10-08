@@ -22,9 +22,9 @@
     "solo"
   ],
   "duration": {
-    "label": "Half day",
-    "minHours": 3.5,
-    "maxHours": 4.5
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
   },
   "cost": "Free",
   "gettingThere": "South Coast Line train from Central to Coalcliff (≈ 1 hr 10). Only every second train stops there on weekends, so check the time. Walk over the bridge to Scarborough station for the train back.",
@@ -33,11 +33,11 @@
     "lat": -34.25359,
     "lng": 150.97395
   },
-  "suggestedStart": "10:25",
+  "suggestedStart": "11:45",
   "facts": [
     {
       "k": "Time",
-      "v": "1–2 hrs walking"
+      "v": "1–2 hrs"
     },
     {
       "k": "Distance",
