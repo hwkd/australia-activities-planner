@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { WEATHERS, type Weather } from "~/stores/weather";
 import type { CardData } from "~/lib/content";
 import { FitMeter, Icon, WeatherIcon } from "~/theme/icons";
@@ -25,7 +25,7 @@ interface Props {
  * animations, so `card-in` comes off when it ends, or at hydration if it already has (it starts with
  * the server HTML, so on a slow phone it can end before React is listening).
  */
-export default function ActivityCard({ card: c, index, weather, planned, onAdd }: Props) {
+function ActivityCard({ card: c, index, weather, planned, onAdd }: Props) {
   const fit = c.weatherFit[weather];
   const [entered, setEntered] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -150,3 +150,6 @@ export default function ActivityCard({ card: c, index, weather, planned, onAdd }
     </article>
   );
 }
+
+/** Memoised: a sky change re-renders Discover before its list re-ranks, and the cards needn't follow. */
+export default memo(ActivityCard);

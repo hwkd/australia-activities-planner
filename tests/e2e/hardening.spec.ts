@@ -63,6 +63,8 @@ test("AC 13: with localStorage blocked the app works for the whole session", asy
   await open(page, "/");
   await idle(page);
   await page.getByRole("button", { name: "Rainy" }).click();
+  // The list re-ranks a frame after the sky changes (spec §3.5): read it once it has.
+  await expect(page.getByRole("heading", { level: 2 }).first()).toContainText("rainy day");
   const first = page.getByRole("list", { name: "Ranked results" }).getByRole("listitem").first();
   const name = (await first.getByRole("heading", { level: 3 }).textContent())!.trim();
   await first.getByRole("button", { name: `Add ${name} to a day` }).click();
@@ -206,7 +208,12 @@ test("M10.4: reduced transparency makes glass solid", async ({ page }, info) => 
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-transparency", value: "reduce" }] });
   await open(page, "/?w=sunny");
-  const glass = await page.locator(".glass").first().evaluate((el) => ({ bf: getComputedStyle(el).backdropFilter, bg: getComputedStyle(el).backgroundColor }));
+  const glass = await page
+    .locator(".rc.glass") // an activity card: a real panel (the state pill has its own rules)
+    .first()
+    .evaluate((el) => ({ bf: getComputedStyle(el).backdropFilter, bg: getComputedStyle(el).backgroundColor, img: getComputedStyle(el).backgroundImage }));
   expect(glass.bf).toBe("none");
-  expect(glass.bg).toBe("rgba(8, 24, 80, 0.76)");
+  // Solid: the heavier fill (--glass2) over the sky's base colour (--bg, opaque).
+  expect(glass.bg).toBe("rgb(27, 75, 200)");
+  expect(glass.img).toContain("rgba(8, 24, 80, 0.76)");
 });

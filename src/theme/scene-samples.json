@@ -1,10 +1,10 @@
 {
-  "sampled": "2026-10-01",
+  "sampled": "2026-10-06",
   "sunny": {
     "phone": {
       "glass": {
-        "dark": "#0C2D80",
-        "light": "#FFDF7B"
+        "dark": "#0C2C7E",
+        "light": "#FFE186"
       },
       "skyText": {
         "dark": "#1042BB",
@@ -13,8 +13,8 @@
     },
     "desktop": {
       "glass": {
-        "dark": "#0B2C83",
-        "light": "#ECC962"
+        "dark": "#0B2B80",
+        "light": "#FFCF4B"
       },
       "skyText": {
         "dark": "#1143BC",
@@ -25,8 +25,8 @@
   "cloudy": {
     "phone": {
       "glass": {
-        "dark": "#94A1AD",
-        "light": "#EEF1F4"
+        "dark": "#949FAC",
+        "light": "#F1F3F5"
       },
       "skyText": {
         "dark": "#9DA7B4",
@@ -35,8 +35,8 @@
     },
     "desktop": {
       "glass": {
-        "dark": "#949EAC",
-        "light": "#E5E9ED"
+        "dark": "#939EAC",
+        "light": "#E9EDF0"
       },
       "skyText": {
         "dark": "#AAB3BE",
@@ -47,8 +47,8 @@
   "rainy": {
     "phone": {
       "glass": {
-        "dark": "#0E193A",
-        "light": "#334684"
+        "dark": "#0D1838",
+        "light": "#344787"
       },
       "skyText": {
         "dark": "#0D1838",
@@ -57,8 +57,8 @@
     },
     "desktop": {
       "glass": {
-        "dark": "#0C1635",
-        "light": "#304380"
+        "dark": "#0A1433",
+        "light": "#314481"
       },
       "skyText": {
         "dark": "#0D1738",
@@ -69,8 +69,8 @@
   "hot": {
     "phone": {
       "glass": {
-        "dark": "#9F2F0C",
-        "light": "#FFF0CC"
+        "dark": "#9E2F0B",
+        "light": "#FFF2CF"
       },
       "skyText": {
         "dark": "#9F300C",
@@ -79,8 +79,8 @@
     },
     "desktop": {
       "glass": {
-        "dark": "#9E300C",
-        "light": "#FFF1CD"
+        "dark": "#9E2F0C",
+        "light": "#FFF1CE"
       },
       "skyText": {
         "dark": "#A0310D",
