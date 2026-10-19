@@ -35,7 +35,7 @@ export default function CostEstimate({ pt, costs }: Props) {
     [pt, costs, trip.adults, trip.kids, trip.extras, day]
   );
   const preset = presetKey(trip);
-  const pill = (on: boolean) => ({ background: on ? "var(--sel)" : "var(--glass)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" });
+  const pill = (on: boolean) => ({ background: on ? "var(--sel)" : "var(--soft)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" });
   const step = (label: string, value: number, dec: () => void, inc: () => void, canDec: boolean, canInc: boolean, what: string) => (
     <div className="rounded-[18px] border px-1.5 pt-2 pb-1.5" style={{ background: "var(--soft)", borderColor: "var(--line)" }}>
       <p className="m-0 pl-1.5 text-xs font-bold" style={{ color: "var(--mute)" }}>

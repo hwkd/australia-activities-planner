@@ -181,7 +181,7 @@ export default function AddToDaySheet({ sheet, cards }: Props) {
                   aria-label={s.quickDay(longLabel(q.date), q.holiday, shut, qs ? WEATHER_WORD[qs] : null)}
                   onClick={() => pickDate(q.date)}
                   className="press relative flex h-20 min-w-[60px] flex-[1_0_60px] flex-col items-center justify-between rounded-[18px] border px-1 pt-[9px] pb-2"
-                  style={{ background: on ? "var(--sel)" : "var(--glass)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" }}
+                  style={{ background: on ? "var(--sel)" : "var(--soft)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" }}
                 >
                   <span className="text-[11px] font-bold tracking-[0.01em] whitespace-nowrap">{q.label}</span>
                   <span className="num text-[22px] leading-none font-bold" style={{ textDecoration: shut ? "line-through" : "none" }}>
@@ -233,7 +233,7 @@ export default function AddToDaySheet({ sheet, cards }: Props) {
                   aria-pressed={on}
                   onClick={() => setSlot(o.key)}
                   className="press flex h-14 min-w-[86px] shrink-0 flex-col items-start justify-center gap-[3px] rounded-2xl border px-3.5"
-                  style={{ background: on ? "var(--sel)" : "var(--glass)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" }}
+                  style={{ background: on ? "var(--sel)" : "var(--soft)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" }}
                 >
                   <span className="text-[13.5px] font-bold">{o.label}</span>
                   <span className="num text-[12.5px] font-semibold opacity-80">{clockLabel(o.time)}</span>
@@ -242,7 +242,7 @@ export default function AddToDaySheet({ sheet, cards }: Props) {
             })}
             <label
               className="press flex h-14 min-w-[110px] shrink-0 cursor-pointer flex-col items-start justify-center gap-[3px] rounded-2xl border px-3.5"
-              style={{ background: slot === "exact" ? "var(--sel)" : "var(--glass)", color: slot === "exact" ? "var(--sel-ink)" : "var(--ink)", borderColor: slot === "exact" ? "var(--sel)" : "var(--line)" }}
+              style={{ background: slot === "exact" ? "var(--sel)" : "var(--soft)", color: slot === "exact" ? "var(--sel-ink)" : "var(--ink)", borderColor: slot === "exact" ? "var(--sel)" : "var(--line)" }}
             >
               <span className="text-[13.5px] font-bold">{s.exactTime}</span>
               <input

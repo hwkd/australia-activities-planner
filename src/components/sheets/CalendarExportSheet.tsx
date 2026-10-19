@@ -87,7 +87,7 @@ export default function CalendarExportSheet({ sheet }: { sheet: ExportSheet; car
     if (n === 1) setDone(true);
   };
 
-  const pill = (on: boolean) => ({ background: on ? "var(--sel)" : "var(--glass)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" });
+  const pill = (on: boolean) => ({ background: on ? "var(--sel)" : "var(--soft)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" });
 
   if (done) {
     return (

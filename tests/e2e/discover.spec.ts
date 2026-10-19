@@ -96,6 +96,8 @@ test("AC 3: Family shows only activities good for families", async ({ page }) =>
 test("empty state resets the filters", async ({ page }) => {
   await open(page, "/?w=rainy&g=date&free=1&d=full");
   await expect(page.getByRole("button", { name: "Full day" })).toHaveAttribute("aria-pressed", "true");
+  // The list follows the sky a frame after hydration (spec §3.5): read it once it has.
+  await expect(title(page)).toContainText("rainy day");
   const empty = page.getByText("Nothing fits those filters yet.");
   if (await empty.isVisible()) {
     await page.getByRole("button", { name: "Reset filters" }).click();
@@ -119,6 +121,7 @@ test("Surprise me picks a Perfect idea for the sky, never the last three again, 
   page,
 }) => {
   await open(page, "/?w=rainy");
+  await expect(title(page)).toContainText("rainy day");
   await page.getByRole("button", { name: "Surprise me" }).click();
   const pick = page.locator('section[aria-labelledby="surprise-title"]');
   await expect(pick).toBeFocused();

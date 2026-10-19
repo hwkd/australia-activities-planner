@@ -195,7 +195,7 @@ Opening a share URL shows those days read-only, with **Save to my plans**.
 ### 3.5 Visual design and motion (weather-reactive UI)
 
 The interface *is* the forecast: the selected weather changes the whole look of the app, not just the list. Two variants of this concept are on the prototype canvas (see [design/directions.md](design/directions.md)):
-- **A · Sky Mode:** full-bleed animated skies with frosted-glass panels. **This is the one being built** (open question 1; tracker D1).
+- **A · Sky Mode:** full-bleed animated skies with glass panels (tinted to the sky, never blurred: blurring the moving sky behind every panel made phones stutter; sheets, the toast and the fixed bars are solid). **This is the one being built** (open question 1; tracker D1).
 - **B · Harbour Window:** an illustrated harbour scene over solid, weather-tinted surfaces.
 
 The requirements below apply whichever variant ships.
@@ -211,7 +211,7 @@ The requirements below apply whichever variant ships.
 - **Theme changes follow state.**
   - Changing the Discover weather re-themes Discover and the detail screen.
   - My plans follows the selected day's sky; the Add to a day sheet follows the sky of the date being picked.
-- **Transition:** the sky scene crossfades over 600 ms using only `opacity`; the colours switch at once (owner, 6 Oct 2026: per-element colour transitions made phones drop frames and left text the same grey as the sky halfway through, and a whole-page View Transition blocked taps while it ran). It must never block input, and the list re-ranks immediately.
+- **Transition:** the sky scene crossfades over 600 ms using only `opacity`; the colours switch at once (owner, 6 Oct 2026: per-element colour transitions made phones drop frames and left text the same grey as the sky halfway through, and a whole-page View Transition blocked taps while it ran). It must never block input. The list re-ranks straight after, a frame or two behind the new sky, so the tap answers first.
 - **Signature moments** (and only these carry expressive motion):
   1. Changing the weather: the scene changes and the headline weather word animates in.
   2. Adding to a day: a confirmation animation plays in the Add to a day sheet and on the card.

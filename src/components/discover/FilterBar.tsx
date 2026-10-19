@@ -10,8 +10,9 @@ interface Props {
   onChange: (next: FilterState, changed: { filter: string; value: string }) => void;
 }
 
+// Off, the chip's fill comes from `.glass` (and from the glass-on-glass rule on the desktop card).
 const chip = (on: boolean) => ({
-  background: on ? "var(--sel)" : "var(--glass)",
+  background: on ? "var(--sel)" : undefined,
   color: on ? "var(--sel-ink)" : "var(--ink)",
   borderColor: on ? "var(--sel)" : "var(--line)",
 });

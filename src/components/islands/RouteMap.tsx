@@ -79,7 +79,7 @@ export default function RouteMap({ name, geo, mapView, checked }: Props) {
   const showBack = hasBack && trip.showBack;
   const hasFacilities = !!geo.facilities?.length;
   const words = linesInWords(geo, showBack);
-  const tog = (on: boolean) => ({ background: on ? "var(--sel)" : "var(--glass)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" });
+  const tog = (on: boolean) => ({ background: on ? "var(--sel)" : "var(--soft)", color: on ? "var(--sel-ink)" : "var(--ink)", borderColor: on ? "var(--sel)" : "var(--line)" });
 
   const pins = useMemo<MapPin[]>(() => geo.places.map((p) => ({ id: String(p.n), lat: p.lat, lng: p.lng, label: String(p.n), name: t.detail.map.pin(p.n, p.name) })), [geo.places]);
   const transit = useMemo<TransitLeg[]>(

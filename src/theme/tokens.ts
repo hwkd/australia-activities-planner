@@ -17,7 +17,10 @@ export interface Theme {
   mute: string;
   /** Text placed straight on the sky (eyebrows, headline lines). */
   skyMute: string;
-  /** Glass panel fill, and the heavier fill for sheets and fallbacks. */
+  /**
+   * Glass panel fill (no blur behind it: the colour the blurred panels used to show, measured on the
+   * live site, at 82 %), and the heavier fill for sheets and reduced transparency.
+   */
   glass: string;
   glass2: string;
   line: string;
@@ -47,7 +50,7 @@ export interface Theme {
 export const THEMES: Record<Weather, Theme> = {
   sunny: {
     ink: "#FFFFFF", mute: "rgba(255,255,255,0.96)", skyMute: "rgba(255,255,255,0.97)",
-    glass: "rgba(9,28,92,0.56)", glass2: "rgba(8,24,80,0.76)", line: "rgba(255,255,255,0.24)", soft: "rgba(255,255,255,0.09)",
+    glass: "rgba(6,46,151,0.82)", glass2: "rgba(8,24,80,0.76)", line: "rgba(255,255,255,0.24)", soft: "rgba(255,255,255,0.09)",
     sel: "#FFFFFF", selInk: "#0D38A3", accent: "#FFC940", great: "#FFC940",
     shadow: "0 18px 48px rgba(3,16,66,0.32)", hl: "0 2px 28px rgba(3,16,66,0.35)", scrim: "rgba(3,14,60,0.3)",
     skyChip: "linear-gradient(160deg, #0F3FB8 0%, #2659D8 100%)", seg: "linear-gradient(160deg, #1546C4 0%, #386DE5 100%)",
@@ -55,7 +58,7 @@ export const THEMES: Record<Weather, Theme> = {
   },
   cloudy: {
     ink: "#16202B", mute: "#364251", skyMute: "#16202B",
-    glass: "rgba(255,255,255,0.58)", glass2: "rgba(247,249,251,0.86)", line: "rgba(255,255,255,0.78)", soft: "rgba(22,32,43,0.07)",
+    glass: "rgba(231,235,241,0.82)", glass2: "rgba(247,249,251,0.86)", line: "rgba(255,255,255,0.78)", soft: "rgba(22,32,43,0.07)",
     sel: "#16202B", selInk: "#FFFFFF", accent: "#1D3A5F", great: "#0A6B3D",
     shadow: "0 18px 44px rgba(38,52,70,0.16)", hl: "0 1px 0 rgba(255,255,255,0.3)", scrim: "rgba(60,72,88,0.22)",
     skyChip: "linear-gradient(165deg, #8E9AA8 0%, #C9D1D9 100%)", seg: "linear-gradient(165deg, #5F6D7F 0%, #697789 100%)",
@@ -63,7 +66,7 @@ export const THEMES: Record<Weather, Theme> = {
   },
   rainy: {
     ink: "#F1F4FF", mute: "rgba(226,233,255,0.84)", skyMute: "rgba(226,233,255,0.86)",
-    glass: "rgba(150,172,255,0.1)", glass2: "rgba(14,24,58,0.82)", line: "rgba(170,192,255,0.24)", soft: "rgba(210,222,255,0.08)",
+    glass: "rgba(30,49,107,0.82)", glass2: "rgba(14,24,58,0.82)", line: "rgba(170,192,255,0.24)", soft: "rgba(210,222,255,0.08)",
     sel: "#DCE6FF", selInk: "#0A1330", accent: "#8FB3FF", great: "#9CF5C4",
     shadow: "0 18px 48px rgba(0,0,0,0.38)", hl: "0 2px 30px rgba(0,0,0,0.4)", scrim: "rgba(2,6,20,0.4)",
     skyChip: "linear-gradient(165deg, #0A1330 0%, #1C2B55 100%)", seg: "linear-gradient(165deg, #101B40 0%, #24356A 100%)",
@@ -71,7 +74,7 @@ export const THEMES: Record<Weather, Theme> = {
   },
   hot: {
     ink: "#FFF7EC", mute: "rgba(255,240,224,0.95)", skyMute: "rgba(255,244,230,0.96)",
-    glass: "rgba(70,16,2,0.64)", glass2: "rgba(66,14,2,0.82)", line: "rgba(255,222,180,0.26)", soft: "rgba(255,232,205,0.1)",
+    glass: "rgba(112,25,0,0.82)", glass2: "rgba(66,14,2,0.82)", line: "rgba(255,222,180,0.26)", soft: "rgba(255,232,205,0.1)",
     sel: "#FFE3A1", selInk: "#5A1A04", accent: "#FFE3A1", great: "#FFE3A1",
     shadow: "0 18px 48px rgba(80,18,0,0.35)", hl: "0 2px 30px rgba(90,20,0,0.35)", scrim: "rgba(60,12,0,0.34)",
     skyChip: "linear-gradient(165deg, #9A2D0B 0%, #C04A18 100%)", seg: "linear-gradient(165deg, #A8330D 0%, #BB581E 100%)",

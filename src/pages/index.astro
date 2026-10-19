@@ -254,8 +254,12 @@ const [cards, events, mapView] = await Promise.all([publishedCards(db(), content
       background: var(--glass);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      -webkit-backdrop-filter: blur(18px) saturate(135%);
-      backdrop-filter: blur(18px) saturate(135%);
+    }
+  }
+  /* Less transparency: the desktop filter card goes solid, like the other panels. */
+  @media (min-width: 1024px) and (prefers-reduced-transparency: reduce) {
+    .filters {
+      background: linear-gradient(var(--glass2), var(--glass2)), var(--bg);
     }
   }
 </style>
