@@ -59,7 +59,9 @@ const routes = z.object({
   unavailable: z.object({ drive: z.string().optional() }).optional(),
 });
 
-const lngLat = z.tuple([z.number().min(150).max(152), z.number().min(-35).max(-33)]);
+// The map tiles' extent (scripts/map/fetch-assets.mjs): greater Sydney plus the day trips by train,
+// Newcastle (about −32.9) to Kiama (about −34.7).
+const lngLat = z.tuple([z.number().min(150.15).max(151.85), z.number().min(-34.75).max(-32.85)]);
 const placeType = z.enum(["start", "end", "beach", "pool", "lookout", "food", "stop", "paid"]);
 const mapLeg = z.object({
   mode: z.enum(["walk", "train", "bus", "ferry", "metro", "light-rail"]),
@@ -81,8 +83,8 @@ const geo = z.object({
         name: z.string().min(1),
         type: placeType,
         note: z.string(),
-        lng: z.number().min(150).max(152),
-        lat: z.number().min(-35).max(-33),
+        lng: z.number().min(150.15).max(151.85),
+        lat: z.number().min(-34.75).max(-32.85),
       }),
     )
     .min(1),

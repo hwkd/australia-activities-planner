@@ -13,6 +13,11 @@ describe("Plan B (spec §6.2)", () => {
       expect(r.get(`${SAT}:${g.id}`)?.id ?? null, g.id).toBe(g.backup);
     }
   });
+  it("suggests a day-trip region's place only for a plan in that region", () => {
+    const rainy = (id: string) => planBs({ [SAT]: { sky: "rainy", items: [{ id, start: "09:00" }] } }, cards, SAT).get(`${SAT}:${id}`)?.id;
+    expect(rainy("bathers-way")).toBe("newcastle-museum"); // rained out in Newcastle: the museum there
+    for (const id of ["three-sisters", "bondi-coogee", "royal-np", "kiama-coast"]) expect(rainy(id), id).not.toBe("newcastle-museum");
+  });
   it("AC 6: suggests only for fit 0, with a backup that's great in that sky and shares a group", () => {
     const r = planBs({ [SAT]: { sky: "rainy", items: [{ id: "bondi-coogee", start: "09:00" }, { id: "agnsw", start: "14:00" }] } }, cards, SAT);
     expect([...r.keys()]).toEqual([`${SAT}:bondi-coogee`]);

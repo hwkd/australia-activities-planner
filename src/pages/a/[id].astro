@@ -5,7 +5,7 @@ import WeatherTiles from "~/components/islands/WeatherTiles";
 import RouteMap from "~/components/islands/RouteMap";
 import { mapAvailable } from "~/server/map";
 import { fireDanger } from "~/server/alerts";
-import { needsFireAlert, ratingLabel, RFS_PAGE } from "~/lib/alerts";
+import { DISTRICTS, fireDistrict, needsFireAlert, ratingLabel, RFS_PAGE } from "~/lib/alerts";
 import GettingThere from "~/components/detail/GettingThere.astro";
 import Unconfirmed from "~/components/detail/Unconfirmed.astro";
 import Tipped from "~/components/shared/Tipped.astro";
@@ -41,7 +41,8 @@ const a = found;
 /** Details not yet confirmed, by section of this page (spec §4.1). */
 const unconfirmed = (...sections: string[]) => (a.unconfirmed ?? []).filter((u) => sections.includes(u.section));
 // Fire danger for outdoor activities (spec §11.2): fetched by the Worker, cached 15 minutes.
-const fire = needsFireAlert(a) && !preview ? { value: await fireDanger() } : null;
+const district = fireDistrict(a.location);
+const fire = needsFireAlert(a) && !preview ? { value: await fireDanger(district) } : null;
 const longDate = (ymd: string) =>
   new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(
     new Date(ymd),
@@ -337,7 +338,7 @@ const headsUp = [
             <li data-fire>
               {fire.value ? (
                 <>
-                  <b>{t.detail.headsUp.fireToday(ratingLabel(fire.value.today), fire.value.banToday)}</b>{" "}
+                  <b>{t.detail.headsUp.fireToday(DISTRICTS[district], ratingLabel(fire.value.today), fire.value.banToday)}</b>{" "}
                   {t.detail.headsUp.fireTomorrow(ratingLabel(fire.value.tomorrow), fire.value.banTomorrow)}{" "}
                   <a href={RFS_PAGE} target="_blank" rel="noopener" style="color: var(--ink)">
                     {t.detail.headsUp.fireSource(sydneyTime(fire.value.fetchedAt))}

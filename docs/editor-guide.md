@@ -57,7 +57,7 @@ Every activity starts with **Content status: Draft**. The live site shows only *
 4. **Safety and access:** check against NSW National Parks or the venue. Never guess access information.
 5. **Map:** see "Checking the map" below. When the places and lines are right, press **Map checked
    today**.
-6. **Make a day of it:** 2–3 nearby activities, each chosen from the list.
+6. **Make a day of it:** 2–3 nearby activities, each chosen from the list. A day trip with little else near it (Newcastle, Kiama, the Hawkesbury) can have one, or a suggestion for the evening back in town; never leave it empty.
 6a. **Our tip:** when you write advice or an observation that no official page confirms (a car park
    that fills by 9am, a path that gets crowded, quieter mornings), put it in its own sentence starting
    "Our tip:", e.g. "Parking near the beach is metered. Our tip: it fills by 9am on warm weekends." The
@@ -87,6 +87,8 @@ Every activity starts with **Content status: Draft**. The live site shows only *
 can't be changed later. Start from a blank activity or **a copy** of a similar one (the copy keeps the
 map, getting there and costs to adapt, but starts as an unverified draft with no pairings and its map
 unchecked). A blank activity's map has one start place at Circular Quay: move it to the real start.
+
+**Times:** the suggested start is when you arrive and start the activity, and the duration is the time spent there, also for day trips (an hour or more each way from Central: the Blue Mountains, Royal National Park, Palm Beach, the Hawkesbury, the South Coast, Newcastle). That way two activities in the same place fit one after the other in a day's plan. The duration filters add a day trip's travel by themselves (from Getting there), so Newcastle Museum counts as a Full day, never Under 3 hrs.
 
 Keep the blurb under 90 characters, the weather note under 160, and the getting-there summary and
 newcomer tip under 240 (the counters show how close you are). Use second person, plain English, short

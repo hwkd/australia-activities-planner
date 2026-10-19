@@ -5,7 +5,7 @@
 // from Central plus the way back (Transport for NSW Trip Planner, choosing the journey whose lines
 // match the written route). Everything is cached in .map-data/geo-cache.json; a report of what was
 // found, estimated or mismatched goes to .map-data/geo-report.md.
-//   node --env-file=.dev.vars scripts/map/build-geo.mjs [--write] [id …]
+//   node --env-file=.dev.vars scripts/map/build-geo.mjs [--write] [--date=YYYYMMDD [--time=HHMM]] [id …]
 import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { nextSaturdayLateMorning, ORIGIN_STOPS, publicLine } from "../transport/tfnsw.mjs";
 
@@ -142,10 +142,16 @@ const legsOf = (j) =>
 const lineNames = (legs) => legs.filter((l) => l.line).map((l) => String(l.line).toUpperCase());
 
 async function trip(from, to, want) {
-  const key = `tp:${typeof from === "string" ? from : from.join(",")}>${typeof to === "string" ? to : to.join(",")}`;
+  const date = process.argv.find((x) => x.startsWith("--date="))?.slice(7);
+  const time = process.argv.find((x) => x.startsWith("--time="))?.slice(7);
+  const key = `tp:${typeof from === "string" ? from : from.join(",")}>${typeof to === "string" ? to : to.join(",")}${date ? `@${date}` : ""}${time ? `T${time}` : ""}`;
   const json = await cached(key, async () => {
     await sleep(300);
-    const when = nextSaturdayLateMorning(new Date("2026-10-02T00:00:00Z"));
+    // The coming Saturday (the Trip Planner only plans ahead), or --date=YYYYMMDD to skip a weekend of
+    // trackwork, and --time=HHMM (with --date) for a line whose direct trains run every second hour.
+    const date = process.argv.find((x) => x.startsWith("--date="))?.slice(7);
+    const time = process.argv.find((x) => x.startsWith("--time="))?.slice(7) ?? "1030";
+    const when = date ? { itdDate: date, itdTime: time } : nextSaturdayLateMorning();
     const q = new URLSearchParams({
       outputFormat: "rapidJSON",
       coordOutputFormat: "EPSG:4326",
@@ -165,25 +171,41 @@ async function trip(from, to, want) {
     });
     return r.ok ? await r.json() : null;
   });
+  // A failed or empty answer isn't cached, so the next run asks again.
+  if (!json?.journeys?.length) {
+    delete cache[key];
+    save(); // cached() already wrote it to disk
+  }
   const journeys = (json?.journeys ?? []).map(legsOf).filter((ls) => ls.some((l) => l.coords.length > 1));
   if (!journeys.length) return null;
-  // The journey whose lines best match the written route.
+  // The journey whose lines best match the written route. `want` is a list of rides, each a list of
+  // lines that would do ("bus 324 or 325"); "*TRAIN" is any train ("the train back").
+  const groups = want.map((w) => (Array.isArray(w) ? w : [w]));
+  const fits = (g, line) => g.includes(line) || (g.includes("*TRAIN") && isTrain(line));
   const score = (ls) => {
     const got = lineNames(ls);
-    return want.filter((w) => got.includes(w)).length * 2 - got.filter((g) => !want.includes(g)).length;
+    const met = groups.filter((g) => got.some((line) => fits(g, line))).length;
+    const extra = got.filter((line) => !groups.some((g) => fits(g, line))).length;
+    // Extra rides count against a journey too: "SCO › SCO" (a change at Thirroul) isn't the written
+    // direct "SCO".
+    return met * 2 - extra - Math.max(0, got.length - groups.length);
   };
   const best = journeys.reduce((a, b) => (score(b) > score(a) ? b : a));
-  return { legs: best, matched: score(best) === want.length * 2 && lineNames(best).length === want.length };
+  return { legs: best, matched: score(best) === groups.length * 2 && lineNames(best).length === groups.length };
 }
+const isTrain = (line) => /^(T\d+|SCO|CCN|BMT|SHL|HUN)$/.test(line);
 
 // ---- Facilities (one Overpass query for the whole region) ----
 async function amenities() {
-  // Four tiles, each retried, so one busy moment at the public Overpass server doesn't sink the run.
+  // A few tiles, each retried, so one busy moment at the public Overpass server doesn't sink the run.
   const tiles = [
     [-34.25, 150.15, -33.875, 150.775],
     [-34.25, 150.775, -33.875, 151.4],
     [-33.875, 150.15, -33.5, 150.775],
     [-33.875, 150.775, -33.5, 151.4],
+    // The day trips by train beyond greater Sydney: Newcastle, and the Illawarra coast to Kiama.
+    [-33.0, 151.65, -32.85, 151.85],
+    [-34.75, 150.75, -34.25, 151.1],
   ];
   const out = [];
   for (const t of tiles) {
@@ -208,7 +230,10 @@ async function amenities() {
       return null; // not cached as data: the next run tries again
     });
     if (got) out.push(...got);
-    else delete cache[`overpass:amenities:${t.join(",")}`];
+    else {
+      delete cache[`overpass:amenities:${t.join(",")}`];
+      save();
+    }
   }
   return out;
 }
@@ -350,9 +375,22 @@ for (const f of files) {
       facilities.push({ kind, lng, lat });
   const end = places.find((p) => p.type === "end") ?? places[places.length - 1];
   const backText = a.routes.pt.back?.text ?? "";
-  const backWant = [...backText.matchAll(/\b(?:bus |ferry )?([A-Z]?\d{2,3}|T\d|F\d|M\d|L\d)\b/g)].map((m) =>
-    m[1].toUpperCase(),
-  );
+  // Lines named in the text: "bus 374", "buses 324 or 325", "route 21", "T4", "F2", and intercity lines
+  // by name; a bare number is a time ("≈ 15 min").
+  const NUM = "[A-Z]?\\d{2,3}[A-Z]?";
+  const LINE_NAMES = { "south coast line": "SCO", "central coast & newcastle line": "CCN", "blue mountains line": "BMT", "southern highlands line": "SHL" };
+  // Each ride is one group: "buses 324 or 325" is either bus; a train with no line named is any train.
+  // Whole alternative routes in separate sentences ("…or take the F9 ferry") still read as rides that
+  // are all wanted, so "differs" there needs a look by eye (Watsons Bay, Bondi to Coogee).
+  const named = Object.entries(LINE_NAMES).filter(([name]) => backText.toLowerCase().includes(name)).map(([, code]) => [code]);
+  const backWant = [
+    ...[...backText.matchAll(new RegExp(`\\b(?:bus(?:es)?|routes?) (${NUM}(?:(?:, | or | and )${NUM})*)`, "gi"))].map((m) =>
+      m[1].split(/, | or | and /i).map((x) => x.toUpperCase()),
+    ),
+    ...[...backText.matchAll(/\b([TFML]\d)\b/g)].map((m) => [m[1].toUpperCase()]),
+    ...named,
+    ...(!named.length && !/\bT\d\b/.test(backText) && /\btrains?\b/i.test(backText) ? [["*TRAIN"]] : []),
+  ];
   // One-way activities (the old content's `back.lines`, or a way back already drawn).
   const oneWay = (a.routes.pt.back?.lines ?? []).length > 0 || !!a.geo?.back;
   const back = oneWay ? await trip([end.lng, end.lat], ORIGIN_STOPS.central.id, backWant) : null;
@@ -372,7 +410,7 @@ for (const f of files) {
     `- Walking line: ${trailLines.length ? `${trailLines.length} part(s)` : "none"}; toilets and cafés: ${facilities.length}.`,
     `- Trip from Central: ${out ? `${lineNames(out.legs).join(" › ") || "walk"}${out.matched ? "" : ` (**written route says ${want.join(" › ") || "walk"}**)`}` : "**not found**"}.`,
     oneWay
-      ? `- Way back: ${back ? `${lineNames(back.legs).join(" › ") || "walk"}${back.matched ? "" : ` (**text mentions ${backWant.join(", ") || "no line"}**)`}` : "**not found**"}.`
+      ? `- Way back: ${back ? `${lineNames(back.legs).join(" › ") || "walk"}${back.matched ? "" : ` (**text mentions ${backWant.map((g) => g.join(" or ")).join(", ") || "no line"}**)`}` : "**not found**"}.`
       : "- Way back: not one-way.",
     "",
   );

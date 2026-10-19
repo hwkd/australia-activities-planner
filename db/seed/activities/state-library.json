@@ -1,0 +1,471 @@
+{
+  "id": "state-library",
+  "status": "verified",
+  "state": "nsw",
+  "name": "State Library of NSW",
+  "city": "sydney",
+  "area": "City",
+  "category": "history",
+  "categoryLabel": "Library",
+  "blurb": "Australia's oldest library: a glass-roofed 1942 reading room and free exhibitions.",
+  "weatherFit": {
+    "sunny": 1,
+    "cloudy": 2,
+    "rainy": 2,
+    "hot": 2
+  },
+  "weatherNote": "Indoors and air-conditioned: a calm refuge on a wet or hot day.",
+  "goodFor": [
+    "date",
+    "family",
+    "solo"
+  ],
+  "duration": {
+    "label": "1–2 hrs",
+    "minHours": 1,
+    "maxHours": 2
+  },
+  "cost": "Free",
+  "gettingThere": "M1 metro to Martin Place (3 min), then an 8 min walk up to Macquarie St. Or a train to St James.",
+  "newcomerTip": "Entry and exhibitions are free. Free 45 min building tours start at 12pm on Monday, Tuesday, Wednesday and Friday in the Mitchell vestibule: no booking, first 15 people.",
+  "location": {
+    "lat": -33.86687,
+    "lng": 151.21285
+  },
+  "suggestedStart": "10:00",
+  "facts": [
+    {
+      "k": "Time",
+      "v": "1–2 hrs"
+    },
+    {
+      "k": "Walk",
+      "v": "8 min from Martin Place"
+    },
+    {
+      "k": "Effort",
+      "v": "Easy"
+    },
+    {
+      "k": "Entry",
+      "v": "Free"
+    }
+  ],
+  "routes": {
+    "dest": {
+      "lat": -33.866706,
+      "lng": 151.212734,
+      "label": "State Library, Macquarie St entrance"
+    },
+    "pt": {
+      "total": "≈ 12 min",
+      "changes": 0,
+      "fare": [
+        3,
+        4
+      ],
+      "legs": [
+        {
+          "mode": "metro",
+          "line": "M1",
+          "title": "Metro to Martin Place",
+          "mins": 3
+        },
+        {
+          "mode": "walk",
+          "title": "Along Martin Place and up Macquarie St to the Library",
+          "mins": 8
+        }
+      ],
+      "back": {
+        "text": "Same way back: walk to Martin Place and take the M1 to Central (3 min). Or walk 8 min down Macquarie St to St James for a train."
+      }
+    },
+    "drive": {
+      "total": "≈ 10 min",
+      "perCar": [
+        16,
+        48
+      ],
+      "perCarLabel": "Domain car park, 2–3 hrs",
+      "notes": [
+        "The nearest car park is under Sydney Eye Hospital, off Hospital Rd (300 m). The Library has no accessible drop-off zone.",
+        "Wilson's Domain car park (St Marys Rd) is $19 drive-up on weekends ($15.75–17.75 online), or $32–48 for 2–3 hours on weekdays. Its lifts are out of order at the moment."
+      ]
+    },
+    "ride": "Ask to be dropped at the top of Hunter St, about 50 m from the Macquarie St entrance."
+  },
+  "costs": {
+    "entry": [
+      0,
+      0
+    ],
+    "entryChild": [
+      0,
+      0
+    ],
+    "extras": [
+      {
+        "id": "food",
+        "label": "Library Café",
+        "per": [
+          10,
+          25
+        ],
+        "on": true
+      },
+      {
+        "id": "tour",
+        "label": "Behind-the-scenes tour",
+        "per": [
+          15,
+          20
+        ],
+        "on": false
+      }
+    ],
+    "pricesChecked": "2026-10-07"
+  },
+  "visit": {
+    "bestTime": "Any time. It's open until 8pm Monday to Thursday, and curators lead free exhibition tours on Thursdays.",
+    "hours": "Reading rooms and galleries: Monday to Thursday 9am to 8pm, Friday 9am to 5pm, weekends 10am to 5pm. The Special Collections area closes at 6pm on weekdays and all day Sunday. Closed Christmas Day.",
+    "bring": [
+      "Bottled water only: no food or other drinks in the reading rooms",
+      "Your phone for the free Bloomberg Connects audio guide"
+    ],
+    "facilities": [
+      "Toilets in both buildings and a baby change room",
+      "Library Café (weekdays 8am–5pm, weekends 9:30am–5pm) and the Library Shop",
+      "Lockers: $1 per 4 hours with the Yellowbox app or the kiosk, free for members",
+      "Free wi-fi; the rooftop Library Bar opens Wednesday to Saturday from 4pm"
+    ],
+    "access": "Entrances are wheelchair and pram friendly and lifts reach every level. A courtesy wheelchair is kept at the Mitchell vestibule. Accessible toilets are on the Mitchell ground floor and three levels of the Macquarie St building. Hearing loops in the auditorium, Dixson Room and Bashir Reading Room desks.",
+    "safety": [
+      "Bags can't go into the Special Collections area: use a locker"
+    ]
+  },
+  "pairings": [
+    {
+      "name": "Royal Botanic Garden & Mrs Macquarie's Chair",
+      "why": "Harbour gardens across the road",
+      "dist": "≈ 3 min walk",
+      "activityId": "botanic"
+    },
+    {
+      "name": "Hyde Park Barracks Museum",
+      "why": "Convict history on the same street",
+      "dist": "≈ 6 min walk",
+      "activityId": "hyde-park-barracks"
+    },
+    {
+      "name": "Art Gallery of NSW",
+      "why": "Another free collection",
+      "dist": "≈ 12 min walk",
+      "activityId": "agnsw"
+    }
+  ],
+  "access": {
+    "prams": "yes",
+    "stepFree": "yes",
+    "accessibleToilet": true,
+    "notes": "Lifts to all levels; courtesy wheelchair at the Mitchell vestibule. Call +61 2 9273 1414 for assisted entry."
+  },
+  "lastVerified": "2026-10-07",
+  "geo": {
+    "places": [
+      {
+        "n": 1,
+        "name": "Martin Place Station",
+        "type": "start",
+        "note": "Walk east along Martin Place to Macquarie St, then turn left.",
+        "lng": 151.21028,
+        "lat": -33.86703
+      },
+      {
+        "n": 2,
+        "name": "Macquarie St building",
+        "type": "food",
+        "note": "Main entrance, Library Café, shop and the Bashir Reading Room.",
+        "lng": 151.21273,
+        "lat": -33.86671
+      },
+      {
+        "n": 3,
+        "name": "Mitchell Building vestibule",
+        "type": "stop",
+        "note": "Free tours meet here. Exhibition galleries are on level 1.",
+        "lng": 151.21327,
+        "lat": -33.86611
+      },
+      {
+        "n": 4,
+        "name": "Mitchell Library Reading Room",
+        "type": "end",
+        "note": "The 1942 reading room under its glass roof. Bags and bottled water are fine.",
+        "lng": 151.21325,
+        "lat": -33.86641
+      }
+    ],
+    "trail": [
+      [
+        [
+          151.21029,
+          -33.86697
+        ],
+        [
+          151.21055,
+          -33.867
+        ],
+        [
+          151.21061,
+          -33.8664
+        ],
+        [
+          151.21129,
+          -33.86645
+        ],
+        [
+          151.21134,
+          -33.86649
+        ],
+        [
+          151.21251,
+          -33.86665
+        ],
+        [
+          151.21252,
+          -33.86659
+        ],
+        [
+          151.21274,
+          -33.86665
+        ],
+        [
+          151.21273,
+          -33.86671
+        ],
+        [
+          151.21274,
+          -33.86665
+        ],
+        [
+          151.21252,
+          -33.86659
+        ],
+        [
+          151.21261,
+          -33.86614
+        ],
+        [
+          151.21276,
+          -33.866
+        ],
+        [
+          151.21292,
+          -33.86597
+        ],
+        [
+          151.21329,
+          -33.86601
+        ],
+        [
+          151.21327,
+          -33.86611
+        ],
+        [
+          151.21329,
+          -33.86601
+        ],
+        [
+          151.21292,
+          -33.86597
+        ],
+        [
+          151.21276,
+          -33.866
+        ],
+        [
+          151.21261,
+          -33.86614
+        ],
+        [
+          151.21252,
+          -33.86659
+        ],
+        [
+          151.21299,
+          -33.86671
+        ],
+        [
+          151.21303,
+          -33.8666
+        ]
+      ]
+    ],
+    "facilities": [
+      {
+        "kind": "toilet",
+        "lng": 151.2129,
+        "lat": -33.86702
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.2117,
+        "lat": -33.86678
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21349,
+        "lat": -33.86659
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21087,
+        "lat": -33.86717
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21027,
+        "lat": -33.86791
+      },
+      {
+        "kind": "toilet",
+        "lng": 151.21051,
+        "lat": -33.86661
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21299,
+        "lat": -33.86683
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20986,
+        "lat": -33.86671
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21127,
+        "lat": -33.86628
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21084,
+        "lat": -33.86726
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.21215,
+        "lat": -33.86705
+      },
+      {
+        "kind": "cafe",
+        "lng": 151.20929,
+        "lat": -33.86707
+      }
+    ],
+    "trip": {
+      "legs": [
+        {
+          "mode": "metro",
+          "line": "M1",
+          "coords": [
+            [
+              151.20635,
+              -33.88409
+            ],
+            [
+              151.2083,
+              -33.88169
+            ],
+            [
+              151.20884,
+              -33.88029
+            ],
+            [
+              151.20878,
+              -33.87879
+            ],
+            [
+              151.20791,
+              -33.87606
+            ],
+            [
+              151.20821,
+              -33.87159
+            ],
+            [
+              151.20846,
+              -33.87072
+            ],
+            [
+              151.20957,
+              -33.8691
+            ],
+            [
+              151.2099,
+              -33.86708
+            ]
+          ]
+        },
+        {
+          "mode": "walk",
+          "coords": [
+            [
+              151.2099,
+              -33.86708
+            ],
+            [
+              151.21025,
+              -33.86707
+            ],
+            [
+              151.21018,
+              -33.8676
+            ],
+            [
+              151.21053,
+              -33.86763
+            ],
+            [
+              151.21051,
+              -33.8678
+            ],
+            [
+              151.21144,
+              -33.86783
+            ],
+            [
+              151.21147,
+              -33.8677
+            ],
+            [
+              151.21133,
+              -33.86769
+            ],
+            [
+              151.21149,
+              -33.86651
+            ],
+            [
+              151.21273,
+              -33.86671
+            ]
+          ]
+        }
+      ]
+    },
+    "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
+    "checked": "2026-10-07"
+  },
+  "unconfirmed": [
+    {
+      "section": "cost",
+      "note": "The $10–25 café estimate is ours: check the menu linked from the Library Café page.",
+      "check": {
+        "label": "State Library: Library Café",
+        "url": "https://www.sl.nsw.gov.au/visit-us/library-cafe"
+      }
+    }
+  ]
+}

@@ -117,10 +117,14 @@ export function moveItem(p: Plan, from: DateStr, to: DateStr, id: string, start?
   return addItem(removeItem(p, from, id), to, id, start ?? it.start);
 }
 
-/** Plan B swap: the backup takes the original's place and start time. */
-export function swapItem(p: Plan, d: DateStr, fromId: string, toId: string): Plan {
+/**
+ * Swaps a planned item for its Plan B. The backup keeps the slot, but never starts before its own
+ * suggested start (a rained-out 9:45am walk becomes a gallery visit at 10am, when it opens).
+ */
+export function swapItem(p: Plan, d: DateStr, fromId: string, toId: string, toStart?: string): Plan {
   if (hasItem(p, d, toId)) return p;
-  return withDay(p, d, (e) => ({ ...e, items: e.items.map((it) => (it.id === fromId ? { id: toId, start: it.start } : it)) }));
+  const start = (s: string) => (toStart && toStart > s ? toStart : s);
+  return withDay(p, d, (e) => ({ ...e, items: e.items.map((it) => (it.id === fromId ? { id: toId, start: start(it.start) } : it)) }));
 }
 
 export const setSky = (p: Plan, d: DateStr, sky: Weather | undefined): Plan =>
