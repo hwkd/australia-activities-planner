@@ -22,6 +22,8 @@ test.beforeEach(async ({ page }) => {
 
 for (const w of ["sunny", "cloudy"]) {
   test(`axe: Discover, activity and My plans (${w})`, async ({ page }) => {
+    // Three full scans: with 45 activities on Discover, a busy Firefox can need more than 30 s.
+    test.slow();
     await open(page, `/?w=${w}`);
     await scan(page, "Discover");
     await open(page, `/a/royal-np?w=${w}`);

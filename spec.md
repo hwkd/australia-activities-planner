@@ -122,7 +122,7 @@ The detail page answers four questions a newcomer has before committing: **Is it
    - **Way in:** a one-line strip of the lines ridden, without the walks (e.g. **T4 › 333**, **City Circle › F1**). Hidden when the trip is a walk only.
    - **Last stretch:** the legs from the last train, bus or ferry to the door, each with a mode icon, line badge, instruction, optional detail and minutes (e.g. "Bus to Bondi Beach → Walk to the start at the south end"). This is the part map apps explain worst.
    - **Getting back:** always shown for one-way trips, e.g. "From Coogee, bus 372 goes back to Central…".
-   - A reminder to tap on and off with Opal or a contactless card.
+   - A reminder to tap on and off with Opal or a contactless card, and, when the trip uses a train, metro or light rail, "Weekend trackwork sometimes swaps trains for buses" with a link to Transport for NSW travel alerts (trackwork changes every weekend, so activities don't carry their own trackwork notices).
    - **Directions from where you are:** a link that opens Google Maps with public transport directions to `dest`, for live times and the visitor's own route (opens in a new tab).
    - **Driving?** a short note, not a mode: the drive time from the city, the parking (or toll, or park entry) cost per car with "est.", and the parking tips. An activity you can't drive to says why instead (e.g. "You can't drive to Cockatoo Island: it's car-free and only reached by ferry."). A **Rideshare** line appears only when the content has one, as a tip ("Ride up, walk down through the zoo, and take the ferry home") or a warning ("Not practical: it's a long, expensive ride").
 5. **What it'll cost**, an estimate calculator (§6.6):
@@ -132,7 +132,7 @@ The detail page answers four questions a newcomer has before committing: **Is it
 6. **Plan your visit:** best time to go, hours, what to bring (chips), facilities, accessibility, and safety notes.
 7. **Newcomer tip:** `newcomerTip`, shown in a highlighted card.
 8. **Heads up:** booking required (`bookingRequired`, e.g. the Opera House tour), which days it runs (`days`, e.g. Carriageworks is Saturday only), and seasonal notes, if any apply. Links, if the activity has any.
-9. **Make a day of it:** 2–3 nearby pairings, with why and how far.
+9. **Make a day of it:** 2–3 nearby pairings, with why and how far (a day trip with little nearby may have one, or a suggestion back in town).
    - Every pairing points to another activity in the list (`activityId`, §5), and tapping it opens that activity's page, scrolled to the top.
    - The group size carries over. The selected map point, extras and Way back reset.
    - Back still returns to the screen the user came from, not the previous activity.
@@ -165,7 +165,7 @@ Design reference: the "A · Plan any day" artboards (My plans calendar on phone 
 - **Set this day's sky:** a compact four-segment version of Set the sky (§3.1).
 - **Timeline** of the day's plans, ordered by start time (§6.7). Each plan shows start–end time, name, area and duration, a fit meter and label for the day's sky ("Set the sky to check the fit" if none), and:
   - a warning row when it overlaps another plan, or is planned on a day it doesn't run ("Carriageworks Farmers Market runs on Saturdays only.")
-  - **Plan B** with **Swap** when its fit is `0` (§6.2); swap keeps the start time
+  - **Plan B** with **Swap** when its fit is `0` (§6.2); a swap keeps the slot, but never starts before the backup's suggested start
   - controls: 30 min earlier, 30 min later, **Change day or time** (opens the Add to a day sheet in edit mode), **Add to my calendar** (this plan only), remove (with Undo, §6.7).
 - **Add {Sat 3 Oct} to my calendar** for the whole day.
 - Empty day: "Nothing planned for {Sat 3 Oct}" with **Find ideas for this day**, which opens Discover with that day's sky applied and remembers the date for the next Add.
@@ -259,7 +259,7 @@ interface Activity {
   safetyNotes?: string[];
   bookingRequired?: boolean;
   days?: ("mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun")[];   // weekdays it runs; omit = every day
-  suggestedStart: string;             // HH:MM Sydney time, the default start in Add to a day
+  suggestedStart: string;             // HH:MM Sydney time, the default start in Add to a day: when you arrive (day trips too); `duration` is the time there
   seasonal?: { months: number[]; note: string };   // 1–12
   location: { lat: number; lng: number };
   links?: { label: string; url: string }[];
@@ -399,7 +399,7 @@ interface Plan {
 - **Voice:** second person, plain English, short sentences, Australian spelling. Use no slang without explaining it.
 - **Pairings:** every "Make a day of it" pairing names an activity that is in the list and carries its `activityId`; the admin won't publish an activity with a pairing that points nowhere (§4.5). A place worth pairing that isn't an activity yet gets added as one (this is how Clovelly, Coogee, North Head, Cronulla, Carriageworks, Parramatta and Leura joined).
 - **Days and booking:** activities that run only on certain days set `days`, and those that need a ticket booked ahead set `bookingRequired`, so the detail page's Heads up section can show them.
-- **Current status:** 29 Sydney activities, all `status: "draft"` (§4.3); the launch target above is 40. Gaps against the mix: 6 activities rate `rainy: 2` (need 10), and solo has 10 activities fit for rain (need 12).
+- **Current status (7 Oct 2026):** 45 verified activities: greater Sydney, the Blue Mountains and day trips by train (Hawkesbury, Kiama and the Illawarra, Newcastle). The mix is met: 14 rate `rainy: 2`, 22 are Free, and every group has 20 or more fit for rain.
 
 ## 6. Logic
 
@@ -408,7 +408,7 @@ interface Plan {
 1. **Filter:** keep an activity if all of these hold:
    - the group is Anyone, or `goodFor` includes the group
    - Free only is off, or `cost === "Free"`
-   - the duration filter matches (Under 3 hrs: `maxHours ≤ 3`; Half day: `minHours ≤ 5 && maxHours ≥ 2`; Full day: `maxHours ≥ 5`)
+   - the duration filter matches (Under 3 hrs: `maxHours ≤ 3`; Half day: `minHours ≤ 5 && maxHours ≥ 2`; Full day: `maxHours ≥ 5`). For a day trip (60 minutes or more each way from Central, from the legs in Getting there) both bounds first add the travel there and back, so the filter judges the whole outing.
    - if `seasonal` is set, the current month (or the month of the day being planned, when Discover was opened from a day in My plans) is in `seasonal.months`
    - `days` doesn't filter Discover; it's enforced when choosing a day (§3.3)
 2. **Hide:** activities with `weatherFit[w] === 0`. Show how many were hidden.
@@ -421,7 +421,7 @@ Ranking must be deterministic. The same inputs always give the same order.
 For a planned item `x` on day `d` whose fit for `d.sky` is `0`:
 
 1. The candidate pool is every activity with `weatherFit[sky] === 2` that runs on `d` (`days`), isn't planned on any day from today onwards, and hasn't already been suggested as a Plan B elsewhere. Items are processed in date order, then by start time.
-2. Keep only candidates that share at least one `goodFor` group with `x`.
+2. Keep only candidates that share at least one `goodFor` group with `x`, and that are within reach: a candidate in a day-trip region beyond greater Sydney (the Newcastle or Illawarra forecast area) only when `x` is in that same region.
 3. Score each candidate:
    - +3 if the `area` is the same
    - +2 if both are indoor or both are outdoor (an activity with `weatherFit.rainy === 2` counts as indoor)
@@ -430,7 +430,7 @@ For a planned item `x` on day `d` whose fit for `d.sky` is `0`:
 4. Pick the highest score. Ties go to the alphabetically first `name`.
 5. If nothing is left, show "Consider moving it to another day" with **Change day or time**.
 
-Plan B suggestions are recalculated whenever the plan or a day's sky changes. They are never stored. A swap keeps the original start time.
+Plan B suggestions are recalculated whenever the plan or a day's sky changes. They are never stored. A swap keeps the original start time, unless the backup's suggested start is later (a gallery that opens at 10 isn't planned for 9).
 
 ### 6.3 Fit labels
 
@@ -552,7 +552,7 @@ Warning banner text for each weather:
 3. Choosing Family shows only activities whose `goodFor` includes `family`.
 4. Adding an activity from its detail page with **Add to a day** (picking Wed 7 Oct, Evening) puts it in My plans on that date at 6pm, updates the tab badge, and shows "Planned · Wed 7 Oct" on its card and page.
 5. The **Add** button on a Discover card opens Add to a day; confirming adds the plan without leaving Discover. Today, Tomorrow, the next Saturday and Sunday and the next public holiday are offered as quick days.
-6. Setting Sun 4 Oct's sky to Rainy when it contains "Three Sisters & Echo Point" shows the warning and a Plan B with `rainy: 2` that runs on that day. Tapping Swap replaces the item and keeps its start time.
+6. Setting Sun 4 Oct's sky to Rainy when it contains "Three Sisters & Echo Point" shows the warning and a Plan B with `rainy: 2` that runs on that day. Tapping Swap replaces the item and keeps its start time, or moves it later to the backup's suggested start if that's later.
 7. The same Plan B is never suggested for two items at once.
 8. Changing a plan's time by +30 min re-sorts the day, persists after a reload, appears in the share URL, and can be undone within 5 seconds. Two plans whose times overlap both show "Overlaps with …".
 9. Carriageworks Farmers Market can't be confirmed on a Sunday in Add to a day ("Closed"), and **Change day or time** moves a plan to another date keeping its time.
@@ -621,7 +621,7 @@ These are deliberate non-goals, carried over from [intent.md](intent.md). Revisi
 - A **List / Map** toggle on Discover. The maps use MapLibre GL with a Sydney extract of Protomaps vector tiles (about 31 MB, zoom 0–14, `scripts/map/`), self-hosted in an R2 bucket bound to the Worker and served through `/map/*` with byte ranges, with its label fonts alongside (no API key or quota, $0). Show "© OpenStreetMap contributors". Without the tiles in R2, the Discover toggle and day maps don't appear, and activity pages show their numbered list and directions link without the map.
 - **Activity maps (D15):** the real map is the only map on activity pages (§3.2 item 3); its data is each activity's `geo` (§4.3). Nothing queries OpenStreetMap or the Trip Planner from the site: places, lines and facilities are generated by a script, reviewed in the admin and stored with the activity. Because activity pages now rely on the tiles, the R2 bucket and its upload are a launch step (owner).
 - **Loading:** MapLibre is large (about 290 KB gzipped with its worker), so it loads only when the visitor opens a map, never on first load, and isn't in the offline precache; without WebGL the map says so and the list carries everything.
-- **Alerts on activity pages:** NSW Rural Fire Service fire danger and total fire bans for the Greater Sydney Region (today and tomorrow), on outdoor activities (those not rated Perfect in the rain), fetched by the Worker and cached for 15 minutes, shown in Heads up with the time and a link to the RFS. If the feed fails, the page says to check the RFS site instead of showing stale data. NSW National Parks closure alerts aren't shown yet: no open feed was found (open question 13). Beach conditions link out to Beachsafe, which has no open licence.
+- **Alerts on activity pages:** NSW Rural Fire Service fire danger and total fire bans for the activity's fire weather district (Greater Sydney Region, Greater Hunter or Illawarra/Shoalhaven; today and tomorrow), on outdoor activities (those not rated Perfect in the rain), fetched by the Worker and cached for 15 minutes, shown in Heads up with the time and a link to the RFS. If the feed fails, the page says to check the RFS site instead of showing stale data. NSW National Parks closure alerts aren't shown yet: no open feed was found (open question 13). Beach conditions link out to Beachsafe, which has no open licence.
 - **Pins:** one per result, labelled with its fit for the current weather. Pins are real buttons (at least 44 px) named "{activity}: {fit} when {sky}"; the style follows the theme and always includes a text label. Selecting a pin shows its card, with quick-add, under the map.
 - **My plans** gets **Show this day on a map**: the selected day's plans, numbered in time order.
 - **Accessibility:** the map is supplementary. Everything on it is also reachable in the list.

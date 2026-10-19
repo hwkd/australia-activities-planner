@@ -2,16 +2,24 @@
 // copy: draft and published become the seed, the derived card and export columns are refreshed, the
 // version goes up and an "import" revision is recorded. An activity with unpublished admin edits (its
 // draft differs from its published copy) is skipped and reported, so nobody's work is overwritten.
-//   npx tsx scripts/db/sync-seeds.ts [--remote] [--dry-run]
+// Seeds not in the database are reported; --add-new=<id,id,…> adds the ones named, published as they
+// are (like a first seed), so new verified activities written as seed files can go live. They're named
+// one by one so a seed for an activity an editor deleted in the admin never comes back by accident.
+//   npx tsx scripts/db/sync-seeds.ts [--remote] [--dry-run] [--add-new=<id,id,…>]
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { activitySchema } from "../../src/content/schema";
 import { toCard } from "../../src/lib/content";
 import { exportInfo } from "../../src/lib/calendarExport";
 import { d1, d1Query } from "./wrangler";
 import { sameData } from "../../src/lib/sameData";
+import { importActivities } from "../../src/server/activities";
+import { sqlRecorder } from "./sql";
 
 const remote = process.argv.includes("--remote");
 const dry = process.argv.includes("--dry-run");
+const addArg = process.argv.find((x) => x.startsWith("--add-new"));
+if (addArg && !addArg.startsWith("--add-new=")) throw new Error("Name the activities to add: --add-new=<id,id,…>");
+const addNew = new Set(addArg ? addArg.slice("--add-new=".length).split(",").filter(Boolean) : []);
 const SEED = "db/seed/activities";
 const q = (v: string) => `'${v.replace(/'/g, "''")}'`;
 
@@ -26,6 +34,7 @@ const sql: string[] = [];
 const changed: string[] = [],
   skipped: string[] = [],
   missing: string[] = [];
+const added: ReturnType<typeof activitySchema.parse>[] = [];
 for (const f of readdirSync(SEED)
   .filter((x) => x.endsWith(".json"))
   .sort()) {
@@ -33,6 +42,7 @@ for (const f of readdirSync(SEED)
   const row = rows.get(a.id);
   if (!row) {
     missing.push(a.id);
+    if (addNew.has(a.id)) added.push(a);
     continue;
   }
   const draft = JSON.parse(row.draft_json);
@@ -54,7 +64,17 @@ console.log(
   `${remote ? "Remote" : "Local"}: ${changed.length} to update${changed.length ? ` (${changed.join(", ")})` : ""}.`,
 );
 if (skipped.length) console.log(`Skipped, unpublished admin edits or never published: ${skipped.join(", ")}.`);
-if (missing.length) console.log(`Not in the database (add them in the admin): ${missing.join(", ")}.`);
+const notAdded = missing.filter((id) => !addNew.has(id));
+const unknown = [...addNew].filter((id) => !missing.includes(id));
+if (added.length) console.log(`To add: ${added.map((a) => a.id).join(", ")}.`);
+if (notAdded.length)
+  console.log(`Not in the database (add them in the admin, or name them with --add-new=…): ${notAdded.join(", ")}.`);
+if (unknown.length) throw new Error(`--add-new names activities that aren't missing seeds: ${unknown.join(", ")}.`);
+if (added.length) {
+  const rec = sqlRecorder();
+  await importActivities(rec.db, added);
+  sql.push(rec.sql().trim());
+}
 if (!dry && sql.length) {
   mkdirSync(".wrangler", { recursive: true });
   writeFileSync(".wrangler/sync-seeds.sql", sql.join("\n"));

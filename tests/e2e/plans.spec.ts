@@ -116,7 +116,7 @@ test.describe("sky changes with motion", () => {
   });
 });
 
-test("AC 6 and 7: a rainy Sunday gets a Plan B that runs that day; Swap keeps the time; no duplicates", async ({ page }) => {
+test("AC 6 and 7: a rainy Sunday gets a Plan B that runs that day; Swap keeps the slot; no duplicates", async ({ page }) => {
   await seed(page, "swf.plan.v2", plan({ "2026-10-04": { items: [{ id: "three-sisters", start: "09:00" }, { id: "bondi-coogee", start: "14:00" }] } }));
   await open(page, "/plan?d=2026-10-04");
   const panel = dayPanel(page);
@@ -125,13 +125,15 @@ test("AC 6 and 7: a rainy Sunday gets a Plan B that runs that day; Swap keeps th
   await expect(panel.getByText(/2 plans need a look/)).toBeVisible();
   const swaps = panel.getByRole("button", { name: /^Swap / });
   await expect(swaps).toHaveCount(2);
-  const names = await swaps.evaluateAll((b) => b.map((x) => x.getAttribute("aria-label")!.match(/ for (.+), keeping/)![1]));
+  const names = await swaps.evaluateAll((b) => b.map((x) => x.getAttribute("aria-label")!.match(/ for (.+), at /)![1]));
   expect(new Set(names).size).toBe(2);
   await swaps.first().click();
   const items = (await stored(page)).days["2026-10-04"].items as { id: string; start: string }[];
-  const swapped = items.find((i) => i.start === "09:00")!;
-  expect(swapped.id).not.toBe("three-sisters");
+  // Three Sisters (9am) is swapped out; its backup takes the slot, but not before it opens.
+  const swapped = items.find((i) => i.id !== "three-sisters" && i.id !== "bondi-coogee")!;
+  expect(items.some((i) => i.id === "three-sisters")).toBe(false);
   const b = act(swapped.id);
+  expect(swapped.start).toBe(b.suggestedStart > "09:00" ? b.suggestedStart : "09:00");
   expect(b.weatherFit.rainy).toBe(2);
   expect(!b.days || b.days.includes("sun")).toBe(true);
 });

@@ -9,7 +9,7 @@ const arg = (k) => {
   const i = process.argv.indexOf(k);
   return i > 0 ? process.argv[i + 1] : undefined;
 };
-const SYDNEY = "-34.25,150.15,-33.5,151.4"; // south, west, north, east
+const SYDNEY = "-34.75,150.15,-32.85,151.85"; // south, west, north, east: the map tiles' extent (Newcastle to Kiama)
 const name = arg("--name"), relation = arg("--relation"), way = arg("--way");
 const target = relation
   ? `relation(${Number(relation)})->.r; way(r.r)->.w;`

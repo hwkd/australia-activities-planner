@@ -88,7 +88,8 @@ export const plans = {
   planB: {
     heading: "Plan B",
     meta: (area: string, fit: string, weather: string) => `${area} · ${fit} when ${weather}`,
-    swapLabel: (name: string, backup: string, time: string) => `Swap ${name} for ${backup}, keeping ${time}`,
+    /** `time` is when the backup will start: the slot's time, or its own suggested start if later. */
+    swapLabel: (name: string, backup: string, time: string) => `Swap ${name} for ${backup}, at ${time}`,
     swap: "Swap",
     swapped: (name: string) => `Swapped in ${name}`,
     moveHint: "Consider moving it to another day",

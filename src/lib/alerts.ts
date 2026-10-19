@@ -1,11 +1,33 @@
 /**
  * NSW Rural Fire Service fire danger ratings and total fire bans (spec §11.2), for activity pages.
- * The RFS publishes them per fire weather district for today and tomorrow; every Sydney activity is
- * in the Greater Sydney Region district.
+ * The RFS publishes them per fire weather district for today and tomorrow.
  */
 export const RFS_FEED = "https://www.rfs.nsw.gov.au/feeds/fdrToban.xml";
 export const RFS_PAGE = "https://www.rfs.nsw.gov.au/fire-information/fdr-and-tobans";
 export const SYDNEY_DISTRICT = "Greater Sydney Region";
+
+/** The RFS districts our activities fall in (the names the feed uses), and how a page names them. */
+export const DISTRICTS = {
+  "Greater Sydney Region": "Greater Sydney",
+  "Greater Hunter": "the Greater Hunter",
+  "Illawarra/Shoalhaven": "the Illawarra and Shoalhaven",
+} as const;
+export type District = keyof typeof DISTRICTS;
+
+/**
+ * An activity's fire weather district, by latitude: everything we list sits on one north–south line
+ * of districts. Greater Sydney runs from the Central Coast to Royal National Park (and west over the
+ * Blue Mountains); Newcastle and Lake Macquarie are Greater Hunter; Wollongong (from Coalcliff,
+ * about −34.2) to Kiama is Illawarra/Shoalhaven. Right for every activity today; latitude alone gets
+ * the edges wrong, so extend this before adding places there: Helensburgh and Wollondilly (Picton) are
+ * Illawarra/Shoalhaven, the northern Central Coast (−33.1 to −33.3) is Greater Sydney, and Lithgow and
+ * Hartley are Central Ranges (the RFS feed lists each district's councils).
+ */
+export function fireDistrict(p: { lat: number }): District {
+  if (p.lat > -33.3) return "Greater Hunter";
+  if (p.lat < -34.2) return "Illawarra/Shoalhaven";
+  return "Greater Sydney Region";
+}
 
 export interface FireDanger {
   district: string;
@@ -20,7 +42,7 @@ export interface FireDanger {
 const tag = (xml: string, name: string) => new RegExp(`<${name}>([^<]*)</${name}>`).exec(xml)?.[1]?.trim() ?? "";
 
 /** Reads one district from the RFS feed; null when it isn't there or looks wrong. */
-export function parseFireDanger(xml: string, district = SYDNEY_DISTRICT, fetchedAt = new Date().toISOString()): FireDanger | null {
+export function parseFireDanger(xml: string, district: string = SYDNEY_DISTRICT, fetchedAt = new Date().toISOString()): FireDanger | null {
   for (const block of xml.split("<District>").slice(1)) {
     if (tag(block, "Name") !== district) continue;
     const today = tag(block, "DangerLevelToday"), tomorrow = tag(block, "DangerLevelTomorrow");

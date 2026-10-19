@@ -8,8 +8,8 @@ import { t } from "~/strings/en-AU";
 
 /**
  * Getting there (spec §3.2 item 4, D14): one public transport trip from the city centre, with the
- * way-in strip, the last stretch to the door, getting back, the Opal reminder, directions from where
- * the visitor is (Google Maps) and the Driving? note. Static: there's nothing to pick since D14.
+ * way-in strip, the last stretch to the door, getting back, the Opal reminder (and, for rail, where to
+ * check weekend trackwork), directions from where the visitor is (Google Maps) and the Driving? note. Static: there's nothing to pick since D14.
  */
 interface Props {
   routes: Routes;
@@ -21,6 +21,8 @@ const way = wayIn(pt.legs);
 const legs = lastStretch(pt.legs);
 const fare = tripFare(pt);
 const drive = drivingNote(routes);
+const rail = pt.legs.some((l) => l.mode === "train" || l.mode === "metro" || l.mode === "light-rail");
+const ALERTS = "https://transportnsw.info/alerts";
 ---
 
 <style is:global set:html={legCss()}></style>
@@ -127,6 +129,18 @@ const drive = drivingNote(routes);
     <p class="m-0 mt-3.5 flex items-center gap-2.5 px-0.5 text-[13.5px] font-semibold" style="color: var(--mute)">
       <Icon name="ticket" size={18} className="shrink-0" />
       {s.opal}
+    </p>
+  )
+}
+
+{
+  rail && (
+    <p class="m-0 mt-2 px-0.5 pl-[28px] text-[13.5px] leading-[1.45]" style="color: var(--mute)" data-trackwork>
+      {s.trackwork}{" "}
+      <a href={ALERTS} target="_blank" rel="noopener" class="font-semibold underline" style="color: var(--ink)">
+        {s.trackworkLink}
+        <span class="sr-only">{t.detail.newTab}</span>
+      </a>
     </p>
   )
 }

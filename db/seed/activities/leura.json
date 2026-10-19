@@ -21,7 +21,7 @@
     "family"
   ],
   "duration": {
-    "label": "Half day",
+    "label": "3–5 hrs",
     "minHours": 3,
     "maxHours": 5
   },
@@ -36,7 +36,7 @@
   "facts": [
     {
       "k": "Time",
-      "v": "Half day"
+      "v": "3–5 hrs"
     },
     {
       "k": "Train",

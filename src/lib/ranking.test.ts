@@ -2,18 +2,45 @@ import { describe, expect, it } from "vitest";
 import { readdirSync, readFileSync } from "node:fs";
 import { activitySchema } from "~/content/schema";
 import { toCard } from "./content";
-import { rank, type DurationFilter, type GroupFilter } from "./ranking";
+import { matchesDuration, rank, type DurationFilter, type GroupFilter } from "./ranking";
 import type { Weather } from "~/stores/weather";
 import golden from "../../tests/fixtures/ranking.json";
 
 const cards = readdirSync("db/seed/activities").map((f) => toCard(activitySchema.parse(JSON.parse(readFileSync(`db/seed/activities/${f}`, "utf8")))));
 
+// The prototype engine ranks its own copy of the first 29 activities, so the golden runs compare on
+// those (every one shows in some combination); activities added since are ranked by the same rules.
+const prototypeIds = new Set(golden.flatMap((g) => g.ids));
+// Since the prototype, day trips' durations are the time there (8 Oct 2026) and the filters add their
+// travel (`tripMins`). The prototype's durations and no travel are used here, so this stays a check of
+// the ranking rules it had.
+const PROTOTYPE_DURATION: Record<string, { minHours: number; maxHours: number }> = {
+  "three-sisters": { minHours: 6, maxHours: 9 },
+  "royal-np": { minHours: 6, maxHours: 8 },
+  "palm-beach": { minHours: 6, maxHours: 8 },
+};
+const prototypeCards = cards
+  .filter((c) => prototypeIds.has(c.id))
+  .map((c) => ({ ...c, tripMins: undefined, duration: { ...c.duration, ...PROTOTYPE_DURATION[c.id] } }));
+
 describe("ranking (spec §6.1)", () => {
   it(`matches the prototype for all ${golden.length} filter combinations`, () => {
+    expect(prototypeCards).toHaveLength(prototypeIds.size);
     for (const g of golden) {
-      const r = rank(cards, { weather: g.weather as Weather, group: g.group as GroupFilter, duration: g.duration as DurationFilter, freeOnly: g.freeOnly });
+      const r = rank(prototypeCards, { weather: g.weather as Weather, group: g.group as GroupFilter, duration: g.duration as DurationFilter, freeOnly: g.freeOnly });
       expect({ ids: r.shown.map((c) => c.id), hidden: r.hidden }, JSON.stringify(g).slice(0, 80)).toEqual({ ids: g.ids, hidden: g.hidden });
     }
+  });
+  it("judges a day trip's duration by the whole outing, travel included", () => {
+    const byId = (id: string) => cards.find((c) => c.id === id)!;
+    // Newcastle Museum: 2–3 hrs there, about 3 hrs each way.
+    expect(matchesDuration(byId("newcastle-museum"), "short")).toBe(false);
+    expect(matchesDuration(byId("newcastle-museum"), "full")).toBe(true);
+    // Sea Cliff Bridge: 1–2 hrs there, about 1 hr 15 each way: a half day.
+    expect(matchesDuration(byId("sea-cliff-bridge"), "short")).toBe(false);
+    expect(matchesDuration(byId("sea-cliff-bridge"), "half")).toBe(true);
+    // In town, travel doesn't count: the Art Gallery stays under 3 hrs.
+    expect(matchesDuration(byId("agnsw"), "short")).toBe(true);
   });
   it("AC 1: rainy hides every activity with rainy fit 0, and counts them", () => {
     const r = rank(cards, { weather: "rainy", group: "any", duration: "any", freeOnly: false });

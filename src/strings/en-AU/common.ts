@@ -47,7 +47,7 @@ export const common = {
     updatedMins: (n: number) => `updated ${n} min ago`,
     updatedHours: (n: number) => `updated ${n} h ago`,
     updatedDays: (n: number) => `updated ${n} ${n === 1 ? "day" : "days"} ago`,
-    areas: { city: "Sydney", "blue-mountains": "the Blue Mountains", "northern-beaches": "the Northern Beaches", "royal-np": "Royal National Park" },
+    areas: { city: "Sydney", "blue-mountains": "the Blue Mountains", "northern-beaches": "the Northern Beaches", "royal-np": "Royal National Park", newcastle: "Newcastle", illawarra: "the Illawarra" },
     /** My plans banner: "Sunday now looks rainy. 1 activity needs a Plan B." */
     alert: (day: string, word: string, n: number) => `${day} now looks ${word}. ${n} ${n === 1 ? "activity needs" : "activities need"} a Plan B.`,
     dismiss: "Dismiss",

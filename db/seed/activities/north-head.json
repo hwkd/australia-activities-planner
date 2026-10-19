@@ -22,7 +22,7 @@
     "solo"
   ],
   "duration": {
-    "label": "2–3 hrs",
+    "label": "2–4 hrs",
     "minHours": 2,
     "maxHours": 4
   },
@@ -37,7 +37,7 @@
   "facts": [
     {
       "k": "Time",
-      "v": "2–3 hrs"
+      "v": "2–4 hrs"
     },
     {
       "k": "Distance",
@@ -105,10 +105,10 @@
     "drive": {
       "total": "≈ 40 min",
       "perCar": [
-        5,
-        15
+        0,
+        5
       ],
-      "perCarLabel": "Parking, 3 hrs",
+      "perCarLabel": "Parking, per day",
       "notes": [
         "A toll applies coming back across the harbour."
       ]
@@ -140,11 +140,11 @@
         "on": false
       }
     ],
-    "pricesChecked": "2026-10-02"
+    "pricesChecked": "2026-10-07"
   },
   "visit": {
     "bestTime": "A clear morning. Late afternoon light on the cliffs is beautiful too.",
-    "hours": "The sanctuary is open daily from early morning to dusk. The visitor centre opens about 10am to 3pm.",
+    "hours": "The park is open sunrise to sunset, and can close in bad weather or high fire danger. The visitor centre opens about 10am to 3pm.",
     "bring": [
       "Walking shoes",
       "Water",
@@ -175,7 +175,7 @@
       "activityId": "spit-manly"
     }
   ],
-  "lastVerified": "2026-10-02",
+  "lastVerified": "2026-10-07",
   "geo": {
     "places": [
       {
@@ -1631,10 +1631,17 @@
     "source": "OpenStreetMap contributors (ODbL), Transport for NSW (CC BY 4.0)",
     "checked": "2026-10-02"
   },
+  "notice": {
+    "text": "Fox baits (1080) are laid at North Head until 1 February 2027. Don't touch them: they're deadly to dogs and cats (pets aren't allowed in the park).",
+    "link": {
+      "label": "NSW National Parks alerts",
+      "url": "https://www.nationalparks.nsw.gov.au/visit-a-park/parks/sydney-harbour-national-park/local-alerts"
+    }
+  },
   "unconfirmed": [
     {
       "section": "driving",
-      "note": "The $5–15 estimate for 3 hours is a guess: check NSW National Parks' North Head parking fees.",
+      "note": "NSW National Parks charges $5 a day at its North Head car parks; we couldn't confirm whether the Harbour Trust car park at North Fort charges.",
       "check": {
         "label": "North Head fees on NSW National Parks",
         "url": "https://www.nationalparks.nsw.gov.au/things-to-do/lookouts/north-head/visitor-info"
