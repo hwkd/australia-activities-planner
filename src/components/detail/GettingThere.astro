@@ -201,8 +201,9 @@ const ALERTS = "https://transportnsw.info/alerts";
 </div>
 
 <style>
+  /* No margin here: a scoped rule beats Tailwind's utilities, so "margin: 0" cancelled the heading's
+     mt-[18px] and "Last stretch" sat flush against the summary box. Headings start at 0 anyway. */
   .k {
-    margin: 0;
     font-size: 11.5px;
     font-weight: 700;
     letter-spacing: 0.12em;
